@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier 2025–26 · Science &amp; Technology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1E33; --ink-2:#122A45; --paper:#FBF7EC; --paper-2:#F3ECDA;
+    --gold:#C9A227; --gold-2:#E8C766; --teal:#2E6171; --text:#1C2B3A; --muted:#5B6B7A;
+    --hl-y: rgba(255, 213, 79, .55); --hl-b: rgba(133, 193, 233, .55);
+    --hl-g: rgba(163, 221, 178, .6); --hl-r: rgba(245, 158, 148, .55);
+    --trap-bg:#FDEDEC; --trap-bd:#C0392B;
+    --tbl-head-blue:#1A5276; --tbl-head-red:#7B241C;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--ink); color:var(--text); font-family:'Source Sans 3', sans-serif; display:flex; min-height:100vh;}
+  ::selection{background:var(--gold-2); color:var(--ink);}
+
+  #sidebar{width:290px; flex-shrink:0; background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%); color:#DCE6EE; position:fixed; top:0; left:0; bottom:0; overflow-y:auto; padding:28px 0 40px; border-right:1px solid rgba(201,162,39,.25); z-index:50;}
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:rgba(201,162,39,.4); border-radius:3px;}
+  .brand{padding:0 24px 20px; border-bottom:1px solid rgba(201,162,39,.25); margin-bottom:10px;}
+  .brand .stamp{width:46px;height:46px;border-radius:50%; border:2px solid var(--gold); display:flex;align-items:center;justify-content:center; font-family:'Playfair Display',serif; font-weight:800; color:var(--gold-2); font-size:13px; margin-bottom:10px;}
+  .brand h1{font-family:'Playfair Display', serif; font-size:18px; line-height:1.25; margin:0 0 4px; font-weight:700; color:#F4EFE1;}
+  .brand p{margin:0; font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono', monospace;}
+
+  nav.toc{padding:4px 8px;}
+  .toc-part{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); padding:14px 16px 4px;}
+  nav.toc a{display:flex; align-items:baseline; gap:8px; padding:7px 14px; margin:1px 0; border-radius:6px; color:#B7C6D3; text-decoration:none; font-size:12.6px; font-weight:500; border-left:3px solid transparent; transition:background .15s, color .15s, border-color .15s;}
+  nav.toc a .num{font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--gold); flex-shrink:0; width:18px;}
+  nav.toc a:hover{background:rgba(201,162,39,.10); color:#F4EFE1;}
+  nav.toc a.active{background:rgba(201,162,39,.16); color:#F8F1DD; border-left-color:var(--gold); font-weight:600;}
+
+  .legend-box{margin:16px 16px 0; padding:14px; background:rgba(255,255,255,.04); border:1px solid rgba(201,162,39,.22); border-radius:8px;}
+  .legend-box h3{margin:0 0 10px; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  .legend-row{display:flex; align-items:center; gap:8px; margin-bottom:7px; font-size:11.5px; color:#CBD6DF;}
+  .legend-swatch{width:14px;height:14px;border-radius:3px; flex-shrink:0;}
+
+  #main{margin-left:290px; flex:1; background:var(--ink);}
+  .cover{padding:70px 64px 50px; background:radial-gradient(circle at 85% 20%, rgba(201,162,39,.10), transparent 45%), linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%); color:#EFE9D8; border-bottom:4px double rgba(201,162,39,.4);}
+  .cover .eyebrow{font-family:'IBM Plex Mono',monospace; letter-spacing:.18em; text-transform:uppercase; font-size:12px; color:var(--gold-2); margin-bottom:16px;}
+  .cover h1{font-family:'Playfair Display', serif; font-weight:800; font-size:clamp(30px,4vw,48px); line-height:1.1; margin:0 0 14px; max-width:840px;}
+  .cover p.sub{font-size:15.5px; color:#C9D2DB; max-width:660px; line-height:1.6; margin:0 0 20px;}
+  .cover .tags{display:flex; gap:10px; flex-wrap:wrap;}
+  .cover .tag{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold-2); border:1px solid rgba(201,162,39,.45); padding:5px 12px; border-radius:20px; background:rgba(201,162,39,.06);}
+
+  .part-divider{max-width:920px; margin:0 auto; padding:40px 48px 0;}
+  .part-divider .plabel{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); background:var(--ink); display:inline-block; padding:8px 18px; border-radius:20px;}
+  .part-divider .ptitle{font-family:'Playfair Display',serif; font-weight:700; font-size:26px; color:var(--ink); margin:14px 0 2px;}
+  .part-divider .pdesc{color:var(--muted); font-size:14px; margin:0 0 6px;}
+  @media (max-width:880px){ .part-divider{padding:30px 22px 0;} }
+
+  .chapters{background:var(--paper); padding:10px 0 90px;}
+  .chapter{max-width:920px; margin:0 auto; padding:46px 48px 8px; border-bottom:1px solid rgba(28,43,58,.10); scroll-margin-top:14px;}
+  .chapter:last-child{border-bottom:none;}
+  .chapter-head{display:flex; align-items:center; gap:16px; margin-bottom:22px;}
+  .chapter-head .seal{width:48px; height:48px; border-radius:50%; background:var(--ink); color:var(--gold-2); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:700; font-size:17px; border:2px solid var(--gold); flex-shrink:0;}
+  .chapter-head h2{font-family:'Playfair Display', serif; font-size:clamp(21px,2.6vw,28px); margin:0; color:var(--ink); font-weight:700; line-height:1.2;}
+
+  .tcard{background:var(--paper-2); border:1px solid rgba(28,43,58,.12); border-radius:9px; padding:16px 20px; margin-bottom:14px;}
+  .tcard h3{font-family:'Playfair Display', serif; font-size:16.5px; margin:0 0 9px; color:var(--ink); font-weight:700;}
+  .tcard ul{margin:0; padding-left:19px;}
+  .tcard li{margin-bottom:6px; line-height:1.58; font-size:14.5px;}
+  .tcard p{margin:0 0 8px; line-height:1.58; font-size:14.5px;}
+  .tcard p:last-child{margin-bottom:0;}
+
+  mark{padding:.05em .18em; border-radius:3px; font-weight:600; color:var(--text); box-decoration-break:clone; -webkit-box-decoration-break:clone;}
+  .y{background:var(--hl-y);} .b{background:var(--hl-b);} .g{background:var(--hl-g);} .r{background:var(--hl-r);}
+
+  .trap{background:var(--trap-bg); border:1px solid rgba(192,57,43,.35); border-left:4px solid var(--trap-bd); padding:11px 15px; border-radius:6px; margin:10px 0; font-size:13.8px; line-height:1.58;}
+  .trap .lbl{font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:var(--trap-bd); font-weight:700; display:block; margin-bottom:4px;}
+
+  table{width:100%; border-collapse:collapse; margin:10px 0 4px; font-size:13.5px;}
+  caption{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:.06em;}
+  th,td{padding:8px 10px; text-align:left; border-bottom:1px solid rgba(28,43,58,.10); vertical-align:top;}
+  thead.blue th{background:var(--tbl-head-blue); color:#F4EFE1; font-weight:600; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.red th{background:var(--tbl-head-red); color:#F4EFE1; font-weight:600; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em;}
+  tbody tr:nth-child(even){background:var(--paper);}
+
+  .footer{max-width:920px; margin:0 auto; padding:40px 48px 70px; color:var(--muted); font-size:12.5px; font-family:'IBM Plex Mono',monospace; text-align:center;}
+
+  @media (max-width: 880px){
+    #sidebar{position:fixed; left:0; top:0; bottom:0; width:260px; transform:translateX(-100%); transition:transform .25s ease;}
+    #sidebar.open{transform:translateX(0);}
+    #main{margin-left:0;}
+    .chapter{padding:38px 20px 8px;}
+    .cover{padding:56px 20px 40px;}
+  }
+  #menu-btn{display:none; position:fixed; top:16px; left:16px; z-index:60; width:44px;height:44px;border-radius:50%; background:var(--ink); border:2px solid var(--gold); color:var(--gold-2); font-size:18px; align-items:center; justify-content:center; cursor:pointer;}
+  @media (max-width: 880px){ #menu-btn{display:flex;} }
+</style>
+</head>
+<body>
+
+<button id="menu-btn" aria-label="Toggle chapter index">☰</button>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="stamp">ST</div>
+    <h1>The Science &amp; Tech Dossier</h1>
+    <p>BPSC · Sci &amp; Tech 2025–26</p>
+  </div>
+  <nav class="toc" id="toc"></nav>
+
+  <div class="legend-box">
+    <h3>Marker Key</h3>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-y)"></span> Core concept</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-b)"></span> Hard fact / date / number</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-g)"></span> Person / place / institution</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-r)"></span> MCQ trap / confusion</div>
+  </div>
+</aside>
+
+<div id="main">
+  <section class="cover">
+    <div class="eyebrow">Case File No. 2026/ST &nbsp;·&nbsp; Compiled for Prelims Revision</div>
+    <h1>Space, Defence, Silicon and Cell: everything ISRO, DRDO, MeitY and DBT launched this cycle — filed and marker-coded.</h1>
+    <p class="sub">Four domains, one dossier: every mission, missile, model and molecule that BPSC could pull a question from, sorted, dated, and colour-marked so nothing slips past you.</p>
+    <div class="tags">
+      <span class="tag">Space · 12 Chapters</span>
+      <span class="tag">Defence · 7 Chapters</span>
+      <span class="tag">IT &amp; Computer · 3 Chapters</span>
+      <span class="tag">Biotech &amp; Health · 3 Chapters</span>
+    </div>
+  </section>
+
+  <div class="chapters" id="chapters-root">
+
+  <!-- ================= PART A: SPACE ================= -->
+  <div class="part-divider"><span class="plabel">Part A</span><div class="ptitle">Space</div><p class="pdesc">ISRO's Moon, Sun, human-spaceflight and satellite programme — plus the global space race around it.</p></div>
+
+  <section class="chapter" id="ch1" data-title="India's Moon Missions">
+    <div class="chapter-head"><div class="seal">1</div><h2>India's Moon Missions</h2></div>
+
+    <div class="tcard">
+      <h3>Chandrayaan-3</h3>
+      <ul>
+        <li>India became the <mark class="b">fourth country</mark> to soft-land on the Moon, after the <mark class="g">US, Russia, and China</mark>.</li>
+        <li><mark class="g">Japan</mark> became the <mark class="b">5th country</mark> via the <mark class="g">SLIM</mark> mission.</li>
+        <li>Launch Vehicle: <mark class="y">Geosynchronous Satellite Launch Vehicle Mk III</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>GRAIL Mission (NASA)</h3>
+      <ul>
+        <li>NASA's GRAIL Mission created the <mark class="y">most detailed map of the Moon's gravity</mark>.</li>
+        <li>Part of the <mark class="g">NASA Discovery Program</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Moon Exploration — Global Initiatives</h3>
+      <ul>
+        <li><mark class="g">India</mark> (Chandrayaan series): discovered water molecules on the Moon; first soft landing near the Moon's <mark class="y">south pole</mark>.</li>
+        <li><mark class="g">China</mark>: <mark class="g">Chang'e 6</mark> — a robotic lunar sample-return mission.</li>
+        <li><mark class="g">Japan</mark>: <mark class="g">SLIM</mark> mission — achieved the <mark class="r">first high-precision, pinpoint lunar landing</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Chandrayaan-4 Mission</h3>
+      <ul>
+        <li>Identified <mark class="g">Mons Mouton</mark> as the landing location on the Moon.</li>
+        <li>India's <mark class="b">fourth</mark> mission to the Moon.</li>
+        <li>Will demonstrate taking off from the lunar surface after collecting samples, and bringing them back to Earth.</li>
+        <li>Planned timeline: <mark class="b">2027</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch2" data-title="Human Spaceflight & Space Station">
+    <div class="chapter-head"><div class="seal">2</div><h2>Human Spaceflight &amp; Space Station</h2></div>
+
+    <div class="tcard">
+      <h3>Gaganyaan Mission</h3>
+      <ul>
+        <li>ISRO completed the first <mark class="y">Integrated Air Drop Test</mark> for Gaganyaan.</li>
+        <li>India's <mark class="r">first Human Space Flight</mark> mission.</li>
+        <li>Aim: launch a crew of <mark class="b">3 members</mark> to <mark class="b">400 km (LEO)</mark> for a <mark class="b">3-day</mark> mission and return safely.</li>
+        <li>Launch Vehicle: <mark class="y">LVM-3</mark> (formerly GSLV Mk-III) — a 3-stage rocket. Orbital Module = Crew Module + Service Module.</li>
+        <li><mark class="g">Vyommitra</mark>: AI-powered Gynoid (female robot), half-humanoid — will undertake the first uncrewed Gaganyaan mission.</li>
+        <li><mark class="g">Godrej Enterprises</mark> delivered the first human-rated <mark class="g">L110 stage Vikas engine</mark> for Gaganyaan to ISRO.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Axiom-4 Mission</h3>
+      <ul>
+        <li>Successfully returned on <mark class="b">15 July 2025</mark>.</li>
+        <li>Indian astronaut: <mark class="g">Group Captain Shubhanshu Shukla</mark> + 3 other astronauts.</li>
+        <li>Private US company: <mark class="g">Axiom Space</mark>, with NASA and SpaceX. Launched aboard a <mark class="g">SpaceX Dragon</mark> spacecraft by <mark class="g">Falcon 9</mark>.</li>
+        <li>Aim: "realize the return" to human spaceflight for <mark class="g">India, Poland, and Hungary</mark>.</li>
+        <li>Ax-4 = each nation's first ISS mission (except USA) and first government-sponsored flight in <mark class="b">40+ years</mark>.</li>
+        <li>Shukla: <mark class="r">first Indian astronaut to board the ISS</mark>; <mark class="r">second Indian in space after Rakesh Sharma (1984)</mark>.</li>
+        <li>India's experiments: Crop Growth, Cyanobacteria, Space Microalgae, Myogenesis, Tardigrades (water bear).</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Bharatiya Antariksha Station (BAS)</h3>
+      <ul>
+        <li>Orbit: <mark class="b">LEO 400–450 km</mark>. <mark class="b">5 modules</mark>. First module by <mark class="b">2028</mark>; fully finalised by <mark class="b">2035</mark>.</li>
+      </ul>
+      <p><b>International Space Station (ISS):</b> habitable artificial satellite in LEO; key partners <mark class="g">ESA (Europe), NASA (USA), JAXA (Japan), CSA (Canada), Roscosmos (Russia)</mark>; largest artificial body in orbit; flies over <mark class="b">90%</mark> of inhabited Earth.</p>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch3" data-title="Solar & Deep Space Missions">
+    <div class="chapter-head"><div class="seal">3</div><h2>Solar &amp; Deep Space Missions</h2></div>
+
+    <div class="tcard">
+      <h3>Aditya-L1 Mission</h3>
+      <ul>
+        <li>India's <mark class="r">first dedicated solar mission</mark>.</li>
+        <li>Objectives: understand <mark class="y">Coronal Heating</mark> and <mark class="y">Solar Wind Acceleration</mark>.</li>
+        <li>Lifespan: <mark class="b">5 years</mark>. <mark class="b">7 payloads</mark> — remote sensing (VELC, SUIT) and in-situ (ASPEX).</li>
+        <li>Placed in a halo orbit around <mark class="g">Lagrange Point 1 (L1)</mark>, ~<mark class="b">1.5 million km</mark> from Earth.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Kodaikanal Solar Observatory</h3>
+      <ul>
+        <li><mark class="g">ARIES</mark> (Aryabhatta Research Institute of Observational Sciences) used century-old Kodaikanal data to reconstruct the Sun's past polar magnetic behaviour.</li>
+        <li>Established <mark class="b">1899</mark>; operated by <mark class="g">Indian Institute of Astrophysics</mark> (autonomous institute of <mark class="g">DST</mark>); located in the <mark class="g">Palani Range</mark>, Southern India.</li>
+        <li>Known for discovery of the <mark class="y">Evershed Effect</mark> — nearly horizontal outflow of gases in sunspot penumbrae (photospheric layer).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch4" data-title="Satellites & Earth Observation">
+    <div class="chapter-head"><div class="seal">4</div><h2>Satellites &amp; Earth Observation</h2></div>
+
+    <div class="tcard">
+      <h3>NISAR — NASA-ISRO Synthetic Aperture Radar Satellite</h3>
+      <ul>
+        <li>Launched: <mark class="b">30 July 2025</mark>; <mark class="b">12m</mark> diameter antenna reflector deployed successfully.</li>
+        <li><mark class="r">World's first Earth observation satellite to integrate both L-band and S-band SAR</mark> on a single platform.</li>
+        <li><mark class="g">S-band</mark>: ISRO. <mark class="g">L-band</mark>: NASA.</li>
+        <li>Launch Vehicle: <mark class="g">GSLV F15</mark>. Site: <mark class="g">Satish Dhawan Space Centre, Sriharikota</mark>. Orbit: <mark class="y">Sun Synchronous Polar Orbit</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>SpaDeX Mission</h3>
+      <ul>
+        <li>Docking tech indigenously developed by ISRO: <mark class="y">Bhartiya Docking System</mark>.</li>
+        <li>Designed/realised by <mark class="g">UR Rao Satellite Centre (URSC)</mark>, Bengaluru — formerly <mark class="g">ISRO Satellite Centre (ISAC)</mark> — lead centre for building satellites.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Pixxel — Earth Observation Satellite Constellation</h3>
+      <ul>
+        <li>Launched three new <mark class="g">Firefly</mark> satellites aboard <mark class="g">SpaceX NAOS Falcon 9</mark>, completing phase 1 of its commercial constellation.</li>
+        <li><mark class="g">PixxelSpace India-led Consortium</mark> won the <mark class="g">IN-SPACe</mark> proposal to build India's first fully indigenous commercial <mark class="y">Earth Observation Satellite System (EOSS)</mark> under a <mark class="y">PPP model</mark>.</li>
+        <li>Consortium: <mark class="g">Piersight Space, Satsure Analytics India, Dhruva Space</mark>. Constellation of <mark class="b">12</mark> EO satellites.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>LVM3-M6 Mission — Bluebird Block-2 Satellite</h3>
+      <ul>
+        <li>Placed the <mark class="g">Bluebird Block-2</mark> satellite in LEO; launched from Sriharikota.</li>
+        <li>Commercial deal between <mark class="g">NewSpace India Limited (NSIL)</mark> and <mark class="g">AST</mark> (US-based).</li>
+        <li>Part of a global LEO constellation; direct-to-mobile connectivity — enables 4G/5G voice, video, texts, streaming, data.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>DEX — Dust Experiment</h3>
+      <ul>
+        <li>ISRO's <mark class="r">maiden home-made dust detector</mark>; detects interplanetary dust particles striking Earth every <mark class="b">1,000 seconds</mark>.</li>
+        <li>IDPs: microscopic fragments from comets and asteroids.</li>
+        <li>Flown on <mark class="g">POEM</mark> (PSLV Orbital Experimental Module) of <mark class="g">PSLV-C58</mark>.</li>
+        <li>Developed by: <mark class="g">Physical Research Laboratory (PRL), Ahmedabad</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch5" data-title="Launch Vehicles">
+    <div class="chapter-head"><div class="seal">5</div><h2>Launch Vehicles</h2></div>
+
+    <div class="tcard">
+      <h3>ISRO's Key Launch Vehicles</h3>
+      <ul>
+        <li><b>PSLV</b>: ISRO's workhorse; <mark class="b">3rd generation</mark>, <mark class="b">4-stage</mark>; first Indian vehicle equipped with liquid stages. Sun-sync Polar Orbit, LEO, GTO (Chandrayaan-1, Mars Orbiter Mission).</li>
+        <li><b>GSLV</b>: <mark class="b">4th generation</mark>, 3-stage; launches <mark class="b">2.0-ton class</mark> satellites to GTO for comm satellites.</li>
+        <li><b>LVM3</b>: heavy-lift, 3-stage; carries <mark class="b">4-ton class</mark> to GTO or ~<mark class="b">10 tons</mark> to LEO. Proposed for BAS.</li>
+        <li><b>SSLV</b>: 3-stage, all-solid propulsion; launches Mini/Micro/Nano satellites.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>LMLV — Lunar Module Launch Vehicle</h3>
+      <ul>
+        <li>ISRO's <mark class="r">heaviest rocket</mark>; ready by <mark class="b">2035</mark>. Improved version of the <mark class="g">NGLV</mark>.</li>
+        <li>Purpose: lunar missions, incl. India's first human Moon mission, planned by <mark class="b">2040</mark>.</li>
+        <li>Three stages: liquid (stages 1 &amp; 2), cryogenic (stage 3).</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Vikram-1 — Private Orbital-Class Launch Vehicle</h3>
+      <ul>
+        <li>PM unveiled Vikram-1, India's new private orbital-class launch vehicle.</li>
+        <li>Developer: <mark class="g">Skyroot Aerospace</mark> (Hyderabad-based private startup).</li>
+        <li>Four-stage: first three solid-fuel boosters, final stage liquid-propellant <mark class="y">"Raman"</mark> engine.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Agnite Engine — Agnikul Cosmos</h3>
+      <ul>
+        <li><mark class="g">Agnikul Cosmos</mark> test-fired the Agnite Engine.</li>
+        <li>Agnite: <mark class="r">world's largest single-piece 3D-printed booster engine</mark>. Agnite &amp; Agnilet = Agnikul's 3D-printed semi-cryogenic engines.</li>
+        <li>Made using <mark class="g">Inconel</mark> — a high-performance heat-resistant alloy.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>CE20 Cryogenic Engine — Bootstrap Mode Test</h3>
+      <ul>
+        <li>ISRO conducted the Bootstrap mode start test under vacuum conditions.</li>
+        <li>CE20 = India's <mark class="r">largest cryogenic engine</mark>, developed by <mark class="g">Liquid Propulsion Systems Centre, Valiamala, Kerala</mark>.</li>
+        <li>Powers the LVM3 upper stage; qualified for Gaganyaan missions.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch6" data-title="PSLV Missions — Recent Record">
+    <div class="chapter-head"><div class="seal">6</div><h2>PSLV Missions — Recent Record</h2></div>
+
+    <div class="tcard">
+      <h3>PSLV-C61/EOS-09 Mission — Failure</h3>
+      <ul>
+        <li>ISRO's <mark class="b">63rd</mark> PSLV mission failed due to a technical malfunction during the <mark class="y">third stage</mark>.</li>
+        <li>PSLV has failed only <mark class="r">twice</mark> since its first flight.</li>
+        <li>EOS-09: advanced EO satellite with <mark class="g">C-band SAR</mark> technology, for continuous remote sensing data.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>PSLV-C62/EOS-N1 Mission — Anomaly</h3>
+      <ul>
+        <li>Encountered anomaly during 3rd stage. <mark class="b">64th</mark> PSLV flight; <mark class="b">9th</mark> dedicated commercial mission by <mark class="g">NSIL</mark>.</li>
+        <li>Carried EOS-N1 EO satellite + <mark class="b">15</mark> co-passenger satellites (domestic &amp; international).</li>
+      </ul>
+    </div>
+
+    <table>
+      <caption>PSLV Missions — Recent Record</caption>
+      <thead class="blue"><tr><th>Mission</th><th>Date</th><th>Payload</th><th>Outcome</th><th>Why Important</th></tr></thead>
+      <tbody>
+        <tr><td>PSLV-C62</td><td><mark class="b">12 Jan 2026</mark></td><td>EOS-N1 (Anvesha) + rideshare</td><td><mark class="r">Failed</mark></td><td>64th PSLV; 9th NSIL commercial mission</td></tr>
+        <tr><td>PSLV-C61</td><td><mark class="b">18 May 2025</mark></td><td>EOS-09 (RISAT-1B)</td><td><mark class="r">Failed</mark></td><td>Radar imaging EO satellite; 3rd-stage issue; 63rd PSLV</td></tr>
+        <tr><td>PSLV-C60</td><td><mark class="b">30 Dec 2024</mark></td><td>SPADEX</td><td>Successful</td><td>India's first space docking mission</td></tr>
+        <tr><td>PSLV-C59</td><td><mark class="b">5 Dec 2024</mark></td><td>PROBA-3</td><td>Successful</td><td>ESA's precision formation-flying solar mission, launched by ISRO</td></tr>
+        <tr><td>PSLV-C58</td><td><mark class="b">1 Jan 2024</mark></td><td>XPoSat</td><td>Successful</td><td>India's first dedicated X-ray Polarimetry mission; also carried DEX</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="chapter" id="ch7" data-title="Navigation — NavIC">
+    <div class="chapter-head"><div class="seal">7</div><h2>Navigation — NavIC</h2></div>
+
+    <div class="tcard">
+      <h3>NavIC — Used in Operation Sindoor</h3>
+      <ul>
+        <li>India used <mark class="y">NavIC</mark> (Navigation with Indian Constellation) across several layers of combat operations.</li>
+        <li>Applications: missile guidance, drone navigation, battle damage assessment. Developed by <mark class="g">ISRO</mark>.</li>
+        <li>Constellation: <mark class="b">7 satellites</mark> + 24×7 ground stations — <mark class="b">3</mark> geostationary, <mark class="b">4</mark> inclined geosynchronous.</li>
+        <li>Dual-band signals: <mark class="g">L5 and S-band</mark>; L5 is encrypted for military use.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>NavIC — Atomic Clock Failure Setback</h3>
+      <ul>
+        <li>Last atomic clock on board <mark class="g">IRNSS-1F</mark> stopped functioning.</li>
+        <li>Only <mark class="r">3 satellites (IRNSS-1B, 1I, NVS-01)</mark> remain capable of providing PNT services.</li>
+        <li><mark class="b">6 of 11</mark> Indian NavIC satellites have failed due to atomic clock failures.</li>
+        <li>At least <mark class="b">4 satellites</mark> with operational atomic clocks are required for the system to function properly.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch8" data-title="Space Programmes & Reference Table">
+    <div class="chapter-head"><div class="seal">8</div><h2>Space Programmes &amp; Infrastructure</h2></div>
+
+    <div class="tcard">
+      <h3>HOPE Analog Mission — ISRO</h3>
+      <ul>
+        <li>Inaugurated <mark class="y">Himalayan Outpost for Planetary Exploration (HOPE)</mark> Analog Mission.</li>
+        <li>Location: <mark class="g">Tso Kar Valley, Ladakh</mark>.</li>
+        <li>Simulates extraterrestrial (Moon/Mars) environments; tests human survival, health protocols, equipment.</li>
+      </ul>
+    </div>
+
+    <table>
+      <caption>Important Space Missions — Reference Table</caption>
+      <thead class="blue"><tr><th>Mission</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="g">Astrosat</mark> (ISRO)</td><td>India's first dedicated astronomy mission; studies X-ray, UV, optical wavelengths simultaneously; orbit LEO.</td></tr>
+        <tr><td>Venus Orbiter Mission (VOM) (ISRO)</td><td>India's proposed Venus mission; examines dust &amp; airglow in Venusian atmosphere; launch vehicle LVM-3.</td></tr>
+        <tr><td>XPoSat (ISRO)</td><td>First dedicated ISRO satellite to measure X-rays from black holes/neutron stars; <mark class="r">2nd in world after NASA's IXPE</mark>; payloads POLIX, XSPECT.</td></tr>
+        <tr><td><mark class="g">Aryabhata Satellite</mark></td><td>India's first satellite; recently completed <mark class="b">50 years</mark>.</td></tr>
+        <tr><td>Lucy Mission (NASA)</td><td>Launched 2021; named after fossilised human ancestor Lucy; first mission to explore Jupiter Trojan asteroids.</td></tr>
+        <tr><td>Tianwen-2 Probe (CNSA, China)</td><td>Collect samples from asteroid 2016 HO3; explore main-belt comet 311P.</td></tr>
+        <tr><td>Biomass Mission (ESA)</td><td>First satellite to carry a P-band SAR; maps world's forests &amp; carbon storage.</td></tr>
+        <tr><td>Solar Orbiter (ESA + NASA)</td><td>Close-up Sun images; solar wind; studies Sun's polar regions.</td></tr>
+        <tr><td>Chandrayaan-5 / LUPEX (ISRO + JAXA)</td><td>Lunar Polar Exploration Mission; studies lunar volatiles at South Pole; ISRO builds lander, <mark class="g">JAXA</mark> provides rover.</td></tr>
+        <tr><td>OCO (NASA)</td><td>Orbiting Carbon Observatory; global atmospheric CO2 measurements.</td></tr>
+        <tr><td>ESCAPADE (NASA)</td><td>Escape and Plasma Acceleration and Dynamics Explorers; studies solar wind interaction with Mars' magnetic environment.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="chapter" id="ch9" data-title="LIGO-India & International Missions">
+    <div class="chapter-head"><div class="seal">9</div><h2>LIGO-India &amp; International Space Missions</h2></div>
+
+    <div class="tcard">
+      <h3>LIGO-India</h3>
+      <ul>
+        <li><mark class="g">Larsen &amp; Toubro</mark> won the DAE contract to build the LIGO-India facility.</li>
+        <li>Location: <mark class="g">Hingoli district, Maharashtra</mark>.</li>
+        <li>LIGO = world's largest gravitational-wave observatory; detects ripples in space-time via laser interferometry.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Fram2 Mission</h3>
+      <ul>
+        <li>Launched using <mark class="g">Dragon spacecraft (SpaceX)</mark>.</li>
+        <li>Will conduct the first X-ray in space; cultivation of mushrooms in microgravity.</li>
+        <li><mark class="r">First human spaceflight to cruise directly over Earth's Polar Regions</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Artemis Missions</h3>
+      <ul>
+        <li>NASA's <mark class="g">Artemis II Orion</mark> capsule returned to Kennedy Space Center — humanity's first crewed lunar-flyby journey in <mark class="b">50+ years</mark>.</li>
+        <li><b>Artemis I (2022)</b>: uncrewed; tested SLS rocket &amp; Orion around the Moon.</li>
+        <li><b>Artemis II (2026)</b>: first crewed lunar flyby, no landing.</li>
+        <li><b>Artemis III (2027)</b>: demo mission in LEO to test commercial landers.</li>
+        <li><b>Artemis IV (2028)</b>: targets first Artemis lunar landing.</li>
+        <li><b>Artemis V (2028)</b>: scientific research + beginning Moon base construction; second landing.</li>
+        <li><mark class="y">Artemis Accords (2020)</mark>: signed by 60+ nations, incl. India in <mark class="b">2023</mark>; peaceful/transparent space cooperation.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch10" data-title="Satellite Connectivity & Space Debris">
+    <div class="chapter-head"><div class="seal">10</div><h2>Satellite Connectivity &amp; Space Debris</h2></div>
+
+    <div class="tcard">
+      <h3>Starlink — Agreement with Maharashtra</h3>
+      <p><mark class="g">Starlink</mark> (Elon Musk-owned) signed an agreement with the Maharashtra government for satellite-based connectivity in remote/underserved regions.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Satellite Internet Projects — Global Overview</h3>
+      <ul>
+        <li><mark class="g">Project Kuiper</mark>: Amazon.</li>
+        <li><mark class="g">Starlink</mark>: SpaceX.</li>
+        <li><mark class="g">OneWeb</mark>: French operator Eutelsat; <mark class="r">world's second-largest constellation after SpaceX</mark>.</li>
+        <li><mark class="g">Qianfan</mark>: planned Chinese LEO megaconstellation.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Starlink — Satellite Losses &amp; Space Debris</h3>
+      <ul>
+        <li>Lost <mark class="b">523 satellites</mark> from <mark class="b">2020 to 2024</mark> — years associated with the peak of the Solar Cycle.</li>
+        <li>Raised concerns on atmospheric pollution and space debris.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Debris Free Space Missions (DFSM) 2030</h3>
+      <ul>
+        <li><mark class="g">IS4OM</mark>: ISRO System for Safe and Sustainable Operations Management.</li>
+        <li><mark class="g">NETRA</mark>: Project Network for Space Object Tracking and Analysis.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch11" data-title="Astronomy & Deep Space Discoveries">
+    <div class="chapter-head"><div class="seal">11</div><h2>Astronomy &amp; Deep Space Discoveries</h2></div>
+
+    <div class="tcard">
+      <h3>UPM J1040−3551 AabBab — Rare Quadruple Star System</h3>
+      <ul>
+        <li>Located <mark class="b">82 light-years</mark> away in the constellation <mark class="g">Antlia</mark>.</li>
+        <li>Two cold brown dwarfs orbiting a pair of young red dwarfs — <mark class="r">the first quadruple system of its kind ever observed</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>TOI-1846 — New Super-Earth</h3>
+      <p>Astronomers using NASA's <mark class="g">TESS</mark> (Transiting Exoplanet Survey Satellite) data discovered a new super-Earth named <mark class="g">TOI-1846</mark>.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Biosignatures on Exoplanet K2-18b</h3>
+      <ul>
+        <li><mark class="g">Cambridge Scientists</mark> discovered biosignatures on <mark class="g">K2-18b</mark> using the <mark class="g">James Webb Space Telescope (JWST)</mark>.</li>
+        <li>JWST: launched jointly by NASA, ESA, and the <mark class="g">Canadian Space Agency</mark>; orbiting infrared observatory; orbits Sun at <mark class="g">Lagrange Point 2 (L2)</mark>, ~1.5 million km from Earth.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Sunbird — Nuclear Fusion Powered Rocket</h3>
+      <ul>
+        <li>Could help reach <mark class="g">Pluto</mark> in just <mark class="b">4 years</mark>.</li>
+        <li>Developed by <mark class="g">Pulsar Fusion (UK)</mark> and <mark class="g">Princeton Satellite Systems (USA)</mark>.</li>
+        <li>Powered by <mark class="y">Dual Direct Fusion Drive (DDFD)</mark> technology; uses helium-3 and deuterium; generates both thrust and electricity.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>3I/ATLAS — Interstellar Comet</h3>
+      <p>NASA-funded <mark class="g">ATLAS</mark> (Asteroid Terrestrial-impact Last Alert System) survey telescope in Chile discovered interstellar comet <mark class="g">3I/ATLAS</mark>.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Voyager 1</h3>
+      <ul>
+        <li>Expected to become the <mark class="r">first human-made object to reach one light-day</mark> from Earth (~16 billion miles).</li>
+        <li>Launched by NASA to fly by Jupiter and Saturn. Instruments: Imaging Science System (ISS), Ultraviolet Spectrometer (UVS).</li>
+        <li><mark class="r">First spacecraft to cross the heliosphere</mark>; <mark class="r">first human-made object to venture into interstellar space</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>OSIRIS-REx — Asteroid Bennu Samples</h3>
+      <ul>
+        <li>Analysis found sugars, amino acids, and all five nucleobases of DNA &amp; RNA — the <mark class="y">complete molecular inventory needed for life</mark>.</li>
+        <li>Asteroid <mark class="g">Bennu</mark>: passes close to Earth about every <mark class="b">six years</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Hanle Dark Sky Reserve</h3>
+      <ul>
+        <li>Rare blood-red auroral activity captured by the <mark class="g">Indian Astronomical Observatory</mark> in Ladakh's Hanle.</li>
+        <li><mark class="g">Hanle Dark Sky Reserve (HDSR)</mark>: <mark class="r">India's first dark sky reserve</mark>; located in <mark class="g">Changthang Wildlife Sanctuary</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= PART B: DEFENCE & TECHNOLOGY ================= -->
+  <div class="part-divider"><span class="plabel">Part B</span><div class="ptitle">Defence &amp; Technology</div><p class="pdesc">Air defence, missiles, aircraft, warships, drones and nuclear energy — DRDO's and the Forces' year in review.</p></div>
+
+  <section class="chapter" id="ch12" data-title="Air Defence Systems">
+    <div class="chapter-head"><div class="seal">12</div><h2>Air Defence Systems</h2></div>
+
+    <div class="tcard">
+      <h3>India's Air Defence System (ADS)</h3>
+      <ul>
+        <li>India's ADS successfully thwarted attacks on India's Western Border.</li>
+        <li><b>S-400 Triumf</b>: acquired from Russia; called <mark class="y">"Sudarshan Chakra"</mark> in India. Command-and-control, phased-array radars, EW countermeasures; <mark class="b">360°</mark> radar and missile coverage.</li>
+        <li><b>Barak 8</b>: jointly developed by <mark class="g">India &amp; Israel</mark>; medium-to-long-range SAM (MR-SAM/LR-SAM); engages multiple aerial targets; maritime &amp; land variants.</li>
+        <li><b>Akash Weapon System</b>: indigenous; Short-Range SAM; built-in ECCM; Group/Autonomous Mode; high jamming immunity.</li>
+        <li><b>Akashteer</b>: India's fully indigenous, automated Air Defence Control and Reporting System, developed by <mark class="g">Bharat Electronics Limited (BEL)</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Project Kusha / PGLRSAM</h3>
+      <p>Full name: <mark class="y">Programme Long Range Surface to Air Missile</mark>. Indigenous <mark class="g">DRDO</mark>-led initiative for a long-range air defence missile system.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Anant Shastra Air Defence System</h3>
+      <ul>
+        <li>Indian Army awarded a contract to <mark class="g">BEL</mark>.</li>
+        <li>Indigenous <mark class="y">Quick Reaction Surface-to-Air Missile (QRSAM)</mark>; developed by DRDO with BEL and <mark class="g">Bharat Dynamics Limited (BDL)</mark>.</li>
+      </ul>
+    </div>
+
+    <table>
+      <caption>Global Air Defence Systems</caption>
+      <thead class="blue"><tr><th>System</th><th>Country</th><th>Specifications</th></tr></thead>
+      <tbody>
+        <tr><td>Iron Dome, David's Sling, Arrow-2, Arrow-3</td><td><mark class="g">Israel</mark></td><td>Iron Dome (short), David's Sling (short-medium/medium-long), Arrow (long range)</td></tr>
+        <tr><td>THAAD</td><td>USA</td><td>Intercepts ballistic missiles</td></tr>
+        <tr><td>Golden Dome</td><td>USA</td><td>Expected by <mark class="b">2029</mark>; inspired by Iron Dome; surveillance + interceptor satellites</td></tr>
+        <tr><td>PATRIOT</td><td>USA</td><td>Mobile surface-to-air missile defence system</td></tr>
+        <tr><td>Barak Magen (Lightning Shield)</td><td>Israel</td><td>Advanced naval air defence system</td></tr>
+        <tr><td>HQ-9 System</td><td>China</td><td>Inspired by Russian S-300</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tcard">
+      <h3>Tunguska Air Defence Missile System</h3>
+      <ul>
+        <li>Defence Ministry signed contracts for procurement. NATO designation: <mark class="r">SA-19 "Grison"</mark>.</li>
+        <li>Soviet-origin, tracked, self-propelled system; protects ground forces from low-flying threats.</li>
+        <li>Integrates SAMs with twin <mark class="b">30 mm</mark> autocannons across varying ranges/altitudes.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch13" data-title="Missiles">
+    <div class="chapter-head"><div class="seal">13</div><h2>Missiles</h2></div>
+
+    <div class="tcard">
+      <h3>Agni-5</h3>
+      <ul>
+        <li>Nuclear-capable Surface-to-Surface Ballistic Missile (SSBM); three-stage solid fuel engine.</li>
+        <li>Range: over <mark class="b">5,000 km</mark>. Developed by DRDO.</li>
+        <li>One of five missile types under the <mark class="y">Integrated Guided Missile Development Programme (IGMDP)</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Agni Prime</h3>
+      <ul>
+        <li>DRDO &amp; Strategic Force Command launched Agni-Prime from a <mark class="r">Rail-based Mobile launcher</mark> — first-of-its-kind.</li>
+        <li>Two-stage, solid-fuelled, canister-launched; carries conventional and nuclear warheads.</li>
+        <li><mark class="y">First of the new generation of missiles after the end of IGMDP</mark>.</li>
+      </ul>
+    </div>
+
+    <table>
+      <caption>Key Missiles — Reference Table</caption>
+      <thead class="blue"><tr><th>Missile</th><th>Key Details</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="g">BrahMos</mark></td><td>India–Russia; supersonic cruise missile, land/sea/air launch; two-stage (solid booster + liquid ramjet, ~3 Mach); range up to <mark class="b">290 km</mark>; Fire and Forget.</td></tr>
+        <tr><td><mark class="g">Astra</mark></td><td>Indigenous BVRAAM (Beyond Visual Range Air-to-Air Missile); DRDO; all-weather; range exceeds <mark class="b">100 km</mark>.</td></tr>
+        <tr><td><mark class="g">Pralay</mark></td><td>Surface-to-surface short-range quasi-ballistic; hypersonic; developed by DRDO's <mark class="g">RCI, Hyderabad</mark>; range <mark class="b">150–500 km</mark>.</td></tr>
+        <tr><td><mark class="g">Akash Prime</mark></td><td>DRDO; rugged Akash SAM variant; extreme weather/cold/high altitude (above <mark class="b">4,500 m</mark>).</td></tr>
+        <tr><td><mark class="g">ULPGM-V3</mark></td><td>UAV Launched Precision Guided Missile; DRDO; dual-channel seeker; two-way data link for post-launch update.</td></tr>
+        <tr><td><mark class="g">Rampage</mark></td><td>Long-range air-to-ground; supersonic; developed by <mark class="g">Israel Aerospace Industries</mark>.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tcard">
+      <h3>Pinaka Long Range Guided Rocket (LRGR)</h3>
+      <ul>
+        <li>DRDO conducted maiden flight test for maximum range of <mark class="b">120 km</mark>.</li>
+        <li>Multi Barrel Rocket Launcher (MBRL); designed by <mark class="g">ARDE</mark> with <mark class="g">HEMRL</mark> support.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Akash-New Generation (NG) Missile</h3>
+      <p>SAM system for diverse aerial threats; developed by DRDO with <mark class="g">BEL</mark>.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Suryastra</h3>
+      <ul>
+        <li>Indian Army signed contract with <mark class="g">NIBE Limited</mark> (private), in collaboration with Israel.</li>
+        <li>India's first Made in India universal multi-calibre rocket launcher; precision surface-to-surface strikes up to <mark class="b">300 km</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Solid Fuel Ducted Ramjet (SFDR) Technology</h3>
+      <p>DRDO demonstrated SFDR at <mark class="g">Integrated Test Range (ITR), Chandipur, Odisha</mark>.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Direct Firing Sight Navigation System (India–France)</h3>
+      <ul>
+        <li>India &amp; France agreement to jointly produce the Direct Firing Sight Navigation System.</li>
+        <li><mark class="g">SIGMA 30N</mark> Navigation System: autonomous artillery engagement without GPS.</li>
+        <li><mark class="g">CM3-MR</mark> Direct Firing Sight: enhances artillery and anti-drone accuracy.</li>
+        <li>Key feature: <mark class="y">functions independently of GPS</mark>, reliable in jammed EW environments.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch14" data-title="Hypersonic & Directed Energy Weapons">
+    <div class="chapter-head"><div class="seal">14</div><h2>Hypersonic &amp; Directed Energy Weapons</h2></div>
+
+    <div class="tcard">
+      <h3>Scramjet / Hypersonic Technology (DRDL–DRDO)</h3>
+      <ul>
+        <li><mark class="g">DRDL</mark> completed <mark class="b">1000+ seconds</mark> Active Cooled Scramjet Subscale Combustor ground testing.</li>
+        <li>Scramjet = Supersonic Combusting Ramjet — improvement over a ramjet (air-breathing, no rotating compressor).</li>
+        <li>Hypersonic weapon: travels at <mark class="y">Mach-5 or faster</mark>; flies at lower altitudes than ballistic missiles, harder to track.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Laser / Directed Energy Weapon (DEW)</h3>
+      <ul>
+        <li>DRDO trial of <mark class="g">Mk-II (A) LASER DEW</mark> system at <mark class="g">National Open-Air Range (NOAR), Andhra Pradesh</mark>.</li>
+        <li>India joined <mark class="r">US, China, Russia</mark> as countries with advanced laser weapon capabilities.</li>
+        <li><mark class="g">Israel</mark>: first country to shoot down enemy drones with a laser weapon (adapted <mark class="g">Iron Beam</mark> HELWS).</li>
+        <li>Global DEW: USA — <mark class="g">HELIOS</mark>; China — Hurricane-3000, Silent Hunter; UK — DragonFire, RFDEW; Russia — Peresvet; India — <mark class="g">IDD&amp;IS Mk2A</mark> by DRDO.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Stratospheric Airship Platform (SAP)</h3>
+      <p>DRDO's maiden flight trials; developed by <mark class="g">Aerial Delivery Research and Development Establishment, Agra</mark>.</p>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch15" data-title="Aircraft, Helicopters & Fighter Jets">
+    <div class="chapter-head"><div class="seal">15</div><h2>Aircraft, Helicopters &amp; Fighter Jets</h2></div>
+
+    <div class="tcard">
+      <h3>Advanced Medium Combat Aircraft (AMCA) — 5th Gen</h3>
+      <ul>
+        <li>India to jointly manufacture jet engines with French <mark class="g">Safran</mark> for AMCA.</li>
+        <li>Only <mark class="g">USA (F-22, F-35), Russia (Su-57), China (J-20)</mark> currently operate 5th-gen aircraft.</li>
+        <li>Lead agency: <mark class="g">Aeronautical Development Agency (ADA)</mark> under DRDO.</li>
+      </ul>
+    </div>
+
+    <table>
+      <caption>Key Aircraft &amp; Helicopters</caption>
+      <thead class="blue"><tr><th>Platform</th><th>Key Details</th></tr></thead>
+      <tbody>
+        <tr><td>Apache AH-64E</td><td>Multi-role attack helicopter; Hellfire missiles, rockets, chain gun; advanced sensors/radar/night vision.</td></tr>
+        <tr><td>LCA Mark-1A</td><td>Advanced <mark class="g">Tejas</mark> version; 4.5-gen, all-weather; AESA Radar, EW suite, DMG.</td></tr>
+        <tr><td>Rafale Marine (M)</td><td><mark class="g">Dassault Aviation</mark> (France); 4.5-gen, 1.8 Mach; deployed on <mark class="g">INS Vikrant</mark> (India's first indigenous carrier).</td></tr>
+        <tr><td>Dhruv-NG</td><td>HAL twin-engine multi-role helicopter — transport, air ambulance, disaster relief, utility.</td></tr>
+        <tr><td>MH-60R Seahawk</td><td>India to sign <mark class="b">$946 million</mark> sustainment package with USA; maritime Blackhawk variant.</td></tr>
+        <tr><td>Heron Mark-II</td><td>India to procure more from Israel; MALE UAV for ISR.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tcard">
+      <h3>AWACS — Netra MkII</h3>
+      <p>Next-gen AWACS India programme; will be mounted on the <mark class="g">Airbus A321</mark> platform.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>HANSA Trainer Planes</h3>
+      <ul>
+        <li><mark class="g">CSIR-NAL</mark> signed technology-transfer deal to manufacture HANSA trainer planes.</li>
+        <li><mark class="g">HANSA-3 (NG)</mark>: powered by an advanced fuel-efficient <mark class="g">Rotax 912 iSc3 Sports</mark> engine.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch16" data-title="Naval Warships & Submarines">
+    <div class="chapter-head"><div class="seal">16</div><h2>Naval Warships &amp; Submarines</h2></div>
+
+    <table>
+      <caption>INS Arnala &amp; INS Nistar</caption>
+      <thead class="blue"><tr><th>Ship</th><th>Key Details</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="g">INS Arnala</mark></td><td>Named after coastal fort off Maharashtra; India's <mark class="r">first Anti-Submarine Warfare Shallow Water Craft</mark>; largest Indian warship propelled by Diesel Engine–Waterjet combination.</td></tr>
+        <tr><td><mark class="g">INS Nistar</mark></td><td><mark class="r">First indigenously designed and constructed Diving Support Vessel</mark>; deep sea saturation diving up to <mark class="b">300 m</mark>; 'Mother Ship' for DSRV.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tcard">
+      <h3>Project 17A Frigates — INS Udaygiri &amp; INS Himgiri</h3>
+      <ul>
+        <li>Two multi-mission stealth frigates commissioned; follow-on ships of Shivalik-class (Project 17).</li>
+        <li><mark class="b">Seven</mark> frigates being built by <mark class="g">Mazagon Dock (Mumbai)</mark> and <mark class="g">GRSE (Kolkata)</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Naval Warships Received — Recent Inductions</h3>
+      <ul>
+        <li><b>Malwan</b>: 2nd ASW-SWC; built by <mark class="g">Cochin Shipyard Limited</mark>; named after the coastal town linked to <mark class="g">Chhatrapati Shivaji Maharaj</mark>.</li>
+        <li><b>INS Dunagiri</b>: 5th ship of Nilgiri Class (Project 17A) by GRSE.</li>
+        <li><b>Sanshodhak</b>: 4th Survey Vessel (Large) — coastal/deep-water hydrographic surveys.</li>
+        <li><b>Agray</b>: 4th of eight ASW-SWC, to destroy enemy submarines.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>INS Taragiri</h3>
+      <p>Latest stealth frigate commissioned in <mark class="g">Visakhapatnam</mark>; 4th of seven Project 17 Alpha frigates.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>INS Aridaman — 3rd Nuclear-Powered Submarine</h3>
+      <ul>
+        <li>Part of India's <mark class="y">Arihant-class</mark> SSBNs; more advanced than predecessors.</li>
+        <li>Predecessors: <mark class="g">INS Arihant (2016)</mark> and <mark class="g">INS Arighaat (2024)</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch17" data-title="Drones & Unmanned Systems">
+    <div class="chapter-head"><div class="seal">17</div><h2>Drones &amp; Unmanned Systems</h2></div>
+
+    <div class="tcard">
+      <h3>Rudrastra — Hybrid VTOL UAV</h3>
+      <p>Successful trial at <mark class="g">Pokhran, Rajasthan</mark>; Hybrid Vertical Take-Off and Landing UAV; manufactured by <mark class="g">Solar Defence and Aerospace Limited (SDAL)</mark>.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Bhargavastra — Anti-Drone System</h3>
+      <p>Indigenously developed; low-cost <mark class="y">'hard kill'</mark> anti-drone system to neutralise drone swarms.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Gaurav — Long-Range Glide Bomb</h3>
+      <p>DRDO release trials; steers via hybrid navigation — Indian Navigation System (INS) + GPS.</p>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch18" data-title="Nuclear Energy & Technology">
+    <div class="chapter-head"><div class="seal">18</div><h2>Nuclear Energy &amp; Technology</h2></div>
+
+    <div class="tcard">
+      <h3>ITER / Tokamak Reactors</h3>
+      <ul>
+        <li>World's biggest fusion project <mark class="g">ITER</mark> completed its central magnet system; India built key components.</li>
+        <li><mark class="g">ADITYA</mark>: India's first indigenously designed/built tokamak, by the <mark class="g">Institute of Plasma Research</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>India's First Fast-Breeder Nuclear Reactor (PFBR)</h3>
+      <ul>
+        <li><mark class="r">India's first Fast-Breeder Reactor (500 MWe)</mark>, set for commissioning by <mark class="b">2026</mark>.</li>
+        <li><mark class="g">BHAVINI</mark> (Bharatiya Nabhikiya Vidyut Nigam Ltd) constructs/operates the PFBR.</li>
+        <li>Fuel: indigenous <mark class="y">Uranium-Plutonium Mixed Oxide (MOX)</mark>; Coolant: liquid sodium.</li>
+        <li><mark class="g">Uranium-238</mark> blanket undergoes transmutation to produce more fuel — hence "Breeder". Location: <mark class="g">Kalpakkam, Tamil Nadu</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Mahi Banswara Rajasthan Atomic Power Project (MBRAPP)</h3>
+      <p>Developed by <mark class="g">ASHVINI</mark> (Anushakti Vidhyut Nigam) — JV of <mark class="g">NPCIL</mark> and <mark class="g">NTPC</mark>.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>China — Thorium Molten Salt Reactor (TMSR)</h3>
+      <ul>
+        <li>China achieved <mark class="r">first-ever thorium-to-uranium fuel conversion</mark> in a TMSR.</li>
+        <li>4th-generation nuclear system; uses high-temperature molten salt as coolant.</li>
+        <li>China's TMSR is currently the <mark class="r">only operational molten-salt reactor in the world</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>SHANTI Act, 2025</h3>
+      <p>Repealed the <mark class="y">Atomic Energy Act (AEA), 1962</mark> and the <mark class="y">Civil Liability for Nuclear Damage Act (CLNDA), 2010</mark>.</p>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch19" data-title="Energy & Batteries">
+    <div class="chapter-head"><div class="seal">19</div><h2>Energy &amp; Batteries</h2></div>
+
+    <div class="tcard">
+      <h3>India's Largest Li-ion Battery Manufacturing Plant</h3>
+      <ul>
+        <li>Inaugurated in <mark class="g">Haryana</mark>.</li>
+        <li>Li-ion battery: rechargeable; lithium ions move between negative electrode (graphite) and positive electrode (Li transitional metal oxides) via a non-aqueous electrolyte.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Vanadium Redox Flow Battery (VRFB)</h3>
+      <ul>
+        <li>India's largest and first <mark class="r">MWh-Scale VRFB</mark> inaugurated at <mark class="g">NTPC NETRA</mark>.</li>
+        <li>Flow batteries + solid-state batteries = next-gen alternatives to lithium-ion for grid-scale use.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= PART C: IT & COMPUTER ================= -->
+  <div class="part-divider"><span class="plabel">Part C</span><div class="ptitle">IT &amp; Computer</div><p class="pdesc">AI models, quantum computing, indigenous chips and the 2026 AI Impact Summit.</p></div>
+
+  <section class="chapter" id="ch20" data-title="AI Models & Language Systems">
+    <div class="chapter-head"><div class="seal">20</div><h2>AI Models &amp; Language Systems</h2></div>
+
+    <div class="tcard">
+      <h3>Bharat GEN</h3>
+      <ul>
+        <li>India's first indigenous AI-based Multimodal LLM for Indian languages.</li>
+        <li>PPP initiative; launched as a non-profit company, funded by <mark class="g">DST</mark>.</li>
+        <li>Goals: Bharat-centric foundational LLMs covering all <mark class="b">22 scheduled Indian languages</mark>; <mark class="y">Bharat Data Sagar</mark> to centralise Bharatiya data.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Take It Down Act (USA)</h3>
+      <p>Enacted in the US to tackle harmful deepfakes online.</p>
+    </div>
+
+    <table>
+      <caption>AI Models in Biotech, Genomics &amp; Hardware</caption>
+      <thead class="blue"><tr><th>Model</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="g">BioEmu-1</mark></td><td>Microsoft; predicts the full range of shapes a protein naturally explores.</td></tr>
+        <tr><td><mark class="g">AlphaGenome</mark></td><td>Google DeepMind; predicts how DNA mutations affect function/health.</td></tr>
+        <tr><td><mark class="g">AlphaFold</mark></td><td>Google DeepMind; predicts protein 3D structure from amino-acid sequence. Nobel laureates <mark class="g">Demis Hassabis</mark> &amp; <mark class="g">John Jumper</mark> used AlphaFold2.</td></tr>
+        <tr><td><mark class="g">C2S-SCALE 27B</mark></td><td>Google DeepMind + Yale; understands the "language" of individual cells.</td></tr>
+        <tr><td><mark class="g">Project Suncatcher</mark></td><td>Google; AI computing in space via solar-powered LEO satellites.</td></tr>
+        <tr><td><mark class="g">Ironwood</mark></td><td>Google's 7th-gen Tensor Processing Unit (TPU) — a specialised ASIC.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tcard">
+      <h3>Jevons and Solow Paradox</h3>
+      <ul>
+        <li><b>Jevons Paradox</b>: making a resource cheaper/more efficient often increases demand for it.</li>
+        <li><b>Solow Paradox</b>: extensive use of advanced tech (e.g. computers) doesn't necessarily raise expected productivity.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch21" data-title="Quantum & Computing Hardware">
+    <div class="chapter-head"><div class="seal">21</div><h2>Quantum &amp; Computing Hardware</h2></div>
+
+    <div class="tcard">
+      <h3>QNu Labs — India's First Extensive QKD Network</h3>
+      <p>Startup <mark class="g">QNu Labs</mark>, under the <mark class="g">National Quantum Mission (NQM)</mark>, demonstrated India's <mark class="r">first extensive Quantum Key Distribution network</mark>, spanning <mark class="b">500+ km</mark>.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>QpiAI-Indus — 25 Qubit Quantum Computer</h3>
+      <ul>
+        <li><mark class="g">QpiAI</mark> (NQM-selected startup) launched a <mark class="b">25-qubit</mark> superconducting quantum computer on <mark class="y">World Quantum Day</mark>.</li>
+        <li>QpiAI also developed India's first quantum computing chip: the 25-qubit QPU.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Google Quantum Processor 'Willow'</h3>
+      <p>Outperforms the fastest supercomputers.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>QSIP — Quantum Random Number Generator</h3>
+      <ul>
+        <li>PM dedicated <mark class="g">QSIP</mark> (quantum security chip) to the nation.</li>
+        <li>Provides quantum-certified randomness for cryptographic algorithms; defends against cyber threats and future quantum attacks.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Vikram3201 &amp; DHRUV64 — Indigenous Processors</h3>
+      <ul>
+        <li><b>Vikram3201</b>: India's <mark class="r">first 32-bit processor</mark>, presented to the PM at Semicon India 2025; developed by <mark class="g">VSSC (ISRO)</mark> with <mark class="g">Semiconductor Laboratory (SCL), Chandigarh</mark>. Also: <mark class="g">KALPANA3201</mark> (another 32-bit microprocessor).</li>
+        <li><b>DHRUV64</b>: India's <mark class="r">first fully indigenous 64-bit dual-core microprocessor</mark>, 1.0 GHz; developed by <mark class="g">C-DAC</mark> under the Microprocessor Development Programme (MDP).</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Param Shakti — Supercomputer at IIT Madras</h3>
+      <ul>
+        <li>Launched by <mark class="g">MeitY</mark> at <mark class="g">IIT Madras</mark>; performance <mark class="b">3.1 petaflops</mark> (measured in FLOPS).</li>
+        <li><mark class="g">PARAM 8000</mark>: India's first supercomputer. <mark class="g">Param Shivay</mark>: India's first indigenously built supercomputer.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>First Supercomputer-Powered Simulation — Mpemba Effect</h3>
+      <p>Indian scientists developed the first supercomputer-powered simulation to capture the <mark class="y">Mpemba effect</mark>.</p>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch22" data-title="AI Summit & Emerging Tech">
+    <div class="chapter-head"><div class="seal">22</div><h2>AI Summit &amp; Emerging Tech</h2></div>
+
+    <div class="tcard">
+      <h3>Privacy-Focused BCI with Mental Password</h3>
+      <p><mark class="g">Stanford</mark> scientists developed a privacy-focused Brain-Computer Interface requiring a mental password before thoughts can be decoded into text/audio.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Blindsight — Neuralink BCI Implant</h3>
+      <p><mark class="g">Neuralink</mark> aims to implant the 'Blindsight' chip in the first human by 2025 — restores vision by bypassing the retina, directly stimulating the visual cortex.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Japan's 3D-Printed Train Station</h3>
+      <p>Built in just <mark class="b">6 hours</mark> using 3D printing / additive manufacturing.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>GENIUS Act &amp; Bitchat &amp; Waterworth</h3>
+      <ul>
+        <li><b>GENIUS Act</b>: US regulatory framework for stablecoins.</li>
+        <li><b>Bitchat</b>: Bluetooth Low Energy (BLE) Mesh messaging app, shared by Twitter's co-founder.</li>
+        <li><b>Waterworth</b>: Meta's subsea cable project; landing sites at <mark class="g">Mumbai</mark> and <mark class="g">Visakhapatnam</mark>; <mark class="r">world's longest subsea cable project</mark>, connecting five continents.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>FASTag &amp; SSI Mantra &amp; SLMs</h3>
+      <ul>
+        <li><b>FASTag</b>: uses <mark class="y">RFID (Radio Frequency Identification)</mark> technology.</li>
+        <li><b>SSI Mantra</b>: performed the world's <mark class="r">first cardiac telesurgery across 10,000 km</mark>.</li>
+        <li><b>SLMs (Small Language Models)</b>: <mark class="g">Gemma &amp; Gemini Nano</mark> (Google), <mark class="g">Llama</mark> (Meta).</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>AI Impact Summit 2026 — New Delhi</h3>
+      <ul>
+        <li><mark class="r">First-ever global AI summit hosted in the Global South</mark>.</li>
+        <li>Previous summits: AI Action Summit 2025 (Paris), AI Seoul Summit 2024 (South Korea), AI Safety Summit 2023 (Bletchley Park, UK).</li>
+        <li>Hosted under the <mark class="g">India AI Mission</mark>; structured around <mark class="b">7 Chakras</mark> (Working Groups) and <mark class="b">3 Sutras</mark> (Core Principles).</li>
+        <li>India's approach: <mark class="y">M.A.N.A.V.</mark> for Human-centric AI.</li>
+      </ul>
+      <div class="trap"><span class="lbl">Outcomes</span>
+        <b>New Delhi Declaration on AI Impact</b>: guided by "Sarvajan Hitaya, Sarvajan Sukhaya"; endorsed by <mark class="b">92 countries</mark>/organisations.<br>
+        <b>New Delhi Frontier AI Impact Commitments</b>: launched by the Minister for Electronics &amp; IT; voluntary framework for inclusive, responsible AI, emphasising the Global South.<br>
+        <b>Three Sovereign AI Models</b>: two LLMs by <mark class="g">Sarvam AI</mark> (outperform DeepSeek R1/Gemini Flash on some benchmarks); <mark class="g">Vachana</mark> (text-to-speech, by <mark class="g">Gnani.ai</mark>, clones voices across 12 Indian languages); <mark class="g">Param2 17B</mark> — a Mixture-of-Experts model by <mark class="g">BharatGen</mark>.
+      </div>
+    </div>
+
+    <div class="tcard">
+      <h3>Bharat VISTAAR</h3>
+      <ul>
+        <li><mark class="y">Virtually Integrated System to Access Agricultural Resources</mark> — AI-powered, voice-first, multilingual DPI platform for agricultural advisory.</li>
+        <li>Open, interoperable, federated public network; delivers real-time, location-specific advisories to farmers.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>IISc &amp; Pratiksha Trust — Brain Co-processors</h3>
+      <p>Moonshot project to develop implantable and non-invasive brain co-processors that decode, process, and re-encode neural signals via neural stimulation. <mark class="g">NIBS</mark> (Non-invasive Brain Stimulation): modulates brain activity without surgery.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Project Glasswing — Anthropic</h3>
+      <p><mark class="g">Anthropic</mark> announced Project Glasswing to use AI to find/detect cybersecurity vulnerabilities. <mark class="g">Claude Mythos Preview</mark>: unreleased frontier model showcasing capability that could surpass skilled humans in finding software vulnerabilities.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Two New Telescopes in Ladakh — Union Budget 2026–27</h3>
+      <ul>
+        <li><b>National Large Solar Telescope (NLST)</b>: <mark class="b">2-metre</mark> aperture, at <mark class="g">Merak, Ladakh</mark> — studies solar dynamics, magnetism, space weather.</li>
+        <li><b>National Large Optical Telescope (NLOT)</b>: <mark class="b">13.7-metre</mark> segmented-mirror telescope at <mark class="g">Hanle, Ladakh</mark> — exoplanets and origins of the universe.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Project Maven &amp; GARBH-INi &amp; Red Teaming</h3>
+      <ul>
+        <li><b>Project Maven</b>: AI programme central to <mark class="g">US strikes against Iran</mark>.</li>
+        <li><b>GARBH-INi</b>: India's largest pregnancy cohort study, <mark class="b">12,000 women</mark>; supported by <mark class="g">DBT</mark>; aims to reduce adverse pregnancy outcomes.</li>
+        <li><b>Red Teaming</b>: rigorous AI testing to protect against harmful behaviour — data leaks, toxic/biased/inaccurate content.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= PART D: BIOTECH & HEALTH ================= -->
+  <div class="part-divider"><span class="plabel">Part D</span><div class="ptitle">Biotech &amp; Health</div><p class="pdesc">Gene editing, indigenous therapies, vaccines and disease surveillance.</p></div>
+
+  <section class="chapter" id="ch23" data-title="Biotechnology">
+    <div class="chapter-head"><div class="seal">23</div><h2>Biotechnology</h2></div>
+
+    <div class="tcard">
+      <h3>Gene-Edited Sheep — India's First</h3>
+      <ul>
+        <li>Produced by <mark class="g">Kashmir University</mark> with <mark class="g">ICAR</mark>, using <mark class="y">CRISPR-Cas9</mark>.</li>
+        <li>Edited the <mark class="g">myostatin gene</mark> in a lamb, boosting muscle growth by <mark class="b">30%</mark>. Trait found in breeds like <mark class="g">Texel</mark>, absent in Indian breeds.</li>
+        <li><mark class="r">No foreign DNA added</mark> — different from transgenic animals.</li>
+        <li>Institution: <mark class="g">SKUAST, Srinagar</mark>. Lead researcher: <mark class="g">Prof. Riaz Ahmad Shah</mark>.</li>
+      </ul>
+      <table>
+        <caption>Gene-Edited Sheep vs Transgenic Animal</caption>
+        <thead class="red"><tr><th>Feature</th><th>Gene-Edited Sheep</th><th>Transgenic Animal</th></tr></thead>
+        <tbody>
+          <tr><td>Foreign DNA?</td><td>No</td><td>Yes</td></tr>
+          <tr><td>Technology</td><td>CRISPR-Cas9</td><td>Recombinant DNA technology</td></tr>
+          <tr><td>Example</td><td>Editing myostatin gene</td><td>Inserting a fish gene into another species</td></tr>
+          <tr><td>Genetic change</td><td>Modification of existing gene</td><td>Addition of new gene</td></tr>
+          <tr><td>Regulatory concern</td><td>Generally lower</td><td>Generally higher</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tcard">
+      <h3>BIRSA-101 — First Indigenous CRISPR Gene-Editing Therapy</h3>
+      <ul>
+        <li>India's <mark class="r">1st indigenous CRISPR-based gene-editing therapy</mark> — for <mark class="y">Sickle Cell Disease (SCD)</mark>.</li>
+        <li>Developed by <mark class="g">CSIR-IGIB</mark>; named for <mark class="g">Bhagwan Birsa Munda</mark>'s 150th birth anniversary.</li>
+        <li>Tech-transfer with <mark class="g">Serum Institute of India</mark> for scalable, affordable <mark class="g">enFnCas9</mark> CRISPR therapies.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>GlowCas9 — Light-Emitting CRISPR-Cas9</h3>
+      <ul>
+        <li>Developed by <mark class="g">Bose Institute, Kolkata</mark> (autonomous institute under DST).</li>
+        <li>Cas9 fused with nano-luciferase fragments from deep-sea shrimp; light emission enables real-time monitoring of functional Cas9 activity.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Genetically Modified (GM) Crops &amp; Genome Editing in India</h3>
+      <ul>
+        <li>Transgenics ⊂ GMOs (contain DNA from another species) — e.g. <mark class="g">Bt Cotton</mark> carries the Bt gene from <mark class="g">Bacillus thuringiensis</mark>.</li>
+        <li><mark class="r">Bt Cotton</mark>: only GM crop approved for commercial cultivation.</li>
+        <li><mark class="r">Bt Brinjal</mark>: cleared by GEAC, later placed under moratorium.</li>
+        <li><mark class="g">DMH-11 (GM Mustard)</mark>: herbicide-tolerant, conditional environmental release approved by Centre, under Supreme Court review.</li>
+        <li><mark class="g">GEAC</mark> = Genetic Engineering Appraisal Committee, under <mark class="g">MoEFCC</mark>.</li>
+        <li>Genome Editing (GE): targeted modification of own DNA, no foreign gene needed. ICAR's first GE rice: <mark class="g">DRR Rice 100 (Kamala)</mark> and <mark class="g">Pusa DST Rice</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>GenomeIndia Project</h3>
+      <ul>
+        <li>Initiated by <mark class="g">DBT</mark> with 20 institutions to map India's genetic diversity.</li>
+        <li>Data stored at <mark class="g">Indian Biological Data Centre (IBDC), Faridabad</mark> — India's <mark class="r">first national life science data repository</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Organ-on-a-Chip (OoC)</h3>
+      <p>Micro-scale system mimicking human body environment; one of the human-relevant 3D culture models ("New Approach Methods", NAMs).</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Antiviral Agent Against Cucumber Mosaic Virus (CMV)</h3>
+      <ul>
+        <li>Developed by <mark class="g">Martin Luther University, Germany</mark>, using <mark class="y">RNA silencing</mark>.</li>
+        <li>Protects bananas from CMV, responsible for <mark class="b">25–30%</mark> yield losses.</li>
+        <li>Techniques: <mark class="g">Host-Induced Gene Silencing (HIGS)</mark>, <mark class="g">Spray-Induced Gene Silencing (SIGS)</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>First Pangenome of Asian Rice</h3>
+      <p>Chinese scientists, using <mark class="g">PacBio HiFi</mark> sequencing (single-molecule, real-time — SMRT) — accurate long-read sequencing.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>SHUKR Gene — Molecular Innovation in Flowering Plants</h3>
+      <p><mark class="g">CSIR-CCMB, Hyderabad</mark> found gene <mark class="y">SHUKR</mark> (aka sperm) that controls <mark class="g">F-box</mark> genes managing pollen-development proteins — sheds light on the "abominable mystery".</p>
+    </div>
+
+    <div class="tcard">
+      <h3>NexCAR19 — India's First Indigenous CAR T-Cell Therapy</h3>
+      <ul>
+        <li>Unveiled by the PM; for B-cell blood cancers.</li>
+        <li>Developed by <mark class="g">ImmunoACT</mark> (incubated under IIT Bombay &amp; Tata Memorial Hospital); supported by DBT and BIRAC.</li>
+        <li>Earlier, <mark class="g">CDSCO</mark> approved <mark class="g">Qartemi</mark>, a CAR T-cell therapy for blood cancer.</li>
+        <li>CAR-T: patient's T cells engineered with a Chimeric Antigen Receptor to recognise/attack cancer cells — a "living drug".</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Mitochondrial Replacement Therapy (MRT)</h3>
+      <ul>
+        <li>UK clinical trial protected <mark class="b">8 babies</mark> at high risk of inheriting mitochondrial diseases.</li>
+        <li>Mitochondria generate <mark class="b">90%+</mark> of cell energy; have their own DNA, distinct from nuclear DNA — affects energy production, not physical characteristics.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Stem Cells — Adipose Tissue &amp; Animal Stem Cell Biobank</h3>
+      <ul>
+        <li>Stem cells from adipose tissue (body fat) aid healing of osteoporosis-related fractures.</li>
+        <li>India's first animal stem cell biobank inaugurated at <mark class="g">NIAB, Hyderabad</mark>; supported by <mark class="g">National Biopharma Mission (NBM)</mark> of DBT-BIRAC.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Phenome India Project (PI-Check)</h3>
+      <p>Official name: <mark class="y">Phenome India-CSIR Health Cohort Knowledgebase</mark>; launched by <mark class="g">CSIR</mark> — long-term study tracking health trajectories over years.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>National Biofoundry Network &amp; BioE3 Policy</h3>
+      <ul>
+        <li>India's first National Biofoundry Network launched <mark class="b">August 2025</mark> — 1st anniversary of the <mark class="g">BioE3 Policy</mark>.</li>
+        <li>Biofoundry: automated facility integrating DNA synthesis, gene editing, high-throughput biomanufacturing.</li>
+        <li><mark class="y">BioE3</mark> = Biotechnology for Economy, Environment and Employment — India's <mark class="r">first policy in Biotechnology</mark>, by DBT under the Ministry of Science &amp; Technology.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>DEEP Project — Diverse Epigenetic Epidemiology Partnership</h3>
+      <ul>
+        <li><mark class="g">CSIR-CCMB</mark> collaborating globally; five-year project led by <mark class="g">University of Bristol</mark> and CSIR-CCMB.</li>
+        <li>Epigenetics: reversible changes affecting how genes are read, without changing DNA sequence.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Lab-Grown Milk</h3>
+      <ul>
+        <li>Real milk made without cows, using biotech methods; contains actual casein and whey (unlike plant-based milks).</li>
+        <li>Pioneered by Israeli food-tech firms: <mark class="g">Remilk, Imagindairy, Wilk</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="chapter" id="ch24" data-title="Health — Diseases & Vaccines">
+    <div class="chapter-head"><div class="seal">24</div><h2>Health — Diseases &amp; Vaccines</h2></div>
+
+    <div class="tcard">
+      <h3>Lenacapavir — FDA-Approved HIV Prevention Drug</h3>
+      <p>Antiretroviral used as <mark class="y">Pre-Exposure Prophylaxis (PrEP)</mark>. HIV destroys CD4 T lymphocytes (white blood cells).</p>
+    </div>
+
+    <div class="tcard">
+      <h3>India Eliminates Trachoma</h3>
+      <ul>
+        <li>India awarded WHO's <mark class="y">Certificate of Elimination of Trachoma as a Public Health Problem</mark>.</li>
+        <li><mark class="r">3rd country (after Nepal and Myanmar)</mark> in Southeast Asia to eliminate it. Caused by <mark class="g">Chlamydia trachomatis</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Hepatitis D Classified as Cancer-Causing by WHO</h3>
+      <ul>
+        <li>WHO classified <mark class="g">Hepatitis D</mark> as cancer-causing, like Hepatitis B and C.</li>
+        <li>Hepatitis D: incompetent virus requiring <mark class="g">HBV</mark> for replication.</li>
+      </ul>
+      <table>
+        <caption>Hepatitis — Key Facts</caption>
+        <thead class="red"><tr><th>Type</th><th>Key Fact</th></tr></thead>
+        <tbody>
+          <tr><td>Hepatitis B</td><td><mark class="r">DNA virus</mark> (A, C, D, E are RNA viruses)</td></tr>
+          <tr><td>Hepatitis C</td><td><mark class="r">No vaccine available</mark></td></tr>
+          <tr><td>Hepatitis D (HDV)</td><td>Requires HBV for replication; HBV vaccine protects against HDV; WHO-classified as carcinogenic</td></tr>
+          <tr><td>Hepatitis E</td><td>High risk for pregnant mothers</td></tr>
+          <tr><td>Hepatitis A</td><td>Transmission: fecal–oral route</td></tr>
+        </tbody>
+      </table>
+      <p><mark class="g">Havisure</mark>: India's first indigenous Hepatitis A vaccine, by <mark class="g">Indian Immunologicals Limited</mark>.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Human Papillomavirus (HPV) — Indigenous Test Kits</h3>
+      <ul>
+        <li>India's first indigenous HPV test kits for cervical cancer screening, validated by DBT.</li>
+        <li>Common STI; cervical cancer is the most common HPV-caused cancer; <mark class="r">no treatment currently available</mark> for HPV infection itself.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Antimicrobial Resistance (AMR)</h3>
+      <ul>
+        <li>WHO released the <mark class="y">Global Antibiotic Resistance Surveillance Report 2025</mark>.</li>
+        <li>AMR: bacteria/viruses/fungi/parasites evolve to withstand drugs — the <mark class="r">"Silent Pandemic"</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>AdFalciVax — India's First Indigenous Multi-Stage Malaria Vaccine</h3>
+      <p>Developed through <mark class="g">ICMR's RMRC, Bhubaneswar</mark> and <mark class="g">National Institute of Malaria Research</mark>, with DBT–<mark class="g">National Institute of Immunology</mark>.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Russia's Cancer Vaccines</h3>
+      <ul>
+        <li>Oncolytic vaccine <mark class="g">Enteromix</mark>.</li>
+        <li>Personalized mRNA cancer vaccines.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>WHO Pandemic Agreement</h3>
+      <ul>
+        <li>First meeting of the <mark class="g">Intergovernmental Working Group (IGWG)</mark>.</li>
+        <li><mark class="r">Second</mark> international legal agreement under Article 19 of the WHO Constitution (first: <mark class="g">WHO Framework Convention on Tobacco Control, 2003</mark>).</li>
+        <li>Held at WHO HQ, <mark class="g">Geneva</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Universal Immunization Programme (UIP) of India</h3>
+      <p>Free immunization against <mark class="b">12 diseases</mark>.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>WHO '3 By 35' Initiative</h3>
+      <p>Aims to raise prices of tobacco, alcohol, and sugary drinks by at least <mark class="b">50%</mark> via health taxes by <mark class="b">2035</mark>.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>National One Health Mission (NOHM)</h3>
+      <ul>
+        <li>Union Government to launch NOHM — integrates human, livestock, wildlife, environmental health.</li>
+        <li>Nodal: <mark class="g">ICMR</mark> under the <mark class="g">Office of the Principal Scientific Adviser (PSA)</mark>; Anchor: <mark class="g">National Institute of One Health, Nagpur</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>WHO Recognition — Eliminating Industrially Produced Trans Fats</h3>
+      <p>Recognised <mark class="g">Austria, Norway, Oman, and Singapore</mark> for eliminating industrially produced trans fats.</p>
+    </div>
+
+    <div class="tcard">
+      <h3>Wegovy (Semaglutide) — Weight Loss Drug Launched in India</h3>
+      <ul>
+        <li><mark class="g">Novo Nordisk</mark> (Danish) launched Wegovy in India; imitates <mark class="y">GLP-1</mark> hormone as an appetite suppressant.</li>
+        <li>Other drugs: <mark class="g">Ozempic</mark>; <mark class="g">Mounjaro</mark> (tirzepatide — mimics GLP-1 and GIP).</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Type 5 Diabetes — Malnutrition-Related Diabetes Recognised</h3>
+      <ul>
+        <li>Officially recognised at the <mark class="g">IDF World Diabetes Congress</mark>; also called <mark class="y">J-type diabetes</mark>, linked to chronic undernutrition.</li>
+      </ul>
+      <table>
+        <caption>Diabetes — Types at a Glance</caption>
+        <thead class="red"><tr><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>Type 1</td><td>Autoimmune destruction of insulin-producing beta cells.</td></tr>
+          <tr><td>Type 2</td><td>Mainly caused by obesity/overnutrition; body doesn't use insulin well.</td></tr>
+          <tr><td>Type 5 (J-type)</td><td>Linked to chronic undernutrition, especially childhood/adolescence; low BMI.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tcard">
+      <h3>Aspergillosis, Fusarium Head Blight &amp; Havana Syndrome</h3>
+      <ul>
+        <li><b>Aspergillosis</b>: respiratory infection from inhaling spores of <mark class="g">Aspergillus</mark> (mainly <mark class="g">A. fumigatus</mark>).</li>
+        <li><b>Fusarium graminearum</b>: fungal pathogen causing Fusarium Head Blight (FHB) in wheat, maize, barley; spreads via airborne spores/seeds/soil.</li>
+        <li><b>Havana Syndrome</b>: officially <mark class="y">Anomalous Health Incidents (AHIs)</mark>; first reported <mark class="b">2016</mark> by US diplomats in Havana, Cuba; US Pentagon testing a device emitting pulsed radio-frequency waves.</li>
+      </ul>
+    </div>
+
+    <div class="tcard">
+      <h3>Kyasanur Forest Disease, Niger &amp; Naegleria fowleri</h3>
+      <ul>
+        <li><b>Kyasanur Forest Disease (KFD)</b>: tick-borne viral haemorrhagic fever; first identified in <mark class="g">Kyasanur Forest, Karnataka</mark>; endemic to the <mark class="g">Western Ghats</mark>.</li>
+        <li><b>Niger</b>: <mark class="r">1st African country to eliminate onchocerciasis (river blindness)</mark> — caused by filarial worm <mark class="g">Onchocerca volvulus</mark>, transmitted by <mark class="g">Simulium</mark> blackflies.</li>
+        <li><b>Naegleria fowleri</b>: brain-eating amoeba; causes <mark class="y">Primary Amoebic Meningoencephalitis (PAM)</mark> — rare but fatal.</li>
+      </ul>
+    </div>
+  </section>
+
+  </div><!-- /chapters -->
+
+  <div class="footer">Dossier compiled for BPSC Prelims revision · marker-coded per canonical study format · verify latest developments before the exam</div>
+</div><!-- /main -->
+
+<script>
+  const chapters = document.querySelectorAll('.chapter');
+  const toc = document.getElementById('toc');
+  const partLabels = {1:"Part A · Space", 12:"Part B · Defence & Tech", 20:"Part C · IT & Computer", 23:"Part D · Biotech & Health"};
+  chapters.forEach((ch, i) => {
+    const num = i+1;
+    if (partLabels[num]) {
+      const p = document.createElement('div');
+      p.className = 'toc-part';
+      p.textContent = partLabels[num];
+      toc.appendChild(p);
+    }
+    const a = document.createElement('a');
+    a.href = '#' + ch.id;
+    a.innerHTML = '<span class="num">' + String(num).padStart(2,'0') + '</span><span>' + ch.dataset.title + '</span>';
+    a.dataset.target = ch.id;
+    toc.appendChild(a);
+  });
+
+  const links = toc.querySelectorAll('a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = toc.querySelector('a[data-target="' + entry.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px', threshold: 0 });
+  chapters.forEach(ch => observer.observe(ch));
+
+  const menuBtn = document.getElementById('menu-btn');
+  const sidebar = document.getElementById('sidebar');
+  menuBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+  links.forEach(l => l.addEventListener('click', () => sidebar.classList.remove('open')));
+</script>
+
+</body>
+</html>

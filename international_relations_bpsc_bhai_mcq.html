@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCQ Dossier · International Relations 2025–26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1E33; --ink-2:#122A45; --paper:#FBF7EC; --paper-2:#F3ECDA;
+    --gold:#C9A227; --gold-2:#E8C766; --teal:#2E6171; --text:#1C2B3A; --muted:#5B6B7A;
+    --ok:#1E8449; --ok-bg:#EAFAF1; --bad:#C0392B; --bad-bg:#FDEDEC;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--ink); color:var(--text); font-family:'Source Sans 3', sans-serif; display:flex; min-height:100vh;}
+  ::selection{background:var(--gold-2); color:var(--ink);}
+
+  #sidebar{
+    width:280px; flex-shrink:0; background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:#DCE6EE; position:fixed; top:0; left:0; bottom:0; overflow-y:auto; padding:28px 0 40px;
+    border-right:1px solid rgba(201,162,39,.25); z-index:50;
+  }
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:rgba(201,162,39,.4); border-radius:3px;}
+  .brand{padding:0 24px 20px; border-bottom:1px solid rgba(201,162,39,.25); margin-bottom:14px;}
+  .brand .stamp{width:46px;height:46px;border-radius:50%; border:2px solid var(--gold); display:flex;align-items:center;justify-content:center; font-family:'Playfair Display',serif; font-weight:800; color:var(--gold-2); font-size:13px; margin-bottom:10px;}
+  .brand h1{font-family:'Playfair Display', serif; font-size:18px; line-height:1.25; margin:0 0 4px; font-weight:700; color:#F4EFE1;}
+  .brand p{margin:0; font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono', monospace;}
+
+  #score-panel{margin:0 16px 18px; padding:14px; background:rgba(201,162,39,.10); border:1px solid rgba(201,162,39,.3); border-radius:8px;}
+  #score-panel .big{font-family:'Playfair Display',serif; font-size:28px; color:var(--gold-2); font-weight:700;}
+  #score-panel .lbl{font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; color:#B7C6D3; margin-top:2px;}
+  #score-panel .bar{height:6px; background:rgba(255,255,255,.1); border-radius:3px; margin-top:10px; overflow:hidden;}
+  #score-panel .bar-fill{height:100%; background:var(--gold); width:0%; transition:width .3s;}
+  #reset-btn{
+    margin-top:10px; width:100%; background:transparent; border:1px solid rgba(201,162,39,.4);
+    color:var(--gold-2); font-family:'IBM Plex Mono',monospace; font-size:11px; padding:7px; border-radius:5px;
+    cursor:pointer; letter-spacing:.05em; text-transform:uppercase;
+  }
+  #reset-btn:hover{background:rgba(201,162,39,.12);}
+
+  nav.toc{padding:6px 10px;}
+  nav.toc a{display:flex; align-items:baseline; gap:10px; padding:8px 14px; margin:1px 0; border-radius:6px; color:#B7C6D3; text-decoration:none; font-size:13px; font-weight:500; border-left:3px solid transparent; transition:background .15s, color .15s, border-color .15s;}
+  nav.toc a .num{font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--gold); flex-shrink:0; width:20px;}
+  nav.toc a:hover{background:rgba(201,162,39,.10); color:#F4EFE1;}
+  nav.toc a.active{background:rgba(201,162,39,.16); color:#F8F1DD; border-left-color:var(--gold); font-weight:600;}
+
+  #main{margin-left:280px; flex:1; background:var(--ink);}
+  .cover{padding:64px 64px 46px; background:radial-gradient(circle at 85% 20%, rgba(201,162,39,.10), transparent 45%), linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%); color:#EFE9D8; border-bottom:4px double rgba(201,162,39,.4);}
+  .cover .eyebrow{font-family:'IBM Plex Mono',monospace; letter-spacing:.18em; text-transform:uppercase; font-size:12px; color:var(--gold-2); margin-bottom:16px;}
+  .cover h1{font-family:'Playfair Display', serif; font-weight:800; font-size:clamp(28px,3.6vw,44px); line-height:1.1; margin:0 0 14px; max-width:820px;}
+  .cover p.sub{font-size:15px; color:#C9D2DB; max-width:640px; line-height:1.6; margin:0;}
+
+  .quizbody{background:var(--paper); padding:10px 0 90px;}
+  .chapter-block{max-width:880px; margin:0 auto; padding:0 48px;}
+  .city-head{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.09em;
+    color:var(--gold); background:var(--ink); display:inline-block; padding:7px 16px; border-radius:5px;
+    margin:44px 0 20px;
+  }
+  .city-head:first-of-type{margin-top:36px;}
+
+  .qcard{background:var(--paper-2); border:1px solid rgba(28,43,58,.12); border-radius:10px; padding:20px 22px; margin-bottom:16px;}
+  .qcard .qnum{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--teal); font-weight:600; margin-bottom:6px; display:block;}
+  .qcard .qtext{font-family:'Playfair Display',serif; font-size:16.5px; font-weight:700; color:var(--ink); margin:0 0 14px; line-height:1.4;}
+  .options{display:grid; gap:9px;}
+  .opt{
+    display:flex; align-items:center; gap:10px; text-align:left; width:100%;
+    background:var(--paper); border:1.5px solid rgba(28,43,58,.18); border-radius:7px;
+    padding:11px 14px; font-size:14.5px; color:var(--text); cursor:pointer; font-family:inherit;
+    transition:background .15s, border-color .15s, transform .1s;
+  }
+  .opt:hover:not(.locked .opt){border-color:var(--teal);}
+  .opt .letter{
+    font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:12px; color:var(--muted);
+    width:22px; height:22px; border-radius:50%; border:1.5px solid rgba(28,43,58,.25);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .options.locked .opt{cursor:default;}
+  .opt.correct{background:var(--ok-bg); border-color:var(--ok); color:#145A32;}
+  .opt.correct .letter{background:var(--ok); color:#fff; border-color:var(--ok);}
+  .opt.wrong{background:var(--bad-bg); border-color:var(--bad); color:#78281F;}
+  .opt.wrong .letter{background:var(--bad); color:#fff; border-color:var(--bad);}
+  .opt.dim{opacity:.55;}
+  .feedback{
+    margin-top:12px; font-size:13px; font-family:'IBM Plex Mono',monospace; padding:8px 12px; border-radius:6px;
+    display:none;
+  }
+  .feedback.show{display:block;}
+  .feedback.good{background:var(--ok-bg); color:#145A32;}
+  .feedback.bad{background:var(--bad-bg); color:#78281F;}
+
+  .footer{max-width:880px; margin:0 auto; padding:40px 48px 70px; color:var(--muted); font-size:12.5px; font-family:'IBM Plex Mono',monospace; text-align:center;}
+
+  @media (max-width: 880px){
+    #sidebar{position:fixed; left:0; top:0; bottom:0; width:250px; transform:translateX(-100%); transition:transform .25s ease;}
+    #sidebar.open{transform:translateX(0);}
+    #main{margin-left:0;}
+    .chapter-block{padding:0 20px;}
+    .cover{padding:54px 20px 36px;}
+  }
+  #menu-btn{
+    display:none; position:fixed; top:16px; left:16px; z-index:60; width:44px;height:44px;border-radius:50%;
+    background:var(--ink); border:2px solid var(--gold); color:var(--gold-2); font-size:18px;
+    align-items:center; justify-content:center; cursor:pointer;
+  }
+  @media (max-width: 880px){ #menu-btn{display:flex;} }
+</style>
+</head>
+<body>
+
+<button id="menu-btn" aria-label="Toggle chapter index">☰</button>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="stamp">IR</div>
+    <h1>MCQ Dossier</h1>
+    <p>BPSC · Int'l Relations 2025–26</p>
+  </div>
+
+  <div id="score-panel">
+    <div class="big"><span id="score-count">0</span> / <span id="score-total">0</span></div>
+    <div class="lbl">Answered Correctly</div>
+    <div class="bar"><div class="bar-fill" id="score-bar"></div></div>
+    <button id="reset-btn">Reset All Answers</button>
+  </div>
+
+  <nav class="toc" id="toc"></nav>
+</aside>
+
+<div id="main">
+  <section class="cover">
+    <div class="eyebrow">Case File No. 2026/IR-MCQ &nbsp;·&nbsp; Self-Test Edition</div>
+    <h1>140 questions. Every summit, MoU and exercise from the dossier — reduced to a single click.</h1>
+    <p class="sub">Pick an option to see the answer instantly. Score tracks live in the sidebar. Nothing from the 15 chapters is left untested.</p>
+  </section>
+
+  <div class="quizbody">
+    <div class="chapter-block" id="quiz-container"></div>
+  </div>
+
+  <div class="footer">Self-test dossier · answers reveal on selection · reset anytime from the sidebar</div>
+</div>
+
+<script>
+const QUESTIONS = [
+// ===== CHAPTER 1: BRICS =====
+{ch:"1 · BRICS", q:"How many full members does BRICS currently have?", o:["9","10","11","12"], a:2},
+{ch:"1 · BRICS", q:"Which country became BRICS's 11th full member on 1 January 2025?", o:["Indonesia","Saudi Arabia","Egypt","Ethiopia"], a:0},
+{ch:"1 · BRICS", q:"Egypt, Ethiopia, Iran, Saudi Arabia and UAE joined BRICS effective which date?", o:["1 Jan 2024","1 Jan 2025","2011","2009"], a:0},
+{ch:"1 · BRICS", q:"India's 2026 BRICS Chairship is its —", o:["2nd","3rd","4th","5th"], a:2},
+{ch:"1 · BRICS", q:"The theme \"Building for Resilience, Innovation, Cooperation and Sustainability\" is notable because —", o:["It was also the G20 theme","Its initials spell BRICS","It was coined at COP30","It is the WTO's official motto"], a:1},
+{ch:"1 · BRICS", q:"The 17th BRICS Summit (6–7 July 2025) was held in —", o:["Kazan, Russia","Rio de Janeiro, Brazil","Johannesburg, South Africa","New Delhi, India"], a:1},
+{ch:"1 · BRICS", q:"Official theme of the 17th BRICS Summit?", o:["\"Strengthening Global South Cooperation for More Inclusive and Sustainable Governance\"","\"Sarvesham Urjam\"","\"Humanity First\"","\"Building for Resilience, Innovation, Cooperation and Sustainability\""], a:0},
+{ch:"1 · BRICS", q:"BRICS nations \"condemned and rejected\" which EU trade measure?", o:["CBAM","EU ETS","GSP scheme","REACH regulation"], a:0},
+{ch:"1 · BRICS", q:"MoEFCC notified formation of which body to kick-start carbon trading, fulfilling Article 6 of the Paris Agreement?", o:["National Carbon Authority","National Designated Authority (NDA)","Green Credit Board","Carbon Trading Commission"], a:1},
+{ch:"1 · BRICS", q:"Who chaired the 16th BRICS NSA Meeting (22–23 June 2026, New Delhi)?", o:["S. Jaishankar","Ajit Doval","Rajnath Singh","Amit Shah"], a:1},
+{ch:"1 · BRICS", q:"The BRICS Heads of Space Agencies (HOSA) Meeting was hosted at —", o:["Sriharikota","Bengaluru","Thiruvananthapuram","Hyderabad"], a:1},
+{ch:"1 · BRICS", q:"Theme of the 11th BRICS Energy Ministers' Meeting?", o:["\"Powering India\"","\"Sarvesham Urjam\" (Energy for All)","\"One Sun, One World, One Grid\"","\"Energy Transition Now\""], a:1},
+{ch:"1 · BRICS", q:"The International Solar Alliance's Director General is —", o:["Ajay Mathur","Ashish Khanna","Upendra Tripathy","R.K. Singh"], a:1},
+{ch:"1 · BRICS", q:"ISA's headquarters is located in —", o:["New Delhi","Gurugram, Haryana","Chandigarh","Mumbai"], a:1},
+{ch:"1 · BRICS", q:"Who chairs BRICS after India's 2026 term?", o:["Brazil","Russia","China","South Africa"], a:2},
+
+// ===== CHAPTER 2: G20 =====
+{ch:"2 · G20", q:"The 20th G20 Summit (22–23 Nov 2025) was held in —", o:["Cairo","Johannesburg","Nairobi","Lagos"], a:1},
+{ch:"2 · G20", q:"Theme of the 20th G20 Summit?", o:["\"Solidarity, Equality, Sustainability\"","\"One Earth, One Family\"","\"Ubuntu for All\"","\"Billions to Trillions\""], a:0},
+{ch:"2 · G20", q:"The 20th G20 Summit was historic because it was —", o:["The first virtual G20","The first G20 held on the African continent","The first G20 without the EU","The first G20 chaired by a woman"], a:1},
+{ch:"2 · G20", q:"Which country boycotted the Johannesburg G20 Summit?", o:["China","Russia","USA","UK"], a:2},
+{ch:"2 · G20", q:"\"Mission 300\" (World Bank & African Development Bank) aims to electrify how many people in Sub-Saharan Africa by 2030?", o:["100 million","200 million","300 million","500 million"], a:2},
+{ch:"2 · G20", q:"The African Union became a permanent G20 member on —", o:["9 September 2023","1 January 2024","18 November 2022","22 November 2025"], a:0},
+{ch:"2 · G20", q:"The African Union is the ______ regional organisation to join the G20, after the EU.", o:["first","second","third","only"], a:1},
+{ch:"2 · G20", q:"The 21st G20 Summit (Dec 2026) will be hosted at —", o:["Miami (Doral), Florida","Washington DC","New York","Chicago"], a:0},
+{ch:"2 · G20", q:"The 22nd G20 Summit (2027) is scheduled to be hosted by —", o:["USA","United Kingdom","France","Japan"], a:1},
+
+// ===== CHAPTER 3: G7 =====
+{ch:"3 · G7", q:"G7 members (mnemonic JUICE GF) are Japan, UK, Italy, Canada, EU, Germany and —", o:["France","Spain","Australia","Russia"], a:0},
+{ch:"3 · G7", q:"The 52nd G7 Summit (15–17 June 2026) was held at —", o:["Kananaskis, Canada","Évian-les-Bains, France","Biarritz, France","Cornwall, UK"], a:1},
+{ch:"3 · G7", q:"At the 52nd G7 Summit, PM Modi proposed which initiative?", o:["IMPACT","MAHASAGAR","OSOWOG","Sarvesham Urjam"], a:0},
+{ch:"3 · G7", q:"India expressed support for which country becoming a Dialogue Partner of IORA?", o:["Canada","Germany","Japan","UK"], a:0},
+{ch:"3 · G7", q:"Current Chair of IORA (2025–2027) is —", o:["Sri Lanka","India","Mauritius","Australia"], a:1},
+{ch:"3 · G7", q:"IORA's secretariat is located in —", o:["Gurugram, India","Ebène, Mauritius","New Delhi","Colombo"], a:1},
+{ch:"3 · G7", q:"The India–Canada uranium supply deal (Cameco & Dept of Atomic Energy) is valued at —", o:["CAD $1.2 billion","CAD $2.6 billion","USD $2.6 billion","CAD $5 billion"], a:1},
+{ch:"3 · G7", q:"The India–UK trade pact reaffirmed for early implementation is called —", o:["CETA","RCEP","TEPA","FTA-2035"], a:0},
+{ch:"3 · G7", q:"Exercise GARUDA (India–France) is conducted by which service?", o:["Army","Navy","Air Force","Coast Guard"], a:2},
+{ch:"3 · G7", q:"Exercise SHAKTI (India–France) is conducted by which service?", o:["Army","Navy","Air Force","Tri-services"], a:0},
+{ch:"3 · G7", q:"The 51st G7 Summit (16–17 June 2025) was held at —", o:["Kananaskis, Alberta, Canada","Cornwall, UK","Biarritz, France","Hiroshima, Japan"], a:0},
+{ch:"3 · G7", q:"The United States is scheduled to hold the rotating G7 presidency in —", o:["2026","2027","2028","2025"], a:1},
+
+// ===== CHAPTER 4: QUAD =====
+{ch:"4 · Quad", q:"The 11th Quad Foreign Ministers' Meeting (26 May 2026) was hosted in —", o:["Mumbai","New Delhi","Bengaluru","Chennai"], a:1},
+{ch:"4 · Quad", q:"Who hosted the 11th Quad FMM for India?", o:["PM Modi","EAM S. Jaishankar","NSA Ajit Doval","President Murmu"], a:1},
+{ch:"4 · Quad", q:"Which US Secretary of State attended the 11th Quad FMM?", o:["Antony Blinken","Marco Rubio","Mike Pompeo","John Kerry"], a:1},
+{ch:"4 · Quad", q:"IPMSC, an outcome of the 11th Quad FMM, stands for —", o:["Indo-Pacific Maritime Surveillance Collaboration","Indo-Pacific Military Security Cooperation","International Peace Maritime Security Council","Indo-Pacific Minerals Supply Chain"], a:0},
+{ch:"4 · Quad", q:"The Quad's naval arm exercise is called —", o:["MALABAR","RIMPAC","SIMBEX","VARUNA"], a:0},
+{ch:"4 · Quad", q:"The 23rd Shangri-La Dialogue (May 2026, Singapore) is organised by —", o:["IISS","ASEAN","the UN","SCO"], a:0},
+{ch:"4 · Quad", q:"SQUAD (informal minilateral) consists of US, Japan, Australia and —", o:["Philippines","India","South Korea","Vietnam"], a:0},
+{ch:"4 · Quad", q:"I2U2 (the \"West Asian Quad\") consists of India, Israel, US and —", o:["UAE","Saudi Arabia","Egypt","Jordan"], a:0},
+{ch:"4 · Quad", q:"Operation Absolute Resolve (3 January 2026) aimed to capture which leader?", o:["Edmundo González","Nicolás Maduro","Delcy Rodríguez","Hugo Chávez Jr."], a:1},
+{ch:"4 · Quad", q:"Who was sworn in as Acting President of Venezuela after Maduro's capture?", o:["María Corina Machado","Delcy Rodríguez","Edmundo González","Cilia Flores"], a:1},
+{ch:"4 · Quad", q:"María Corina Machado presented her Nobel Peace Prize medal to —", o:["Donald Trump","Marco Rubio","Joe Biden","the UN Secretary-General"], a:0},
+{ch:"4 · Quad", q:"Per the Norwegian Nobel Institute, once the physical medal is gifted, the Prize itself —", o:["Transfers to the new holder","Remains permanently awarded to Machado","Is revoked","Is jointly shared"], a:1},
+{ch:"4 · Quad", q:"\"Tiger Claw 2025\" (1st edition) was the first-ever joint exercise between US Air Force special forces and —", o:["Indian Army Para SF","IAF Garud special forces","Indian Navy MARCOS","NSG"], a:1},
+{ch:"4 · Quad", q:"JIMEX 2025 (India–Japan naval exercise) was held at —", o:["Chennai","Yokosuka Port, Japan","Visakhapatnam","Mumbai"], a:1},
+
+// ===== CHAPTER 5: SCO =====
+{ch:"5 · SCO", q:"The newest full member of the SCO is —", o:["Belarus","Iran","Egypt","Mongolia"], a:0},
+{ch:"5 · SCO", q:"The 26th SCO Summit (2026) will be hosted by —", o:["China","Kyrgyzstan (Bishkek)","Tajikistan","India"], a:1},
+{ch:"5 · SCO", q:"The 25th SCO Summit (2025) was hosted by China at —", o:["Beijing","Tianjin","Shanghai","Wuhan"], a:1},
+{ch:"5 · SCO", q:"India was represented at the SCO's \"Central Asia – The Core of the SCO\" conference (June 2026) by —", o:["EAM Jaishankar","MoS Kirti Vardhan Singh","PM Modi","NSA Doval"], a:1},
+
+// ===== CHAPTER 6: NATO =====
+{ch:"6 · NATO", q:"The 35th NATO Summit (June 2025) was held at —", o:["Brussels","The Hague, Netherlands","Madrid","Vilnius"], a:1},
+{ch:"6 · NATO", q:"The \"Hague Defence Commitment\" pledges to raise defence spending to what % of GDP by 2035?", o:["2%","3.5%","5%","7%"], a:2},
+{ch:"6 · NATO", q:"The 36th NATO Summit (2026) will be held in —", o:["Ankara, Türkiye","Istanbul","Athens","Sofia"], a:0},
+{ch:"6 · NATO", q:"The \"Türkiye double\" of 2026 refers to the NATO Summit (Ankara) and which other event held in Türkiye the same year?", o:["COP31 (Antalya)","G20 Summit","WTO MC14","World Government Summit"], a:0},
+{ch:"6 · NATO", q:"NATO's Secretary General is —", o:["Jens Stoltenberg","Mark Rutte","António Guterres","Ursula von der Leyen"], a:1},
+{ch:"6 · NATO", q:"NATO's Article 5 relates to —", o:["Open Door Policy","Collective Defence","Budget contributions","Peacekeeping mandates"], a:1},
+{ch:"6 · NATO", q:"NATO's latest member (2024) is —", o:["Finland","Sweden","North Macedonia","Montenegro"], a:1},
+{ch:"6 · NATO", q:"COP31 (2026) will be held in —", o:["Belém","Antalya, Türkiye","Baku","Addis Ababa"], a:1},
+
+// ===== CHAPTER 7: ASEAN =====
+{ch:"7 · ASEAN", q:"The newest member of ASEAN is —", o:["Timor-Leste","Papua New Guinea","Bangladesh","Sri Lanka"], a:0},
+{ch:"7 · ASEAN", q:"Timor-Leste's full membership was approved at the 48th & 49th ASEAN Summits held in —", o:["Manila","Cebu, Philippines","Jakarta","Bangkok"], a:1},
+{ch:"7 · ASEAN", q:"The ASEAN Charter amendment facilitating Timor-Leste's accession is called the —", o:["Cebu Protocol","Manila Accord","Jakarta Declaration","ASEAN Charter Amendment 2026"], a:0},
+{ch:"7 · ASEAN", q:"The ASEAN emblem's rice stalks increased from 10 to —", o:["11","12","13","stayed at 10"], a:0},
+{ch:"7 · ASEAN", q:"Which country chaired ASEAN in 2026?", o:["Vietnam","Philippines","Indonesia","Thailand"], a:1},
+{ch:"7 · ASEAN", q:"The trilateral MoU on AI & Quantum Technology (May 2026) is between India, Japan and —", o:["Vietnam","Singapore","Thailand","Indonesia"], a:0},
+{ch:"7 · ASEAN", q:"VINBAX is a bilateral army exercise between India and —", o:["Vietnam","Cambodia","Malaysia","Mongolia"], a:0},
+{ch:"7 · ASEAN", q:"SIMBEX 2025 (32nd edition) is India's naval exercise with —", o:["Malaysia","Singapore","Indonesia","Thailand"], a:1},
+{ch:"7 · ASEAN", q:"GARUDA SHAKTI (army exercise, not to be confused with air-force GARUDA/France) is with —", o:["Indonesia","Malaysia","Thailand","Vietnam"], a:0},
+{ch:"7 · ASEAN", q:"\"Dosti 2026\" (17th edition) is a trilateral coast-guard exercise among India, Sri Lanka and —", o:["Maldives","Bangladesh","Mauritius","Seychelles"], a:0},
+{ch:"7 · ASEAN", q:"\"Ekuverin\" means \"friends\" in which language?", o:["Dhivehi (Maldives)","Sinhala","Tamil","Malay"], a:0},
+
+// ===== CHAPTER 8: UN & GENEVA =====
+{ch:"8 · UN & Geneva", q:"The 79th World Health Assembly adopted the first-ever WHA resolution on —", o:["Diabetes","Stroke","Cancer","Tuberculosis"], a:1},
+{ch:"8 · UN & Geneva", q:"WHA79's Global Action Plan on AMR covers which period?", o:["2025–35","2026–36","2024–34","2026–30"], a:1},
+{ch:"8 · UN & Geneva", q:"UNCTAD16 (Oct 2025) was held in —", o:["Geneva, Switzerland","Vienna","Nairobi","Bridgetown"], a:0},
+{ch:"8 · UN & Geneva", q:"The 14th WTO Ministerial Conference (MC14, March 2026) was held in —", o:["Abu Dhabi","Yaoundé, Cameroon","Nairobi","Bali"], a:1},
+{ch:"8 · UN & Geneva", q:"MC14 is only the ______ WTO Ministerial ever held in Africa.", o:["first","second","third","fourth"], a:1},
+{ch:"8 · UN & Geneva", q:"MC14 concluded without consensus because members failed to extend the moratorium on —", o:["Agricultural subsidies","customs duties on e-commerce transmissions","fisheries subsidies","the TRIPS waiver"], a:1},
+{ch:"8 · UN & Geneva", q:"COP30 (Nov 2025) was held in —", o:["Belém, Brazil","Dubai, UAE","Glasgow, UK","Sharm El-Sheikh"], a:0},
+{ch:"8 · UN & Geneva", q:"The Tropical Forests Forever Facility (TFFF), launched at COP30, has a long-term target of —", o:["US$50 billion","US$125 billion","US$200 billion","US$1 trillion"], a:1},
+{ch:"8 · UN & Geneva", q:"What percentage of TFFF payments are earmarked for Indigenous Peoples and Local Communities (IPLCs)?", o:["10%","15%","20%","25%"], a:2},
+{ch:"8 · UN & Geneva", q:"COP30 endorsed tripling of adaptation finance by which year?", o:["2030","2035","2040","2050"], a:1},
+{ch:"8 · UN & Geneva", q:"How many indicators were adopted under the Global Goal on Adaptation (GGA) at COP30?", o:["39","49","59","69"], a:2},
+{ch:"8 · UN & Geneva", q:"COP30's biggest criticism was the lack of agreement on —", o:["The Loss and Damage Fund","a mandatory global fossil-fuel phase-out","adaptation finance","forest protection"], a:1},
+{ch:"8 · UN & Geneva", q:"At COP31 (2026), Türkiye's Murat Kurum presides while Australia's ______ serves as President of Negotiations.", o:["Chris Bowen","Anthony Albanese","Penny Wong","Peter Dutton"], a:0},
+{ch:"8 · UN & Geneva", q:"COP-32 (2027) will be held in —", o:["Addis Ababa, Ethiopia","Nairobi, Kenya","Cairo, Egypt","Kampala, Uganda"], a:0},
+
+// ===== CHAPTER 9: COMMONWEALTH & NAM =====
+{ch:"9 · Commonwealth & NAM", q:"Who presided over the Conference of Speakers and Presiding Officers of Commonwealth Parliaments (Jan 2026, New Delhi)?", o:["PM Modi","Lok Sabha Speaker Om Birla","VP Jagdeep Dhankhar","EAM Jaishankar"], a:1},
+{ch:"9 · Commonwealth & NAM", q:"The 28th CHOGM (2026) will be hosted by —", o:["Samoa","Antigua and Barbuda","Rwanda","UK"], a:1},
+{ch:"9 · Commonwealth & NAM", q:"The previous (27th) CHOGM (2024) was hosted by —", o:["Rwanda","Samoa","UK","Malta"], a:1},
+{ch:"9 · Commonwealth & NAM", q:"The 20th NAM Summit (2027) will be held in —", o:["Azerbaijan","Uganda","Uzbekistan","Venezuela"], a:2},
+
+// ===== CHAPTER 10: GULF STAGE =====
+{ch:"10 · Gulf Stage", q:"The 46th GCC Summit (Dec 2025, Manama) adopted the —", o:["Manama Declaration","Sakhir Declaration","Bahrain Accord","Gulf Security Pact"], a:1},
+{ch:"10 · Gulf Stage", q:"Theme of the World Government Summit 2026?", o:["\"Shaping Future Governments\"","\"Government 4.0\"","\"AI for Governance\"","\"Future Ready States\""], a:0},
+{ch:"10 · Gulf Stage", q:"Theme of the 11th World Green Economy Summit (Oct 2025, Dubai)?", o:["\"Innovation for Impact: Accelerating the Future of the Green Economy\"","\"Green Growth Now\"","\"Net Zero Dubai\"","\"Sustainable Futures\""], a:0},
+
+// ===== CHAPTER 11: ISA =====
+{ch:"11 · ISA", q:"The official theme of the 8th ISA Assembly (Oct 2025) was —", o:["\"One Sun, One World, One Grid (OSOWOG)\"","\"One Sun, One World, One Shared Commitment\"","\"Solar for All\"","\"Sarvesham Urjam\""], a:0},
+{ch:"11 · ISA", q:"Who inaugurated the 8th ISA Assembly — the first presidential keynote at an ISA Assembly?", o:["PM Modi","President Droupadi Murmu","Pralhad Joshi","VP Dhankhar"], a:1},
+{ch:"11 · ISA", q:"ISA now counts how many member/signatory countries?", o:["100","110","124","130"], a:2},
+
+// ===== CHAPTER 12: OTHER GLOBAL STAGES =====
+{ch:"12 · Other Global Stages", q:"The Global Water Summit 2026 was held in —", o:["Geneva","Madrid, Spain","Amsterdam","Vienna"], a:1},
+{ch:"12 · Other Global Stages", q:"MWC 2026 (Barcelona) theme was —", o:["\"The IQ Era\"","\"Connected Futures\"","\"5G to 6G\"","\"Digital Dawn\""], a:0},
+{ch:"12 · Other Global Stages", q:"The India Pavilion at MWC 2026 was inaugurated by —", o:["Ashwini Vaishnaw","Jyotiraditya Scindia","Piyush Goyal","S. Jaishankar"], a:1},
+
+// ===== CHAPTER 13: BILATERAL COUNTRY DOSSIERS =====
+{ch:"13 · Country Dossiers", q:"The 23rd India–Russia Annual Summit (Dec 2025) marked the 25th anniversary of which declaration?", o:["The 2000 Strategic Partnership Declaration","The 1971 Indo-Soviet Treaty","The 1993 Friendship Treaty","The 2015 Special Partnership"], a:0},
+{ch:"13 · Country Dossiers", q:"\"Programme 2030\" targets India–Russia bilateral trade of —", o:["USD 50 billion","USD 100 billion","USD 150 billion","USD 200 billion"], a:1},
+{ch:"13 · Country Dossiers", q:"Exercise INDRA is a joint army exercise between India and —", o:["Russia","Indonesia","Iran","Kazakhstan"], a:0},
+{ch:"13 · Country Dossiers", q:"India's first-ever cross-border railway link MoU (Sept 2025) was signed with —", o:["Nepal","Bhutan","Bangladesh","Myanmar"], a:1},
+{ch:"13 · Country Dossiers", q:"SURYA KIRAN is a battalion-level exercise between India and —", o:["Nepal","Bhutan","Myanmar","Sri Lanka"], a:0},
+{ch:"13 · Country Dossiers", q:"\"Harimau Shakti\" (tiger, in Malay) is an army exercise between India and —", o:["Malaysia","Indonesia","Thailand","Vietnam"], a:0},
+{ch:"13 · Country Dossiers", q:"MAITREE 2025 is an army exercise between India and —", o:["Thailand","Myanmar","Cambodia","Vietnam"], a:0},
+{ch:"13 · Country Dossiers", q:"CINBAX-II 2026 is a tri-services exercise between India and —", o:["Cambodia","Vietnam","Mongolia","Laos"], a:0},
+{ch:"13 · Country Dossiers", q:"The MoU on the Nalanda University link (June 2026) was signed with —", o:["Mongolia","Sri Lanka","Thailand","Japan"], a:0},
+{ch:"13 · Country Dossiers", q:"\"Nomadic Elephant\" exercise is held with —", o:["Mongolia","Kazakhstan","Kyrgyzstan","Uzbekistan"], a:0},
+{ch:"13 · Country Dossiers", q:"\"Khan Quest\", the multinational peacekeeping exercise, is hosted by —", o:["Mongolia","Kazakhstan","Russia","China"], a:0},
+{ch:"13 · Country Dossiers", q:"\"Dustlik\" (friendship, in Uzbek) is an army exercise between India and —", o:["Uzbekistan","Kazakhstan","Kyrgyzstan","Tajikistan"], a:0},
+{ch:"13 · Country Dossiers", q:"\"Khanjar\" (dagger) is a special-forces exercise between India and —", o:["Kyrgyzstan","Uzbekistan","Kazakhstan","Tajikistan"], a:0},
+{ch:"13 · Country Dossiers", q:"India and Seychelles marked how many years of diplomatic ties in 2026?", o:["25 years","40 years","50 years","60 years"], a:2},
+{ch:"13 · Country Dossiers", q:"President Patrick Herminie of Seychelles conferred which honour on PM Modi?", o:["\"Order of the Indian Ocean\"","\"Guardian of the Blue Horizon\"","\"Friend of Seychelles\"","\"Blue Economy Champion\""], a:1},
+{ch:"13 · Country Dossiers", q:"PM Modi's Seychelles visit was anchored in India's —", o:["SAGAR vision","MAHASAGAR vision","Neighbourhood First policy","Act East policy"], a:1},
+{ch:"13 · Country Dossiers", q:"\"Lamitiye\" (friendship, in Seychellois Creole) is a tri-services exercise with —", o:["Seychelles","Mauritius","Maldives","Madagascar"], a:0},
+{ch:"13 · Country Dossiers", q:"The MoU on a Satellite Tracking & Communication Centre (Sept 2025) was signed with —", o:["Mauritius","Seychelles","Maldives","Sri Lanka"], a:0},
+{ch:"13 · Country Dossiers", q:"The India–Netherlands MoU (May 2026) covers technical cooperation on which Gujarat project?", o:["Sardar Sarovar","Kalpasar Project","Dholera SIR","GIFT City"], a:1},
+{ch:"13 · Country Dossiers", q:"ISRO signed an agreement with Sweden for cooperation on which upcoming mission?", o:["Mars Orbiter Mission-2","Venus Orbiter Mission","Gaganyaan","Chandrayaan-4"], a:1},
+{ch:"13 · Country Dossiers", q:"Finland's President, who signed the environmental cooperation MoU (March 2026), is —", o:["Sauli Niinistö","Alexander Stubb","Tarja Halonen","Mika Lintilä"], a:1},
+
+// ===== CHAPTER 14: INDIA AS GLOBAL HOST =====
+{ch:"14 · India as Global Host", q:"Theme of the 11th Raisina Dialogue (5–7 March 2026)?", o:["\"Saṁskāra – Assertion, Accommodation, Advancement\"","\"Global South Rising\"","\"One Earth One Family\"","\"Multilateralism Reimagined\""], a:0},
+{ch:"14 · India as Global Host", q:"Chief Guest & Keynote speaker at the 11th Raisina Dialogue was —", o:["President of Finland Alexander Stubb","the German Chancellor","the Japanese PM","the Australian PM"], a:0},
+{ch:"14 · India as Global Host", q:"The 11th Raisina Dialogue drew participants from how many countries?", o:["90","100","110","120"], a:2},
+{ch:"14 · India as Global Host", q:"Raisina Dialogue is jointly organised by MEA and —", o:["ORF (Observer Research Foundation)","NITI Aayog","IDSA","CII"], a:0},
+{ch:"14 · India as Global Host", q:"Theme of the 10th Indian Ocean Dialogue (May 2026)?", o:["\"Indian Ocean Region in a Transforming World\"","\"Blue Economy for All\"","\"SAGAR Vision 2030\"","\"Maritime Futures\""], a:0},
+{ch:"14 · India as Global Host", q:"The Second Global Buddhist Summit (Jan 2026) was organised by IBC with which ministry?", o:["Ministry of Culture","Ministry of External Affairs","Ministry of Tourism","Ministry of Minority Affairs"], a:0},
+{ch:"14 · India as Global Host", q:"Theme of PLASTINDIA 2026?", o:["\"Bharat Next\"","\"Plastics for Progress\"","\"Sustainable Plastics\"","\"Make in India\""], a:0},
+{ch:"14 · India as Global Host", q:"The 9th International Dhamma Conference (Sept 2025) was held at —", o:["Nalanda University","Dr. Babasaheb Ambedkar Open University, Ahmedabad","Delhi University","BHU"], a:1},
+{ch:"14 · India as Global Host", q:"The 9th International Spice Conference (Jan 2026) was held in —", o:["Kochi, Kerala","Chennai","Goa","Mumbai"], a:0},
+{ch:"14 · India as Global Host", q:"The World Seafood Congress 2026 (Chennai) was significant because —", o:["It was India's largest-ever congress","India hosted it for the first time","It set a new attendance record","It was held virtually"], a:1},
+{ch:"14 · India as Global Host", q:"Theme of BioAsia Summit 2026 (Hyderabad)?", o:["\"TechBio Unleashed: AI, Automation and the Biology Revolution\"","\"Life Sciences 4.0\"","\"BioIndia Rising\"","\"Genome to Cure\""], a:0},
+{ch:"14 · India as Global Host", q:"The India Maritime Investment Conference (Aug 2025) was organised abroad by India at —", o:["India House, London","the Indian Embassy, Washington","India Centre, Singapore","the High Commission, Ottawa"], a:0},
+{ch:"14 · India as Global Host", q:"MILAN 2026 (13th edition, Visakhapatnam) drew how many nations and warships?", o:["50 nations, 30 warships","74 nations, 42 warships","60 nations, 35 warships","80 nations, 50 warships"], a:1},
+{ch:"14 · India as Global Host", q:"Exercise PRAGATI 2026 (Umroi, Meghalaya) shares its venue with which bilateral exercise?", o:["MAITREE (Thailand)","SURYA KIRAN (Nepal)","SIMBEX (Singapore)","DUSTLIK (Uzbekistan)"], a:0},
+
+// ===== CHAPTER 15: WAR-GAMES ABROAD =====
+{ch:"15 · War-Games Abroad", q:"MALABAR 2025 (28th edition, Guam) is a naval exercise of the Quad four — India, Japan, USA and —", o:["Australia","South Korea","Philippines","Vietnam"], a:0},
+{ch:"15 · War-Games Abroad", q:"Which Indian Navy ship represented India at MALABAR 2025 in the Northern Pacific?", o:["INS Vikrant","INS Sahyadri","INS Kolkata","INS Chennai"], a:1},
+{ch:"15 · War-Games Abroad", q:"Sea Dragon 2026 (Guam) is an exercise focused on —", o:["Anti-submarine warfare","Air combat","Amphibious assault","Humanitarian relief"], a:0},
+{ch:"15 · War-Games Abroad", q:"Kakadu 2026 is the flagship multilateral exercise of which navy?", o:["Royal Australian Navy","US Navy","Royal Navy","JMSDF (Japan)"], a:0},
+{ch:"15 · War-Games Abroad", q:"\"Balikatan\" (shoulder-to-shoulder, in Filipino) is a US–Philippines-led exercise held in —", o:["Philippines","Guam","Australia","Japan"], a:0},
+];
+
+const container = document.getElementById('quiz-container');
+const toc = document.getElementById('toc');
+let score = 0, answered = 0;
+const total = QUESTIONS.length;
+document.getElementById('score-total').textContent = total;
+
+let lastChapter = null;
+let qIndex = 0;
+QUESTIONS.forEach((item, idx) => {
+  if (item.ch !== lastChapter) {
+    lastChapter = item.ch;
+    const head = document.createElement('div');
+    head.className = 'city-head';
+    head.id = 'chap-' + idx;
+    head.textContent = item.ch;
+    container.appendChild(head);
+
+    const a = document.createElement('a');
+    a.href = '#chap-' + idx;
+    a.innerHTML = '<span class="num">' + item.ch.split(' ')[0].padStart(2,'0') + '</span><span>' + item.ch.split('· ')[1] + '</span>';
+    toc.appendChild(a);
+  }
+
+  qIndex++;
+  const card = document.createElement('div');
+  card.className = 'qcard';
+  card.innerHTML = `
+    <span class="qnum">Question ${qIndex} of ${total}</span>
+    <p class="qtext">${item.q}</p>
+    <div class="options" id="opts-${idx}"></div>
+    <div class="feedback" id="fb-${idx}"></div>
+  `;
+  container.appendChild(card);
+
+  const optsWrap = card.querySelector('#opts-' + idx);
+  const letters = ['A','B','C','D'];
+  item.o.forEach((optText, oi) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.innerHTML = `<span class="letter">${letters[oi]}</span><span>${optText}</span>`;
+    btn.addEventListener('click', () => handleAnswer(idx, oi));
+    optsWrap.appendChild(btn);
+  });
+});
+
+function handleAnswer(idx, chosen) {
+  const optsWrap = document.getElementById('opts-' + idx);
+  if (optsWrap.classList.contains('locked')) return;
+  optsWrap.classList.add('locked');
+  const buttons = optsWrap.querySelectorAll('.opt');
+  const correctIdx = QUESTIONS[idx].a;
+  buttons.forEach((b, i) => {
+    if (i === correctIdx) b.classList.add('correct');
+    else if (i === chosen) b.classList.add('wrong');
+    else b.classList.add('dim');
+  });
+  const fb = document.getElementById('fb-' + idx);
+  fb.classList.add('show');
+  answered++;
+  if (chosen === correctIdx) {
+    score++;
+    fb.classList.add('good');
+    fb.textContent = '✓ Correct.';
+  } else {
+    fb.classList.add('bad');
+    fb.textContent = '✗ Correct answer: ' + QUESTIONS[idx].o[correctIdx];
+  }
+  updateScore();
+}
+
+function updateScore() {
+  document.getElementById('score-count').textContent = score;
+  document.getElementById('score-bar').style.width = (total ? (score/total*100) : 0) + '%';
+}
+
+document.getElementById('reset-btn').addEventListener('click', () => {
+  score = 0; answered = 0;
+  updateScore();
+  document.querySelectorAll('.options').forEach(o => {
+    o.classList.remove('locked');
+    o.querySelectorAll('.opt').forEach(b => b.classList.remove('correct','wrong','dim'));
+  });
+  document.querySelectorAll('.feedback').forEach(f => { f.classList.remove('show','good','bad'); f.textContent=''; });
+  window.scrollTo({top:0, behavior:'smooth'});
+});
+
+const menuBtn = document.getElementById('menu-btn');
+const sidebar = document.getElementById('sidebar');
+menuBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+toc.querySelectorAll('a').forEach(l => l.addEventListener('click', () => sidebar.classList.remove('open')));
+</script>
+
+</body>
+</html>

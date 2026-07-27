@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dossier 2025–26 · International Relations for BPSC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1E33;
+    --ink-2:#122A45;
+    --paper:#FBF7EC;
+    --paper-2:#F3ECDA;
+    --gold:#C9A227;
+    --gold-2:#E8C766;
+    --teal:#2E6171;
+    --text:#1C2B3A;
+    --muted:#5B6B7A;
+    --hl-y: rgba(255, 213, 79, .55);
+    --hl-b: rgba(133, 193, 233, .55);
+    --hl-g: rgba(163, 221, 178, .6);
+    --hl-r: rgba(245, 158, 148, .55);
+    --trap-bg:#FDEDEC;
+    --trap-bd:#C0392B;
+    --tbl-head-blue:#1A5276;
+    --tbl-head-red:#7B241C;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Source Sans 3', sans-serif;
+    display:flex;
+    min-height:100vh;
+  }
+  ::selection{background:var(--gold-2); color:var(--ink);}
+
+  /* ===== SIDEBAR ===== */
+  #sidebar{
+    width:280px;
+    flex-shrink:0;
+    background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:#DCE6EE;
+    position:fixed;
+    top:0; left:0; bottom:0;
+    overflow-y:auto;
+    padding:28px 0 40px;
+    border-right:1px solid rgba(201,162,39,.25);
+    z-index:50;
+  }
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:rgba(201,162,39,.4); border-radius:3px;}
+
+  .brand{
+    padding:0 24px 22px;
+    border-bottom:1px solid rgba(201,162,39,.25);
+    margin-bottom:14px;
+  }
+  .brand .stamp{
+    width:46px;height:46px;border-radius:50%;
+    border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif; font-weight:800; color:var(--gold-2);
+    font-size:13px; letter-spacing:.5px;
+    margin-bottom:10px;
+  }
+  .brand h1{
+    font-family:'Playfair Display', serif;
+    font-size:19px; line-height:1.25; margin:0 0 4px;
+    font-weight:700; color:#F4EFE1;
+  }
+  .brand p{
+    margin:0; font-size:11.5px; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--gold-2); font-family:'IBM Plex Mono', monospace;
+  }
+
+  nav.toc{padding:6px 10px;}
+  nav.toc a{
+    display:flex; align-items:baseline; gap:10px;
+    padding:9px 14px; margin:1px 0;
+    border-radius:6px;
+    color:#B7C6D3; text-decoration:none;
+    font-size:13.6px; font-weight:500;
+    border-left:3px solid transparent;
+    transition:background .15s, color .15s, border-color .15s;
+  }
+  nav.toc a .num{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--gold);
+    flex-shrink:0; width:20px;
+  }
+  nav.toc a:hover{background:rgba(201,162,39,.10); color:#F4EFE1;}
+  nav.toc a.active{
+    background:rgba(201,162,39,.16);
+    color:#F8F1DD; border-left-color:var(--gold);
+    font-weight:600;
+  }
+
+  .legend-box{
+    margin:20px 16px 0; padding:14px 14px 16px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(201,162,39,.22);
+    border-radius:8px;
+  }
+  .legend-box h3{
+    margin:0 0 10px; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--gold-2); font-family:'IBM Plex Mono',monospace; font-weight:500;
+  }
+  .legend-row{display:flex; align-items:center; gap:8px; margin-bottom:7px; font-size:12px; color:#CBD6DF;}
+  .legend-swatch{width:14px;height:14px;border-radius:3px; flex-shrink:0;}
+
+  /* ===== MAIN ===== */
+  #main{
+    margin-left:280px;
+    flex:1;
+    padding:0;
+    background:var(--ink);
+  }
+  .cover{
+    padding:74px 64px 56px;
+    background:
+      radial-gradient(circle at 85% 20%, rgba(201,162,39,.10), transparent 45%),
+      linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:#EFE9D8;
+    border-bottom:4px double rgba(201,162,39,.4);
+  }
+  .cover .eyebrow{
+    font-family:'IBM Plex Mono',monospace; letter-spacing:.18em; text-transform:uppercase;
+    font-size:12px; color:var(--gold-2); margin-bottom:16px;
+  }
+  .cover h1{
+    font-family:'Playfair Display', serif; font-weight:800; font-size:clamp(34px,4.4vw,54px);
+    line-height:1.08; margin:0 0 16px; max-width:820px;
+  }
+  .cover p.sub{
+    font-size:16px; color:#C9D2DB; max-width:640px; line-height:1.6; margin:0 0 22px;
+  }
+  .cover .tags{display:flex; gap:10px; flex-wrap:wrap;}
+  .cover .tag{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--gold-2);
+    border:1px solid rgba(201,162,39,.45); padding:5px 12px; border-radius:20px;
+    background:rgba(201,162,39,.06);
+  }
+
+  .chapters{
+    background:var(--paper);
+    padding:10px 0 90px;
+  }
+
+  .chapter{
+    max-width:900px;
+    margin:0 auto;
+    padding:56px 48px 8px;
+    border-bottom:1px solid rgba(28,43,58,.10);
+    scroll-margin-top:14px;
+  }
+  .chapter:last-child{border-bottom:none;}
+
+  .chapter-head{
+    display:flex; align-items:center; gap:18px; margin-bottom:6px;
+  }
+  .chapter-head .seal{
+    width:52px; height:52px; border-radius:50%;
+    background:var(--ink); color:var(--gold-2);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Playfair Display',serif; font-weight:700; font-size:19px;
+    border:2px solid var(--gold); flex-shrink:0;
+  }
+  .chapter-head h2{
+    font-family:'Playfair Display', serif; font-size:clamp(24px,3vw,32px);
+    margin:0; color:var(--ink); font-weight:700; line-height:1.2;
+  }
+  .chapter-sub{
+    font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--muted);
+    text-transform:uppercase; letter-spacing:.08em; margin:6px 0 26px 70px;
+  }
+
+  .event{
+    margin:0 0 26px; padding-left:18px; border-left:3px solid var(--teal);
+  }
+  .event.upcoming{border-left:3px solid var(--gold);}
+  .event h3{
+    font-family:'Playfair Display', serif; font-size:18px; margin:0 0 4px; color:var(--ink);
+    display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  }
+  .event h3 .flag{
+    font-size:10px; font-family:'IBM Plex Mono',monospace; letter-spacing:.06em;
+    background:var(--gold); color:var(--ink); padding:2px 8px; border-radius:3px; font-weight:600;
+  }
+  .datebox{
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--teal); font-weight:600;
+    margin-bottom:10px; display:block;
+  }
+  .event p{margin:0 0 10px; line-height:1.68; font-size:15px;}
+  .event ul{margin:6px 0 10px; padding-left:20px;}
+  .event li{margin-bottom:7px; line-height:1.6; font-size:15px;}
+
+  mark{
+    padding:.05em .18em; border-radius:3px; background-image:none; font-weight:600; color:var(--text);
+    box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  }
+  .y{background:var(--hl-y);}
+  .b{background:var(--hl-b);}
+  .g{background:var(--hl-g);}
+  .r{background:var(--hl-r);}
+
+  .trap{
+    background:var(--trap-bg); border:1px solid rgba(192,57,43,.35);
+    border-left:4px solid var(--trap-bd);
+    padding:12px 16px; border-radius:6px; margin:14px 0 18px;
+    font-size:14.5px; line-height:1.6;
+  }
+  .trap .lbl{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--trap-bd); font-weight:700; display:block; margin-bottom:5px;
+  }
+
+  table{width:100%; border-collapse:collapse; margin:14px 0 22px; font-size:14px;}
+  caption{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:.06em;}
+  th,td{padding:9px 12px; text-align:left; border-bottom:1px solid rgba(28,43,58,.10); vertical-align:top;}
+  thead.blue th{background:var(--tbl-head-blue); color:#F4EFE1; font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.red th{background:var(--tbl-head-red); color:#F4EFE1; font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em;}
+  tbody tr:nth-child(even){background:var(--paper-2);}
+
+  .factbox{
+    background:var(--paper-2); border:1px solid rgba(28,43,58,.12);
+    border-radius:8px; padding:16px 18px; margin:16px 0 22px;
+  }
+  .factbox .lbl{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; text-transform:uppercase;
+    letter-spacing:.08em; color:var(--teal); font-weight:700; display:block; margin-bottom:8px;
+  }
+  .factbox dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:6px 16px;}
+  .factbox dt{font-weight:600; font-size:13.5px; color:var(--ink); white-space:nowrap;}
+  .factbox dd{margin:0; font-size:14px; line-height:1.55;}
+
+  .country-block{
+    margin:24px 0 6px; padding-top:18px; border-top:1px dashed rgba(28,43,58,.2);
+  }
+  .country-block h4{
+    font-family:'Playfair Display', serif; font-size:17px; margin:0 0 12px; color:var(--teal);
+    display:flex; align-items:center; gap:8px;
+  }
+  .country-block h4::before{content:"✦"; color:var(--gold); font-size:14px;}
+
+  .part-divider{
+    max-width:900px; margin:0 auto; padding:38px 48px 0;
+  }
+  .part-divider .plabel{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--gold); background:var(--ink); display:inline-block; padding:8px 18px; border-radius:20px;
+  }
+  .part-divider .ptitle{
+    font-family:'Playfair Display',serif; font-weight:700; font-size:26px; color:var(--ink);
+    margin:14px 0 2px;
+  }
+  .part-divider .pdesc{color:var(--muted); font-size:14px; margin:0 0 6px;}
+  @media (max-width:880px){ .part-divider{padding:30px 22px 0;} }
+
+  .cat-badge{
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:600;
+    letter-spacing:.04em; padding:3px 9px; border-radius:4px; color:#fff; margin-right:8px;
+  }
+  .cat-a{background:#1A5276;} .cat-b{background:#6C3483;} .cat-c{background:#8E5A1B;}
+  .cat-d{background:#117864;} .cat-e{background:#2E6171;} .cat-f{background:#7B241C;}
+  .cat-g{background:#4A235A;}
+
+  .host-card{
+    background:var(--paper-2); border:1px solid rgba(28,43,58,.12); border-radius:8px;
+    padding:16px 18px; margin:0 0 18px;
+  }
+  .host-card h3{
+    font-family:'Playfair Display',serif; font-size:17px; margin:0 0 8px; color:var(--ink);
+    display:flex; align-items:center; flex-wrap:wrap; gap:6px;
+  }
+  .host-card .hmeta{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--teal); font-weight:600; margin-bottom:8px; display:block;
+  }
+  .host-card p{margin:0 0 6px; font-size:14.5px; line-height:1.6;}
+  .city-head{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.09em;
+    color:var(--gold); background:var(--ink); display:inline-block; padding:6px 14px; border-radius:5px;
+    margin:24px 0 14px;
+  }
+  .city-head:first-of-type{margin-top:8px;}
+
+  .note{
+    font-size:13px; color:var(--muted); font-style:italic; margin:6px 0 14px;
+  }
+
+  .footer{
+    max-width:900px; margin:0 auto; padding:40px 48px 70px; color:var(--muted); font-size:12.5px;
+    font-family:'IBM Plex Mono',monospace; text-align:center;
+  }
+
+  @media (max-width: 880px){
+    #sidebar{
+      position:fixed; left:0; top:0; bottom:0; width:250px;
+      transform:translateX(-100%); transition:transform .25s ease;
+    }
+    #sidebar.open{transform:translateX(0);}
+    #main{margin-left:0;}
+    .chapter{padding:44px 22px 8px;}
+    .cover{padding:58px 22px 42px;}
+    .chapter-sub{margin-left:0; margin-top:2px;}
+    .chapter-head{gap:12px;}
+  }
+  #menu-btn{
+    display:none; position:fixed; top:16px; left:16px; z-index:60;
+    width:44px;height:44px;border-radius:50%; background:var(--ink);
+    border:2px solid var(--gold); color:var(--gold-2); font-size:18px;
+    align-items:center; justify-content:center; cursor:pointer;
+  }
+  @media (max-width: 880px){ #menu-btn{display:flex;} }
+</style>
+</head>
+<body>
+
+<button id="menu-btn" aria-label="Toggle chapter index">☰</button>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="stamp">IR</div>
+    <h1>The Multilateral Dossier</h1>
+    <p>BPSC · Int'l Relations 2025–26</p>
+  </div>
+  <nav class="toc" id="toc"></nav>
+
+  <div class="legend-box">
+    <h3>Marker Key</h3>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-y)"></span> Core concept</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-b)"></span> Hard fact / date / number</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-g)"></span> Person / place / institution</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-r)"></span> MCQ trap / confusion</div>
+  </div>
+</aside>
+
+<div id="main">
+
+  <section class="cover">
+    <div class="eyebrow">Case File No. 2026/IR &nbsp;·&nbsp; Compiled for Prelims Revision</div>
+    <h1>From Rio to Bishkek: the year the world reorganised itself around India's chair.</h1>
+    <p class="sub">Twelve chapters, one thread: every summit, MoU, exercise and treaty body that BPSC examiners could pull a question from — sorted, dated, and colour-marked so nothing slips past you.</p>
+    <div class="tags">
+      <span class="tag">12 Chapters</span>
+      <span class="tag">BRICS → MWC</span>
+      <span class="tag">2025–2027 window</span>
+    </div>
+  </section>
+
+  <div class="chapters">
+
+  <!-- ============ CHAPTER 1: BRICS ============ -->
+  <section class="chapter" id="ch1" data-title="BRICS — India's Chairmanship Year">
+    <div class="chapter-head"><div class="seal">1</div><h2>BRICS — India's Chairmanship Year</h2></div>
+    <div class="chapter-sub">The biggest multilateral story of 2025–26</div>
+
+    <div class="event">
+      <p>BRICS is now an <mark class="b">11-member</mark> grouping: <mark class="g">Brazil, Russia, India, China, South Africa, Egypt, Ethiopia, Iran, Saudi Arabia, UAE and Indonesia.</mark></p>
+    </div>
+
+    <table>
+      <caption>BRICS Expansion Timeline</caption>
+      <thead class="blue"><tr><th>Year</th><th>New Member(s)</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="b">2009</mark></td><td>Brazil, Russia, India, China</td><td>BRIC formally established</td></tr>
+        <tr><td><mark class="b">2011</mark></td><td>South Africa</td><td>BRIC became BRICS</td></tr>
+        <tr><td><mark class="b">1 Jan 2024</mark></td><td>Egypt, Ethiopia, Iran, Saudi Arabia, UAE</td><td>Major expansion after 2023 Johannesburg Summit</td></tr>
+        <tr><td><mark class="b">1 Jan 2025</mark></td><td>Indonesia</td><td>Became 11th full member; new "Partner Country" concept introduced — <mark class="r">10 Partner Countries added</mark> (don't confuse with full members)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="event">
+      <p><mark class="g">India</mark> assumed the BRICS Chairship on <mark class="b">1 January 2026</mark> — its <mark class="b">fourth</mark> (after <mark class="b">2012, 2016, 2021</mark>) — under the theme <mark class="y">"Building for Resilience, Innovation, Cooperation and Sustainability"</mark>, whose initials spell <mark class="r">BRICS</mark> itself.</p>
+    </div>
+
+    <div class="event">
+      <h3>17th BRICS Summit <span class="flag">Where the story begins</span></h3>
+      <span class="datebox">6–7 July 2025 · Rio de Janeiro, Brazil</span>
+      <p>Theme: <mark class="y">"Strengthening Global South Cooperation for More Inclusive and Sustainable Governance."</mark> PM <mark class="g">Modi</mark> articulated the <mark class="y">"Humanity First"</mark>, people-centric approach here — the seed of India's 2026 chairship theme. Brazil then passed the gavel to India.</p>
+      <ul>
+        <li><b>Condemnation of CBAM</b>: BRICS nations <mark class="y">condemned and rejected</mark> the EU's Carbon Border Adjustment Mechanism (CBAM) and similar restrictive trade measures, saying they undermine the clean-economy transition.</li>
+        <li>MoEFCC notified formation of a <mark class="g">National Designated Authority (NDA)</mark> to kick-start carbon trading in India — fulfilling <mark class="b">Article 6</mark> of the Paris Agreement.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>BRICS Foreign Ministers' Meeting (FMM)</h3>
+      <span class="datebox">14–15 May 2026 · Bharat Mandapam, New Delhi</span>
+      <p>India's first big ministerial as chair.</p>
+    </div>
+
+    <div class="event">
+      <h3>16th BRICS National Security Advisers' (NSA) Meeting</h3>
+      <span class="datebox">22–23 June 2026 · New Delhi</span>
+      <p>Chaired by NSA <mark class="g">Ajit Doval</mark>. Theme: <mark class="y">"Non-traditional security challenges confronting the world today."</mark></p>
+    </div>
+
+    <div class="event">
+      <h3>BRICS Heads of Space Agencies (HOSA) Meeting</h3>
+      <span class="datebox">23–24 June 2026 · Bengaluru</span>
+      <p>Hosted by <mark class="g">ISRO</mark> and the Department of Space.</p>
+    </div>
+
+    <div class="event">
+      <h3>11th BRICS Energy Ministers' Meeting</h3>
+      <span class="datebox">25–26 June 2026 · Gurugram, Haryana</span>
+      <p>Energy-track theme: <mark class="y">"Sarvesham Urjam"</mark> (Energy for All).</p>
+    </div>
+
+    <div class="factbox">
+      <span class="lbl">Fact Box · International Solar Alliance</span>
+      <dl>
+        <dt>Established</dt><dd><mark class="b">30 Nov 2015</mark> (announced at COP21, Paris)</dd>
+        <dt>Framework in force</dt><dd><mark class="b">6 Dec 2017</mark></dd>
+        <dt>Founding countries</dt><dd><mark class="g">India &amp; France</mark></dd>
+        <dt>Headquarters</dt><dd><mark class="g">Gurugram, Haryana, India</mark></dd>
+        <dt>Director General</dt><dd><mark class="g">Ashish Khanna</mark> (India)</dd>
+        <dt>Motto</dt><dd>"1000 GW of solar capacity &amp; universal access to affordable solar energy."</dd>
+      </dl>
+    </div>
+
+    <div class="event">
+      <h3>16th BRICS Agriculture Ministers' Meeting</h3>
+      <span class="datebox">12–13 June 2026 · Indore, Madhya Pradesh</span>
+      <p>Focus: food security, empowerment of small farmers, climate-resilient farming, agricultural innovation.</p>
+    </div>
+
+    <div class="event upcoming">
+      <h3>Upcoming — 18th BRICS Summit <span class="flag">Upcoming</span></h3>
+      <span class="datebox">2026 · India (host)</span>
+      <p>The destination of the whole story: India hosts the Leaders' Summit later in 2026. Next chair after India: <mark class="g">China (2027)</mark>.</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 2: G20 ============ -->
+  <section class="chapter" id="ch2" data-title="G20 — Africa to Miami">
+    <div class="chapter-head"><div class="seal">2</div><h2>G20 — From Africa's First Summit to Miami</h2></div>
+
+    <div class="event">
+      <h3>20th G20 Summit</h3>
+      <span class="datebox">22–23 November 2025 · Johannesburg, South Africa</span>
+      <p>Theme: <mark class="y">"Solidarity, Equality, Sustainability."</mark> The <mark class="r">first-ever G20 Summit held on the African continent</mark>. PM <mark class="g">Narendra Modi</mark> represented India; the <mark class="r">US boycotted</mark> the summit, yet a Leaders' Declaration was still adopted.</p>
+      <ul>
+        <li><b>Spirit of Ubuntu</b>: declaration emphasises the African philosophy of Ubuntu — shared global responsibility and interconnectedness.</li>
+        <li><b>Climate finance</b>: members agreed to scale global climate finance toward a <mark class="y">"billions-to-trillions"</mark> shift.</li>
+        <li><b>Mission 300</b>: led by the World Bank and African Development Bank, aims to give electricity to <mark class="b">300 million people</mark> in Sub-Saharan Africa by <mark class="b">2030</mark>.</li>
+        <li><b>Critical Minerals Framework</b>: welcomed to secure sustainable value chains; focus on mineral exploration and local beneficiation in developing countries.</li>
+        <li><b>Youth &amp; Gender targets</b>: adopted the <mark class="g">Nelson Mandela Bay Target</mark> to cut youth NEET rate by <mark class="b">5% by 2030</mark>; committed to <mark class="b">25% gender parity</mark> in labour force participation by 2030.</li>
+      </ul>
+      <div class="trap">
+        <span class="lbl">Extra / Trap</span>
+        The <mark class="g">African Union (AU)</mark> became a <mark class="r">permanent member</mark> of the G20 on <mark class="b">9 September 2023</mark> at the <mark class="b">18th G20 Summit in New Delhi</mark>, on a proposal by PM Modi — the <b>second</b> regional organisation in the G20 after the <mark class="g">European Union</mark>. Separately, the <mark class="g">Trump administration</mark> boycotted the Johannesburg summit citing allegations about treatment of white Afrikaners, which South Africa rejected.
+      </div>
+    </div>
+
+    <div class="event upcoming">
+      <h3>Upcoming — 21st G20 Summit <span class="flag">Upcoming</span></h3>
+      <span class="datebox">14–15 December 2026 · Miami (Doral), Florida, USA</span>
+      <p>The <mark class="g">US</mark> holds the 2026 presidency; venue announced as <mark class="g">Trump National Doral, Miami</mark>. Previous (20th) Summit: Johannesburg, South Africa.</p>
+      <div class="trap">
+        <span class="lbl">Trap</span>
+        22nd G20 Summit (2027) is scheduled for the <mark class="g">United Kingdom</mark> — USA hands over to UK. Reason given: the US takes on the <b>G7</b> presidency the following year.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 3: G7 ============ -->
+  <section class="chapter" id="ch3" data-title="G7 — Évian & IMPACT">
+    <div class="chapter-head"><div class="seal">3</div><h2>G7 — Évian and the IMPACT Proposal</h2></div>
+
+    <div class="event">
+      <p>The G7 Summit is an annual forum for leaders of <mark class="g">France, United States, United Kingdom, Germany, Japan, Italy, Canada</mark> (in order of rotating presidency), plus the <mark class="g">European Union</mark>.</p>
+      <p class="note">Mnemonic: JUICE GF (Japan, UK, Italy, Canada, EU / Germany, France).</p>
+    </div>
+
+    <div class="event">
+      <h3>52nd G7 Summit</h3>
+      <span class="datebox">15–17 June 2026 · Évian-les-Bains, France</span>
+      <p>India attended as an invited partner — Modi's <mark class="b">seventh consecutive</mark> G7. At outreach sessions including <mark class="y">"Forging New Partnerships and Rebuilding International Solidarity,"</mark> PM Modi proposed <mark class="g">IMPACT</mark> — the <mark class="y">International Mobilization Partnership for Accelerating Connectivity and Trade</mark> — and pressed for treating the Global South as an equal partner.</p>
+      <ul>
+        <li><b>IORA backing</b>: India officially supported Canada becoming a Dialogue Partner of the Indian Ocean Rim Association (IORA).</li>
+        <li><b>Nuclear Energy Partnership</b>: Canada recognised as an essential energy exporter; Security Energy Partnership advanced, highlighted by a <mark class="b">CAD $2.6 billion</mark> commercial deal between Canada's <mark class="g">Cameco</mark> and India's <mark class="g">Department of Atomic Energy</mark> for long-term uranium supply spanning <mark class="b">2027–2035</mark>.</li>
+        <li><b>India–UK</b>: reviewed progress under <mark class="y">India-UK Vision 2035</mark>; reaffirmed commitment to early implementation of <mark class="g">CETA</mark> (Comprehensive Economic and Trade Agreement) — tech, defence, education partnerships.</li>
+      </ul>
+    </div>
+
+    <div class="factbox">
+      <span class="lbl">Fact Box · IORA (Indian Ocean Rim Association)</span>
+      <dl>
+        <dt>Current Chair</dt><dd><mark class="g">India</mark></dd>
+        <dt>Chairship period</dt><dd><mark class="b">2025–2027</mark></dd>
+        <dt>Assumed</dt><dd><mark class="b">12 November 2025</mark>, taking over from Sri Lanka</dd>
+        <dt>Secretariat</dt><dd><mark class="g">Ebène, Mauritius</mark></dd>
+        <dt>Only European member</dt><dd><mark class="g">France</mark></dd>
+      </dl>
+    </div>
+
+    <div class="country-block">
+      <h4>France — bilateral exercises</h4>
+      <p><b>Exercise GARUDA 2025</b> (8th edition) · Nov 2025 · Air Force · Mont-de-Marsan Air Base — India–France air exercise.</p>
+      <p><b>Exercise SHAKTI 2025</b> (8th edition) · June–July 2025 · Army · France — India–France army exercise.</p>
+      <p class="note">Pairing to remember: with France, GARUDA flies (air force) and SHAKTI marches (army).</p>
+    </div>
+
+    <div class="event">
+      <h3>G7 Foreign Ministers' Meeting</h3>
+      <span class="datebox">November 2025 · Niagara, Canada</span>
+      <p>EAM <mark class="g">Dr S. Jaishankar</mark> represented India — evidence of India's standing invitation to the G7 table even at ministerial level.</p>
+      <div class="trap">
+        <span class="lbl">Trap</span>
+        Don't confuse with the <b>51st G7 Summit</b> (57th annual meeting), held <mark class="b">16–17 June 2025</mark> in <mark class="g">Kananaskis, Alberta, Canada</mark> — that's why Canada hosted the FMM in the same year.
+      </div>
+      <p class="note">Next rotating host: the United States is scheduled to hold the G7 presidency in <mark class="b">2027</mark>.</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 4: QUAD ============ -->
+  <section class="chapter" id="ch4" data-title="Quad & Indo-Pacific Security">
+    <div class="chapter-head"><div class="seal">4</div><h2>Quad &amp; the Indo-Pacific Security Circuit</h2></div>
+
+    <div class="event">
+      <h3>11th Quad Foreign Ministers' Meeting</h3>
+      <span class="datebox">26 May 2026 · New Delhi</span>
+      <p>Host: EAM <mark class="g">Dr S. Jaishankar</mark>; participants: US Secretary of State <mark class="g">Marco Rubio</mark>, Japanese FM <mark class="g">Motegi Toshimitsu</mark>, Australian FM <mark class="g">Penny Wong</mark>.</p>
+      <p>Outcomes: <mark class="y">Indo-Pacific Maritime Surveillance Collaboration (IPMSC)</mark>, <mark class="y">Quad Critical Minerals Initiative Framework</mark>, and the <mark class="y">Quad Initiative on Indo-Pacific Energy Security</mark>.</p>
+    </div>
+
+    <div class="event">
+      <h3>23rd Shangri-La Dialogue</h3>
+      <span class="datebox">May 2026 · Singapore</span>
+      <p>Asia's premier defence summit, organised by <mark class="g">IISS</mark>, bringing together defence ministers, military chiefs, policymakers and strategic experts of the Indo-Pacific.</p>
+      <p class="note">Cross-reference: the Quad's naval arm is Exercise <mark class="g">MALABAR</mark> (28th edition, Guam, Nov 2025).</p>
+    </div>
+
+    <div class="trap">
+      <span class="lbl">Trap — don't mix up the "Quads"</span>
+      <b>SQUAD</b>: informal minilateral security/maritime alliance — <mark class="g">US, Japan, Australia, Philippines</mark>.<br>
+      <b>West Asian Quad / I2U2</b>: <mark class="g">India, Israel, UAE, US</mark>.
+    </div>
+
+    <div class="country-block">
+      <h4>United States</h4>
+      <p><b>Venezuela saga:</b></p>
+      <ul>
+        <li><mark class="b">July 2024</mark> — presidential election held; opposition candidate <mark class="g">María Corina Machado</mark> was barred from contesting. The opposition instead supported <mark class="g">Edmundo González Urrutia</mark>.</li>
+        <li><mark class="g">Maduro</mark> retained control of the state amid allegations of vote manipulation; several countries continued to recognise González as the legitimate president-elect.</li>
+        <li><mark class="b">3 January 2026 — Operation Absolute Resolve</mark>: objective — capture Venezuelan President <mark class="g">Nicolás Maduro</mark> and his wife <mark class="g">Cilia Flores</mark>.</li>
+        <li>Following the capture: <mark class="g">Delcy Rodríguez</mark> (Maduro's VP) was sworn in as Acting President; the US called this a temporary transition arrangement. <mark class="r">Machado was NOT appointed President</mark>, despite being the leading opposition figure.</li>
+        <li>Machado met <mark class="g">Donald Trump</mark> at the White House and presented her <mark class="y">Nobel Peace Prize</mark> medal to him as a symbolic gesture. The <mark class="g">Norwegian Nobel Institute</mark> clarified the physical medal can be gifted, but the Prize itself remains permanently awarded to Machado and cannot be transferred.</li>
+      </ul>
+      <p><b>Vajra Prahar 2026</b> (16th edition) · Feb 2026 · Army · Bakloh, Himachal Pradesh — India–US.</p>
+      <p><b>Tiger Claw 2025</b> (1st edition) · May–June 2025 · Air Force · Baghpat, UP — the <mark class="r">first-ever</mark> joint exercise between IAF Garud special forces and US Air Force special forces (26 May–10 June, incl. Garud Regimental Training Centre, Chandinagar).</p>
+      <p class="note">First editions are exam favourites.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Japan</h4>
+      <p><b>MoU — AI-driven Smart Cities</b> · April 2026.</p>
+      <p><b>MoU — Joint Lending Arrangements</b> · October 2025.</p>
+      <p><b>Dharma Guardian 2026</b> (7th edition) · Feb 2026 · Army · Chaubattia, Uttarakhand.</p>
+      <p><b>JIMEX 2025</b> · Oct 2025 · Navy · Yokosuka Port, Japan.</p>
+      <p><b>JAI MATA Coast Guard Exercise 2025</b> · July 2025 · Navy/Coast Guard · Chennai Coast (mnemonic: JApan-IndiA MAritime TAlks).</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Australia</h4>
+      <p><b>MoU — Armed Forces Operational Partnership</b> · October 2025.</p>
+      <p><b>PITCH BLACK 2026</b> · July–Aug 2026 · Air Force · Australia — India joins Australia's marquee air combat exercise.</p>
+      <p><b>AUSINDEX 2025</b> · Nov 2025 · Navy · North Pacific Ocean.</p>
+      <p><b>AUSTRAHIND 2025</b> (4th edition) · Oct 2025 · Army · Perth, Australia.</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 5: SCO ============ -->
+  <section class="chapter" id="ch5" data-title="SCO">
+    <div class="chapter-head"><div class="seal">5</div><h2>SCO — Shanghai Cooperation Organisation</h2></div>
+
+    <div class="event">
+      <h3>Conference: "Central Asia – The Core of the SCO"</h3>
+      <span class="datebox">June 2026 · Dushanbe, Tajikistan</span>
+      <p>Theme: <mark class="y">"Central Asia – The Core of SCO: A Space of Peace and Joint Development."</mark> India represented by MoS External Affairs <mark class="g">Kirti Vardhan Singh</mark>.</p>
+    </div>
+
+    <div class="event upcoming">
+      <h3>Upcoming — 26th SCO Summit <span class="flag">Upcoming</span></h3>
+      <span class="datebox">2026 · Kyrgyzstan (Bishkek)</span>
+      <p>Previous (25th) Summit: <mark class="g">China (Tianjin, 2025)</mark>.</p>
+    </div>
+
+    <div class="trap">
+      <span class="lbl">Trap</span>
+      Newest full member of SCO: <mark class="g">Belarus</mark> — became the <mark class="b">10th full member</mark> on <mark class="b">4 July 2024</mark> at the Astana Summit (Kazakhstan).
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 6: NATO ============ -->
+  <section class="chapter" id="ch6" data-title="NATO">
+    <div class="chapter-head"><div class="seal">6</div><h2>NATO — The Hague to Ankara</h2></div>
+
+    <div class="event">
+      <h3>35th NATO Summit</h3>
+      <span class="datebox">June 2025 · The Hague, Netherlands</span>
+      <p>Announced the next NATO Summit will be in <mark class="g">Türkiye</mark> in 2026 — remember the Hague-to-Ankara handover.</p>
+      <p>Landmark: allies pledged to raise defence spending to <mark class="b">5% of GDP by 2035</mark> (3.5% core defence + 1.5% security-related infrastructure) — the <mark class="y">"Hague Defence Commitment,"</mark> driven by Secretary-General <mark class="g">Mark Rutte</mark> and US pressure.</p>
+    </div>
+
+    <div class="event upcoming">
+      <h3>Upcoming — 36th NATO Summit <span class="flag">Upcoming</span></h3>
+      <span class="datebox">2026 · Ankara, Türkiye</span>
+    </div>
+
+    <div class="trap">
+      <span class="lbl">Examiner's favourite trap</span>
+      The <mark class="r">"Türkiye double" of 2026</mark>: NATO Summit (Ankara) <b>AND</b> COP-31 (Antalya) — same country, same year.
+    </div>
+
+    <table>
+      <caption>COP Host Cities</caption>
+      <thead class="blue"><tr><th>COP</th><th>Year</th><th>Host City</th><th>Host Country</th></tr></thead>
+      <tbody>
+        <tr><td>COP29</td><td><mark class="b">2024</mark></td><td>Baku</td><td>Azerbaijan</td></tr>
+        <tr><td>COP30</td><td><mark class="b">2025</mark></td><td>Belém</td><td>Brazil</td></tr>
+        <tr><td>COP31</td><td><mark class="b">2026</mark></td><td>Antalya</td><td><mark class="g">Türkiye</mark></td></tr>
+        <tr><td>COP32</td><td><mark class="b">2027</mark></td><td>Addis Ababa</td><td>Ethiopia</td></tr>
+      </tbody>
+    </table>
+
+    <div class="factbox">
+      <span class="lbl">Fact Box · NATO</span>
+      <dl>
+        <dt>HQ</dt><dd><mark class="g">Brussels, Belgium</mark></dd>
+        <dt>Founded</dt><dd><mark class="b">1949</mark></dd>
+        <dt>Secretary General</dt><dd><mark class="g">Mark Rutte</mark></dd>
+        <dt>Article 5</dt><dd>Collective Defence — "Attack on one is an attack on all"</dd>
+        <dt>Article 10</dt><dd>Admission of new European members (Open Door Policy)</dd>
+        <dt>Latest Member</dt><dd><mark class="g">Sweden (2024)</mark></dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 7: ASEAN ============ -->
+  <section class="chapter" id="ch7" data-title="ASEAN">
+    <div class="chapter-head"><div class="seal">7</div><h2>ASEAN</h2></div>
+
+    <div class="event">
+      <h3>48th &amp; 49th ASEAN Summits</h3>
+      <span class="datebox">May 2026 · Philippines (2026 ASEAN Chair)</span>
+      <p>Theme: <mark class="y">"Navigating Our Future Together."</mark></p>
+      <ul>
+        <li>Newest member: <mark class="g">Timor-Leste (East Timor)</mark> — approved for full membership at the 48th &amp; 49th Summits (May 2026) in <mark class="g">Cebu, Philippines</mark>; became the <mark class="b">11th member</mark>.</li>
+        <li>Leaders approved the <mark class="y">Cebu Protocol</mark> amending the ASEAN Charter to facilitate Timor-Leste's accession.</li>
+        <li>ASEAN emblem updated from <mark class="b">10 rice stalks to 11 rice stalks</mark>, symbolising the expanded membership.</li>
+      </ul>
+    </div>
+
+    <div class="country-block">
+      <h4>Vietnam</h4>
+      <p><b>Trilateral MoU — AI &amp; Quantum Technology</b> · May 2026 · <mark class="g">India, Vietnam &amp; Japan</mark> — a rare trilateral.</p>
+      <p><b>MoU — Tribal &amp; Ethnic Development</b> · February 2026.</p>
+      <p><b>MoU — Submarine Search &amp; Rescue</b> · November 2025.</p>
+      <p><b>VINBAX 2025</b> (6th edition) · Nov 2025 · Army · Hanoi — Vietnam–India Bilateral Army eXercise.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Singapore</h4>
+      <p><b>SIMBEX 2025</b> (32nd edition) · Aug 2025 · Navy · Singapore — one of India's oldest naval exercises.</p>
+      <p><b>BOLD KURUKSHETRA 2025</b> (14th edition) · July–Aug 2025 · Army · Jodhpur, Rajasthan — armoured/mechanised exercise.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Indonesia</h4>
+      <p><b>GARUDA SHAKTI 2025</b> (10th edition) · Dec 2025 · Army · Himachal Pradesh.</p>
+      <div class="trap"><span class="lbl">Trap</span> Do NOT confuse with GARUDA (France, air force): <mark class="r">GARUDA SHAKTI = Indonesia, army.</mark></div>
+      <p><b>SAMUDRA SHAKTI 2025</b> (5th edition) · Oct 2025 · Navy · Visakhapatnam, Andhra Pradesh.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Sri Lanka <span style="font-size:12px;color:var(--muted);font-style:italic;">(not in ASEAN)</span></h4>
+      <p><b>MITRA SHAKTI 2025</b> (11th edition) · Nov 2025 · Army · Belagavi, Karnataka.</p>
+      <p><b>SLINEX 2025</b> (12th edition) · Aug 2025 · Navy · Colombo — Sri Lanka–India Naval EXercise.</p>
+      <p><b>Dosti 2026</b> (17th edition) · Jan 2026 · Navy/Coast Guard · Maldives — <mark class="r">trilateral</mark> India–Sri Lanka–Maldives coast-guard exercise.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Maldives <span style="font-size:12px;color:var(--muted);font-style:italic;">(not in ASEAN)</span></h4>
+      <p><b>EKUVERIN 2025</b> (14th edition) · Dec 2025 · Army · Thiruvananthapuram, Kerala — "Ekuverin" means "friends" in Dhivehi.</p>
+      <p><b>Dosti 2026</b> · Jan 2026 · Maldives (host) — trilateral hosted in the Maldives this year.</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 8: UN & GENEVA ============ -->
+  <section class="chapter" id="ch8" data-title="UN & Geneva Family">
+    <div class="chapter-head"><div class="seal">8</div><h2>The UN &amp; Geneva Family — WHO, UNCTAD, WTO, UNFCCC</h2></div>
+
+    <div class="event">
+      <h3>79th World Health Assembly (WHA79)</h3>
+      <span class="datebox">18–23 May 2026 · Geneva, Switzerland</span>
+      <p>Theme: <mark class="y">"Reshaping Global Health: A Shared Responsibility."</mark> Adopted <mark class="b">13 resolutions</mark>, including the <mark class="r">first-ever WHA resolution on stroke</mark> and the <mark class="g">Global Action Plan on AMR 2026–36</mark>; WHO's highest decision-making body.</p>
+    </div>
+
+    <div class="event">
+      <h3>UNCTAD 16th Ministerial Conference (UNCTAD16)</h3>
+      <span class="datebox">October 2025 · Geneva, Switzerland</span>
+      <p>Subject: <mark class="y">"Shaping the Future: Promoting Economic Transformation for Equitable, Inclusive and Sustainable Development."</mark></p>
+    </div>
+
+    <div class="event">
+      <h3>14th WTO Ministerial Conference (MC14)</h3>
+      <span class="datebox">26–30 March 2026 · Yaoundé, Cameroon</span>
+      <p>Only the <mark class="r">second Ministerial ever held in Africa</mark>. Concluded <mark class="r">WITHOUT consensus</mark>: the <mark class="b">28-year-old moratorium</mark> on customs duties on e-commerce transmissions was allowed to lapse after members (notably <mark class="g">Brazil and Türkiye</mark>, per the US account) blocked its extension. Chaired by Cameroon's Trade Minister <mark class="g">Luc Magloire Mbarga Atangana</mark>.</p>
+    </div>
+
+    <div class="factbox">
+      <span class="lbl">Fact Box · COP-30 (30th UN Climate Change Conference)</span>
+      <dl>
+        <dt>Date</dt><dd><mark class="b">10–21 November 2025</mark></dd>
+        <dt>Venue</dt><dd><mark class="g">Belém, Pará, Brazil</mark></dd>
+        <dt>Host</dt><dd>Brazil</dd>
+        <dt>Focus</dt><dd>"Implementation COP" — <mark class="r">first COP held in the Amazon region</mark></dd>
+      </dl>
+    </div>
+    <div class="event">
+      <p><b>Major outcomes:</b></p>
+      <ul>
+        <li><mark class="y">Belém Political Package (Global Mutirão)</mark> adopted — focus on implementing the Paris Agreement rather than negotiating new targets.</li>
+        <li><mark class="g">Tropical Forests Forever Facility (TFFF)</mark> launched by Brazil for long-term, performance-based tropical forest conservation financing. Long-term target: <mark class="b">US$125 billion</mark>; initial commitments: ~<mark class="b">US$6.7 billion</mark>; <mark class="b">20%</mark> of payments earmarked for Indigenous Peoples and Local Communities (IPLCs). India joined as an <mark class="g">Observer</mark>.</li>
+        <li><mark class="b">Tripling of adaptation finance by 2035</mark> endorsed to strengthen resilience in vulnerable countries.</li>
+        <li><mark class="b">59 indicators</mark> adopted under the Global Goal on Adaptation (GGA) to monitor progress.</li>
+        <li>Launch of <mark class="g">RAIZ</mark> (Resilient Agriculture Investment for Net-Zero Land Degradation) to restore degraded farmland and mobilise finance.</li>
+        <li><mark class="y">Belém 4× Sustainable Fuels Pledge</mark> launched — quadruple sustainable fuel use by 2035; India joined this initiative.</li>
+        <li>Continued operationalisation of the <mark class="g">Loss and Damage Fund</mark> for climate-vulnerable countries.</li>
+        <li><mark class="r">NO agreement</mark> on a mandatory global phase-out of fossil fuels — one of the summit's biggest criticisms.</li>
+      </ul>
+    </div>
+
+    <div class="event upcoming">
+      <h3>Upcoming — COP-31 <span class="flag">Upcoming</span></h3>
+      <span class="datebox">9–20 November 2026 · Antalya, Türkiye</span>
+      <p>Türkiye hosts and holds the COP Presidency (<mark class="g">Murat Kurum</mark>) under an unprecedented deal in which Australia's <mark class="g">Chris Bowen</mark> serves as President of Negotiations; pre-COP in Fiji, with a leaders' event in Tuvalu.</p>
+    </div>
+
+    <div class="event upcoming">
+      <h3>Upcoming — COP-32 <span class="flag">Upcoming</span></h3>
+      <span class="datebox">2027 · Addis Ababa, Ethiopia</span>
+      <p>Ethiopia won unanimous African-group backing at Belém.</p>
+      <p class="note">Sequence to memorise: COP-30 Brazil → COP-31 Türkiye → COP-32 Ethiopia.</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 9: COMMONWEALTH & NAM ============ -->
+  <section class="chapter" id="ch9" data-title="Commonwealth & NAM">
+    <div class="chapter-head"><div class="seal">9</div><h2>Commonwealth &amp; Non-Aligned Movement</h2></div>
+
+    <div class="event">
+      <h3>Conference of Speakers and Presiding Officers of Commonwealth Parliaments</h3>
+      <span class="datebox">January 2026 · New Delhi</span>
+      <p>Presided over by Lok Sabha Speaker <mark class="g">Om Birla</mark> — a parliamentary-diplomacy feather in India's cap.</p>
+    </div>
+
+    <div class="event upcoming">
+      <h3>Upcoming — 28th CHOGM <span class="flag">Upcoming</span></h3>
+      <span class="datebox">2026 · Antigua and Barbuda</span>
+      <p>Commonwealth Heads of Government Meeting. Previous (27th): <mark class="g">Samoa (2024)</mark>.</p>
+    </div>
+
+    <div class="event upcoming">
+      <h3>Upcoming — 20th NAM Summit <span class="flag">Upcoming</span></h3>
+      <span class="datebox">2027 · Uzbekistan</span>
+      <p>Previous (19th) NAM Summit: <mark class="g">Uganda</mark>.</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 10: GULF STAGE ============ -->
+  <section class="chapter" id="ch10" data-title="The Gulf Stage">
+    <div class="chapter-head"><div class="seal">10</div><h2>The Gulf Stage — GCC, Dubai Platforms</h2></div>
+
+    <div class="event">
+      <h3>46th Gulf Cooperation Council (GCC) Summit</h3>
+      <span class="datebox">December 2025 · Manama, Bahrain</span>
+      <p>Adopted the <mark class="y">Sakhir Declaration</mark>, emphasising collective security among Gulf states.</p>
+    </div>
+
+    <div class="event">
+      <h3>World Government Summit 2026</h3>
+      <span class="datebox">February 2026 · Dubai, UAE</span>
+      <p>Theme: <mark class="y">"Shaping Future Governments."</mark></p>
+    </div>
+
+    <div class="event">
+      <h3>11th World Green Economy Summit</h3>
+      <span class="datebox">October 2025 · Dubai, UAE</span>
+      <p>Theme: <mark class="y">"Innovation for Impact: Accelerating the Future of the Green Economy."</mark></p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 11: ISA ============ -->
+  <section class="chapter" id="ch11" data-title="International Solar Alliance">
+    <div class="chapter-head"><div class="seal">11</div><h2>International Solar Alliance — India's Own Treaty Body</h2></div>
+
+    <div class="event">
+      <h3>8th ISA Assembly</h3>
+      <span class="datebox">27–30 October 2025 · Bharat Mandapam, New Delhi</span>
+      <p>Theme: <mark class="y">"One Sun, One World, One Grid (OSOWOG)."</mark> Chaired by Union Minister for New &amp; Renewable Energy <mark class="g">Pralhad Joshi</mark> (ISA Assembly President); inaugurated by President <mark class="g">Droupadi Murmu</mark> — the <mark class="r">first presidential keynote at an ISA Assembly</mark>.</p>
+      <p>ISA, launched by <mark class="g">India &amp; France</mark> at COP21 (2015), now counts <mark class="b">124 member/signatory countries</mark>.</p>
+      <div class="trap">
+        <span class="lbl">Verified correction</span>
+        The official theme is <mark class="y">"One Sun, One World, One Grid,"</mark> — <mark class="r">"One Sun, One World, One Shared Commitment" is NOT the official theme</mark>, despite appearing in some source material.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 12: OTHER GLOBAL STAGES ============ -->
+  <section class="chapter" id="ch12" data-title="Other Global Stages">
+    <div class="chapter-head"><div class="seal">12</div><h2>Other Global Stages</h2></div>
+
+    <div class="event">
+      <h3>Global Water Summit 2026</h3>
+      <span class="datebox">May 2026 · Madrid, Spain</span>
+      <p>Framing question: <mark class="y">"We failed in the energy transition – so how do we succeed in water?"</mark></p>
+    </div>
+
+    <div class="event">
+      <h3>Mobile World Congress (MWC) 2026</h3>
+      <span class="datebox">March 2026 · Barcelona, Spain</span>
+      <p>Theme: <mark class="y">"The IQ Era."</mark> The India Pavilion was inaugurated by Union Minister <mark class="g">Jyotiraditya Scindia</mark>.</p>
+    </div>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Part II</span>
+    <div class="ptitle">The Bilateral World: Country Dossiers</div>
+    <p class="pdesc">Every standalone MoU, exercise and state visit, filed by country.</p>
+  </div>
+
+  <!-- ============ CHAPTER 13: BILATERAL COUNTRY DOSSIERS ============ -->
+  <section class="chapter" id="ch13" data-title="Bilateral Country Dossiers">
+    <div class="chapter-head"><div class="seal">13</div><h2>Country Dossiers</h2></div>
+    <div class="chapter-sub">One thread per country — MoUs, exercises, state visits</div>
+
+    <div class="country-block" style="border-top:none; padding-top:0; margin-top:0;">
+      <h4>Russia — the year's marquee bilateral event</h4>
+      <p class="note">Putin's first India visit since 2021.</p>
+      <div class="event">
+        <h3>23rd India–Russia Annual Summit</h3>
+        <span class="datebox">4–5 December 2025 · New Delhi</span>
+        <p>President <mark class="g">Putin's</mark> State visit on the <mark class="b">25th anniversary</mark> of the 2000 Strategic Partnership Declaration. Both countries welcomed the adoption of the <mark class="y">Programme for the Development of Strategic Areas of India–Russia Economic Cooperation till 2030</mark> ("Programme 2030"), targeting <mark class="b">USD 100 billion</mark> bilateral trade by 2030.</p>
+      </div>
+      <p><b>Exercise INDRA 2025</b> · Oct 2025 · Army · Rajasthan — the flagship India–Russia joint army exercise, reaffirmed in the Summit joint statement.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Bhutan</h4>
+      <p class="note">Two big-ticket MoUs — connectivity and energy-health.</p>
+      <p><b>MoU — First Cross-Border Railway Link</b> · Sept 2025 — the <mark class="r">first India–Bhutan cross-border railway link</mark> (a historic connectivity first).</p>
+      <p><b>MoU — Renewable Energy, Healthcare &amp; Pharma</b> · Nov 2025.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Nepal</h4>
+      <p><b>SURYA KIRAN 2025</b> (19th edition) · Nov–Dec 2025 · Army · Pithoragarh, Uttarakhand — India–Nepal battalion-level exercise.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Malaysia</h4>
+      <p><b>HARIMAU SHAKTI 2025</b> (5th edition) · Dec 2025 · Army · Rajasthan.</p>
+      <p class="note">"Harimau" = tiger in Malay — the Malayan tiger points to Malaysia.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Thailand</h4>
+      <p><b>MAITREE 2025</b> (14th edition) · Sept 2025 · Army · Umroi, Meghalaya — India–Thailand army exercise.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Cambodia</h4>
+      <p><b>CINBAX-II 2026</b> · May 2026 · Tri-services · Cambodia.</p>
+      <p class="note">CINBAX = Cambodia–INdia Bilateral eXercise (rhymes with VINBAX–Vietnam).</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Mongolia</h4>
+      <p><b>MoU — Nalanda University Link</b> · June 2026 — between <mark class="g">Nalanda University, Bihar</mark> and Mongolian institutions.</p>
+      <p class="note">A Bihar-specific fact BPSC loves.</p>
+      <p><b>Nomadic Elephant 2025</b> (17th edition) · May–June 2025 · Army · Ulaanbaatar, Mongolia.</p>
+      <p><b>KHAN QUEST 2026</b> · June 2026 · Army · Mongolia — multinational peacekeeping exercise hosted by Mongolia; India participates.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Central Asia — Uzbekistan &amp; Kyrgyzstan</h4>
+      <p class="note">Also see SCO (Chapter 5) and the upcoming NAM Summit in Uzbekistan (Chapter 9).</p>
+      <p><b>DUSTLIK 2026</b> · April 2026 · Army · Namangan, Uzbekistan — "Dustlik" = friendship in Uzbek.</p>
+      <p><b>KHANJAR 2026</b> (13th edition) · 4–17 Feb 2026 · Army (Special Forces) · Misamari, Assam — "Khanjar" = dagger; India–Kyrgyzstan special-forces exercise.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>United Arab Emirates</h4>
+      <p class="note">Also see Dubai's global platforms (Chapter 10).</p>
+      <p><b>MoU — LPG &amp; Strategic Oil Reserves</b> · May 2026.</p>
+      <p><b>MoU — Maritime Security &amp; Safety</b> · Aug 2025.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Saudi Arabia</h4>
+      <p><b>MoU — Cultural Cooperation</b> · Nov 2025.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Israel</h4>
+      <p><b>MoU — Audit &amp; Financial Transparency</b> · June 2026.</p>
+      <p><b>MoU — Investment Promotion &amp; Protection</b> · Sept 2025.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Morocco</h4>
+      <p><b>MoU — Defence Cooperation</b> · Sept 2025 — India's deepening North-Africa outreach.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Seychelles <span style="font-size:12px;color:var(--muted);font-style:italic;">(biggest MoU haul of the year)</span></h4>
+      <div class="event">
+        <h3>19 Agreements — economy, health, security, justice, science &amp; more</h3>
+        <span class="datebox">27–29 June 2026 · during PM Modi's State visit to Seychelles</span>
+        <p>Signed as India and Seychelles marked <mark class="b">50 years</mark> of diplomatic ties. Package included an <mark class="y">Extradition Treaty</mark>, <mark class="g">UPI</mark> adoption, space cooperation and a <mark class="b">₹1,250-crore Line of Credit</mark>. President <mark class="g">Patrick Herminie</mark> conferred on PM Modi the <mark class="y">"Guardian of the Blue Horizon"</mark> honour; visit anchored in India's <mark class="g">MAHASAGAR</mark> vision.</p>
+      </div>
+      <p><b>LAMITIYE 2026</b> (11th edition) · March 2026 · Tri-services · Seychelles — "Lamitiye" = friendship in Seychellois Creole.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Mauritius</h4>
+      <p><b>MoU — Satellite Tracking &amp; Communication Centre</b> · Sept 2025 — space diplomacy in the Indian Ocean.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Africa Partners — Namibia &amp; Liberia</h4>
+      <p><b>India–Namibia</b> — Trade, Health &amp; Digital Payments · July 2025 (<mark class="g">UPI diplomacy</mark>).</p>
+      <p><b>India–Liberia</b> — Medicine Quality Standards · Dec 2025.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Europe Partners — Germany, Finland, Netherlands, Sweden</h4>
+      <p class="note">Finland's President was also the Raisina 2026 Chief Guest (Chapter 14).</p>
+      <p><b>India–Germany</b> — Postal, Express &amp; Logistics Services · Jan 2026.</p>
+      <p><b>India–Finland</b> — Environmental Cooperation Agreement · March 2026 — signed in the slipstream of President <mark class="g">Stubb's</mark> India visit.</p>
+      <p><b>India–Netherlands</b> — <mark class="g">Kalpasar Project</mark> · May 2026 — technical cooperation on Gujarat's ambitious Kalpasar (Gulf of Khambhat) project.</p>
+      <p><b>India–Sweden</b> — <mark class="g">ISRO Venus Mission</mark> · May 2026 — ISRO signs agreement with Sweden for its upcoming Venus Orbiter Mission cooperation.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Americas — Canada, Ecuador, Venezuela</h4>
+      <p><b>India–Canada</b> — Renewable Energy, Uranium &amp; Minerals · March 2026 — a thaw signal in bilateral ties.</p>
+      <p><b>India–Ecuador</b> — Diplomatic Training Institutions · Nov 2025.</p>
+      <p><b>India–Venezuela</b> — Long-Term Energy Partnership · May 2026.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>South Korea</h4>
+      <p><b>MoU — MSME Sector Development</b> · April 2026.</p>
+    </div>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Part III</span>
+    <div class="ptitle">India as Global Host &amp; India Solo</div>
+    <p class="pdesc">Every conference, exercise and war-game hosted in India — or by India abroad — filed city by city.</p>
+  </div>
+
+  <!-- ============ CHAPTER 14: INDIA AS GLOBAL HOST ============ -->
+  <section class="chapter" id="ch14" data-title="India as Global Host (City-wise)">
+    <div class="chapter-head"><div class="seal">14</div><h2>City-wise Classification of India-Hosted Events</h2></div>
+    <div class="chapter-sub">Conferences, summits &amp; exercises, 2025–26</div>
+
+    <div class="trap" style="margin-bottom:24px;">
+      <span class="lbl">Category Key</span>
+      <span class="cat-badge cat-a">A</span>Flagship Strategic Dialogues &nbsp;
+      <span class="cat-badge cat-b">B</span>Culture &amp; Civilisation &nbsp;
+      <span class="cat-badge cat-c">C</span>Trade, Commodities &amp; Industry &nbsp;
+      <span class="cat-badge cat-d">D</span>Science &amp; Health &nbsp;
+      <span class="cat-badge cat-e">E</span>Energy &amp; Maritime &nbsp;
+      <span class="cat-badge cat-f">F</span>India Solo / India-Hosted Exercises
+    </div>
+
+    <div class="city-head">New Delhi</div>
+
+    <div class="host-card">
+      <h3><span class="cat-badge cat-a">A</span>11th Raisina Dialogue</h3>
+      <span class="hmeta">5–7 March 2026</span>
+      <p>India's flagship geopolitics &amp; geo-economics conference, jointly organised by the <mark class="g">Observer Research Foundation (ORF)</mark> and the <mark class="g">Ministry of External Affairs (MEA)</mark>.</p>
+      <p>Theme: <mark class="y">"Saṁskāra – Assertion, Accommodation, Advancement."</mark></p>
+      <p>Chief Guest &amp; Keynote: President of Finland <mark class="g">Dr Alexander Stubb</mark>. Inaugurated by <mark class="g">PM Modi</mark>.</p>
+      <p>Scale: <mark class="b">~2,700 participants from 110 countries</mark>.</p>
+    </div>
+
+    <div class="host-card">
+      <h3><span class="cat-badge cat-a">A</span>10th Indian Ocean Dialogue</h3>
+      <span class="hmeta">May 2026</span>
+      <p>Theme: <mark class="y">"Indian Ocean Region in a Transforming World."</mark></p>
+    </div>
+
+    <div class="host-card">
+      <h3><span class="cat-badge cat-b">B</span>Second Global Buddhist Summit</h3>
+      <span class="hmeta">January 2026</span>
+      <p>Theme: <mark class="y">"Collective Wisdom, United Voice, and Mutual Coexistence."</mark> Organised by the <mark class="g">International Buddhist Confederation (IBC)</mark> with the Ministry of Culture.</p>
+    </div>
+
+    <div class="host-card">
+      <h3><span class="cat-badge cat-c">C</span>PLASTINDIA 2026</h3>
+      <span class="hmeta">February 2026</span>
+      <p>The world's <mark class="b">largest plastics exhibition</mark>. Theme: <mark class="y">"Bharat Next."</mark></p>
+    </div>
+
+    <div class="host-card">
+      <h3><span class="cat-badge cat-d">D</span>International Malaria Conference 2026</h3>
+      <span class="hmeta">March 2026</span>
+      <p>Theme: <mark class="y">"Discovery, Development, and Delivery: Driving Malaria Elimination and Beyond."</mark></p>
+    </div>
+
+    <div class="city-head">Ahmedabad, Gujarat</div>
+    <div class="host-card">
+      <h3><span class="cat-badge cat-b">B</span>9th International Dhamma (Dharma-Dhamma) Conference</h3>
+      <span class="hmeta">18–20 September 2025 · three-day global gathering</span>
+      <p>Venue: <mark class="g">Dr. Babasaheb Ambedkar Open University</mark>, Ahmedabad, Gujarat. Theme: <mark class="y">"Karma, Reincarnation, Transmigration and The Avatar Doctrine."</mark></p>
+    </div>
+
+    <div class="city-head">Kochi, Kerala</div>
+    <div class="host-card">
+      <h3><span class="cat-badge cat-c">C</span>9th International Spice Conference</h3>
+      <span class="hmeta">January 2026</span>
+      <p>Theme: <mark class="y">"Spice 360: Getting Future Ready."</mark></p>
+      <p class="note">Kochi — the historic spice port — is the natural venue.</p>
+    </div>
+    <div class="host-card">
+      <h3><span class="cat-badge cat-f">F</span>IONS Maritime Exercise (IMEX) TTX 2026</h3>
+      <span class="hmeta">March 2026 · Multinational · Navy · Table-top exercise (TTX)</span>
+      <p>Conducted under the <mark class="g">Indian Ocean Naval Symposium (IONS)</mark>.</p>
+    </div>
+
+    <div class="city-head">Chennai, Tamil Nadu</div>
+    <div class="host-card">
+      <h3><span class="cat-badge cat-c">C</span>World Seafood Congress 2026</h3>
+      <span class="hmeta">February 2026</span>
+      <p><mark class="r">India hosted this congress for the first time.</mark></p>
+    </div>
+
+    <div class="city-head">Hyderabad, Telangana</div>
+    <div class="host-card">
+      <h3><span class="cat-badge cat-d">D</span>BioAsia Summit 2026</h3>
+      <span class="hmeta">February 2026</span>
+      <p>Theme: <mark class="y">"TechBio Unleashed: AI, Automation and the Biology Revolution."</mark> Objective: strengthen India as a global life-sciences hub and attract bio-manufacturing investment.</p>
+    </div>
+
+    <div class="city-head">Puri, Odisha</div>
+    <div class="host-card">
+      <h3><span class="cat-badge cat-e">E</span>Global Energy Leaders Summit 2025</h3>
+      <span class="hmeta">December 2025</span>
+      <p>Theme: <mark class="y">"Powering India: Sufficiency, Balance, Innovation."</mark></p>
+    </div>
+
+    <div class="city-head">London, United Kingdom <span style="color:var(--gold-2); font-weight:400;">(hosted abroad by India)</span></div>
+    <div class="host-card">
+      <h3><span class="cat-badge cat-e">E</span>India Maritime Investment Conference</h3>
+      <span class="hmeta">August 2025 · India House, London</span>
+      <p>Organised by the <mark class="g">Ministry of Ports, Shipping &amp; Waterways</mark>, Government of India — organised abroad <mark class="r">BY</mark> India to promote maritime cooperation and investment.</p>
+      <div class="trap"><span class="lbl">Trap</span> This event was organised by India but physically hosted <mark class="r">outside</mark> India, at India House, London.</div>
+    </div>
+
+    <div class="city-head">Pokhran Range, Jaisalmer, Rajasthan</div>
+    <div class="host-card">
+      <h3><span class="cat-badge cat-f">F</span>Vayu Shakti 2026</h3>
+      <span class="hmeta">February 2026 · India Solo · Air Force (all IAF units)</span>
+      <p>The IAF's domestic firepower demonstration.</p>
+    </div>
+
+    <div class="city-head">Port Blair, Andaman &amp; Nicobar Islands</div>
+    <div class="host-card">
+      <h3><span class="cat-badge cat-f">F</span>Dweep Shakti 2026</h3>
+      <span class="hmeta">March 2026 · India Solo · Tri-services</span>
+      <p>"Dweep" = island — India's own island-defence exercise in the Andamans.</p>
+    </div>
+
+    <div class="city-head">Umroi, Meghalaya</div>
+    <div class="host-card">
+      <h3><span class="cat-badge cat-f">F</span>Exercise PRAGATI 2026</h3>
+      <span class="hmeta">May 2026 · Multinational · Tri-services</span>
+      <p>Hosted at Umroi — the same venue as <mark class="g">MAITREE</mark> with Thailand (venue repetition is a memory aid).</p>
+    </div>
+
+    <div class="city-head">Visakhapatnam, Andhra Pradesh</div>
+    <div class="host-card">
+      <h3><span class="cat-badge cat-f">F</span>MILAN 2026 (13th edition)</h3>
+      <span class="hmeta">February 2026 · Multinational · Navy</span>
+      <p>India's <mark class="b">largest multilateral naval congregation</mark>. This edition drew <mark class="b">74 nations and 42 warships</mark>.</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 15: MULTINATIONAL WAR-GAMES ABROAD ============ -->
+  <section class="chapter" id="ch15" data-title="War-Games Abroad (Cat. G)">
+    <div class="chapter-head"><div class="seal">15</div><h2>Multinational War-Games Abroad</h2></div>
+    <div class="chapter-sub">Category G · exercises India joins on foreign soil</div>
+
+    <div class="event">
+      <h3>MALABAR 2025 <span class="flag">28th edition</span></h3>
+      <span class="datebox">10–18 November 2025 · Navy · Guam, USA</span>
+      <p>The Quad four — <mark class="g">India, Japan, USA, Australia</mark>; <mark class="g">INS Sahyadri</mark> represented India in the Northern Pacific.</p>
+    </div>
+
+    <div class="event">
+      <h3>Sea Dragon 2026</h3>
+      <span class="datebox">March 2026 · Multinational · Navy · Guam, USA</span>
+      <p>Anti-submarine-warfare exercise — Guam again.</p>
+      <div class="trap"><span class="lbl">Trap</span> Two exercises at Guam this cycle: <mark class="r">MALABAR &amp; Sea Dragon</mark> — don't mix them up.</div>
+    </div>
+
+    <div class="event">
+      <h3>Kakadu 2026</h3>
+      <span class="datebox">March 2026 · Multinational · Navy · Australia</span>
+      <p>Royal Australian Navy's flagship multilateral exercise.</p>
+    </div>
+
+    <div class="event">
+      <h3>BALIKATAN 2026</h3>
+      <span class="datebox">May 2026 · Multinational · Tri-services · Philippines</span>
+      <p>"Balikatan" = shoulder-to-shoulder in Filipino; US–Philippines-led multinational exercise.</p>
+    </div>
+
+    <div class="event">
+      <h3>KHAN QUEST 2026</h3>
+      <span class="datebox">June 2026 · Multinational · Army · Mongolia</span>
+      <p>Peacekeeping-focused multinational exercise (also filed under the Mongolia dossier, Chapter 13).</p>
+    </div>
+  </section>
+
+  </div><!-- /chapters -->
+
+  <div class="footer">Dossier compiled for BPSC Prelims revision · marker-coded per canonical study format · verify latest developments before the exam</div>
+
+</div><!-- /main -->
+
+<script>
+  const chapters = document.querySelectorAll('.chapter');
+  const toc = document.getElementById('toc');
+  chapters.forEach((ch, i) => {
+    const a = document.createElement('a');
+    a.href = '#' + ch.id;
+    a.innerHTML = '<span class="num">' + String(i+1).padStart(2,'0') + '</span><span>' + ch.dataset.title + '</span>';
+    a.dataset.target = ch.id;
+    toc.appendChild(a);
+  });
+
+  const links = toc.querySelectorAll('a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = toc.querySelector('a[data-target="' + entry.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px', threshold: 0 });
+  chapters.forEach(ch => observer.observe(ch));
+
+  const menuBtn = document.getElementById('menu-btn');
+  const sidebar = document.getElementById('sidebar');
+  menuBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+  links.forEach(l => l.addEventListener('click', () => sidebar.classList.remove('open')));
+</script>
+
+</body>
+</html>

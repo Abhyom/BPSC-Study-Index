@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Bihar — BPSC 72nd Prelims MCQ Set</title>
+<style>
+  :root{
+    --bg: #0a1128;
+    --panel: #101b3d;
+    --panel-border: #24325c;
+    --gold: #f4c542;
+    --blue: #5fb3f4;
+    --green: #6fd694;
+    --red: #ef5f6b;
+    --text: #e8ecf7;
+    --muted: #93a0c4;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: radial-gradient(circle at 20% 0%, #132050 0%, var(--bg) 55%);
+    color: var(--text);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    padding: 0 0 60px 0;
+  }
+  header{
+    text-align:center;
+    padding: 38px 20px 26px;
+    border-bottom: 1px solid var(--panel-border);
+    background: linear-gradient(180deg, #0d1638, transparent);
+  }
+  header .eyebrow{
+    letter-spacing: 3px;
+    font-size: 12px;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-family: Georgia, serif;
+    font-weight: bold;
+  }
+  header h1{
+    font-size: 30px;
+    margin: 10px 0 6px;
+    color: var(--text);
+    font-weight: normal;
+    letter-spacing: 0.5px;
+  }
+  header p{
+    color: var(--muted);
+    font-size: 14px;
+    margin: 0;
+  }
+  .legend{
+    display:flex;
+    justify-content:center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .legend span{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
+  .dot.yellow{background:var(--gold);}
+  .dot.blue{background:var(--blue);}
+  .dot.green{background:var(--green);}
+  .dot.red{background:var(--red);}
+
+  #scoreboard{
+    max-width: 720px;
+    margin: 26px auto 0;
+    padding: 14px 22px;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    font-size: 15px;
+    position: sticky;
+    top: 10px;
+    z-index: 5;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  }
+  #scoreboard .label{color:var(--muted); font-size: 12px; text-transform:uppercase; letter-spacing:1px;}
+  #scoreboard .value{color: var(--gold); font-weight:bold; font-size:18px;}
+  #resetBtn{
+    background: transparent;
+    border: 1px solid var(--panel-border);
+    color: var(--muted);
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+  }
+  #resetBtn:hover{border-color: var(--gold); color: var(--gold);}
+
+  main{
+    max-width: 720px;
+    margin: 26px auto;
+    padding: 0 18px;
+  }
+  .section-title{
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 36px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--panel-border);
+  }
+  .q-card{
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+  }
+  .q-num{
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+  .q-text{
+    font-size: 16.5px;
+    line-height: 1.5;
+    margin: 6px 0 16px;
+    color: var(--text);
+  }
+  .options{
+    display:flex;
+    flex-direction:column;
+    gap: 9px;
+  }
+  .opt{
+    text-align:left;
+    background: #0d1636;
+    border: 1px solid var(--panel-border);
+    color: var(--text);
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14.5px;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .opt:hover{border-color: var(--blue);}
+  .opt.correct{
+    background: rgba(111,214,148,0.14);
+    border-color: var(--green);
+    color: var(--green);
+    font-weight: bold;
+  }
+  .opt.incorrect{
+    background: rgba(239,95,107,0.14);
+    border-color: var(--red);
+    color: var(--red);
+  }
+  .opt.disabled{
+    cursor: default;
+    pointer-events: none;
+  }
+  .opt.dim{
+    opacity: 0.5;
+  }
+  .explain{
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--panel-border);
+    font-size: 13.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    display:none;
+  }
+  .explain.show{display:block;}
+  .explain b{color: var(--gold);}
+  footer{
+    text-align:center;
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">BPSC 72nd Prelims &middot; Practice Set</div>
+  <h1>History of Ancient Bihar</h1>
+  <p>Stone Age to the Pala Dynasty — 50 questions, tap an option to check your answer</p>
+  <div class="legend">
+    <span><span class="dot yellow"></span>Core concept</span>
+    <span><span class="dot blue"></span>Hard fact / number</span>
+    <span><span class="dot green"></span>Named entity</span>
+    <span><span class="dot red"></span>MCQ trap</span>
+  </div>
+</header>
+
+<div id="scoreboard">
+  <div><div class="label">Score</div><div class="value"><span id="scoreVal">0</span> / <span id="totalVal">50</span></div></div>
+  <div><div class="label">Attempted</div><div class="value" id="attemptedVal">0</div></div>
+  <button id="resetBtn">Reset</button>
+</div>
+
+<main id="quizRoot"></main>
+
+<footer>Compiled from Bihar Tathya Sangrah notes &middot; For self-practice only</footer>
+
+<script>
+const sections = [
+{
+  title: "Sources & Stone Age",
+  qs: [
+    {q:"Which Buddhist text, along with the Jain Bhagwati Sutra, provides information on the 16 Mahajanapadas?", opts:["Anguttara Nikaya","Digha Nikaya","Vinaya Pitaka","Milindapanho"], a:0, e:"The <b>Anguttara Nikaya</b> (Buddhist) and <b>Bhagwati Sutra</b> (Jain) together list the 16 Mahajanapadas of the 6th century BC."},
+    {q:"Copper-stone (Chalcolithic) objects and pottery for the prehistoric era in Bihar were found at all of the following EXCEPT:", opts:["Chirand (Saran)","Chechar (Vaishali)","Maner (Patna)","Kundalvan (Kashmir)"], a:3, e:"<b>Kundalvan</b> is in Kashmir, unrelated to Bihar's prehistoric sites; it is instead linked to the Fourth Buddhist Council under Kanishka."},
+    {q:"Which animal was the first to be domesticated by humans, according to the notes on the Mesolithic Age?", opts:["Cow","Dog","Horse","Elephant"], a:1, e:"During the <b>Mesolithic Age</b>, the dog was the first animal domesticated by humans in the Bihar region."},
+    {q:"Neolithic cave paintings in Bihar have been found in which of the following hill regions?", opts:["Kaimur hills, Nawada and Jamui","Rajmahal hills","Chotanagpur plateau","Barabar hills"], a:0, e:"Neolithic cave paintings (c. 2500 BC) have been found in the <b>Kaimur hills, Nawada, and Jamui</b>."},
+    {q:"The Chalcolithic period remains found at Chirand, Sonpur, Taradih etc. are dated to approximately:", opts:["1 lakh BC","40,000 BC","2500 BC","1000 BC"], a:3, e:"Chalcolithic remains, marked by the use of copper alongside stone, are dated to around <b>1000 BC</b>."}
+  ]
+},
+{
+  title: "Vedic Period",
+  qs: [
+    {q:"The first mention of the geographical area of Bihar, referring to the Tirhut-Mithila region as 'Videha', is found in:", opts:["Rigveda","Shatapath Brahmana","Varaha Purana","Atharvaveda"], a:1, e:"The <b>Shatapath Brahmana</b> (composed c. 800 BC) first mentions Bihar's area as Videha."},
+    {q:"In the Rigveda, the Bihar region is addressed by which words?", opts:["Videha and Mithila","Kikat and Vratya","Anga and Vajji","Magadha and Kashi"], a:1, e:"The Rigveda refers to Bihar using the terms <b>Kikat and Vratya</b>; the Varaha Purana calls Kikat an impure region."},
+    {q:"Pre-Vedic (Rigvedic) Aryan civilization is generally understood to have:", opts:["Originated in Bihar","Not extended into the Bihar region","Been centred at Pataliputra","Started from Vaishali"], a:1, e:"Pre-Vedic/Rigvedic civilization did <b>not extend into Bihar</b>; Aryan expansion into Bihar (up to the Gandak) happened only in the Later Vedic period."}
+  ]
+},
+{
+  title: "Mahajanapadas",
+  qs: [
+    {q:"Which three of the 16 Mahajanapadas had their area of expansion within present-day Bihar?", opts:["Kosala, Kuru, Panchala","Vajji, Magadha, Anga","Avanti, Matsya, Chedi","Malla, Vatsa, Surasena"], a:1, e:"Only <b>Vajji/Lichhavi, Magadha, and Anga</b> Mahajanapadas were located in the Bihar region."},
+    {q:"The capital of the Anga Mahajanapada was:", opts:["Champa","Vaishali","Girivraj","Rajgriha"], a:0, e:"Anga's capital was <b>Champa</b>, in the Bhagalpur–Munger region; it was annexed by Bimbisara after defeating Brahmadatta."},
+    {q:"Which Mahajanapada is described as 'the first republic of the world'?", opts:["Magadha","Kosala","Vajji Sangha / Lichchhavi","Anga"], a:2, e:"The <b>Vajji Sangha (Lichchhavi confederation)</b>, a union of eight states with its capital at Vaishali, is called the world's first republic."},
+    {q:"Magadha and Anga Mahajanapadas are first described together in which text?", opts:["Atharvaveda","Rigveda","Shatapath Brahmana","Arthashastra"], a:0, e:"The <b>Atharvaveda</b> is the earliest text to mention Magadha and Anga together."},
+    {q:"Rajgriha (Girivraj), the initial capital of Magadha, was surrounded by how many hills?", opts:["Three","Five","Seven","Nine"], a:1, e:"Girivraj was surrounded by <b>five hills</b>: Ratnagiri, Songiri, Vibhagiri, Udayagiri, and Vipalachal."}
+  ]
+},
+{
+  title: "Rise of Magadha & Haryanka Dynasty",
+  qs: [
+    {q:"According to the Mahabharata, Jarasandh — the famous Brihadratha-dynasty ruler of Magadha — was killed by:", opts:["Arjuna","Bhima","Krishna","Yudhishthira"], a:1, e:"Jarasandh was defeated and killed by <b>Bhima</b> in a duel, as described in the Mahabharata."},
+    {q:"Who is considered the real founder of Magadha, having established the Haryanka dynasty in 544 BC?", opts:["Ajatashatru","Bimbisara","Udayan","Shishunaga"], a:1, e:"<b>Bimbisara</b> founded the Haryanka dynasty in 544 BC and is regarded as Magadha's real founder."},
+    {q:"Bimbisara received the region of Kashi as dowry through his marriage to:", opts:["Chelhana","Kshema","Kosala Devi","Vajira"], a:2, e:"Bimbisara's first wife <b>Kosala Devi</b>, princess of Kosala, brought Kashi as dowry."},
+    {q:"Bimbisara's second wife Chelhana (Chellana) was the daughter of Chetak, who was the king of:", opts:["Madra","Lichchhavi","Kosala","Avanti"], a:1, e:"Chelhana was daughter of Chetak, king of <b>Lichchhavi</b>."},
+    {q:"Bimbisara sent his royal physician to treat Chand Pradyot of Avanti. Who was this physician?", opts:["Charak","Jeevak","Sushrut","Dhanvantari"], a:1, e:"Bimbisara sent his physician <b>Jeevak</b> to treat Chand Pradyot, ruler of Avanti."},
+    {q:"Bimbisara was murdered in 492 BC by his son:", opts:["Udayan","Nagadasak","Ajatashatru","Munda"], a:2, e:"Bimbisara was killed by his son <b>Ajatashatru</b> in 492 BC."},
+    {q:"Ajatashatru's real/original name was:", opts:["Kunik","Kakavarna","Nagadasak","Munda"], a:0, e:"Ajatashatru's real name was <b>Kunik</b>."},
+    {q:"The First Buddhist Council was organized by Ajatashatru in 483 BC at:", opts:["Vaishali","Saptaparni cave, Rajgir","Pataliputra","Kundalvan"], a:1, e:"Ajatashatru convened the First Buddhist Council in the <b>Saptaparni cave of Rajgir</b> in 483 BC."},
+    {q:"Who shifted the Magadhan capital from Rajgriha to Pataliputra?", opts:["Ajatashatru","Udayan/Udayin","Shishunaga","Kalashoka"], a:1, e:"<b>Udayan (Udayin)</b> shifted the capital to Pataliputra, at the confluence of Ganga, Son, and Gandak."},
+    {q:"The Haryanka dynasty is also known by which alternate name, owing to its pattern of patricide?", opts:["Pitrahanta dynasty","Nandivardhan dynasty","Shishunaga dynasty","Vamsanukriya dynasty"], a:0, e:"Because both Bimbisara and Ajatashatru were killed by their own sons, the Haryanka dynasty is called the <b>Pitrahanta (patricide) dynasty</b> — a classic MCQ trap, since 'Shishunaga' is a separate, later dynasty."}
+  ]
+},
+{
+  title: "Shishunaga & Nanda Dynasties",
+  qs: [
+    {q:"Shishunaga, founder of the Shishunaga dynasty, made which city his capital?", opts:["Pataliputra","Rajgriha","Vaishali","Champa"], a:2, e:"Shishunaga made <b>Vaishali</b> his capital."},
+    {q:"The Second Buddhist Council was held in 383 BC at Vaishali under the patronage of:", opts:["Ashoka","Kalashoka","Kanishka","Chandragupta Maurya"], a:1, e:"<b>Kalashoka</b> (called Kakavarna in the Puranas) organized the Second Buddhist Council at Vaishali in 383 BC."},
+    {q:"Mahapadmananda, founder of the Nanda dynasty, is described in the Puranas as an incarnation of:", opts:["Vishnu","Parashurama","Brahma","Indra"], a:1, e:"The Puranas describe Mahapadmananda as the second incarnation of <b>Parashurama</b>."},
+    {q:"The famous grammarian who was a contemporary of Mahapadmananda was:", opts:["Panini","Patanjali","Kautilya","Panchashikha"], a:0, e:"The grammarian <b>Panini</b> was contemporary with Mahapadmananda."},
+    {q:"During whose reign did Alexander invade India (326 BC)?", opts:["Mahapadmananda","Dhanananda","Chandragupta Maurya","Bindusara"], a:1, e:"Alexander's invasion (326 BC) occurred during the reign of <b>Dhanananda</b>, the last Nanda ruler."}
+  ]
+},
+{
+  title: "Maurya Dynasty & Administration",
+  qs: [
+    {q:"Chandragupta Maurya was identified as 'Sandrocottus' by which Greek/Roman writers?", opts:["Plutarch and Arrian","Justin and Strabo","Megasthenes and Seleucus","Ptolemy and Diodorus"], a:1, e:"<b>Justin and Strabo</b> called him Sandrocottus (confirmed by William Jones); Plutarch and Arrian instead called him 'Androcottus' — a classic trap distinguishing the two name-pairs."},
+    {q:"After his war with Seleucus Nicator (305 BC), Chandragupta Maurya gifted him how many elephants?", opts:["300","500","700","1000"], a:1, e:"In the peace treaty, Chandragupta gifted <b>500 elephants</b> to Seleucus in exchange for Kabul, Kandhar, Makran, and Herat."},
+    {q:"Megasthenes, author of 'Indica', came to Chandragupta's court as an ambassador of:", opts:["Antiochus","Ptolemy Philadelphus","Seleucus Nicator","Alexander"], a:2, e:"<b>Seleucus Nicator</b> sent Megasthenes as ambassador to Chandragupta Maurya's court."},
+    {q:"Chandragupta Maurya spent his last years and died by following which practice, at Shravanabelagola?", opts:["Sati","Sallekhana (Jain fasting unto death)","Sannyasa","Ashvamedha"], a:1, e:"Following Jainism, Chandragupta abdicated and died via the Jain fasting method <b>Sallekhana</b> at Shravanabelagola."},
+    {q:"Bindusara sent his son Ashoka to suppress a rebellion in:", opts:["Ujjain","Takshila","Kalinga","Avanti"], a:1, e:"Bindusara dispatched Ashoka to quell unrest in <b>Takshila</b>."},
+    {q:"Bindusara followed which religious sect?", opts:["Jainism","Buddhism","Ajivika sect","Shaivism"], a:2, e:"Bindusara was a follower of the <b>Ajivika sect</b>, founded by Makkhali Gosala."},
+    {q:"The Kalinga War, described in Ashoka's 13th Major Rock Edict, was fought in which year of his reign?", opts:["9th year","10th year","13th year","20th year"], a:0, e:"Ashoka fought the Kalinga War in the <b>9th year</b> of his reign (261 BC)."},
+    {q:"Ashoka's journey to Lumbini, along with reducing tax to 1/8, took place in which regnal year?", opts:["10th year","14th year","20th year","9th year"], a:2, e:"In the <b>20th year</b>, Ashoka journeyed to Lumbini and reduced the tax rate there to 1/8 — don't confuse this with the 10th year (Bodh Gaya) or 14th year (appointment of Dhamma Mahamatra)."},
+    {q:"The Third Buddhist Council, held at Pataliputra under Ashoka, was chaired by:", opts:["Vasumitra","Moggaliputta Tissa","Mahakashyap","Sabakami"], a:1, e:"<b>Moggaliputta Tissa</b> chaired the Third Buddhist Council at Pataliputra, resulting in the compilation of the Abhidhamma Pitaka."},
+    {q:"According to Kautilya's Saptanga theory, which of these is NOT one of the seven limbs of the state?", opts:["Swami (Ruler)","Durga (Fort)","Dharma (Religion)","Mitra (Ally)"], a:2, e:"The seven limbs are Swami, Amatya, Janapada, Durga, Kosha, Danda, and Mitra — <b>Dharma is not among them</b>, a common trap option."},
+    {q:"In Mauryan city administration, according to Megasthenes, how many committees governed the city and how many total members did they have?", opts:["Five committees, 25 members","Six committees, 30 members","Four committees, 20 members","Six committees, 36 members"], a:1, e:"There were <b>six committees of 5 members each — 30 members total</b> overseeing city administration."},
+    {q:"The tax rate on agricultural produce during the Mauryan period was:", opts:["1/4","1/6","1/8","1/10"], a:1, e:"Agricultural tax was <b>1/6</b> of produce; industry and trade were taxed at 1/10 — a frequent trap since the Gupta period also used 1/6 on agriculture."},
+    {q:"The most prominent trading port of the Mauryan period was:", opts:["Tamralipti","Bhadouch/Bharuch","Sopara","Muziris"], a:1, e:"<b>Bhadouch/Bharuch</b> (Gujarat) was the leading Mauryan-era port — note Tamralipti became prominent later, in the Gupta period."},
+    {q:"According to Megasthenes, Mauryan society was divided into how many classes?", opts:["Four","Five","Six","Seven"], a:3, e:"Megasthenes described <b>seven classes</b> in Mauryan society, while Kautilya's four-varna model (Brahmin, Kshatriya, Vaishya, Shudra) is a separate, often-confused classification."},
+    {q:"The famous Yakshini statue in folk art of the Mauryan period was found at:", opts:["Lohanipur","Didarganj","Barabar","Nalanda"], a:1, e:"The sandstone Yakshini statue was found at <b>Didarganj (Patna)</b>; a Jain Tirthankara statue was separately found at Lohanipur."}
+  ]
+},
+{
+  title: "Buddhism & Jainism",
+  qs: [
+    {q:"Gautam Buddha's father Shuddhodhan belonged to which clan?", opts:["Lichchhavi","Shakya","Jnatrika","Koliya"], a:1, e:"Buddha belonged to the <b>Shakya</b> clan (Kshatriya), hence his title 'Shakya Muni'."},
+    {q:"Buddha's charioteer, who accompanied him during the Mahabhinishkraman, was named:", opts:["Kanthaka","Chana","Aalar Kalam","Uddaka Ramaputta"], a:1, e:"<b>Chana</b> was Buddha's charioteer; Kanthaka was the name of his horse — a common pairing trap."},
+    {q:"Buddha attained enlightenment under a peepal tree at Bodh Gaya, on the banks of which river?", opts:["Gandak","Son","Niranjana/Phalgu","Ganga"], a:2, e:"Enlightenment occurred on the banks of the <b>Niranjana/Phalgu</b> river."},
+    {q:"In the symbolism of Buddha's life events, the 'Bull' represents which event?", opts:["Birth","Youth","Mahabhinishkraman","Nirvana"], a:1, e:"The <b>Bull</b> symbolizes Buddha's youth; Lotus=Birth, Horse=Mahabhinishkraman, Peepal tree=Nirvana."},
+    {q:"Which Pitaka is considered the largest and was compiled by Ananda?", opts:["Vinaya Pitaka","Sutta Pitaka","Abhidhamma Pitaka","Milinda Pitaka"], a:1, e:"The <b>Sutta Pitaka</b>, compiling Buddha's sermons, is the largest and was compiled by Ananda; the Vinaya Pitaka (smallest) was compiled by Upali."},
+    {q:"The Fourth Buddhist Council, held under Kanishka at Kundalvan (Kashmir), resulted in the division of Buddhism into:", opts:["Digambara and Shwetambara","Hinayana and Mahayana","Sthavira and Mahasanghika","Vajrayana and Hinayana"], a:1, e:"The Fourth Council caused the split into <b>Hinayana and Mahayana</b>; the Sthavira/Mahasanghika split happened earlier, at the Second Council."},
+    {q:"Jainism's first Tirthankara, also known as Adinath, was:", opts:["Parshvanath","Rishabhdev","Mahavira Swami","Ajitnath"], a:1, e:"<b>Rishabhdev</b> (Adinath/Vrishbhanath) was the first of the 24 Tirthankaras."},
+    {q:"Parshvanath, the 23rd Tirthankara, attained enlightenment at:", opts:["Pavapuri","Sammed Parvat","Jambhikagrama","Kundagram"], a:1, e:"Parshvanath attained enlightenment on <b>Sammed Parvat</b>; he taught four vows, later expanded to five by Mahavira."},
+    {q:"Mahavira Swami's mother Trishala was a princess of which republic?", opts:["Magadha","Kosala","Lichchhavi","Malla"], a:2, e:"Trishala was princess of the <b>Lichchhavi</b> republic; his father Siddhartha headed the Jnatrika clan."},
+    {q:"The fifth Mahavrata (vow) of Jainism, Brahmacharya, was specifically added/propounded by:", opts:["Parshvanath","Rishabhdev","Mahavira Swami","Bhadrabahu"], a:2, e:"<b>Mahavira Swami</b> added Brahmacharya as the fifth vow to Parshvanath's original four."},
+    {q:"The First Jain Council (310 BC) was held at Pataliputra under the patronage of:", opts:["Ashoka","Chandragupta Maurya","Bindusara","Kanishka"], a:1, e:"The First Jain Council, chaired by Sthulabhadra, was held at Pataliputra under <b>Chandragupta Maurya</b>."},
+    {q:"The split of Jainism into Digambara and Shwetambara occurred at which council?", opts:["First Jain Council, Pataliputra","Second Jain Council, Vallabhi","Fourth Buddhist Council","Second Buddhist Council"], a:0, e:"The Digambara–Shwetambara split happened at the <b>First Jain Council at Pataliputra (310 BC)</b>; the Second Jain Council (512 AD, Vallabhi) instead finalized the compilation of Jain scriptures."},
+    {q:"Digambara Jainism, marked by nudity and strictness, was led by:", opts:["Sthulabhadra","Bhadrabahu","Devardhi Kshamashraman","Jamali"], a:1, e:"<b>Bhadrabahu</b> led the Digambara sect; Sthulabhadra led the more accommodating Shwetambara sect — a frequently swapped pair in MCQs."}
+  ]
+},
+{
+  title: "Shunga, Kanva & Kushan Dynasties",
+  qs: [
+    {q:"Pushyamitra Shunga established the Shunga dynasty in 185 BC by killing the last Maurya ruler:", opts:["Brihadrath","Shalishuka","Samprati","Dasharatha"], a:0, e:"Pushyamitra Shunga, commander of the Mauryas, killed <b>Brihadrath</b> to found the Shunga dynasty."},
+    {q:"The priest for Pushyamitra Shunga's two Ashvamedha Yajnas was:", opts:["Harishena","Patanjali","Vasumitra","Moggaliputta Tissa"], a:1, e:"The grammarian-philosopher <b>Patanjali</b> officiated as priest for Pushyamitra's Ashvamedha Yajnas."},
+    {q:"Kalidasa's play 'Malavikagnimitram' is about which Shunga ruler?", opts:["Pushyamitra","Agnimitra","Devbhuti","Vasumitra"], a:1, e:"'Malavikagnimitram' concerns <b>Agnimitra</b>, son of Pushyamitra, and his romance with Malavika."},
+    {q:"The Kanva dynasty was founded by Vasumitra after killing which last Shunga ruler?", opts:["Agnimitra","Devbhuti","Susharma","Ripunjay"], a:1, e:"Vasumitra, minister (amatya) of the Shungas, killed <b>Devbhuti</b> to found the Kanva dynasty."},
+    {q:"The Kanva dynasty was ended by Simuka, founder of which dynasty, after killing Susharma?", opts:["Satavahana dynasty","Kushan dynasty","Gupta dynasty","Shunga dynasty"], a:0, e:"Simuka, founder of the <b>Satavahana dynasty</b>, killed Susharma to end the Kanva dynasty."},
+    {q:"The Kushans belonged to which tribe of China?", opts:["Yeuchi/Tokhari","Huna","Shaka","Pahlava"], a:0, e:"Kushans belonged to the <b>Yeuchi/Tokhari</b> tribe of China."},
+    {q:"The founder of the Kushan dynasty was:", opts:["Kanishka","Kujula Kadphises","Vima Kadphises","Vasudeva"], a:1, e:"<b>Kujula Kadphises</b> founded the Kushan dynasty; Kanishka was its most prominent later ruler."},
+    {q:"Kanishka started the Shaka era in which year?", opts:["58 BC","78 AD","120 AD","320 AD"], a:1, e:"Kanishka began the <b>Shaka era in 78 AD</b> upon becoming king — do not confuse this with the Vikram Samvat (58 BC) or Gupta era (320 AD)."},
+    {q:"Ashvaghosha, author of the Buddhacharita, served as Vice Chairman at the Fourth Buddhist Council alongside:", opts:["Vasumitra","Moggaliputta Tissa","Nagarjuna","Nagasena"], a:0, e:"<b>Vasumitra</b> chaired the Fourth Buddhist Council with Ashvaghosha as Vice Chairman."}
+  ]
+},
+{
+  title: "Gupta Dynasty",
+  qs: [
+    {q:"The Gupta dynasty was founded by Sri Gupta; the first ruler to take the title 'Maharaja' was:", opts:["Chandragupta I","Ghatotkach Gupta","Samudragupta","Sri Gupta"], a:1, e:"<b>Ghatotkach Gupta</b>, successor of Sri Gupta, was the first to assume the title Maharaja."},
+    {q:"Chandragupta I, considered the real founder of the Gupta dynasty, started the Gupta era in which year?", opts:["78 AD","240 AD","320 AD","335 AD"], a:2, e:"Chandragupta I started the <b>Gupta era in 320 AD</b>, the same year he ascended the throne."},
+    {q:"Chandragupta I married the Licchavi princess:", opts:["Kumar Devi","Dhruva Devi","Kubernaga","Prabhavati Gupta"], a:0, e:"Chandragupta I married Licchavi princess <b>Kumar Devi</b>, strengthening Gupta legitimacy."},
+    {q:"Historian V.A. Smith gave Samudragupta which epithet?", opts:["Vikramaditya of India","Napoleon of India","Golden Emperor","Ashoka of the Guptas"], a:1, e:"Samudragupta was called the <b>'Napoleon of India'</b> by historian V.A. Smith."},
+    {q:"Samudragupta's military campaigns are recorded in the Prayag Prashasti, composed by:", opts:["Kalidasa","Harishena","Vishnusharma","Vasubandhu"], a:1, e:"<b>Harishena</b>, Samudragupta's court poet, composed the Prayag Prashasti (Allahabad Pillar inscription)."},
+    {q:"Samudragupta's coins depict him:", opts:["On horseback","Playing veena","Performing yajna","Holding a bow"], a:1, e:"Samudragupta's coins show him <b>playing the veena</b>, reflecting his title 'Kaviraj' and patronage of the arts."},
+    {q:"Chandragupta II assumed the title 'Vikramaditya' after defeating the Shakas, in which year?", opts:["375 AD","389 AD","415 AD","455 AD"], a:1, e:"Chandragupta II took the title Vikramaditya in <b>389 AD</b> after his Shaka victory."},
+    {q:"Prabhavati Gupta, daughter of Chandragupta II and Kubernaga, was married to which Vakataka king?", opts:["Rudrasen II","Pravarasena","Rudradaman","Vindhyashakti"], a:0, e:"Prabhavati Gupta married Vakataka king <b>Rudrasen II</b>, later ruling as regent for her minor sons."},
+    {q:"Which Chinese traveller visited India during Chandragupta II's reign and stayed for 14 years?", opts:["Hiuen Tsang","Fa Hien","I-tsing","Xuanzang"], a:1, e:"<b>Fa Hien</b> stayed in India from 399–414 AD during Chandragupta II's reign — distinct from Hiuen Tsang, who visited later under Harsha."},
+    {q:"The Mehrauli Iron Pillar, addressing a ruler as 'Chandra', is believed to belong to:", opts:["Chandragupta I","Chandragupta II","Samudragupta","Kumaragupta I"], a:1, e:"The Mehrauli Iron Pillar is attributed to <b>Chandragupta II</b>, referred to as 'Chandra'."},
+    {q:"Which of these was NOT among Chandragupta II's nine gems (Navaratnas)?", opts:["Kalidas","Varahamihir","Harishena","Amar Singh"], a:2, e:"<b>Harishena</b> was Samudragupta's court poet, not one of Chandragupta II's nine gems — a classic trap mixing up two reigns."},
+    {q:"Nalanda University was established during the reign of:", opts:["Chandragupta II","Kumaragupta I","Skandagupta","Samudragupta"], a:1, e:"<b>Kumaragupta I</b> established Nalanda University, which later became a major Buddhist learning centre."},
+    {q:"Skandagupta's defeat of the Huns is recorded in the Junagadh inscription, where the Huns are referred to as:", opts:["Yavana","Maleccha","Shaka","Pahlava"], a:1, e:"The Junagadh inscription calls the Huns <b>'Maleccha'</b> after Skandagupta drove them out of India."},
+    {q:"Skandagupta got which lake, originally built by Chandragupta Maurya, renovated?", opts:["Sudarshan lake","Dal lake","Pushkar lake","Sur Sarovar"], a:0, e:"Skandagupta renovated the <b>Sudarshan lake</b>, originally constructed under Chandragupta Maurya."},
+    {q:"The Gupta administrative hierarchy, in descending order, was:", opts:["Desh → Bhukti → Vishaya → Gram","Desh → Chakra → Vishaya → Gram","Rashtra → Mandal → Vishaya → Gram","Bhukti → Desh → Vishaya → Gram"], a:0, e:"The Gupta hierarchy was <b>Desh → Bhukti → Vishaya → Gram</b> — note the Mauryan period instead used 'Chakra' for province, a frequent point of confusion."},
+    {q:"In the Gupta period, the gold coin was called Dinar; the silver coin was called:", opts:["Rupyaka","Karshapana","Pana","Nishka"], a:0, e:"The Gupta silver coin was called <b>Rupyaka</b>."},
+    {q:"The first evidence of Sati Pratha is found in the Eran inscription of which Gupta-era ruler, dated 510 AD?", opts:["Skandagupta","Bhanugupta","Kumaragupta I","Vishnugupta"], a:1, e:"The Eran inscription of <b>Bhanugupta</b> (510 AD) provides the earliest evidence of Sati Pratha."},
+    {q:"Among the Gupta-period cave sites, which pair is correctly matched to their states?", opts:["Ajanta (Maharashtra), Bagh (Madhya Pradesh)","Ajanta (MP), Bagh (Maharashtra)","Barabar (Bihar), Bagh (Maharashtra)","Ajanta (Karnataka), Bagh (Gujarat)"], a:0, e:"<b>Ajanta Caves are in Maharashtra; Bagh Caves are in Madhya Pradesh</b> — both showcase Buddhist and Hindu paintings from the Gupta period."},
+    {q:"Aryabhatta's major works include the Aryabhattiyam and:", opts:["Brahma Siddhanta","Suryasiddhanta","Nitisar","Amarkosh"], a:1, e:"Aryabhatta authored the <b>Aryabhattiyam and Suryasiddhanta</b>; Brahma Siddhanta was instead written by Brahmagupta (the 'Newton of India')."},
+    {q:"Which historian termed the Gupta period the 'Golden Age' of India?", opts:["V.A. Smith","R.C. Majumdar","D.D. Kosambi","James Prinsep"], a:0, e:"Historian <b>V.A. Smith</b> termed the Gupta era the 'Golden Age' for its cultural achievements."}
+  ]
+},
+{
+  title: "Nalanda University",
+  qs: [
+    {q:"At the time of Hiuen Tsang's visit, the chief teacher (head) of Nalanda University was:", opts:["Shilabhadra","Nagarjuna","Dharmapala","Vasubandhu"], a:0, e:"<b>Shilabhadra</b> was Nalanda's chief teacher during Hiuen Tsang's visit, with over 10,000 students and 1,510 teachers."},
+    {q:"Nalanda's library, formed by combining three buildings, held approximately how many books?", opts:["9 lakh","50 lakh","90 lakh","1 crore"], a:2, e:"Nalanda's library complex (Ratnaranjak, Ratnodadhi, Ratnasagar) held about <b>90 lakh books</b>."},
+    {q:"How many villages were donated to finance Nalanda University's free residential education?", opts:["100","200","500","1000"], a:1, e:"<b>200 villages</b> were donated to cover Nalanda's expenses, making it a free residential centre."},
+    {q:"Nalanda University was included in UNESCO's World Heritage list in which year?", opts:["2006","2010","2014","2016"], a:3, e:"Nalanda was declared a UNESCO World Heritage Site in <b>2016</b>. The Nalanda University Act was passed in 2010, and courses resumed in 2014, on a suggestion made by A.P.J. Abdul Kalam in 2006 — the four dates are a common trap."},
+    {q:"Which ruler of Java patronized and promoted Nalanda University in later centuries?", opts:["Balaputradev","Devpala","Dharmapala","Gopala"], a:0, e:"<b>Balaputradev</b>, ruler of Java (Shailendra dynasty), promoted Nalanda; Devpala separately donated 5 villages to him for building a vihar there — the two names are easy to conflate."}
+  ]
+},
+{
+  title: "Pala Dynasty",
+  qs: [
+    {q:"The Pala dynasty was founded in 750 AD by:", opts:["Dharmapala","Gopala","Devpala","Rampala"], a:1, e:"<b>Gopala</b> founded the Pala dynasty in 750 AD and established Odantapuri University in Bihar Sharif."},
+    {q:"Dharmapala, the most prominent Pala ruler, founded which university at Bhagalpur?", opts:["Nalanda University","Odantapuri University","Vikramshila University","Somapura Mahavihara"], a:2, e:"Dharmapala founded <b>Vikramshila University</b> at Bhagalpur; Somapura Mahavihara (now in Bangladesh) was a separate foundation of his."},
+    {q:"Dharmapala assumed which title after his campaigns?", opts:["Uttarpathaswami","Vikramaditya","Ekachhatra","Devraj"], a:0, e:"Dharmapala took the title <b>'Uttarpathaswami'</b> after his tripartite struggle successes against the Pratiharas and Rashtrakutas."},
+    {q:"Devpala, successor of Dharmapala from 810 AD, made which city his capital?", opts:["Vaishali","Munger","Pataliputra","Bhagalpur"], a:1, e:"Devpala made <b>Munger</b> his capital."},
+    {q:"The bronze statues of the Pala period, famous for their artistry, are credited to:", opts:["Dhiman and Vithpal","Shilabhadra and Nagarjuna","Harishena and Vasumitra","Aryabhatta and Brahmagupta"], a:0, e:"Pala-period bronze art is attributed to <b>Dhiman and Vithpal</b>."}
+  ]
+}
+];
+
+let allQuestions = [];
+sections.forEach((sec, si) => {
+  sec.qs.forEach((q, qi) => allQuestions.push({...q, section: sec.title, sIdx: si, qIdx: qi}));
+});
+
+let score = 0;
+let attempted = 0;
+
+function render(){
+  const root = document.getElementById('quizRoot');
+  root.innerHTML = '';
+  document.getElementById('totalVal').textContent = allQuestions.length;
+
+  let counter = 0;
+  sections.forEach((sec, si) => {
+    const secTitle = document.createElement('div');
+    secTitle.className = 'section-title';
+    secTitle.textContent = sec.title;
+    root.appendChild(secTitle);
+
+    sec.qs.forEach((q, qi) => {
+      counter++;
+      const globalId = `q_${si}_${qi}`;
+      const card = document.createElement('div');
+      card.className = 'q-card';
+      card.innerHTML = `
+        <div class="q-num">Question ${counter}</div>
+        <div class="q-text">${q.q}</div>
+        <div class="options" id="opts_${globalId}"></div>
+        <div class="explain" id="explain_${globalId}"><b>Explanation:</b> ${q.e}</div>
+      `;
+      root.appendChild(card);
+
+      const optsDiv = card.querySelector(`#opts_${globalId}`);
+      q.opts.forEach((optText, oi) => {
+        const btn = document.createElement('button');
+        btn.className = 'opt';
+        btn.textContent = optText;
+        btn.onclick = () => selectAnswer(globalId, si, qi, oi, optsDiv, card);
+        optsDiv.appendChild(btn);
+      });
+    });
+  });
+}
+
+function selectAnswer(globalId, si, qi, chosenIdx, optsDiv, card){
+  if (optsDiv.dataset.answered === 'true') return;
+  optsDiv.dataset.answered = 'true';
+
+  const q = sections[si].qs[qi];
+  const buttons = optsDiv.querySelectorAll('.opt');
+
+  buttons.forEach((btn, idx) => {
+    btn.classList.add('disabled');
+    if (idx === q.a){
+      btn.classList.add('correct');
+    } else if (idx === chosenIdx){
+      btn.classList.add('incorrect');
+    } else {
+      btn.classList.add('dim');
+    }
+  });
+
+  card.querySelector('.explain').classList.add('show');
+
+  attempted++;
+  if (chosenIdx === q.a) score++;
+
+  document.getElementById('scoreVal').textContent = score;
+  document.getElementById('attemptedVal').textContent = attempted;
+}
+
+document.getElementById('resetBtn').onclick = () => {
+  score = 0;
+  attempted = 0;
+  document.getElementById('scoreVal').textContent = 0;
+  document.getElementById('attemptedVal').textContent = 0;
+  render();
+  window.scrollTo({top:0, behavior:'smooth'});
+};
+
+render();
+</script>
+
+</body>
+</html>

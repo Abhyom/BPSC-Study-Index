@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Economic Survey 2025–26 · The Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+:root{
+  --ink:#1C1712; --parchment:#F6EFDD; --parchment2:#EEE3C4; --parchment3:#E4D6AE;
+  --navy:#122F4C; --navy2:#1B4468; --maroon:#7C2233; --gold:#B8862B; --forest:#2E5C43; --sky:#2B6E8F;
+  --hl-y:#FCE98A; --hl-b:#B9E1F7; --hl-g:#C3E9CE; --hl-r:#F6BCBC; --line:#c9b98a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif; background:var(--parchment); color:var(--ink);
+  background-image:linear-gradient(var(--parchment) 0px, var(--parchment) 100%),
+    repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(28,23,18,0.035) 28px);
+}
+.hl{padding:0.05em 0.3em;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone;font-weight:600;}
+.hl-y{background:var(--hl-y);} .hl-b{background:var(--hl-b);} .hl-g{background:var(--hl-g);} .hl-r{background:var(--hl-r);}
+.mono{font-family:'JetBrains Mono',monospace;}
+h1,h2,h3,h4{font-family:'Fraunces',serif;letter-spacing:-0.01em;}
+
+.app{display:flex;min-height:100vh;}
+.sidebar{width:280px;flex-shrink:0;background:var(--navy);color:#EFE6CC;position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;}
+.sidebar-head{padding:24px 22px 16px;border-bottom:1px solid rgba(239,230,204,0.15);}
+.sidebar-head .kicker{font-size:10.5px;letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+.sidebar-head h1{font-size:23px;line-height:1.15;margin-top:6px;color:#fff;}
+.sidebar-head .sub{font-size:11.5px;color:#B9C6D4;margin-top:8px;line-height:1.5;}
+.seal{margin:16px 22px;padding:14px;border:1.5px dashed rgba(184,134,43,0.6);border-radius:10px;text-align:center;background:rgba(255,255,255,0.03);}
+.seal .amt{font-family:'Fraunces',serif;font-weight:700;font-size:19px;color:var(--gold);}
+.seal .lbl{font-size:10px;letter-spacing:0.07em;text-transform:uppercase;color:#B9C6D4;margin-top:3px;}
+nav{padding:4px 12px 16px;flex:1;}
+nav button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;background:none;border:none;color:#DCE4EC;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;padding:9px 11px;border-radius:8px;cursor:pointer;margin-bottom:1px;transition:background .15s ease;}
+nav button .n{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);width:20px;flex-shrink:0;}
+nav button:hover{background:rgba(255,255,255,0.06);}
+nav button.active{background:var(--maroon);color:#fff;}
+nav button.active .n{color:#F6D6D6;}
+.sidebar-foot{padding:12px 22px 18px;font-size:10px;color:#8DA0B2;border-top:1px solid rgba(239,230,204,0.12);}
+
+main{flex:1;min-width:0;padding:44px 52px 90px;max-width:1180px;}
+.panel{display:none;animation:fade .35s ease;}
+.panel.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+.eyebrow{font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--maroon);font-weight:700;margin-bottom:8px;}
+.panel h2.title{font-size:34px;color:var(--navy);margin-bottom:6px;}
+.panel .dek{font-size:15px;color:#4b463d;max-width:760px;margin-bottom:30px;line-height:1.6;}
+
+.section{margin-bottom:36px;}
+.section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:14px;border-bottom:2px solid var(--ink);padding-bottom:8px;}
+.section-head h3{font-size:18px;color:var(--ink);}
+.section-head .tag{font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--navy);color:#fff;padding:3px 8px;border-radius:20px;}
+
+.card{background:var(--parchment2);border:1px solid var(--line);border-radius:10px;padding:16px 18px;box-shadow:2px 3px 0 rgba(28,23,18,0.06);}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+@media(max-width:900px){.grid2,.grid3,.grid4{grid-template-columns:1fr;}}
+
+.stat-box{background:#fff;border:1px solid var(--line);border-left:5px solid var(--maroon);border-radius:8px;padding:13px 15px;}
+.stat-box .v{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:18px;color:var(--navy);}
+.stat-box .k{font-size:11.5px;color:#5a5346;margin-top:2px;}
+
+.bullet-list{list-style:none;}
+.bullet-list li{position:relative;padding-left:20px;margin-bottom:9px;line-height:1.55;font-size:13.5px;}
+.bullet-list li::before{content:"◆";position:absolute;left:0;top:1px;color:var(--gold);font-size:10px;}
+.bullet-list li ul{margin-top:7px;}
+.bullet-list li ul li::before{content:"→";color:var(--sky);font-size:11px;}
+
+.trap{background:var(--hl-r);border:1.5px solid var(--maroon);border-radius:8px;padding:12px 16px;margin-top:14px;font-size:13px;}
+.trap .t-lbl{font-weight:800;color:var(--maroon);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;}
+
+table.ledger{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:8px;overflow:hidden;border:1px solid var(--line);}
+table.ledger th{background:var(--navy);color:#fff;text-align:left;padding:10px 14px;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;}
+table.ledger td{padding:10px 14px;border-top:1px solid var(--parchment3);}
+table.ledger tr:nth-child(even) td{background:var(--parchment);}
+table.ledger td.num{font-family:'JetBrains Mono',monospace;font-weight:600;color:var(--navy);}
+
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:stretch;margin:16px 0;}
+.flow-box{flex:1;min-width:150px;background:#fff;border:1.5px solid var(--navy);border-radius:8px;padding:12px 14px;font-size:13px;position:relative;font-weight:600;}
+.flow-box .num{display:block;font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:11px;margin-bottom:3px;}
+.flow-arrow{display:flex;align-items:center;color:var(--gold);font-size:20px;padding:0 2px;}
+@media(max-width:900px){.flow{flex-direction:column;}.flow-arrow{transform:rotate(90deg);width:fit-content;margin:0 auto;}}
+
+.chart-wrap{background:#fff;border:1px solid var(--line);border-radius:10px;padding:18px;}
+.chart-wrap canvas{max-height:280px;}
+.chart-wrap h4{font-size:13px;margin-bottom:10px;color:var(--navy);}
+
+.rank-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+@media(max-width:900px){.rank-grid{grid-template-columns:repeat(2,1fr);}}
+.rank-box{background:#fff;border:1px solid var(--line);border-radius:9px;padding:12px 10px;text-align:center;}
+.rank-box .rn{font-family:'Fraunces',serif;font-weight:900;font-size:26px;color:var(--maroon);}
+.rank-box .rl{font-size:11px;color:#4b463d;margin-top:3px;line-height:1.3;}
+
+.legend-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:22px;padding:12px 16px;background:#fff;border:1px solid var(--line);border-radius:8px;font-size:12.5px;}
+.legend-row span.dot{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle;}
+
+.note{font-size:12px;color:#6b6455;margin-top:10px;font-style:italic;}
+footer.foot{margin-top:60px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:#7a7364;}
+
+.ch-goal{background:var(--navy);color:#fff;border-radius:9px;padding:12px 16px;font-size:12.5px;margin-bottom:20px;font-style:italic;}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <div class="kicker">EduTeria Digest · Jan 2026</div>
+      <h1>The Ledger</h1>
+      <div class="sub">Economic Survey 2025–26 — every chapter, stat and trend, organised for quick recall.</div>
+    </div>
+    <div class="seal"><div class="amt">7.4% FAE Growth</div><div class="lbl">FY26 Real GDP · 4th Straight Year Fastest-Growing</div></div>
+    <nav id="nav"></nav>
+    <div class="sidebar-foot">Tabled 29 Jan 2026 · FM Nirmala Sitharaman · CEA V. Anantha Nageswaran</div>
+  </aside>
+
+  <main>
+    <!-- ===== OVERVIEW ===== -->
+    <section class="panel" id="panel-overview">
+      <div class="eyebrow">Section 00 · Foundations</div>
+      <h2 class="title">Survey Basics & India's Scorecard</h2>
+      <p class="dek">Presentation facts, the GDP growth trajectory, and India's global rankings — the numbers every other chapter builds on.</p>
+
+      <div class="section">
+        <div class="section-head"><h3>Presentation facts</h3><span class="tag">PYQ-STYLE FACTS</span></div>
+        <ul class="bullet-list">
+          <li>Economic Survey 2025–26 tabled in Parliament by Union FM <span class="hl hl-g">Nirmala Sitharaman</span> on <span class="hl hl-b">29th January 2026</span>.</li>
+          <li>Normally presented <span class="hl hl-y">1 day before the Budget</span> — this year it was presented <span class="hl hl-r">3 days before</span> (Budget was on 1 Feb 2026).</li>
+          <li>Prepared by the <span class="hl hl-g">Economic Division, Department of Economic Affairs</span>, under Chief Economic Adviser <span class="hl hl-g">Dr. V. Anantha Nageswaran</span>.</li>
+          <li>Presented across <span class="hl hl-b">16 chapters</span>.</li>
+        </ul>
+        <div class="trap"><div class="t-lbl">⚠ MCQ Trap</div>First Economic Survey of India: <span class="hl hl-r">1950–51</span>. Till 1964 it was presented <span class="hl hl-r">along with</span> the General Budget; only after 1964 did it move to a day <span class="hl hl-r">before</span> the Budget.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>GDP growth trajectory</h3><span class="tag">CHART</span></div>
+        <div class="chart-wrap"><canvas id="chartGDP"></canvas></div>
+        <div class="grid3" style="margin-top:14px;">
+          <div class="stat-box"><div class="v">6.5%</div><div class="k">Real GDP Growth, FY 2024–25</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">7.4%</div><div class="k">First Advance Estimate, FY 2025–26</div></div>
+          <div class="stat-box" style="border-left-color:var(--sky);"><div class="v">6.8–7.2%</div><div class="k">Expected Real GDP Growth, FY 2026–27</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>India's position in different sectors</h3><span class="tag">GLOBAL RANK</span></div>
+        <div class="rank-grid">
+          <div class="rank-box"><div class="rn">2nd</div><div class="rl">Cement production</div></div>
+          <div class="rank-box"><div class="rn">3rd</div><div class="rl">Pharmaceutical industry (volume)</div></div>
+          <div class="rank-box"><div class="rn">4th</div><div class="rl">Railway network</div></div>
+          <div class="rank-box"><div class="rn">4th</div><div class="rl">Foreign exchange reserves</div></div>
+          <div class="rank-box"><div class="rn">6th</div><div class="rl">Textile & garment exports</div></div>
+          <div class="rank-box"><div class="rn">6th</div><div class="rl">Cultural & entertainment services</div></div>
+          <div class="rank-box"><div class="rn">7th</div><div class="rl">Global service exports</div></div>
+          <div class="rank-box"><div class="rn">8th</div><div class="rl">Construction services</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>The 16 chapters</h3><span class="tag">MAP</span></div>
+        <div class="grid2">
+          <ul class="bullet-list">
+            <li>1 · State of the Economy</li><li>2 · Fiscal Developments</li><li>3 · Monetary Management & Financial Intermediation</li>
+            <li>4 · External Sector</li><li>5 · Inflation</li><li>6 · Agriculture & Food Management</li><li>7 · Services</li><li>8 · Industry's Next Leap</li>
+          </ul>
+          <ul class="bullet-list">
+            <li>9 · Investment & Infrastructure</li><li>10 · Environment & Climate Change</li><li>11 · Education & Health</li><li>12 · Employment & Skill Development</li>
+            <li>13 · Rural Development & Social Progress</li><li>14 · Evolution of the AI Ecosystem</li><li>15 · Urbanisation</li><li>16 · Strategic Resilience & Indispensability</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CH1 ===== -->
+    <section class="panel" id="panel-ch1">
+      <div class="eyebrow">Chapter 01</div>
+      <h2 class="title">State of the Economy: Pushing the Growth Frontier</h2>
+      <div class="ch-goal">Global environment fragile — growth holding up better than expected but risks elevated amid geopolitical tension, trade fragmentation & financial vulnerability; shocks may surface with a lag.</div>
+
+      <div class="section">
+        <div class="section-head"><h3>Headline growth</h3><span class="tag">CORE STAT</span></div>
+        <div class="grid2">
+          <div class="stat-box"><div class="v">7.4%</div><div class="k">FAE FY26 Real GDP Growth</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">7.3%</div><div class="k">FAE FY26 GVA Growth</div></div>
+        </div>
+        <p style="font-size:13.5px;margin-top:10px;">India reaffirmed its status as the <span class="hl hl-y">fastest-growing major economy for the 4th consecutive year</span>.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Demand side</h3></div>
+        <ul class="bullet-list">
+          <li><span class="hl hl-y">Private Final Consumption Expenditure (PFCE)</span> grew <span class="hl hl-b">7.0%</span> in FY26, reaching <span class="hl hl-b">61.5% of GDP</span> — the highest since 2012 (FY23 also recorded 61.5%).
+            <ul><li>Supported by low inflation, stable employment, rising real purchasing power.</li><li>Strong agri performance boosted rural consumption; tax rationalisation aided urban consumption.</li></ul>
+          </li>
+          <li><span class="hl hl-y">Gross Fixed Capital Formation (GFCF)</span> grew <span class="hl hl-b">7.8%</span> in FY26, share steady at <span class="hl hl-b">30% of GDP</span> — buoyed by sustained public capex and revival in private investment.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Supply side</h3></div>
+        <div class="flow">
+          <div class="flow-box"><span class="num">H1 FY26</span>Services GVA growth: <b>9.3%</b></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box"><span class="num">FULL YEAR</span>Services GVA estimate: <b>9.1%</b></div>
+        </div>
+        <p style="font-size:13px;">Services remain the main growth driver, indicating broad-based expansion across the sector.</p>
+      </div>
+    </section>
+
+    <!-- ===== CH2 ===== -->
+    <section class="panel" id="panel-ch2">
+      <div class="eyebrow">Chapter 02</div>
+      <h2 class="title">Fiscal Developments: Anchoring Stability through Credible Consolidation</h2>
+      <div class="ch-goal">Prudent fiscal management strengthened credibility and macro-fiscal confidence — leading to 3 sovereign credit rating upgrades in 2025.</div>
+
+      <div class="section">
+        <div class="section-head"><h3>Credit rating upgrades — 2025</h3><span class="tag">3 AGENCIES</span></div>
+        <div class="flow">
+          <div class="flow-box">Morningstar DBRS</div>
+          <div class="flow-box">S&P Global Ratings</div>
+          <div class="flow-box">Rating and Investment Information (R&I), Inc.</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Revenue & tax base</h3><span class="tag">CHART</span></div>
+        <div class="chart-wrap"><canvas id="chartRevenue"></canvas></div>
+        <ul class="bullet-list" style="margin-top:12px;">
+          <li>Centre's revenue receipts: <span class="hl hl-b">~8.5% of GDP</span> (FY16–FY20 avg) → <span class="hl hl-b">9.2% of GDP</span> in FY25 (PA), driven by buoyant non-corporate tax collections (<span class="hl hl-b">2.4% → ~3.3% of GDP</span>, pre- vs post-pandemic).</li>
+          <li>Direct tax base: ITRs filed grew from <span class="hl hl-b">6.9 crore (FY22)</span> to <span class="hl hl-b">9.2 crore (FY25)</span> — better compliance, tech adoption, more filers entering the tax net.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>GST & indirect indicators</h3></div>
+        <div class="grid2">
+          <div class="stat-box"><div class="v">₹17.4 lakh Cr</div><div class="k">Gross GST collections, Apr–Dec 2025 (+6.7% YoY)</div></div>
+          <div class="stat-box" style="border-left-color:var(--sky);"><div class="v">+21% YoY</div><div class="k">Cumulative e-way bill volumes, Apr–Dec 2025</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Capital expenditure & State finances</h3></div>
+        <ul class="bullet-list">
+          <li>Central govt effective capex: <span class="hl hl-b">2.7% of GDP</span> (pre-pandemic avg) → <span class="hl hl-b">~3.9%</span> post-pandemic → <span class="hl hl-b">4% of GDP</span> in FY25.</li>
+          <li><span class="hl hl-y">SASCI</span> (Special Assistance to States for Capital Investment) — incentivised States to maintain capex at ~<span class="hl hl-b">2.4% of GDP</span> in FY25.</li>
+          <li>Combined fiscal deficit of States: stable ~<span class="hl hl-b">2.8% of GDP</span> post-pandemic, edged up to <span class="hl hl-r">3.2% in FY25</span> — emerging pressure on State finances.</li>
+          <li>India cut general government debt-to-GDP ratio by <span class="hl hl-b">~7.1 percentage points</span> since 2020, while maintaining high public investment.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== CH3 ===== -->
+    <section class="panel" id="panel-ch3">
+      <div class="eyebrow">Chapter 03</div>
+      <h2 class="title">Monetary Management & Financial Intermediation: Refining the Regulatory Touch</h2>
+      <div class="ch-goal">Robust performance in FY26 (Apr–Dec 2025), underpinned by strategic policy actions and structural resilience across financial intermediation channels.</div>
+
+      <div class="section">
+        <div class="section-head"><h3>Banking sector health</h3><span class="tag">BEFORE → NOW</span></div>
+        <div class="grid2">
+          <div class="stat-box"><div class="v">2.2%</div><div class="k">GNPA ratio, Sept 2025 — multidecadal low</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">0.5%</div><div class="k">Net NPA ratio, Sept 2025 — record low</div></div>
+        </div>
+        <div class="stat-box" style="margin-top:10px;border-left-color:var(--sky);"><div class="v">14.5% vs 11.2%</div><div class="k">SCB credit growth YoY, 31 Dec 2025 vs Dec 2024</div></div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Financial inclusion schemes</h3></div>
+        <div class="card"><strong>PMJDY</strong> (since 2014) — <span class="hl hl-b">55.02 crore accounts</span> as of March 2025; <span class="hl hl-b">35.63 crore</span> in rural/semi-urban areas.</div>
+        <div class="card"><strong>Stand-Up India Scheme</strong> — loans of <span class="hl hl-b">₹10 lakh–₹1 crore</span> for SC/ST & women entrepreneurs (greenfield enterprises).</div>
+        <div class="card"><strong>PM SVANidhi</strong> — collateral-free working-capital loans for street vendors.</div>
+        <div class="card"><strong>PM Mudra Yojana (PMMY)</strong> — finances micro/small enterprises; by Oct 2025 disbursed over <span class="hl hl-b">₹36.18 lakh crore</span> across <span class="hl hl-b">55.45 crore</span> loan accounts.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Capital markets & outlook</h3></div>
+        <ul class="bullet-list">
+          <li>FY26 (till Dec 2025): <span class="hl hl-b">235 lakh</span> new demat accounts added — total beyond <span class="hl hl-b">21.6 crore</span>.</li>
+          <li><span class="hl hl-b">12-crore</span> unique investors milestone crossed Sept 2025 — nearly a fourth are women.</li>
+          <li>Mutual fund industry expanded to <span class="hl hl-b">5.9 crore</span> unique investors.</li>
+          <li><span class="hl hl-g">GIFT City</span> — India's first International Financial Services Centre, building an ecosystem to channel global capital.</li>
+        </ul>
+        <div class="grid2" style="margin-top:12px;">
+          <div class="stat-box"><div class="v">~187%</div><div class="k">Total financial sector assets, % of GDP (CY2024)</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">144% → 175%</div><div class="k">Capital market size, % of GDP (CY2017 → CY2024)</div></div>
+        </div>
+        <p style="font-size:13px;margin-top:10px;">A joint <span class="hl hl-g">IMF–World Bank Financial Sector Assessment Program (FSAP)</span> exercise (FY24-25) gave international recognition for systemic regulatory strengthening — banks & NBFCs can maintain adequate capital buffers even under severe stress.</p>
+      </div>
+    </section>
+
+    <!-- ===== CH4 ===== -->
+    <section class="panel" id="panel-ch4">
+      <div class="eyebrow">Chapter 04</div>
+      <h2 class="title">External Sector: Playing the Long Game</h2>
+      <div class="ch-goal">India's global trade footprint nearly doubled in goods and more than doubled in services over the past two decades.</div>
+
+      <div class="section">
+        <div class="section-head"><h3>Global trade share</h3><span class="tag">CHART</span></div>
+        <div class="chart-wrap"><canvas id="chartTrade"></canvas></div>
+        <p style="font-size:13px;margin-top:10px;">Per <span class="hl hl-g">UNCTAD's Trade and Development Report 2025</span>, India ranked <span class="hl hl-b">3rd in the Global South</span> for trade-partner diversification, with a diversity score higher than all Global North economies.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Exports</h3></div>
+        <div class="grid2">
+          <div class="stat-box"><div class="v">USD 825.3 bn</div><div class="k">Total exports FY25 — record, +6.1% YoY</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">USD 374.3 bn</div><div class="k">Non-petroleum exports FY25 — historic high</div></div>
+          <div class="stat-box" style="border-left-color:var(--sky);"><div class="v">USD 387.6 bn</div><div class="k">Services exports FY25 — all-time high, +13.6%</div></div>
+          <div class="stat-box" style="border-left-color:var(--gold);"><div class="v">~4/5th</div><div class="k">Non-petroleum, non-gems-jewellery share of merchandise exports</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>External account resilience</h3></div>
+        <ul class="bullet-list">
+          <li>Current account deficit moderate; Q2 FY26 CAD ~<span class="hl hl-b">1.3% of GDP</span> — favourable vs other major economies.</li>
+          <li>India = <span class="hl hl-y">world's largest remittance recipient</span>: <span class="hl hl-b">USD 135.4 billion</span> in FY25; rising share from advanced economies (skilled/professional workers).</li>
+          <li>Forex reserves: <span class="hl hl-b">USD 701.4 billion</span> as of 16 Jan 2026 — import cover ~<span class="hl hl-b">11 months</span>, covers >94% of external debt.</li>
+          <li>Gross FDI inflows, Apr–Nov 2025: <span class="hl hl-b">USD 64.7 billion</span>.</li>
+          <li>India ranked <span class="hl hl-b">4th globally</span> in Greenfield investment announcements 2024 (1,000+ projects) — <span class="hl hl-y">largest destination for Greenfield digital investments, 2020–24</span>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== CH5 ===== -->
+    <section class="panel" id="panel-ch5">
+      <div class="eyebrow">Chapter 05</div>
+      <h2 class="title">Inflation: Tamed and Anchored</h2>
+      <div class="ch-goal">India recorded its lowest inflation rate since the CPI series began.</div>
+      <div class="section">
+        <div class="grid2">
+          <div class="stat-box"><div class="v">1.7%</div><div class="k">Apr–Dec '25 average headline inflation — lowest since CPI series began</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">52.7%</div><div class="k">Food + fuel share of the CPI basket — main driver of disinflation</div></div>
+        </div>
+        <div class="trap" style="margin-top:14px;"><div class="t-lbl">⚠ MCQ Trap</div>Among major EMDEs, India recorded one of the <span class="hl hl-r">sharpest declines</span> in headline inflation in 2025 over 2024 — about <span class="hl hl-r">1.8 percentage points</span>.</div>
+      </div>
+    </section>
+
+    <!-- ===== CH6 ===== -->
+    <section class="panel" id="panel-ch6">
+      <div class="eyebrow">Chapter 06</div>
+      <h2 class="title">Agriculture and Food Management: Raising Productivity, Securing Income</h2>
+      <div class="ch-goal">Livestock, fisheries and foodgrain all posted strong multi-year gains, with horticulture now outproducing foodgrain by volume.</div>
+
+      <div class="section">
+        <div class="section-head"><h3>Production growth</h3></div>
+        <ul class="bullet-list">
+          <li>Livestock sector GVA rose <span class="hl hl-b">~195%</span> between FY15 and FY24.</li>
+          <li>Fish production increased <span class="hl hl-b">>140%</span> during 2014–2024 (vs the 2004–14 growth rate).</li>
+          <li>Foodgrain production (AY 2024–25): <span class="hl hl-b">3,577.3 LMT</span>, up <span class="hl hl-b">254.3 LMT</span> YoY — driven by rice, wheat, maize & coarse cereals (Shree Anna).</li>
+          <li>Horticulture (~<span class="hl hl-b">33%</span> of agri GVA): 2024–25 production <span class="hl hl-b">362.08 million tonnes</span> — surpassing foodgrain production of <span class="hl hl-b">357.73 MT</span>.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Marketing infrastructure & e-NAM</h3><span class="tag">AS OF 31 DEC 2025</span></div>
+        <div class="grid4">
+          <div class="stat-box"><div class="v">1.79 Cr</div><div class="k">Farmers onboarded</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">2.72 Cr</div><div class="k">Traders onboarded</div></div>
+          <div class="stat-box" style="border-left-color:var(--sky);"><div class="v">4,698</div><div class="k">FPOs covered</div></div>
+          <div class="stat-box" style="border-left-color:var(--gold);"><div class="v">1,522</div><div class="k">Mandis, 23 States + 4 UTs</div></div>
+        </div>
+        <p style="font-size:13px;margin-top:10px;"><span class="hl hl-y">AMI</span> sub-scheme (under ISAM) and the <span class="hl hl-y">Agriculture Infrastructure Fund (AIF)</span> strengthen farmgate facilities and encourage private participation; <span class="hl hl-g">e-NAM</span> enhances price discovery.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Farmer income support</h3></div>
+        <ul class="bullet-list">
+          <li>Assured <span class="hl hl-y">MSP</span> for mandated crops + <span class="hl hl-y">PM-KISAN</span> income transfers.</li>
+          <li><span class="hl hl-y">PM Kisan Maandhan Yojana (PMKMY)</span> — pension support, income security.</li>
+          <li>PM-KISAN: over <span class="hl hl-b">₹4.09 lakh crore</span> released since inception across <span class="hl hl-b">21 instalments</span>.</li>
+          <li>PMKMY: <span class="hl hl-b">24.92 lakh</span> farmers enrolled as of 31 Dec 2025.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== CH7 ===== -->
+    <section class="panel" id="panel-ch7">
+      <div class="eyebrow">Chapter 07</div>
+      <h2 class="title">Services: From Stability to New Frontiers</h2>
+      <div class="ch-goal">Services now account for the highest-ever share of GVA, cementing India's role as a global services hub.</div>
+      <div class="section">
+        <div class="grid2">
+          <div class="stat-box"><div class="v">53.6%</div><div class="k">Services' share in GDP, H1 FY26</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">56.4%</div><div class="k">Services' share in GVA — highest ever (FAE FY26)</div></div>
+          <div class="stat-box" style="border-left-color:var(--sky);"><div class="v">7th largest</div><div class="k">World's largest exporters of services — India's rank</div></div>
+          <div class="stat-box" style="border-left-color:var(--gold);"><div class="v">2% → 4.3%</div><div class="k">Share in global services trade, 2005 → 2024</div></div>
+        </div>
+        <p style="font-size:13px;margin-top:10px;">Services remain the <span class="hl hl-y">largest recipient of FDI inflows</span> — averaging <span class="hl hl-b">80.2% of total FDI</span> during FY23–FY25, up from <span class="hl hl-b">77.7%</span> in FY16–FY20.</p>
+      </div>
+    </section>
+
+    <!-- ===== CH8 ===== -->
+    <section class="panel" id="panel-ch8">
+      <div class="eyebrow">Chapter 08</div>
+      <h2 class="title">Industry's Next Leap: Structural Transformation and Global Integration</h2>
+      <div class="ch-goal">Manufacturing accelerated through the year despite subdued global headwinds, aided by PLI-driven investment.</div>
+
+      <div class="section">
+        <div class="section-head"><h3>Industrial & manufacturing growth</h3></div>
+        <div class="grid2">
+          <div class="stat-box"><div class="v">7.0%</div><div class="k">Industry GVA growth, H1 FY26 (real terms)</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">7.72% → 9.13%</div><div class="k">Manufacturing GVA growth, Q1 → Q2 FY26</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>PLI Schemes</h3><span class="tag">14 SECTORS</span></div>
+        <div class="grid3">
+          <div class="stat-box"><div class="v">₹2.0 lakh Cr+</div><div class="k">Actual investment attracted</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">₹18.7 lakh Cr+</div><div class="k">Incremental production/sales</div></div>
+          <div class="stat-box" style="border-left-color:var(--sky);"><div class="v">12.6 lakh+</div><div class="k">Jobs generated (as of Sept 2025)</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Innovation & semiconductors</h3></div>
+        <ul class="bullet-list">
+          <li>Global Innovation Index rank improved to <span class="hl hl-b">38th (2025)</span> from <span class="hl hl-b">66th (2019)</span>.</li>
+          <li><span class="hl hl-y">India Semiconductor Mission</span>: <span class="hl hl-b">10</span> manufacturing & packaging projects approved across <span class="hl hl-b">6 States</span>, ~<span class="hl hl-b">₹1.60 lakh crore</span> investment.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== CH9 ===== -->
+    <section class="panel" id="panel-ch9">
+      <div class="eyebrow">Chapter 09</div>
+      <h2 class="title">Investment and Infrastructure: Connectivity, Capacity and Competitiveness</h2>
+      <div class="ch-goal">Public capex has more than quadrupled since FY18, powering road, rail, power, aviation and space infrastructure gains.</div>
+
+      <div class="section">
+        <div class="section-head"><h3>Capital expenditure</h3><span class="tag">CHART</span></div>
+        <div class="chart-wrap"><canvas id="chartCapex"></canvas></div>
+        <p style="font-size:13px;margin-top:10px;">Effective capex, FY26 (BE): <span class="hl hl-b">₹15.48 lakh crore</span>.</p>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Physical infrastructure</h3></div>
+        <div class="grid2">
+          <div class="card"><strong>Roads</strong><br>NH network: <span class="hl hl-b">91,287 km (FY14) → 1,46,572 km (FY26, up to Dec)</span> — up ~60%. High-Speed Corridors: <span class="hl hl-b">550 km → 5,364 km</span> — ~10x.</div>
+          <div class="card"><strong>Railways</strong><br>Network: <span class="hl hl-b">69,439 route km</span> (Mar 2025); <span class="hl hl-b">3,500 km</span> targeted addition FY26; <span class="hl hl-b">99.1%</span> electrification by Oct 2025.</div>
+          <div class="card"><strong>Aviation</strong><br>India = <span class="hl hl-y">world's 3rd-largest domestic aviation market</span>; airports: <span class="hl hl-b">74 (2014) → 164 (2025)</span>.</div>
+          <div class="card"><strong>Power</strong><br>Installed capacity +<span class="hl hl-b">11.6% YoY</span> to <span class="hl hl-b">509.74 GW</span> (Nov 2025); demand-supply gap: <span class="hl hl-b">4.2% (FY14) → nil (Nov 2025)</span>.</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Power sector reforms & renewables</h3></div>
+        <ul class="bullet-list">
+          <li>DISCOMs recorded a profit in FY25 for the <span class="hl hl-y">first time</span> <span class="mono" style="font-size:11px;color:#8a8060;">(exact profit figure unclear in source scan)</span>.</li>
+          <li>AT&C losses reduced: <span class="hl hl-b">22.62% (FY14) → 15.04% (FY25)</span>.</li>
+          <li>Renewable energy ~<span class="hl hl-b">49.83%</span> of total power generation capacity (Nov 2025) — India ranks <span class="hl hl-b">3rd globally</span> in overall RE and installed solar capacity.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Digital, water & space</h3></div>
+        <div class="grid3">
+          <div class="stat-box"><div class="v">86.76%</div><div class="k">Tele-density; 5G in 99.9% of districts</div></div>
+          <div class="stat-box" style="border-left-color:var(--sky);"><div class="v">>81%</div><div class="k">Rural households with clean tap water (Jal Jeevan Mission, Oct 2025)</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">4th nation</div><div class="k">To achieve autonomous satellite docking (SpaDeX)</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CH10 ===== -->
+    <section class="panel" id="panel-ch10">
+      <div class="eyebrow">Chapter 10</div>
+      <h2 class="title">Environment and Climate Change: Building a Resilient, Competitive, Development-Driven India</h2>
+      <div class="ch-goal">Renewable capacity additions accelerated through FY26, led by solar.</div>
+      <div class="section">
+        <div class="section-head"><h3>RE capacity added — up to 31 Dec 2025</h3><span class="tag">38.61 GW TOTAL</span></div>
+        <div class="grid4">
+          <div class="stat-box"><div class="v">30.16 GW</div><div class="k">Solar power</div></div>
+          <div class="stat-box" style="border-left-color:var(--sky);"><div class="v">4.47 GW</div><div class="k">Wind power</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">3.24 GW</div><div class="k">Hydro power</div></div>
+          <div class="stat-box" style="border-left-color:var(--gold);"><div class="v">0.03 GW</div><div class="k">Bio-power</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CH11 ===== -->
+    <section class="panel" id="panel-ch11">
+      <div class="eyebrow">Chapter 11</div>
+      <h2 class="title">Education and Health: What Works and What's Next</h2>
+      <div class="ch-goal">India runs one of the world's largest school systems, with steady gains in higher-education access and sharp declines in maternal & child mortality.</div>
+
+      <div class="section">
+        <div class="section-head"><h3>School education</h3><span class="tag">UDISE+ 2024-25</span></div>
+        <div class="grid3">
+          <div class="stat-box"><div class="v">24.69 Cr</div><div class="k">Students</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">14.71 lakh</div><div class="k">Schools</div></div>
+          <div class="stat-box" style="border-left-color:var(--sky);"><div class="v">1.01 Cr+</div><div class="k">Teachers</div></div>
+        </div>
+        <p style="font-size:13px;margin:10px 0;">Backed by <span class="hl hl-y">Poshan Shakti Nirman</span> and <span class="hl hl-y">Samagra Shiksha Abhiyan</span>.</p>
+        <div class="section-head" style="border:none;margin-bottom:8px;"><h3 style="font-size:14px;">Gross Enrolment Ratio (GER)</h3></div>
+        <div class="chart-wrap"><canvas id="chartGER"></canvas></div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Higher education</h3></div>
+        <ul class="bullet-list">
+          <li>Higher Education Institutions: <span class="hl hl-b">51,534 (2014-15) → 70,018 (June 2025)</span>.</li>
+          <li>Premier institutions now stand at <span class="hl hl-b">23 IITs, 21 IIMs, 20 AIIMS</span>, plus 2 international IIT campuses (<span class="hl hl-g">Zanzibar</span> & <span class="hl hl-g">Abu Dhabi</span>).</li>
+          <li><span class="hl hl-y">National Credit Framework (NCrF)</span> adopted by <span class="hl hl-b">170 universities</span> — blends skills-based learning.</li>
+          <li><span class="hl hl-y">Academic Bank of Credit</span> — covers <span class="hl hl-b">2,660 institutions</span>; over <span class="hl hl-b">4.6 crore IDs</span> issued, including <span class="hl hl-b">2.2 crore APAAR IDs</span> with credits.</li>
+          <li><span class="hl hl-b">153 universities</span> introduced flexible entry-exit & biannual admissions — NEP target: <span class="hl hl-y">50% GER by 2035</span>.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Health — mortality decline since 1990</h3><span class="tag">INDIA vs GLOBAL</span></div>
+        <table class="ledger">
+          <tr><th>Indicator</th><th>India's decline</th><th>Global avg decline</th></tr>
+          <tr><td>Maternal Mortality Rate (MMR)</td><td class="num">86%</td><td class="num">48%</td></tr>
+          <tr><td>Under-5 Mortality Rate (U5MR)</td><td class="num">78%</td><td class="num">61%</td></tr>
+          <tr><td>Neonatal Mortality Rate (NMR)</td><td class="num">70%</td><td class="num">54%</td></tr>
+        </table>
+        <div class="trap"><div class="t-lbl">⚠ MCQ Trap</div>Infant Mortality Rate (IMR) fell <span class="hl hl-r">>37%</span> in a decade: <span class="hl hl-r">40 (2013) → 25 (2023)</span> per 1,000 live births — a separate metric from U5MR/NMR above.</div>
+      </div>
+    </section>
+
+    <!-- ===== CH12 ===== -->
+    <section class="panel" id="panel-ch12">
+      <div class="eyebrow">Chapter 12</div>
+      <h2 class="title">Employment and Skill Development: Getting Skilling Right</h2>
+      <div class="ch-goal">Employment expanded across formal and informal channels, with new legal recognition for gig and platform workers.</div>
+
+      <div class="section">
+        <div class="grid2">
+          <div class="stat-box"><div class="v">56.2 Cr</div><div class="k">People (15+ yrs) employed, Q2 FY26 (+8.7 lakh jobs vs Q1)</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">+6% YoY</div><div class="k">ASI organised manufacturing employment, FY24 (+10 lakh jobs vs FY23)</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Gig work & digital registration</h3></div>
+        <ul class="bullet-list">
+          <li><span class="hl hl-y">Labour Codes</span> formally recognise gig & platform workers — expanded social security, welfare funds, benefit portability.</li>
+          <li><span class="hl hl-y">e-Shram portal</span>: over <span class="hl hl-b">31 crore</span> unorganised workers registered (Jan 2026); women = <span class="hl hl-b">54%+</span> of registrants.</li>
+          <li><span class="hl hl-y">National Career Service (NCS)</span> — one-stop platform connecting job-seekers, employers, training providers with <span class="hl hl-b">80 million</span> vacancies.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== CH13 ===== -->
+    <section class="panel" id="panel-ch13">
+      <div class="eyebrow">Chapter 13</div>
+      <h2 class="title">Rural Development and Social Progress: From Participation to Partnerships</h2>
+      <div class="ch-goal">A revised global poverty line still shows India's extreme poverty in single digits, while social spending and land-record digitisation both march upward.</div>
+
+      <div class="section">
+        <div class="section-head"><h3>Poverty — revised International Poverty Line</h3></div>
+        <p style="font-size:13px;margin-bottom:10px;">World Bank raised the poverty line from <span class="hl hl-b">USD 2.15</span> to <span class="hl hl-b">USD 3.00/day</span> (2021 PPP prices).</p>
+        <div class="grid2">
+          <div class="stat-box"><div class="v">5.3%</div><div class="k">Extreme poverty rate, India, 2022-23</div></div>
+          <div class="stat-box" style="border-left-color:var(--forest);"><div class="v">23.9%</div><div class="k">Lower-middle-income poverty rate, 2022-23</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Social services expenditure</h3><span class="tag">% OF GDP</span></div>
+        <table class="ledger">
+          <tr><th>FY 2023-24</th><th>FY 2024-25 (RE)</th><th>FY 2025-26 (BE)</th></tr>
+          <tr><td class="num">7.0%</td><td class="num">7.7%</td><td class="num">7.9%</td></tr>
+        </table>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>Rural land records — SVAMITVA</h3><span class="tag">AS OF DEC 2025</span></div>
+        <ul class="bullet-list">
+          <li>Drone survey completed in <span class="hl hl-b">3.28 lakh villages</span> (target ~<span class="hl hl-b">3.44 lakh</span>).</li>
+          <li><span class="hl hl-b">2.76 crore</span> property cards prepared for ~<span class="hl hl-b">1.82 lakh villages</span>.</li>
+          <li>Fertiliser companies distributed <span class="hl hl-b">1,094 drones</span> to SHG "Drone Didis" (2023-24, own resources) — <span class="hl hl-b">500</span> of these under the <span class="hl hl-y">Namo Drone Didi Scheme</span>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== CH14 ===== -->
+    <section class="panel" id="panel-ch14">
+      <div class="eyebrow">Chapter 14</div>
+      <h2 class="title">Evolution of the AI Ecosystem in India: The Way Forward</h2>
+      <div class="ch-goal">India's AI adoption is being driven by real-world necessity, not speculative frontier use cases.</div>
+      <div class="section">
+        <ul class="bullet-list">
+          <li>Smaller, task-specific models deployed across sectors allow innovation to diffuse more evenly, lower entry barriers for firms, and better fit India's diverse economic landscape.</li>
+          <li>India's AI demand is emerging from <span class="hl hl-y">real-world problems</span> rather than speculative frontier uses.</li>
+          <li>Growing appetite across <span class="hl hl-g">healthcare, agriculture, urban management, education, disaster preparedness and public administration</span> for AI systems that work on local hardware in low-resource settings.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== CH15 ===== -->
+    <section class="panel" id="panel-ch15">
+      <div class="eyebrow">Chapter 15</div>
+      <h2 class="title">Urbanisation: Making India's Cities Work for its Citizens</h2>
+      <div class="ch-goal">High-speed regional transit is emerging as a lever to reshape how Indian cities and their peripheries function.</div>
+      <div class="section">
+        <div class="card"><strong>Namo Bharat Regional Rapid Transit System</strong><p style="font-size:13px;margin-top:8px;">Illustrates how high-speed regional connectivity can reshape urban and peri-urban labour markets — by sharply reducing travel times between cities and surrounding regions, it expands access to jobs, supports <span class="hl hl-y">polycentric growth</span>, and eases pressure on core metropolitan areas.</p></div>
+      </div>
+    </section>
+
+    <!-- ===== CH16 ===== -->
+    <section class="panel" id="panel-ch16">
+      <div class="eyebrow">Chapter 16</div>
+      <h2 class="title">From Import Substitution to Strategic Resilience and Strategic Indispensability</h2>
+      <div class="ch-goal">"Swadeshi must be a disciplined strategy" — not all import substitution is feasible or desirable.</div>
+
+      <div class="section">
+        <div class="section-head"><h3>Three-tiered framework</h3><span class="tag">FLOWCHART</span></div>
+        <div class="flow">
+          <div class="flow-box"><span class="num">TIER 1</span>Critical vulnerabilities with high strategic urgency</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box"><span class="num">TIER 2</span>Economically feasible capabilities with strategic payoffs</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box"><span class="num">TIER 3</span>Low strategic urgency / high-cost substitution</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-head"><h3>The progression</h3><span class="tag">FLOWCHART</span></div>
+        <div class="flow">
+          <div class="flow-box">Swadeshi</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">Strategic Resilience</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">Strategic Indispensability</div>
+        </div>
+        <ul class="bullet-list" style="margin-top:12px;">
+          <li>A <span class="hl hl-y">National Input Cost Reduction Strategy</span> treats competitiveness as infrastructure — recognising affordable, reliable inputs.</li>
+          <li>Intelligent import substitution invests in national strength and ultimately embeds India in global systems — <span class="hl hl-g">"the world moves from thinking about buying Indian to buying Indian without thinking."</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="foot">
+      Source: EDU TERIA Current Concepts digest, Jan 2026 · Economic Survey 2025–26 chapter. Built for revision — cross-check flagged figures against the official Economic Survey volumes before final exam use.
+    </footer>
+  </main>
+</div>
+
+<script>
+const tabs = [
+  {id:'overview', n:'00', label:'Survey Basics'},
+  {id:'ch1', n:'01', label:'State of the Economy'},
+  {id:'ch2', n:'02', label:'Fiscal Developments'},
+  {id:'ch3', n:'03', label:'Monetary & Financial'},
+  {id:'ch4', n:'04', label:'External Sector'},
+  {id:'ch5', n:'05', label:'Inflation'},
+  {id:'ch6', n:'06', label:'Agriculture & Food'},
+  {id:'ch7', n:'07', label:'Services'},
+  {id:'ch8', n:'08', label:"Industry's Next Leap"},
+  {id:'ch9', n:'09', label:'Investment & Infra'},
+  {id:'ch10', n:'10', label:'Environment & Climate'},
+  {id:'ch11', n:'11', label:'Education & Health'},
+  {id:'ch12', n:'12', label:'Employment & Skills'},
+  {id:'ch13', n:'13', label:'Rural Development'},
+  {id:'ch14', n:'14', label:'AI Ecosystem'},
+  {id:'ch15', n:'15', label:'Urbanisation'},
+  {id:'ch16', n:'16', label:'Strategic Resilience'},
+];
+const navEl = document.getElementById('nav');
+tabs.forEach((t,i)=>{
+  const b = document.createElement('button');
+  b.innerHTML = `<span class="n">${t.n}</span>${t.label}`;
+  b.dataset.id = t.id;
+  if(i===0) b.classList.add('active');
+  b.addEventListener('click', ()=>showTab(t.id));
+  navEl.appendChild(b);
+});
+function showTab(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active', b.dataset.id===id));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+showTab('overview');
+
+Chart.defaults.font.family = "'Inter',sans-serif";
+Chart.defaults.color = '#4b463d';
+
+new Chart(document.getElementById('chartGDP'), {
+  type:'bar',
+  data:{labels:['FY 2024-25 (Actual)','FY 2025-26 (FAE)','FY 2026-27 (Expected, low)','FY 2026-27 (Expected, high)'],
+    datasets:[{label:'Real GDP Growth %', data:[6.5,7.4,6.8,7.2], backgroundColor:['#7C2233','#2E5C43','#2B6E8F','#2B6E8F'], borderRadius:5}]},
+  options:{plugins:{legend:{display:false}}, scales:{y:{grid:{color:'#eee2c4'},title:{display:true,text:'%'}}}}
+});
+new Chart(document.getElementById('chartRevenue'), {
+  type:'bar',
+  data:{labels:['Revenue receipts % GDP\n(FY16-20 avg)','Revenue receipts % GDP\n(FY25 PA)','ITR filed, Cr\n(FY22)','ITR filed, Cr\n(FY25)'],
+    datasets:[{label:'Value', data:[8.5,9.2,6.9,9.2], backgroundColor:['#B8862B','#B8862B','#7C2233','#7C2233'], borderRadius:5}]},
+  options:{plugins:{legend:{display:false}}, scales:{y:{grid:{color:'#eee2c4'}}}}
+});
+new Chart(document.getElementById('chartTrade'), {
+  type:'bar',
+  data:{labels:['Merchandise export share %','Services export share %'],
+    datasets:[
+      {label:'Earlier', data:[1,2], backgroundColor:'#e4d6ae', borderRadius:5},
+      {label:'Now (2024)', data:[1.8,4.3], backgroundColor:'#122F4C', borderRadius:5}
+    ]},
+  options:{scales:{y:{grid:{color:'#eee2c4'},title:{display:true,text:'% of global trade'}}}}
+});
+new Chart(document.getElementById('chartCapex'), {
+  type:'bar',
+  data:{labels:['FY18','FY26 (BE)'],
+    datasets:[{label:'₹ lakh crore', data:[2.63,11.21], backgroundColor:['#e4d6ae','#2E5C43'], borderRadius:5}]},
+  options:{indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{grid:{color:'#eee2c4'}}}}
+});
+new Chart(document.getElementById('chartGER'), {
+  type:'bar',
+  data:{labels:['Primary (I-V)','Upper Primary (VI-VIII)','Secondary (IX-X)','Higher Secondary (XI-XII)'],
+    datasets:[{label:'GER', data:[90.9,90.3,78.7,58.4], backgroundColor:'#2B6E8F', borderRadius:5}]},
+  options:{indexAxis:'y', plugins:{legend:{display:false}}, scales:{x:{grid:{color:'#eee2c4'},max:100}}}
+});
+</script>
+</body>
+</html>

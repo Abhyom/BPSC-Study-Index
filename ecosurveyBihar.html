@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Bihar Ledger — Economic Survey Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0f2440;
+    --navy-2:#16324f;
+    --maroon:#7a1f2b;
+    --maroon-2:#9c2c3a;
+    --gold:#c9a227;
+    --gold-soft:#e7c766;
+    --parchment:#f6efdf;
+    --parchment-2:#efe4c9;
+    --ink:#22201a;
+    --ink-soft:#5b5647;
+    --rule:#c9b98a;
+    --hi-yellow:#ffe066;
+    --hi-blue:#9fd0ea;
+    --hi-green:#a9d8b6;
+    --hi-red:#f3a9a9;
+    --shadow: 0 10px 30px rgba(15,36,64,0.18);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Source Serif 4', Georgia, serif;
+    background:var(--navy);
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:'Playfair Display', serif; margin:0; color:var(--navy);}
+  .mono{font-family:'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums;}
+
+  /* ===== LAYOUT ===== */
+  .app{display:flex; min-height:100vh;}
+
+  /* SIDEBAR */
+  .sidebar{
+    width:280px; flex:0 0 280px;
+    background:
+      linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+    position:fixed; top:0; left:0; bottom:0;
+    overflow-y:auto;
+    border-right:6px solid var(--gold);
+    z-index:20;
+  }
+  .sidebar::-webkit-scrollbar{width:8px;}
+  .sidebar::-webkit-scrollbar-thumb{background:rgba(201,162,39,0.4); border-radius:4px;}
+
+  .brand{
+    padding:26px 22px 18px;
+    border-bottom:1px solid rgba(201,162,39,0.35);
+  }
+  .brand .stamp{
+    width:46px;height:46px;border-radius:50%;
+    border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--gold-soft); font-family:'Playfair Display',serif; font-weight:800; font-size:20px;
+    margin-bottom:10px;
+    box-shadow: inset 0 0 0 3px rgba(201,162,39,0.15);
+  }
+  .brand h1{color:#f4ead0; font-size:22px; line-height:1.15; letter-spacing:0.3px;}
+  .brand p{color:#9fb3c8; font-size:11.5px; margin-top:6px; letter-spacing:1.5px; text-transform:uppercase; font-family:'IBM Plex Mono',monospace;}
+
+  nav.tabs{padding:10px 0 30px;}
+  .tab-group-label{
+    font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase;
+    color:#7089a3; padding:16px 22px 6px;
+  }
+  .tab{
+    display:flex; align-items:center; gap:12px;
+    padding:10px 20px 10px 18px;
+    margin:2px 10px;
+    cursor:pointer;
+    color:#cddaea;
+    border-radius:3px 10px 10px 3px;
+    position:relative;
+    font-size:14.5px;
+    border-left:3px solid transparent;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .tab .num{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold-soft);
+    width:24px; flex:0 0 24px; opacity:0.85;
+  }
+  .tab:hover{background:rgba(201,162,39,0.10); color:#fff;}
+  .tab.active{
+    background:linear-gradient(90deg, rgba(201,162,39,0.22), rgba(201,162,39,0.04));
+    color:#fff; border-left:3px solid var(--gold);
+    box-shadow: inset 0 0 0 1px rgba(201,162,39,0.15);
+  }
+  .tab.active .num{color:#fff;}
+
+  .legend{
+    margin:14px 20px 24px; padding:14px 14px 12px;
+    border:1px dashed rgba(201,162,39,0.4); border-radius:8px;
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#a9bcd0;
+  }
+  .legend .lg-title{color:#e7c766; letter-spacing:1.5px; text-transform:uppercase; font-size:9.5px; margin-bottom:8px;}
+  .legend .row{display:flex; align-items:center; gap:8px; margin:5px 0;}
+  .legend .sw{width:12px;height:12px;border-radius:3px; flex:0 0 12px;}
+
+  /* MAIN */
+  .main{
+    margin-left:280px; flex:1;
+    background:
+      repeating-linear-gradient(180deg, transparent 0px, transparent 33px, rgba(122,31,43,0.05) 34px),
+      var(--parchment);
+    min-height:100vh;
+  }
+  .page{display:none; padding:44px 56px 90px; max-width:1080px;}
+  .page.active{display:block; animation:fadeIn .35s ease;}
+  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+  .page-header{
+    border-bottom:3px double var(--maroon);
+    padding-bottom:16px; margin-bottom:30px;
+    display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap;
+  }
+  .page-header .chap-eyebrow{
+    font-family:'IBM Plex Mono',monospace; letter-spacing:3px; text-transform:uppercase;
+    color:var(--maroon); font-size:12px; margin-bottom:6px; font-weight:600;
+  }
+  .page-header h2{font-size:34px; color:var(--navy);}
+  .page-header .folio{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap;}
+
+  section.block{margin-bottom:38px;}
+  section.block h3{
+    font-size:19px; color:var(--maroon-2); margin-bottom:14px;
+    padding-bottom:6px; border-bottom:1px solid var(--rule);
+    display:flex; align-items:center; gap:10px;
+  }
+  section.block h3 .ico{font-size:16px;}
+  section.block h4{font-size:15.5px; color:var(--navy); margin:16px 0 8px;}
+
+  p{line-height:1.7; font-size:15.5px; color:var(--ink); margin:0 0 12px;}
+  ul{margin:0 0 12px; padding-left:22px;}
+  li{line-height:1.7; font-size:15.5px; margin-bottom:5px;}
+
+  /* HIGHLIGHT MARKERS */
+  mark{
+    padding:1px 5px; border-radius:2px 6px 5px 3px;
+    background:var(--hi-yellow); color:#3a2f00; font-weight:600;
+    box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  }
+  mark.blue{background:var(--hi-blue); color:#0b2f42;}
+  mark.green{background:var(--hi-green); color:#123a1e;}
+  mark.red{background:var(--hi-red); color:#4a0d0d;}
+
+  /* STAT CARD GRID */
+  .stat-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(190px,1fr)); gap:14px; margin-bottom:6px;}
+  .stat-card{
+    background:#fffdf6; border:1px solid var(--rule); border-radius:10px;
+    padding:16px 16px 14px; box-shadow:var(--shadow);
+    border-top:4px solid var(--gold);
+    position:relative;
+  }
+  .stat-card .label{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:1px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;}
+  .stat-card .value{font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:700; color:var(--navy); line-height:1.15;}
+  .stat-card .sub{font-size:12.5px; color:var(--ink-soft); margin-top:4px;}
+  .stat-card.maroon{border-top-color:var(--maroon);}
+  .stat-card.green{border-top-color:#3f7d52;}
+
+  /* TABLES */
+  table.ledger{
+    width:100%; border-collapse:collapse; background:#fffdf6;
+    box-shadow:var(--shadow); border-radius:8px; overflow:hidden;
+    margin-bottom:8px;
+  }
+  table.ledger caption{
+    text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px;
+    color:var(--ink-soft); padding:8px 4px; text-transform:uppercase;
+  }
+  table.ledger th{
+    background:var(--navy); color:#f0e6c9; text-align:left;
+    padding:10px 14px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.5px; text-transform:uppercase;
+  }
+  table.ledger td{
+    padding:9px 14px; border-bottom:1px solid var(--parchment-2); font-size:14.5px;
+  }
+  table.ledger tr:nth-child(even) td{background:rgba(122,31,43,0.035);}
+  table.ledger tr:last-child td{border-bottom:none;}
+  table.ledger td.num{font-family:'IBM Plex Mono',monospace; font-weight:600; color:var(--maroon-2);}
+
+  /* MCQ TRAP CALLOUT */
+  .trap{
+    background:linear-gradient(135deg, #fff5f5, #fdeeee);
+    border:1.5px solid var(--maroon); border-left:8px solid var(--maroon);
+    border-radius:6px; padding:14px 18px; margin:16px 0;
+    box-shadow:var(--shadow);
+  }
+  .trap .trap-title{
+    font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:12px; letter-spacing:1.5px;
+    color:var(--maroon); text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:7px;
+  }
+  .trap p{margin-bottom:0; font-size:14.5px;}
+
+  /* SCHEME CARD */
+  .scheme{
+    background:#fbf7ea; border:1px solid var(--rule); border-radius:8px;
+    padding:14px 18px; margin-bottom:12px; border-left:5px solid #3f7d52;
+  }
+  .scheme .sname{font-family:'Playfair Display',serif; font-weight:700; color:var(--navy); font-size:16px; margin-bottom:6px;}
+  .scheme ul{margin-bottom:0;}
+
+  /* FLOWCHART / BAR VIZ */
+  .barviz{background:#fffdf6; border:1px solid var(--rule); border-radius:10px; padding:18px 20px; box-shadow:var(--shadow); margin-bottom:8px;}
+  .bar-row{display:flex; align-items:center; gap:12px; margin-bottom:10px;}
+  .bar-row .bl{width:130px; flex:0 0 130px; font-size:13px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace;}
+  .bar-track{flex:1; background:var(--parchment-2); border-radius:5px; height:20px; overflow:hidden; position:relative;}
+  .bar-fill{height:100%; border-radius:5px; display:flex; align-items:center; justify-content:flex-end; padding-right:8px;}
+  .bar-fill span{font-family:'IBM Plex Mono',monospace; font-size:11px; color:#fff; font-weight:600;}
+
+  .flowchart{display:flex; align-items:center; flex-wrap:wrap; gap:0; margin:14px 0;}
+  .flow-step{
+    background:var(--navy); color:#f4ead0; padding:12px 16px; border-radius:8px;
+    font-size:13.5px; font-family:'IBM Plex Mono',monospace; text-align:center; max-width:170px;
+    box-shadow:var(--shadow);
+  }
+  .flow-step.gold{background:var(--gold); color:var(--navy); font-weight:700;}
+  .flow-step.maroon{background:var(--maroon);}
+  .flow-arrow{color:var(--maroon); font-size:22px; margin:0 10px; flex:0 0 auto;}
+
+  .pill-row{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;}
+  .pill{
+    background:var(--navy); color:#f0e6c9; padding:6px 14px; border-radius:20px;
+    font-family:'IBM Plex Mono',monospace; font-size:12px; border:1px solid var(--gold);
+  }
+  .pill.alt{background:var(--maroon); border-color:var(--gold-soft);}
+
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media(max-width:800px){ .two-col{grid-template-columns:1fr;} }
+
+  .divider-orn{
+    text-align:center; color:var(--gold); font-size:18px; letter-spacing:12px; margin:34px 0;
+  }
+
+  footer.page-footer{
+    margin-top:40px; padding-top:16px; border-top:1px solid var(--rule);
+    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); text-align:center;
+  }
+
+  /* Mobile */
+  .menu-btn{display:none;}
+  @media(max-width:900px){
+    .sidebar{transform:translateX(-100%); transition:transform .25s ease; width:270px;}
+    .sidebar.open{transform:translateX(0);}
+    .main{margin-left:0;}
+    .page{padding:70px 20px 60px;}
+    .menu-btn{
+      display:block; position:fixed; top:14px; left:14px; z-index:30;
+      background:var(--navy); color:var(--gold-soft); border:1px solid var(--gold);
+      border-radius:6px; padding:9px 13px; font-family:'IBM Plex Mono',monospace; cursor:pointer; font-size:13px;
+      box-shadow:var(--shadow);
+    }
+  }
+</style>
+</head>
+<body>
+<button class="menu-btn" id="menuBtn">☰ Chapters</button>
+<div class="app">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="stamp">B</div>
+      <h1>The Bihar Ledger</h1>
+      <p>BPSC Prelims · Economic Survey Notes</p>
+    </div>
+    <nav class="tabs" id="tabs">
+      <div class="tab-group-label">Front Matter</div>
+      <div class="tab active" data-target="overview"><span class="num">§0</span> Overview</div>
+
+      <div class="tab-group-label">Ledger Chapters</div>
+      <div class="tab" data-target="ch1"><span class="num">I</span> Economy Overview</div>
+      <div class="tab" data-target="ch2"><span class="num">II</span> State Finances</div>
+      <div class="tab" data-target="ch3"><span class="num">III</span> Agriculture &amp; Allied</div>
+      <div class="tab" data-target="ch4"><span class="num">IV</span> Enterprises Sector</div>
+      <div class="tab" data-target="ch5"><span class="num">V</span> Labour &amp; Skill Dev.</div>
+      <div class="tab" data-target="ch6"><span class="num">VI</span> Physical Infra.</div>
+      <div class="tab" data-target="ch7"><span class="num">VII</span> E-Governance</div>
+      <div class="tab" data-target="ch8"><span class="num">VIII</span> Power Sector</div>
+      <div class="tab" data-target="ch9"><span class="num">IX</span> Rural Development</div>
+      <div class="tab" data-target="ch10"><span class="num">X</span> Urban Development</div>
+      <div class="tab" data-target="ch11"><span class="num">XI</span> Financial Institutions</div>
+      <div class="tab" data-target="ch12"><span class="num">XII</span> Human Development</div>
+      <div class="tab" data-target="ch13"><span class="num">XIII</span> Child Development</div>
+      <div class="tab" data-target="ch14"><span class="num">XIV</span> Environment &amp; Disaster</div>
+    </nav>
+
+    <div class="legend">
+      <div class="lg-title">Marker Key</div>
+      <div class="row"><span class="sw" style="background:var(--hi-yellow)"></span> Headline figure / statistic</div>
+      <div class="row"><span class="sw" style="background:var(--hi-green)"></span> Scheme, project or achievement</div>
+      <div class="row"><span class="sw" style="background:var(--hi-blue)"></span> Definition / key term</div>
+      <div class="row"><span class="sw" style="background:var(--hi-red)"></span> Caution — easily confused / poor rank</div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- ============ OVERVIEW ============ -->
+    <section class="page active" id="overview">
+      <div class="page-header">
+        <div>
+          <div class="chap-eyebrow">Ledger &middot; Front Matter</div>
+          <h2>Bihar Economic Survey 2024&ndash;25</h2>
+        </div>
+        <div class="folio mono">Folio 000 &middot; BPSC Prelims</div>
+      </div>
+
+      <section class="block">
+        <p>This ledger consolidates all facts, figures, schemes, and rankings from the Bihar Economic Survey study material into fourteen chapters, exactly as tabled in the source. Every headline number is <mark>highlighted in yellow</mark>, every scheme or achievement in <mark class="green">green</mark>, key terms in <mark class="blue">blue</mark>, and commonly-confused pairs in <mark class="red">red</mark> — watch for the <strong>MCQ Trap</strong> boxes throughout.</p>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#9878;</span> Bihar at a Glance</h3>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="label">GSDP (Current Prices)</div><div class="value">₹9,91,997 Cr</div><div class="sub">Growth 13.1% vs India 9.8%</div></div>
+          <div class="stat-card maroon"><div class="label">Per Capita Income</div><div class="value">₹76,490</div><div class="sub">37.3% of India's per-capita GDP</div></div>
+          <div class="stat-card green"><div class="label">Total Expenditure</div><div class="value">₹2,81,939 Cr</div><div class="sub">FY 2024&ndash;25 Budget</div></div>
+          <div class="stat-card"><div class="label">Fiscal Deficit</div><div class="value">4.2% <span style="font-size:14px">of GSDP</span></div><div class="sub">₹41,223 crore</div></div>
+          <div class="stat-card maroon"><div class="label">Outstanding Debt</div><div class="value">37.7% <span style="font-size:14px">of GSDP</span></div><div class="sub">₹3,74,134 crore — declining</div></div>
+          <div class="stat-card green"><div class="label">Electrification</div><div class="value">100%</div><div class="sub">Since 2018</div></div>
+        </div>
+      </section>
+
+      <div class="divider-orn">&#10022; &#10022; &#10022;</div>
+
+      <section class="block">
+        <h3><span class="ico">&#128213;</span> How This Ledger Is Organised</h3>
+        <p>Use the sidebar to jump between the fourteen chapters (I&ndash;XIV), mirroring the original survey's structure — from macroeconomic indicators through state finances, agriculture, industry, infrastructure, governance, power, rural &amp; urban development, banking, and human &amp; child development, closing with environment and disaster management.</p>
+      </section>
+    </section>
+
+    <!-- ============ CHAPTER I ============ -->
+    <section class="page" id="ch1">
+      <div class="page-header">
+        <div><div class="chap-eyebrow">Chapter I</div><h2>Bihar Economy — An Overview</h2></div>
+        <div class="folio mono">Folio 001</div>
+      </div>
+
+      <section class="block">
+        <h3><span class="ico">&#128202;</span> Key Economic Indicators — <mark class="blue">GSDP</mark></h3>
+        <div class="two-col">
+          <div class="stat-card">
+            <div class="label">At Current Prices (2024&ndash;25)</div>
+            <div class="value"><mark>₹9,91,997 crore</mark></div>
+            <div class="sub">Growth Rate: <mark>13.1%</mark> &nbsp;|&nbsp; India: <mark>9.8%</mark></div>
+          </div>
+          <div class="stat-card maroon">
+            <div class="label">At Constant Prices (2011&ndash;12 base)</div>
+            <div class="value"><mark class="red">₹5,31,372 crore</mark></div>
+            <div class="sub">Growth Rate: <mark class="red">8.6%</mark> &nbsp;|&nbsp; India: <mark class="red">6.5%</mark></div>
+          </div>
+        </div>
+        <div class="trap">
+          <div class="trap-title">&#9888; MCQ Trap</div>
+          <p>Two GSDP figures exist for the same year: <strong>current prices (<mark>₹9,91,997 Cr</mark>, <mark>13.1%</mark> growth)</strong> vs <strong>constant 2011&ndash;12 prices (<mark class="red">₹5,31,372 Cr</mark>, <mark class="red">8.6%</mark> growth)</strong>. Constant-price growth is always lower because it strips out inflation — examiners love swapping these numbers.</p>
+        </div>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#127806;</span> Sectoral Analysis (Table 1)</h3>
+        <table class="ledger">
+          <caption>Sectoral Performance — Share &amp; Growth</caption>
+          <thead><tr><th>Sector</th><th>GSVA Share (%)</th><th>Employment Share (%)</th><th>Nominal Growth (%)</th><th>Real Growth (%)</th></tr></thead>
+          <tbody>
+            <tr><td><mark class="blue">Primary</mark></td><td class="num"><mark class="red">18.3</mark></td><td class="num"><mark>54.2</mark></td><td class="num">9.6</td><td class="num">4.1</td></tr>
+            <tr><td><mark class="blue">Secondary</mark></td><td class="num">26.8</td><td class="num">23.6</td><td class="num">15.5</td><td class="num">11.1</td></tr>
+            <tr><td><mark class="blue">Tertiary</mark></td><td class="num"><mark>54.8</mark></td><td class="num"><mark class="red">22.2</mark></td><td class="num">13.5</td><td class="num">8.9</td></tr>
+          </tbody>
+        </table>
+        <div class="trap">
+          <div class="trap-title">&#9888; MCQ Trap</div>
+          <p>The <strong>Primary sector</strong> gives the most employment (<mark class="red">54.2%</mark>) but contributes the least to GSVA (<mark class="red">18.3%</mark>) — the classic low-productivity-agriculture trap. Tertiary is the opposite: highest GSVA share (<mark>54.8%</mark>) with modest employment share (<mark class="red">22.2%</mark>).</p>
+        </div>
+        <h4>Agriculture Share in GSVA</h4>
+        <ul>
+          <li>At Current Prices: <mark>22.5%</mark> (includes price rise)</li>
+          <li>At Constant Prices: <mark class="red">18.3%</mark> (inflation adjusted)</li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#128176;</span> Per Capita Income (2024&ndash;25)</h3>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="label">At Current Prices</div><div class="value mono"><mark>₹76,490</mark></div></div>
+          <div class="stat-card"><div class="label">At Constant Prices</div><div class="value mono"><mark class="red">₹40,973</mark></div></div>
+          <div class="stat-card"><div class="label">Per Capita NSDP</div><div class="value mono"><mark>₹36,342</mark></div></div>
+        </div>
+        <p>National comparison: Bihar's per-capita GSDP is <mark class="red">37.3%</mark> of India's per-capita GDP.</p>
+        <p class="sub" style="font-size:13px;color:var(--ink-soft);"><em>Note (as annotated in source): comparator states for per-capita income discussions — <mark class="green">Karnataka</mark>, <mark class="green">Tamil Nadu</mark>, <mark class="green">Haryana</mark>.</em></p>
+
+        <h4>District-wise Per Capita Income</h4>
+        <div class="two-col">
+          <table class="ledger">
+            <caption>Most Prosperous Districts</caption>
+            <thead><tr><th>Rank</th><th>District</th><th>Per Capita Income</th></tr></thead>
+            <tbody>
+              <tr><td><mark class="green">1</mark></td><td><mark class="green">Patna</mark></td><td class="num"><mark>₹1,31,332</mark></td></tr>
+              <tr><td><mark class="green">2</mark></td><td><mark class="green">Begusarai</mark></td><td class="num"><mark>₹61,566</mark></td></tr>
+              <tr><td><mark class="green">3</mark></td><td><mark class="green">Munger</mark></td><td class="num"><mark>₹54,469</mark></td></tr>
+            </tbody>
+          </table>
+          <table class="ledger">
+            <caption>Least Prosperous Districts</caption>
+            <thead><tr><th>Rank</th><th>District</th></tr></thead>
+            <tbody>
+              <tr><td><mark class="red">38</mark></td><td><mark class="red">Sheohar</mark></td></tr>
+              <tr><td><mark class="red">37</mark></td><td><mark class="red">Araria</mark></td></tr>
+              <tr><td><mark class="red">36</mark></td><td><mark class="red">Sitamarhi</mark></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#127974;</span> Investment &amp; Capital Formation</h3>
+        <div class="stat-grid">
+          <div class="stat-card green"><div class="label"><mark class="blue">Gross Fixed Capital Formation</mark></div><div class="value mono"><mark>₹34,905 Cr</mark></div><div class="sub"><mark>3.5%</mark> of GSDP</div></div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#128200;</span> Inflation — September 2025 (Table 2)</h3>
+        <div class="barviz">
+          <div class="bar-row"><div class="bl">Rural Bihar</div><div class="bar-track"><div class="bar-fill" style="width:40%;background:var(--maroon);justify-content:flex-start;padding-left:8px;"><span><mark class="red">&minus;0.8%</mark></span></div></div></div>
+          <div class="bar-row"><div class="bl">Urban Bihar</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:var(--gold);"><span><mark>0.8%</mark></span></div></div></div>
+          <div class="bar-row"><div class="bl">Combined Bihar</div><div class="bar-track"><div class="bar-fill" style="width:44%;background:var(--maroon-2);justify-content:flex-start;padding-left:8px;"><span><mark class="red">&minus;0.5%</mark></span></div></div></div>
+          <div class="bar-row"><div class="bl">All-India</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:var(--navy);"><span><mark>1.4%</mark></span></div></div></div>
+        </div>
+        <div class="trap">
+          <div class="trap-title">&#9888; MCQ Trap</div>
+          <p>Rural and Combined Bihar show <mark class="red">negative inflation (deflation)</mark> in Sept 2025, while Urban Bihar and All-India remain positive — do not assume all regions moved the same direction.</p>
+        </div>
+      </section>
+    </section>
+
+    <!-- ============ CHAPTER II ============ -->
+    <section class="page" id="ch2">
+      <div class="page-header">
+        <div><div class="chap-eyebrow">Chapter II</div><h2>State Finances</h2></div>
+        <div class="folio mono">Folio 002</div>
+      </div>
+
+      <section class="block">
+        <h3><span class="ico">&#128176;</span> Budget Overview 2024&ndash;25</h3>
+        <div class="stat-card" style="max-width:320px;"><div class="label">Total Expenditure</div><div class="value"><mark>₹2,81,939 Cr</mark></div></div>
+
+        <h4>Expenditure Breakdown (Table 3)</h4>
+        <div class="barviz">
+          <div class="bar-row"><div class="bl"><mark class="blue">Revenue Exp.</mark></div><div class="bar-track"><div class="bar-fill" style="width:77.7%;background:var(--navy);"><span><mark>77.7%</mark> · ₹2,19,015 Cr</span></div></div></div>
+          <div class="bar-row"><div class="bl"><mark class="blue">Capital Exp.</mark></div><div class="bar-track"><div class="bar-fill" style="width:22.3%;background:var(--gold);"><span><mark class="red">22.3%</mark> · ₹62,924 Cr</span></div></div></div>
+        </div>
+        <ul>
+          <li>Scheme Expenditure: <mark>39.9%</mark></li>
+          <li>Establishment &amp; Committed Expenditure: <mark class="red">60.1%</mark></li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#9878;</span> Fiscal Indicators</h3>
+        <div class="stat-grid">
+          <div class="stat-card maroon"><div class="label">Gross Fiscal Deficit</div><div class="value mono"><mark class="red">₹41,223 Cr</mark></div><div class="sub"><mark>4.2%</mark> of GSDP</div></div>
+          <div class="stat-card maroon"><div class="label">Outstanding Debt</div><div class="value mono"><mark class="red">₹3,74,134 Cr</mark></div><div class="sub"><mark>37.7%</mark> of GSDP — declining trend</div></div>
+          <div class="stat-card"><div class="label">Revenue Deficit</div><div class="value mono"><mark class="red">₹357 Cr</mark></div><div class="sub"><mark>0.036%</mark> of GSDP</div></div>
+        </div>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#128203;</span> Sectoral Expenditure Priority</h3>
+        <div class="flowchart">
+          <div class="flow-step gold">1. <mark class="blue">Social Services</mark><br><small>(Highest)</small></div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-step">2. <mark class="blue">General Services</mark></div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-step maroon">3. <mark class="blue">Economic Services</mark></div>
+        </div>
+        <p>Revenue Receipt Sources: <mark>73%</mark> from Centre, <mark class="red">27%</mark> from own sources.</p>
+      </section>
+    </section>
+
+    <!-- ============ CHAPTER III ============ -->
+    <section class="page" id="ch3">
+      <div class="page-header">
+        <div><div class="chap-eyebrow">Chapter III</div><h2>Agriculture and Allied Sectors</h2></div>
+        <div class="folio mono">Folio 003</div>
+      </div>
+
+      <section class="block">
+        <h3><span class="ico">&#127806;</span> Contribution &amp; Land Utilization</h3>
+        <div class="two-col">
+          <div class="stat-card"><div class="label">Contribution to GSVA (2024-25)</div><div class="value"><mark>22.4%</mark></div><div class="sub">Approx. <mark>1/4th</mark> of Bihar's economy</div></div>
+          <div class="stat-card green"><div class="label">Food Crop Cultivation</div><div class="value"><mark>95.2%</mark></div><div class="sub">Of total land area</div></div>
+        </div>
+        <p>Cereal production accounts for <mark>89.2%</mark> of the cultivated area.</p>
+        
+        <div class="scheme">
+          <div class="sname"><mark class="green">Fourth Agricultural Roadmap</mark></div>
+          <ul>
+            <li>Launched by <mark class="green">President Murmu</mark> in Patna</li>
+            <li>Total Investment: <mark>₹1.62 lakh crore</mark></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#127806;</span> Major Crops Performance</h3>
+        <p><strong>Crop Share in Production:</strong> Rice (<mark>40.7%</mark>), Wheat (<mark>32.1%</mark>), Maize (<mark>27.1%</mark>)</p>
+        <p><strong>Yield Ranking:</strong> <mark class="blue">Maize &gt; Wheat &gt; Rice</mark></p>
+
+        <table class="ledger">
+          <caption>Table 4: Crop-wise Yield and District Performance</caption>
+          <thead><tr><th>Crop</th><th>State Yield (kg/ha)</th><th>Highest Area &amp; Production</th><th>Highest Productivity</th></tr></thead>
+          <tbody>
+            <tr><td><mark class="blue">Rice</mark></td><td class="num"><mark>2,970</mark></td><td><mark class="green">Rohtas</mark></td><td><mark class="green">Rohtas</mark></td></tr>
+            <tr><td><mark class="blue">Wheat</mark></td><td class="num"><mark>3,344</mark></td><td><mark class="green">Rohtas</mark></td><td><mark class="green">Begusarai</mark></td></tr>
+            <tr><td><mark class="blue">Maize</mark></td><td class="num"><mark>6,913</mark></td><td><mark class="green">Purnea</mark></td><td><mark class="green">Araria</mark></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#128031;</span> Fisheries &amp; Horticulture</h3>
+        <p><strong>Top Fisheries Districts:</strong> 1. <mark class="green">Madhubani</mark>, 2. <mark class="green">West Champaran</mark>, 3. <mark class="green">Darbhanga</mark></p>
+        <p><strong>Horticulture Production (2023-24):</strong> <mark>~230 lakh tonnes</mark></p>
+        
+        <h4>GI-Tagged Products</h4>
+        <div class="pill-row">
+          <div class="pill"><mark class="blue">Magahi Paan</mark></div><div class="pill"><mark class="blue">Shahi Litchi</mark></div>
+          <div class="pill"><mark class="blue">Jardalu Mango</mark></div><div class="pill"><mark class="blue">Katarni Rice</mark></div>
+        </div>
+
+        <h4>Centres of Excellence</h4>
+        <ul>
+          <li><strong>Fruits:</strong> <mark class="green">Desari</mark> (Vaishali)</li>
+          <li><strong>Vegetables:</strong> <mark class="green">Chandi</mark> (Nalanda)</li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#127793;</span> Makhana &amp; Allied Development</h3>
+        <ul>
+          <li><strong>National Makhana Board:</strong> Located in <mark class="green">Purnea</mark></li>
+          <li>Bihar is the <mark class="green">4th largest</mark> honey producer.</li>
+        </ul>
+        <div class="scheme">
+          <div class="sname"><mark class="green">Makhana Roadmap Targets (by 2030-31)</mark></div>
+          <ul>
+            <li>Double cultivated area to <mark>&gt;70,000 hectares</mark></li>
+            <li>Quintuple (<mark>5x</mark>) exports</li>
+            <li>Raise seed replacement rate from <mark class="red">15%</mark> to <mark>50%</mark></li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#127793;</span> Seeds, Inputs &amp; Irrigation</h3>
+        
+        <div class="two-col">
+          <table class="ledger">
+            <caption>Table 5: Seed Replacement Rates (SRR)</caption>
+            <thead><tr><th>Crop</th><th>SRR (%)</th></tr></thead>
+            <tbody>
+              <tr><td><mark class="blue">Rice</mark></td><td class="num"><mark>50.9</mark></td></tr>
+              <tr><td><mark class="blue">Wheat</mark></td><td class="num"><mark>46.3</mark></td></tr>
+              <tr><td><mark class="blue">Mustard</mark></td><td class="num"><mark class="green">99.8</mark></td></tr>
+            </tbody>
+          </table>
+          <div>
+            <h4>Fertilizer Consumption</h4>
+            <ul>
+              <li>Total consumption increased by <mark>9.4%</mark></li>
+              <li>Per hectare consumption: <mark>192.3 kg/ha</mark></li>
+              <li>N:P:K ratio improved to <mark class="green">11:3:1</mark> (from 13:4:1)</li>
+            </ul>
+            <h4>Irrigation</h4>
+            <ul>
+              <li>Groundwater: <mark>65.0%</mark></li>
+              <li>Canal-based surface: <mark class="red">29.5%</mark></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="scheme">
+          <div class="sname">Key Schemes in Agriculture</div>
+          <ul>
+            <li><strong><mark class="green">Mukhyamantri Tivra Beej Vistar Yojana</mark>:</strong> <mark>90% subsidy</mark> on base/certified seeds. Covers <mark>half acre</mark> for rice/wheat.</li>
+            <li><strong><mark class="green">Seed Home Delivery</mark>:</strong> Bihar is the <mark class="green">first state in India</mark>. Uses <mark class="blue">Aadhaar-based</mark> biometric verification.</li>
+            <li><strong><mark class="green">Jaivik Corridor Yojana</mark>:</strong> <mark>13 districts</mark> along Ganges. <mark>₹24,500/acre</mark> in 3 instalments (up to 2.5 acres). <mark class="blue">C-2 certification</mark> underway.</li>
+            <li><strong>Potato Subsidy:</strong> <mark class="blue">Kufri Chipsona-1</mark> (processing potato) receives <mark>50% subsidy</mark>.</li>
+          </ul>
+        </div>
+      </section>
+    </section>
+
+    <!-- ============ CHAPTER IV ============ -->
+    <section class="page" id="ch4">
+      <div class="page-header">
+        <div><div class="chap-eyebrow">Chapter IV</div><h2>Enterprises Sector</h2></div>
+        <div class="folio mono">Folio 004</div>
+      </div>
+
+      <section class="block">
+        <h3><span class="ico">&#127974;</span> Industry &amp; Bihar Business Connect 2024</h3>
+        <div class="stat-grid">
+          <div class="stat-card green"><div class="label">MoUs Signed</div><div class="value"><mark>423</mark></div><div class="sub">Total value: <mark>₹1.81 lakh crore</mark></div></div>
+          <div class="stat-card"><div class="label">Share in India's Factories</div><div class="value"><mark class="red">1.30%</mark></div></div>
+        </div>
+        
+        <h4>Sugar Industry</h4>
+        <ul>
+          <li>Bihar is the <mark class="green">2nd largest</mark> sugar-producing state (after UP) in the sub-tropical region.</li>
+          <li>Average Recovery Rate: <mark class="red">9.75%</mark> (down from 10.16%).</li>
+          <li>Best Performing Mill: <mark class="green">Harinagar</mark> (West Champaran) - <mark>10.77%</mark> recovery.</li>
+          <li>Reopened Mill: <mark class="green">Riga</mark> (Sitamarhi).</li>
+          <li>Sugarcane Mechanisation Scheme: Supports <mark>33 types</mark> of machines.</li>
+        </ul>
+
+        <h4>Textile and Handloom</h4>
+        <ul>
+          <li>Textile production spans across <mark>14 districts</mark>.</li>
+          <li><strong><mark class="green">Bag Cluster</mark> (Muzaffarpur):</strong> <mark class="blue">PPP model</mark> established in <mark class="green">Bela Industrial Area</mark>.</li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#128188;</span> Entrepreneurship Schemes</h3>
+        <div class="scheme">
+          <div class="sname"><mark class="green">Mukhyamantri Udyami Yojana (MMUY)</mark></div>
+          <p>Provides a loan amount of <mark>₹10 lakh</mark> per beneficiary.</p>
+          <p><strong>Sub-schemes:</strong> SC/ST, EBC, Yuva, Mahila (including <mark class="blue">transgender</mark>), and Minority Udyami.</p>
+        </div>
+        <div class="scheme">
+          <div class="sname"><mark class="green">Bihar Laghu Udyami Yojana (BLUY)</mark></div>
+          <p>Targets small/micro entrepreneurs with a grant of <mark>₹2 lakh</mark> per beneficiary (<mark>100% grant</mark>, no repayment). Disbursed in <mark>3 instalments</mark> (₹50k + ₹1L + ₹50k) via <mark class="blue">DBT</mark>.</p>
+        </div>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#9992;</span> Tourism &amp; Wildlife Conservation</h3>
+        <table class="ledger">
+          <caption>Table 6: Tourism Statistics (Arrivals)</caption>
+          <thead><tr><th>Year</th><th>Domestic (lakh)</th><th>Foreign (lakh)</th><th>Total (lakh)</th></tr></thead>
+          <tbody>
+            <tr><td>2023</td><td class="num"><mark>815.9</mark></td><td class="num"><mark>5.47</mark></td><td class="num"><mark>821.3</mark></td></tr>
+            <tr><td>2024</td><td class="num"><mark class="red">653.4</mark></td><td class="num"><mark class="green">7.37</mark></td><td class="num"><mark class="red">660.8</mark></td></tr>
+          </tbody>
+        </table>
+
+        <table class="ledger">
+          <caption>Table 7: Major Tourism Development Projects</caption>
+          <thead><tr><th>Project</th><th>Location</th><th>Objective</th></tr></thead>
+          <tbody>
+            <tr><td><mark class="green">Punauradham</mark></td><td>Sitamarhi</td><td><mark class="blue">Ramayana circuit</mark> (Sita birthplace)</td></tr>
+            <tr><td><mark class="green">Takht Sri Harimandir Ji</mark></td><td>Patna Sahib</td><td>Sikh pilgrimage infrastructure</td></tr>
+            <tr><td><mark class="green">Singheshwar Dham</mark></td><td>Madhepura</td><td>Shiva temple development</td></tr>
+            <tr><td><mark class="green">Someshwarnath Temple</mark></td><td>Areraj (East Champaran)</td><td>Religious tourism</td></tr>
+          </tbody>
+        </table>
+
+        <h4>Wildlife Conservation</h4>
+        <ul>
+          <li><strong><mark class="green">Raniganj Biological Park</mark>:</strong> Araria (Bihar's <mark>3rd</mark> biological park).</li>
+          <li><strong>Funding Pattern:</strong> <mark class="blue">Project Tiger</mark> is <mark>60:40</mark> (Centre:State); <mark class="blue">Project Elephant</mark> is <mark>50:50</mark>.</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- ============ CHAPTER V ============ -->
+    <section class="page" id="ch5">
+      <div class="page-header">
+        <div><div class="chap-eyebrow">Chapter V</div><h2>Labour, Employment &amp; Skill Development</h2></div>
+        <div class="folio mono">Folio 005</div>
+      </div>
+
+      <section class="block">
+        <h3><span class="ico">&#128105;</span> Women Empowerment Schemes</h3>
+        <div class="scheme">
+          <div class="sname"><mark class="green">Mukhyamantri Mahila Rojgar Yojana</mark></div>
+          <p><strong>Objective:</strong> Women economic empowerment (Linked with <mark class="blue">JEEViKA SHGs</mark>). Target is <mark>1 woman per family</mark>.</p>
+          <ul>
+            <li><strong>Phase-1:</strong> <mark>₹10,000</mark> support per beneficiary. Covers <mark>1.56 crore</mark> women. Total outlay: <mark>₹15,600 crore</mark>.</li>
+            <li><strong>Phase-2 (Proposed):</strong> Up to <mark>₹2 lakh</mark> for enterprise expansion.</li>
+            <li><strong>Eligibility:</strong> <mark>18-60 years</mark>, non-taxpayer, not in government service.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#128218;</span> Skill Development</h3>
+        <ul>
+          <li><strong><mark class="green">Jananayak Karpuri Thakur Skill University</mark>:</strong> Focuses on training in <mark class="blue">Energy 4.0</mark> and <mark class="blue">Industry 4.0</mark> sectors to handle emerging sunrise sectors.</li>
+          <li><strong><mark class="green">Mukhyamantri Pratigya Yojana</mark>:</strong> Focuses on providing <mark class="blue">internships</mark> for the youth.</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- ============ CHAPTER VI ============ -->
+    <section class="page" id="ch6">
+      <div class="page-header">
+        <div><div class="chap-eyebrow">Chapter VI</div><h2>Physical Infrastructure</h2></div>
+        <div class="folio mono">Folio 006</div>
+      </div>
+
+      <section class="block">
+        <h3><span class="ico">&#128663;</span> Road Infrastructure</h3>
+        <div class="stat-grid">
+          <div class="stat-card"><div class="label">Total National Highways</div><div class="value"><mark>57</mark></div><div class="sub">Total length: <mark>6,389 km</mark></div></div>
+          <div class="stat-card"><div class="label">Share of India's Network</div><div class="value"><mark class="red">5.5%</mark></div></div>
+        </div>
+        <p><strong>Longest NH in Bihar:</strong> <mark class="blue">NH 27EW</mark> (East-West Corridor) routing from Porbandar (Gujarat) to Silchar (Assam). Length in Bihar is <mark>483 km</mark>.</p>
+        <p><strong>Rural Roads:</strong> Almost <mark>90% paved</mark>. The best performing district is <mark class="green">Sheikhpura</mark>.</p>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#128674;</span> Waterways &amp; Urban Transport</h3>
+        <h4>Jal Marg Vikas Project (JMVP)</h4>
+        <p>Supported by the <mark class="blue">World Bank</mark>. Includes <mark class="blue">National Waterway-1 (NW-1)</mark>: Ganga-Bhagirathi-Hooghly system.</p>
+        <p>Other National Waterways noted: <mark class="blue">NW-2</mark> (Brahmaputra), <mark class="blue">NW-3</mark> (West Coast Canal), <mark class="blue">NW-4</mark> (Godavari-Krishna).</p>
+
+        <div class="scheme">
+          <div class="sname"><mark class="green">PM e-Bus Sewa</mark></div>
+          <p><strong>Objective:</strong> Decarbonising urban transport.</p>
+          <ul>
+            <li>Total e-buses: <mark>400</mark></li>
+            <li>Coverage across <mark>6 cities</mark>: <mark class="green">Patna</mark>, <mark class="green">Bhagalpur</mark>, <mark class="green">Darbhanga</mark>, <mark class="green">Gaya</mark>, <mark class="green">Muzaffarpur</mark>, <mark class="green">Purnea</mark>.</li>
+          </ul>
+        </div>
+      </section>
+    </section>
+
+    <!-- ============ CHAPTER VII ============ -->
+    <section class="page" id="ch7">
+      <div class="page-header">
+        <div><div class="chap-eyebrow">Chapter VII</div><h2>E-Governance</h2></div>
+        <div class="folio mono">Folio 007</div>
+      </div>
+
+      <section class="block">
+        <h3><span class="ico">&#128241;</span> Digital Connectivity (Table 8)</h3>
+        <table class="ledger">
+          <caption>Connectivity Comparison</caption>
+          <thead><tr><th>Indicator</th><th>Bihar</th><th>India</th></tr></thead>
+          <tbody>
+            <tr><td>Tele-Density (per 100 people)</td><td class="num"><mark class="red">57.23</mark></td><td class="num"><mark>85.04</mark></td></tr>
+            <tr><td>Internet Density</td><td class="num"><mark class="red">43.10</mark></td><td class="num"><mark>68.63</mark></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#128187;</span> Key E-Governance Initiatives</h3>
+        
+        <h4>Emergency and Safety Systems</h4>
+        <ul>
+          <li><strong><mark class="blue">ERSS – Dial 112</mark>:</strong> Emergency Response Support System.</li>
+          <li><strong><mark class="blue">Cyber Prahar</mark>:</strong> <mark>1930 Helpline</mark> and <mark>44</mark> cyber thanas.</li>
+          <li><strong><mark class="blue">FASTER System</mark>:</strong> Instant e-authenticated judicial orders (bail etc.) from Court to Jail.</li>
+        </ul>
+
+        <h4>Agricultural and Disaster Management Apps</h4>
+        <ul>
+          <li><strong><mark class="blue">BeFIQR App</mark> (2023):</strong> Real-time flood/irrigation alerts.</li>
+          <li><strong><mark class="blue">SACHET Platform</mark>:</strong> Location-specific alerts for lightning and rainfall.</li>
+        </ul>
+
+        <h4>Governance and Citizen Services</h4>
+        <ul>
+          <li><strong><mark class="blue">Bhu-Samadhan Portal</mark>:</strong> Land dispute resolution.</li>
+          <li><strong><mark class="blue">e-Nibandhan</mark>:</strong> Fully operational in all <mark>141 offices</mark>; allows registering property from home.</li>
+          <li><strong><mark class="blue">AI Nibhrit</mark>:</strong> AI-driven masking of <mark class="blue">Aadhaar/PAN</mark>.</li>
+          <li><strong><mark class="green">Right to Service Act</mark>:</strong> Bihar was the <mark class="green">2nd state in India</mark> (after MP) to enact the RTS Act. Service delivery timeline is <mark>7-15 days</mark>.</li>
+        </ul>
+
+        <h4>Welfare, Health &amp; Environment</h4>
+        <ul>
+          <li><strong><mark class="blue">Mission Vihaan</mark>:</strong> Monitors welfare, medical, and probation activities.</li>
+          <li><strong><mark class="blue">Dhawa Dal App</mark>:</strong> Rescue child labourers.</li>
+          <li><strong><mark class="blue">BHAVYA</mark>:</strong> Bihar Health Application Visionary Yojana for All; integrates <mark>13,900+</mark> health facilities.</li>
+          <li><strong><mark class="blue">e-Parivesh Portal</mark>:</strong> Single-window hub for environmental/forest clearances.</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- ============ CHAPTER VIII ============ -->
+    <section class="page" id="ch8">
+      <div class="page-header">
+        <div><div class="chap-eyebrow">Chapter VIII</div><h2>Power Sector</h2></div>
+        <div class="folio mono">Folio 008</div>
+      </div>
+
+      <section class="block">
+        <h3><span class="ico">&#9889;</span> Overview &amp; Indicators</h3>
+        <p><strong>Motto:</strong> <mark class="blue">"Niche Machhli Upar Bijli"</mark></p>
+        
+        <table class="ledger">
+          <caption>Table 9: Power Sector Indicators</caption>
+          <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Consumer Base</td><td class="num"><mark>2.16 Crore</mark></td></tr>
+            <tr><td>AT&amp;C Losses</td><td class="num"><mark>15.54%</mark> <span style="font-size:11px">(down from <mark class="red">42.99%</mark> in 2013-14)</span></td></tr>
+            <tr><td>Per Capita Consumption</td><td class="num"><mark>374 kWh</mark></td></tr>
+            <tr><td>Electrification</td><td><mark class="green">100%</mark> (since 2018)</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#128267;</span> Power Generation (Table 10)</h3>
+        <p>Total Commissioned Capacity: <mark>11,764 MW</mark></p>
+        <div class="barviz">
+          <div class="bar-row"><div class="bl">Thermal (7,743 MW)</div><div class="bar-track"><div class="bar-fill" style="width:66.0%;background:var(--maroon);"><span><mark>66.0%</mark></span></div></div></div>
+          <div class="bar-row"><div class="bl">Solar (1,922 MW)</div><div class="bar-track"><div class="bar-fill" style="width:16.0%;background:var(--gold);"><span><mark>16.0%</mark></span></div></div></div>
+          <div class="bar-row"><div class="bl">Hydro (1,356 MW)</div><div class="bar-track"><div class="bar-fill" style="width:12.0%;background:var(--hi-blue);color:#000;"><span><mark>12.0%</mark></span></div></div></div>
+          <div class="bar-row"><div class="bl">Wind (699 MW)</div><div class="bar-track"><div class="bar-fill" style="width:6.57%;background:var(--hi-green);color:#000;"><span><mark>6.57%</mark></span></div></div></div>
+        </div>
+        <p>Bagasse &amp; Biomass account for just <mark class="red">44 MW (0.004%)</mark>.</p>
+
+        <h4>Energy Targets &amp; Nuclear Sites</h4>
+        <ul>
+          <li><strong>By 2029-30:</strong> Renewable Energy target of <mark>23.9 GW</mark>; Energy Storage of <mark>6.1 GWh</mark>.</li>
+          <li><strong>Nuclear Sites Under Assessment:</strong> <mark class="green">Shambhuganj</mark> (Banka), <mark class="green">Darauli</mark> (Siwan), <mark class="green">Rajauli</mark> (Nawada).</li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#128161;</span> Consumer Services &amp; Schemes</h3>
+        <ul>
+          <li><strong><mark class="blue">SUVIDHA App</mark>:</strong> Connections, billing, complaints, electricity theft reporting.</li>
+          <li><strong><mark>1912</mark>:</strong> Toll-free Helpline.</li>
+          <li><strong>Awareness Campaign:</strong> <mark class="blue">"Voltage Bhaiya – Bijli Didi"</mark></li>
+        </ul>
+
+        <div class="scheme">
+          <div class="sname"><mark class="green">Mukhyamantri Vidyut Upbhokta Sahayata Yojana (MVUSY)</mark></div>
+          <ul>
+            <li>Free electricity up to <mark>125 units/month</mark> for all domestic consumers (urban + rural).</li>
+            <li>Effective from <mark>July 2025</mark>.</li>
+            <li><mark>~90%</mark> of 1.89 Cr domestic consumers (~1.67 Cr households) get a <mark class="green">zero bill</mark>.</li>
+            <li>Beyond 125 units: Subsidised rate shown as <mark class="blue">"State Government Grant"</mark>.</li>
+            <li>Promotes <mark>1.1 kW</mark> rooftop solar.</li>
+          </ul>
+        </div>
+        
+        <h4>Major Solar Project</h4>
+        <p><strong><mark class="green">Kajra Solar Power Plant</mark> (Lakhisarai):</strong> Solar generation capacity of <mark>495 MW</mark>. Features a <mark class="blue">Battery Energy Storage System (BESS)</mark> of <mark>301 MWh</mark>. Expected completion in <mark>January 2027</mark>.</p>
+        <p><strong>Digital Access:</strong> <mark class="green">100%</mark> of Gram Panchayats (<mark>8,053</mark> total) onboarded for digital access, beating the national average of <mark>95.8%</mark>.</p>
+      </section>
+    </section>
+
+    <!-- ============ CHAPTER IX ============ -->
+    <section class="page" id="ch9">
+      <div class="page-header">
+        <div><div class="chap-eyebrow">Chapter IX</div><h2>Rural Development</h2></div>
+        <div class="folio mono">Folio 009</div>
+      </div>
+
+      <section class="block">
+        <h3><span class="ico">&#127790;</span> <mark class="blue">JEEViKA</mark> &amp; Livelihoods</h3>
+        <p><strong><mark class="blue">JEEViKA</mark>:</strong> Bihar Rural Livelihoods Promotion Society. Launched as a pilot in <mark>2006</mark>, full implementation in <mark>2011</mark> under NRLM. It is an autonomous society aided by the <mark class="blue">World Bank</mark>.</p>
+        <div class="stat-grid">
+          <div class="stat-card green"><div class="label">Families Organised</div><div class="value"><mark>1.40 Cr</mark></div></div>
+          <div class="stat-card"><div class="label">Self-Help Groups</div><div class="value"><mark>11.03 L</mark></div></div>
+          <div class="stat-card"><div class="label">Cumulative Bank Credit</div><div class="value"><mark>₹59,156 Cr</mark></div></div>
+        </div>
+
+        <div class="scheme">
+          <div class="sname"><mark class="green">Satat Jeevikoparjan Yojana (SJY)</mark></div>
+          <p>Targets households dependent on country liquor/toddy and ultra-poor SC/ST families. Provides support of up to <mark>₹2 lakh</mark> for self-employment.</p>
+        </div>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#127960;</span> Urbanization &amp; Industrial Development</h3>
+        <ul>
+          <li>Bihar's urban percentage is <mark class="red">11.3%</mark>, making it the <mark class="red">2nd lowest nationally</mark> (after Himachal Pradesh).</li>
+          <li><strong><mark class="green">Bag Cluster</mark> (Muzaffarpur):</strong> Located in Bela Industrial Area using a <mark class="blue">Public-Private Partnership (PPP)</mark> model.</li>
+        </ul>
+
+        <h4>Public Distribution System (PDS)</h4>
+        <p><strong><mark class="blue">Fortified Rice</mark>:</strong> Blended at a ratio of <mark>1:100</mark> (fortified to regular rice) to combat malnutrition. Enriched with <mark class="blue">Iron, Folic acid, and Vitamin B-12</mark>.</p>
+      </section>
+    </section>
+
+    <!-- ============ CHAPTER X ============ -->
+    <section class="page" id="ch10">
+      <div class="page-header">
+        <div><div class="chap-eyebrow">Chapter X</div><h2>Urban Development</h2></div>
+        <div class="folio mono">Folio 010</div>
+      </div>
+
+      <section class="block">
+        <h3><span class="ico">&#127970;</span> Smart Cities &amp; Infrastructure</h3>
+        <p><strong>Bihar's Smart Cities (<mark>4</mark> out of 100 national):</strong> <mark class="green">Patna</mark>, <mark class="green">Muzaffarpur</mark>, <mark class="green">Bihar Sharif</mark>, <mark class="green">Bhagalpur</mark>.</p>
+
+        <h4><mark class="green">Patna Metro Rail</mark></h4>
+        <ul>
+          <li>Tripartite Agreement: Central Government + State Government + Patna Metro Rail Corporation Ltd.</li>
+          <li><strong>Funding Pattern:</strong> Centre <mark>20%</mark> (equity), State <mark>20%</mark> (equity), External multilateral loan <mark>60%</mark>.</li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#127961;</span> Urban Local Bodies (Table 11)</h3>
+        <table class="ledger">
+          <caption>ULB Classification (2024-25)</caption>
+          <thead><tr><th>Category</th><th>Number</th></tr></thead>
+          <tbody>
+            <tr><td><mark class="blue">Municipal Corporations</mark></td><td class="num"><mark>19</mark></td></tr>
+            <tr><td><mark class="blue">Nagar Parishads</mark></td><td class="num"><mark>89</mark></td></tr>
+            <tr><td><mark class="blue">Nagar Panchayats</mark></td><td class="num"><mark>156</mark></td></tr>
+            <tr><td><strong>Total</strong></td><td class="num"><strong><mark>264</mark></strong></td></tr>
+          </tbody>
+        </table>
+        <p><strong>Recent Updates:</strong> <mark class="green">Sonpur</mark> (Saran) upgraded to Nagar Parishad. New Nagar Panchayats include <mark class="green">Madhuban</mark> (East Champaran), <mark class="green">Jamhor</mark>, and <mark class="green">Madanpur</mark> (Aurangabad).</p>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#128200;</span> Aspirational Development &amp; Education</h3>
+        <div class="two-col">
+          <div>
+            <h4><mark class="green">Aspirational Districts</mark> (NITI Aayog)</h4>
+            <p><mark>13</mark> out of 112 national districts are in Bihar: Araria, Aurangabad, Banka, Begusarai, Gaya, Jamui, Katihar, Khagaria, Muzaffarpur, Nawada, Purnea, Sheikhpura, Sitamarhi.</p>
+          </div>
+          <div>
+            <h4><mark class="green">Aspirational Blocks Programme</mark></h4>
+            <p><mark>61 blocks</mark> across <mark>27 districts</mark> in Bihar (out of 500 in India).</p>
+          </div>
+        </div>
+        <h4><mark class="green">PM SHRI Schools</mark></h4>
+        <p><mark>836 schools</mark> in Bihar (out of 14,500+ in India) launched under the <mark class="blue">National Education Policy (NEP)</mark>.</p>
+      </section>
+    </section>
+
+    <!-- ============ CHAPTER XI ============ -->
+    <section class="page" id="ch11">
+      <div class="page-header">
+        <div><div class="chap-eyebrow">Chapter XI</div><h2>Financial Institutions</h2></div>
+        <div class="folio mono">Folio 011</div>
+      </div>
+
+      <section class="block">
+        <h3><span class="ico">&#127974;</span> Banking Sector Performance</h3>
+        <table class="ledger">
+          <caption>Table 12: Credit-Deposit Ratio Comparison (2024-25)</caption>
+          <thead><tr><th>Region</th><th>Credit-Deposit Ratio (%)</th></tr></thead>
+          <tbody>
+            <tr><td>Bihar</td><td class="num"><mark class="red">53.5</mark></td></tr>
+            <tr><td>All-India</td><td class="num"><mark>80.1</mark></td></tr>
+            <tr><td>Tamil Nadu (Highest)</td><td class="num"><mark class="green">120.5</mark></td></tr>
+          </tbody>
+        </table>
+        <p><strong>District-wise Performance:</strong> Highest is <mark class="green">Purnea</mark>, Lowest is <mark class="red">Munger</mark>.</p>
+        
+        <h4><mark class="blue">Non-Performing Assets (NPA)</mark></h4>
+        <ul>
+          <li>NPA Rate (2024-25): <mark class="red">7.6%</mark></li>
+          <li>Riskiest portfolio: <mark class="red">Agricultural loans</mark>.</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- ============ CHAPTER XII ============ -->
+    <section class="page" id="ch12">
+      <div class="page-header">
+        <div><div class="chap-eyebrow">Chapter XII</div><h2>Human Development</h2></div>
+        <div class="folio mono">Folio 012</div>
+      </div>
+
+      <section class="block">
+        <h3><span class="ico">&#128104;&#8205;&#128105;&#8205;&#128103;</span> Budget &amp; Health Indicators</h3>
+        <p>Human development sectors receive <mark>39.5%</mark> of total budget allocation (2024-25). Gender budget expenditure increased <mark>3.45×</mark> between 2018-19 and 2023-24.</p>
+        
+        <table class="ledger">
+          <caption>Table 13: Health Indicators</caption>
+          <thead><tr><th>Indicator</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td><mark class="blue">Total Fertility Rate (TFR)</mark> - NFHS-5</td><td class="num"><mark>2.98</mark> <span style="font-size:11px">(declined from <mark class="red">4.0</mark> in NFHS-3)</span></td></tr>
+            <tr><td><mark class="blue">Life Expectancy</mark> (2019-23)</td><td class="num"><mark>69.3 years</mark></td></tr>
+            <tr><td><mark class="blue">Infant Mortality Rate (IMR)</mark> 2023</td><td class="num"><mark class="red">23</mark> <span style="font-size:11px">per 1000 live births</span></td></tr>
+            <tr><td><mark class="blue">Maternal Mortality Ratio (MMR)</mark> 2021-23</td><td class="num"><mark class="red">104</mark> <span style="font-size:11px">per lakh</span></td></tr>
+            <tr><td><mark class="blue">Institutional Delivery</mark> - NFHS-5</td><td class="num"><mark>76.2%</mark></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#129309;</span> Social Welfare &amp; Education</h3>
+        <div class="scheme">
+          <div class="sname"><mark class="green">CM Vridhjan Pension Yojana</mark></div>
+          <p>Pension amount increased to <mark>₹1,100/month</mark> (previously ₹400-500 based on age).</p>
+        </div>
+        <div class="scheme">
+          <div class="sname"><mark class="green">Bihar Student Credit Card Yojana (BSCCY)</mark></div>
+          <p>Provides <mark class="blue">collateral-free loans</mark> up to <mark>₹4 lakh</mark> at <mark class="green">Zero interest</mark> (previously 4%).</p>
+        </div>
+        <h4>Women's Safety</h4>
+        <p><strong><mark class="blue">181 Women's Helpline</mark>:</strong> <mark>24-hour service</mark> providing support for domestic violence, trafficking, and harassment.</p>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#127970;</span> <mark class="green">Buniyad Centres (BISPS)</mark></h3>
+        <p><mark>101</mark> physical centres across sub-divisions targeting <mark class="blue">Senior citizens</mark> and <mark class="blue">Persons with Disabilities (PwDs)</mark>.</p>
+        <ul>
+          <li><strong>Services:</strong> Physiotherapy, Disability assessment, Assistive devices distribution, Counselling.</li>
+          <li><strong>Legal Framework:</strong> Implements the <mark class="blue">Maintenance and Welfare of Parents and Senior Citizens Act, 2007</mark>. Operated under the Social Welfare Department.</li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- ============ CHAPTER XIII ============ -->
+    <section class="page" id="ch13">
+      <div class="page-header">
+        <div><div class="chap-eyebrow">Chapter XIII</div><h2>Child Development</h2></div>
+        <div class="folio mono">Folio 013</div>
+      </div>
+
+      <section class="block">
+        <h3><span class="ico">&#128118;</span> Nutrition Status &amp; Schemes</h3>
+        <table class="ledger">
+          <caption>Table 14: Child Malnutrition Indicators (NFHS-5)</caption>
+          <thead><tr><th>Indicator</th><th>Percentage (%)</th></tr></thead>
+          <tbody>
+            <tr><td><mark class="blue">Stunting</mark> (under-5, height/age)</td><td class="num"><mark class="red">42.9</mark></td></tr>
+            <tr><td><mark class="blue">Wasting</mark> (under-5, weight/height)</td><td class="num"><mark class="red">22.9</mark></td></tr>
+            <tr><td><mark class="blue">Underweight</mark> (under-5)</td><td class="num"><mark class="red">41.0</mark></td></tr>
+            <tr><td><mark class="blue">Anaemia</mark> (6-59 months)</td><td class="num"><mark class="red">69.4</mark></td></tr>
+          </tbody>
+        </table>
+
+        <div class="scheme">
+          <div class="sname"><mark class="green">Bicycle Schemes</mark></div>
+          <ul>
+            <li><strong><mark class="green">CM Balika Cycle Yojana</mark>:</strong> Launched <mark>2007-08</mark> for <mark class="blue">Class IX girls</mark>. Provides <mark>₹3,000</mark> via DBT.</li>
+            <li><strong><mark class="green">Balak Cycle Yojana</mark>:</strong> Launched <mark>2009-10</mark> for boys.</li>
+            <li><strong>International Recognition:</strong> <mark class="green">Zambia</mark> and <mark class="green">Mali</mark> adopted similar programmes inspired by Bihar to improve girls' access to education.</li>
+          </ul>
+        </div>
+      </section>
+    </section>
+
+    <!-- ============ CHAPTER XIV ============ -->
+    <section class="page" id="ch14">
+      <div class="page-header">
+        <div><div class="chap-eyebrow">Chapter XIV</div><h2>Environment, Climate Change &amp; Disaster Mgt.</h2></div>
+        <div class="folio mono">Folio 014</div>
+      </div>
+
+      <section class="block">
+        <h3><span class="ico">&#127783;</span> Rainfall &amp; Environment</h3>
+        <table class="ledger">
+          <caption>Table 15: Rainfall Statistics 2024</caption>
+          <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Average Annual Rainfall</td><td class="num"><mark>801.4 mm</mark></td></tr>
+            <tr><td>Highest Rainfall District</td><td><mark class="green">Kishanganj</mark>: <span class="num"><mark>2,152.6 mm</mark></span></td></tr>
+            <tr><td>Lowest Rainfall District</td><td><mark class="red">Vaishali</mark>: <span class="num"><mark class="red">690.3 mm</mark></span></td></tr>
+          </tbody>
+        </table>
+
+        <h4>Wildlife &amp; Water Resources</h4>
+        <ul>
+          <li><strong><mark class="green">Raniganj Biological Park</mark>:</strong> Araria (Bihar's <mark>third zoological park</mark>).</li>
+          <li><strong><mark class="green">Nawanagar Rescue-cum-Rehabilitation Centre</mark>:</strong> Buxar district (Conservation facility for <mark class="blue">Blackbuck</mark>).</li>
+          <li><strong><mark class="green">Barnar Reservoir Scheme</mark>:</strong> Jamui district.</li>
+        </ul>
+      </section>
+
+      <section class="block">
+        <h3><span class="ico">&#9888;</span> Disaster Management</h3>
+        <p><strong><mark class="blue">Sendai Framework</mark> Alignment:</strong> Bihar was the <mark class="green">first state in India</mark> to formulate a roadmap aligned with the Sendai Framework for Disaster Risk Reduction, demonstrating a proactive approach to preparedness.</p>
+      </section>
+    </section>
+
+    <footer class="page-footer">
+      End of The Bihar Ledger — Compiled for BPSC Prelims
+    </footer>
+  </main>
+</div>
+
+<script>
+  // Simple script to handle tab switching
+  const tabs = document.querySelectorAll('.tab');
+  const pages = document.querySelectorAll('.page');
+  const sidebar = document.getElementById('sidebar');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.dataset.target;
+      if(!targetId) return;
+      
+      tabs.forEach(t => t.classList.remove('active'));
+      pages.forEach(p => p.classList.remove('active'));
+      
+      tab.classList.add('active');
+      document.getElementById(targetId).classList.add('active');
+      
+      if(window.innerWidth <= 900) {
+        sidebar.classList.remove('open');
+      }
+    });
+  });
+
+  document.getElementById('menuBtn').addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPSC Prelims Mock Test - Current Affairs</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        p.instructions {
+            text-align: center;
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        .question-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .question-text {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .option-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s, border 0.3s;
+        }
+        .option-btn:hover {
+            background: #dfe6e9;
+        }
+        .feedback {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        .correct-ans {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .wrong-ans {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>BPSC Prelims 2025-26 Current Affairs MCQ Test</h1>
+    <p class="instructions">Click on an option to reveal the correct answer and explanation. This test covers changed names, festivals, appointments, and obituaries.</p>
+
+    <div id="quiz-container"></div>
+
+    <script>
+        const questions = [
+            {
+                q: "Consider the following changed names of major places/institutions recently updated for 2025-26. Which of the following pairs is NOT correctly matched?",
+                options: [
+                    "A) Raj Bhavan (Bihar) - Lok Bhavan",
+                    "B) Karmashree Scheme (West Bengal) - Mahatma Shree",
+                    "C) Central Secretariat - Seva Teerth",
+                    "D) Mount Abu - Aburaj"
+                ],
+                correct: 2,
+                explanation: "Correct Answer: C. The Central Secretariat's changed name is 'Kartavya Bhavan', while the Prime Minister's Office (PMO) was changed to 'Seva Teerth'. Raj Bhavan (Bihar) is Lok Bhavan, Karmashree Scheme is Mahatma Shree, and Mount Abu is Aburaj."
+            },
+            {
+                q: "What is the new name designated for the 'Ratapani Tiger Reserve' located in Madhya Pradesh?",
+                options: [
+                    "A) Ahilyabai Holkar Tiger Reserve",
+                    "B) Vishnu Shridhar Wakankar Tiger Reserve",
+                    "C) Valmiki Tiger Reserve",
+                    "D) Shri Vijaya puram Tiger Reserve"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. The Ratapani Tiger Reserve in Madhya Pradesh has been renamed to 'Vishnu Shridhar Wakankar Tiger Reserve'."
+            },
+            {
+                q: "Match the following historical structures/places with their newly changed names:\n1. Fort William\n2. Old Parliament House\n3. Port Blair\n4. Darbar Hall\n\na. Samvidhan Sadan\nb. Shri Vijaya puram\nc. Gantantra Mandap\nd. Vijay Durg",
+                options: [
+                    "A) 1-d, 2-a, 3-b, 4-c",
+                    "B) 1-b, 2-a, 3-d, 4-c",
+                    "C) 1-d, 2-c, 3-b, 4-a",
+                    "D) 1-c, 2-a, 3-b, 4-d"
+                ],
+                correct: 0,
+                explanation: "Correct Answer: A. Fort William is 'Vijay Durg', Old Parliament House is 'Samvidhan Sadan', Port Blair is 'Shri Vijaya puram', and Darbar Hall is 'Gantantra Mandap'."
+            },
+            {
+                q: "Identify the correctly matched pairs regarding other changed names:\n1. Kerala - Keralam\n2. Mahatma Gandhi NREGA - VB-G RAM G\n3. Aurangabad Railway Station - Chhatrapati Sambhajinagar Railway Station\n4. Ashok Hall - Ashok Mandap",
+                options: [
+                    "A) 1, 2 and 3 only",
+                    "B) 2, 3 and 4 only",
+                    "C) 1, 3 and 4 only",
+                    "D) 1, 2, 3 and 4"
+                ],
+                correct: 3,
+                explanation: "Correct Answer: D. All are correct. Kerala is Keralam, Mahatma Gandhi NREGA is VB-G RAM G, Aurangabad Rly Station is Chhatrapati Sambhajinagar, and Ashok Hall is Ashok Mandap. (Additionally, Ahmednagar Rly Station is Ahilyanagar, Pune Airport is Sant Tukaram Maharaj Airport, and Gaya is Gaya Ji)."
+            },
+            {
+                q: "Which state hosts the newly highlighted 'Rajkiya Itkhori Mahotsav' (Feb 2026) and 'Sarhul Festival 2026'?",
+                options: [
+                    "A) Bihar",
+                    "B) Jharkhand",
+                    "C) Chhattisgarh",
+                    "D) Odisha"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Both the Rajkiya Itkhori Mahotsav and the Sarhul Festival are celebrated in Jharkhand."
+            },
+            {
+                q: "Which of the following festivals is incorrectly matched with its state/UT?",
+                options: [
+                    "A) Lavender Festival & Kheer Bhawani Festival - Jammu and Kashmir",
+                    "B) Ambubachi Fair - Guwahati (Assam)",
+                    "C) Hemis Festival - Ladakh",
+                    "D) Gangamma Jatara Festival - Telangana"
+                ],
+                correct: 3,
+                explanation: "Correct Answer: D. The Gangamma Jatara Festival is held in Andhra Pradesh (Tirupati), not Telangana. Other notable matches include Thrissur Pooram (Kerala), Cheiraoba (Manipur), 28th SARAS Aajeevika Mela (Gurugram), and 30th Divya Kala Mela (Dehradun)."
+            },
+            {
+                q: "Who among the following has been appointed as the Chief Justice of the Patna High Court?",
+                options: [
+                    "A) Justice Suryakant",
+                    "B) Justice Meenakshi Madan Rai",
+                    "C) Dr. Manoj Kumar Sharma",
+                    "D) Justice K. Vinod Chandran"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Justice Meenakshi Madan Rai has been appointed as the Chief Justice of the Patna High Court."
+            },
+            {
+                q: "Who holds the distinction of being the first Indian Member of Parliament (MP) from the LGBTQ community (TMC -> RS Lawyer)?",
+                options: [
+                    "A) Menaka Guruswamy",
+                    "B) Bhumika Shrestha",
+                    "C) Yashasvi Solanki",
+                    "D) Aastha Poonia"
+                ],
+                correct: 0,
+                explanation: "Correct Answer: A. Menaka Guruswamy is noted as the first Indian MP from the LGBTQ community."
+            },
+            {
+                q: "Match the National Appointments correctly:\n1. Nitin Nabin\n2. Shishir Sinha\n3. Dr. Saibal Chattopadhyay\n4. Dr. R. Balasubramanian and Dr. Joram Aniya\n\na. First Vice Chancellor of Rajgir Sports University\nb. Full-time Members of NITI Aayog\nc. National Working President of BJP\nd. Chairman of the National Statistical Commission",
+                options: [
+                    "A) 1-c, 2-a, 3-d, 4-b",
+                    "B) 1-a, 2-c, 3-b, 4-d",
+                    "C) 1-c, 2-a, 3-b, 4-d",
+                    "D) 1-b, 2-a, 3-c, 4-d"
+                ],
+                correct: 0,
+                explanation: "Correct Answer: A. Nitin Nabin is the National Working President of BJP, Shishir Sinha is 1st VC of Rajgir Sports Univ, Dr. Saibal Chattopadhyay chairs the NSC, and Dr. R. Balasubramanian & Dr. Joram Aniya are NITI Aayog full-time members."
+            },
+            {
+                q: "Which of the following appointments in the Indian corporate and regulatory sector is correct?",
+                options: [
+                    "A) Punya Salila Srivastava - Chairman of FSSAI",
+                    "B) Shailesh Chandra - MD and CEO of Tata Motors",
+                    "C) Mithun Manhas - New President of BCCI",
+                    "D) All of the above"
+                ],
+                correct: 3,
+                explanation: "Correct Answer: D. All statements are correct. Additionally, Brij Bhushan Agarwal was appointed President of the Indian Chamber of Commerce (ICC)."
+            },
+            {
+                q: "Regarding key constitutional and executive positions in India, which match is incorrect?",
+                options: [
+                    "A) Comptroller and Auditor General (CAG) - K. Sanjay Murthy",
+                    "B) Attorney General of India - Tushar Mehta",
+                    "C) Chief Election Commissioner of India - Gyanesh Kumar",
+                    "D) Chief Information Commissioner of India - Raj Kumar Goyal"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. Tushar Mehta is the Solicitor General of India. The Attorney General of India is R. Venkataramani."
+            },
+            {
+                q: "Who has been appointed as the Chairman of the 16th Finance Commission and 23rd Law Commission respectively?",
+                options: [
+                    "A) Arvind Panagariya and Dinesh Maheshwari",
+                    "B) Tuhin Kanta Pandey and V. Ramasubramanian",
+                    "C) Sanjay Malhotra and Dr. Ajay Kumar",
+                    "D) Ashok Kumar Lahiri and Ravneet Kaur"
+                ],
+                correct: 0,
+                explanation: "Correct Answer: A. Arvind Panagariya chairs the 16th Finance Commission and Dinesh Maheshwari chairs the 23rd Law Commission."
+            },
+            {
+                q: "Which of the following defense and security appointments is NOT correctly matched?",
+                options: [
+                    "A) Chief of Defense Staff (CDS) - Lt. General N.S. Raja Subramani",
+                    "B) Chief of Naval Staff - Admiral Krishna Swaminathan",
+                    "C) Chief of the Air Staff - Air Chief Marshal Amar Preet Singh",
+                    "D) Defense Secretary - Govind Mohan"
+                ],
+                correct: 3,
+                explanation: "Correct Answer: D. Govind Mohan is the Home Secretary. The Defense Secretary is Rajesh K. Singh."
+            },
+            {
+                q: "Identify the correct combinations of Indian Secretaries/Heads:\n1. Cabinet Secretary - T. V. Somanathan\n2. Foreign Secretary - Vikram Misri\n3. ISRO Chairman - Dr. V. Narayanan\n4. Governor of RBI - Sanjay Malhotra",
+                options: [
+                    "A) 1 and 2 only",
+                    "B) 1, 2 and 3 only",
+                    "C) 3 and 4 only",
+                    "D) 1, 2, 3 and 4"
+                ],
+                correct: 3,
+                explanation: "Correct Answer: D. All options are correctly matched."
+            },
+            {
+                q: "Who is the newly appointed Speaker of the 18th Lok Sabha and the Leader of the Opposition in the 18th Lok Sabha?",
+                options: [
+                    "A) Om Birla and Rahul Gandhi",
+                    "B) Om Birla and JP Nadda",
+                    "C) C.P. Radhakrishnan and Sanjay Jaiswal",
+                    "D) JP Nadda and Rahul Gandhi"
+                ],
+                correct: 0,
+                explanation: "Correct Answer: A. Om Birla is the Speaker, and Rahul Gandhi is the Leader of the Opposition. (JP Nadda is Leader of the House in Rajya Sabha; C.P. Radhakrishnan is Rajya Sabha Chairman; Sanjay Jaiswal is Estimate Committee Chairman)."
+            },
+            {
+                q: "Identify the correct Chairpersons for the following Commissions:\n1. National Human Rights Commission - V. Ramasubramanian\n2. Competition Commission of India (CCI) - Ravneet Kaur\n3. National Commission for Women - Vijaya Kishore Rahatkar\n4. National Medical Commission - Dr. Abhijat Chandrakant Sheth",
+                options: [
+                    "A) 1 and 3 only",
+                    "B) 2 and 4 only",
+                    "C) 1, 2, and 3 only",
+                    "D) All are correct"
+                ],
+                correct: 3,
+                explanation: "Correct Answer: D. All are correct. Also note: UPSC (Dr. Ajay Kumar), CBSE (Lokhande Prashant Sitaram), NTA (Abhishek Singh), SSC (S. Gopalakrishnan), SEBI (Tuhin Kanta Pandey)."
+            },
+            {
+                q: "NITI Aayog has seen major changes. Who are the newly appointed CEO and Vice Chairman respectively?",
+                options: [
+                    "A) Nidhi Chhibber and Ashok Kumar Lahiri",
+                    "B) B.V.R. Subrahmanyam and Suman Bery",
+                    "C) Parvathaneni Harish and Sriram Krishnan",
+                    "D) Sanjay Malhotra and T.V. Somanathan"
+                ],
+                correct: 0,
+                explanation: "Correct Answer: A. Nidhi Chhibber is the CEO of NITI Aayog, and Ashok Kumar Lahiri is the Vice Chairman."
+            },
+            {
+                q: "Match the International Prime Ministers/Presidents appointed in 2025-26:\n1. Mette Frederiksen\n2. Ali Falih Kadhim al-Zaidi\n3. Peter Magyar\n4. Rumen Radev\n\na. Prime Minister of Iraq\nb. Prime Minister of Denmark\nc. Prime Minister of Bulgaria\nd. Prime Minister of Hungary",
+                options: [
+                    "A) 1-b, 2-a, 3-d, 4-c",
+                    "B) 1-a, 2-b, 3-c, 4-d",
+                    "C) 1-b, 2-d, 3-a, 4-c",
+                    "D) 1-c, 2-a, 3-b, 4-d"
+                ],
+                correct: 0,
+                explanation: "Correct Answer: A. Mette Frederiksen (Denmark), Ali Falih Kadhim al-Zaidi (Iraq), Peter Magyar (Hungary), Rumen Radev (Bulgaria)."
+            },
+            {
+                q: "Consider the following international heads of state/organizations:\n1. Mark Rutte - New Secretary General of NATO\n2. Dilma Rousseff - President of BRICS Bank\n3. John Ternus - New CEO of Apple Company\n4. Yoweri Kaguta Museveni - President of Uganda",
+                options: [
+                    "A) 1 and 2 only",
+                    "B) 3 and 4 only",
+                    "C) 1, 2 and 4 only",
+                    "D) 1, 2, 3 and 4"
+                ],
+                correct: 3,
+                explanation: "Correct Answer: D. All statements are true. Ismail Omar Guelleh is the President of Djibouti, and Robert Francis Prevost is the New Pope of the Roman Catholic Church."
+            },
+            {
+                q: "Who is currently serving as the President of the 80th and 81st sessions of the United Nations General Assembly (UNGA) respectively?",
+                options: [
+                    "A) Annalena Baerbock and Khalilur Rahman",
+                    "B) Shoko Ishikawa and Shirley Botchwe",
+                    "C) Dr. Ngozi Okonjo-Iweala and Claudia Sheinbaum",
+                    "D) Sanae Takaichi and Jennifer Simons"
+                ],
+                correct: 0,
+                explanation: "Correct Answer: A. Annalena Baerbock (80th session) and Khalilur Rahman (Foreign Minister of Bangladesh - 81st session)."
+            },
+            {
+                q: "Several 'First Women' appointments made headlines. Which of the following is incorrectly matched?",
+                options: [
+                    "A) Sanae Takaichi - Japan's first female Prime Minister",
+                    "B) Prof. Uma Kanjilal - First woman Vice-Chancellor of IGNOU",
+                    "C) Claudia Sheinbaum - First female President of Mexico",
+                    "D) Kirsty Coventry - First female President of Suriname"
+                ],
+                correct: 3,
+                explanation: "Correct Answer: D. Kirsty Coventry is the first female and African President of the International Olympic Committee (IOC). Jennifer Simons is the first female President of Suriname."
+            },
+            {
+                q: "Match the following Indian women pioneers:\n1. RM Nachammai\n2. Aastha Poonia\n3. Yashasvi Solanki\n4. Lt Gen Sadhana Saxena Nair\n\na. First female naval officer appointed ADC to President\nb. First female DG of Indian Medical Services\nc. First female head of Kaiga nuclear power plant\nd. First female fighter pilot of the Navy",
+                options: [
+                    "A) 1-c, 2-d, 3-a, 4-b",
+                    "B) 1-d, 2-c, 3-b, 4-a",
+                    "C) 1-c, 2-a, 3-d, 4-b",
+                    "D) 1-b, 2-d, 3-a, 4-c"
+                ],
+                correct: 0,
+                explanation: "Correct Answer: A. RM Nachammai (Kaiga), Aastha Poonia (Navy fighter pilot), Yashasvi Solanki (ADC to Prez), Lt Gen Sadhana Saxena Nair (DG Indian Medical Services)."
+            },
+            {
+                q: "Which Indian-origin individuals are matched correctly with their new global positions?\n1. Mangala Kuppa - CIO of the US Department of Labor\n2. Kunal Shah - New Global Head of WhatsApp\n3. Kiran Mani - OpenAI's Managing Director of Asia-Pacific and Japan\n4. Sriram Krishnan - Senior Policy Advisor for AI at the White House",
+                options: [
+                    "A) 1 and 2 only",
+                    "B) 2 and 4 only",
+                    "C) 1, 3 and 4 only",
+                    "D) 1, 2, 3 and 4"
+                ],
+                correct: 3,
+                explanation: "Correct Answer: D. All are correct. In addition, Dr. Bimal N. Patel is a Judge at ITLOS, Dr. Srinivas Mukkamala is the 1st Indian-origin Prez of the American Medical Association, and Anita Anand is the Foreign Minister of Canada."
+            },
+            {
+                q: "Consider the following political leaders of neighboring and other countries:\n1. Masoud Pezeshkian - President of Iran\n2. Mohammad Shahabuddin - President of Bangladesh\n3. Ram Chandra Paudel - President of Nepal\n4. Volodymyr Zelenskyy - President of Ukraine",
+                options: [
+                    "A) 1 and 3 only",
+                    "B) 1, 2 and 3 only",
+                    "C) 2, 3 and 4 only",
+                    "D) All of the above"
+                ],
+                correct: 3,
+                explanation: "Correct Answer: D. All matches are correct. (Additionally: Tarique Rahman is PM of Bangladesh, Balendra Shah is PM of Nepal, Yulia Svyrydenko is PM of Ukraine, Delcy Rodriguez is Interim Prez of Venezuela, and Christine Kangaloo/Kamla Persad Bissessar are Prez/PM of Trinidad and Tobago)."
+            },
+            {
+                q: "Which of the following obituaries/personalities is NOT correctly matched with their field/achievement?",
+                options: [
+                    "A) Pahlaj Nihalani - Veteran Indian filmmaker",
+                    "B) François Englert - Co-discoverer of the double helix structure of DNA",
+                    "C) Subhash Kashyap - Constitutional expert",
+                    "D) Bashir Badr - Renowned Urdu poet"
+                ],
+                correct: 1,
+                explanation: "Correct Answer: B. François Englert theorized the Higgs boson (God particle). James Watson is the co-discoverer of the double helix structure of DNA."
+            },
+            {
+                q: "Match the following prominent personalities who passed away recently with their field:\n1. Madhav Gadgil\n2. Suman Kalyanpur\n3. Vinod Kumar Shukla\n4. Kumari Kamala\n\na. Playback singer\nb. Bharatanatyam Dancer\nc. Environmentalist\nd. Litterateur",
+                options: [
+                    "A) 1-c, 2-a, 3-d, 4-b",
+                    "B) 1-a, 2-c, 3-b, 4-d",
+                    "C) 1-d, 2-a, 3-c, 4-b",
+                    "D) 1-c, 2-d, 3-a, 4-b"
+                ],
+                correct: 0,
+                explanation: "Correct Answer: A. Madhav Gadgil (Environmentalist), Suman Kalyanpur (Playback singer), Vinod Kumar Shukla (Litterateur), Kumari Kamala (Bharatanatyam Dancer)."
+            },
+            {
+                q: "Which famous personality known as the 'Tree Lady' of Singapore recently passed away?",
+                options: [
+                    "A) Kirtida Mekani",
+                    "B) Khaleda Zia",
+                    "C) Ramdarsh Mishra",
+                    "D) Shirley Botchwe"
+                ],
+                correct: 0,
+                explanation: "Correct Answer: A. Kirtida Mekani was famous as the 'Tree Lady' of Singapore. (Khaleda Zia was Former PM of Bangladesh, Ramdarsh Mishra was a Hindi litterateur, and Dharmendra is the legendary Bollywood actor listed in obituaries)."
+            },
+            {
+                q: "Prime Minister Narendra Modi recently received several highest state honors. Which country awarded him the 'Guardian of the Blue Horizon'?",
+                options: [
+                    "A) Slovakia",
+                    "B) Sweden",
+                    "C) Israel",
+                    "D) Seychelles"
+                ],
+                correct: 3,
+                explanation: "Correct Answer: D. Seychelles awarded PM Modi the 'Guardian of the Blue Horizon'. (Slovakia: Order of the White Double Cross; Sweden: Royal Order of the Polar Star; Israel: Speaker of the Knesset Medal)."
+            }
+        ];
+
+        const container = document.getElementById('quiz-container');
+
+        questions.forEach((qData, qIndex) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question-card';
+
+            const qText = document.createElement('div');
+            qText.className = 'question-text';
+            qText.innerText = `Q${qIndex + 1}. ${qData.q}`;
+            questionDiv.appendChild(qText);
+
+            const optionsList = document.createElement('ul');
+            optionsList.className = 'options-list';
+
+            const feedbackDiv = document.createElement('div');
+            feedbackDiv.className = 'feedback';
+
+            qData.options.forEach((optText, optIndex) => {
+                const optBtn = document.createElement('button');
+                optBtn.className = 'option-btn';
+                optBtn.innerText = optText;
+                
+                optBtn.onclick = function() {
+                    // Disable all buttons in this question
+                    const allBtns = optionsList.querySelectorAll('.option-btn');
+                    allBtns.forEach(btn => btn.disabled = true);
+
+                    // Check if correct
+                    if (optIndex === qData.correct) {
+                        this.classList.add('correct-ans');
+                        feedbackDiv.innerHTML = "<strong>Correct!</strong><br>" + qData.explanation;
+                        feedbackDiv.style.color = "#155724";
+                        feedbackDiv.style.backgroundColor = "#d4edda";
+                    } else {
+                        this.classList.add('wrong-ans');
+                        // highlight the right one too
+                        allBtns[qData.correct].classList.add('correct-ans');
+                        feedbackDiv.innerHTML = "<strong>Incorrect!</strong><br>" + qData.explanation;
+                        feedbackDiv.style.color = "#721c24";
+                        feedbackDiv.style.backgroundColor = "#f8d7da";
+                    }
+                    feedbackDiv.style.display = 'block';
+                };
+                
+                const li = document.createElement('li');
+                li.appendChild(optBtn);
+                optionsList.appendChild(li);
+            });
+
+            questionDiv.appendChild(optionsList);
+            questionDiv.appendChild(feedbackDiv);
+            container.appendChild(questionDiv);
+        });
+    </script>
+</body>
+</html>

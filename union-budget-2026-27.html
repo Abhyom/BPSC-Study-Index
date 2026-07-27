@@ -1,0 +1,2239 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Union Budget 2026–27 · The Ledger</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+			rel="stylesheet"
+		/>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+		<style>
+			:root {
+				--ink: #1c1712;
+				--parchment: #f6efdd;
+				--parchment2: #eee3c4;
+				--parchment3: #e4d6ae;
+				--navy: #122f4c;
+				--navy2: #1b4468;
+				--maroon: #7c2233;
+				--gold: #b8862b;
+				--forest: #2e5c43;
+				--sky: #2b6e8f;
+				--hl-y: #fce98a;
+				--hl-b: #b9e1f7;
+				--hl-g: #c3e9ce;
+				--hl-r: #f6bcbc;
+				--line: #c9b98a;
+			}
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+			body {
+				font-family: "Inter", sans-serif;
+				background: var(--parchment);
+				color: var(--ink);
+				background-image:
+					linear-gradient(
+						var(--parchment) 0px,
+						var(--parchment) 100%
+					),
+					repeating-linear-gradient(
+						0deg,
+						transparent,
+						transparent 27px,
+						rgba(28, 23, 18, 0.035) 28px
+					);
+			}
+			.hl {
+				padding: 0.05em 0.3em;
+				border-radius: 3px;
+				box-decoration-break: clone;
+				-webkit-box-decoration-break: clone;
+				font-weight: 600;
+			}
+			.hl-y {
+				background: var(--hl-y);
+			}
+			.hl-b {
+				background: var(--hl-b);
+			}
+			.hl-g {
+				background: var(--hl-g);
+			}
+			.hl-r {
+				background: var(--hl-r);
+			}
+			.mono {
+				font-family: "JetBrains Mono", monospace;
+			}
+			h1,
+			h2,
+			h3,
+			h4 {
+				font-family: "Fraunces", serif;
+				letter-spacing: -0.01em;
+			}
+
+			/* ---------- LAYOUT ---------- */
+			.app {
+				display: flex;
+				min-height: 100vh;
+			}
+			.sidebar {
+				width: 280px;
+				flex-shrink: 0;
+				background: var(--navy);
+				background-image: radial-gradient(
+					circle at 20% 10%,
+					rgba(255, 255, 255, 0.05),
+					transparent 40%
+				);
+				color: #efe6cc;
+				position: sticky;
+				top: 0;
+				height: 100vh;
+				overflow-y: auto;
+				display: flex;
+				flex-direction: column;
+			}
+			.sidebar-head {
+				padding: 26px 22px 18px;
+				border-bottom: 1px solid rgba(239, 230, 204, 0.15);
+			}
+			.sidebar-head .kicker {
+				font-size: 11px;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--gold);
+				font-weight: 700;
+			}
+			.sidebar-head h1 {
+				font-size: 26px;
+				line-height: 1.15;
+				margin-top: 6px;
+				color: #fff;
+			}
+			.sidebar-head .sub {
+				font-size: 12.5px;
+				color: #b9c6d4;
+				margin-top: 8px;
+				line-height: 1.5;
+			}
+			.seal {
+				margin: 18px 22px;
+				padding: 16px;
+				border: 1.5px dashed rgba(184, 134, 43, 0.6);
+				border-radius: 10px;
+				text-align: center;
+				background: rgba(255, 255, 255, 0.03);
+			}
+			.seal .amt {
+				font-family: "Fraunces", serif;
+				font-weight: 700;
+				font-size: 22px;
+				color: var(--gold);
+			}
+			.seal .lbl {
+				font-size: 10.5px;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: #b9c6d4;
+				margin-top: 3px;
+			}
+			nav {
+				padding: 6px 14px 18px;
+				flex: 1;
+			}
+			nav button {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				width: 100%;
+				text-align: left;
+				background: none;
+				border: none;
+				color: #dce4ec;
+				font-family: "Inter", sans-serif;
+				font-size: 13.5px;
+				font-weight: 600;
+				padding: 11px 12px;
+				border-radius: 8px;
+				cursor: pointer;
+				margin-bottom: 2px;
+				transition:
+					background 0.15s ease,
+					color 0.15s ease;
+			}
+			nav button .n {
+				font-family: "JetBrains Mono", monospace;
+				font-size: 10.5px;
+				color: var(--gold);
+				width: 18px;
+				flex-shrink: 0;
+			}
+			nav button:hover {
+				background: rgba(255, 255, 255, 0.06);
+			}
+			nav button.active {
+				background: var(--maroon);
+				color: #fff;
+			}
+			nav button.active .n {
+				color: #f6d6d6;
+			}
+			.sidebar-foot {
+				padding: 14px 22px 20px;
+				font-size: 10.5px;
+				color: #8da0b2;
+				border-top: 1px solid rgba(239, 230, 204, 0.12);
+			}
+
+			main {
+				flex: 1;
+				min-width: 0;
+				padding: 44px 52px 90px;
+				max-width: 1180px;
+			}
+			.panel {
+				display: none;
+				animation: fade 0.35s ease;
+			}
+			.panel.active {
+				display: block;
+			}
+			@keyframes fade {
+				from {
+					opacity: 0;
+					transform: translateY(6px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.eyebrow {
+				font-size: 11.5px;
+				letter-spacing: 0.14em;
+				text-transform: uppercase;
+				color: var(--maroon);
+				font-weight: 700;
+				margin-bottom: 8px;
+			}
+			.panel h2.title {
+				font-size: 36px;
+				color: var(--navy);
+				margin-bottom: 6px;
+			}
+			.panel .dek {
+				font-size: 15px;
+				color: #4b463d;
+				max-width: 760px;
+				margin-bottom: 34px;
+				line-height: 1.6;
+			}
+
+			/* ---------- CARDS / SECTIONS ---------- */
+			.section {
+				margin-bottom: 40px;
+			}
+			.section-head {
+				display: flex;
+				align-items: baseline;
+				gap: 12px;
+				margin-bottom: 16px;
+				border-bottom: 2px solid var(--ink);
+				padding-bottom: 8px;
+			}
+			.section-head h3 {
+				font-size: 19px;
+				color: var(--ink);
+			}
+			.section-head .tag {
+				font-family: "JetBrains Mono", monospace;
+				font-size: 10.5px;
+				background: var(--navy);
+				color: #fff;
+				padding: 3px 8px;
+				border-radius: 20px;
+			}
+
+			.card {
+				background: var(--parchment2);
+				border: 1px solid var(--line);
+				border-radius: 10px;
+				padding: 18px 20px;
+				box-shadow: 2px 3px 0 rgba(28, 23, 18, 0.06);
+			}
+			.grid2 {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 16px;
+			}
+			.grid3 {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 16px;
+			}
+			.grid4 {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 14px;
+			}
+			@media (max-width: 900px) {
+				.grid2,
+				.grid3,
+				.grid4 {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			.stat-box {
+				background: #fff;
+				border: 1px solid var(--line);
+				border-left: 5px solid var(--maroon);
+				border-radius: 8px;
+				padding: 14px 16px;
+			}
+			.stat-box .v {
+				font-family: "JetBrains Mono", monospace;
+				font-weight: 700;
+				font-size: 19px;
+				color: var(--navy);
+			}
+			.stat-box .k {
+				font-size: 12px;
+				color: #5a5346;
+				margin-top: 2px;
+			}
+
+			.bullet-list {
+				list-style: none;
+			}
+			.bullet-list li {
+				position: relative;
+				padding-left: 20px;
+				margin-bottom: 10px;
+				line-height: 1.55;
+				font-size: 14px;
+			}
+			.bullet-list li::before {
+				content: "◆";
+				position: absolute;
+				left: 0;
+				top: 1px;
+				color: var(--gold);
+				font-size: 10px;
+			}
+			.bullet-list li ul {
+				margin-top: 8px;
+			}
+			.bullet-list li ul li::before {
+				content: "→";
+				color: var(--sky);
+				font-size: 11px;
+			}
+
+			/* trap box */
+			.trap {
+				background: var(--hl-r);
+				border: 1.5px solid var(--maroon);
+				border-radius: 8px;
+				padding: 12px 16px;
+				margin-top: 14px;
+				font-size: 13px;
+			}
+			.trap .t-lbl {
+				font-weight: 800;
+				color: var(--maroon);
+				font-size: 11px;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				margin-bottom: 4px;
+				display: flex;
+				align-items: center;
+				gap: 6px;
+			}
+
+			/* comparison table */
+			table.ledger {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 13.5px;
+				background: #fff;
+				border-radius: 8px;
+				overflow: hidden;
+				border: 1px solid var(--line);
+			}
+			table.ledger th {
+				background: var(--navy);
+				color: #fff;
+				text-align: left;
+				padding: 10px 14px;
+				font-size: 11.5px;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+			}
+			table.ledger td {
+				padding: 10px 14px;
+				border-top: 1px solid var(--parchment3);
+			}
+			table.ledger tr:nth-child(even) td {
+				background: var(--parchment);
+			}
+			table.ledger td.num {
+				font-family: "JetBrains Mono", monospace;
+				font-weight: 600;
+				color: var(--navy);
+			}
+
+			/* flow diagram */
+			.flow {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+				align-items: stretch;
+				margin: 16px 0;
+			}
+			.flow-box {
+				flex: 1;
+				min-width: 150px;
+				background: #fff;
+				border: 1.5px solid var(--navy);
+				border-radius: 8px;
+				padding: 12px 14px;
+				font-size: 13px;
+				position: relative;
+				font-weight: 600;
+			}
+			.flow-box .num {
+				display: block;
+				font-family: "JetBrains Mono", monospace;
+				color: var(--gold);
+				font-size: 11px;
+				margin-bottom: 3px;
+			}
+			.flow-arrow {
+				display: flex;
+				align-items: center;
+				color: var(--gold);
+				font-size: 20px;
+				padding: 0 2px;
+			}
+			@media (max-width: 900px) {
+				.flow {
+					flex-direction: column;
+				}
+				.flow-arrow {
+					transform: rotate(90deg);
+					width: fit-content;
+					margin: 0 auto;
+				}
+			}
+
+			.kartavya-tree {
+				display: grid;
+				grid-template-columns: 220px 1fr;
+				gap: 0;
+			}
+			.kt-root {
+				background: var(--maroon);
+				color: #fff;
+				border-radius: 10px;
+				padding: 16px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				font-family: "Fraunces", serif;
+				font-weight: 700;
+				font-size: 15px;
+				grid-row: 1/-1;
+				margin-right: 16px;
+				position: relative;
+			}
+			.kt-branches {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+			}
+			.kt-item {
+				background: #fff;
+				border: 1px solid var(--line);
+				border-left: 4px solid var(--forest);
+				border-radius: 8px;
+				padding: 10px 14px;
+				font-size: 13.5px;
+			}
+			@media (max-width: 900px) {
+				.kartavya-tree {
+					grid-template-columns: 1fr;
+				}
+				.kt-root {
+					margin-right: 0;
+					margin-bottom: 12px;
+				}
+			}
+
+			.chart-wrap {
+				background: #fff;
+				border: 1px solid var(--line);
+				border-radius: 10px;
+				padding: 18px;
+			}
+			.chart-wrap canvas {
+				max-height: 280px;
+			}
+
+			.pillar-ring {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 12px;
+			}
+			.pillar {
+				background: linear-gradient(135deg, var(--navy), var(--navy2));
+				color: #fff;
+				border-radius: 10px;
+				padding: 14px 16px;
+				font-size: 13px;
+				font-weight: 600;
+				display: flex;
+				gap: 10px;
+				align-items: flex-start;
+			}
+			.pillar .pnum {
+				font-family: "JetBrains Mono", monospace;
+				color: var(--gold);
+				font-weight: 700;
+			}
+
+			.legend-row {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 14px;
+				margin-bottom: 26px;
+				padding: 12px 16px;
+				background: #fff;
+				border: 1px solid var(--line);
+				border-radius: 8px;
+				font-size: 12.5px;
+			}
+			.legend-row span.dot {
+				display: inline-block;
+				width: 10px;
+				height: 10px;
+				border-radius: 3px;
+				margin-right: 6px;
+				vertical-align: middle;
+			}
+
+			.note {
+				font-size: 12px;
+				color: #6b6455;
+				margin-top: 10px;
+				font-style: italic;
+			}
+
+			footer.foot {
+				margin-top: 60px;
+				padding-top: 20px;
+				border-top: 1px solid var(--line);
+				font-size: 12px;
+				color: #7a7364;
+			}
+
+			/* mobile nav toggle */
+			.mobile-bar {
+				display: none;
+			}
+			@media (max-width: 840px) {
+				.app {
+					flex-direction: column;
+				}
+				.sidebar {
+					position: relative;
+					height: auto;
+					width: 100%;
+				}
+				main {
+					padding: 28px 20px 70px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="app">
+			<aside class="sidebar">
+				<div class="sidebar-head">
+					<div class="kicker">
+						EduTeria Digest · Jul 2025–Jun 2026
+					</div>
+					<h1>The Ledger</h1>
+					<div class="sub">
+						Union Budget 2026–27, mapped for revision — every
+						figure, scheme and safeguard from the source digest,
+						organised for quick recall.
+					</div>
+				</div>
+				<div class="seal">
+					<div class="amt">₹53,47,315 Cr</div>
+					<div class="lbl">Total Budget 2026–27</div>
+				</div>
+				<nav id="nav"></nav>
+				<div class="sidebar-foot">
+					Presented 1 Feb 2026 · FM Nirmala Sitharaman · Theme: "Yuva
+					Shakti-driven Budget"
+				</div>
+			</aside>
+
+			<main>
+				<!-- ============ OVERVIEW ============ -->
+				<section class="panel" id="panel-overview">
+					<div class="eyebrow">Section 00 · Foundations</div>
+					<h2 class="title">Overview & Vision</h2>
+					<p class="dek">
+						The scaffolding of the whole budget — occasion, theme,
+						guiding principles, growth pillars, and the three
+						<span class="hl hl-y">Kartavya</span> that everything
+						else in this site hangs off.
+					</p>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>The setting</h3>
+							<span class="tag">PYQ-STYLE FACTS</span>
+						</div>
+						<div class="grid2">
+							<div class="card">
+								<ul class="bullet-list">
+									<li>
+										Presented on the occasion of
+										<span class="hl hl-g"
+											>Magha Purnima</span
+										>
+										and the birth anniversary of
+										<span class="hl hl-g">Guru Ravidas</span
+										>.
+									</li>
+									<li>
+										Presented in Parliament on
+										<span class="hl hl-b"
+											>1st February 2026</span
+										>
+										by Finance Minister
+										<span class="hl hl-g"
+											>Nirmala Sitharaman</span
+										>.
+									</li>
+									<li>
+										Theme:
+										<span class="hl hl-y"
+											>"Yuva Shakti-driven Budget."</span
+										>
+									</li>
+									<li>
+										Total budget size:
+										<span class="hl hl-b"
+											>₹53.5 lakh crore (₹53,47,315
+											crore)</span
+										>.
+									</li>
+								</ul>
+							</div>
+							<div class="card">
+								<div
+									class="stat-box"
+									style="margin-bottom: 10px"
+								>
+									<div class="v">₹35,33,150 Cr (66.07%)</div>
+									<div class="k">Revenue Receipts</div>
+								</div>
+								<div
+									class="stat-box"
+									style="
+										margin-bottom: 10px;
+										border-left-color: var(--forest);
+									"
+								>
+									<div class="v">₹18,14,165 Cr (33.93%)</div>
+									<div class="k">Capital Receipts</div>
+								</div>
+								<div
+									class="stat-box"
+									style="
+										margin-bottom: 10px;
+										border-left-color: var(--sky);
+									"
+								>
+									<div class="v">₹41,25,494 Cr (77.15%)</div>
+									<div class="k">Revenue Expenditure</div>
+								</div>
+								<div
+									class="stat-box"
+									style="border-left-color: var(--gold)"
+								>
+									<div class="v">₹12,21,821 Cr (22.85%)</div>
+									<div class="k">Capital Expenditure</div>
+								</div>
+							</div>
+						</div>
+						<div class="trap">
+							<div class="t-lbl">⚠ MCQ Trap</div>
+							Total receipts = total expenditure =
+							<span class="hl hl-r">₹53,47,315 crore</span> — the
+							two always match by construction; a trap option will
+							quote receipts ≠ expenditure.
+						</div>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>
+								Three guiding principles — vision for Viksit
+								Bharat
+							</h3>
+							<span class="tag">FLOWCHART</span>
+						</div>
+						<div class="flow">
+							<div class="flow-box">
+								<span class="num">I</span>Action over
+								Ambivalence
+							</div>
+							<div class="flow-arrow">→</div>
+							<div class="flow-box">
+								<span class="num">II</span>Reform over Rhetoric
+							</div>
+							<div class="flow-arrow">→</div>
+							<div class="flow-box">
+								<span class="num">III</span>People over Populism
+							</div>
+						</div>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Six pillars of growth & development</h3>
+							<span class="tag">RING</span>
+						</div>
+						<div class="pillar-ring">
+							<div class="pillar">
+								<span class="pnum">01</span>Sustaining economic
+								growth
+							</div>
+							<div class="pillar">
+								<span class="pnum">02</span>Strengthening the
+								foundations of growth
+							</div>
+							<div class="pillar">
+								<span class="pnum">03</span>People-centric
+								development
+							</div>
+							<div class="pillar">
+								<span class="pnum">04</span>Trust-based
+								governance
+							</div>
+							<div class="pillar">
+								<span class="pnum">05</span>Ease of doing
+								business & ease of living
+							</div>
+							<div class="pillar">
+								<span class="pnum">06</span>Fiscal matters
+							</div>
+						</div>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>The three Kartavya — government's "Sankalp"</h3>
+							<span class="tag">CORE STRUCTURE</span>
+						</div>
+						<p style="font-size: 13.5px; margin-bottom: 14px">
+							The government's
+							<span class="hl hl-y">Sankalp</span> is to focus on
+							the poor, underprivileged and disadvantaged,
+							delivered through three broad
+							<span class="hl hl-y">Kartavya</span> — each is a
+							full tab in this site.
+						</p>
+						<div class="grid3">
+							<div
+								class="card"
+								style="border-top: 4px solid var(--maroon)"
+							>
+								<strong>First Kartavya</strong>
+								<p style="font-size: 13px; margin-top: 6px">
+									Accelerate and sustain economic growth — 6
+									interventions, from manufacturing to energy
+									security.
+								</p>
+							</div>
+							<div
+								class="card"
+								style="border-top: 4px solid var(--forest)"
+							>
+								<strong>Second Kartavya</strong>
+								<p style="font-size: 13px; margin-top: 6px">
+									Fulfil the aspirations of our people and
+									build their capacity — education, health,
+									infrastructure, tourism.
+								</p>
+							</div>
+							<div
+								class="card"
+								style="border-top: 4px solid var(--sky)"
+							>
+								<strong>Third Kartavya</strong>
+								<p style="font-size: 13px; margin-top: 6px">
+									Vision of Sabka Sath, Sabka Vikas — farmers,
+									Divyangjan, mental health, Purvodaya & the
+									North-East.
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- ============ DEFICITS ============ -->
+				<section class="panel" id="panel-deficits">
+					<div class="eyebrow">Section 01 · Fiscal Math</div>
+					<h2 class="title">Deficits & Where the Money Moves</h2>
+					<p class="dek">
+						RE 2025–26 vs BE 2026–27 side by side, plus the two
+						headline pie charts every budget MCQ draws from: the
+						rupee's source and its destination.
+					</p>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Deficit comparison — RE 25-26 vs BE 26-27</h3>
+							<span class="tag">LEDGER TABLE</span>
+						</div>
+						<table class="ledger">
+							<tr>
+								<th>Deficit type</th>
+								<th>RE 2025–26</th>
+								<th>BE 2026–27</th>
+							</tr>
+							<tr>
+								<td><strong>Fiscal Deficit</strong></td>
+								<td class="num">4.4% of GDP · ₹15,58,492 Cr</td>
+								<td class="num">4.3% of GDP · ₹16,95,768 Cr</td>
+							</tr>
+							<tr>
+								<td><strong>Revenue Deficit</strong></td>
+								<td class="num">1.5% of GDP · ₹5,26,764 Cr</td>
+								<td class="num">1.5% of GDP · ₹5,92,344 Cr</td>
+							</tr>
+							<tr>
+								<td>
+									<strong>Effective Revenue Deficit</strong>
+								</td>
+								<td class="num">0.6% of GDP · ₹2,18,613 Cr</td>
+								<td class="num">0.3% of GDP · ₹99,642 Cr</td>
+							</tr>
+							<tr>
+								<td><strong>Primary Deficit</strong></td>
+								<td class="num">0.8% of GDP · ₹2,84,154 Cr</td>
+								<td class="num">0.7% of GDP · ₹2,91,796 Cr</td>
+							</tr>
+						</table>
+						<div class="trap">
+							<div class="t-lbl">⚠ MCQ Trap</div>
+							Fiscal deficit % of GDP
+							<span class="hl hl-r">falls</span> from 4.4% to
+							4.3%, but the absolute rupee amount still
+							<span class="hl hl-r">rises</span> (nominal GDP
+							grows faster) — don't assume % down means ₹ down.
+						</div>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Rupee comes from / rupee goes to</h3>
+							<span class="tag">TOP SHARES</span>
+						</div>
+						<div class="legend-row">
+							<span
+								><span
+									class="dot"
+									style="background: #b8862b"
+								></span
+								>Borrowings & Other Liabilities — 24%</span
+							>
+							<span
+								><span
+									class="dot"
+									style="background: #7c2233"
+								></span
+								>Income Tax — 21%</span
+							>
+							<span
+								><span
+									class="dot"
+									style="background: #2b6e8f"
+								></span
+								>Corporation Tax — 18%</span
+							>
+							<span
+								><span
+									class="dot"
+									style="background: #2e5c43"
+								></span
+								>GST & Other Taxes — 15%</span
+							>
+						</div>
+						<div class="grid2">
+							<div class="chart-wrap">
+								<h4
+									style="
+										font-size: 13px;
+										margin-bottom: 10px;
+										color: var(--navy);
+									"
+								>
+									Where the money comes from (top shares)
+								</h4>
+								<canvas id="chartComesFrom"></canvas>
+							</div>
+							<div class="chart-wrap">
+								<h4
+									style="
+										font-size: 13px;
+										margin-bottom: 10px;
+										color: var(--navy);
+									"
+								>
+									Where the money goes (top shares)
+								</h4>
+								<canvas id="chartGoesTo"></canvas>
+							</div>
+						</div>
+						<p class="note">
+							Goes-to figures: States' share of taxes 22%,
+							Interest Payments 20%, Central Sector Schemes 17%
+							(excludes capital expenditure on defence and
+							economic assistance), Defence 11%. These are the
+							highest-share categories reported in the source, not
+							an exhaustive 100% split.
+						</p>
+					</div>
+				</section>
+
+				<!-- ============ KARTAVYA 1 ============ -->
+				<section class="panel" id="panel-k1">
+					<div class="eyebrow">Section 02 · First Kartavya</div>
+					<h2 class="title">Accelerate & Sustain Economic Growth</h2>
+					<p class="dek">
+						Six interventions — manufacturing in frontier sectors,
+						capital goods, textiles, legacy clusters, SMEs,
+						infrastructure, and energy security.
+					</p>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>
+								1 · Scaling up manufacturing in 7 strategic &
+								frontier sectors
+							</h3>
+							<span class="tag">6 INTERVENTIONS</span>
+						</div>
+						<ul class="bullet-list">
+							<li>
+								<span class="hl hl-y">Biopharma SHAKTI</span>
+								(Strategy for Healthcare Advancement through
+								Knowledge, Technology and Innovation) — outlay
+								of
+								<span class="hl hl-b"
+									>₹10,000 crore over 5 years</span
+								>
+								to build India as a global biopharma
+								manufacturing hub.
+								<ul>
+									<li>
+										3 new
+										<span class="hl hl-g">NIPER</span>
+										institutes + upgrade of 7 existing ones.
+									</li>
+									<li>
+										Network of 1000+ accredited India
+										Clinical Trials sites.
+									</li>
+								</ul>
+							</li>
+							<li>
+								<span class="hl hl-y"
+									>India Semiconductor Mission (ISM) 2.0</span
+								>
+								— equipment, materials, full-stack Indian IP,
+								supply-chain fortification, industry-led
+								research & training centres.
+							</li>
+							<li>
+								Electronics Components Manufacturing Scheme
+								outlay increased to
+								<span class="hl hl-b">₹40,000 crore</span>.
+							</li>
+							<li>
+								Dedicated
+								<span class="hl hl-y"
+									>Rare Earth Corridors</span
+								>
+								for
+								<span class="hl hl-g"
+									>Odisha, Kerala, Andhra Pradesh, Tamil
+									Nadu</span
+								>
+								— mining, processing, research, manufacturing.
+							</li>
+							<li>
+								Scheme for 3 dedicated
+								<span class="hl hl-y">Chemical Parks</span> via
+								challenge route, cluster-based plug-and-play
+								model.
+							</li>
+						</ul>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Strengthening capital goods capability</h3>
+						</div>
+						<div class="grid2">
+							<div class="card">
+								<strong>Hi-Tech Tool Rooms</strong>
+								<p style="font-size: 13px; margin-top: 6px">
+									CPSEs to set up at
+									<span class="hl hl-b">2 locations</span> —
+									digitally enabled, automated service bureaus
+									for high-precision components.
+								</p>
+							</div>
+							<div class="card">
+								<strong>CIE Scheme</strong>
+								<p style="font-size: 13px; margin-top: 6px">
+									Enhancement of Construction & Infrastructure
+									Equipment — strengthens domestic
+									manufacturing of high-value, tech-advanced
+									CIE.
+								</p>
+							</div>
+							<div class="card">
+								<strong>Container Manufacturing Scheme</strong>
+								<p style="font-size: 13px; margin-top: 6px">
+									Budgetary allocation of over
+									<span class="hl hl-b"
+										>₹10,000 crore over 5 years</span
+									>
+									for a globally competitive ecosystem.
+								</p>
+							</div>
+							<div class="card">
+								<strong>Integrated Textile Programme</strong>
+								<p style="font-size: 13px; margin-top: 6px">
+									<span class="hl hl-g"
+										>National Fibre Scheme</span
+									>
+									(silk, wool, jute, man-made & new-age
+									fibres) + Textile Expansion and Employment
+									Scheme.
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>2 · Rejuvenation & 3 · Champion SMEs</h3>
+						</div>
+						<ul class="bullet-list">
+							<li>
+								<span class="hl hl-y">Mega Textile Parks</span>
+								in challenge mode, focused on value addition to
+								technical textiles.
+							</li>
+							<li>
+								<span class="hl hl-y"
+									>Mahatma Gandhi Gram Swaraj initiative</span
+								>
+								— strengthens khadi, handloom & handicrafts;
+								helps global market linkage, branding, training,
+								skilling.
+							</li>
+							<li>
+								Scheme to revive
+								<span class="hl hl-b"
+									>200 legacy industrial clusters</span
+								>
+								— cost competitiveness via infrastructure & tech
+								upgradation.
+							</li>
+							<li>
+								Dedicated
+								<span class="hl hl-b"
+									>₹1,000 crore SME Growth Fund</span
+								>
+								to create future "Champion" enterprises.
+							</li>
+							<li>
+								<span class="hl hl-g"
+									>Self-Reliant India Fund</span
+								>
+								gets additional
+								<span class="hl hl-b">₹2,000 crore</span> for
+								micro-enterprise risk capital.
+							</li>
+						</ul>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>4 · Powerful push to infrastructure</h3>
+							<span class="tag">FLOW</span>
+						</div>
+						<div class="flow">
+							<div class="flow-box">
+								<span class="num">CAPEX</span>Public capex up to
+								<br /><b>₹12.2 lakh crore</b> in FY26-27
+							</div>
+							<div class="flow-arrow">→</div>
+							<div class="flow-box">
+								<span class="num">RISK</span>Infrastructure Risk
+								Guarantee Fund for private developers
+							</div>
+							<div class="flow-arrow">→</div>
+							<div class="flow-box">
+								<span class="num">REIT</span>CPSE real-estate
+								recycling via dedicated REITs
+							</div>
+						</div>
+						<ul class="bullet-list" style="margin-top: 10px">
+							<li>
+								New Dedicated Freight-style corridor connecting
+								<span class="hl hl-g">Dankuni (East)</span> to
+								<span class="hl hl-g">Surat (West)</span>, and
+								Kalinga Nagar to the Ports of
+								<span class="hl hl-g">Paradeep</span>.
+							</li>
+							<li>
+								<span class="hl hl-b"
+									>20 new National Waterways</span
+								>
+								to be operationalised over 5 years, starting
+								with
+								<span class="hl hl-g">NW-5 in Odisha</span>
+								(connects mineral-rich Talcher & Angul).
+							</li>
+							<li>
+								Ship repair ecosystem for inland waterways at
+								<span class="hl hl-g">Varanasi and Patna</span>.
+							</li>
+							<li>
+								<span class="hl hl-y"
+									>Coastal Cargo Promotion Scheme</span
+								>
+								— incentivises modal shift from rail/road to
+								inland waterways & coastal shipping.
+							</li>
+							<li>
+								<span class="hl hl-y">Orange Economy:</span>
+								Indian Institute of Creative Technologies
+								(Mumbai) to set up AVGC Content Creator Labs in
+								<span class="hl hl-b"
+									>15,000 secondary schools & 500
+									colleges</span
+								>.
+							</li>
+							<li>
+								<span class="hl hl-b"
+									>5 University Townships</span
+								>
+								near major industrial/logistics corridors via
+								challenge route.
+							</li>
+						</ul>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>
+								5 · Energy security & 6 · City Economic Regions
+							</h3>
+						</div>
+						<div class="grid2">
+							<div class="card">
+								<strong>Energy security</strong>
+								<p style="font-size: 13px; margin-top: 6px">
+									<span class="hl hl-b"
+										>₹20,000 crore over 5 years</span
+									>
+									for Carbon Capture Utilization & Storage
+									(CCUS) technologies.
+								</p>
+							</div>
+							<div class="card">
+								<strong>City Economic Regions</strong>
+								<p style="font-size: 13px; margin-top: 6px">
+									<span class="hl hl-b"
+										>₹5,000 crore over 5 years per CER</span
+									>, challenge mode, reform-cum-results
+									financing.
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>High-Speed Rail "growth connectors"</h3>
+							<span class="tag">7 CORRIDORS</span>
+						</div>
+						<div class="flow">
+							<div class="flow-box">Mumbai–Pune</div>
+							<div class="flow-box">Pune–Hyderabad</div>
+							<div class="flow-box">Hyderabad–Bengaluru</div>
+						</div>
+						<div class="flow">
+							<div class="flow-box">Hyderabad–Chennai</div>
+							<div class="flow-box">Chennai–Bengaluru</div>
+							<div class="flow-box">Delhi–Varanasi</div>
+							<div class="flow-box">Varanasi–Siliguri</div>
+						</div>
+						<ul class="bullet-list" style="margin-top: 14px">
+							<li>
+								National Council for Hotel Management & Catering
+								Technology upgraded to
+								<span class="hl hl-g"
+									>National Institute of Hospitality</span
+								>.
+							</li>
+							<li>
+								Pilot scheme: upskilling
+								<span class="hl hl-b">10,000 guides</span>
+								across
+								<span class="hl hl-b">20 tourist sites</span> —
+								12-week hybrid course with an IIM.
+							</li>
+							<li>
+								<span class="hl hl-y"
+									>National Destination Digital Knowledge
+									Grid</span
+								>
+								— digitises all
+								culturally/spiritually/heritage-significant
+								places.
+							</li>
+							<li>
+								Heritage tourism:
+								<span class="hl hl-b"
+									>15 archaeological sites</span
+								>
+								including
+								<span class="hl hl-g"
+									>Lothal, Dholavira, Rakhigarhi,
+									Adichanallur, Sarnath, Hastinapur, Leh
+									Palace</span
+								>.
+							</li>
+							<li>
+								<span class="hl hl-y">Khelo India Mission</span>
+								launched to transform the sports sector over the
+								next decade.
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ KARTAVYA 2 ============ -->
+				<section class="panel" id="panel-k2">
+					<div class="eyebrow">Section 03 · Second Kartavya</div>
+					<h2 class="title">Fulfil Aspirations, Build Capacity</h2>
+					<p class="dek">
+						Education-to-employment pipelines, healthcare capacity,
+						and animal husbandry — the human-capital half of the
+						budget.
+					</p>
+
+					<div class="kartavya-tree section">
+						<div class="kt-root">
+							Creation of Professionals for Viksit Bharat
+						</div>
+						<div class="kt-branches">
+							<div class="kt-item">
+								High-Powered
+								<b
+									>'Education to Employment and Enterprise'
+									Standing Committee</b
+								>
+								— measures focused on the Services Sector as a
+								core growth driver.
+							</div>
+							<div class="kt-item">
+								<span class="hl hl-g">ICAI, ICSI, ICMAI</span>
+								to design short-term, modular courses &
+								practical tools to build a cadre of
+								<span class="hl hl-y">'Corporate Mitras'</span>,
+								especially in Tier-II/III towns.
+							</div>
+							<div class="kt-item">
+								Existing
+								<span class="hl hl-g"
+									>Allied Health Professional (AHP)</span
+								>
+								institutions upgraded, new ones set up in
+								private & government sectors —
+								<span class="hl hl-b">100,000 AHPs</span> to be
+								added.
+							</div>
+							<div class="kt-item">
+								<span class="hl hl-b"
+									>5 Regional Medical Hubs</span
+								>
+								to promote India as a medical-tourism
+								destination.
+							</div>
+							<div class="kt-item">
+								<span class="hl hl-b"
+									>3 new All India Institutes of
+									Ayurveda</span
+								>
+								to be established.
+							</div>
+						</div>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Animal husbandry</h3>
+						</div>
+						<ul class="bullet-list">
+							<li>
+								Availability of veterinary professionals to
+								scale up by more than
+								<span class="hl hl-b">20,000</span>.
+							</li>
+							<li>
+								Loan-linked capital subsidy support scheme for
+								veterinary/para-vet colleges, hospitals,
+								diagnostic labs & breeding facilities in the
+								private sector.
+							</li>
+							<li>
+								Training institutes set up as
+								<span class="hl hl-y"
+									>Regional Centres of Excellence</span
+								>
+								for manpower development.
+							</li>
+						</ul>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Banking & financial-sector reform</h3>
+							<span class="tag">CROSS-LINK</span>
+						</div>
+						<div class="grid2">
+							<div class="card">
+								High-level committee on banking for
+								<span class="hl hl-y">"Viksit Bharat"</span> —
+								comprehensive sector review aligned with India's
+								next growth phase, while safeguarding financial
+								stability, inclusion & consumer protection.
+							</div>
+							<div class="card">
+								Restructuring of
+								<span class="hl hl-g"
+									>Power Finance Corporation</span
+								>
+								and
+								<span class="hl hl-g"
+									>Rural Electrification Corporation</span
+								>
+								to achieve scale and improve efficiency in
+								public-sector NBFCs.
+							</div>
+							<div class="card">
+								Comprehensive review of
+								<span class="hl hl-y"
+									>FEMA (Non-Debt Instruments) Rules</span
+								>
+								— a more contemporary, user-friendly
+								foreign-investment framework.
+							</div>
+							<div class="card">
+								<b>Municipal Bonds:</b> incentive of
+								<span class="hl hl-b">₹100 crore</span> for a
+								single bond issuance above
+								<span class="hl hl-b">₹1,000 crore</span>, to
+								encourage higher-value municipal bonds from
+								large cities.
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- ============ KARTAVYA 3 ============ -->
+				<section class="panel" id="panel-k3">
+					<div class="eyebrow">Section 04 · Third Kartavya</div>
+					<h2 class="title">Sabka Sath, Sabka Vikas</h2>
+					<p class="dek">
+						Four targeted focus areas — farmer incomes, Divyangjan
+						empowerment, mental health & trauma care, and the
+						Purvodaya states / North-East.
+					</p>
+
+					<div class="grid4 section">
+						<div
+							class="stat-box"
+							style="border-left-color: var(--forest)"
+						>
+							<div class="v">1</div>
+							<div class="k">Increasing Farmer Incomes</div>
+						</div>
+						<div
+							class="stat-box"
+							style="border-left-color: var(--sky)"
+						>
+							<div class="v">2</div>
+							<div class="k">Empowering Divyangjan</div>
+						</div>
+						<div
+							class="stat-box"
+							style="border-left-color: var(--maroon)"
+						>
+							<div class="v">3</div>
+							<div class="k">Mental Health & Trauma Care</div>
+						</div>
+						<div
+							class="stat-box"
+							style="border-left-color: var(--gold)"
+						>
+							<div class="v">4</div>
+							<div class="k">Purvodaya & North-East</div>
+						</div>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>1 · Farmer incomes</h3>
+						</div>
+						<ul class="bullet-list">
+							<li>
+								Integrated development of
+								<span class="hl hl-b"
+									>500 reservoirs and Amrit Sarovars</span
+								>.
+							</li>
+							<li>
+								<b>High-value agriculture support:</b> coconut,
+								sandalwood, cocoa & cashew in coastal areas;
+								<span class="hl hl-y"
+									>Coconut Promotion Scheme</span
+								>
+								to boost production & productivity.
+							</li>
+							<li>
+								<span class="hl hl-y">Bharat-VISTAAR</span>
+								(Virtually Integrated System to Access
+								Agricultural Resources) — multilingual AI tool
+								integrating AgriStack portals with the
+								<span class="hl hl-g">ICAR</span> package on
+								agricultural practices.
+							</li>
+						</ul>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>2 · Divyangjan & 3 · Mental health</h3>
+						</div>
+						<div class="grid2">
+							<div class="card">
+								<strong>Divyangjan Kaushal Yojana</strong>
+								<p style="font-size: 13px; margin-top: 6px">
+									Task-oriented, process-driven roles in IT,
+									AVGC, Hospitality, and Food & Beverages
+									sectors.
+								</p>
+							</div>
+							<div class="card">
+								<strong>Mental health infrastructure</strong>
+								<p style="font-size: 13px; margin-top: 6px">
+									<span class="hl hl-g">NIMHANS-2</span> to be
+									set up in North India; National Mental
+									Health Institutes in
+									<span class="hl hl-g">Ranchi</span> and
+									<span class="hl hl-g">Tezpur</span> upgraded
+									to Regional Apex Institutions.
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>4 · Purvodaya states & the North-East</h3>
+						</div>
+						<ul class="bullet-list">
+							<li>
+								Integrated
+								<span class="hl hl-y"
+									>East Coast Industrial Corridor</span
+								>
+								with a well-connected node at
+								<span class="hl hl-g">Durgapur</span>.
+							</li>
+							<li>
+								<span class="hl hl-b"
+									>5 tourism destinations</span
+								>
+								across the 5 Purvodaya states, plus
+								<span class="hl hl-b">4,000 e-buses</span>.
+							</li>
+							<li>
+								Scheme for
+								<span class="hl hl-y">Buddhist Circuits</span>
+								in
+								<span class="hl hl-g"
+									>Arunachal Pradesh, Sikkim, Assam, Manipur,
+									Mizoram, Tripura</span
+								>.
+							</li>
+						</ul>
+						<div class="trap">
+							<div class="t-lbl">⚠ MCQ Trap</div>
+							<span class="hl hl-r">16th Finance Commission</span>
+							grants to States for FY 2026–27:
+							<span class="hl hl-r">₹1.4 lakh crore</span> — easy
+							to confuse with total FC devolution figures
+							elsewhere.
+						</div>
+					</div>
+				</section>
+
+				<!-- ============ DIRECT TAXES ============ -->
+				<section class="panel" id="panel-direct">
+					<div class="eyebrow">Section 05 · Budget Speech Part B</div>
+					<h2 class="title">Direct Taxes</h2>
+					<p class="dek">
+						New Income Tax Act rollout, TDS/TCS rationalisation,
+						penalty & prosecution reform, cooperatives, and the
+						IT-sector safe harbour package.
+					</p>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>New Income Tax Act & ease of living</h3>
+						</div>
+						<ul class="bullet-list">
+							<li>
+								<span class="hl hl-y"
+									>New Income Tax Act, 2025</span
+								>
+								comes into effect from
+								<span class="hl hl-b">April 2026</span>;
+								simplified rules & forms to be notified shortly
+								for ordinary citizens.
+							</li>
+							<li>
+								Interest awarded by the
+								<span class="hl hl-g"
+									>Motor Accident Claims Tribunal</span
+								>
+								to a natural person — exempt from Income Tax,
+								TDS also removed.
+							</li>
+							<li>
+								Simplified TDS provisions for manpower supply —
+								benefits labour-intensive businesses.
+							</li>
+							<li>
+								Rule-based automated process for Lower/Nil TDS
+								deduction certificates for small taxpayers
+								(replaces filing with assessor).
+							</li>
+							<li>
+								Single-window filing with depositories for
+								<span class="hl hl-g">Form 15G / 15H</span> (TDS
+								on dividends, interest, etc.).
+							</li>
+							<li>
+								Return-revision window extended from
+								<span class="hl hl-r">31 December</span> to
+								<span class="hl hl-r">31 March</span>, with a
+								nominal fee.
+							</li>
+							<li>
+								Staggered timeline for filing of tax returns.
+							</li>
+							<li>
+								<span class="hl hl-g">TAN</span> for NRI
+								property transactions replaced by resident-buyer
+								<span class="hl hl-g">PAN</span>-based challan.
+							</li>
+							<li>
+								One-time 6-month foreign-asset disclosure scheme
+								for small taxpayers.
+							</li>
+						</ul>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>TCS rationalization</h3>
+							<span class="tag">BEFORE → AFTER</span>
+						</div>
+						<table class="ledger">
+							<tr>
+								<th>Item</th>
+								<th>Old rate</th>
+								<th>New rate</th>
+							</tr>
+							<tr>
+								<td>Overseas tour program packages</td>
+								<td class="num">20%</td>
+								<td class="num">2%</td>
+							</tr>
+							<tr>
+								<td>LRS remittances (education & medical)</td>
+								<td class="num">5%</td>
+								<td class="num">2%</td>
+							</tr>
+							<tr>
+								<td>Alcoholic liquor, scrap, minerals</td>
+								<td class="num">—</td>
+								<td class="num">2%</td>
+							</tr>
+							<tr>
+								<td>Tendu leaves</td>
+								<td class="num">5%</td>
+								<td class="num">2%</td>
+							</tr>
+						</table>
+						<div class="trap">
+							<div class="t-lbl">⚠ MCQ Trap</div>
+							Overseas tour packages:
+							<span class="hl hl-r">20% → 2%</span> is the
+							steepest cut in the whole digest — a favourite for
+							"which item saw the biggest rate reduction"
+							questions.
+						</div>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Rationalizing penalty & prosecution</h3>
+						</div>
+						<ul class="bullet-list">
+							<li>
+								IT assessment & penalty proceedings integrated
+								into one common order.
+							</li>
+							<li>
+								Taxpayers can update returns even after
+								reassessment has started — at an additional
+								<span class="hl hl-b">10% tax rate</span> over
+								the applicable rate.
+							</li>
+							<li>
+								Penalty for misreporting income also eligible
+								for immunity, with payment of additional income
+								tax.
+							</li>
+							<li>
+								Prosecution framework under the Income Tax Act
+								rationalised.
+							</li>
+							<li>
+								Non-production of books/documents & TDS-in-kind
+								payment requirement —
+								<span class="hl hl-y">decriminalised</span>.
+							</li>
+							<li>
+								Non-disclosure of non-immovable foreign assets
+								under <span class="hl hl-b">₹20 lakh</span> —
+								immunity from prosecution, retrospective from
+								<span class="hl hl-b">1.10.2024</span>.
+							</li>
+						</ul>
+					</div>
+
+					<div class="section">
+						<div class="section-head"><h3>Cooperatives</h3></div>
+						<ul class="bullet-list">
+							<li>
+								Deduction for primary cooperative societies
+								supplying milk/oilseeds/fruits/vegetables
+								extended to those supplying
+								<span class="hl hl-y"
+									>cattle feed and cotton seed</span
+								>.
+							</li>
+							<li>
+								Inter-cooperative society dividend income
+								allowed as deduction under the new tax regime,
+								to the extent further distributed to members.
+							</li>
+							<li>
+								3-year dividend-income exemption for a notified
+								national cooperative federation on investments
+								made up to
+								<span class="hl hl-b">31.1.2026</span>.
+							</li>
+						</ul>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Supporting the IT sector</h3>
+							<span class="tag">SAFE HARBOUR</span>
+						</div>
+						<div class="grid2">
+							<div class="card">
+								Software dev, ITeS, KPO & contract R&D for
+								software clubbed as a single
+								<span class="hl hl-y"
+									>"Information Technology Services"</span
+								>
+								category with a common safe-harbour margin of
+								<span class="hl hl-b">15.5%</span>.
+							</div>
+							<div class="card">
+								Safe-harbour turnover threshold raised from
+								<span class="hl hl-r">₹300 crore</span> to
+								<span class="hl hl-r">₹2,000 crore</span>.
+							</div>
+							<div class="card">
+								Safe harbour approval via automated, rule-driven
+								process — valid for
+								<span class="hl hl-b">5 years at a stretch</span
+								>.
+							</div>
+							<div class="card">
+								Unilateral <span class="hl hl-g">APA</span> for
+								IT services fast-tracked — target conclusion
+								within
+								<span class="hl hl-b">2 years</span> (extendable
+								by 6 months on request).
+							</div>
+						</div>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Attracting global business & investment</h3>
+						</div>
+						<ul class="bullet-list">
+							<li>
+								Foreign companies providing
+								<span class="hl hl-y">cloud services</span> via
+								India-based data centres get a safe harbour of
+								<span class="hl hl-b">15% of cost</span>
+								(related-party case).
+							</li>
+							<li>
+								Safe harbour for non-residents on component
+								warehousing in a bonded warehouse:
+								<span class="hl hl-b">2% profit margin</span> on
+								invoice value → effective tax ≈
+								<span class="hl hl-b">0.7%</span>, lower than
+								competing jurisdictions.
+							</li>
+							<li>
+								5-year income-tax exemption for non-residents
+								supplying capital goods/equipment/tooling to
+								toll manufacturers in a bonded zone.
+							</li>
+							<li>
+								Exemption on global income for a non-resident
+								expert staying up to
+								<span class="hl hl-b">5 years</span> under
+								notified schemes.
+							</li>
+							<li>
+								<span class="hl hl-y">MAT exemption</span> for
+								all non-residents paying tax on presumptive
+								basis.
+							</li>
+						</ul>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Other tax proposals</h3>
+						</div>
+						<ul class="bullet-list">
+							<li>
+								Buyback taxed as
+								<span class="hl hl-y">Capital Gains</span> for
+								all shareholder types; promoters pay additional
+								buyback tax — effective rate
+								<span class="hl hl-b">22% (corporate)</span> /
+								<span class="hl hl-b">30% (non-corporate)</span>
+								promoters.
+							</li>
+							<li>
+								<span class="hl hl-y">STT</span> on futures
+								raised to
+								<span class="hl hl-b">0.05%</span> (from 0.02%);
+								STT on options premium raised to
+								<span class="hl hl-b">0.15%</span> (from 0.1%)
+								and on exercise to
+								<span class="hl hl-b">0.125%</span>.
+							</li>
+							<li>
+								<span class="hl hl-y">MAT</span> proposed as a
+								final tax — no further credit accumulation from
+								<span class="hl hl-b">1 April 2026</span>; final
+								tax rate cut to
+								<span class="hl hl-b">14%</span> (from 15%).
+								Brought-forward MAT credit up to 31 March 2026
+								stays usable, capped at 1/4th of tax liability
+								in the new regime.
+							</li>
+							<li>
+								Joint Committee (MCA + CBDT) to align
+								<span class="hl hl-g">ICDS</span> with Ind-AS;
+								separate ICDS accounting scrapped from tax year
+								<span class="hl hl-b">2027–28</span>.
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ INDIRECT TAXES ============ -->
+				<section class="panel" id="panel-indirect">
+					<div class="eyebrow">Section 06 · Budget Speech Part B</div>
+					<h2 class="title">Indirect Taxes & Customs</h2>
+					<p class="dek">
+						Tariff simplification, a trust-based customs process,
+						ease-of-doing-business digitisation, and new export
+						opportunities.
+					</p>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Tariff simplification</h3>
+						</div>
+						<ul class="bullet-list">
+							<li>
+								<b>Marine, leather & textile:</b> duty-free
+								import limit for seafood-export processing
+								inputs raised from
+								<span class="hl hl-r">1%</span> to
+								<span class="hl hl-r">3%</span> of FOB value;
+								duty-free footwear-export inputs scheme
+								extended.
+							</li>
+							<li>
+								<b>Energy transition:</b> BCD exemption on
+								capital goods for Lithium-Ion Cell manufacturing
+								continued; BCD exempted on sodium antimonate
+								(solar-glass manufacture).
+							</li>
+							<li>
+								<b>Critical minerals:</b> BCD exempted on
+								capital goods for processing critical minerals.
+							</li>
+							<li>
+								<b>Biogas-blended CNG:</b> biogas value excluded
+								entirely while computing Central Excise duty on
+								biogas-blended CNG.
+							</li>
+							<li>
+								<b>Civil & defence aviation:</b> BCD exempted on
+								components/parts for civilian, training & other
+								aircraft, and on raw materials for
+								aircraft-parts MRO by Defence-sector units.
+							</li>
+							<li>
+								BCD exempted on specified parts for
+								<span class="hl hl-g">microwave ovens</span>.
+							</li>
+							<li>
+								<b>SEZ:</b> one-time measure allowing eligible
+								SEZ manufacturing units to sell into the
+								Domestic Tariff Area at concessional duty,
+								within a prescribed quantity limit.
+							</li>
+							<li>
+								<b>Ease of living:</b> tariff on dutiable goods
+								for personal use cut from
+								<span class="hl hl-r">20%</span> to
+								<span class="hl hl-r">10%</span>; BCD reduced on
+								<span class="hl hl-b">17 drugs/medicines</span>;
+								duty-free personal import for
+								<span class="hl hl-b">7 more rare diseases</span
+								>.
+							</li>
+						</ul>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>
+								Customs process simplification — trust-based
+								systems
+							</h3>
+							<span class="tag">FLOW</span>
+						</div>
+						<div class="flow">
+							<div class="flow-box">
+								<span class="num">01</span>AEO duty-deferral
+								window: <b>15 → 30 days</b> for Tier 2/3 AEOs &
+								eligible manufacturer-importers
+							</div>
+							<div class="flow-arrow">→</div>
+							<div class="flow-box">
+								<span class="num">02</span>Advance ruling
+								validity: <b>3 → 5 years</b>
+							</div>
+							<div class="flow-arrow">→</div>
+							<div class="flow-box">
+								<span class="num">03</span>Govt agencies
+								encouraged to leverage AEO accreditation for
+								preferential clearance
+							</div>
+						</div>
+						<ul class="bullet-list" style="margin-top: 12px">
+							<li>
+								Trusted-importer bill-of-entry filing
+								auto-notifies Customs on goods arrival for
+								compliance-free imports.
+							</li>
+							<li>
+								Warehousing framework shifts to operator-centric
+								model — self-declarations, electronic tracking,
+								risk-based audit.
+							</li>
+						</ul>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Ease of doing business</h3>
+						</div>
+						<ul class="bullet-list">
+							<li>
+								Cargo clearance across government agencies via a
+								single interconnected digital window, by
+								<span class="hl hl-b">end of FY</span>.
+							</li>
+							<li>
+								Food, drugs, plant/animal/wildlife product
+								clearance (~<span class="hl hl-b"
+									>70% of interdicted cargo</span
+								>) on this system by
+								<span class="hl hl-b">April 2026</span>.
+							</li>
+							<li>
+								Goods with no compliance requirement: cleared
+								immediately after online registration.
+							</li>
+							<li>
+								<span class="hl hl-y"
+									>Customs Integrated System (CIS)</span
+								>
+								— single scalable platform, rollout over
+								<span class="hl hl-b">2 years</span>.
+							</li>
+							<li>
+								Non-intrusive scanning (advanced imaging + AI)
+								expanded, aiming to scan every container at all
+								major ports.
+							</li>
+						</ul>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>New export opportunities & ease of living</h3>
+						</div>
+						<div class="grid2">
+							<div class="card">
+								Fish catch by an Indian vessel in the
+								<span class="hl hl-y">EEZ</span> or High Seas
+								made duty-free; landing at a foreign port
+								treated as an
+								<span class="hl hl-y">export of goods</span>.
+							</div>
+							<div class="card">
+								Value cap of
+								<span class="hl hl-r"
+									>₹10 lakh per consignment</span
+								>
+								on courier exports
+								<span class="hl hl-r">removed entirely</span> —
+								helps small businesses, artisans & startups sell
+								via e-commerce.
+							</div>
+							<div class="card">
+								Baggage-clearance rules for international travel
+								revised — enhanced duty-free allowances for
+								present-day travel realities.
+							</div>
+							<div class="card">
+								Honest taxpayers can close disputes by paying an
+								additional amount in lieu of penalty.
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- ============ EXPENDITURE ============ -->
+				<section class="panel" id="panel-expenditure">
+					<div class="eyebrow">Section 07 · The Spend</div>
+					<h2 class="title">Expenditure Ledger</h2>
+					<p class="dek">
+						Ministry-wise, scheme-wise and function-wise breakdowns
+						for 2026–27 — the numbers most likely to show up as
+						direct-recall questions.
+					</p>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Top ministries by expenditure</h3>
+							<span class="tag">CHART</span>
+						</div>
+						<div class="chart-wrap">
+							<canvas id="chartMinistries"></canvas>
+						</div>
+						<p class="note">
+							One ministry entry in the source (₹1,62,671 Cr) was
+							not clearly labelled in the scan — shown as
+							"Ministry (unlabelled)" pending verification against
+							the official budget document.
+						</p>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Top schemes by expenditure</h3>
+							<span class="tag">CHART</span>
+						</div>
+						<div class="chart-wrap">
+							<canvas id="chartSchemes"></canvas>
+						</div>
+						<p class="note">
+							Scheme #1 appears in the source as a garbled OCR
+							string ("VB-G RAM G"), likely PM Gram Sadak Yojana
+							(PMGSY) — flagged as uncertain, verify the name
+							before treating it as exam-ready.
+						</p>
+					</div>
+
+					<div class="section">
+						<div class="section-head">
+							<h3>Expenditure by major function/item</h3>
+							<span class="tag">CHART</span>
+						</div>
+						<div class="chart-wrap">
+							<canvas id="chartItems"></canvas>
+						</div>
+						<div class="trap">
+							<div class="t-lbl">⚠ MCQ Trap</div>
+							<span class="hl hl-r">Defence</span> shows up under
+							two different figures — ₹7,84,678 Cr as a "Ministry"
+							line and ₹5,94,585 Cr as a "major item" — likely
+							Ministry-of-Defence total vs functional defence
+							classification. Read the question's exact phrasing
+							before picking an answer.
+						</div>
+					</div>
+				</section>
+
+				<footer class="foot">
+					Source: EDU TERIA Current Concepts digest, Jul 2025–Jun 2026
+					· Union Budget 2026–27 chapter. Built for revision —
+					cross-check flagged (⚠/uncertain) figures against the
+					official Budget documents before final exam use.
+				</footer>
+			</main>
+		</div>
+
+		<script>
+			const tabs = [
+				{ id: "overview", n: "00", label: "Overview & Vision" },
+				{ id: "deficits", n: "01", label: "Deficits & Fiscal Math" },
+				{ id: "k1", n: "02", label: "Kartavya I · Growth" },
+				{ id: "k2", n: "03", label: "Kartavya II · Capacity" },
+				{ id: "k3", n: "04", label: "Kartavya III · Sabka Sath" },
+				{ id: "direct", n: "05", label: "Direct Taxes" },
+				{ id: "indirect", n: "06", label: "Indirect Taxes & Customs" },
+				{ id: "expenditure", n: "07", label: "Expenditure Ledger" },
+			];
+			const navEl = document.getElementById("nav");
+			tabs.forEach((t, i) => {
+				const b = document.createElement("button");
+				b.innerHTML = `<span class="n">${t.n}</span>${t.label}`;
+				b.dataset.id = t.id;
+				if (i === 0) b.classList.add("active");
+				b.addEventListener("click", () => showTab(t.id));
+				navEl.appendChild(b);
+			});
+			function showTab(id) {
+				document
+					.querySelectorAll(".panel")
+					.forEach((p) => p.classList.remove("active"));
+				document.getElementById("panel-" + id).classList.add("active");
+				document
+					.querySelectorAll("nav button")
+					.forEach((b) =>
+						b.classList.toggle("active", b.dataset.id === id),
+					);
+				window.scrollTo({ top: 0, behavior: "smooth" });
+				document.querySelector("main").scrollTo?.({ top: 0 });
+			}
+			showTab("overview");
+
+			// Charts
+			Chart.defaults.font.family = "'Inter',sans-serif";
+			Chart.defaults.color = "#4b463d";
+
+			new Chart(document.getElementById("chartComesFrom"), {
+				type: "doughnut",
+				data: {
+					labels: [
+						"Borrowings & Other Liabilities",
+						"Income Tax",
+						"Corporation Tax",
+						"GST & Other Taxes",
+					],
+					datasets: [
+						{
+							data: [24, 21, 18, 15],
+							backgroundColor: [
+								"#B8862B",
+								"#7C2233",
+								"#2B6E8F",
+								"#2E5C43",
+							],
+							borderColor: "#fff",
+							borderWidth: 2,
+						},
+					],
+				},
+				options: {
+					plugins: {
+						legend: {
+							position: "bottom",
+							labels: { boxWidth: 12, font: { size: 11 } },
+						},
+					},
+				},
+			});
+			new Chart(document.getElementById("chartGoesTo"), {
+				type: "doughnut",
+				data: {
+					labels: [
+						"States' Share of Taxes",
+						"Interest Payments",
+						"Central Sector Schemes",
+						"Defence",
+					],
+					datasets: [
+						{
+							data: [22, 20, 17, 11],
+							backgroundColor: [
+								"#122F4C",
+								"#7C2233",
+								"#B8862B",
+								"#2E5C43",
+							],
+							borderColor: "#fff",
+							borderWidth: 2,
+						},
+					],
+				},
+				options: {
+					plugins: {
+						legend: {
+							position: "bottom",
+							labels: { boxWidth: 12, font: { size: 11 } },
+						},
+					},
+				},
+			});
+			new Chart(document.getElementById("chartMinistries"), {
+				type: "bar",
+				data: {
+					labels: [
+						"Defence Ministry",
+						"Road Transport & Highways",
+						"Railways",
+					],
+					datasets: [
+						{
+							label: "₹ Crore",
+							data: [784678, 309575, 281377],
+							backgroundColor: "#7C2233",
+							borderRadius: 5,
+						},
+					],
+				},
+				options: {
+					indexAxis: "y",
+					plugins: { legend: { display: false } },
+					scales: { x: { grid: { color: "#eee2c4" } } },
+				},
+			});
+			new Chart(document.getElementById("chartSchemes"), {
+				type: "bar",
+				data: {
+					labels: [
+						"VB-G RAM G",
+						"Jal Jeevan Mission",
+						"PM KISAN",
+						"PM Awas Yojana (Rural)",
+					],
+					datasets: [
+						{
+							label: "₹ Crore",
+							data: [95692, 67670, 63500, 54917],
+							backgroundColor: "#2B6E8F",
+							borderRadius: 5,
+						},
+					],
+				},
+				options: {
+					indexAxis: "y",
+					plugins: { legend: { display: false } },
+					scales: { x: { grid: { color: "#eee2c4" } } },
+				},
+			});
+			new Chart(document.getElementById("chartItems"), {
+				type: "bar",
+				data: {
+					labels: [
+						"Transport",
+						"Defence",
+						"Rural Developement",
+						"Home Affairs",
+						"Agriculture & Allied",
+					],
+					datasets: [
+						{
+							label: "₹ Crore",
+							data: [598520, 594585, 273108, 255234, 162671],
+							backgroundColor: "#2E5C43",
+							borderRadius: 5,
+						},
+					],
+				},
+				options: {
+					indexAxis: "y",
+					plugins: { legend: { display: false } },
+					scales: { x: { grid: { color: "#eee2c4" } } },
+				},
+			});
+		</script>
+	</body>
+</html>
