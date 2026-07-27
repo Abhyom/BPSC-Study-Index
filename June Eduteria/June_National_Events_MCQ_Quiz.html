@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>National Events MCQ Ledger — BPSC 72 Prelims</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Crimson+Pro:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4ecd8; --paper-dark:#ece0c4; --ink:#2b2117; --ink-soft:#4a3c2c;
+    --navy:#132743; --navy-deep:#0b1a2e; --maroon:#7b241c; --gold:#a9781f; --gold-bright:#c8962c;
+    --leather:#241713; --leather-2:#1a100d; --line:#c9b98f;
+    --green:#1e8449; --red:#a93226;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; display:flex; min-height:100vh; font-family:'Crimson Pro',serif; color:var(--ink); background:var(--paper);}
+
+  #sidebar{
+    width:250px; flex-shrink:0; position:sticky; top:0; height:100vh; overflow-y:auto;
+    background:linear-gradient(180deg,var(--leather),var(--leather-2)); color:#e8d9b5;
+    padding:22px 0 40px; border-right:6px solid var(--gold);
+  }
+  .sb-title{font-family:'Playfair Display',serif; font-weight:800; font-size:1.25rem; text-align:center; color:var(--gold-bright); padding:0 16px 8px; border-bottom:2px solid #4a3423; margin-bottom:14px;}
+  .sb-sub{text-align:center; font-size:.7rem; letter-spacing:2px; text-transform:uppercase; color:#a58b5f; margin-top:-8px; margin-bottom:18px;}
+  #score-box{margin:0 14px 18px; padding:14px; background:rgba(255,255,255,.05); border:1px solid #40301f; border-radius:8px; text-align:center;}
+  #score-box .big{font-family:'Playfair Display',serif; font-size:1.9rem; color:var(--gold-bright); font-weight:800;}
+  #score-box .lbl{font-size:.72rem; letter-spacing:1px; text-transform:uppercase; color:#c9b98f;}
+  #progress-bar{height:8px; border-radius:4px; background:#40301f; margin:10px 14px 20px; overflow:hidden;}
+  #progress-fill{height:100%; width:0%; background:linear-gradient(90deg,var(--gold),var(--gold-bright)); transition:.3s;}
+  .sb-links{list-style:none; margin:0; padding:0 12px;}
+  .sb-links li a{
+    display:flex; justify-content:space-between; font-size:.82rem; color:#e8d9b5; text-decoration:none;
+    padding:9px 10px; margin-bottom:6px; border-radius:6px; border:1px solid #40301f; background:rgba(255,255,255,.02);
+  }
+  .sb-links li a:hover{background:rgba(200,150,44,.18); border-color:var(--gold);}
+  .sb-links li a .n{color:#a58b5f; font-size:.72rem;}
+  #reset-btn{
+    display:block; margin:18px 14px 0; text-align:center; padding:9px; border-radius:6px;
+    background:var(--maroon); color:#f4ecd8; font-weight:600; font-size:.82rem; cursor:pointer; border:none; width:calc(100% - 28px);
+  }
+  #reset-btn:hover{background:#932e23;}
+
+  #main{flex:1; padding:36px 44px 80px; max-width:900px;}
+  .masthead{text-align:center; padding-bottom:16px; margin-bottom:24px; border-bottom:3px double var(--gold);}
+  .masthead h1{font-family:'Playfair Display',serif; font-weight:800; font-size:2rem; color:var(--navy-deep); margin:0 0 6px;}
+  .masthead .subtitle{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem; color:var(--maroon);}
+  .masthead .meta{font-size:.78rem; color:var(--ink-soft); margin-top:6px; text-transform:uppercase; letter-spacing:1px;}
+
+  .section-head{
+    display:flex; align-items:baseline; gap:10px; margin:38px 0 18px; padding:10px 18px;
+    border-radius:6px 16px 6px 16px; color:#fff; font-family:'Playfair Display',serif; background:var(--navy);
+    scroll-margin-top:20px;
+  }
+  .section-head h2{margin:0; font-size:1.2rem;}
+  .section-head .cnt{margin-left:auto; font-size:.75rem; opacity:.85; font-family:'Crimson Pro',serif;}
+
+  .qcard{
+    background:var(--paper-dark); border:1px solid var(--line); border-radius:10px;
+    padding:18px 20px; margin-bottom:16px; box-shadow:0 2px 0 var(--line);
+  }
+  .qnum{display:inline-block; font-family:'Playfair Display',serif; font-weight:700; color:var(--gold); font-size:.95rem; margin-right:6px;}
+  .qtext{font-size:1.02rem; line-height:1.5; margin-bottom:12px; font-weight:600;}
+  .opts{display:flex; flex-direction:column; gap:8px;}
+  .opt{
+    text-align:left; padding:9px 14px; border-radius:6px; border:1.5px solid var(--line);
+    background:var(--paper); cursor:pointer; font-family:'Crimson Pro',serif; font-size:.95rem; color:var(--ink);
+    transition:.15s;
+  }
+  .opt:hover{border-color:var(--gold); background:#f8f2e0;}
+  .opt.correct{background:rgba(30,132,73,.18); border-color:var(--green); font-weight:700;}
+  .opt.wrong{background:rgba(169,50,38,.18); border-color:var(--red); font-weight:700;}
+  .opt.disabled{cursor:default; opacity:.75;}
+  .opt.disabled:hover{background:var(--paper);}
+  .opt.correct:hover, .opt.wrong:hover{background:inherit;}
+  .explain{
+    display:none; margin-top:12px; padding:10px 14px; border-left:4px solid var(--gold);
+    background:rgba(169,120,31,.08); font-size:.9rem; color:var(--ink-soft); border-radius:0 6px 6px 0;
+  }
+  .explain.show{display:block;}
+  .explain b{color:var(--maroon);}
+
+  footer{text-align:center; padding:30px 0 10px; color:var(--ink-soft); font-size:.8rem; border-top:2px solid var(--line); margin-top:36px;}
+
+  @media(max-width:900px){
+    body{flex-direction:column;}
+    #sidebar{position:relative; height:auto; width:100%;}
+    #main{padding:22px 16px 60px;}
+  }
+</style>
+</head>
+<body>
+
+<nav id="sidebar">
+  <div class="sb-title">📝 MCQ Ledger</div>
+  <div class="sb-sub">National Events · June 2026</div>
+  <div id="score-box">
+    <div class="big"><span id="score-num">0</span> / <span id="score-total">0</span></div>
+    <div class="lbl">Score</div>
+  </div>
+  <div id="progress-bar"><div id="progress-fill"></div></div>
+  <ul class="sb-links">
+    <li><a href="#sec-jun1">June 1–5 <span class="n" id="cnt-jun1"></span></a></li>
+    <li><a href="#sec-jun6">June 6–10 <span class="n" id="cnt-jun6"></span></a></li>
+    <li><a href="#sec-jun11">June 11–15 <span class="n" id="cnt-jun11"></span></a></li>
+    <li><a href="#sec-jun16">June 16–20 <span class="n" id="cnt-jun16"></span></a></li>
+    <li><a href="#sec-jun21">June 21–26 <span class="n" id="cnt-jun21"></span></a></li>
+    <li><a href="#sec-awards">Awards & Persons <span class="n" id="cnt-awards"></span></a></li>
+    <li><a href="#sec-misc">Reports & Rankings <span class="n" id="cnt-misc"></span></a></li>
+  </ul>
+  <button id="reset-btn" onclick="resetQuiz()">Reset Quiz</button>
+</nav>
+
+<main id="main">
+  <div class="masthead">
+    <h1>National Events — MCQ Practice</h1>
+    <div class="subtitle">BPSC 72nd Prelims-Level Questions</div>
+    <div class="meta">Click an option to check your answer &nbsp;|&nbsp; Explanation reveals automatically</div>
+  </div>
+  <div id="quiz-root"></div>
+  <footer>78 questions · Covers every fact in the National Events chapter of the June 2026 Ledger · Built for BPSC Prelims revision</footer>
+</main>
+
+<script>
+const QUESTIONS = [
+// ============ JUNE 1-5 ============
+{sec:"jun1", q:"Telangana's Foundation Day, celebrated on June 2, 2026, marked how many years since statehood?", opts:["10th","11th","12th","13th"], ans:2, exp:"<b>Telangana</b> was formed on June 2, 2014 under the Andhra Pradesh Reorganisation Act — June 2, 2026 marked its 12th Foundation Day."},
+{sec:"jun1", q:"Under which programme is Kolkata set to become the 18th Indian city connected to a water metro network?", opts:["National Urban Transport Policy","National Urban Water Transport Programme","Jal Marg Vikas Pariyojana","Sagarmala Programme"], ans:1, exp:"Kolkata's water metro (across the Hooghly River) falls under the Centre's <b>National Urban Water Transport Programme</b>."},
+{sec:"jun1", q:"The Odisha government approved restoration of original Odia-aligned English spellings for how many locations?", opts:["44","54","64","74"], ans:2, exp:"Odisha approved restoring the English spellings of <b>64 locations</b> to preserve linguistic heritage."},
+{sec:"jun1", q:"From which village was the 'Khet Bachao Abhiyan' launched by Union Agriculture Minister Shivraj Singh Chouhan?", opts:["Ramasiya village, Raisen (MP)","Sehore village (MP)","Barwani village (MP)","Betul village (MP)"], ans:0, exp:"The campaign was launched from <b>Ramasiya village, Raisen district, Madhya Pradesh</b>, running June 1–30, 2026."},
+{sec:"jun1", q:"The Chenab-Beas Link Tunnel, which received final financial approval, is located in which region and is how long?", opts:["Kinnaur, HP — 6.2 km","Lahaul-Spiti, HP — 8.7 km","Chamba, HP — 10.1 km","Kullu, HP — 7.5 km"], ans:1, exp:"The tunnel is in <b>Lahaul-Spiti, Himachal Pradesh</b>, and is <b>8.7 km</b> long."},
+{sec:"jun1", q:"In Prajwala vs Union of India (May 29, 2026), the Supreme Court held that trafficking victims have a fundamental right to rehabilitation under which Articles?", opts:["Articles 14 and 15","Articles 19 and 21","Articles 21 and 23","Articles 21 and 25"], ans:2, exp:"The Court invoked <b>Article 21</b> (life with dignity) and <b>Article 23</b> (prohibition of trafficking)."},
+{sec:"jun1", q:"MoUs were signed with which group of states/UTs for water quality and supply under Jal Jeevan Mission 2.0?", opts:["Arunachal Pradesh, Jharkhand, Tamil Nadu, Nagaland, Puducherry","Assam, Meghalaya, Manipur, Mizoram, Tripura","Bihar, Jharkhand, Odisha, West Bengal, Sikkim","Kerala, Tamil Nadu, Karnataka, Puducherry, Lakshadweep"], ans:0, exp:"The MoUs covered <b>Arunachal Pradesh, Jharkhand, Tamil Nadu, Nagaland and Puducherry</b>."},
+{sec:"jun1", q:"Who led the Indian delegation at the 8th India-Myanmar Bilateral Drug Control Cooperation meeting (June 2, 2026)?", opts:["Anurag Garg, DG, Narcotics Control Bureau","Rakesh Asthana, DG, NCB","S.N. Pradhan, DG, NDRF","Vivek Johri, Chairman, CBIC"], ans:0, exp:"India was led by <b>Anurag Garg, Director General of the NCB</b>; Myanmar's team was led by Thant Lwin Maung of the CCDAC."},
+{sec:"jun1", q:"President Droupadi Murmu inaugurated the National Conclave on Strengthening of ITDAs at which venue?", opts:["Vigyan Bhawan, New Delhi","Rashtrapati Bhavan, New Delhi","Pravasi Bharatiya Kendra, New Delhi","Ashok Hotel, New Delhi"], ans:0, exp:"The conclave was held at <b>Vigyan Bhawan, New Delhi</b> on June 3, 2026."},
+{sec:"jun1", q:"How many 'space labs' did President Murmu inaugurate in Eklavya Model Residential Schools during her June 3 visit?", opts:["50","65","75","90"], ans:2, exp:"She inaugurated <b>75 space labs</b> in Eklavya Model Residential Schools, along with a training fab at IISc Bengaluru's Centre for Nano Science and Engineering."},
+{sec:"jun1", q:"The first meeting of the BRICS Anti-Corruption Working Group under India's presidency was chaired by whom?", opts:["Radha S. Chauhan, DoPT Secretary","Ajit Doval, NSA","Vinod Rai, former CAG","S. Radha Chauhan, former IAS officer"], ans:0, exp:"The virtual meeting was chaired by <b>Radha S. Chauhan, Secretary, DoPT</b>."},
+{sec:"jun1", q:"Padma Shri Sudarsan Pattnaik created a sand sculpture on Puri beach themed around which BRICS-related concept?", opts:["'BRICS India 2026' featuring women's faces","'Namaste BRICS' featuring the Jagannath Temple","'BRICS Unity' featuring world leaders","'Digital BRICS' featuring a globe"], ans:0, exp:"The sculpture was themed <b>'BRICS India 2026'</b>, featuring women's faces, welcoming BRICS delegates."},
+
+// ============ JUNE 6-10 ============
+{sec:"jun6", q:"What is the theme of the 13th BRICS Urbanisation Forum hosted by India in New Delhi (June 11-12, 2026)?", opts:["'Cities for People: BRICS Cooperation for an Inclusive and Resilient Urban Future'","'Smart Cities for a Smart World'","'Urban India, Digital India'","'Building Resilient Urban Ecosystems'"], ans:0, exp:"Minister Manohar Lal stated the theme as <b>'Cities for People: BRICS Cooperation for an Inclusive and Resilient Urban Future.'</b>"},
+{sec:"jun6", q:"Under the PM Surya Ghar: Muft Bijli Yojana, what is the target for rooftop solar households by December 2026?", opts:["50 lakh households","65 lakh households","75 lakh households","1 crore households"], ans:2, exp:"Minister Pralhad Joshi announced a target of <b>75 lakh (7.5 million) households</b> by December 2026."},
+{sec:"jun6", q:"What is the name of the WhatsApp chatbot launched to mark two years of the PM Surya Ghar scheme?", opts:["'SUNtosh'","'SolarSakhi'","'SuryaMitra'","'UrjaBot'"], ans:0, exp:"The chatbot launched alongside a new logo is named <b>'SUNtosh.'</b>"},
+{sec:"jun6", q:"Chandigarh University became India's first private university to launch the 'IndiaAI Data Lab' in collaboration with which company?", opts:["Microsoft","IBM","Intel India","NVIDIA"], ans:2, exp:"The lab was launched in collaboration with <b>Intel India</b>."},
+{sec:"jun6", q:"Chumur village, which became India's first 'Model Border Village', is located in which region?", opts:["Eastern Ladakh","Western Arunachal Pradesh","North Sikkim","Kutch, Gujarat"], ans:0, exp:"Chumur village is in <b>Eastern Ladakh</b>, near the India-China border."},
+{sec:"jun6", q:"The Centre's 'Clean Mobility Scheme' to phase out old commercial vehicles in Delhi-NCR is worth how much?", opts:["₹9,585 crore","₹14,585 crore","₹19,585 crore","₹24,585 crore"], ans:2, exp:"The scheme is worth <b>₹19,585 crore</b>."},
+{sec:"jun6", q:"Which Kerala Chief Minister launched 'Operation Toofan: The Narco Hunt'?", opts:["Pinarayi Vijayan","V.D. Satheesan","K. Sudhakaran","Ramesh Chennithala"], ans:1, exp:"Kerala CM <b>V.D. Satheesan</b> launched this anti-drug initiative."},
+{sec:"jun6", q:"Nagaland imposed a ban on manufacture, storage and sale of tobacco/nicotine food products for how long?", opts:["Six months","One year","Two years","Indefinitely"], ans:1, exp:"Nagaland imposed a <b>one-year ban</b> citing health risks."},
+{sec:"jun6", q:"The 'Swachh App' launched by Manohar Lal Khattar aims to resolve geo-tagged waste complaints within how many hours, and was piloted in how many municipal bodies?", opts:["1 hour; 5 bodies","2 hours; 10 bodies","3 hours; 15 bodies","4 hours; 20 bodies"], ans:1, exp:"The app targets resolution within <b>2 hours</b>, piloted in <b>10 municipal bodies</b> of West Bengal."},
+{sec:"jun6", q:"Oil India Limited confirmed a natural gas discovery in the 'Sri Vijayapuram-3' block, located how far off the Andaman coast?", opts:["10 km","15 km","20 km","25 km"], ans:1, exp:"The block is located <b>15 km</b> off the east coast of the Andaman Islands."},
+{sec:"jun6", q:"Amit Shah presided over which plenary session of the North Eastern Council in Shillong, deliberating on the North East Vision Plan-2047?", opts:["71st","72nd","73rd","74th"], ans:2, exp:"It was the <b>73rd plenary session</b> of the NEC."},
+{sec:"jun6", q:"The 'Navachar Mantra' initiative for grassroots innovators is implemented by NIESBUD with which institution as technical partner?", opts:["IIT Delhi's FITT","IIT Bombay's SINE","IIM Ahmedabad's CIIE","IISc Bengaluru's CPDM"], ans:0, exp:"<b>FITT (Foundation for Innovation and Technology Transfer), IIT Delhi</b> is the technical knowledge partner."},
+{sec:"jun6", q:"With West Bengal's inclusion, Ayushman Bharat-PMJAY became fully implemented across India, with WB becoming which state/UT to join?", opts:["34th","35th","36th (and final)","37th"], ans:2, exp:"West Bengal became the <b>36th and final</b> state/UT to implement AB-PMJAY."},
+{sec:"jun6", q:"The Zojila Tunnel, which achieved a technical breakthrough in June 2026, connects which two points?", opts:["Sonmarg and Kargil","Baltal (Kashmir) and Minamarg (Ladakh)","Srinagar and Leh","Drass and Kargil"], ans:1, exp:"The 13 km Zojila Tunnel connects <b>Baltal (Kashmir) and Minamarg (Ladakh)</b>."},
+
+// ============ JUNE 11-15 ============
+{sec:"jun11", q:"On June 10, 2026, PM Narendra Modi became India's longest-serving elected PM, surpassing which leader's record of 4,398 days?", opts:["Indira Gandhi","Jawaharlal Nehru","Manmohan Singh","Atal Bihari Vajpayee"], ans:1, exp:"Modi surpassed <b>Jawaharlal Nehru's</b> record of 4,398 days, completing 4,399 days."},
+{sec:"jun11", q:"The 11th Governing Council meeting of NITI Aayog (June 11, 2026) was held under which theme?", opts:["'Cooperative Federalism for a New India'","'Inclusive Human Development for Viksit Bharat @2047'","'Sabka Saath, Sabka Vikas, Sabka Prayas'","'One Nation, One Vision'"], ans:1, exp:"The theme was <b>'Inclusive Human Development for Viksit Bharat @2047.'</b>"},
+{sec:"jun11", q:"Rapido's nationwide 'Rahveer Scheme' awareness campaign set a Guinness World Record with how many 'Captains' taking the pledge?", opts:["2 lakh","3 lakh","4 lakh","5 lakh"], ans:2, exp:"<b>4 lakh</b> Captains took the pledge, setting the Guinness World Record."},
+{sec:"jun11", q:"India's updated NDC 3.0 targets aim to achieve what share of cumulative installed electric power capacity from non-fossil sources by 2035?", opts:["50%","55%","60%","65%"], ans:2, exp:"The NDC 3.0 target is <b>60%</b> of cumulative installed capacity from non-fossil sources by 2035."},
+{sec:"jun11", q:"India's tightened Extended Producer Responsibility (EPR) framework, announced at the UNEP INC meeting, aims to eliminate what?", opts:["Single-use plastics","E-waste dumping","Industrial effluents","Carbon emissions from cement"], ans:0, exp:"The tightened EPR framework targets complete elimination of <b>single-use plastics</b>, banning End-of-Life disposal certificates."},
+{sec:"jun11", q:"India won the SAFF Women's Championship 2026, defeating Bangladesh by what score, and how many total titles has India now won?", opts:["2-0; fifth title","3-1; sixth title","2-1; fourth title","4-2; sixth title"], ans:1, exp:"India won <b>3-1</b>, claiming a record <b>sixth</b> SAFF Women's Championship title, at Goa's Pandit Jawaharlal Nehru Stadium (Margao)."},
+{sec:"jun11", q:"Which city became the first to be included in India's 'Easy Connect Model' for international travel?", opts:["Ayodhya","Varanasi","Amritsar","Puri"], ans:1, exp:"<b>Varanasi</b> became the first city included in this model."},
+{sec:"jun11", q:"West Bengal became which numbered legislative assembly to adopt NeVA (National e-Vidhan Application)?", opts:["30th","31st","32nd","33rd"], ans:3, exp:"West Bengal became the <b>33rd</b> legislative assembly to adopt NeVA."},
+{sec:"jun11", q:"The mega leather, footwear and accessories clusters worth ₹1,898 crore are being developed in Bihar's Muzaffarpur along with which other locations?", opts:["Sitapur & Morena (MP), Raigad (Maharashtra), Ranipet (Tamil Nadu)","Kanpur (UP), Nagpur (Maharashtra), Coimbatore (Tamil Nadu)","Indore (MP), Pune (Maharashtra), Salem (Tamil Nadu)","Jabalpur (MP), Nashik (Maharashtra), Vellore (Tamil Nadu)"], ans:0, exp:"Clusters are being set up in Bihar (Muzaffarpur), MP (<b>Sitapur, Morena</b>), Maharashtra (<b>Raigad</b>) and Tamil Nadu (<b>Ranipet</b>)."},
+{sec:"jun11", q:"The all-women special task force for women's safety, launched in Tamil Nadu, operates under whose direct supervision?", opts:["The Chief Minister","The DGP","The Home Secretary","The High Court"], ans:0, exp:"The task force operates under the <b>direct supervision of the Chief Minister</b>."},
+
+// ============ JUNE 16-20 ============
+{sec:"jun16", q:"A two-day international workshop to promote commercial cultivation of cinnamon was organised in which city?", opts:["Dehradun, Uttarakhand","Shimla, Himachal Pradesh","Gangtok, Sikkim","Shillong, Meghalaya"], ans:0, exp:"The workshop was held in <b>Dehradun, Uttarakhand</b>."},
+{sec:"jun16", q:"Telangana became the third Indian state to ban the highly toxic herbicide Paraquat. Which two states banned it before Telangana?", opts:["Kerala, then Odisha","Kerala, then Karnataka","Punjab, then Haryana","Tamil Nadu, then Kerala"], ans:0, exp:"<b>Kerala</b> banned it first, followed by <b>Odisha</b>, then Telangana as the third."},
+{sec:"jun16", q:"Which state government recently abolished the 'two-child rule' for government jobs?", opts:["Rajasthan","Madhya Pradesh","Chhattisgarh","Uttar Pradesh"], ans:1, exp:"The <b>Madhya Pradesh</b> government abolished the two-child rule for government job eligibility."},
+{sec:"jun16", q:"The premium retail brand 'RISA — Timeless Tribal', dedicated to tribal textiles and handicrafts, opened its first store at which location?", opts:["India Gate, New Delhi","Rajiv Gandhi Handicrafts Bhawan, Connaught Place, New Delhi","Dilli Haat, New Delhi","Pragati Maidan, New Delhi"], ans:1, exp:"The first store opened at <b>Rajiv Gandhi Handicrafts Bhawan, Connaught Place, New Delhi</b>, via TRIFED."},
+{sec:"jun16", q:"The draft Telecommunications (Television, Radio and Assorted Services) Rules, 2026 invited public suggestions until which date?", opts:["15 July 2026","27 July 2026","10 August 2026","1 September 2026"], ans:1, exp:"Suggestions were invited until <b>27 July 2026</b>."},
+{sec:"jun16", q:"FM Nirmala Sitharaman inaugurated the North-East's largest organic spice processing plant at which location?", opts:["Bhoirymbang, Ri Bhoi district, Meghalaya","Shillong, Meghalaya","Imphal, Manipur","Itanagar, Arunachal Pradesh"], ans:0, exp:"The plant was inaugurated at <b>Bhoirymbang, Ri Bhoi district, Meghalaya</b>, on June 19, 2026."},
+{sec:"jun16", q:"'WT-MARUT', India's first dedicated wind turbine supply-management portal, charted a roadmap to achieve what wind energy target by 2030?", opts:["50 GW","75 GW","100 GW","150 GW"], ans:2, exp:"WT-MARUT charts a roadmap for <b>100 GW</b> of wind energy capacity by 2030, launched at Global Wind Day 2026 in Goa."},
+{sec:"jun16", q:"At the 19th Mumbai International Film Festival (MIFF 2026), which film won the Golden Conch for Best International Documentary?", opts:["A Polish film","A German film","A Japanese film","A French film"], ans:0, exp:"A <b>Polish film</b> won the Golden Conch for Best International Documentary Film."},
+{sec:"jun16", q:"Which temple became the first in India to secure trademark protection for its significant words and symbols?", opts:["Kashi Vishwanath Temple","Shri Jagannath Temple, Puri","Tirupati Balaji Temple","Somnath Temple"], ans:1, exp:"The <b>Shri Jagannath Temple, Puri</b>, became the first Indian temple to secure such trademark protection."},
+{sec:"jun16", q:"Reliance's Jio Platforms became the only Indian company to feature in the WIPO global top-20 patent rankings for which period?", opts:["2023-24","2024-25","2025-26","2026-27"], ans:2, exp:"Jio Platforms featured in the WIPO top-20 patent rankings for <b>2025-26</b>."},
+{sec:"jun16", q:"Six states/UTs signed an MoU for the multipurpose Kuheo (Lakhwar) Dam Project in which river basin?", opts:["Ganga basin","Yamuna basin","Sutlej basin","Chambal basin"], ans:1, exp:"The dam project MoU concerns the <b>Yamuna basin</b>, signed by HP, Uttarakhand, Delhi, UP, Haryana and Rajasthan."},
+{sec:"jun16", q:"Per UNCTAD, India's global share in ship recycling increased from 30.1% in 2024 to what figure in 2025?", opts:["32.8%","33.9%","35.4%","37.1%"], ans:2, exp:"India's ship-recycling share rose to <b>35.4%</b> in 2025, making it the world leader."},
+
+// ============ JUNE 21-26 ============
+{sec:"jun21", q:"Uttarakhand became India's sixth fully literate state under the ULLAS initiative. Which state was NOT among the first five?", opts:["Mizoram","Goa","Tripura","Nagaland"], ans:3, exp:"The first five fully literate states were Mizoram, Goa, Tripura, Himachal Pradesh and Sikkim — <b>Nagaland</b> was not among them."},
+{sec:"jun21", q:"Gujarat announced what percentage reservation for former Agniveers in direct recruitment to Class III government posts?", opts:["10%","15%","20%","25%"], ans:2, exp:"Gujarat announced <b>20% reservation</b> for former Agniveers."},
+{sec:"jun21", q:"The Delhi High Court recognised the 'Right to be Forgotten' as part of the fundamental right to privacy under which Article?", opts:["Article 14","Article 19","Article 21","Article 32"], ans:2, exp:"The Court recognised this right under <b>Article 21</b>, directing de-indexing of records of acquitted/discharged individuals."},
+{sec:"jun21", q:"During Phase-1 of the Defence Investiture Ceremony, President Murmu conferred a total of how many gallantry awards, including how many Vir Chakras?", opts:["41 awards including 12 Vir Chakras","51 awards including 15 Vir Chakras","61 awards including 18 Vir Chakras","45 awards including 10 Vir Chakras"], ans:1, exp:"A total of <b>51 gallantry awards</b> were conferred, including <b>7 Kirti Chakras, 15 Vir Chakras, and 29 Shaurya Chakras</b>."},
+{sec:"jun21", q:"'CHIRAG', the Indian Railways centre for modernising HR management via AI, was inaugurated in which city?", opts:["New Delhi","Hyderabad","Mumbai","Bengaluru"], ans:1, exp:"CHIRAG (Centre for HR Information Systems, Research and Analytics in Governance) was inaugurated in <b>Hyderabad</b>."},
+{sec:"jun21", q:"Uttarakhand's 'Forest Fire Control and Management 2026' strategy offers cash incentives up to what amount for fire prevention?", opts:["₹50,000","₹75,000","₹1 lakh","₹1.5 lakh"], ans:2, exp:"The strategy offers incentives up to <b>₹1 lakh</b>."},
+{sec:"jun21", q:"'Project Hinchi', aimed at curbing opium cultivation and providing alternate livelihoods, was launched by which state?", opts:["Nagaland","Manipur","Mizoram","Arunachal Pradesh"], ans:1, exp:"<b>Manipur</b> launched Project Hinchi."},
+{sec:"jun21", q:"The 'Viksit Vibrant Village Programme 2025', launched under Mera Yuva Bharat, is targeted at which type of villages?", opts:["Coastal fishing villages","Border villages","Tribal-majority villages","Drought-prone villages"], ans:1, exp:"This youth-led initiative targets <b>border villages</b> to boost grassroots participation and national unity."},
+{sec:"jun21", q:"Which Union Minister launched the cluster-based 'Coffee Value Chain Development Mission' in Nagaland?", opts:["Jyotiraditya Scindia","Piyush Goyal","Jitendra Singh","Pralhad Joshi"], ans:0, exp:"<b>Jyotiraditya Scindia</b> launched this mission in Nagaland."},
+{sec:"jun21", q:"Telangana CM A. Revanth Reddy directed creation of which card to deliver scheme benefits directly without intermediaries?", opts:["'Telangana Suraksha Card'","'One-Stop Multi-Purpose Unified Card'","'Digital Nagrik Card'","'Praja Palana Card'"], ans:1, exp:"He directed creation of a <b>'One-Stop Multi-Purpose Unified Card.'</b>"},
+
+// ============ AWARDS & PERSONS ============
+{sec:"awards", q:"Major Prabhat Mishra of the Indian Army was honoured with which two awards at the US Army Command and General Staff College?", opts:["Birrer-Brookes Award and General Douglas MacArthur Military Leadership Writing Award","Legion of Merit and Bronze Star","Purple Heart and Silver Star","Distinguished Service Cross and Soldier's Medal"], ans:0, exp:"He won the <b>Birrer-Brookes Award</b> (for an outstanding thesis) and the <b>General Douglas MacArthur Military Leadership Writing Award</b>."},
+{sec:"awards", q:"Who was honoured with the 'Banker of the Year' award at the FE Best Banks Awards 2026?", opts:["C.S. Setty","K. Satyanarayana Raju","Dinesh Kumar Khara","Sumant Kathpalia"], ans:1, exp:"<b>K. Satyanarayana Raju</b> received the 'Banker of the Year' award."},
+{sec:"awards", q:"Lt. Cdr. Suraj Parashar of MARCOS was awarded the Shaurya Chakra for a counter-terrorism operation in which location?", opts:["Chuntawadi, Bandipora, J&K","Pulwama, J&K","Sopore, J&K","Anantnag, J&K"], ans:0, exp:"He was awarded for an operation in <b>Chuntawadi, Bandipora district, Jammu & Kashmir</b> (November 6, 2024)."},
+{sec:"awards", q:"The BAFTA-winning Manipuri film 'Boong' won three awards at the New York Indian Film Festival, including Best Director for whom?", opts:["Lakshmi Priya Devi","Gugun Kipgen","Meenakshi Jayan","Nikhil Yadav"], ans:0, exp:"<b>Lakshmi Priya Devi</b> won Best Director; the film also won Best Debut Film and Best Child Artist (Gugun Kipgen)."},
+{sec:"awards", q:"Captain Shubhanshu Shukla's autobiography, released by Air Marshal Amarpreet Singh, is titled what?", opts:["'The Second Orbit: Tale of a Man, Dream of 1.4 Billion Hearts'","'Beyond the Stars: An Indian Journey'","'Gagan Se Uparr'","'Orbiting Dreams'"], ans:0, exp:"The book is titled <b>'The Second Orbit: Tale of a Man, Dream of 1.4 Billion Hearts.'</b>"},
+{sec:"awards", q:"India's first solar power plant led by a women's Self-Help Group was inaugurated in which district under the Indira Mahila Shakti Yojana?", opts:["Warangal, Telangana","Khammam, Telangana","Nalgonda, Telangana","Karimnagar, Telangana"], ans:1, exp:"The plant was inaugurated in <b>Khammam district, Telangana</b>."},
+{sec:"awards", q:"The book 'When Audit Matters: CAG Interventions That Made a Difference', edited by Vinod Rai, was released by whom?", opts:["President Droupadi Murmu","Vice President C.P. Radhakrishnan","PM Narendra Modi","Finance Minister Nirmala Sitharaman"], ans:1, exp:"The book was released by Vice President <b>C.P. Radhakrishnan</b>."},
+{sec:"awards", q:"Justice V. Mohana became the second woman judge directly elevated from the Bar to the Supreme Court, after which judge?", opts:["Indu Malhotra","Ruma Pal","Fathima Beevi","Sujata Manohar"], ans:0, exp:"She followed <b>Indu Malhotra</b>, and became the 12th female Supreme Court judge overall."},
+{sec:"awards", q:"Vaibhav Suryavanshi became the youngest player to debut for Team India at what age?", opts:["14 years","15 years","16 years","17 years"], ans:1, exp:"He debuted for Team India at just <b>15 years</b> of age."},
+{sec:"awards", q:"The 12th Kalinga Literary Festival, held in Bhubaneswar, had which theme?", opts:["'Stories that Shape Humanity: Translating Worlds, Transforming Futures'","'Literature for a New Bharat'","'Voices of the East'","'Words that Build Nations'"], ans:0, exp:"The theme was <b>'Stories that Shape Humanity: Translating Worlds, Transforming Futures.'</b>"},
+
+// ============ REPORTS, RANKINGS & MISC ============
+{sec:"misc", q:"Scientists from CSIR-NGRI discovered a 4,200-year-old underground paleochannel between which two cities?", opts:["Prayagraj and Kanpur","Varanasi and Allahabad","Lucknow and Kanpur","Patna and Varanasi"], ans:0, exp:"The ancient river course was discovered between <b>Prayagraj and Kanpur</b>."},
+{sec:"misc", q:"On World Environment Day, the Union Environment Minister inaugurated how many 'Nagar Van Parks' in Delhi?", opts:["10","12","14","16"], ans:3, exp:"<b>16 Nagar Van Parks</b> were inaugurated to boost urban greenery."},
+{sec:"misc", q:"Maruti Suzuki's WagonR became India's first flex-fuel car capable of running on which ethanol blend range?", opts:["E-10 to E-50","E-20 to E-100","E-5 to E-30","E-15 to E-85"], ans:1, exp:"The flex-fuel WagonR can run on blends from <b>E-20 to E-100</b> ethanol."},
+{sec:"misc", q:"With 6.9% annual growth, India became the world's third-largest domestic aviation market, surpassing which countries?", opts:["Brazil and Indonesia","Germany and France","Russia and Japan","UK and Germany"], ans:0, exp:"India surpassed <b>Brazil and Indonesia</b>; the USA ranks first and China second, with IndiGo holding the largest domestic share."},
+{sec:"misc", q:"The biennial SAREX naval exercise between Japan and South Korea resumed in 2026 after how many years of suspension?", opts:["Five years","Seven years","Nine years","Eleven years"], ans:2, exp:"SAREX had been suspended since 2018 and resumed after <b>nine years</b>."},
+{sec:"misc", q:"India's 7th and 8th Regional Meteorological Centres were inaugurated in which two cities?", opts:["Jammu and Lucknow","Shimla and Dehradun","Srinagar and Chandigarh","Patna and Ranchi"], ans:0, exp:"The two new RMCs were inaugurated in <b>Jammu and Lucknow</b>."},
+{sec:"misc", q:"EBS (ethanol-blended) fuel, launched on Environment Day, was initially implemented at how many public sector retail outlets, with a target of how many by 2027?", opts:["48 outlets; 5,000 by 2027","30 outlets; 3,000 by 2027","60 outlets; 6,000 by 2027","25 outlets; 2,500 by 2027"], ans:0, exp:"EBS fuel launched at <b>48 outlets</b> initially, targeting 500 by 2026 and <b>5,000 by 2027</b>."},
+{sec:"misc", q:"In Maniyar Iliyas and Sheikh Riyaz vs P. Ayyappan, the Supreme Court recognised which right as fundamental, and under which Articles?", opts:["Right to walk on footpaths — Articles 19(1)(d) and 21","Right to clean air — Articles 21 and 48A","Right to housing — Articles 21 and 39","Right to public transport — Articles 19 and 21"], ans:0, exp:"The Court recognised the <b>right to walk on footpaths</b> under <b>Articles 19(1)(d) and 21</b>."},
+{sec:"misc", q:"PM Modi laid the foundation stone for India's first commercial-scale coal-to-ammonium-nitrate project at which location?", opts:["Lakhanpur, Jharsuguda district, Odisha","Talcher, Angul district, Odisha","Rourkela, Sundargarh district, Odisha","Bhubaneswar, Khordha district, Odisha"], ans:0, exp:"The project's foundation stone was laid at <b>Lakhanpur, Jharsuguda district, Odisha</b>."},
+{sec:"misc", q:"The rare 10th-century four-faced stone pillar discovered in Telangana featured carvings depicting Buddha, Vishnu, Shaiva, and what fourth theme?", opts:["Royal warriors practicing martial arts","Vedic sacrificial rituals","Jain Tirthankaras","Agricultural scenes"], ans:0, exp:"The pillar, found in Bhimsari village, Adilabad district, also depicted <b>royal warriors performing martial arts</b>, symbolising unity in diversity."},
+{sec:"misc", q:"India ranked 13th globally in the QS World Future Skills Index. Which countries topped this index?", opts:["USA, Australia, UK","USA, Germany, Japan","China, USA, UK","Singapore, USA, Australia"], ans:0, exp:"The top three countries were <b>USA, Australia, and the UK</b>; India scored 89.4 points."},
+{sec:"misc", q:"Jawaharlal Nehru Port was ranked India's best-performing container port in the CPPI (World Bank & S&P Global), securing what global rank?", opts:["15th","18th","22nd","28th"], ans:2, exp:"JNP ranked <b>22nd globally</b> in the Container Port Performance Index."},
+{sec:"misc", q:"Gulveer Singh, from Aligarh, Uttar Pradesh, became the first Indian to run a mile in under four minutes with a timing of:", opts:["3:52.10","3:55.63","3:58.90","3:49.75"], ans:1, exp:"Gulveer Singh clocked <b>3:55.63</b> at the 24th Annual Music City Track Carnival."},
+{sec:"misc", q:"The Wolf Prize in Physics 2026 was awarded to Jainendra K. Jain for his theory on which subject?", opts:["Composite fermions in quantum physics","Superconductivity at high temperatures","Dark matter detection","Quantum entanglement"], ans:0, exp:"He was recognised for the theory of <b>'composite fermions'</b> in quantum physics, becoming the first scientist of Indian origin to win this prize."},
+];
+
+// ---- render ----
+const root = document.getElementById('quiz-root');
+const sections = [
+  {id:"jun1", title:"June 1 – 5"},
+  {id:"jun6", title:"June 6 – 10"},
+  {id:"jun11", title:"June 11 – 15"},
+  {id:"jun16", title:"June 16 – 20"},
+  {id:"jun21", title:"June 21 – 26"},
+  {id:"awards", title:"Awards, Persons & Culture"},
+  {id:"misc", title:"Reports, Rankings & Misc."}
+];
+
+let score = 0;
+let answered = 0;
+document.getElementById('score-total').textContent = QUESTIONS.length;
+
+sections.forEach(sec => {
+  const secQuestions = QUESTIONS.filter(q => q.sec === sec.id);
+  document.getElementById('cnt-'+sec.id).textContent = secQuestions.length;
+
+  const head = document.createElement('div');
+  head.className = 'section-head';
+  head.id = 'sec-'+sec.id;
+  head.innerHTML = `<h2>${sec.title}</h2><span class="cnt">${secQuestions.length} questions</span>`;
+  root.appendChild(head);
+
+  secQuestions.forEach((qObj, idx) => {
+    const card = document.createElement('div');
+    card.className = 'qcard';
+    const globalIdx = QUESTIONS.indexOf(qObj) + 1;
+    card.innerHTML = `
+      <div class="qtext"><span class="qnum">Q${globalIdx}.</span>${qObj.q}</div>
+      <div class="opts">
+        ${qObj.opts.map((o,i)=>`<button class="opt" data-i="${i}">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}
+      </div>
+      <div class="explain"></div>
+    `;
+    const buttons = card.querySelectorAll('.opt');
+    const explainBox = card.querySelector('.explain');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (card.dataset.answered) return;
+        card.dataset.answered = "1";
+        answered++;
+        const chosen = parseInt(btn.dataset.i);
+        buttons.forEach(b => {
+          b.classList.add('disabled');
+          const bi = parseInt(b.dataset.i);
+          if (bi === qObj.ans) b.classList.add('correct');
+          else if (bi === chosen) b.classList.add('wrong');
+        });
+        if (chosen === qObj.ans) score++;
+        document.getElementById('score-num').textContent = score;
+        document.getElementById('progress-fill').style.width = (answered/QUESTIONS.length*100)+'%';
+        explainBox.innerHTML = qObj.exp;
+        explainBox.classList.add('show');
+      });
+    });
+    root.appendChild(card);
+  });
+});
+
+function resetQuiz(){
+  location.reload();
+}
+</script>
+</body>
+</html>

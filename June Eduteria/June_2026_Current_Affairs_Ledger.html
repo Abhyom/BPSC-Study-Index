@@ -1,0 +1,2676 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>June 2026 Current Affairs Ledger — BPSC Prelims</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Crimson+Pro:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;1,600&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--paper: #f4ecd8;
+				--paper-dark: #ece0c4;
+				--ink: #2b2117;
+				--ink-soft: #4a3c2c;
+				--navy: #132743;
+				--navy-deep: #0b1a2e;
+				--maroon: #7b241c;
+				--gold: #a9781f;
+				--gold-bright: #c8962c;
+				--leather: #241713;
+				--leather-2: #1a100d;
+				--line: #c9b98f;
+
+				--y: rgba(247, 220, 111, 0.62);
+				--b: rgba(120, 181, 222, 0.55);
+				--g: rgba(130, 214, 170, 0.55);
+				--r: rgba(240, 150, 140, 0.62);
+
+				--hdr1: #1a5276;
+				--hdr2: #7b241c;
+				--hdr3: #145a32;
+				--hdr4: #6c3483;
+				--hdr5: #b9770e;
+				--hdr6: #154360;
+				--hdr7: #943126;
+				--hdr8: #1b4f72;
+				--hdr9: #6e2c00;
+				--hdr10: #0e6251;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+			body {
+				margin: 0;
+				display: flex;
+				min-height: 100vh;
+				font-family: "Crimson Pro", serif;
+				color: var(--ink);
+				background: var(--paper);
+			}
+
+			/* ===== SIDEBAR LEDGER TABS ===== */
+			#sidebar {
+				width: 270px;
+				flex-shrink: 0;
+				position: sticky;
+				top: 0;
+				height: 100vh;
+				overflow-y: auto;
+				background: linear-gradient(
+					180deg,
+					var(--leather),
+					var(--leather-2)
+				);
+				color: #e8d9b5;
+				padding: 22px 0 40px;
+				border-right: 6px solid var(--gold);
+				box-shadow: inset -12px 0 20px -14px rgba(0, 0, 0, 0.6);
+			}
+			#sidebar::-webkit-scrollbar {
+				width: 8px;
+			}
+			#sidebar::-webkit-scrollbar-thumb {
+				background: #4a3423;
+				border-radius: 4px;
+			}
+			.sb-title {
+				font-family: "Playfair Display", serif;
+				font-weight: 800;
+				font-size: 1.35rem;
+				text-align: center;
+				color: var(--gold-bright);
+				letter-spacing: 0.5px;
+				padding: 0 18px 6px;
+				border-bottom: 2px solid #4a3423;
+				margin-bottom: 14px;
+			}
+			.sb-sub {
+				text-align: center;
+				font-size: 0.72rem;
+				letter-spacing: 2px;
+				text-transform: uppercase;
+				color: #a58b5f;
+				margin-top: -8px;
+				margin-bottom: 16px;
+			}
+			.sb-chapter {
+				margin: 0 12px 10px;
+			}
+			.sb-chapter > a {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				font-family: "Playfair Display", serif;
+				font-weight: 700;
+				font-size: 0.95rem;
+				color: #f1e2bd;
+				text-decoration: none;
+				padding: 10px 12px;
+				border-radius: 8px 3px 8px 3px;
+				background: rgba(255, 255, 255, 0.03);
+				border: 1px solid #40301f;
+				transition: 0.2s;
+			}
+			.sb-chapter > a:hover {
+				background: rgba(200, 150, 44, 0.18);
+				border-color: var(--gold);
+			}
+			.sb-chapter .tag {
+				font-size: 0.65rem;
+				background: var(--gold);
+				color: #241a10;
+				font-weight: 700;
+				padding: 2px 6px;
+				border-radius: 3px;
+				letter-spacing: 0.5px;
+			}
+			.sb-links {
+				list-style: none;
+				margin: 6px 0 0;
+				padding-left: 6px;
+				border-left: 2px dotted #4a3423;
+			}
+			.sb-links li a {
+				display: block;
+				font-size: 0.8rem;
+				color: #c9b98f;
+				text-decoration: none;
+				padding: 5px 0 5px 12px;
+				line-height: 1.25;
+			}
+			.sb-links li a:hover {
+				color: var(--gold-bright);
+			}
+			.sb-legend {
+				margin: 22px 14px 0;
+				padding: 12px;
+				background: rgba(255, 255, 255, 0.04);
+				border: 1px dashed #4a3423;
+				border-radius: 8px;
+			}
+			.sb-legend h4 {
+				margin: 0 0 8px;
+				font-family: "Playfair Display", serif;
+				font-size: 0.82rem;
+				color: var(--gold-bright);
+			}
+			.sb-legend .row {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				font-size: 0.72rem;
+				margin-bottom: 5px;
+				color: #e8d9b5;
+			}
+			.sb-legend .sw {
+				width: 14px;
+				height: 14px;
+				border-radius: 3px;
+				flex-shrink: 0;
+			}
+
+			/* ===== MAIN LEDGER PAPER ===== */
+			#main {
+				flex: 1;
+				padding: 38px 46px 80px;
+				max-width: 1080px;
+			}
+			.masthead {
+				text-align: center;
+				padding-bottom: 18px;
+				margin-bottom: 26px;
+				border-bottom: 3px double var(--gold);
+			}
+			.masthead h1 {
+				font-family: "Playfair Display", serif;
+				font-weight: 800;
+				font-size: 2.3rem;
+				color: var(--navy-deep);
+				margin: 0 0 6px;
+			}
+			.masthead .subtitle {
+				font-family: "Cormorant Garamond", serif;
+				font-style: italic;
+				font-size: 1.15rem;
+				color: var(--maroon);
+				letter-spacing: 0.5px;
+			}
+			.masthead .meta {
+				font-size: 0.82rem;
+				color: var(--ink-soft);
+				margin-top: 8px;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+			}
+
+			.legend-strip {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 14px;
+				justify-content: center;
+				background: var(--paper-dark);
+				border: 1px solid var(--line);
+				border-radius: 10px;
+				padding: 14px 18px;
+				margin-bottom: 34px;
+				box-shadow: 0 2px 0 var(--line);
+			}
+			.legend-strip .item {
+				display: flex;
+				align-items: center;
+				gap: 7px;
+				font-size: 0.85rem;
+				font-weight: 600;
+			}
+			.legend-strip .sw {
+				width: 22px;
+				height: 16px;
+				border-radius: 3px;
+			}
+
+			.chapter {
+				margin-bottom: 56px;
+				scroll-margin-top: 20px;
+			}
+			.chapter-head {
+				display: flex;
+				align-items: baseline;
+				gap: 14px;
+				margin-bottom: 20px;
+				padding: 12px 20px;
+				border-radius: 6px 16px 6px 16px;
+				color: #fff;
+				font-family: "Playfair Display", serif;
+				box-shadow: 0 3px 0 rgba(0, 0, 0, 0.15);
+			}
+			.chapter-head .num {
+				font-size: 1.6rem;
+				font-weight: 800;
+				opacity: 0.55;
+			}
+			.chapter-head h2 {
+				margin: 0;
+				font-size: 1.55rem;
+				font-weight: 700;
+			}
+			.chapter-head .count {
+				margin-left: auto;
+				font-size: 0.78rem;
+				font-family: "Crimson Pro", serif;
+				opacity: 0.85;
+			}
+
+			.cluster {
+				margin-bottom: 26px;
+				scroll-margin-top: 18px;
+			}
+			.cluster-title {
+				display: inline-block;
+				font-family: "Playfair Display", serif;
+				font-weight: 700;
+				font-size: 1.02rem;
+				color: #fff;
+				padding: 5px 14px;
+				border-radius: 4px 12px 4px 12px;
+				margin-bottom: 12px;
+			}
+
+			ul.facts {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			ul.facts > li {
+				position: relative;
+				padding: 9px 14px 9px 30px;
+				margin-bottom: 4px;
+				border-bottom: 1px dashed var(--line);
+				font-size: 1rem;
+				line-height: 1.55;
+			}
+			ul.facts > li::before {
+				content: "§";
+				position: absolute;
+				left: 6px;
+				top: 9px;
+				color: var(--gold);
+				font-weight: 700;
+				font-size: 0.9rem;
+			}
+			ul.facts > li.trap {
+				background: rgba(240, 150, 140, 0.14);
+				border-radius: 6px;
+				border-bottom: 1px dashed rgba(123, 36, 28, 0.3);
+			}
+			ul.facts ul.sub {
+				list-style: none;
+				margin: 5px 0 2px 6px;
+				padding: 0;
+			}
+			ul.facts ul.sub li {
+				position: relative;
+				padding: 4px 8px 4px 20px;
+				font-size: 0.93rem;
+				color: var(--ink-soft);
+			}
+			ul.facts ul.sub li::before {
+				content: "↳";
+				position: absolute;
+				left: 0;
+				color: var(--maroon);
+			}
+
+			mark {
+				padding: 1px 3px;
+				border-radius: 3px;
+				box-decoration-break: clone;
+				-webkit-box-decoration-break: clone;
+			}
+			mark.y {
+				background: var(--y);
+			}
+			mark.b {
+				background: var(--b);
+			}
+			mark.g {
+				background: var(--g);
+			}
+			mark.r {
+				background: var(--r);
+			}
+
+			.trap-flag {
+				display: inline-block;
+				font-size: 0.68rem;
+				font-weight: 700;
+				color: #fff;
+				background: var(--maroon);
+				padding: 1px 7px;
+				border-radius: 9px;
+				margin-right: 6px;
+				letter-spacing: 0.5px;
+				vertical-align: middle;
+			}
+			.note {
+				font-size: 0.78rem;
+				color: #8a7a5e;
+				font-style: italic;
+				margin-top: 2px;
+			}
+
+			footer {
+				text-align: center;
+				padding: 30px 0 10px;
+				color: var(--ink-soft);
+				font-size: 0.82rem;
+				border-top: 2px solid var(--line);
+				margin-top: 40px;
+			}
+
+			@media (max-width: 900px) {
+				body {
+					flex-direction: column;
+				}
+				#sidebar {
+					position: relative;
+					height: auto;
+					width: 100%;
+					border-right: none;
+					border-bottom: 6px solid var(--gold);
+				}
+				#main {
+					padding: 24px 18px 60px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- ============ SIDEBAR ============ -->
+		<nav id="sidebar">
+			<div class="sb-title">📒 The June Ledger</div>
+			<div class="sb-sub">Current Affairs · 2026</div>
+
+			<div class="sb-chapter">
+				<a href="#ch1"
+					><span class="tag">Ch. 1</span> National Events</a
+				>
+				<ul class="sb-links">
+					<li><a href="#n-jun1">June 1–5</a></li>
+					<li><a href="#n-jun6">June 6–10</a></li>
+					<li><a href="#n-jun11">June 11–15</a></li>
+					<li><a href="#n-jun16">June 16–20</a></li>
+					<li><a href="#n-jun21">June 21–26</a></li>
+					<li><a href="#n-awards">Awards & Persons</a></li>
+					<li><a href="#n-misc">Reports, Ranks & Misc.</a></li>
+				</ul>
+			</div>
+
+			<div class="sb-chapter">
+				<a href="#ch2"
+					><span class="tag">Ch. 2</span> International Events</a
+				>
+				<ul class="sb-links">
+					<li><a href="#i-bilateral">Bilateral & Diplomacy</a></li>
+					<li><a href="#i-multilateral">BRICS / G7 / UN / ILO</a></li>
+					<li><a href="#i-econ">Economy, Trade & Rankings</a></li>
+					<li><a href="#i-misc">Other Global Developments</a></li>
+				</ul>
+			</div>
+
+			<div class="sb-chapter">
+				<a href="#ch3"
+					><span class="tag">Ch. 3</span> Defence, Science &amp;
+					Tech</a
+				>
+				<ul class="sb-links">
+					<li><a href="#d-defence">Defence Deals & Exercises</a></li>
+					<li><a href="#d-drdo">DRDO / Missiles / Navy</a></li>
+					<li><a href="#d-sci">Science, Space & Health</a></li>
+					<li><a href="#d-tech">Tech, AI & Data Centres</a></li>
+				</ul>
+			</div>
+
+			<div class="sb-legend">
+				<h4>Highlight Key</h4>
+				<div class="row">
+					<span class="sw" style="background: var(--y)"></span> Core
+					concept / scheme
+				</div>
+				<div class="row">
+					<span class="sw" style="background: var(--b)"></span> Hard
+					fact — number / date
+				</div>
+				<div class="row">
+					<span class="sw" style="background: var(--g)"></span> Name —
+					person / place / institution
+				</div>
+				<div class="row">
+					<span class="sw" style="background: var(--r)"></span> MCQ
+					trap / "first-of-its-kind"
+				</div>
+			</div>
+		</nav>
+
+		<!-- ============ MAIN CONTENT ============ -->
+		<main id="main">
+			<div class="masthead">
+				<h1>June 2026 — Major Events Ledger</h1>
+				<div class="subtitle">
+					National · International · Defence, Science &amp; Technology
+				</div>
+				<div class="meta">
+					Compiled for BPSC Prelims &nbsp;|&nbsp; Source: Eduteria
+					Current Concepts
+				</div>
+			</div>
+
+			<div class="legend-strip">
+				<div class="item">
+					<span class="sw" style="background: var(--y)"></span>Core
+					Concept
+				</div>
+				<div class="item">
+					<span class="sw" style="background: var(--b)"></span>Number
+					/ Date
+				</div>
+				<div class="item">
+					<span class="sw" style="background: var(--g)"></span>Person
+					/ Place / Body
+				</div>
+				<div class="item">
+					<span class="sw" style="background: var(--r)"></span>Trap /
+					Superlative
+				</div>
+			</div>
+
+			<!-- =========================================================== -->
+			<!-- CHAPTER 1 — NATIONAL -->
+			<!-- =========================================================== -->
+			<section class="chapter" id="ch1">
+				<div class="chapter-head" style="background: var(--navy)">
+					<span class="num">01</span>
+					<h2>Major National Events</h2>
+					<span class="count">June 2026</span>
+				</div>
+
+				<div class="cluster" id="n-jun1">
+					<div class="cluster-title" style="background: var(--hdr1)">
+						June 1 – 5
+					</div>
+					<ul class="facts">
+						<li>
+							<mark class="g">Telangana</mark>'s
+							<mark class="y">12th Foundation Day</mark> was
+							celebrated on <mark class="b">June 2</mark>; the
+							state was formed on
+							<mark class="b">June 2, 2014</mark> under the
+							<mark class="g"
+								>Andhra Pradesh Reorganisation Act</mark
+							>.
+						</li>
+						<li>
+							<mark class="g">Kolkata</mark> is set to become the
+							<mark class="r">18th city</mark> in India connected
+							to a
+							<mark class="y">water metro network</mark> under the
+							Centre's
+							<mark class="g"
+								>National Urban Water Transport Programme</mark
+							>, operating across the
+							<mark class="g">Hooghly River</mark>.
+						</li>
+						<li>
+							The <mark class="g">Odisha</mark> government
+							approved restoration of English spellings of
+							<mark class="b">64 locations</mark> to align with
+							original Odia pronunciation, to preserve linguistic
+							heritage.
+						</li>
+						<li>
+							Union Agriculture Minister
+							<mark class="g">Shivraj Singh Chouhan</mark>
+							launched the
+							<mark class="y">'Khet Bachao Abhiyan'</mark> (<mark
+								class="b"
+								>June 1–30</mark
+							>) from
+							<mark class="g"
+								>Ramasiya village, Raisen district (MP)</mark
+							>, focusing on soil health, curbing chemical
+							overuse, and natural farming awareness.
+						</li>
+						<li>
+							Centre gave final financial approval for the
+							<mark class="y">Chenab–Beas Link Tunnel</mark>
+							(<mark class="b">8.7 km</mark>) in
+							<mark class="g">Lahaul-Spiti, Himachal Pradesh</mark
+							>, involving a investment of
+							<mark class="g">Rs. 2352 cr</mark> .
+						</li>
+						<li>
+							<span class="trap-flag">SC Judgment</span>In
+							<em>Prajwala vs Union of India</em> (<mark class="b"
+								>29 May 2026</mark
+							>), the
+							<mark class="g">Supreme Court</mark> approved a
+							binding plan against
+							<mark class="y">human trafficking</mark> focused on
+							survivor rehabilitation, not punishment — holding
+							trafficking victims have a fundamental right to
+							rehabilitation under
+							<mark class="b">Article 21</mark> (life with
+							dignity) and
+							<mark class="b">Article 23</mark> (prohibition of
+							trafficking).
+						</li>
+						<li>
+							MoJS signed MoUs with
+							<mark class="b">5 states/UTs</mark> —
+							<mark class="g"
+								>Arunachal Pradesh, Jharkhand, Tamil Nadu,
+								Nagaland, Puducherry</mark
+							>
+							— to ensure water quality/supply under
+							<mark class="y">Jal Jeevan Mission 2.0</mark>.
+						</li>
+						<li>
+							The
+							<mark class="b"
+								>8th India–Myanmar Bilateral Drug Control
+								Cooperation</mark
+							>
+							meeting was held in New Delhi (<mark class="b"
+								>2 June 2026</mark
+							>); India led by
+							<mark class="g">Anurag Garg</mark> (DG,
+							<mark class="g">Narcotics Control Bureau</mark>),
+							Myanmar by
+							<mark class="g">Thant Lwin Maung</mark> (Joint
+							Secretary, CCDAC).
+						</li>
+						<li>
+							South Africa's Deputy President
+							<mark class="g">Paul Shipokosa Mashatile</mark> met
+							President <mark class="g">Droupadi Murmu</mark> at
+							Rashtrapati Bhavan; discussed Global South
+							development and cooperation in tech, pharma, energy
+							and MSMEs.
+						</li>
+						<li>
+							MeitY's
+							<mark class="g">BHASHINI Division</mark> (Digital
+							India Corporation), with industry partners, launched
+							the
+							<mark class="y">VYOMA Innovation Challenge</mark>
+							for open-source, multilingual, voice-first AI
+							solutions that work offline / in low connectivity.
+						</li>
+						<li>
+							President Murmu inaugurated the National Conclave on
+							<mark class="y"
+								>Strengthening of ITDA &amp; Integrated Tribal
+								Development Projects</mark
+							>
+							at
+							<mark class="g">Vigyan Bhawan, New Delhi</mark>
+							(<mark class="b">3 June 2026</mark>).
+							<ul class="sub">
+								<li>
+									Also inaugurated a training fab at the
+									<mark class="g"
+										>Centre for Nano Science and
+										Engineering, IISc Bengaluru</mark
+									>.
+								</li>
+								<li>
+									Inaugurated
+									<mark class="b">75 space labs</mark> in
+									<mark class="g"
+										>Eklavya Model Residential Schools</mark
+									>.
+								</li>
+							</ul>
+						</li>
+						<li>
+							Laos Deputy PM &amp; Foreign Minister
+							<mark class="g">Thongsavan Phomvihane</mark> met
+							President Murmu in New Delhi.
+						</li>
+						<li>
+							First meeting of the
+							<mark class="y"
+								>BRICS Anti-Corruption Working Group</mark
+							>
+							held virtually, chaired by DoPT Secretary
+							<mark class="g">Radha S. Chauhan</mark>; theme —
+							<mark class="y"
+								>"Building for Resilience, Innovation,
+								Cooperation and Sustainability."</mark
+							>
+						</li>
+						<li>
+							Padma Shri
+							<mark class="g">Sudarsan Pattnaik</mark> created a
+							sand sculpture themed
+							<mark class="y">'BRICS India 2026'</mark> on
+							<mark class="g">Puri beach, Odisha</mark> to welcome
+							BRICS delegates.
+						</li>
+						<li>
+							Union Cabinet approved an
+							<mark class="y"
+								>Aviation Fuel Price Stabilization Support
+								Fund</mark
+							>
+							of <mark class="b">₹10,000 crore</mark> to help
+							airlines against ATF price fluctuations.
+						</li>
+						<li>
+							Central approval granted under the
+							<mark class="y">Hybrid Annuity Model (HAM)</mark>
+							for a new <mark class="b">163.18 km</mark> coastal
+							highway from
+							<mark class="g">Rameswar to Paradip, Odisha</mark>.
+						</li>
+						<li>
+							A high-level committee headed by former IAS officer
+							<mark class="g">S. Radha Chauhan</mark> was
+							constituted to probe irregularities in
+							<mark class="g">CBSE's</mark>
+							<mark class="y">On-Screen Marking (OSM)</mark>
+							tender process.
+						</li>
+						<li>
+							MDoNER, Ministry of Textiles &amp; Assam govt
+							launched
+							<mark class="y">'Mission Senehjori'</mark> to brand
+							Assam's <mark class="g">golden Muga silk</mark> —
+							the world's only natural golden silk — as a premium
+							global luxury brand.
+							<ul class="sub">
+								<li>
+									<span class="trap-flag">Trap</span>Assam
+									produces roughly
+									<mark class="b">90%</mark> of the world's
+									Muga silk.
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+
+				<div class="cluster" id="n-jun6">
+					<div class="cluster-title" style="background: var(--hdr2)">
+						June 6 – 10
+					</div>
+					<ul class="facts">
+						<li>
+							India hosted the
+							<mark class="y">13th BRICS Urbanisation Forum</mark>
+							in <mark class="g">New Delhi</mark> (<mark class="b"
+								>11–12 June 2026</mark
+							>) under its BRICS presidency; theme —
+							<mark class="y"
+								>"Cities for People: BRICS Cooperation for an
+								Inclusive and Resilient Urban Future"</mark
+							>
+							(announced by Minister
+							<mark class="g">Manohar Lal</mark>).
+						</li>
+						<li>
+							Minister
+							<mark class="g">Pralhad Joshi</mark> announced a
+							target to install rooftop solar in
+							<mark class="b"
+								>75 lakh (7.5 million) households</mark
+							>
+							by <mark class="b">December 2026</mark> under
+							<mark class="y"
+								>PM Surya Ghar: Muft Bijli Yojana</mark
+							>; launched a new logo and WhatsApp chatbot
+							<mark class="g">'SUNtosh'</mark> marking 2 years of
+							the scheme.
+						</li>
+						<li>
+							<span class="trap-flag">First</span
+							><mark class="g">Chandigarh University</mark> became
+							India's
+							<mark class="r">first private university</mark> to
+							launch the
+							<mark class="y">'IndiaAI Data Lab'</mark> with
+							<mark class="g">Intel India</mark>.
+						</li>
+						<li>
+							<span class="trap-flag">First</span
+							><mark class="g">Chumur village</mark>, Eastern
+							Ladakh (near the India–China border), became India's
+							<mark class="r">first 'Model Border Village'</mark>.
+						</li>
+						<li>
+							Centre approved a
+							<mark class="y">'Clean Mobility Scheme'</mark> worth
+							<mark class="b">₹19,585 crore</mark> to phase out
+							old commercial vehicles and cut pollution in
+							Delhi-NCR.
+						</li>
+						<li>
+							Kerala CM
+							<mark class="g">V.D. Satheesan</mark> launched
+							<mark class="y"
+								>'Operation Toofan: The Narco Hunt'</mark
+							>, an anti-drug initiative targeting the state's
+							youth.
+						</li>
+						<li>
+							<mark class="g">Nagaland</mark> imposed a complete
+							<mark class="b">one-year ban</mark> on manufacture,
+							storage &amp; sale of tobacco/nicotine food
+							products, citing health risks.
+						</li>
+						<li>
+							Union Minister
+							<mark class="g">Manohar Lal Khattar</mark> launched
+							the <mark class="y">'Swachh App'</mark> to resolve
+							geo-tagged waste complaints within
+							<mark class="b">2 hours</mark> in West Bengal
+							municipalities (piloted in
+							<mark class="b">10 municipal bodies</mark>).
+						</li>
+						<li>
+							PM unveiled development projects worth
+							<mark class="b">₹2,970 crore</mark> in
+							<mark class="g">Daman</mark>, including the new
+							<mark class="g">NAMO Airport</mark> terminal (<mark
+								class="b"
+								>₹1,340 crore</mark
+							>) and <mark class="g">NAMO Hospital</mark>; laid
+							foundation stone for
+							<mark class="b">₹885 crore</mark> port projects on
+							<mark class="g"
+								>Kalpeni and Kadmat islands, Lakshadweep</mark
+							>.
+						</li>
+						<li>
+							<mark class="g">Oil India Limited</mark> confirmed
+							discovery of significant natural gas reserves in the
+							<mark class="y">'Sri Vijayapuram-3' block</mark>,
+							<mark class="b">15 km</mark> off the east coast of
+							the Andaman Islands.
+						</li>
+						<li>
+							Home Minister
+							<mark class="g">Amit Shah</mark> presided over the
+							<mark class="b">73rd plenary session</mark> of the
+							<mark class="g">North Eastern Council</mark> in
+							<mark class="g">Shillong</mark>; deliberated on the
+							<mark class="y">'North East Vision Plan-2047'</mark
+							>.
+						</li>
+						<li>
+							Skill Development Minister
+							<mark class="g">Jayant Chaudhary</mark> launched
+							<mark class="y">'Navachar Mantra'</mark> to support
+							grassroots innovators in Tier-2/3 cities &amp; rural
+							areas — implemented by
+							<mark class="g">NIESBUD</mark> with
+							<mark class="g">FITT, IIT Delhi</mark> as technical
+							partner.
+						</li>
+						<li>
+							Under 'Ease of Doing Business', govt abolished
+							<mark class="y">'Inspector Raj'</mark>, converting
+							inspectors into
+							<mark class="y">'Inspector-cum-Facilitators'</mark>
+							to assist rather than penalise businesses.
+						</li>
+						<li>
+							<mark class="g">CSIR-CRRI</mark> and the
+							<mark class="g">Haryana</mark> govt signed an MoU —
+							<em
+								>"Implementation of Standard Framework for
+								Paving and Greening of Urban Roads (Haryana
+								State)"</em
+							>
+							— to combat road dust pollution in the NCR.
+						</li>
+						<li>
+							Under Ayushman Bharat, over
+							<mark class="b">44.14 crore</mark> Ayushman cards
+							generated; over
+							<mark class="b">60 crore</mark> non-communicable
+							disease screenings conducted at Ayushman Arogya
+							Mandirs.
+						</li>
+						<li>
+							<span class="trap-flag">Lowest TFR</span>Per
+							<mark class="g">NFHS-6</mark>, the
+							<mark class="g">Andaman &amp; Nicobar Islands</mark>
+							recorded the lowest
+							<mark class="y">Total Fertility Rate (TFR)</mark> of
+							<mark class="b">0.9</mark> — less than half the
+							replacement level of <mark class="b">2.1</mark>.
+						</li>
+						<li>
+							With <mark class="g">West Bengal's</mark> inclusion,
+							<mark class="y"
+								>Ayushman Bharat–PM Jan Arogya Yojana
+								(AB-PMJAY)</mark
+							>
+							is now implemented across all states/UTs — WB became
+							the <mark class="r">36th and final</mark> state/UT
+							to join.
+							<ul class="sub">
+								<li>
+									AB-PMJAY provides free cashless treatment up
+									to
+									<mark class="b">₹5 lakh/family/year</mark>
+									at empanelled govt &amp; private hospitals
+									for serious illnesses (e.g. cancer, kidney
+									transplants).
+								</li>
+							</ul>
+						</li>
+						<li>
+							Amit Shah launched the
+							<mark class="y">'Land Port Management System'</mark
+							>, named <mark class="g">'Vinimay'</mark>, to
+							streamline cross-border trade, passenger movement,
+							and cargo processing.
+						</li>
+						<li>
+							First major meeting of the
+							<mark class="y"
+								>'Policy Implementation and Monitoring
+								Committee'</mark
+							>
+							under the
+							<mark class="g"
+								>National Cooperative Policy-2025</mark
+							>
+							held in New Delhi — vision:
+							<mark class="y">'Sahakar se Samriddhi'</mark>.
+						</li>
+						<li>
+							A technical breakthrough was achieved in
+							constructing the
+							<mark class="b">13 km</mark> strategic
+							<mark class="y">Zojila Tunnel</mark>, connecting
+							<mark class="g">Baltal (Kashmir)</mark> and
+							<mark class="g">Minamarg (Ladakh)</mark> for
+							all-weather connectivity.
+						</li>
+					</ul>
+				</div>
+
+				<div class="cluster" id="n-jun11">
+					<div class="cluster-title" style="background: var(--hdr3)">
+						June 11 – 15
+					</div>
+					<ul class="facts">
+						<li>
+							<span class="trap-flag">Record</span>On
+							<mark class="b">10 June 2026</mark>, PM
+							<mark class="g">Narendra Modi</mark> became India's
+							<mark class="r">longest-serving elected PM</mark>,
+							completing
+							<mark class="b">4,399 days</mark> continuous tenure
+							— surpassing
+							<mark class="g">Jawaharlal Nehru's</mark> record of
+							<mark class="b">4,398 days</mark>.
+						</li>
+						<li>
+							Centre notified a
+							<mark class="y"
+								>'Resettlement and Rehabilitation Census'</mark
+							>
+							in the strategically important
+							<mark class="g">Nicobar Islands</mark> related to an
+							infrastructure project.
+						</li>
+						<li>
+							The
+							<mark class="b">11th Governing Council</mark>
+							meeting of
+							<mark class="g">NITI Aayog</mark> concluded in New
+							Delhi (<mark class="b">11 June 2026</mark>), chaired
+							by PM Modi; aim — cooperative federalism for
+							<mark class="y">'Viksit Bharat @2047'</mark>; theme
+							—
+							<mark class="y"
+								>"Inclusive Human Development for Viksit Bharat
+								@2047."</mark
+							>
+						</li>
+						<li>
+							<span class="trap-flag">Guinness Record</span
+							><mark class="g">Rapido</mark>, with the Ministry of
+							Road Transport &amp; Highways, launched a nationwide
+							awareness drive for the
+							<mark class="y">'Rahveer Scheme'</mark> (road
+							accident victim assistance) — setting a Guinness
+							World Record as
+							<mark class="b">4 lakh</mark> "Captains" took the
+							pledge.
+						</li>
+						<li>
+							Union Minister
+							<mark class="g">Jitendra Singh</mark> and UP CM
+							<mark class="g">Yogi Adityanath</mark> inaugurated a
+							new
+							<mark class="y"
+								>Regional Meteorological Centre (RMC)</mark
+							>
+							in <mark class="g">Lucknow</mark>.
+						</li>
+						<li>
+							India outlined a strategic framework under its
+							updated
+							<mark class="y"
+								>Nationally Determined Contribution (NDC)
+								3.0</mark
+							>
+							targets to expand non-fossil fuel energy capacity by
+							2030:
+							<ul class="sub">
+								<li>
+									Achieve <mark class="b">60%</mark> of
+									cumulative installed electric power capacity
+									from non-fossil sources by
+									<mark class="b">2035</mark>.
+								</li>
+								<li>
+									Reduce GDP emission intensity by
+									<mark class="b">47%</mark> from 2005 levels
+									by 2035.
+								</li>
+								<li>
+									Create an additional carbon sink of
+									<mark class="b"
+										>3.5–4.0 billion tonnes CO₂-eq</mark
+									>
+									through forest/tree cover by 2035.
+								</li>
+							</ul>
+						</li>
+						<li>
+							At UNEP's
+							<mark class="g"
+								>Intergovernmental Negotiating Committee
+								(INC)</mark
+							>
+							meeting, India announced tightening its
+							<mark class="y"
+								>Extended Producer Responsibility (EPR)</mark
+							>
+							framework to
+							<mark>eliminate single-use plastics</mark> —
+							companies must directly meet recycling targets; ban
+							on <mark class="g">End-of-Life (EoL)</mark> disposal
+							certificates.
+						</li>
+						<li>
+							An all-women
+							<mark class="y">'Singapen' special task force</mark>
+							was launched in
+							<mark class="g">Tamil Nadu</mark> for women's safety
+							— staffed exclusively by female police personnel,
+							under direct CM supervision.
+						</li>
+						<li>
+							Centre is developing mega leather, footwear &amp;
+							accessories clusters in
+							<mark class="g"
+								>Bihar (Muzaffarpur), Madhya Pradesh (Sitapur,
+								Morena), Maharashtra (Raigad)</mark
+							>
+							and <mark class="g">Tamil Nadu (Ranipet)</mark> at a
+							cost of <mark class="b">₹898 crore</mark>.
+						</li>
+						<li>
+							<span class="trap-flag">Record 6th title</span>India
+							won the
+							<mark class="y">SAFF Women's Championship 2026</mark
+							>, defeating defending champions
+							<mark class="g">Bangladesh 3–1</mark> in the final
+							at
+							<mark class="g"
+								>Pandit Jawaharlal Nehru Stadium (Margao),
+								Goa</mark
+							>
+							— a record <mark class="b">sixth</mark> title for
+							India.
+						</li>
+						<li>
+							<mark class="g">Telangana</mark> govt launched
+							<mark class="y">'Stree Ride'</mark> (via the
+							Telangana Women Safety Wing) for women's safety and
+							economic self-reliance.
+						</li>
+						<li>
+							<span class="trap-flag">First</span
+							><mark class="g">Varanasi</mark> became the first
+							city included in India's
+							<mark class="y">"Easy Connect Model"</mark> for
+							international travel.
+						</li>
+						<li>
+							<span class="trap-flag">33rd</span
+							><mark class="g">West Bengal</mark> became the
+							<mark class="b">33rd</mark> legislative assembly to
+							adopt
+							<mark class="y"
+								>NeVA (National e-Vidhan Application)</mark
+							>.
+						</li>
+						<li>
+							Centre signed a tripartite MoU with
+							<mark class="g">Assam</mark> and
+							<mark class="g">Nagaland</mark> governments for
+							exploration/production of crude oil and natural gas.
+						</li>
+					</ul>
+				</div>
+
+				<div class="cluster" id="n-jun16">
+					<div class="cluster-title" style="background: var(--hdr4)">
+						June 16 – 20
+					</div>
+					<ul class="facts">
+						<li>
+							A two-day international workshop was held in
+							<mark class="g">Dehradun, Uttarakhand</mark> to
+							promote commercial cultivation of
+							<mark class="y">cinnamon</mark>.
+						</li>
+						<li>
+							Kerala launched the
+							<mark class="y">'Priyadarshini'</mark> free bus
+							travel scheme for women and transgender persons.
+						</li>
+						<li>
+							<span class="trap-flag">3rd state</span
+							><mark class="g">Telangana</mark> became the
+							<mark class="b">third</mark> state in India to ban
+							the highly toxic herbicide
+							<mark class="y">Paraquat</mark> (after Kerala, then
+							Odisha).
+						</li>
+						<li>
+							<mark class="g">Madhya Pradesh</mark> government
+							abolished the
+							<mark class="y">'two-child rule'</mark> for
+							government jobs.
+						</li>
+						<li>
+							The <mark class="g">Uttar Pradesh</mark> govt
+							launched <mark class="y">'Project Ganga'</mark> to
+							enhance high-speed internet connectivity in
+							semi-urban and rural areas.
+						</li>
+						<li>
+							Ministry of Tribal Affairs, via
+							<mark class="g">TRIFED</mark>, launched a premium
+							retail brand
+							<mark class="y">'RISA — Timeless Tribal'</mark> for
+							tribal textiles, embroidery and handicrafts — first
+							store opened at
+							<mark class="g"
+								>Rajiv Gandhi Handicrafts Bhawan, Connaught
+								Place, New Delhi</mark
+							>.
+						</li>
+						<li>
+							Centre released draft
+							<mark class="y"
+								>Telecommunications (Television, Radio and
+								Assorted Services) Rules, 2026</mark
+							>
+							under the Telecommunications Act, 2023 — stakeholder
+							suggestions invited until
+							<mark class="b">27 July 2026</mark>.
+						</li>
+						<li>
+							Lok Sabha Speaker
+							<mark class="g">Om Birla</mark> inaugurated the
+							<mark class="y"
+								>National Youth Parliament 2026</mark
+							>
+							in New Delhi.
+						</li>
+						<li>
+							A
+							<mark class="y">'Nyaya Sahita Exhibition'</mark> was
+							inaugurated in <mark class="g">Puducherry</mark> to
+							raise awareness of India's new criminal laws —
+							<mark class="g"
+								>Bharatiya Nyaya Sanhita, Bharatiya Nagarik
+								Suraksha Sanhita, Bharatiya Sakshya
+								Adhiniyam</mark
+							>.
+						</li>
+						<li>
+							FM
+							<mark class="g">Nirmala Sitharaman</mark>
+							inaugurated the North-East's largest organic spice
+							processing plant at
+							<mark class="g"
+								>Bhoirymbang, Ri Bhoi district, Meghalaya</mark
+							>
+							(<mark class="b">19 June 2026</mark>).
+						</li>
+						<li>
+							<span class="trap-flag">First</span>Minister
+							<mark class="g">Pralhad Joshi</mark> launched
+							<mark class="y">WT-MARUT</mark> (Wind Turbine
+							Materials &amp; Resources Utility Tracker) — India's
+							first dedicated wind turbine supply-management
+							portal — at the Global Wind Day 2026 conference in
+							Goa; charted a roadmap for
+							<mark class="b">100 GW</mark> wind capacity by
+							<mark class="b">2030</mark>. Theme —
+							<mark class="y"
+								>"Wind Energy: From Ambition to
+								Acceleration."</mark
+							>
+						</li>
+						<li>
+							The
+							<mark class="b"
+								>19th Mumbai International Film Festival (MIFF
+								2026)</mark
+							>
+							was inaugurated;<mark> Silver</mark> a Polish film
+							won the Golden Conch for Best International
+							Documentary,
+							<mark class="g"><em>Maya's Song</em></mark> won the
+							Silver Conch for Best Animation, and
+							<mark class="g"><em>Under the Sky</em></mark> won
+							Silver Conch (Short Fiction).
+						</li>
+						<li>
+							<span class="trap-flag">First</span>The
+							<mark class="g">Shri Jagannath Temple</mark> in
+							<mark class="g">Puri</mark> became the first temple
+							in India to secure trademark protection for its
+							significant words/symbols.
+						</li>
+						<li>
+							<mark class="g"
+								>Jawaharlal Nehru University (JNU)</mark
+							>, New Delhi, topped the Government University
+							category in the
+							<mark class="y"
+								>International Institutional Ranking Framework
+								(IIRF) 2026</mark
+							>.
+						</li>
+						<li>
+							<span class="trap-flag">Only Indian entry</span
+							><mark class="g">Reliance's Jio Platforms</mark>
+							became the only Indian company to feature in the
+							<mark class="y">WIPO</mark> global top-20 patent
+							rankings, 2025-26.
+						</li>
+						<li>
+							<mark class="b">Six states/UTs</mark> —
+							<mark class="g"
+								>Himachal Pradesh, Uttarakhand, Delhi, Uttar
+								Pradesh, Haryana, Rajasthan</mark
+							>
+							— signed a historic MoU for the multipurpose
+							<mark class="y"
+								>Kishau Multipurpose Dam Project</mark
+							>
+							note- Lakhwar Dam in the Yamuna basin.
+						</li>
+						<li>
+							<span class="trap-flag">World leader</span>Per
+							<mark class="g">UNCTAD</mark>, India emerged as the
+							world's leading nation for
+							<mark class="y">ship recycling</mark> — its global
+							share rose from
+							<mark class="b">30.1% (2024)</mark> to
+							<mark class="b">35.4% (2025)</mark>.
+						</li>
+					</ul>
+				</div>
+
+				<div class="cluster" id="n-jun21">
+					<div class="cluster-title" style="background: var(--hdr5)">
+						June 21 – 26
+					</div>
+					<ul class="facts">
+						<li>
+							Minister
+							<mark class="g">Manohar Lal Khattar</mark>
+							inaugurated construction of the
+							<mark class="y">Central Vista Corridor</mark> at
+							Delhi's
+							<mark class="g"
+								>Central Secretariat Metro Station</mark
+							>.
+						</li>
+						<li>
+							<span class="trap-flag">6th state</span
+							><mark class="g">Uttarakhand</mark> became India's
+							<mark class="b">sixth</mark> fully literate state
+							under the <mark class="y">ULLAS</mark> initiative
+							(after Mizoram, Goa, Tripura, Himachal Pradesh,
+							Sikkim).
+						</li>
+						<li>
+							<mark class="g">Gujarat</mark> announced
+							<mark class="b">20% reservation</mark> for former
+							Agniveers in direct recruitment to Class III
+							government posts.
+						</li>
+						<li>
+							<span class="trap-flag">Landmark verdict</span
+							><mark class="g">Delhi High Court</mark> recognised
+							the
+							<mark class="y">'Right to be Forgotten'</mark> as
+							part of the fundamental right to privacy under
+							<mark class="b">Article 21</mark> — directed
+							de-indexing of court records of acquitted/discharged
+							individuals from name-based searches.
+						</li>
+						<li>
+							President Murmu conferred
+							<mark class="b">51 gallantry awards</mark> on Armed
+							Forces/CAPF/police personnel during Phase-1 of the
+							Defence Investiture Ceremony — including
+							<mark class="b"
+								>7 Kirti Chakras, 15 Vir Chakras, 29 Shaurya
+								Chakras</mark
+							>.
+						</li>
+						<li>
+							Panchayat Upgradation Index won the
+							<mark class="y">Gold Medal</mark> (Digital
+							Transformation via Data Analytics category) at the
+							<mark class="g"
+								>National e-Governance Awards 2026</mark
+							>.
+						</li>
+						<li>
+							Union Minister
+							<mark class="g">Jyotiraditya Scindia</mark> launched
+							the cluster-based
+							<mark class="y"
+								>'Coffee Value Chain Development Mission'</mark
+							>
+							in <mark class="g">Nagaland</mark>.
+						</li>
+						<li>
+							<mark class="g">Manipur</mark> launched
+							<mark class="y">'Project Hinchi'</mark> to curb
+							opium cultivation and provide alternate livelihoods.
+						</li>
+						<li>
+							Telangana CM
+							<mark class="g">A. Revanth Reddy</mark> directed
+							creation of a
+							<mark class="y"
+								>'One-Stop Multi-Purpose Unified Card'</mark
+							>
+							to deliver scheme benefits directly, without
+							intermediaries.
+						</li>
+						<li>
+							Indian Railways inaugurated the
+							<mark class="y">'CHIRAG'</mark> centre in
+							<mark class="g">Hyderabad</mark> to modernise HR
+							management via AI/digital tech — CHIRAG = Centre for
+							HR Information Systems, Research and Analytics in
+							Governance.
+						</li>
+						<li>
+							<mark class="g">Uttarakhand</mark> launched
+							<mark class="y"
+								>'Forest Fire Control and Management 2026'</mark
+							>, offering cash incentives up to
+							<mark class="b">₹1 lakh</mark> for forest-fire
+							prevention.
+						</li>
+						<li>
+							Ministry of Youth Affairs &amp; Sports launched
+							Phase 1 of the
+							<mark class="y"
+								>'Viksit Vibrant Village Programme 2025'</mark
+							>
+							under <mark class="g">Mera Yuva Bharat</mark> — a
+							youth-led initiative in border villages to boost
+							grassroots participation and national unity.
+						</li>
+					</ul>
+				</div>
+
+				<div class="cluster" id="n-awards">
+					<div class="cluster-title" style="background: var(--hdr6)">
+						Awards, Persons &amp; Culture
+					</div>
+					<ul class="facts">
+						<li>
+							Major <mark class="g">Prabhat Mishra</mark> (Indian
+							Army) won the
+							<mark class="y">Birrer-Brookes Award</mark> and the
+							<mark class="y"
+								>General Douglas MacArthur Military Leadership
+								Writing Award</mark
+							>
+							at the US Army Command and General Staff College.
+						</li>
+						<li>
+							<mark class="g">K. Satyanarayana Raju</mark> won
+							<mark class="y">'Banker of the Year'</mark> at the
+							FE Best Banks Awards 2026.
+						</li>
+						<li>
+							Navy MARCOS
+							<mark class="g">Lt. Cdr. Suraj Parashar</mark>
+							received the
+							<mark class="y">Shaurya Chakra</mark> (India's
+							3rd-highest peacetime gallantry award) for a
+							counter-terror operation in
+							<mark class="g"
+								>Chuntawadi, Bandipora, J&amp;K</mark
+							>
+							(6 Nov 2024).
+						</li>
+						<li>
+							<span class="trap-flag">First</span
+							><mark class="g">Mother Dairy</mark> introduced
+							India's first naturally biodegradable milk pouch.
+						</li>
+						<li>
+							BAFTA-winning Manipuri film <em>Boong</em> won
+							<mark class="b">3 awards</mark> at the New York
+							Indian Film Festival — Best Debut Film, Best
+							Director (<mark class="g">Lakshmi Priya Devi</mark
+							>), Best Child Artist (<mark class="g"
+								>Gugun Kipgen</mark
+							>).
+							<ul class="sub">
+								<li>
+									Best Film — <em>Baksho Bondi</em>; Best
+									Actor —
+									<mark class="g">Nikhil Yadav</mark>
+									(<em>Vimukt</em>); Best Actress —
+									<mark class="g">Meenakshi Jayan</mark>
+									(<em>Victoria</em>).
+								</li>
+							</ul>
+						</li>
+						<li>
+							Captain
+							<mark class="g">Shubhanshu Shukla</mark> authored
+							his autobiography
+							<em
+								>"The Second Orbit: Tale of a Man, Dream of 1.4
+								Billion Hearts"</em
+							>, released by Air Force Chief
+							<mark class="g">Air Marshal Amarpreet Singh</mark>.
+						</li>
+						<li>
+							<span class="trap-flag">First</span>India's first
+							solar power plant led by a women's Self-Help Group
+							inaugurated in
+							<mark class="g">Khammam, Telangana</mark> under the
+							<mark class="y">Indira Mahila Shakti Yojana</mark>.
+						</li>
+						<li>
+							Per <mark class="g">Fortune India</mark>, top-ranked
+							valuable Indian celebrities:
+							<mark class="g"
+								>Virat Kohli, Shah Rukh Khan, Priyanka Chopra,
+								MS Dhoni, Ranveer Singh</mark
+							>.
+						</li>
+						<li>
+							The book
+							<em
+								>"When Audit Matters: CAG Interventions That
+								Made a Difference"</em
+							>, edited by <mark class="g">Vinod Rai</mark>, was
+							released by Vice President
+							<mark class="g">C.P. Radhakrishnan</mark>.
+						</li>
+						<li>
+							<span class="trap-flag">Second woman</span>Justice
+							<mark class="g">V. Mohana</mark> became the second
+							woman judge directly elevated from the Bar to the
+							Supreme Court (after
+							<mark class="g">Indu Malhotra</mark>) — the
+							<mark class="b">12th</mark> female SC judge overall.
+						</li>
+						<li>
+							<span class="trap-flag">Youngest debut</span
+							><mark class="g">Vaibhav Suryavanshi</mark> (<mark
+								class="b"
+								>15 years</mark
+							>) became the youngest player to debut for Team
+							India.
+						</li>
+						<li>
+							The <mark class="b">12th</mark> Kalinga Literary
+							Festival was held in
+							<mark class="g">Bhubaneswar, Odisha</mark>; theme —
+							<mark class="y"
+								>"Stories that Shape Humanity: Translating
+								Worlds, Transforming Futures."</mark
+							>
+						</li>
+						<li>
+							<span class="trap-flag">Third country</span>After
+							Japan and Mauritius, a statue of
+							<mark class="g">Shivaji Maharaj</mark> will be
+							installed in <mark class="g">Israel</mark>.
+						</li>
+					</ul>
+				</div>
+
+				<div class="cluster" id="n-misc">
+					<div class="cluster-title" style="background: var(--hdr7)">
+						Reports, Rankings &amp; Other Facts
+					</div>
+					<ul class="facts">
+						<li>
+							<mark class="g"
+								>IIT Bombay, IIT Madras, IIT Delhi</mark
+							>
+							topped the International Institutional Ranking
+							Framework (IIRF) ranking respectively;
+							<mark class="g">IIT Bombay</mark> topped
+							Engineering;
+							<mark class="g">IIM Ahmedabad</mark> topped
+							Management; <mark class="g">JNU</mark> topped
+							University category;
+							<mark class="g">NIT Patna</mark> ranked 9th.
+						</li>
+						<li>
+							Scientists from
+							<mark class="g">CSIR-NGRI</mark> discovered a
+							<mark class="b">4,200-year-old</mark> underground
+							ancient river course (paleochannel) between
+							<mark class="g">Prayagraj and Kanpur</mark>.
+						</li>
+						<li>
+							On
+							<mark class="y">World Environment Day</mark> (<mark
+								class="b"
+								>5 June</mark
+							>), the Union Environment Minister inaugurated
+							<mark class="b">18 Namo Oxygen Parks</mark> in Delhi
+							to boost urban greenery and community participation.
+						</li>
+						<li>
+							<span class="trap-flag">First</span
+							><mark class="g">Maruti Suzuki</mark> launched the
+							<em>WagonR</em> as India's first flex-fuel car
+							capable of running on
+							<mark class="b">100% ethanol</mark> (E20 to E100
+							blends).
+						</li>
+						<li>
+							Odisha selected for the
+							<mark class="y"
+								>'PM Surya Ghar Excellence Awards'</mark
+							>
+							for top rankings in solar adoption and consumer
+							registration.
+						</li>
+						<li>
+							From <mark class="b">12 June 2026</mark>, the
+							<mark class="g">Odisha</mark> government announced
+							free education from KG to postgraduate level in all
+							government/aided institutions.
+						</li>
+						<li>
+							<span class="trap-flag">3rd-largest</span>With
+							<mark class="b">6.9%</mark> annual growth, India
+							became the world's
+							<mark class="r"
+								>third-largest domestic aviation market</mark
+							>, surpassing Brazil and Indonesia —
+							<mark class="g">IndiGo</mark> holds the largest
+							share; USA ranks 1st, China 2nd.
+						</li>
+						<li>
+							<span class="trap-flag">2nd-largest</span>India
+							became the world's
+							<mark class="r"
+								>second-largest solar-energy growth market</mark
+							>
+							(annual capacity addition) — top three: China,
+							India, USA.
+						</li>
+						<li>
+							The 16th edition of
+							<mark class="y">SAREX</mark> (biennial Japan–South
+							Korea naval search-and-rescue drill) resumed off
+							<mark class="g">Jeju Island</mark> after being
+							suspended since 2018 (resumed after 9 years).
+						</li>
+						<li>
+							India's <mark class="b">7th and 8th</mark> Regional
+							Meteorological Centres were inaugurated in
+							<mark class="g">Jammu</mark> and
+							<mark class="g">Lucknow</mark> respectively.
+						</li>
+						<li>
+							E85 (ethanol blended) fuel launched on
+							<mark class="b">5 June</mark> (Environment Day) at
+							<mark class="b">48</mark> public-sector retail
+							outlets initially — target
+							<mark class="b">500 outlets by 2026</mark> and
+							<mark class="b">5,000 by 2027</mark>.
+						</li>
+						<li>
+							<mark class="g">Assam</mark> govt and the
+							<mark class="g">European Union</mark> jointly
+							launched the
+							<mark class="y">'Blue Valley Cluster'</mark> to
+							promote the bio-economy.
+						</li>
+						<li>
+							The national-level hackathon
+							<em>'Statathon — A Data Journey'</em>, organised by
+							the
+							<mark class="g">National Statistical Office</mark>
+							with the Ministry of Education's Innovation Cell,
+							showcased solutions for official-statistics
+							challenges.
+						</li>
+						<li>
+							Digital India Bhashini division and
+							<mark class="g">Kathmandu University</mark> signed
+							an agreement to develop a voice-first language
+							translation platform for Nepal.
+						</li>
+						<li>
+							<span class="trap-flag">SC verdict</span>In
+							<em
+								>Maniyar Iliyas &amp; Sheikh Riyaz vs P.
+								Ayyappan</em
+							>, the Supreme Court explicitly recognised the
+							<mark class="y">right to walk on footpaths</mark> as
+							a fundamental right under
+							<mark class="b">Articles 19(1)(d) and 21</mark>.
+						</li>
+						<li>
+							<span class="trap-flag">First</span>PM Modi laid the
+							foundation stone for India's first commercial-scale
+							<mark class="y">coal-to-ammonium-nitrate</mark>
+							project at
+							<mark class="g"
+								>Lakhanpur, Jharsuguda district, Odisha</mark
+							>.
+						</li>
+						<li>
+							A rare
+							<mark class="b">10th-century</mark> four-faced stone
+							pillar was discovered in
+							<mark class="g"
+								>Bhimsari village, Adilabad district,
+								Telangana</mark
+							>
+							(June 2026) — depicting Buddha (Mahaparinirvana),
+							Vishnu (Sayana posture), Shaiva (Uma-Alingana) and
+							martial-arts warriors, symbolising unity in
+							diversity.
+						</li>
+						<li>
+							India ranked <mark class="b">13th</mark> globally
+							(<mark class="b">89.4 points</mark>) in the
+							<mark class="y">QS World Future Skills Index</mark>
+							— top: USA, Australia, UK.
+						</li>
+						<li>
+							<mark class="g">Jawaharlal Nehru Port</mark> was
+							India's best-performing container port in the
+							<mark class="y"
+								>Container Port Performance Index (CPPI)</mark
+							>
+							by the World Bank &amp; S&amp;P Global — ranked
+							<mark class="b">22nd globally</mark>.
+						</li>
+						<li>
+							The <em>Fit India Cyclothon</em> was organised at
+							the Worli Coastal Cycle Track, Mumbai, by the
+							Ministry of Youth Affairs &amp; Sports.
+						</li>
+						<li>
+							Lam Farm, Guntur district, Andhra Pradesh, released
+							two chili varieties —
+							<mark class="g">LCA 625</mark> and
+							<mark class="g">LCA 643</mark>.
+						</li>
+						<li>
+							The Department of Posts launched a drone-based
+							delivery portal service in
+							<mark class="g">Himachal Pradesh</mark>.
+						</li>
+						<li>
+							<span class="trap-flag">Fastest mile</span
+							><mark class="g">Gulveer Singh</mark> (Aligarh, UP)
+							became the first Indian to run a sub-4-minute mile
+							(<mark class="b">3:55.63</mark>) at the 24th Music
+							City Track Carnival.
+						</li>
+						<li>
+							<span class="trap-flag">World's first</span>The
+							world's first
+							<mark class="y">Ramayana Wax Museum</mark> was
+							established in
+							<mark class="g">Ayodhya, Uttar Pradesh</mark>.
+						</li>
+						<li>
+							The 2nd meeting of the
+							<mark class="y"
+								>BRICS Disaster Risk Reduction Working
+								Group</mark
+							>
+							was held in <mark class="g">Puri, Odisha</mark> —
+							Uttarakhand's disaster-management model received
+							international recognition here.
+						</li>
+						<li>
+							<span class="trap-flag"
+								>First Indian-origin winner</span
+							>The
+							<mark class="y">2026 Wolf Prize in Physics</mark>
+							went to Indian-American physicist
+							<mark class="g">Jainendra K. Jain</mark> for the
+							theory of
+							<mark class="y">'composite fermions'</mark> — first
+							scientist of Indian origin to win this prize.
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- =========================================================== -->
+			<!-- CHAPTER 2 — INTERNATIONAL -->
+			<!-- =========================================================== -->
+			<section class="chapter" id="ch2">
+				<div class="chapter-head" style="background: var(--maroon)">
+					<span class="num">02</span>
+					<h2>Major International Events</h2>
+					<span class="count">June 2026</span>
+				</div>
+
+				<div class="cluster" id="i-bilateral">
+					<div class="cluster-title" style="background: var(--hdr8)">
+						Bilateral &amp; Diplomatic Visits
+					</div>
+					<ul class="facts">
+						<li>
+							PM Modi held bilateral talks with Myanmar President
+							<mark class="g">U Min Aung Hlaing</mark> at
+							<mark class="g">Hyderabad House</mark> — Myanmar
+							assured its territory won't be used for anti-India
+							activity; both agreed to boost cooperation on
+							critical minerals/rare earths.
+						</li>
+						<li>
+							The
+							<mark class="b"
+								>2nd India–Australia Defence Ministers'
+								Dialogue</mark
+							>
+							was held in New Delhi, co-chaired by
+							<mark class="g">Rajnath Singh</mark> and Australia's
+							Deputy PM/Defence Minister
+							<mark class="g">Richard Marles</mark>, focused on
+							Indo-Pacific strategic cooperation.
+						</li>
+						<li>
+							PM Modi met Nepal's
+							<mark class="g">Rastriya Swatantra Party</mark>
+							President <mark class="g">Rabi Lamichhane</mark> in
+							New Delhi, calling Nepal a "priority partner" under
+							the
+							<mark class="y">Neighbourhood First</mark> policy.
+						</li>
+						<li>
+							Venezuela's Acting President
+							<mark class="g">Delcy Eloína Rodríguez Gómez</mark>
+							arrived in New Delhi for a 5-day visit with a
+							delegation covering economy/finance, science &amp;
+							tech, foreign affairs and transport.
+						</li>
+						<li>
+							UK Foreign Secretary
+							<mark class="g">Yvette Cooper</mark> met PM Modi in
+							New Delhi on her first official visit — discussed
+							progress of
+							<mark class="y">India-UK Vision 2035</mark> and
+							cooperation in trade, defence and tech.
+						</li>
+						<li>
+							Nepal's Foreign Minister
+							<mark class="g">Shishir Khanal</mark> visited India
+							(from <mark class="b">5 June 2026</mark>, 3 days) to
+							strengthen bilateral ties.
+						</li>
+						<li>
+							PM Modi paid an official visit to
+							<mark class="g">Slovakia</mark> —
+							<span class="trap-flag">First</span>the first Indian
+							PM to visit since its independence in
+							<mark class="b">1993</mark>; held talks with PM
+							<mark class="g">Robert Fico</mark>; both elevated
+							ties to a
+							<mark class="y">"Comprehensive Partnership."</mark>
+						</li>
+						<li>
+							PM Modi and French President
+							<mark class="g">Emmanuel Macron</mark> jointly
+							inaugurated
+							<mark class="y">'Bharat Innovates 2026'</mark> in
+							<mark class="g">Nice, France</mark> (<mark class="b"
+								>14 June 2026</mark
+							>), under the India-France Year of Innovation.
+							<ul class="sub">
+								<li>
+									Adopted the
+									<mark class="y"
+										>'Innovation Roadmap 2030'</mark
+									>; elevated ties to a
+									<mark class="y"
+										>"Special Global Strategic
+										Partnership."</mark
+									>
+								</li>
+								<li>
+									Agreements on defence, AI (Trusted AI
+									Alliance) and deep-tech startups; expansion
+									of India's UPI to France approved.
+								</li>
+								<li>
+									Launched the
+									<mark class="y"
+										>India-France ATL initiative</mark
+									>
+									for youth/student innovation and
+									entrepreneurship collaboration.
+								</li>
+							</ul>
+						</li>
+						<li>
+							India and Japan officially adopted implementation
+							rules for the
+							<mark class="y">Joint Crediting Mechanism</mark>
+							under
+							<mark class="b"
+								>Article 6.2 of the Paris Agreement</mark
+							>
+							(<mark class="b">8 June 2026</mark>) to strengthen
+							bilateral climate cooperation.
+						</li>
+					</ul>
+				</div>
+
+				<div class="cluster" id="i-multilateral">
+					<div class="cluster-title" style="background: var(--hdr9)">
+						BRICS / G7 / UN / ILO
+					</div>
+					<ul class="facts">
+						<li>
+							India hosted the
+							<mark class="b">13th BRICS Urbanisation Forum</mark
+							>, New Delhi, under its BRICS chairmanship — theme:
+							<mark class="y"
+								>"Cities for People: BRICS Cooperation for an
+								Inclusive and Resilient Urban Future."</mark
+							>
+						</li>
+						<li>
+							Ministry of MSME hosted the
+							<span class="trap-flag">First</span>first
+							<mark class="y">BRICS MSME Forum</mark> in
+							<mark class="g">Agra, Uttar Pradesh</mark> (<mark
+								class="b"
+								>19 June</mark
+							>) — theme: "Building for Resilience, Innovation,
+							Cooperation and Sustainability."
+						</li>
+						<li>
+							The <mark class="b">16th</mark> two-day meeting of
+							<mark class="y"
+								>BRICS National Security Advisors (NSAs)</mark
+							>
+							concluded in New Delhi (<mark class="b"
+								>22–23 June 2026</mark
+							>), chaired by India's NSA
+							<mark class="g">Ajit Doval</mark> — theme:
+							<mark class="y"
+								>"Non-traditional security challenges
+								confronting the world today"</mark
+							>
+							(covered terrorism, cybersecurity, emerging tech);
+							attended by security chiefs from India, Brazil,
+							Russia, China, South Africa, Iran and other BRICS
+							members.
+						</li>
+						<li>
+							The
+							<mark class="y">BRICS Agriculture Meeting</mark>
+							&amp; <mark class="b">16th</mark> Meeting of
+							Agriculture Ministers concluded in
+							<mark class="g">Indore, Madhya Pradesh</mark> under
+							India's presidency, with
+							<mark class="b">21 countries</mark> — discussed food
+							security, climate-friendly farming, agribusiness.
+						</li>
+						<li>
+							<mark class="g">Colombia</mark> and
+							<mark class="g">Uzbekistan</mark> became the
+							<mark class="b">10th and 11th</mark> members of the
+							BRICS
+							<mark class="y">New Development Bank (NDB)</mark> —
+							<span class="trap-flag">First</span>Uzbekistan is
+							the first Central Asian country to join the NDB.
+						</li>
+						<li>
+							The <mark class="b">52nd G7 summit</mark> was held
+							in
+							<mark class="g">Évian-les-Bains, France</mark>
+							(<mark class="b">15–17 June</mark>); theme: "Working
+							together to address major international challenges."
+						</li>
+						<li>
+							The
+							<mark class="b"
+								>114th International Labour Conference
+								(ILC)</mark
+							>
+							was held at ILO HQ,
+							<mark class="g">Geneva</mark> (<mark class="b"
+								>1–12 June 2026</mark
+							>), with <mark class="b">187</mark> member
+							countries; India represented by
+							<mark class="g">Shobha Karandlaje</mark>, Minister
+							of State for Labour &amp; Employment and MSME.
+						</li>
+						<li>
+							<span class="trap-flag">First treaty</span>The ILO
+							adopted its first historic global treaty setting
+							international employment standards for
+							<mark class="y">gig and platform workers</mark>.
+						</li>
+						<li>
+							Bangladesh's Foreign Minister
+							<mark class="g">Khalilur Rahman</mark> was elected
+							President of the
+							<mark class="b">81st session</mark> of the UN
+							General Assembly (UNGA).
+						</li>
+						<li>
+							UN Secretary-General
+							<mark class="g">António Guterres</mark> launched the
+							<mark class="y">'Muscot Plan of Action'</mark> to
+							combat hate speech and prevent genocide and other
+							atrocity crimes.
+						</li>
+						<li>
+							<mark class="g">Kyrgyzstan</mark> was elected a
+							non-permanent UNSC member for the first time;
+							elected alongside
+							<mark class="g"
+								>Austria, Portugal, Trinidad and Tobago,
+								Zimbabwe</mark
+							>
+							— term begins <mark class="b">1 January 2027</mark>.
+						</li>
+						<li>
+							The
+							<mark class="y"
+								>Global Conference of Women
+								Parliamentarians</mark
+							>
+							was held in
+							<mark class="g">Belgrade, Serbia</mark> with the IPU
+							— theme: "Promoting Equality: Breaking Barriers of
+							Gender Stereotypes and Negative Social Norms."
+						</li>
+						<li>
+							<mark class="b">16 countries</mark> across Africa,
+							Asia, Europe, the Caribbean and the Pacific adopted
+							the <mark class="y">Mombasa Declaration</mark> to
+							strengthen action against illegal, unreported and
+							unregulated (IUU) fishing.
+						</li>
+					</ul>
+				</div>
+
+				<div class="cluster" id="i-econ">
+					<div class="cluster-title" style="background: var(--hdr10)">
+						Economy, Trade &amp; Rankings
+					</div>
+					<ul class="facts">
+						<li>
+							Per the
+							<mark class="y"
+								>State of India's Digital Economy (SIDE)
+								2026</mark
+							>
+							report, India rose to
+							<mark class="b">4th</mark> globally in Global AI
+							Performance Ranking, <mark class="b">5th</mark> in
+							Digital Economy Ranking, and
+							<mark class="b">4th</mark> on the Chips AI Index.
+						</li>
+						<li>
+							Citing "forced labour," the US proposed a new
+							<mark class="b">12.5% tariff</mark> on
+							<mark class="b">54 countries</mark>, including
+							India, escalating trade-negotiation tension.
+						</li>
+						<li>
+							Per <mark class="g">Forbes</mark> (June 2026),
+							<mark class="g">Elon Musk</mark> (<mark class="b"
+								>$839 billion</mark
+							>) remains the world's richest person;
+							<mark class="g">Larry Page</mark> 2nd,
+							<mark class="g">Sergey Brin</mark> 3rd.
+						</li>
+						<li>
+							<span class="trap-flag">Asia's richest</span>Per
+							Forbes, <mark class="g">Gautam Adani</mark> (net
+							worth <mark class="b">$89.2 billion</mark>) became
+							Asia's richest businessman.
+						</li>
+						<li>
+							<span class="trap-flag">2nd-largest</span>India
+							surpassed the US to become the world's
+							<mark class="r"
+								>second-largest solar-energy development
+								market</mark
+							>.
+						</li>
+						<li>
+							UPI payment services launched in
+							<mark class="g">Cambodia</mark> via NPCI
+							International Payments Ltd (NIPL) and
+							<mark class="g">ACLEDA Bank</mark> —
+							<span class="trap-flag">9th country</span>Cambodia
+							became the <mark class="b">9th</mark> country to
+							adopt UPI (Bhutan was the first).
+						</li>
+						<li>
+							<mark class="y">IATA's 62nd AGM</mark> and
+							<mark class="y"
+								>World Air Transport Summit (WATS)</mark
+							>
+							were held in
+							<mark class="g">Rio de Janeiro, Brazil</mark> (<mark
+								class="b"
+								>6–8 June 2026</mark
+							>), hosted by LATAM Airlines Group; global passenger
+							traffic projected to grow
+							<mark class="b">2.1%</mark> in 2026; IATA's 83rd AGM
+							to be held in
+							<mark class="g">Xiamen, China</mark> in 2027.
+						</li>
+						<li>
+							Ministry of Education handed the official Letter of
+							Approval to the
+							<mark class="g">University of Liverpool (UK)</mark>
+							to set up a branch campus in
+							<mark class="g">Bengaluru</mark> under the UGC
+							foreign-universities framework.
+						</li>
+						<li>
+							A US federal court struck down the proposed
+							<mark class="b">$100,000 fee</mark> for
+							<mark class="y">H-1B visas</mark>.
+						</li>
+						<li>
+							India discussed climate financing and
+							<mark class="b">Article 6</mark> (carbon-market)
+							rules under the New Collective Quantified Goal
+							(NCQG) at talks in
+							<mark class="g">Bonn, Germany</mark>.
+						</li>
+						<li>
+							In the
+							<mark class="y"
+								>Global Startup Ecosystem Report 2026</mark
+							>, <mark class="g">Bengaluru</mark> ranked
+							<mark class="b">2nd in Asia</mark> among AI startup
+							clusters (behind Beijing) and
+							<mark class="b">15th globally</mark>.
+						</li>
+						<li>
+							<span class="trap-flag">2nd consecutive year</span
+							><mark class="g">MIT</mark> topped the
+							<mark class="y"
+								>QS World University Rankings 2027</mark
+							>
+							for the 2nd year running;
+							<mark class="g">Imperial College London</mark> and
+							<mark class="g">Stanford</mark> shared 2nd place
+							globally. India's top institutes:
+							<mark class="g"
+								>IIT Delhi (118th), IIT Bombay (134th), IIT
+								Madras (170th)</mark
+							>.
+						</li>
+					</ul>
+				</div>
+
+				<div class="cluster" id="i-misc">
+					<div class="cluster-title" style="background: var(--hdr1)">
+						Other Global Developments
+					</div>
+					<ul class="facts">
+						<li>
+							Amid the Israel-Lebanon crisis, the
+							<mark class="g">Israel Defense Forces (IDF)</mark>
+							established full military control over the
+							strategically important
+							<mark class="g">Beaufort Castle</mark> site and
+							<mark class="g">Wadi al-Saluki</mark> areas in
+							southern Lebanon — a
+							<mark class="b">900-year-old</mark> fortress
+							overlooking the <mark class="g">Litani River</mark>.
+						</li>
+						<li>
+							Citing child safety,
+							<mark class="g">Malaysia</mark> banned children
+							under <mark class="b">16</mark> from holding social
+							media accounts, effective
+							<mark class="b">1 June 2026</mark>;
+							<mark class="g">Canada</mark> introduced a similar
+							<mark class="y">'Safe Social Media Act'</mark> with
+							financial penalties for non-compliant platforms.
+						</li>
+						<li>
+							<mark class="g">Germany</mark> waived the
+							transit-visa requirement for Indian citizens flying
+							with a layover at a German airport.
+						</li>
+						<li>
+							Tropical Storm <mark class="g">Jangmi</mark> caused
+							widespread damage in Japan in early June 2026 (winds
+							up to <mark class="b">~150 km/h</mark>).
+						</li>
+						<li>
+							The world's first nuclear-waste repository, named
+							<mark class="g">Onkalo</mark>, will be built in
+							<mark class="g">Finland</mark>.
+						</li>
+						<li>
+							In June 2026, a
+							<mark class="g">Seoul Central District Court</mark>
+							sentenced former South Korean President
+							<mark class="g">Yoon Suk-yeol</mark> to an
+							additional <mark class="b">30 years</mark> in prison
+							over inciting tension by sending military drones
+							into North Korea and imposing martial law (Oct
+							2024).
+						</li>
+						<li>
+							Per the <mark class="y">SIPRI Yearbook 2026</mark>,
+							India ranks <mark class="b">6th</mark> in
+							nuclear-weapon holdings;
+							<mark class="g">Russia</mark> ranks 1st.
+						</li>
+						<li>
+							<span class="trap-flag">127th</span>India ranked
+							<mark class="b">127th</mark> (score
+							<mark class="b">2.409</mark>) of
+							<mark class="b">163</mark> countries in the
+							<mark class="y">Global Peace Index 2026</mark>
+							(Institute for Economics &amp; Peace) — down
+							<mark class="b">12 places</mark> from 115th in 2025.
+							<mark class="g">Iceland</mark> remained most
+							peaceful for the
+							<mark class="b">19th</mark> consecutive year; New
+							Zealand 2nd, Switzerland 3rd.
+						</li>
+						<li>
+							The <mark class="y">Loneliness Index 2026</mark> (by
+							digital platform JB.com) ranked
+							<mark class="g">Turkey</mark> top (<mark class="b"
+								>100 points</mark
+							>) and India second (<mark class="b">89 points</mark
+							>).
+						</li>
+						<li>
+							A bill in New York to ban horse-drawn carriages was
+							renamed <mark class="y">"Romanch's Law"</mark> in
+							honour of a deceased 18-year-old teenager of Indian
+							origin.
+						</li>
+						<li>
+							Saudi Arabia officially lifted a five-year ban on
+							imports from Lebanon (<mark class="b"
+								>10 June 2026</mark
+							>).
+						</li>
+						<li>
+							The US renamed its
+							<mark class="g">Indo-Pacific Command</mark> to the
+							<mark class="g">US Pacific Command</mark>
+							(originally established
+							<mark class="b">1 January 1947</mark>).
+						</li>
+						<li>
+							<mark class="g">Bangladesh</mark> and
+							<mark class="g">Saudi Arabia</mark> joined as the
+							<mark class="b">27th</mark> and
+							<mark class="b">26th</mark> members respectively of
+							the
+							<mark class="y">International Big Cat Alliance</mark
+							>.
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<!-- =========================================================== -->
+			<!-- CHAPTER 3 — DEFENCE, SCIENCE & TECH -->
+			<!-- =========================================================== -->
+			<section class="chapter" id="ch3">
+				<div class="chapter-head" style="background: #3b2a1a">
+					<span class="num">03</span>
+					<h2>Defence, Science &amp; Technology</h2>
+					<span class="count">June 2026</span>
+				</div>
+
+				<div class="cluster" id="d-defence">
+					<div class="cluster-title" style="background: var(--hdr2)">
+						Defence Deals, Dialogues &amp; Exercises
+					</div>
+					<ul class="facts">
+						<li>
+							The
+							<mark class="b"
+								>10th India-Thailand Defence Dialogue</mark
+							>
+							was held in Bangkok; India represented by
+							<mark class="g">Satyajit Mohanty</mark>, Thailand by
+							<mark class="g">Nuttapol Diewvanich</mark>.
+						</li>
+						<li>
+							Gujarat Police detained
+							<mark class="b">362</mark> illegal Bangladeshi
+							nationals under
+							<mark class="y">'Operation Delta Hunt'</mark>.
+						</li>
+						<li>
+							The <mark class="b">4,096 km</mark> India-Bangladesh
+							border is being made impregnable via 'smart fencing'
+							(lasers, sensors, drones).
+						</li>
+						<li>
+							MoD signed defence agreements worth
+							<mark class="b">~₹14,666 crore</mark> with domestic
+							companies (<mark class="g">Bharat Forge Ltd</mark>
+							and <mark class="g">PLR Systems Pvt Ltd</mark>)
+							under 'Atmanirbhar Bharat', including a
+							<mark class="b">₹2,770 crore</mark> contract for
+							over <mark class="b">4.25 lakh</mark> Close Quarter
+							Battle (CQB) carbines, and a
+							<mark class="b">~₹11,896 crore</mark> deal for
+							heavyweight torpedoes for the Navy's submarines.
+						</li>
+						<li>
+							First meeting of the
+							<mark class="y"
+								>India-Zimbabwe Joint Defence Committee
+								(JDC)</mark
+							>
+							held in New Delhi (<mark class="b">4 June 2026</mark
+							>) — deepened cooperation in military training,
+							joint manufacturing, counter-terrorism, border
+							management.
+						</li>
+						<li>
+							India issued a formal Letter of Request (LoR) to
+							France for <mark class="b">114 Rafale</mark> fighter
+							jets at a cost of
+							<mark class="b">₹3.25 lakh crore</mark> under the
+							MRFA programme.
+						</li>
+						<li>
+							India signed a defence deal worth
+							<mark class="b">~$630 million</mark> with
+							<mark class="g">Vietnam</mark> for
+							<mark class="y">BrahMos</mark> supersonic cruise
+							missiles, including batteries, training and
+							logistics support.
+						</li>
+						<li>
+							A biennial
+							<mark class="y"
+								>SAREX (Search and Rescue Exercise)</mark
+							>
+							was conducted between Japan and South Korea in
+							international waters southeast of Jeju Island.
+						</li>
+						<li>
+							Russia delivered the
+							<mark class="b">4th squadron</mark> of the
+							<mark class="y">S-400 'Sudarshan'</mark> air defence
+							system to India via sea route, for deployment along
+							the Pakistan/China borders.
+						</li>
+						<li>
+							Russian President
+							<mark class="g">Vladimir Putin</mark> offered India
+							advanced 5th-generation
+							<mark class="y">Su-57</mark> stealth fighters and
+							proposed joint production under 'Make in India' —
+							stated at the St. Petersburg International Economic
+							Forum.
+						</li>
+						<li>
+							MoD signed a
+							<mark class="b">₹449 crore</mark> contract with
+							Bengaluru-based
+							<mark class="g"
+								>Accord Software and Systems Pvt Ltd
+								(ASSPL)</mark
+							>
+							for <mark class="b">20</mark> advanced GNSS jammers
+							for the Navy.
+						</li>
+						<li>
+							The Technology Development Board (TDB) funded
+							Bengaluru-based
+							<mark class="g">TIEA Connectors Pvt Ltd</mark> to
+							commercialise indigenous high-reliability connector
+							tech for aerospace, defence, space and
+							electric-mobility applications.
+						</li>
+					</ul>
+				</div>
+
+				<div class="cluster" id="d-drdo">
+					<div class="cluster-title" style="background: var(--hdr7)">
+						DRDO, Missiles &amp; Navy Inductions
+					</div>
+					<ul class="facts">
+						<li>
+							DRDO and the IAF flight-tested the
+							<mark class="y">RudraM-II</mark> (indigenous
+							air-to-surface anti-radiation missile, range over
+							<mark class="b">300 km</mark>) using a Sukhoi-30 MKI
+							from the Integrated Test Range (ITR), Chandipur,
+							Odisha.
+						</li>
+						<li>
+							Defence Minister
+							<mark class="g">Rajnath Singh</mark> inaugurated
+							DRDO's
+							<mark class="y"
+								>Advanced Weapon System Complex</mark
+							>
+							at the
+							<mark class="g"
+								>Dr. APJ Abdul Kalam Missile Complex</mark
+							>
+							(DRDL), Hyderabad.
+						</li>
+						<li>
+							DRDO conducted
+							<mark class="b">three</mark> consecutive successful
+							missile tests — <mark class="b">two</mark> Ballistic
+							Missile Defence (BMD) interceptors and a new naval
+							anti-ship missile.
+						</li>
+						<li>
+							DRDO conducted the first successful flight test of
+							the indigenous
+							<mark class="y"
+								>Long Range Land Attack Cruise Missile
+								(LRLACM)</mark
+							>
+							on <mark class="b">15 June 2026</mark> from
+							<mark class="g">Dr. APJ Abdul Kalam Island</mark>,
+							off Odisha's coast.
+						</li>
+						<li>
+							<span class="trap-flag"
+								>First indigenous hovercraft</span
+							>On <mark class="b">18 June 2026</mark>, India
+							inducted its first indigenously built air-cushion
+							vehicle, <mark class="y">'H-551'</mark>, into the
+							Indian Coast Guard — built by
+							<mark class="g"
+								>Chowgule &amp; Company Pvt Ltd, Goa</mark
+							>
+							under 'Atmanirbhar Bharat'.
+						</li>
+						<li>
+							<mark class="g">Tata</mark> and
+							<mark class="g">Airbus</mark> conducted the first
+							test flight of a "Made in India"
+							<mark class="y">C295</mark> aircraft in Gujarat,
+							manufactured at TASL's final assembly line in
+							<mark class="g">Vadodara</mark>.
+						</li>
+						<li>
+							MoD approved new NCC state directorates for
+							<mark class="g">Andhra Pradesh</mark> and
+							<mark class="g">Jharkhand</mark>, taking the total
+							from <mark class="b">17 to 19</mark>.
+						</li>
+						<li>
+							<span class="trap-flag">5th country</span>India
+							became the
+							<mark class="r">5th country in the world</mark> to
+							achieve multi-layered ballistic missile defence
+							capability.
+						</li>
+						<li>
+							On <mark class="b">21 June</mark>, the PM
+							commissioned three indigenous naval warships —
+							<mark class="g"
+								>INS Dunagiri, INS Sanshodhak, INS Agray</mark
+							>
+							— into the Navy at
+							<mark class="g"
+								>Syama Prasad Mookerjee Port, Kolkata</mark
+							>.
+						</li>
+						<li>
+							The Army received
+							<mark class="b">106</mark> jet-powered
+							<mark class="y">'Peacekeeper' (Agnivyuh)</mark>
+							kamikaze drones from manufacturer
+							<mark class="g">SMPP Pvt Ltd</mark>, capable of
+							long-range precision strikes.
+						</li>
+						<li>
+							The
+							<mark class="y">'Divyastra Mk-1'</mark> loitering
+							munition (drone), developed by startup
+							<mark class="g">Hoverit</mark>, was successfully
+							tested at <mark class="g">Jodhpur</mark> — vertical
+							take-off, altitude up to
+							<mark class="b">18,000 feet</mark>, payload
+							<mark class="b">15 kg</mark>.
+						</li>
+						<li>
+							<span class="trap-flag">First / 19th country</span
+							>India's first <mark class="y">SkyCast</mark> system
+							(next-gen aviation weather monitoring) was
+							inaugurated at
+							<mark class="g">IGI Airport, New Delhi</mark> —
+							India became the <mark class="b">19th</mark> country
+							with such an advanced network.
+						</li>
+					</ul>
+				</div>
+
+				<div class="cluster" id="d-sci">
+					<div class="cluster-title" style="background: var(--hdr3)">
+						Science, Space &amp; Health
+					</div>
+					<ul class="facts">
+						<li>
+							<mark class="g">Dr. Gautam Dey</mark>, an
+							Indian-origin scientist, won the
+							<mark class="y">EMBO Gold Medal 2026</mark> for
+							contributions to life sciences.
+						</li>
+						<li>
+							<span class="trap-flag">World's first</span
+							><mark class="g"
+								>ICAR-National Rice Research Institute,
+								Cuttack</mark
+							>, developed the world's first AI-based gene-editing
+							tool for crops —
+							<mark class="y">'Plant-Open CRISPR1 (POC1)'</mark>.
+						</li>
+						<li>
+							The US activated <mark class="y">'SOLAR-1'</mark>,
+							its first full-time space-weather monitoring
+							satellite, positioned at the Sun-Earth Lagrange
+							point (L1).
+						</li>
+						<li>
+							<mark class="g">IIT Bhubaneswar</mark> developed
+							<mark class="y">'ArsenSafe'</mark>, a handheld
+							device for rapid, cost-effective arsenic detection
+							in drinking water.
+						</li>
+						<li>
+							OpenAI's AI reportedly solved a complex
+							<mark class="b">80-year-old</mark> mathematical
+							problem proposed by
+							<mark class="g">Paul Erdős</mark>.
+						</li>
+						<li>
+							<span class="trap-flag">Doubled survival</span>A new
+							pancreatic-cancer drug,
+							<mark class="y">Daraxonrasib</mark>, doubled patient
+							survival rates in trials.
+						</li>
+						<li>
+							In mouse experiments, scientists found a liver
+							protein, <mark class="y">GPLD1</mark>, activated
+							during exercise, can reverse memory loss.
+						</li>
+						<li>
+							Cuban and Argentine scientists jointly developed
+							<mark class="y">'Vaxira'</mark>, a lung-cancer
+							vaccine that trains the immune system to fight
+							cancer cells.
+						</li>
+						<li>
+							India and the UK launched the
+							<mark class="y"
+								>India-UK Critical Minerals Global Supply Chain
+								Observatory (GSCO)</mark
+							>
+							in New Delhi to secure supply chains for minerals
+							like lithium and cobalt.
+						</li>
+						<li>
+							Scientists at
+							<mark class="g">Cambridge University</mark>
+							developed the world's first AI-assisted
+							<mark class="y">'super-vaccine'</mark>, targeting
+							the entire coronavirus family and future variants.
+						</li>
+						<li>
+							NASA decommissioned its
+							<mark class="y">MAVEN</mark> (Mars Atmosphere and
+							Volatile Evolution) mission, launched in 2013.
+						</li>
+						<li>
+							DST-supported research confirmed sound waves can
+							reduce energy consumption in next-generation
+							computing.
+						</li>
+						<li>
+							Analysis confirmed the soil at the Moon's
+							<mark class="y">'Shiv Shakti Point'</mark>
+							(Chandrayaan-3 landing site) closely matches the
+							chemical composition of a lunar meteorite found in
+							Antarctica.
+						</li>
+						<li>
+							<span class="trap-flag">Largest &amp; deepest</span
+							>Chinese-led international researchers discovered
+							the world's largest, deepest
+							<mark class="y">whale graveyard</mark> in the Indian
+							Ocean — depth <mark class="b">~7,000 m</mark>, in
+							the <mark class="g">Diamantina Fracture Zone</mark>,
+							west of Australia.
+						</li>
+						<li>
+							<mark class="g">IIT Madras</mark>' Sudha
+							Gopalakrishnan Brain Centre released
+							<mark class="y">'ANCHOR'</mark> — the world's most
+							detailed 3D atlas of the human brainstem (Atlas of
+							Neurochemical Characterisation of the Human
+							Brainstem with 3D Reconstruction).
+						</li>
+						<li>
+							<mark class="g">Novartis</mark> launched
+							<mark class="y">'Pluvicto'</mark>, the first
+							radioligand therapy in India, for advanced
+							(PSMA-positive metastatic) prostate cancer.
+						</li>
+						<li>
+							Astronomers using India's
+							<mark class="y">uGMRT</mark> discovered
+							<mark class="b">five</mark> new millisecond pulsars
+							in star clusters
+							<mark class="g">Messier 69</mark> and
+							<mark class="g">Messier 70</mark>.
+						</li>
+						<li>
+							Canada expanded
+							<mark class="y">Meningitis B (MenB)</mark>
+							vaccination for new college students and military
+							recruits in communal housing, amid rising invasive
+							meningococcal disease cases.
+						</li>
+						<li>
+							<span class="trap-flag">World's first</span>Chinese
+							and European physicists jointly developed the
+							world's first functional
+							<mark class="y">nuclear clocks</mark> using
+							<mark class="g">Thorium-229</mark> (teams from
+							Vienna University of Technology, Austria, and
+							China).
+						</li>
+						<li>
+							India's first
+							<mark class="y"
+								>Centre of Excellence in Nuclear Energy Design
+								and Engineering (CoENEDE)</mark
+							>
+							announced at <mark class="g">IIT Hyderabad</mark>.
+						</li>
+						<li>
+							UK's <mark class="g">NICE</mark> approved
+							<mark class="y">'Tzield'</mark> for NHS use — an
+							immunotherapy shown to delay symptomatic onset of
+							Type 1 Diabetes by an average of
+							<mark class="b">3 years</mark>.
+						</li>
+						<li>
+							India's first 3D-printed artificial reef module is
+							being installed off
+							<mark class="g">Ramanathapuram, Tamil Nadu</mark>
+							(near Rameswaram).
+						</li>
+						<li>
+							Meghalaya CM
+							<mark class="g">Conrad K. Sangma</mark> announced
+							containment measures for a fresh
+							<mark class="y">African Swine Fever</mark> outbreak
+							in the state.
+						</li>
+					</ul>
+				</div>
+
+				<div class="cluster" id="d-tech">
+					<div class="cluster-title" style="background: var(--hdr6)">
+						Technology, AI &amp; Data Infrastructure
+					</div>
+					<ul class="facts">
+						<li>
+							<span class="trap-flag"
+								>First private university</span
+							><mark class="g">Chandigarh University</mark>
+							launched the
+							<mark class="y">'IndiaAI Data Lab'</mark> with
+							<mark class="g">Intel India</mark> to boost student
+							employability in AI and Data Science.
+						</li>
+						<li>
+							<mark class="g">Reliance Industries</mark> partnered
+							with <mark class="g">Meta Platforms</mark> to build
+							India's first AI-enabled hyperscale data centre in
+							<mark class="g">Jamnagar, Gujarat</mark> (a
+							<mark class="b">168 MW</mark> capacity
+							"built-to-suite" facility).
+						</li>
+						<li>
+							<span class="trap-flag"
+								>First indigenous server</span
+							>Indian tech firm
+							<mark class="g">Zoho</mark> launched its fully
+							indigenous server,
+							<mark class="y">'Nathu La'</mark> (<mark class="b"
+								>10 June</mark
+							>) — India's first private indigenous server.
+						</li>
+						<li>
+							<span class="trap-flag">First solar expressway</span
+							>The
+							<mark class="y">Bundelkhand Expressway</mark> became
+							Uttar Pradesh's first solar expressway, with
+							<mark class="b">550 MW</mark> of solar capacity
+							being set up on a PPP basis.
+						</li>
+						<li>
+							<mark class="g">Microsoft</mark> unveiled its new
+							<mark class="y">Majorana 2</mark> quantum chip,
+							developed with agentic-AI assistance — a major
+							quantum-computing milestone.
+						</li>
+						<li>
+							<span class="trap-flag">World's first</span>China
+							approved <mark class="g">NEO</mark>, the world's
+							first commercial brain-chip, developed by
+							researchers from
+							<mark class="g">Tsinghua University</mark> and
+							Shanghai-based
+							<mark class="g">Neuracle Medical Technology</mark>.
+						</li>
+						<li>
+							China's <mark class="y">'LianShine'</mark> topped
+							the June-2026 TOP-500 list as the world's fastest
+							supercomputer.
+						</li>
+						<li>
+							A National Military Drone Technology Hub is being
+							set up at <mark class="g">IIT Kanpur</mark> at a
+							cost of <mark class="b">₹500 crore</mark>, aiming to
+							make India a drone-manufacturing hub by
+							<mark class="b">2030</mark>.
+						</li>
+						<li>
+							India's tallest wind turbine (<mark class="b"
+								>175.5 MW</mark
+							>
+							class) was installed at
+							<mark class="g">Vijayanagar, Karnataka</mark>.
+						</li>
+						<li>
+							The Digital India Bhashini Division launched the
+							<mark class="y">Vyoma Innovation Challenge</mark>,
+							built around the multilingual
+							<mark class="y">'Sunno Sutra'</mark> handheld
+							voice-AI device.
+						</li>
+					</ul>
+				</div>
+			</section>
+
+			<footer>
+				Compiled from Eduteria "Current Concepts" (June 2026 issue)
+				&nbsp;·&nbsp; Formatted as a BPSC Prelims revision ledger
+				&nbsp;·&nbsp; Highlight colours follow the standard core-fact /
+				number / name / trap system
+			</footer>
+		</main>
+	</body>
+</html>
