@@ -3,617 +3,761 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The NFHS Ledger — Health Survey Notes</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>NFHS-6 Ledger | India vs Bihar — BPSC 72 Prelims</title>
 <style>
-  :root{
-    --navy:#0f2440;
-    --navy-2:#16324f;
-    --maroon:#7a1f2b;
-    --maroon-2:#9c2c3a;
-    --gold:#c9a227;
-    --gold-soft:#e7c766;
-    --parchment:#f6efdf;
-    --parchment-2:#efe4c9;
-    --ink:#22201a;
-    --ink-soft:#5b5647;
-    --rule:#c9b98a;
-    --hi-yellow:#ffe066;
-    --hi-blue:#9fd0ea;
-    --hi-green:#a9d8b6;
-    --hi-red:#f3a9a9;
-    --shadow: 0 10px 30px rgba(15,36,64,0.18);
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    font-family:'Source Serif 4', Georgia, serif;
-    background:var(--navy);
-    color:var(--ink);
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3,h4{font-family:'Playfair Display', serif; margin:0; color:var(--navy);}
-  .mono{font-family:'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums;}
+:root{
+  --bg:#f7f1e2;
+  --bg2:#efe4c8;
+  --panel:#fffdf6;
+  --panel-2:#f4ead2;
+  --sidebar:#f2e8d0;
+  --border:#d9c69f;
+  --gold:#a9781f;
+  --gold-soft:#8c6415;
+  --gold-dim:#c9a656;
+  --text:#2c2313;
+  --muted:#6f5f42;
+  --yellow:#f2d94e;
+  --blue:#8fd0ec;
+  --green:#a3ddb0;
+  --red:#f2a49b;
+  --india-tag:#b1600a;
+  --bihar-tag:#1f7a4c;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    radial-gradient(1200px 800px at 10% -10%, #fbf6e6 0%, transparent 60%),
+    radial-gradient(1000px 700px at 100% 0%, #f3e9cd 0%, transparent 50%),
+    var(--bg);
+  color:var(--text);
+  font-family:'Georgia','Palatino Linotype',serif;
+  min-height:100vh;
+}
+.layout{display:flex; min-height:100vh;}
 
-  /* ===== LAYOUT ===== */
-  .app{display:flex; min-height:100vh;}
+/* SIDEBAR */
+.sidebar{
+  width:260px; flex-shrink:0;
+  background:linear-gradient(180deg,#f5ecd4,#eee0bc);
+  border-right:2px solid var(--border);
+  padding:22px 16px;
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+}
+.brand{
+  font-size:1.05rem; color:var(--gold-soft); letter-spacing:1px;
+  border-bottom:1px solid var(--border); padding-bottom:14px; margin-bottom:16px;
+}
+.brand small{display:block; color:var(--muted); font-size:0.7rem; margin-top:4px; letter-spacing:0.5px;}
+.tabbtns{display:flex; gap:6px; margin-bottom:18px;}
+.tabbtn{
+  flex:1; padding:9px 6px; text-align:center; cursor:pointer;
+  border:1px solid var(--gold-dim); border-radius:6px; color:var(--gold-soft);
+  font-size:0.78rem; letter-spacing:0.5px; background:rgba(169,120,31,0.06);
+  transition:all .2s;
+}
+.tabbtn.active{background:var(--gold); color:#fffdf6; font-weight:bold; box-shadow:0 0 10px rgba(169,120,31,0.35);}
+.navlist{list-style:none; padding:0; margin:0;}
+.navlist li a{
+  display:block; color:var(--muted); text-decoration:none; font-size:0.82rem;
+  padding:7px 8px; border-radius:4px; border-left:2px solid transparent; margin-bottom:2px;
+}
+.navlist li a:hover{color:var(--gold-soft); border-left:2px solid var(--gold); background:rgba(169,120,31,0.08);}
+.legend{margin-top:22px; padding-top:14px; border-top:1px solid var(--border);}
+.legend-title{color:var(--gold-soft); font-size:0.75rem; letter-spacing:1px; margin-bottom:8px; text-transform:uppercase;}
+.legend-item{display:flex; align-items:center; gap:8px; font-size:0.72rem; color:var(--muted); margin-bottom:6px;}
+.dot{width:11px; height:11px; border-radius:3px; flex-shrink:0; border:1px solid rgba(0,0,0,0.15);}
 
-  /* SIDEBAR */
-  .sidebar{
-    width:280px; flex:0 0 280px;
-    background:
-      linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
-    position:fixed; top:0; left:0; bottom:0;
-    overflow-y:auto;
-    border-right:6px solid var(--gold);
-    z-index:20;
-  }
-  .sidebar::-webkit-scrollbar{width:8px;}
-  .sidebar::-webkit-scrollbar-thumb{background:rgba(201,162,39,0.4); border-radius:4px;}
+/* MAIN */
+.main{flex:1; padding:32px 40px; max-width:1200px;}
+.view{display:none;}
+.view.active{display:block;}
+h1.pagehead{color:var(--gold-soft); font-size:1.7rem; letter-spacing:0.5px; margin-bottom:4px;}
+.subhead{color:var(--muted); font-size:0.9rem; margin-bottom:24px; font-style:italic;}
 
-  .brand{
-    padding:26px 22px 18px;
-    border-bottom:1px solid rgba(201,162,39,0.35);
-  }
-  .brand .stamp{
-    width:46px;height:46px;border-radius:50%;
-    border:2px solid var(--gold);
-    display:flex;align-items:center;justify-content:center;
-    color:var(--gold-soft); font-family:'Playfair Display',serif; font-weight:800; font-size:20px;
-    margin-bottom:10px;
-    box-shadow: inset 0 0 0 3px rgba(201,162,39,0.15);
-  }
-  .brand h1{color:#f4ead0; font-size:22px; line-height:1.15; letter-spacing:0.3px;}
-  .brand p{color:#9fb3c8; font-size:11.5px; margin-top:6px; letter-spacing:1.5px; text-transform:uppercase; font-family:'IBM Plex Mono',monospace;}
+.infobox{
+  background:var(--panel); border:1px solid var(--border); border-left:4px solid var(--gold);
+  border-radius:8px; padding:16px 20px; margin-bottom:26px; font-size:0.9rem; line-height:1.7;
+  box-shadow:0 1px 4px rgba(140,100,20,0.08);
+}
+.infobox b{color:var(--gold-soft);}
 
-  nav.tabs{padding:10px 0 30px;}
-  .tab-group-label{
-    font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase;
-    color:#7089a3; padding:16px 22px 6px;
-  }
-  .tab{
-    display:flex; align-items:center; gap:12px;
-    padding:10px 20px 10px 18px;
-    margin:2px 10px;
-    cursor:pointer;
-    color:#cddaea;
-    border-radius:3px 10px 10px 3px;
-    position:relative;
-    font-size:14.5px;
-    border-left:3px solid transparent;
-    transition:background .15s ease, color .15s ease, border-color .15s ease;
-  }
-  .tab .num{
-    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold-soft);
-    width:24px; flex:0 0 24px; opacity:0.85;
-  }
-  .tab:hover{background:rgba(201,162,39,0.10); color:#fff;}
-  .tab.active{
-    background:linear-gradient(90deg, rgba(201,162,39,0.22), rgba(201,162,39,0.04));
-    color:#fff; border-left:3px solid var(--gold);
-    box-shadow: inset 0 0 0 1px rgba(201,162,39,0.15);
-  }
-  .tab.active .num{color:#fff;}
+.category{margin-bottom:34px; scroll-margin-top:20px;}
+.cat-title{
+  display:inline-block; color:#fffdf6; background:linear-gradient(90deg,var(--gold-soft),var(--gold-dim));
+  padding:6px 16px; border-radius:20px; font-size:0.95rem; font-weight:bold; letter-spacing:0.5px;
+  margin-bottom:12px; box-shadow:0 2px 6px rgba(140,100,20,0.25);
+}
+table.compare{width:100%; border-collapse:collapse; background:var(--panel); border-radius:8px; overflow:hidden; border:1px solid var(--border); box-shadow:0 1px 4px rgba(140,100,20,0.06);}
+table.compare th{
+  background:var(--panel-2); color:var(--gold-soft); text-align:left; padding:10px 14px; font-size:0.82rem;
+  letter-spacing:0.5px; border-bottom:2px solid var(--gold-dim);
+}
+table.compare td{padding:11px 14px; font-size:0.87rem; line-height:1.55; vertical-align:top; border-bottom:1px solid var(--border);}
+table.compare tr:last-child td{border-bottom:none;}
+table.compare td.label{color:var(--text); font-weight:bold; width:24%; background:rgba(169,120,31,0.03);}
+table.compare td.india{width:38%; border-left:1px solid var(--border);}
+table.compare td.bihar{width:38%; border-left:1px solid var(--border);}
+.colhead-india{color:var(--india-tag);}
+.colhead-bihar{color:var(--bihar-tag);}
+.sub{color:var(--muted); font-size:0.8em;}
+.na{color:var(--muted); font-style:italic;}
 
-  .legend{
-    margin:14px 20px 24px; padding:14px 14px 12px;
-    border:1px dashed rgba(201,162,39,0.4); border-radius:8px;
-    font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:#a9bcd0;
-  }
-  .legend .lg-title{color:#e7c766; letter-spacing:1.5px; text-transform:uppercase; font-size:9.5px; margin-bottom:8px;}
-  .legend .row{display:flex; align-items:center; gap:8px; margin:5px 0;}
-  .legend .sw{width:12px;height:12px;border-radius:3px; flex:0 0 12px;}
+mark{padding:1px 4px; border-radius:3px; font-weight:600; color:#241d0f;}
+mark.hl-yellow{background:var(--yellow);}
+mark.hl-blue{background:var(--blue);}
+mark.hl-green{background:var(--green);}
+mark.hl-red{background:var(--red);}
 
-  /* MAIN */
-  .main{
-    margin-left:280px; flex:1;
-    background:
-      repeating-linear-gradient(180deg, transparent 0px, transparent 33px, rgba(122,31,43,0.05) 34px),
-      var(--parchment);
-    min-height:100vh;
-  }
-  .page{display:none; padding:44px 56px 90px; max-width:1080px;}
-  .page.active{display:block; animation:fadeIn .35s ease;}
-  @keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+.trap-box{
+  background:#fbeceb; border:1px solid #e3b3ac; border-left:4px solid var(--red);
+  border-radius:8px; padding:14px 18px; margin:14px 0; font-size:0.85rem; line-height:1.6;
+}
+.trap-box b{color:#b4463a;}
 
-  .page-header{
-    border-bottom:3px double var(--maroon);
-    padding-bottom:16px; margin-bottom:30px;
-    display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap;
-  }
-  .page-header .chap-eyebrow{
-    font-family:'IBM Plex Mono',monospace; letter-spacing:3px; text-transform:uppercase;
-    color:var(--maroon); font-size:12px; margin-bottom:6px; font-weight:600;
-  }
-  .page-header h2{font-size:34px; color:var(--navy);}
-  .page-header .folio{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); white-space:nowrap;}
+.context-box{
+  background:var(--panel-2); border:1px solid var(--border); border-left:4px solid var(--green);
+  border-radius:8px; padding:14px 18px; margin:14px 0 24px; font-size:0.85rem; line-height:1.65;
+}
+.context-box b{color:#2f7a4f;}
 
-  section.block{margin-bottom:38px;}
-  section.block h3{
-    font-size:19px; color:var(--maroon-2); margin-bottom:14px;
-    padding-bottom:6px; border-bottom:1px solid var(--rule);
-    display:flex; align-items:center; gap:10px;
-  }
-  section.block h3 .ico{font-size:16px;}
-  section.block h4{font-size:15.5px; color:var(--navy); margin:16px 0 8px;}
+/* QUIZ */
+.quiz-header{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:18px;}
+.score-panel{
+  background:var(--panel); border:1px solid var(--gold-dim); border-radius:8px; padding:10px 18px;
+  font-size:0.9rem; color:var(--gold-soft); display:flex; gap:18px;
+}
+.score-panel span b{color:var(--text); font-size:1.1rem;}
+.qcard{
+  background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:18px 20px; margin-bottom:16px;
+  box-shadow:0 1px 4px rgba(140,100,20,0.06);
+}
+.qmeta{display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;}
+.qnum{color:var(--muted); font-size:0.75rem; letter-spacing:0.5px;}
+.tag{padding:2px 10px; border-radius:12px; font-size:0.68rem; font-weight:bold; letter-spacing:0.5px;}
+.tag.India{background:rgba(177,96,10,0.12); color:var(--india-tag); border:1px solid var(--india-tag);}
+.tag.Bihar{background:rgba(31,122,76,0.12); color:var(--bihar-tag); border:1px solid var(--bihar-tag);}
+.tag.Both{background:rgba(169,120,31,0.12); color:var(--gold-soft); border:1px solid var(--gold-dim);}
+.qtext{font-size:0.95rem; line-height:1.6; margin-bottom:12px; color:var(--text);}
+.options{display:flex; flex-direction:column; gap:8px;}
+.opt{
+  text-align:left; background:var(--panel-2); border:1px solid var(--border); color:var(--text);
+  padding:9px 14px; border-radius:6px; cursor:pointer; font-size:0.87rem; font-family:inherit;
+  transition:all .15s;
+}
+.opt:hover{border-color:var(--gold-dim); background:rgba(169,120,31,0.08);}
+.opt.correct{background:#e2f5e5; border-color:#2f7a4f; color:#215c39; font-weight:bold;}
+.opt.wrong{background:#fbeceb; border-color:#b4463a; color:#a13a2f; font-weight:bold;}
+.opt.disabled{cursor:default;}
+.explain{
+  margin-top:12px; padding:12px 14px; border-radius:6px; background:#faf3e0;
+  border-left:3px solid var(--gold); font-size:0.84rem; line-height:1.6; color:var(--muted); display:none;
+}
+.explain.show{display:block;}
+.explain b{color:var(--gold-soft);}
 
-  p{line-height:1.7; font-size:15.5px; color:var(--ink); margin:0 0 12px;}
-  ul{margin:0 0 12px; padding-left:22px;}
-  li{line-height:1.7; font-size:15.5px; margin-bottom:5px;}
+.filterbar{display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;}
+.fbtn{
+  padding:6px 14px; border-radius:16px; border:1px solid var(--gold-dim); background:var(--panel);
+  color:var(--muted); font-size:0.78rem; cursor:pointer;
+}
+.fbtn.active{background:var(--gold); color:#fffdf6; font-weight:bold;}
 
-  /* HIGHLIGHT MARKERS */
-  mark{
-    padding:1px 5px; border-radius:2px 6px 5px 3px;
-    background:var(--hi-yellow); color:#3a2f00; font-weight:600;
-    box-decoration-break:clone; -webkit-box-decoration-break:clone;
-  }
-  mark.blue{background:var(--hi-blue); color:#0b2f42;}
-  mark.green{background:var(--hi-green); color:#123a1e;}
-  mark.red{background:var(--hi-red); color:#4a0d0d;}
+#quizEnd{display:none; text-align:center; padding:30px; background:var(--panel); border:1px solid var(--gold); border-radius:10px;}
+#quizEnd h2{color:var(--gold-soft);}
+.restart{margin-top:14px; padding:10px 24px; background:var(--gold); color:#fffdf6; border:none; border-radius:6px; font-weight:bold; cursor:pointer;}
 
-  /* STAT CARD GRID */
-  .stat-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(190px,1fr)); gap:14px; margin-bottom:6px;}
-  .stat-card{
-    background:#fffdf6; border:1px solid var(--rule); border-radius:10px;
-    padding:16px 16px 14px; box-shadow:var(--shadow);
-    border-top:4px solid var(--gold);
-    position:relative;
-  }
-  .stat-card .label{font-family:'IBM Plex Mono',monospace; font-size:10.5px; letter-spacing:1px; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;}
-  .stat-card .value{font-family:'IBM Plex Mono',monospace; font-size:24px; font-weight:700; color:var(--navy); line-height:1.15;}
-  .stat-card .sub{font-size:12.5px; color:var(--ink-soft); margin-top:4px;}
-  .stat-card.maroon{border-top-color:var(--maroon);}
-  .stat-card.green{border-top-color:#3f7d52;}
-
-  /* TABLES */
-  table.ledger{
-    width:100%; border-collapse:collapse; background:#fffdf6;
-    box-shadow:var(--shadow); border-radius:8px; overflow:hidden;
-    margin-bottom:8px;
-  }
-  table.ledger caption{
-    text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:1px;
-    color:var(--ink-soft); padding:8px 4px; text-transform:uppercase;
-  }
-  table.ledger th{
-    background:var(--navy); color:#f0e6c9; text-align:left;
-    padding:10px 14px; font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.5px; text-transform:uppercase;
-  }
-  table.ledger td{
-    padding:9px 14px; border-bottom:1px solid var(--parchment-2); font-size:14.5px;
-  }
-  table.ledger tr:nth-child(even) td{background:rgba(122,31,43,0.035);}
-  table.ledger tr:last-child td{border-bottom:none;}
-  table.ledger td.num{font-family:'IBM Plex Mono',monospace; font-weight:600; color:var(--maroon-2);}
-
-  /* MCQ TRAP CALLOUT */
-  .trap{
-    background:linear-gradient(135deg, #fff5f5, #fdeeee);
-    border:1.5px solid var(--maroon); border-left:8px solid var(--maroon);
-    border-radius:6px; padding:14px 18px; margin:16px 0;
-    box-shadow:var(--shadow);
-  }
-  .trap .trap-title{
-    font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:12px; letter-spacing:1.5px;
-    color:var(--maroon); text-transform:uppercase; margin-bottom:6px; display:flex; align-items:center; gap:7px;
-  }
-  .trap p{margin-bottom:0; font-size:14.5px;}
-
-  /* SCHEME CARD */
-  .scheme{
-    background:#fbf7ea; border:1px solid var(--rule); border-radius:8px;
-    padding:14px 18px; margin-bottom:12px; border-left:5px solid #3f7d52;
-  }
-  .scheme .sname{font-family:'Playfair Display',serif; font-weight:700; color:var(--navy); font-size:16px; margin-bottom:6px;}
-  .scheme ul{margin-bottom:0;}
-
-  /* FLOWCHART / BAR VIZ */
-  .barviz{background:#fffdf6; border:1px solid var(--rule); border-radius:10px; padding:18px 20px; box-shadow:var(--shadow); margin-bottom:8px;}
-  .bar-row{display:flex; align-items:center; gap:12px; margin-bottom:10px;}
-  .bar-row .bl{width:130px; flex:0 0 130px; font-size:13px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace;}
-  .bar-track{flex:1; background:var(--parchment-2); border-radius:5px; height:20px; overflow:hidden; position:relative;}
-  .bar-fill{height:100%; border-radius:5px; display:flex; align-items:center; justify-content:flex-end; padding-right:8px;}
-  .bar-fill span{font-family:'IBM Plex Mono',monospace; font-size:11px; color:#fff; font-weight:600;}
-
-  .flowchart{display:flex; align-items:center; flex-wrap:wrap; gap:0; margin:14px 0;}
-  .flow-step{
-    background:var(--navy); color:#f4ead0; padding:12px 16px; border-radius:8px;
-    font-size:13.5px; font-family:'IBM Plex Mono',monospace; text-align:center; max-width:170px;
-    box-shadow:var(--shadow);
-  }
-  .flow-step.gold{background:var(--gold); color:var(--navy); font-weight:700;}
-  .flow-step.maroon{background:var(--maroon);}
-  .flow-arrow{color:var(--maroon); font-size:22px; margin:0 10px; flex:0 0 auto;}
-
-  .pill-row{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px;}
-  .pill{
-    background:var(--navy); color:#f0e6c9; padding:6px 14px; border-radius:20px;
-    font-family:'IBM Plex Mono',monospace; font-size:12px; border:1px solid var(--gold);
-  }
-  .pill.alt{background:var(--maroon); border-color:var(--gold-soft);}
-
-  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
-  @media(max-width:800px){ .two-col{grid-template-columns:1fr;} }
-
-  .divider-orn{
-    text-align:center; color:var(--gold); font-size:18px; letter-spacing:12px; margin:34px 0;
-  }
-
-  footer.page-footer{
-    margin-top:40px; padding-top:16px; border-top:1px solid var(--rule);
-    font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); text-align:center;
-  }
-
-  /* Mobile */
-  .menu-btn{display:none;}
-  @media(max-width:900px){
-    .sidebar{transform:translateX(-100%); transition:transform .25s ease; width:270px;}
-    .sidebar.open{transform:translateX(0);}
-    .main{margin-left:0;}
-    .page{padding:70px 20px 60px;}
-    .menu-btn{
-      display:block; position:fixed; top:14px; left:14px; z-index:30;
-      background:var(--navy); color:var(--gold-soft); border:1px solid var(--gold);
-      border-radius:6px; padding:9px 13px; font-family:'IBM Plex Mono',monospace; cursor:pointer; font-size:13px;
-      box-shadow:var(--shadow);
-    }
-  }
+@media(max-width:900px){
+  .layout{flex-direction:column;}
+  .sidebar{width:100%; height:auto; position:relative;}
+  .main{padding:20px;}
+  table.compare, table.compare tbody, table.compare tr, table.compare td{display:block; width:100%;}
+  table.compare td{border-left:none !important; border-bottom:1px solid var(--border);}
+  table.compare thead{display:none;}
+  table.compare td.label{background:var(--panel-2); font-size:0.8rem;}
+  table.compare td.india:before{content:"🇮🇳 INDIA — "; color:var(--india-tag); font-weight:bold;}
+  table.compare td.bihar:before{content:"🌾 BIHAR — "; color:var(--bihar-tag); font-weight:bold;}
+}
 </style>
 </head>
 <body>
-<button class="menu-btn" id="menuBtn">☰ Chapters</button>
-<div class="app">
+<div class="layout">
 
-  <aside class="sidebar" id="sidebar">
-    <div class="brand">
-      <div class="stamp">H</div>
-      <h1>The NFHS Ledger</h1>
-      <p>BPSC Prelims · NFHS Notes</p>
+  <div class="sidebar">
+    <div class="brand">NFHS-6 LEDGER<small>India ⚖ Bihar · BPSC 72 Prelims</small></div>
+    <div class="tabbtns">
+      <div class="tabbtn active" id="btn-ledger" onclick="showView('ledger')">📖 Ledger</div>
+      <div class="tabbtn" id="btn-quiz" onclick="showView('quiz')">📝 MCQ Quiz</div>
     </div>
-    <nav class="tabs" id="tabs">
-      <div class="tab-group-label">Front Matter</div>
-      <div class="tab active" data-target="overview"><span class="num">§0</span> Overview</div>
-
-      <div class="tab-group-label">Ledger Chapters</div>
-      <div class="tab" data-target="ch1"><span class="num">I</span> Population &amp; Household</div>
-      <div class="tab" data-target="ch2"><span class="num">II</span> Education &amp; Digital</div>
-      <div class="tab" data-target="ch3"><span class="num">III</span> Marriage &amp; Fertility</div>
-      <div class="tab" data-target="ch4"><span class="num">IV</span> Family Planning</div>
-      <div class="tab" data-target="ch5"><span class="num">V</span> Maternal &amp; Childbirth</div>
-      <div class="tab" data-target="ch6"><span class="num">VI</span> Infant Health &amp; Vax</div>
-      <div class="tab" data-target="ch7"><span class="num">VII</span> Child Nutrition</div>
-      <div class="tab" data-target="ch8"><span class="num">VIII</span> Adult Nutrition &amp; NCDs</div>
-      <div class="tab" data-target="ch9"><span class="num">IX</span> Women's Empowerment</div>
-      <div class="tab" data-target="ch10"><span class="num">X</span> Tobacco &amp; Alcohol</div>
-    </nav>
-
+    <ul class="navlist" id="ledgerNav">
+      <li><a href="#overview">Survey Snapshot</a></li>
+      <li><a href="#population">Population Structure</a></li>
+      <li><a href="#amenities">Amenities, Infra & Finance</a></li>
+      <li><a href="#education">Education & Digital</a></li>
+      <li><a href="#marriage">Marriage & Fertility</a></li>
+      <li><a href="#familyplan">Family Planning</a></li>
+      <li><a href="#maternal">Maternal Health & Childbirth</a></li>
+      <li><a href="#childhealth">Infant/Child Health & Vax</a></li>
+      <li><a href="#nutrition">Child Nutrition</a></li>
+      <li><a href="#ncd">Adult Nutrition & NCDs</a></li>
+      <li><a href="#empowerment">Women's Empowerment & GBV</a></li>
+      <li><a href="#tobacco">Tobacco & Alcohol</a></li>
+      <li><a href="#paradox">Bihar Analytical Notes</a></li>
+    </ul>
     <div class="legend">
-      <div class="lg-title">Marker Key</div>
-      <div class="row"><span class="sw" style="background:var(--hi-yellow)"></span> Headline figure / statistic</div>
-      <div class="row"><span class="sw" style="background:var(--hi-green)"></span> Positive achievement / improvement</div>
-      <div class="row"><span class="sw" style="background:var(--hi-blue)"></span> Definition / key term</div>
-      <div class="row"><span class="sw" style="background:var(--hi-red)"></span> Caution / decline / deficit</div>
+      <div class="legend-title">Highlight Key</div>
+      <div class="legend-item"><span class="dot" style="background:var(--yellow)"></span> Core concept</div>
+      <div class="legend-item"><span class="dot" style="background:var(--blue)"></span> Hard fact / number</div>
+      <div class="legend-item"><span class="dot" style="background:var(--green)"></span> Institution / scheme / person</div>
+      <div class="legend-item"><span class="dot" style="background:var(--red)"></span> MCQ trap / counter-trend</div>
     </div>
-  </aside>
+  </div>
 
-  <main class="main">
+  <div class="main">
 
-    <!-- ============ OVERVIEW ============ -->
-    <section class="page active" id="overview">
-      <div class="page-header">
-        <div>
-          <div class="chap-eyebrow">Ledger &middot; Front Matter</div>
-          <h2>National Family Health Survey (NFHS)</h2>
-        </div>
-        <div class="folio mono">Folio 000 &middot; BPSC Prelims</div>
+    <!-- ================= LEDGER VIEW ================= -->
+    <div class="view active" id="view-ledger">
+      <h1 class="pagehead">NFHS-6 (2023–24) Ledger</h1>
+      <div class="subhead">India national data, side by side with Bihar — every indicator, colour-coded.</div>
+
+      <div class="infobox" id="overview">
+        <b>Survey Snapshot (applies nationwide, incl. Bihar):</b> Fieldwork period
+        <mark class="hl-blue">2023–2024</mark>. Coverage: all States & UTs
+        <mark class="hl-red">except Manipur</mark>. Conducted by the
+        <mark class="hl-green">Ministry of Health & Family Welfare (MoHFW)</mark>; nodal survey agency —
+        <mark class="hl-green">International Institute for Population Sciences (IIPS), Mumbai</mark>.
+        Indicators are commonly mapped to <mark class="hl-yellow">SDG 1 (No Poverty), SDG 2 (Zero Hunger), SDG 3 (Good Health), SDG 5 (Gender Equality) and SDG 16 (Peace, Justice & Strong Institutions)</mark> —
+        remember the mnemonic focus: <b>P</b>overty, <b>E</b>rase Hunger, <b>G</b>ood health.
       </div>
 
-      <section class="block">
-        <p>This ledger consolidates critical <mark class="blue">health, demographic, and socio-economic facts</mark> from the latest National Family Health Survey (NFHS) data into ten targeted chapters. Every headline number is <mark>highlighted in yellow</mark>, every positive trend or achievement in <mark class="green">green</mark>, key metrics/terms in <mark class="blue">blue</mark>, and areas of concern, declines, or disparities in <mark class="red">red</mark> — designed specifically for rapid MCQ recall.</p>
-      </section>
-
-      <section class="block">
-        <h3><span class="ico">&#128213;</span> How This Ledger Is Organised</h3>
-        <p>Use the sidebar to jump between the ten chapters (I&ndash;X), structured exactly according to the NFHS survey framework — covering population profiles, digital literacy, fertility, family planning, maternal and infant health, nutrition, NCDs, and women's empowerment.</p>
-      </section>
-    </section>
-
-    <!-- ============ CHAPTER I ============ -->
-    <section class="page" id="ch1">
-      <div class="page-header">
-        <div><div class="chap-eyebrow">Chapter I</div><h2>Population and Household Profile</h2></div>
-        <div class="folio mono">Folio 001</div>
-      </div>
-
-      <section class="block">
-        <h3><span class="ico">&#128106;</span> Demographic Shifts</h3>
-        <div class="two-col">
-          <div class="stat-card maroon">
-            <div class="label"><mark class="blue">Under-5 Population</mark></div>
-            <div class="value"><mark class="red">8.0%</mark></div>
-            <div class="sub">Urban: <mark>6.6%</mark> &nbsp;|&nbsp; Rural: <mark>8.6%</mark><br>(Lower than <mark>8.2%</mark> in NFHS-5)</div>
-          </div>
-          <div class="stat-card">
-            <div class="label"><mark class="blue">Elderly (60+ years)</mark></div>
-            <div class="value"><mark>12.9%</mark></div>
-            <div class="sub">Up from <mark>11.8%</mark> in NFHS-5</div>
-          </div>
-        </div>
-        <p>The population in the <mark class="blue">under-15 age group</mark> has declined to <mark class="red">25.5%</mark> from the earlier <mark>26.5%</mark>.</p>
-      </section>
-
-      <section class="block">
-        <h3><span class="ico">&#127968;</span> Basic Amenities &amp; Inclusion</h3>
-        <ul>
-          <li><strong>Electricity:</strong> <mark class="green">98.3%</mark> of the population lives in households with electricity (up from <mark>96.8%</mark>).</li>
-          <li><strong>Improved Drinking Water:</strong> Access has reached <mark class="green">96.5%</mark> (up from <mark>95.9%</mark>).</li>
-          <li><strong>Iodized Salt:</strong> <mark>94.2%</mark> of households use it (slight drop from <mark class="red">94.3%</mark>).</li>
-        </ul>
-        
-        <div class="scheme">
-          <div class="sname">Health Insurance &amp; Financial Inclusion</div>
-          <ul>
-            <li><mark class="blue">Health Insurance</mark> coverage saw a massive increase to <mark class="green">60.2%</mark> (up from <mark>41.0%</mark> in NFHS-5). Coverage is surprisingly higher in <mark class="green">Rural areas (62.0%)</mark> compared to <mark class="red">Urban areas (56.4%)</mark>.</li>
-            <li>In <mark class="green">98.2%</mark> of households, at least one member has a bank or post office account.</li>
-            <li>In <mark>18.8%</mark> of households, women own a house or land (solely or jointly).</li>
-          </ul>
-        </div>
-      </section>
-    </section>
-
-    <!-- ============ CHAPTER II ============ -->
-    <section class="page" id="ch2">
-      <div class="page-header">
-        <div><div class="chap-eyebrow">Chapter II</div><h2>Education and Digital Literacy</h2></div>
-        <div class="folio mono">Folio 002</div>
-      </div>
-
-      <section class="block">
-        <h3><span class="ico">&#128218;</span> Schooling (Age 6+)</h3>
-        <p><mark>73.7%</mark> of women have ever attended school. There is a stark divide: <mark class="green">84.3%</mark> in urban areas vs <mark class="red">69.2%</mark> in rural areas.</p>
-        <p>In the 15-49 age group, the percentage with <mark class="blue">10 or more years of schooling</mark> is <mark class="red">46.4%</mark> for women, compared to <mark class="green">54.6%</mark> for men.</p>
-      </section>
-
-      <section class="block">
-        <h3><span class="ico">&#128241;</span> Digital Divide</h3>
-        <div class="stat-grid">
-          <div class="stat-card green"><div class="label"><mark class="blue">Internet Use (Women)</mark></div><div class="value"><mark class="green">64.3%</mark></div><div class="sub">Nearly doubled from <mark>33.3%</mark></div></div>
-          <div class="stat-card"><div class="label"><mark class="blue">Internet Use (Men)</mark></div><div class="value"><mark>80.5%</mark></div><div class="sub">Up from <mark>51.2%</mark></div></div>
-        </div>
-      </section>
-    </section>
-
-    <!-- ============ CHAPTER III ============ -->
-    <section class="page" id="ch3">
-      <div class="page-header">
-        <div><div class="chap-eyebrow">Chapter III</div><h2>Marriage and Fertility</h2></div>
-        <div class="folio mono">Folio 003</div>
-      </div>
-
-      <section class="block">
-        <h3><span class="ico">&#128141;</span> Child Marriage Rates</h3>
-        <p>Women (aged 20-24) married before age 18 declined to <mark class="green">20.1%</mark> (from <mark>23.3%</mark>). However, the rural rate (<mark class="red">23.3%</mark>) remains <mark class="red">double</mark> that of urban areas (<mark class="green">11.4%</mark>).</p>
-        <p>Among men (aged 25-29), child marriage dropped from <mark>17.7%</mark> to <mark class="green">15.9%</mark>.</p>
-      </section>
-
-      <section class="block">
-        <h3><span class="ico">&#128118;</span> Fertility Trends</h3>
-        <div class="stat-grid">
-          <div class="stat-card"><div class="label"><mark class="blue">Total Fertility Rate (TFR)</mark></div><div class="value"><mark>2.0</mark></div><div class="sub">Stable (was <mark>2.0</mark> in NFHS-5)</div></div>
-        </div>
-        <div class="trap">
-          <div class="trap-title">&#9888; MCQ Trap</div>
-          <p>TFR varies sharply by region: It is well below replacement in <mark class="blue">Urban areas</mark> (<mark class="green">1.6</mark>) but remains at <mark class="blue">Rural areas</mark> (<mark class="red">2.1</mark>).</p>
-        </div>
-        <p><strong><mark class="blue">Adolescent Motherhood</mark>:</strong> <mark class="red">6.7%</mark> of women aged 15-19 were either mothers or pregnant.</p>
-      </section>
-    </section>
-
-    <!-- ============ CHAPTER IV ============ -->
-    <section class="page" id="ch4">
-      <div class="page-header">
-        <div><div class="chap-eyebrow">Chapter IV</div><h2>Family Planning</h2></div>
-        <div class="folio mono">Folio 004</div>
-      </div>
-
-      <section class="block">
-        <h3><span class="ico">&#128106;</span> Contraceptive Use (Aged 15-49)</h3>
-        <p><strong>Any method:</strong> Increased from <mark>66.7%</mark> to <mark class="green">69.1%</mark>.</p>
-        <p><strong><mark class="blue">Modern methods</mark>:</strong> Unexpectedly declined from <mark>56.4%</mark> to <mark class="red">52.7%</mark>.</p>
-      </section>
-
-      <section class="block">
-        <h3><span class="ico">&#9878;</span> Disparities &amp; Unmet Need</h3>
-        <div class="barviz">
-          <div class="bar-row"><div class="bl">Female Sterilization</div><div class="bar-track"><div class="bar-fill" style="width:36.5%;background:var(--maroon);"><span><mark class="red">36.5%</mark></span></div></div></div>
-          <div class="bar-row"><div class="bl">Male Sterilization</div><div class="bar-track"><div class="bar-fill" style="width:2%;background:var(--navy);justify-content:flex-start;padding-left:8px;"><span><mark class="red">0.5%</mark></span></div></div></div>
-        </div>
-        <p>Reliance on women remains highly skewed. Meanwhile, the <mark class="blue">Unmet need for family planning</mark> has decreased from <mark>9.4%</mark> to <mark class="green">8.5%</mark>.</p>
-      </section>
-    </section>
-
-    <!-- ============ CHAPTER V ============ -->
-    <section class="page" id="ch5">
-      <div class="page-header">
-        <div><div class="chap-eyebrow">Chapter V</div><h2>Maternal Health and Childbirth</h2></div>
-        <div class="folio mono">Folio 005</div>
-      </div>
-
-      <section class="block">
-        <h3><span class="ico">&#129336;</span> Prenatal Care</h3>
-        <ul>
-          <li><strong><mark class="blue">Antenatal Care (ANC)</mark>:</strong> First trimester check-ups rose from <mark>70.0%</mark> to <mark class="green">76.2%</mark>. At least four ANC visits increased from <mark>58.5%</mark> to <mark class="green">65.2%</mark>.</li>
-          <li><strong><mark class="blue">Iron-Folic Acid (IFA)</mark>:</strong> Mothers consuming IFA for 180+ days increased from <mark>26.0%</mark> to <mark class="green">37.8%</mark>.</li>
-        </ul>
-      </section>
-
-      <section class="block">
-        <h3><span class="ico">&#127973;</span> Delivery Methods</h3>
-        <p><strong>Institutional Deliveries:</strong> Risen globally from <mark>88.6%</mark> to <mark class="green">90.6%</mark>. <em>However</em>, deliveries in <mark class="blue">public health facilities</mark> declined from <mark>61.9%</mark> to <mark class="red">58.6%</mark>.</p>
-        
-        <table class="ledger">
-          <caption><mark class="blue">Cesarean Delivery (C-Section)</mark> Rates</caption>
-          <thead><tr><th>Category</th><th>Rate (%)</th></tr></thead>
-          <tbody>
-            <tr><td>Overall C-Section Rate</td><td class="num"><mark class="red">27.2%</mark> <span style="font-size:11px">(Up from 21.5%)</span></td></tr>
-            <tr><td><mark class="blue">Private Hospitals</mark></td><td class="num"><mark class="red">54.1%</mark></td></tr>
-            <tr><td><mark class="blue">Public Hospitals</mark></td><td class="num"><mark>16.9%</mark></td></tr>
-          </tbody>
+      <div class="category" id="population">
+        <div class="cat-title">1 · Population Structure</div>
+        <table class="compare">
+          <tr><th>Indicator</th><th class="colhead-india">🇮🇳 India</th><th class="colhead-bihar">🌾 Bihar</th></tr>
+          <tr><td class="label">Population under age 5</td>
+            <td class="india"><mark class="hl-blue">8.0%</mark> <span class="sub">(Urban 6.6% | Rural 8.6%)</span> — <mark class="hl-red">▼ vs NFHS-5</mark></td>
+            <td class="bihar"><mark class="hl-blue">11.5%</mark></td></tr>
+          <tr><td class="label">Population under age 15</td>
+            <td class="india"><mark class="hl-blue">25.5%</mark> — <mark class="hl-red">▼ from 26.5%</mark></td>
+            <td class="bihar"><mark class="hl-blue">35.6%</mark> <span class="sub">(far above national)</span></td></tr>
+          <tr><td class="label">Population aged 60+ (elderly)</td>
+            <td class="india"><mark class="hl-blue">12.9%</mark> — <mark class="hl-red">▲ from 11.8%</mark></td>
+            <td class="bihar"><mark class="hl-blue">11.8%</mark> — <mark class="hl-red">▲ from 11.5%</mark></td></tr>
         </table>
-      </section>
-    </section>
-
-    <!-- ============ CHAPTER VI ============ -->
-    <section class="page" id="ch6">
-      <div class="page-header">
-        <div><div class="chap-eyebrow">Chapter VI</div><h2>Infant Health and Vaccination</h2></div>
-        <div class="folio mono">Folio 006</div>
       </div>
 
-      <section class="block">
-        <h3><span class="ico">&#128137;</span> Immunization (Aged 12-23 months)</h3>
-        <div class="stat-grid">
-          <div class="stat-card green"><div class="label"><mark class="blue">Full Immunization</mark></div><div class="value"><mark class="green">87.1%</mark></div><div class="sub">Up from <mark>83.8%</mark></div></div>
-          <div class="stat-card green"><div class="label"><mark class="blue">Rotavirus Vax</mark></div><div class="value"><mark class="green">85.4%</mark></div><div class="sub">Massive jump from <mark>36.4%</mark></div></div>
-        </div>
-        <p><strong>Sources of immunization:</strong> <mark class="green">95.6%</mark> of children received the majority of their vaccinations at <mark class="blue">public health facilities</mark>.</p>
-      </section>
-    </section>
-
-    <!-- ============ CHAPTER VII ============ -->
-    <section class="page" id="ch7">
-      <div class="page-header">
-        <div><div class="chap-eyebrow">Chapter VII</div><h2>Child Nutrition (Malnutrition Standards)</h2></div>
-        <div class="folio mono">Folio 007</div>
-      </div>
-
-      <section class="block">
-        <h3><span class="ico">&#127814;</span> Feeding Practices</h3>
-        <ul>
-          <li>Breastfeeding initiated within 1 hour: Rose from <mark>41.8%</mark> to <mark class="green">50.1%</mark>.</li>
-          <li><strong><mark class="blue">Exclusive breastfeeding</mark> (up to 6 months):</strong> Declined from <mark>63.7%</mark> to <mark class="red">55.8%</mark> (cause for concern).</li>
-          <li><strong>Adequate Diet:</strong> Only <mark class="red">15.3%</mark> of children aged 6-23 months receive it (up slightly from <mark>11.0%</mark>).</li>
-        </ul>
-      </section>
-
-      <section class="block">
-        <h3><span class="ico">&#128201;</span> Anthropometric Indicators</h3>
-        <table class="ledger">
-          <caption>Child Malnutrition Markers</caption>
-          <thead><tr><th>Indicator</th><th>Current (%)</th><th>Previous (%)</th><th>Trend</th></tr></thead>
-          <tbody>
-            <tr><td><mark class="blue">Stunting</mark> (low height-for-age)</td><td class="num"><mark class="green">29.3</mark></td><td class="num">35.5</td><td><mark class="green">Decreased</mark></td></tr>
-            <tr><td><mark class="blue">Wasting</mark> (low weight-for-height)</td><td class="num"><mark class="red">19.0</mark></td><td class="num">19.3</td><td><mark class="red">Unchanged</mark></td></tr>
-            <tr><td><mark class="blue">Underweight</mark> (low weight-for-age)</td><td class="num"><mark>31.8</mark></td><td class="num">32.1</td><td><mark>Slight Decline</mark></td></tr>
-          </tbody>
+      <div class="category" id="amenities">
+        <div class="cat-title">2 · Basic Amenities, Infrastructure & Financial Inclusion</div>
+        <table class="compare">
+          <tr><th>Indicator</th><th class="colhead-india">🇮🇳 India</th><th class="colhead-bihar">🌾 Bihar</th></tr>
+          <tr><td class="label">Household electricity access</td>
+            <td class="india"><mark class="hl-blue">98.3%</mark> — ▲ from 96.8%</td>
+            <td class="bihar"><mark class="hl-blue">98.5%</mark> — ▲ from 96.3%; <mark class="hl-green">edges past national figure</mark></td></tr>
+          <tr><td class="label">Access to improved drinking water</td>
+            <td class="india"><mark class="hl-blue">96.5%</mark> — ▲ from 95.9%</td>
+            <td class="bihar"><mark class="hl-blue">99.8%</mark> — <mark class="hl-green">well above national average</mark></td></tr>
+          <tr><td class="label">Households using iodized salt</td>
+            <td class="india"><mark class="hl-blue">94.2%</mark> — ▼ marginally from 94.3%</td>
+            <td class="bihar"><span class="na">Not separately reported</span></td></tr>
+          <tr><td class="label">Health insurance coverage</td>
+            <td class="india"><mark class="hl-blue">60.2%</mark> — <mark class="hl-red">sharp ▲ from 41.0%</mark>; Rural (62.0%) &gt; Urban (56.4%)</td>
+            <td class="bihar"><mark class="hl-blue">21.1%</mark> — <mark class="hl-red">usual rural&gt;urban pattern does NOT hold</mark>; driven by <mark class="hl-green">Ayushman Card</mark> rollout</td></tr>
+          <tr><td class="label">Households with a bank/post-office account</td>
+            <td class="india"><mark class="hl-blue">98.2%</mark></td>
+            <td class="bihar"><mark class="hl-blue">98.5%</mark> — <mark class="hl-red">numerically equal to Bihar's electricity-access figure</mark>; linked to <mark class="hl-green">Jan Dhan Yojana</mark></td></tr>
+          <tr><td class="label">Women owning house/land (solely or jointly)</td>
+            <td class="india"><mark class="hl-blue">18.8%</mark> of households</td>
+            <td class="bihar"><mark class="hl-blue">14.9%</mark> overall (Rural 15.2% — fear of land partition/"bantwara"; Urban 12.7% — for loan collateral)</td></tr>
+          <tr><td class="label">Women with own bank account</td>
+            <td class="india"><mark class="hl-blue">89.0%</mark> — ▲ from 78.6%</td>
+            <td class="bihar"><mark class="hl-blue">90.9%</mark> — <mark class="hl-red">exceeds national average</mark>; Rural (91.1%) &gt; Urban (89.1%)</td></tr>
+          <tr><td class="label">Women owning a personal mobile phone</td>
+            <td class="india"><mark class="hl-blue">63.6%</mark> — ▲ from 53.9%</td>
+            <td class="bihar"><mark class="hl-blue">62.8%</mark></td></tr>
         </table>
-      </section>
-    </section>
-
-    <!-- ============ CHAPTER VIII ============ -->
-    <section class="page" id="ch8">
-      <div class="page-header">
-        <div><div class="chap-eyebrow">Chapter VIII</div><h2>Adult Nutrition and NCDs</h2></div>
-        <div class="folio mono">Folio 008</div>
+        <div class="context-box"><b>Financial-inclusion paradox (Bihar):</b> Women's bank-account ownership (90.9%) comfortably beats the national figure, yet land/property ownership (14.9%) remains low — access to a financial account has outpaced access to real assets.</div>
       </div>
 
-      <section class="block">
-        <h3><span class="ico">&#129314;</span> Nutritional Extremes</h3>
-        <div class="scheme" style="border-left-color: var(--maroon);">
-          <div class="sname"><mark class="blue">Undernutrition</mark> (BMI &lt; 18.5)</div>
-          <p>Prevalence has risen to <mark class="red">19.7%</mark> among women (from <mark>18.7%</mark>) and to <mark class="red">19.7%</mark> among men (from <mark>16.2%</mark>).</p>
-        </div>
-        <div class="scheme" style="border-left-color: var(--maroon);">
-          <div class="sname"><mark class="blue">Obesity</mark> (BMI &ge; 25.0)</div>
-          <p>Increasing rapidly. Risen to <mark class="red">30.7%</mark> among women (<mark class="red">42.8%</mark> in urban areas) and <mark class="red">27.3%</mark> among men (from <mark>22.9%</mark>).</p>
-        </div>
-      </section>
-
-      <section class="block">
-        <h3><span class="ico">&#129658;</span> Non-Communicable Diseases (NCDs)</h3>
-        <ul>
-          <li><strong><mark class="blue">Diabetes</mark> (Blood Sugar):</strong> High/very high levels found in <mark class="red">17.8%</mark> of women and <mark class="red">20.9%</mark> of men.</li>
-          <li><strong><mark class="blue">Hypertension</mark> (High BP):</strong> <mark class="red">19.4%</mark> for women &amp; <mark class="red">22.1%</mark> for men.</li>
-        </ul>
-      </section>
-    </section>
-
-    <!-- ============ CHAPTER IX ============ -->
-    <section class="page" id="ch9">
-      <div class="page-header">
-        <div><div class="chap-eyebrow">Chapter IX</div><h2>Women's Empowerment and Gender-Based Violence</h2></div>
-        <div class="folio mono">Folio 009</div>
-      </div>
-
-      <section class="block">
-        <h3><span class="ico">&#128105;&#8205;&#128187;</span> Agency and Inclusion</h3>
-        <ul>
-          <li><strong>Household Decisions:</strong> <mark class="green">89.0%</mark> of married women participate in 3 key decisions.</li>
-          <li><strong>Bank Accounts:</strong> Women using their own accounts rose from <mark>78.6%</mark> to <mark class="green">89.0%</mark>.</li>
-          <li><strong>Mobile Phones:</strong> Women using their own phones increased from <mark>53.9%</mark> to <mark class="green">63.6%</mark>.</li>
-          <li><strong>Menstrual Hygiene:</strong> <mark class="green">79.2%</mark> of women aged 15-24 use hygienic methods.</li>
-        </ul>
-      </section>
-
-      <section class="block">
-        <h3><span class="ico">&#128683;</span> Domestic Violence</h3>
-        <p>The percentage of women (aged 18-49) experiencing <mark class="blue">spousal violence</mark> has declined from <mark>29.2%</mark> to <mark class="green">22.3%</mark>.</p>
-      </section>
-    </section>
-
-    <!-- ============ CHAPTER X ============ -->
-    <section class="page" id="ch10">
-      <div class="page-header">
-        <div><div class="chap-eyebrow">Chapter X</div><h2>Consumption of Tobacco and Alcohol</h2></div>
-        <div class="folio mono">Folio 010</div>
-      </div>
-
-      <section class="block">
-        <h3><span class="ico">&#128684;</span> Substance Use</h3>
-        <table class="ledger">
-          <caption>Consumption Rates by Gender</caption>
-          <thead><tr><th>Substance</th><th>Women (%)</th><th>Men (%)</th></tr></thead>
-          <tbody>
-            <tr><td><mark class="blue">Tobacco</mark></td><td class="num"><mark>8.4%</mark> <span style="font-size:11px">(was 8.9%)</span></td><td class="num"><mark class="red">36.3%</mark> <span style="font-size:11px">(was 38.0%)</span></td></tr>
-            <tr><td><mark class="blue">Alcohol</mark></td><td class="num"><mark>1.1%</mark></td><td class="num"><mark class="red">18.9%</mark></td></tr>
-          </tbody>
+      <div class="category" id="education">
+        <div class="cat-title">3 · Education & Digital Literacy</div>
+        <table class="compare">
+          <tr><th>Indicator</th><th class="colhead-india">🇮🇳 India</th><th class="colhead-bihar">🌾 Bihar</th></tr>
+          <tr><td class="label">Women (6+) ever attended school</td>
+            <td class="india"><mark class="hl-blue">73.7%</mark> <span class="sub">(Urban 84.3% | Rural 69.2%)</span></td>
+            <td class="bihar"><mark class="hl-blue">64.1%</mark></td></tr>
+          <tr><td class="label">Women (15–49) with 10+ years schooling</td>
+            <td class="india"><mark class="hl-blue">46.4%</mark> vs Men <mark class="hl-red">54.6%</mark> — <mark class="hl-red">men ahead</mark></td>
+            <td class="bihar"><mark class="hl-blue">33.1%</mark> vs Men <mark class="hl-red">45.9%</mark> — <mark class="hl-red">men ahead, both below national levels</mark></td></tr>
+          <tr><td class="label">Women using the internet</td>
+            <td class="india"><mark class="hl-blue">64.3%</mark> — <mark class="hl-red">nearly doubled from 33.3%</mark></td>
+            <td class="bihar"><mark class="hl-blue">58%</mark> — trails national figure</td></tr>
+          <tr><td class="label">Men using the internet</td>
+            <td class="india"><mark class="hl-blue">80.5%</mark> — ▲ from 51.2%</td>
+            <td class="bihar"><mark class="hl-blue">78%</mark></td></tr>
         </table>
-      </section>
-    </section>
+      </div>
 
-    <footer class="page-footer">
-      End of The NFHS Ledger — Compiled for BPSC Prelims
-    </footer>
-  </main>
+      <div class="category" id="marriage">
+        <div class="cat-title">4 · Marriage & Fertility</div>
+        <table class="compare">
+          <tr><th>Indicator</th><th class="colhead-india">🇮🇳 India</th><th class="colhead-bihar">🌾 Bihar</th></tr>
+          <tr><td class="label">Women 20–24 married before age 18</td>
+            <td class="india"><mark class="hl-blue">20.1%</mark> — ▼ from 23.3%; Rural 23.3% ≈ <mark class="hl-red">double Urban's 11.4%</mark></td>
+            <td class="bihar"><mark class="hl-red">34.6%</mark> — <mark class="hl-red">well above the national figure</mark></td></tr>
+          <tr><td class="label">Men 25–29 married below legal age</td>
+            <td class="india"><mark class="hl-blue">15.9%</mark> — ▼ from 17.7%</td>
+            <td class="bihar"><span class="na">Not separately reported</span></td></tr>
+          <tr><td class="label">Total Fertility Rate (TFR)</td>
+            <td class="india"><mark class="hl-blue">2.0</mark> — <mark class="hl-red">unchanged vs NFHS-5</mark>; Rural 2.1 &gt; Urban 1.6</td>
+            <td class="bihar"><mark class="hl-blue">2.7</mark> — ▼ from 3.0; Rural 2.8 &gt; Urban 2.1</td></tr>
+          <tr><td class="label">Adolescent motherhood/pregnancy (women 15–19)</td>
+            <td class="india"><mark class="hl-blue">6.7%</mark></td>
+            <td class="bihar"><mark class="hl-blue">11.4%</mark> — higher, esp. rural</td></tr>
+        </table>
+      </div>
+
+      <div class="category" id="familyplan">
+        <div class="cat-title">5 · Family Planning</div>
+        <table class="compare">
+          <tr><th>Indicator</th><th class="colhead-india">🇮🇳 India</th><th class="colhead-bihar">🌾 Bihar</th></tr>
+          <tr><td class="label">Any contraceptive/family-planning method (married women 15–49)</td>
+            <td class="india"><mark class="hl-blue">69.1%</mark> — ▲ from 66.7%</td>
+            <td class="bihar"><mark class="hl-blue">59.1%</mark> — trails the national figure</td></tr>
+          <tr><td class="label">Modern contraceptive methods</td>
+            <td class="india"><mark class="hl-red">52.7%</mark> — <mark class="hl-red">▼ from 56.4% (declined despite overall rise)</mark></td>
+            <td class="bihar"><span class="na">Not separately reported</span></td></tr>
+          <tr><td class="label">Female vs male sterilization</td>
+            <td class="india">Female <mark class="hl-blue">36.5%</mark> vs Male <mark class="hl-red">0.5%</mark> — heavy gender skew</td>
+            <td class="bihar"><span class="na">Not separately reported</span></td></tr>
+          <tr><td class="label">Unmet need for family planning</td>
+            <td class="india"><mark class="hl-blue">8.5%</mark> — ▼ from 9.4%</td>
+            <td class="bihar"><span class="na">Not separately reported</span></td></tr>
+        </table>
+      </div>
+
+      <div class="category" id="maternal">
+        <div class="cat-title">6 · Maternal Health & Childbirth</div>
+        <table class="compare">
+          <tr><th>Indicator</th><th class="colhead-india">🇮🇳 India</th><th class="colhead-bihar">🌾 Bihar</th></tr>
+          <tr><td class="label">Any ANC checkup (at least 1 visit)</td>
+            <td class="india"><mark class="hl-blue">95.9%</mark></td>
+            <td class="bihar"><mark class="hl-blue">94%</mark></td></tr>
+          <tr><td class="label">ANC checkup in the first trimester</td>
+            <td class="india"><mark class="hl-blue">76.2%</mark> — ▲ from 70.0%</td>
+            <td class="bihar"><span class="na">Not separately reported</span></td></tr>
+          <tr><td class="label">At least 4 ANC visits</td>
+            <td class="india"><mark class="hl-blue">65.2%</mark> — ▲ from 58.5%</td>
+            <td class="bihar"><mark class="hl-red">37.6%</mark> — well below national figure</td></tr>
+          <tr><td class="label">IFA / Folic acid consumption (180+ days)</td>
+            <td class="india"><mark class="hl-blue">37.8%</mark> — ▲ from 26.0%</td>
+            <td class="bihar"><mark class="hl-red">11.2%</mark> <span class="sub">(100 days: 21.9%)</span> — far below national figure</td></tr>
+          <tr><td class="label">Institutional deliveries (overall)</td>
+            <td class="india"><mark class="hl-blue">90.6%</mark> — ▲ from 88.6%</td>
+            <td class="bihar"><mark class="hl-red">81.1%</mark> <span class="sub">(Urban 89.9% | Rural 80.2%)</span> — trails national figure</td></tr>
+          <tr><td class="label">Institutional deliveries in PUBLIC facilities</td>
+            <td class="india"><mark class="hl-red">58.6%</mark> — <mark class="hl-red">▼ from 61.9% even as overall rate rose</mark></td>
+            <td class="bihar"><span class="na">Not separately reported</span></td></tr>
+          <tr><td class="label">Births attended by skilled health personnel</td>
+            <td class="india"><mark class="hl-blue">91%</mark></td>
+            <td class="bihar"><mark class="hl-blue">84%</mark> — trails national figure</td></tr>
+          <tr><td class="label">Cesarean-section (C-section) rate</td>
+            <td class="india"><mark class="hl-blue">27.2%</mark> — ▲ from 21.5%; Private <mark class="hl-red">54.1%</mark> vs Public <mark class="hl-blue">16.9%</mark></td>
+            <td class="bihar">Private <mark class="hl-red">49.3%</mark> vs Government <mark class="hl-blue">2.7%</mark> — <mark class="hl-red">extreme facility-wise gap</mark></td></tr>
+        </table>
+      </div>
+
+      <div class="category" id="childhealth">
+        <div class="cat-title">7 · Infant / Child Health & Vaccination</div>
+        <table class="compare">
+          <tr><th>Indicator</th><th class="colhead-india">🇮🇳 India</th><th class="colhead-bihar">🌾 Bihar</th></tr>
+          <tr><td class="label">Full immunization (children 12–23 months)</td>
+            <td class="india"><mark class="hl-blue">87.1%</mark> — ▲ from 83.8%</td>
+            <td class="bihar"><mark class="hl-blue">86%</mark> <span class="sub">(vaccination-card basis)</span></td></tr>
+          <tr><td class="label">Immunization based on recall + card</td>
+            <td class="india"><span class="na">Not separately reported</span></td>
+            <td class="bihar"><mark class="hl-red">77.3%</mark> — lower than the card-only figure</td></tr>
+          <tr><td class="label">Vaccination delivered at public health facilities</td>
+            <td class="india"><mark class="hl-blue">95.6%</mark></td>
+            <td class="bihar"><span class="na">Not separately reported</span></td></tr>
+          <tr><td class="label">Rotavirus vaccination coverage</td>
+            <td class="india"><mark class="hl-blue">85.4%</mark> — <mark class="hl-red">dramatic ▲ from 36.4%</mark></td>
+            <td class="bihar"><span class="na">Not separately reported</span></td></tr>
+        </table>
+      </div>
+
+      <div class="category" id="nutrition">
+        <div class="cat-title">8 · Child Nutrition (Malnutrition Standards)</div>
+        <table class="compare">
+          <tr><th>Indicator</th><th class="colhead-india">🇮🇳 India</th><th class="colhead-bihar">🌾 Bihar</th></tr>
+          <tr><td class="label">Early breastfeeding (within 1 hour of birth)</td>
+            <td class="india"><mark class="hl-blue">50.1%</mark> — ▲ from 41.8%</td>
+            <td class="bihar"><mark class="hl-green">51.9%</mark> — <mark class="hl-red">beats national avg; huge ▲ from 31.1%</mark>, credited to <mark class="hl-green">ASHA-led POSHAN Abhiyan</mark> colostrum push</td></tr>
+          <tr><td class="label">Exclusive breastfeeding (up to 6 months)</td>
+            <td class="india"><mark class="hl-red">55.8%</mark> — <mark class="hl-red">▼ from 63.7% — concerning national dip</mark></td>
+            <td class="bihar"><mark class="hl-green">62.5%</mark> — <mark class="hl-red">▲ from 58.9%, beats national avg</mark>; linked to Bihar's low female paid-employment rate (~16.5%)</td></tr>
+          <tr><td class="label">Adequate diet (children 6–23 months)</td>
+            <td class="india"><mark class="hl-blue">15.3%</mark> — ▲ from 11.0% <span class="sub">(still low)</span></td>
+            <td class="bihar"><span class="na">Not separately reported</span></td></tr>
+          <tr><td class="label">Stunting (low height-for-age)</td>
+            <td class="india"><mark class="hl-blue">29.3%</mark> — ▼ from 35.5% <span class="sub">(improvement)</span></td>
+            <td class="bihar"><mark class="hl-red">35.6%</mark> — <mark class="hl-red">higher than national figure</mark></td></tr>
+          <tr><td class="label">Wasting (low weight-for-height)</td>
+            <td class="india"><mark class="hl-red">19.0%</mark> — <mark class="hl-red">virtually unchanged from 19.3%</mark></td>
+            <td class="bihar"><mark class="hl-blue">19%</mark></td></tr>
+          <tr><td class="label">Severe / extreme wasting</td>
+            <td class="india"><mark class="hl-blue">5%</mark></td>
+            <td class="bihar"><mark class="hl-blue">4.7%</mark></td></tr>
+          <tr><td class="label">Underweight (low weight-for-age)</td>
+            <td class="india"><mark class="hl-blue">31.8%</mark> — slight ▼ from 32.1%</td>
+            <td class="bihar"><mark class="hl-red">35.6%</mark> — higher than national figure</td></tr>
+          <tr><td class="label">Overweight children</td>
+            <td class="india"><mark class="hl-blue">1.3%</mark></td>
+            <td class="bihar"><mark class="hl-blue">0.8%</mark></td></tr>
+        </table>
+      </div>
+
+      <div class="category" id="ncd">
+        <div class="cat-title">9 · Adult Nutrition & Non-Communicable Diseases (NCDs)</div>
+        <table class="compare">
+          <tr><th>Indicator</th><th class="colhead-india">🇮🇳 India</th><th class="colhead-bihar">🌾 Bihar</th></tr>
+          <tr><td class="label">Undernutrition (BMI &lt; 18.5)</td>
+            <td class="india">Women <mark class="hl-red">19.7%</mark> (▲ from 18.7%); Men <mark class="hl-red">19.7%</mark> (▲ from 16.2%) — <mark class="hl-red">rose in both sexes</mark></td>
+            <td class="bihar"><span class="na">Not separately reported</span></td></tr>
+          <tr><td class="label">Obesity (BMI ≥ 25.0)</td>
+            <td class="india">Women <mark class="hl-blue">30.7%</mark> (Urban 42.8%) — ▲ from 24.0%; Men <mark class="hl-blue">27.3%</mark> — ▲ from 22.9%</td>
+            <td class="bihar"><span class="na">Not separately reported</span></td></tr>
+          <tr><td class="label">High/very high blood sugar (diabetes)</td>
+            <td class="india">Women <mark class="hl-blue">17.8%</mark>; Men <mark class="hl-blue">20.9%</mark></td>
+            <td class="bihar">Women <mark class="hl-green">13.1%</mark>; Men <mark class="hl-green">17.3%</mark> — <mark class="hl-red">both below national figures</mark></td></tr>
+          <tr><td class="label">Hypertension (BP ≥140/90)</td>
+            <td class="india">Women <mark class="hl-blue">19.4%</mark>; Men <mark class="hl-blue">22.1%</mark></td>
+            <td class="bihar">Women <mark class="hl-green">14.1%</mark> — <mark class="hl-red">below national figure</mark></td></tr>
+        </table>
+        <div class="context-box"><b>"NCD Paradox":</b> NCDs are typically diseases of urbanisation/affluence (refined diets, sedentary work, stress, alcohol). Bihar's largely rural, physically active, agrarian population profile means being less "developed" has incidentally protected it from higher lifestyle-disease burden.</div>
+      </div>
+
+      <div class="category" id="empowerment">
+        <div class="cat-title">10 · Women's Empowerment & Gender-Based Violence</div>
+        <table class="compare">
+          <tr><th>Indicator</th><th class="colhead-india">🇮🇳 India</th><th class="colhead-bihar">🌾 Bihar</th></tr>
+          <tr><td class="label">Married women participating in 3 key household decisions</td>
+            <td class="india"><mark class="hl-blue">89.0%</mark></td>
+            <td class="bihar"><mark class="hl-blue">85.1%</mark> <span class="sub">(Urban 89% | Rural 84.5%)</span></td></tr>
+          <tr><td class="label">Menstrual hygiene method usage (women 15–24 / overall)</td>
+            <td class="india"><mark class="hl-blue">79.2%</mark> <span class="sub">(15–24 age group)</span></td>
+            <td class="bihar"><mark class="hl-red">63%</mark> <span class="sub">(Urban 75.7% | Rural 61.5%)</span> — trails national figure</td></tr>
+          <tr><td class="label">Spousal (domestic) violence against women 18–49</td>
+            <td class="india"><mark class="hl-blue">22.3%</mark> — ▼ from 29.2%</td>
+            <td class="bihar"><mark class="hl-red">36.1%</mark> — <mark class="hl-red">markedly higher than national figure</mark></td></tr>
+          <tr><td class="label">Violence experienced during pregnancy</td>
+            <td class="india"><mark class="hl-blue">2.7%</mark></td>
+            <td class="bihar"><mark class="hl-blue">5.4%</mark> — <mark class="hl-red">roughly double India's figure</mark></td></tr>
+          <tr><td class="label">Sexual violence against young women (~age 18)</td>
+            <td class="india"><mark class="hl-blue">0.7%</mark></td>
+            <td class="bihar"><mark class="hl-blue">2.1%</mark> — <mark class="hl-red">triple India's figure</mark></td></tr>
+        </table>
+      </div>
+
+      <div class="category" id="tobacco">
+        <div class="cat-title">11 · Tobacco & Alcohol Consumption</div>
+        <table class="compare">
+          <tr><th>Indicator</th><th class="colhead-india">🇮🇳 India</th><th class="colhead-bihar">🌾 Bihar</th></tr>
+          <tr><td class="label">Tobacco use</td>
+            <td class="india">Women <mark class="hl-blue">8.4%</mark> (▼ from 8.9%); Men <mark class="hl-blue">36.3%</mark> (▼ from 38.0%)</td>
+            <td class="bihar"><span class="na">Not separately reported</span></td></tr>
+          <tr><td class="label">Alcohol consumption</td>
+            <td class="india">Women <mark class="hl-blue">1.1%</mark>; Men <mark class="hl-blue">18.9%</mark></td>
+            <td class="bihar"><span class="na">Not separately reported</span></td></tr>
+        </table>
+      </div>
+
+      <div class="category" id="paradox">
+        <div class="cat-title">12 · Bihar — Key Analytical Notes (for reasoning-based MCQs)</div>
+        <div class="context-box"><b>Branding focus (BPSC Bhai style):</b> Bihar's women's-status trajectory was earlier shaped by resource crunch, lower education, fewer jobs, weaker decision-making power and lower living standards — NFHS-6 shows a mixed recovery: strong gains in bank/mobile access and breastfeeding practices, but continued lags in ANC coverage, institutional delivery, and higher reported violence.</div>
+        <div class="context-box"><b>Breastfeeding advantage explained:</b> Despite lower institutional-delivery rates, Bihar's early and exclusive breastfeeding figures beat the national average — attributed to ASHA-worker-driven POSHAN Abhiyan counselling and a lower female paid-employment rate (~16.5%) keeping more mothers at home in the first 6 months.</div>
+        <div class="context-box"><b>Financial inclusion vs asset ownership paradox:</b> Near-universal bank accounts (Jan Dhan-driven) coexist with low land/house ownership by women (14.9%) — access to a financial instrument ≠ access to a real asset.</div>
+        <div class="context-box"><b>NCD paradox:</b> Bihar's lower diabetes/hypertension prevalence versus the national average is linked to its rural, agrarian, physically active lifestyle rather than to better healthcare access.</div>
+      </div>
+
+    </div>
+
+    <!-- ================= QUIZ VIEW ================= -->
+    <div class="view" id="view-quiz">
+      <h1 class="pagehead">NFHS-6 MCQ Quiz</h1>
+      <div class="subhead">India + Bihar, shuffled together — every dataset covered. BPSC-72 Prelims difficulty.</div>
+
+      <div class="quiz-header">
+        <div class="filterbar">
+          <button class="fbtn active" onclick="setFilter('All')">All</button>
+          <button class="fbtn" onclick="setFilter('India')">🇮🇳 India</button>
+          <button class="fbtn" onclick="setFilter('Bihar')">🌾 Bihar</button>
+          <button class="fbtn" onclick="setFilter('Both')">⚖ Comparative</button>
+        </div>
+        <div class="score-panel">
+          <span>Answered: <b id="answeredCount">0</b>/<b id="totalCount">0</b></span>
+          <span>Score: <b id="scoreCount">0</b></span>
+        </div>
+      </div>
+
+      <div id="quizContainer"></div>
+      <div id="quizEnd">
+        <h2>Quiz Complete!</h2>
+        <p id="finalScoreText"></p>
+        <button class="restart" onclick="restartQuiz()">Restart Quiz</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <script>
-  // Simple script to handle tab switching
-  const tabs = document.querySelectorAll('.tab');
-  const pages = document.querySelectorAll('.page');
-  const sidebar = document.getElementById('sidebar');
+function showView(v){
+  document.getElementById('view-ledger').classList.toggle('active', v==='ledger');
+  document.getElementById('view-quiz').classList.toggle('active', v==='quiz');
+  document.getElementById('btn-ledger').classList.toggle('active', v==='ledger');
+  document.getElementById('btn-quiz').classList.toggle('active', v==='quiz');
+  if(v==='quiz' && !window.quizInit){ initQuiz(); window.quizInit = true; }
+}
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const targetId = tab.dataset.target;
-      if(!targetId) return;
-      
-      tabs.forEach(t => t.classList.remove('active'));
-      pages.forEach(p => p.classList.remove('active'));
-      
-      tab.classList.add('active');
-      document.getElementById(targetId).classList.add('active');
-      
-      if(window.innerWidth <= 900) {
-        sidebar.classList.remove('open');
-      }
+/* ============ QUIZ DATA ============ */
+const quizData = [
+// --- SURVEY OVERVIEW ---
+{r:"Both", q:"NFHS-6 fieldwork was conducted during which period?", o:["2019–2020","2021–2022","2023–2024","2025–2026"], a:2, ex:"NFHS-6 field survey period was 2023–2024, conducted by MoHFW with IIPS Mumbai as the nodal agency."},
+{r:"Both", q:"NFHS-6 covers all Indian States and Union Territories except:", o:["Manipur","Ladakh","Sikkim","Goa"], a:0, ex:"Manipur was excluded from NFHS-6 coverage."},
+{r:"Both", q:"Which ministry conducts the National Family Health Survey?", o:["Ministry of Women & Child Development","Ministry of Health & Family Welfare","Ministry of Rural Development","NITI Aayog"], a:1, ex:"NFHS is conducted under the Ministry of Health & Family Welfare (MoHFW)."},
+{r:"Both", q:"The nodal survey agency for NFHS-6 is:", o:["AIIMS Delhi","International Institute for Population Sciences (IIPS), Mumbai","ICMR","TISS"], a:1, ex:"IIPS Mumbai is the designated nodal agency for conducting NFHS rounds."},
+{r:"Both", q:"NFHS-6 indicators are most closely aligned with which set of SDGs?", o:["SDG 1, 2, 3, 5, 16","SDG 4, 6, 7","SDG 9, 11, 13","SDG 8, 10, 12"], a:0, ex:"NFHS-6 data ties to SDG 1 (Poverty), SDG 2 (Zero Hunger), SDG 3 (Good Health), SDG 5 (Gender Equality) and SDG 16 (Peace, Justice & Institutions)."},
+
+// --- POPULATION ---
+{r:"India", q:"India's population share in the under-5 age group as per NFHS-6 is closest to:", o:["6.0%","8.0%","10.0%","12.0%"], a:1, ex:"8.0% (Urban 6.6%, Rural 8.6%) — down from NFHS-5's 8.2%."},
+{r:"India", q:"Compared to NFHS-5, has India's under-15 population share increased or decreased in NFHS-6?", o:["Increased","Decreased","Remained exactly the same","Not comparable"], a:1, ex:"Declined to 25.5% from 26.5% in NFHS-5."},
+{r:"India", q:"NFHS-6 shows India's elderly (60+) population share has:", o:["Increased to 12.9%","Decreased to 10%","Stayed flat","Not been surveyed"], a:0, ex:"Risen from 11.8% (NFHS-5) to 12.9% — reflecting population ageing."},
+{r:"Both", q:"Which statement about elderly-population trends is correct as per NFHS-6?", o:["Elderly share fell nationally but rose in Bihar","Elderly share rose in both India (12.9%) and Bihar (11.8%, up from 11.5%)","Elderly share fell in both","Bihar's elderly share exceeds urban India's"], a:1, ex:"Both India and Bihar show a rising elderly share — a nationwide ageing trend."},
+{r:"Bihar", q:"Bihar's population share under age 15, per NFHS-6, is closest to:", o:["25.5%","30.6%","35.6%","40.6%"], a:2, ex:"35.6% — far above the national figure of 25.5%, reflecting Bihar's younger, high-fertility demographic profile."},
+
+// --- AMENITIES / INFRA / FINANCE ---
+{r:"Both", q:"Which has higher household electricity access per NFHS-6 — India overall or Bihar?", o:["India","Bihar","Exactly equal","Not comparable"], a:1, ex:"Bihar (98.5%) marginally edges past the national figure (98.3%), and shows a bigger jump from its NFHS-5 base (96.3%)."},
+{r:"Both", q:"Bihar's improved-drinking-water access (99.8%) compares with the national figure (96.5%) by:", o:["Being lower","Being higher","Being equal","Not reported"], a:1, ex:"Bihar's water access is notably higher than the national average."},
+{r:"India", q:"What share of Indian households use iodized salt per NFHS-6?", o:["84.2%","94.2%","74.2%","64.2%"], a:1, ex:"94.2% — a marginal decline from NFHS-5's 94.3%; no Bihar-specific figure was separately reported."},
+{r:"India", q:"India's health insurance coverage trend per NFHS-6 shows:", o:["A sharp increase from 41.0% to 60.2%","A decrease","No change","Growth only in urban areas"], a:0, ex:"Coverage rose sharply; rural coverage (62.0%) exceeds urban (56.4%)."},
+{r:"Bihar", q:"Which statement about Bihar's health insurance coverage (21.1%) is correct?", o:["It follows the usual pattern where rural exceeds urban","It breaks the usual pattern where rural typically exceeds urban", "It exceeds the national average","It is entirely due to private insurers"], a:1, ex:"Unlike the national trend, Bihar's rural coverage does not exceed urban — an unusual pattern flagged in the survey."},
+{r:"Bihar", q:"Bihar's health-insurance expansion is primarily attributed to which government scheme?", o:["PMJDY","Ayushman Card","ESIC","LIC"], a:1, ex:"Rapid Ayushman Card distribution is credited with driving Bihar's insurance coverage growth."},
+{r:"India", q:"What share of Indian households have at least one member with a bank/post-office account (NFHS-6)?", o:["88.2%","98.2%","78.2%","68.2%"], a:1, ex:"98.2% — near-universal financial account access."},
+{r:"India", q:"In what share of Indian households do women solely or jointly own a house or land?", o:["8.8%","18.8%","28.8%","38.8%"], a:1, ex:"18.8% — a useful figure to contrast with women's bank-account ownership (89.0%)."},
+{r:"Both", q:"Bihar's female land-ownership figure (14.9%) compares to India's overall figure (18.8%) by being:", o:["Higher","Lower","Identical","Not comparable"], a:1, ex:"Bihar trails the national figure on female land/house ownership."},
+{r:"Both", q:"In Bihar, women's bank-account ownership (90.9%) compares to the national average (89.0%) by:", o:["Exceeding it","Falling short of it","Being equal","Not reported"], a:0, ex:"Bihar actually exceeds the national average on this specific indicator."},
+{r:"Bihar", q:"In Bihar, is rural or urban women's bank-account ownership higher?", o:["Rural (91.1%)","Urban (89.1%)","Exactly equal","Not reported"], a:0, ex:"Rural Bihar women (91.1%) show marginally higher account ownership than urban (89.1%)."},
+{r:"Bihar", q:"Bihar's household bank-account coverage (98.5%) is notably equal to which other Bihar indicator?", o:["Electricity access (98.5%)","Improved water access","Health insurance coverage","Institutional delivery rate"], a:0, ex:"Both figures stand at 98.5% — a coincidental but memorable overlap, largely credited to Jan Dhan Yojana."},
+{r:"Bihar", q:"Bihar's near-universal bank-account penetration is most credited to which scheme?", o:["Jan Dhan Yojana","Mudra Yojana","Ayushman Bharat","PM Kisan"], a:0, ex:"Jan Dhan Yojana (PMJDY) is cited as the key driver of Bihar's account penetration."},
+{r:"India", q:"Trend in Indian women's ownership of personal mobile phones per NFHS-6:", o:["Rose to ~63.6%","Fell","Stayed flat","Not tracked"], a:0, ex:"Rose from 53.9% (NFHS-5) to 63.6%."},
+{r:"Bihar", q:"Bihar women's personal-mobile-phone ownership is closest to:", o:["52.8%","62.8%","72.8%","42.8%"], a:1, ex:"62.8% — comparable to, though slightly below, the national figure of 63.6%."},
+
+// --- EDUCATION & DIGITAL ---
+{r:"India", q:"What share of Indian women aged 6+ have ever attended school (NFHS-6)?", o:["63.7%","73.7%","83.7%","53.7%"], a:1, ex:"73.7% (Urban 84.3%, Rural 69.2%)."},
+{r:"India", q:"Among the 15–49 age group in India, who has a higher share with 10+ years of schooling?", o:["Women (46.4%)","Men (54.6%)","Exactly equal","Not measured"], a:1, ex:"Men lead women by roughly 8 percentage points on this measure nationally."},
+{r:"Bihar", q:"What share of Bihar women (aged 6+) have ever attended school, per NFHS-6?", o:["54.1%","64.1%","74.1%","44.1%"], a:1, ex:"64.1% — noticeably below the national figure of 73.7% for the same indicator."},
+{r:"Bihar", q:"In Bihar, what share of women attended school for more than 10 years?", o:["23.1%","33.1%","43.1%","53.1%"], a:1, ex:"33.1%, compared to men's 45.9% — a wider gender gap and lower absolute levels than the national figures."},
+{r:"India", q:"India's female internet-usage rate has, per NFHS-6, roughly:", o:["Halved versus NFHS-5","Doubled versus NFHS-5","Tripled versus NFHS-5","Stayed the same"], a:1, ex:"Nearly doubled, from 33.3% to 64.3%."},
+{r:"India", q:"India's male internet-usage rate in NFHS-6 is closest to:", o:["70.5%","80.5%","90.5%","60.5%"], a:1, ex:"80.5%, up from 51.2% in NFHS-5."},
+{r:"Both", q:"Comparing gender gaps in internet usage, which statement is more accurate?", o:["Bihar's male–female internet-usage gap is wider than India's national gap","Bihar's gap is narrower than India's","The gaps are identical","Not comparable"], a:0, ex:"Bihar shows roughly a 20-point gap (F 58% vs M 78%) versus India's ~16-point gap (F 64.3% vs M 80.5%)."},
+
+// --- MARRIAGE & FERTILITY ---
+{r:"India", q:"Trend in child marriage among Indian women aged 20–24 (married before 18), NFHS-6 vs NFHS-5:", o:["Increased","Decreased","Remained unchanged","Not tracked"], a:1, ex:"Declined from 23.3% to 20.1% nationally."},
+{r:"India", q:"In India, rural child-marriage prevalence (23.3%) compared to urban (11.4%) is approximately:", o:["Equal","Double","Half","Triple"], a:1, ex:"Rural prevalence is roughly double the urban figure — a classic BPSC trap on ratio comparison."},
+{r:"India", q:"Trend in male child marriage (age 25–29 cohort) in India:", o:["Increased","Decreased to 15.9%","Remained flat","Not surveyed"], a:1, ex:"Declined from 17.7% (NFHS-5) to 15.9%."},
+{r:"India", q:"India's Total Fertility Rate (TFR) in NFHS-6 stands at:", o:["1.8","2.0","2.3","2.6"], a:1, ex:"2.0 — unchanged from NFHS-5; Urban 1.6, Rural 2.1."},
+{r:"India", q:"India's TFR is higher in which area type?", o:["Urban areas","Rural areas","Exactly equal","Not reported"], a:1, ex:"Rural TFR (2.1) exceeds urban TFR (1.6)."},
+{r:"India", q:"What share of Indian women aged 15–19 were already mothers or pregnant at the time of NFHS-6?", o:["3.7%","6.7%","9.7%","12.7%"], a:1, ex:"6.7% — a key adolescent-motherhood indicator."},
+{r:"Bihar", q:"What share of Bihar women aged 20–24 were married before age 18, per NFHS-6?", o:["24.6%","29.6%","34.6%","39.6%"], a:2, ex:"34.6% — well above the national figure of 20.1%, making child marriage a sharper concern in Bihar."},
+{r:"Both", q:"Comparing child-marriage prevalence (women 20–24 married before 18), which is correct?", o:["Bihar's figure (34.6%) is well above India's national figure (20.1%)","Bihar's figure is well below India's","They are nearly identical","Not comparable"], a:0, ex:"Bihar's prevalence is markedly higher than the national average — a key India-vs-Bihar contrast."},
+{r:"Bihar", q:"Bihar's Total Fertility Rate trend, per NFHS-6 versus its previous survey round:", o:["Increased","Decreased to 2.7","Remained unchanged","Not measured"], a:1, ex:"Declined from 3.0 to 2.7 — still well above the national TFR of 2.0."},
+{r:"Bihar", q:"Bihar's rural TFR (2.8) compares with its urban TFR (2.1) as:", o:["Rural higher","Urban higher","Exactly equal","Not applicable"], a:0, ex:"Rural fertility remains notably higher than urban within Bihar, mirroring the national pattern."},
+{r:"Bihar", q:"Teenage pregnancy (women aged 15–19) in Bihar is reported at approximately:", o:["8.4%","11.4%","14.4%","17.4%"], a:1, ex:"11.4%, higher than the national figure of 6.7%, and more pronounced in rural areas."},
+
+// --- FAMILY PLANNING ---
+{r:"India", q:"Which contraceptive-use trend is TRUE for India per NFHS-6?", o:["Any-method use rose while modern-method use actually declined","Both rose","Both fell","No change in either"], a:0, ex:"Any-method use rose to 69.1% (from 66.7%), but modern-method use fell to 52.7% (from 56.4%) — a classic trap."},
+{r:"India", q:"Female sterilization dominates India's family-planning mix at approximately what share among married women?", o:["16.5%","26.5%","36.5%","46.5%"], a:2, ex:"36.5% for female sterilization versus just 0.5% for male sterilization — a stark gender imbalance."},
+{r:"India", q:"India's unmet need for family planning, per NFHS-6, shows:", o:["A rise","A fall to 8.5%","No change","A doubling"], a:1, ex:"Declined from 9.4% (NFHS-5) to 8.5%."},
+{r:"Bihar", q:"Any contraceptive/family-planning method usage among married women in Bihar stands at approximately:", o:["49.1%","59.1%","69.1%","79.1%"], a:1, ex:"59.1% — below the national any-method figure of 69.1%."},
+{r:"Both", q:"Comparing family-planning method usage, which is correct?", o:["Bihar's usage (59.1%) trails the national figure (69.1%)","Bihar's usage exceeds the national figure","They are identical","Not reported"], a:0, ex:"Bihar's any-method contraceptive usage is about 10 percentage points below the national average."},
+
+// --- MATERNAL HEALTH ---
+{r:"India", q:"What share of Indian mothers received at least one ANC checkup (any ANC visit), per NFHS-6?", o:["85.9%","90.9%","95.9%","99.9%"], a:2, ex:"95.9% — this is distinct from the 'first trimester ANC' indicator, which stands lower at 76.2%."},
+{r:"India", q:"India's ANC-in-first-trimester coverage trend per NFHS-6:", o:["Improved to ~76.2%","Worsened","Stayed flat","Not tracked"], a:0, ex:"Rose from 70.0% (NFHS-5) to 76.2%. Note this is a different indicator from 'at least one ANC visit' (95.9%)."},
+{r:"India", q:"Share of Indian mothers receiving 4+ ANC visits (NFHS-6) is closest to:", o:["45.2%","55.2%","65.2%","75.2%"], a:2, ex:"65.2%, up from 58.5%."},
+{r:"India", q:"IFA (Iron-Folic Acid) consumption for 180+ days among Indian mothers shows:", o:["A sharp increase to ~37.8%","A decrease","No change","Data not surveyed"], a:0, ex:"Rose from 26.0% to 37.8% — still under half of mothers, useful trap for absolute-vs-relative reasoning."},
+{r:"India", q:"Institutional delivery rose overall in India, but institutional deliveries specifically within PUBLIC facilities:", o:["Also increased","Declined even as the overall rate rose","Stayed exactly the same","Doubled"], a:1, ex:"Public-facility share fell from 61.9% to 58.6% even as the overall institutional-delivery rate (90.6%) climbed — meaning private facilities absorbed the growth."},
+{r:"India", q:"What share of Indian births were attended by skilled health personnel, per NFHS-6?", o:["81%","86%","91%","96%"], a:2, ex:"91% — a useful comparison point against Bihar's figure of 84%."},
+{r:"India", q:"India's C-section rate trend and its facility-wise skew show:", o:["Risen overall, and much higher in private (54.1%) than public (16.9%) hospitals","Risen overall but higher in public hospitals","Fallen overall","Equal across facility types"], a:0, ex:"C-section rate rose to 27.2% nationally, with a stark private-vs-public gap."},
+{r:"Bihar", q:"Bihar's coverage for at least one ANC checkup (any ANC visit) is approximately:", o:["84%","94%","74%","64%"], a:1, ex:"94% of Bihar mothers received at least one ANC checkup — close to, but slightly below, the national figure of 95.9%. Bihar's first-trimester-specific ANC figure was not separately reported."},
+{r:"Bihar", q:"Bihar's coverage for 4+ ANC visits is closest to:", o:["27.6%","37.6%","47.6%","57.6%"], a:1, ex:"37.6% — notably lower than the national figure of ~65.2%, despite near-universal single ANC coverage."},
+{r:"Bihar", q:"In Bihar, folic-acid consumption for 180 days during pregnancy stands at approximately:", o:["11.2%","21.2%","31.2%","41.2%"], a:0, ex:"11.2% — far below the national figure (~37.8%); the 100-day figure is somewhat higher at 21.9%."},
+{r:"Bihar", q:"Bihar's overall institutional-delivery rate is approximately:", o:["71.1%","81.1%","91.1%","61.1%"], a:1, ex:"81.1% (Urban 89.9%, Rural 80.2%) — lower than the national figure of 90.6%."},
+{r:"Bihar", q:"What share of Bihar births were attended by skilled health personnel?", o:["64%","74%","84%","94%"], a:2, ex:"84% of Bihar births were attended by skilled health professionals — below India's national figure of 91%."},
+{r:"Bihar", q:"Bihar's C-section rate gap between private and government facilities shows:", o:["Private far higher (49.3% vs 2.7%)","Government far higher","Roughly equal","Not reported"], a:0, ex:"An extreme facility-wise divergence — 49.3% in private hospitals versus just 2.7% in government facilities."},
+
+// --- CHILD HEALTH / VACCINATION ---
+{r:"India", q:"Full immunization coverage (card-based) among Indian children aged 12–23 months per NFHS-6:", o:["Declined","Rose to ~87.1%","Stayed unchanged","Not tracked"], a:1, ex:"Rose from 83.8% (NFHS-5) to 87.1%."},
+{r:"India", q:"What share of Indian children's vaccinations were administered at public health facilities?", o:["75.6%","85.6%","95.6%","65.6%"], a:2, ex:"95.6% — vaccination delivery remains heavily reliant on the public health system."},
+{r:"India", q:"Rotavirus vaccination coverage in India per NFHS-6 shows:", o:["A dramatic jump to ~85.4%","A decline","Only a marginal change","No prior comparison exists"], a:0, ex:"Rose sharply from 36.4% to 85.4% — one of the biggest jumps across all NFHS-6 indicators."},
+{r:"Bihar", q:"Bihar's child-immunization coverage, based on the vaccination card alone, is closest to:", o:["66%","76%","86%","96%"], a:2, ex:"86% on card-only basis."},
+{r:"Bihar", q:"Bihar's immunization coverage based on recall plus card together is:", o:["Higher than the card-only figure","Lower, at approximately 77.3%","Exactly equal","Not reported"], a:1, ex:"77.3% when recall is combined with card evidence — lower than the 86% card-only figure, a subtle methodological trap."},
+
+// --- CHILD NUTRITION ---
+{r:"India", q:"Early initiation of breastfeeding (within 1 hour) in India shows what trend?", o:["Improved to ~50.1%","Worsened","Stayed flat","Not tracked"], a:0, ex:"Rose from 41.8% to 50.1%."},
+{r:"India", q:"Exclusive breastfeeding (up to 6 months) nationally in India has, per NFHS-6:", o:["Increased","Declined to ~55.8% — a concerning trend","Stayed exactly flat","Reached near-universal levels"], a:1, ex:"Fell from 63.7% to 55.8%, flagged as a concerning reversal in an otherwise improving nutrition picture."},
+{r:"India", q:"Adequate diet among Indian children aged 6–23 months is reported at only:", o:["5.3%","15.3%","25.3%","35.3%"], a:1, ex:"15.3% — up from 11.0%, but still a very low absolute share."},
+{r:"India", q:"Stunting among Indian children (low height-for-age) shows what trend?", o:["Worsened","Improved, falling to ~29.3%","Remained unchanged","Not measured"], a:1, ex:"Fell from 35.5% to 29.3% — a notable improvement."},
+{r:"India", q:"Wasting among Indian children between NFHS-5 and NFHS-6 has:", o:["Improved sharply","Worsened sharply","Remained virtually unchanged around 19%","Not been surveyed"], a:2, ex:"Moved only marginally, from 19.3% to 19.0% — essentially stagnant despite gains on stunting."},
+{r:"India", q:"India's severe (extreme) wasting figure among children stands at approximately:", o:["2%","5%","8%","11%"], a:1, ex:"5% — very close to Bihar's severe-wasting figure of 4.7%."},
+{r:"India", q:"Underweight prevalence among Indian children shows:", o:["A sharp rise","A slight decline to ~31.8%","No change at all","Not tracked"], a:1, ex:"Declined slightly from 32.1% to 31.8%."},
+{r:"India", q:"Overweight prevalence among Indian children, per NFHS-6, is approximately:", o:["0.3%","1.3%","3.3%","5.3%"], a:1, ex:"1.3% — slightly higher than Bihar's figure of 0.8%, but a minor concern relative to undernutrition indicators."},
+{r:"Bihar", q:"Bihar's early-breastfeeding-initiation rate, compared to the national figure, shows:", o:["Bihar exceeds the national average and shows a large jump from its own earlier survey","Bihar falls well short of the national average","They are identical","Not reported"], a:0, ex:"Bihar's 51.9% exceeds the national 50.1%, and is a 20.8-point jump from its earlier 31.1%."},
+{r:"Bihar", q:"Comparing exclusive-breastfeeding trends, which is accurate?", o:["Bihar's rate rose while the national rate fell","Both rose","Both fell","Bihar fell while the nation rose"], a:0, ex:"Bihar rose to 62.5% (from 58.9%) even as the national figure fell to 55.8% — a clear India-vs-Bihar divergence."},
+{r:"Bihar", q:"The factor most credited for Bihar's stronger breastfeeding performance despite lower institutional-delivery rates is:", o:["Higher hospital C-section rates","ASHA-worker-led colostrum-feeding promotion under POSHAN Abhiyan","Higher urban employment","Formula-marketing restrictions"], a:1, ex:"ASHA workers' household-level counselling under POSHAN Abhiyan is credited, even though institutional births (which could otherwise delay skin contact via surgery) are comparatively lower in Bihar."},
+{r:"Bihar", q:"A key demographic reason cited for Bihar's relatively high exclusive-breastfeeding rate is its comparatively:", o:["High female paid-employment rate","Low female paid-employment rate (~16.5%), keeping mothers at home", "Universal creche access","High urbanisation"], a:1, ex:"With fewer women in paid work, more mothers remain available to exclusively breastfeed in the first six months."},
+{r:"Bihar", q:"Bihar's child-stunting prevalence is approximately:", o:["25.6%","35.6%","45.6%","15.6%"], a:1, ex:"35.6% — notably higher than the national figure of 29.3%."},
+{r:"Bihar", q:"Bihar's overall wasting prevalence among children is approximately:", o:["9%","19%","29%","39%"], a:1, ex:"19% overall, with severe wasting at 4.7% — close to India's severe-wasting figure of 5%."},
+{r:"Bihar", q:"Bihar's underweight prevalence among children is approximately:", o:["15.6%","25.6%","35.6%","45.6%"], a:2, ex:"35.6% — higher than the national figure of 31.8%."},
+{r:"Bihar", q:"Bihar's overweight-children prevalence is approximately:", o:["0.8%","3.8%","6.8%","9.8%"], a:0, ex:"0.8% — slightly below India's 1.3%, and a comparatively minor concern relative to undernutrition indicators in Bihar."},
+{r:"Both", q:"Comparing severe/extreme wasting figures, which is correct?", o:["India (~5%) and Bihar (~4.7%) are close, with Bihar marginally lower","Bihar is far higher than India","India reports zero severe wasting","Not comparable"], a:0, ex:"Both figures are close, with Bihar (4.7%) marginally below the national figure (5%)."},
+
+// --- ADULT NUTRITION & NCD ---
+{r:"India", q:"Undernutrition (BMI < 18.5) trend among Indian adults per NFHS-6:", o:["Fell in both sexes","Rose in both women and men","Fell in women, rose in men","Fell in men, rose in women"], a:1, ex:"Rose from 18.7% to 19.7% in women and from 16.2% to 19.7% in men — a rare instance of men's rate converging with women's."},
+{r:"India", q:"Obesity (BMI ≥ 25) among Indian women per NFHS-6 is approximately:", o:["20.7%","30.7%","40.7%","50.7%"], a:1, ex:"30.7% overall (rising to ~42.8% in urban areas), up from 24.0%."},
+{r:"India", q:"Obesity trend among Indian men per NFHS-6:", o:["Fell","Rose to ~27.3%","Stayed unchanged","Not tracked"], a:1, ex:"Rose from 22.9% to 27.3%."},
+{r:"India", q:"Which group shows higher blood-sugar (diabetes) prevalence nationally per NFHS-6?", o:["Women","Men","Exactly equal","Not reported"], a:1, ex:"Men (20.9%) exceed women (17.8%)."},
+{r:"India", q:"Which group shows higher hypertension prevalence nationally per NFHS-6?", o:["Women","Men","Exactly equal","Not reported"], a:1, ex:"Men (22.1%) exceed women (19.4%)."},
+{r:"Both", q:"Comparing India and Bihar, NCD prevalence (diabetes, hypertension) in Bihar is generally:", o:["Higher than the national average across the board","Lower than the national average across the board","Identical","Not measurable"], a:1, ex:"Bihar shows lower diabetes and hypertension prevalence for both sexes compared to national figures."},
+{r:"Both", q:"The commonly cited reason Bihar shows lower NCD rates despite lagging on many development indicators is:", o:["Universal free medical checkups","Its largely rural, physically active, agrarian population profile","A mandatory yoga policy","Higher literacy"], a:1, ex:"NCDs correlate with urbanisation/affluence (sedentary lifestyle, refined diets); Bihar's rural, physically active population is less exposed to these risk factors."},
+{r:"Bihar", q:"Bihar's diabetes prevalence among women (~13.1%) compared to the national figure (~17.8%) is:", o:["Higher","Lower","Exactly equal","Not reported"], a:1, ex:"Bihar's figure is lower than the national average for women."},
+{r:"Bihar", q:"Bihar's hypertension prevalence among women (~14.1%) versus the national figure (~19.4%) is:", o:["Higher","Lower","Exactly equal","Not applicable"], a:1, ex:"Bihar again trails (in a favourable direction) the national hypertension figure for women."},
+
+// --- WOMEN'S EMPOWERMENT & GBV ---
+{r:"India", q:"Share of married Indian women participating in 3 key household decisions per NFHS-6:", o:["69.0%","79.0%","89.0%","99.0%"], a:2, ex:"89.0% of married women report participation in key household decisions."},
+{r:"India", q:"Trend in Indian women's ownership of their own bank accounts per NFHS-6:", o:["Rose to ~89.0%","Fell","Stayed flat","Not tracked"], a:0, ex:"Rose from 78.6% to 89.0%."},
+{r:"India", q:"Share of Indian women aged 15–24 using hygienic menstrual methods:", o:["69.2%","79.2%","89.2%","59.2%"], a:1, ex:"79.2% — a relevant benchmark for comparing against Bihar's overall figure of 63%."},
+{r:"India", q:"Spousal violence against Indian women aged 18–49 shows what trend per NFHS-6?", o:["Risen","Declined to ~22.3%","Remained unchanged","Not surveyed"], a:1, ex:"Declined from 29.2% (NFHS-5) to 22.3%."},
+{r:"India", q:"What share of Indian women report experiencing violence during pregnancy, per NFHS-6?", o:["0.7%","2.7%","4.7%","6.7%"], a:1, ex:"2.7% — roughly half of Bihar's corresponding figure of 5.4%."},
+{r:"India", q:"What share of young Indian women (~age 18) report experiencing sexual violence, per NFHS-6?", o:["0.7%","1.7%","2.7%","3.7%"], a:0, ex:"0.7% — considerably lower than Bihar's figure of 2.1%."},
+{r:"Bihar", q:"Household decision-making participation among married Bihar women is approximately:", o:["75.1%","85.1%","95.1%","65.1%"], a:1, ex:"85.1% (Urban 89%, Rural 84.5%) — slightly below the national figure of 89.0%."},
+{r:"Both", q:"Spousal-violence prevalence in Bihar (~36.1%) compared to the national figure (~22.3%) is:", o:["Markedly higher","Markedly lower","Roughly equal","Not comparable"], a:0, ex:"Bihar's reported spousal-violence prevalence is substantially higher than the national average, despite other social indicators improving."},
+{r:"Both", q:"Comparing violence experienced during pregnancy, which is correct?", o:["Bihar's figure (5.4%) is roughly double India's national figure (2.7%)","Bihar's figure is lower than India's","They are identical","Not comparable"], a:0, ex:"Bihar's reported prevalence is about twice the national figure."},
+{r:"Both", q:"Comparing sexual violence against young women (~age 18), which is correct?", o:["Bihar's figure (2.1%) is roughly triple India's national figure (0.7%)","Bihar's figure is lower than India's","They are identical","Not comparable"], a:0, ex:"Bihar's reported prevalence is roughly three times the national figure."},
+{r:"Bihar", q:"Menstrual-hygiene product usage among Bihar women is approximately:", o:["53%","63%","73%","83%"], a:1, ex:"63% overall (Urban 75.7%, Rural 61.5%) — lower than the national figure of ~79.2%."},
+
+// --- TOBACCO & ALCOHOL ---
+{r:"India", q:"Tobacco-use trend among Indian women and men per NFHS-6:", o:["Both rose","Both declined slightly (women ~8.4%, men ~36.3%)","Women rose, men fell","Women fell, men rose"], a:1, ex:"Both sexes show a modest decline — women from 8.9% to 8.4%, men from 38.0% to 36.3%."},
+{r:"India", q:"Which group shows far higher tobacco consumption in India per NFHS-6?", o:["Women","Men (~36.3%)","Exactly equal","Not reported"], a:1, ex:"Men's tobacco use (36.3%) massively exceeds women's (8.4%)."},
+{r:"India", q:"Alcohol consumption levels in India per NFHS-6 are reported at approximately:", o:["Women ~1.1%, Men ~18.9%","Women ~10%, Men ~30%","Equal for both at ~10%","Not surveyed"], a:0, ex:"A stark gender gap: 1.1% for women versus 18.9% for men."},
+
+// --- CROSS COMPARISON / ANALYTICAL ---
+{r:"Both", q:"Which of these is a correct India-vs-Bihar comparison of basic infrastructure access per NFHS-6?", o:["Bihar has higher electricity and water access than the national average","India has higher electricity and water access than Bihar","Both are exactly identical","Neither reported infrastructure data"], a:0, ex:"Bihar edges past the national average on both electricity (98.5% vs 98.3%) and water access (99.8% vs 96.5%)."},
+{r:"Both", q:"On institutional delivery, how does Bihar compare with the national average?", o:["Bihar exceeds the national figure","Bihar trails the national figure","They are identical","Not reported"], a:1, ex:"Bihar's 81.1% trails India's 90.6% on institutional deliveries."},
+{r:"Both", q:"On 4+ ANC visits, how does Bihar compare with the national figure?", o:["Bihar exceeds the national rate","Bihar trails well behind the national rate","They are equal","Not applicable"], a:1, ex:"Bihar's 37.6% is well below India's 65.2%, despite near-universal single-ANC coverage in Bihar."},
+{r:"Both", q:"On child stunting, Bihar's prevalence relative to the national average is:", o:["Higher","Lower","Exactly equal","Not reported"], a:0, ex:"Bihar's stunting rate (35.6%) exceeds the national figure (29.3%)."},
+{r:"Both", q:"Bihar's 'financial-inclusion paradox' refers to the fact that women's bank-account ownership is high while:", o:["Women's land/property ownership remains comparatively low","Male bank ownership is low","Rural areas lack banks entirely","Urban ownership is unusually low"], a:0, ex:"High account ownership (90.9%) contrasts with low land/house ownership (14.9%) among Bihar women."},
+{r:"Both", q:"Which of these accurately reflects the health-insurance coverage comparison?", o:["Bihar's coverage (21.1%) is well below the national figure (60.2%)","Bihar's coverage exceeds the national figure","They are equal","Not reported"], a:0, ex:"Despite the Ayushman Card push, Bihar's overall health-insurance coverage remains far below the national average."},
+{r:"Both", q:"Comparing births attended by skilled health personnel, which is correct?", o:["Bihar (84%) trails India's national figure (91%)","Bihar exceeds India's figure","They are identical","Not reported"], a:0, ex:"Bihar's figure of 84% is below the national figure of 91%, consistent with Bihar's overall lag on institutional/skilled maternal care."}
+];
+
+let currentFilter = 'All';
+let filteredData = [];
+let answered = 0, score = 0;
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function initQuiz(){
+  filteredData = shuffle(quizData);
+  answered = 0; score = 0;
+  renderQuiz();
+  updateScorePanel();
+}
+
+function setFilter(f){
+  currentFilter = f;
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  const base = quizData.filter(q => f==='All' ? true : (f==='Both' ? q.r==='Both' : q.r===f));
+  filteredData = shuffle(base);
+  answered = 0; score = 0;
+  document.getElementById('quizEnd').style.display='none';
+  document.getElementById('quizContainer').style.display='block';
+  renderQuiz();
+  updateScorePanel();
+}
+
+function renderQuiz(){
+  const c = document.getElementById('quizContainer');
+  c.innerHTML = '';
+  filteredData.forEach((item, idx) => {
+    const card = document.createElement('div');
+    card.className = 'qcard';
+    card.innerHTML = `
+      <div class="qmeta">
+        <span class="qnum">Question ${idx+1} of ${filteredData.length}</span>
+        <span class="tag ${item.r}">${item.r === 'Both' ? '⚖ COMPARATIVE' : item.r.toUpperCase()}</span>
+      </div>
+      <div class="qtext">${item.q}</div>
+      <div class="options" id="opts-${idx}"></div>
+      <div class="explain" id="ex-${idx}"><b>Explanation:</b> ${item.ex}</div>
+    `;
+    c.appendChild(card);
+    const optsDiv = card.querySelector(`#opts-${idx}`);
+    item.o.forEach((optText, oi) => {
+      const btn = document.createElement('button');
+      btn.className = 'opt';
+      btn.textContent = optText;
+      btn.onclick = () => selectAnswer(idx, oi);
+      optsDiv.appendChild(btn);
     });
   });
+}
 
-  document.getElementById('menuBtn').addEventListener('click', () => {
-    sidebar.classList.toggle('open');
+function selectAnswer(idx, chosen){
+  const item = filteredData[idx];
+  const optsDiv = document.getElementById(`opts-${idx}`);
+  if(optsDiv.dataset.answered) return;
+  optsDiv.dataset.answered = "true";
+  const buttons = optsDiv.querySelectorAll('.opt');
+  buttons.forEach((b,i)=>{
+    b.classList.add('disabled');
+    if(i === item.a) b.classList.add('correct');
+    else if(i === chosen) b.classList.add('wrong');
   });
+  document.getElementById(`ex-${idx}`).classList.add('show');
+  answered++;
+  if(chosen === item.a) score++;
+  updateScorePanel();
+  if(answered === filteredData.length){
+    setTimeout(()=>{
+      document.getElementById('quizEnd').style.display='block';
+      document.getElementById('finalScoreText').textContent = `You scored ${score} out of ${filteredData.length} (${Math.round(score/filteredData.length*100)}%)`;
+    }, 400);
+  }
+}
+
+function updateScorePanel(){
+  document.getElementById('answeredCount').textContent = answered;
+  document.getElementById('totalCount').textContent = filteredData.length;
+  document.getElementById('scoreCount').textContent = score;
+}
+
+function restartQuiz(){
+  document.getElementById('quizEnd').style.display='none';
+  filteredData = shuffle(currentFilter==='All' ? quizData : quizData.filter(q => currentFilter==='Both' ? q.r==='Both' : q.r===currentFilter));
+  answered = 0; score = 0;
+  renderQuiz();
+  updateScorePanel();
+}
 </script>
 </body>
 </html>
