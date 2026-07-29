@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>South India Dossier — Chola, Chalukya, Pallava & Sangam Age</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6efe0;
+    --paper-deep:#efe4cc;
+    --ink:#2b241a;
+    --ink-soft:#5c5240;
+    --navy:#161a24;
+    --navy-deep:#0d1017;
+    --navy-line:#2a3142;
+    --gold:#c8a862;
+    --maroon:#7a2e2e;
+    --rule:#d8c9a3;
+
+    --y-bg:#fbe98f;
+    --y-bd:#c9a227;
+    --b-bg:#c3ddf5;
+    --b-bd:#3b6ea5;
+    --g-bg:#c8e8c9;
+    --g-bd:#3e8148;
+    --r-bg:#f6c6c2;
+    --r-bd:#a5342b;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", sans-serif;
+    line-height:1.65;
+  }
+  /* ============ SIDEBAR ============ */
+  #sidebar{
+    position:fixed; top:0; left:0; bottom:0; width:280px;
+    background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);
+    color:#e8e2d0;
+    overflow-y:auto;
+    padding:26px 0 40px;
+    border-right:3px solid var(--gold);
+    z-index:50;
+  }
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:var(--navy-line); border-radius:4px;}
+  .brand{
+    padding:0 22px 18px;
+    border-bottom:1px solid var(--navy-line);
+    margin-bottom:14px;
+  }
+  .brand .kicker{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:10.5px; letter-spacing:2.5px; color:var(--gold);
+    text-transform:uppercase;
+  }
+  .brand h1{
+    font-family:"Playfair Display", serif;
+    font-size:22px; margin:6px 0 4px; color:#f4efe0; line-height:1.25;
+  }
+  .brand .sub{font-size:11.5px; color:#9aa0b0;}
+  nav ul{list-style:none; margin:0; padding:0 10px;}
+  nav .grp-title{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:10px; letter-spacing:1.8px; text-transform:uppercase;
+    color:#7c8296; padding:16px 12px 6px;
+  }
+  nav a{
+    display:block; padding:8px 12px; margin:1px 0;
+    color:#c9cddb; text-decoration:none; font-size:13.5px;
+    border-radius:6px; border-left:3px solid transparent;
+    transition:all .15s ease;
+  }
+  nav a:hover{background:rgba(200,168,98,.12); color:#fff;}
+  nav a.active{
+    background:rgba(200,168,98,.18);
+    border-left:3px solid var(--gold);
+    color:#fff; font-weight:600;
+  }
+  /* ============ MAIN ============ */
+  #main{ margin-left:280px; padding:44px 52px 120px; max-width:960px; }
+  .masthead{
+    text-align:center; padding-bottom:26px; margin-bottom:34px;
+    border-bottom:4px double var(--maroon);
+  }
+  .masthead .eyebrow{
+    font-family:"IBM Plex Mono",monospace; letter-spacing:3px; font-size:11px;
+    color:var(--maroon); text-transform:uppercase;
+  }
+  .masthead h1{
+    font-family:"Playfair Display", serif; font-weight:800; font-size:40px;
+    margin:10px 0 8px; color:var(--ink);
+  }
+  .masthead .desc{color:var(--ink-soft); font-size:14.5px; max-width:640px; margin:0 auto;}
+
+  /* legend */
+  .legend{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+    margin:22px auto 0; padding:14px 18px; max-width:720px;
+    background:var(--paper-deep); border:1px solid var(--rule); border-radius:10px;
+  }
+  .legend span{font-size:12px; font-family:"IBM Plex Mono",monospace; display:flex; align-items:center; gap:6px;}
+  .legend i{width:13px; height:13px; border-radius:3px; display:inline-block; border:1px solid rgba(0,0,0,.25);}
+
+  section.topic{ margin-bottom:56px; scroll-margin-top:24px; }
+  section.topic h2{
+    font-family:"Playfair Display", serif; font-size:27px; font-weight:700;
+    color:var(--navy); margin:0 0 4px;
+    padding-bottom:10px; border-bottom:2px solid var(--gold);
+    display:flex; align-items:baseline; gap:10px;
+  }
+  section.topic h2 .num{
+    font-family:"IBM Plex Mono",monospace; font-size:14px; color:var(--maroon); font-weight:600;
+  }
+  h3.sub{
+    font-family:"Playfair Display", serif; font-size:19px; font-weight:600;
+    color:var(--maroon); margin:26px 0 10px;
+  }
+  p{margin:0 0 13px; font-size:15px;}
+  .lede{font-style:italic; color:var(--ink-soft); font-size:13.5px; margin-top:-2px; margin-bottom:18px;}
+
+  mark{ padding:1.5px 4px; border-radius:3px; font-weight:500; color:var(--ink); box-decoration-break:clone; }
+  mark.y{background:var(--y-bg); box-shadow:inset 0 -1.5px 0 var(--y-bd);}
+  mark.b{background:var(--b-bg); box-shadow:inset 0 -1.5px 0 var(--b-bd);}
+  mark.g{background:var(--g-bg); box-shadow:inset 0 -1.5px 0 var(--g-bd);}
+  mark.r{background:var(--r-bg); box-shadow:inset 0 -1.5px 0 var(--r-bd); font-weight:600;}
+
+  .card{
+    background:#fffdf7; border:1px solid var(--rule); border-radius:10px;
+    padding:16px 20px; margin:16px 0; box-shadow:0 1px 3px rgba(0,0,0,.05);
+  }
+  .card h4{
+    margin:0 0 8px; font-family:"IBM Plex Mono",monospace; font-size:12px;
+    letter-spacing:1.2px; text-transform:uppercase; color:var(--navy);
+  }
+  .card ul{margin:0; padding-left:20px;}
+  .card li{margin-bottom:6px; font-size:14px;}
+
+  .trap{
+    background:#fdf0ee; border:1px solid var(--r-bd); border-left:5px solid var(--r-bd);
+    border-radius:8px; padding:14px 18px; margin:18px 0; font-size:13.8px;
+  }
+  .trap h4{
+    margin:0 0 6px; color:var(--r-bd); font-family:"IBM Plex Mono",monospace;
+    font-size:11.5px; letter-spacing:1.2px; text-transform:uppercase;
+    display:flex; align-items:center; gap:6px;
+  }
+
+  table.tbl{ width:100%; border-collapse:collapse; margin:14px 0 20px; font-size:13.8px; background:#fffdf7;}
+  table.tbl caption{ text-align:left; font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-soft); margin-bottom:6px; letter-spacing:.5px;}
+  table.tbl th{ background:var(--navy); color:#f0ead8; text-align:left; padding:8px 12px; font-weight:600; font-size:12.5px;}
+  table.tbl td{ padding:7px 12px; border-bottom:1px solid var(--rule); }
+  table.tbl tr:nth-child(even) td{ background:#f8f2e2; }
+
+  .timeline{border-left:3px solid var(--gold); margin:18px 0 18px 6px; padding-left:20px;}
+  .timeline .item{position:relative; margin-bottom:14px; font-size:14px;}
+  .timeline .item::before{
+    content:""; position:absolute; left:-25.5px; top:5px; width:9px; height:9px;
+    border-radius:50%; background:var(--maroon); border:2px solid var(--paper);
+  }
+  .timeline .item b{color:var(--navy);}
+
+  .divider{ text-align:center; color:var(--gold); font-size:18px; letter-spacing:12px; margin:10px 0 26px; }
+
+  footer{
+    margin-left:280px; padding:26px 52px 60px; color:var(--ink-soft);
+    font-size:12px; font-family:"IBM Plex Mono",monospace; border-top:1px solid var(--rule);
+  }
+  @media (max-width:880px){
+    #sidebar{display:none;}
+    #main, footer{margin-left:0; padding:30px 20px 90px;}
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="kicker">BPSC Prelims · The Ledger Series</div>
+    <h1>South India Dossier</h1>
+    <div class="sub">Sangam Age · Chera · Chola · Pallava · Chalukya · Pandya</div>
+  </div>
+  <nav>
+    <ul id="navlist">
+      <li class="grp-title">Contents</li>
+      <li><a href="#sangam">1 · Sangam Age</a></li>
+      <li><a href="#chera">2 · Chera Dynasty</a></li>
+      <li><a href="#chola">3 · Chola Dynasty</a></li>
+      <li><a href="#pallava">4 · Pallava Dynasty</a></li>
+      <li><a href="#chalukya">5 · Chalukya Dynasty</a></li>
+      <li><a href="#pandya">6 · Pandya Dynasty</a></li>
+      <li><a href="#trade">7 · Trade, Ports & Rome</a></li>
+      <li><a href="#temples">8 · Temples & Art</a></li>
+      <li><a href="#minor">9 · Minor Dynasties & Misc</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<main id="main">
+  <div class="masthead">
+    <div class="eyebrow">Science &amp; Technology series companion · Indian History</div>
+    <h1>South India: Chola, Chalukya, Pallava &amp; Sangam Period</h1>
+    <div class="desc">Every theory line and every fact buried inside the 96 MCQ explanations, merged into one topic-wise ledger. Nothing from the source is dropped — contradictions in the source are flagged, not silently resolved.</div>
+    <div class="legend">
+      <span><i style="background:var(--y-bg);border-color:var(--y-bd)"></i>Concept / definition</span>
+      <span><i style="background:var(--b-bg);border-color:var(--b-bd)"></i>Fact / date / place</span>
+      <span><i style="background:var(--g-bg);border-color:var(--g-bd)"></i>Person / institution</span>
+      <span><i style="background:var(--r-bg);border-color:var(--r-bd)"></i>MCQ trap / conflict</span>
+    </div>
+  </div>
+
+  <!-- ============ 1. SANGAM AGE ============ -->
+  <section class="topic" id="sangam">
+    <h2><span class="num">01</span> Sangam Age — Society, Assemblies &amp; Literature</h2>
+    <p class="lede">Includes facts drawn from Q47–Q54, Q60–Q66, Q72, Q76–Q78, Q92.</p>
+
+    <p>According to Sangam texts, the terms <mark class="y">Kon</mark>, <mark class="y">Ko</mark> and <mark class="y">Mannan</mark> were all attributed to <mark class="b">the King</mark>. <mark class="y">Sangam</mark> literally means a <mark class="y">"Conference of Poets"</mark> or <mark class="y">"Forum of Scholars."</mark> The literature produced at these conferences — the oldest in South India, made of several anthologies of poems — is called <mark class="y">"Sangam Literature."</mark> Three Sangams were held under the patronage of the <mark class="g">Pandya kings</mark>.</p>
+
+    <table class="tbl">
+      <caption>The Three Sangams (patronised by Pandya kings)</caption>
+      <tr><th>Sangam</th><th>Place</th><th>President</th></tr>
+      <tr><td>First</td><td><mark class="b">Madurai</mark></td><td><mark class="g">Saint Agastya</mark></td></tr>
+      <tr><td>Second</td><td><mark class="b">Kapadapuram</mark></td><td><mark class="g">Saint Agastya</mark></td></tr>
+      <tr><td>Third</td><td><mark class="b">Madurai</mark></td><td><mark class="g">Nakkirar</mark></td></tr>
+    </table>
+
+    <p><mark class="g">Agastya</mark> is the sage credited with having <mark class="y">"Aryanised" South India</mark>. Born in <mark class="b">Kashi</mark>, tradition holds he travelled south at the request of the Gods and settled there. He is also known as the <mark class="y">"Father of Tamil Literature."</mark></p>
+
+    <h3 class="sub">Tolkappiyam</h3>
+    <p><mark class="g">Tolkappiyam</mark> is both the residual text of the (Second) Sangam era and the <mark class="y">most ancient available text of Tamil literature / oldest extant Tamil grammar text</mark>. Its author, <mark class="g">Tolkappiyar</mark>, was one of the <mark class="b">twelve disciples of Saint Agastya</mark>. It is a treatise on <mark class="y">grammar and poetry</mark>, written in <mark class="y">formula (sutra) style</mark>, structured in <mark class="b">three parts across nine sections</mark>, each dealing with <mark class="y">Ezhuttu (letter), Col (word) and Porul (subject matter)</mark>.</p>
+
+    <h3 class="sub">Major Sangam-era Tamil Works</h3>
+    <div class="card">
+      <h4>Author &amp; theme ledger</h4>
+      <ul>
+        <li><mark class="y">Silappadikaram</mark> — author <mark class="g">Ilango Adigal</mark>; narrates the tragic story of <mark class="b">Kannagi and her husband Kovalan</mark>. Classified under theme: <mark class="y">Love Story</mark>.</li>
+        <li><mark class="y">Kural (Thirukural)</mark> — considered the <mark class="y">"Ethical Bible of Tamil"</mark> and the <mark class="y">"Laghuveda of Tamil literature"</mark>; also called <mark class="y">Muppal</mark>; author <mark class="g">Tiruvalluvar</mark>. Classified under theme: <mark class="y">Philosophy</mark>. By hearsay, Tiruvalluvar was considered an "advent of Brahma."</li>
+        <li><mark class="y">Ramavataram</mark> (Tamil Ramayanam) — authored by <mark class="g">Kamban</mark>.</li>
+        <li><mark class="y">Manimekalai</mark> — classified under theme: <mark class="y">Merchant Story</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="trap">
+      <h4>⚠ Source conflict — Silappadikaram's author</h4>
+      One part of the text calls <mark class="g">Ilango Adigal</mark> the <mark class="r">"second son of King Nedun-ceralatan of the Chera dynasty."</mark> An MCQ explanation elsewhere in the same source instead calls him the <mark class="r">"grandson of Chola king Karikal."</mark> Both versions appear verbatim in the source — remember both for objective-question purposes; the safe common ground is simply "author of Silappadikaram."
+    </div>
+
+    <h3 class="sub">Devotional &amp; Later Tamil Traditions</h3>
+    <p><mark class="y">Thirumurai</mark> is considered the <mark class="y">"Fifth Veda"</mark> — a <mark class="b">twelve-volume compendium</mark> of Saivite hymns from the <mark class="b">6th to 11th century CE</mark>. Along with the Vedas and Saiva Agamas, it forms the basis of <mark class="y">Saiva Siddhanta philosophy</mark> in South India. Devotee-poets are grouped as <mark class="g">Alvars</mark> (Vishnu devotees, <mark class="b">12</mark> in number) and <mark class="g">Nayanars</mark> (Shiva devotees, <mark class="b">63</mark> in number).</p>
+
+    <p><mark class="g">Siddhas (Sittars)</mark> of the Tamil region trace back to the Sangam period (though the word "Siddha" itself is not found in Sangam literature) and are closely linked to <mark class="y">Shaivism, Siddhanta philosophy and Tantra</mark>. They were <mark class="y">monotheistic and condemned idolatry</mark>. Separately, <mark class="g">Lingayats of the Kannada region</mark> questioned the theory of rebirth and rejected caste hierarchy.</p>
+
+    <h3 class="sub">Sangam Society &amp; Custom</h3>
+    <p>Sangam poems are <em>not</em> devoid of material culture — they actively describe it. The <mark class="y">social classification of Varna was known to Sangam poets</mark>, and the poems reference both <mark class="y">warrior ethic</mark> and <mark class="y">magical forces in nature</mark>.</p>
+    <p><mark class="y">Vattakirutal</mark> was a Tamil ritual practice, prevalent mainly during the Sangam period, describing <mark class="r">a king defeated in battle committing ritual suicide by starving himself to death</mark>.</p>
+
+    <div class="trap">
+      <h4>⚠ Trap — which dynasties appear in Sangam Literature?</h4>
+      <mark class="g">Chera, Chola and Pandya</mark> are all mentioned in Sangam literature. <mark class="r">Kadamba and Pallava are NOT</mark> — the Pallavas, though a major South Indian dynasty, were not rulers of the Tamil country during the Sangam Age itself.
+    </div>
+
+    <p><mark class="g">Udiyanjiral</mark> belonged to the <mark class="g">Chera dynasty</mark> and is considered the first historical king of the Sangam period; legend holds he fed all the fighters on both sides of the Mahabharata war.</p>
+  </section>
+
+  <!-- ============ 2. CHERA ============ -->
+  <section class="topic" id="chera">
+    <h2><span class="num">02</span> Chera Dynasty</h2>
+    <p>The <mark class="g">Chera</mark> kingdom was located in present-day <mark class="b">Kerala</mark>, extending into parts of <mark class="b">Tamil Nadu</mark>. Its capital is recorded as <mark class="b">Vanchi</mark> — also identified with <mark class="b">Karuvur/Karur</mark>, and in some sources as <mark class="b">Thondi</mark>.</p>
+    <p>India's trade relations with the <mark class="g">Roman Empire</mark> began with the <mark class="g">Chera kingdom</mark> during the Sangam period; large numbers of Roman objects have been recovered from <mark class="b">Arikamedu (Puducherry)</mark>.</p>
+    <p>Its first historical king, per legend, was <mark class="g">Udiyanjiral</mark> (see Sangam Age section above).</p>
+  </section>
+
+  <!-- ============ 3. CHOLA ============ -->
+  <section class="topic" id="chola">
+    <h2><span class="num">03</span> Chola Dynasty</h2>
+    <p class="lede">Draws on Q1–Q36 and administrative/military detail scattered across the source.</p>
+
+    <h3 class="sub">Origins</h3>
+    <p>The history of the early Cholas belongs to Sangam literature; there is an interregnum between the fall of the Sangam Chola and the rise of the <mark class="y">Medieval Chola</mark> under <mark class="g">Vijayalaya</mark> (<mark class="b">850–871 AD</mark>) in the 9th century. Vijayalaya is the answer given across multiple MCQs (67th BPSC 2022, RAS/RTS 2016) as the <mark class="y">founder of the Chola dynasty</mark>.</p>
+
+    <div class="trap">
+      <h4>⚠ Trap — "founder" vs "established"</h4>
+      One explanation in the source states plainly that <mark class="r">"Vijayalaya-I" established the Chola dynasty</mark> — consistent with the MCQ answers. But a different explanation (Q17) instead says <mark class="r">"Chola dynasty was established by Parantak-I"</mark> before describing Parantaka-I's own conquests. Treat <b>Vijayalaya</b> as the safe MCQ answer for "founder"; treat Parantaka-I's achievements as separate (below) rather than as founding acts.
+    </div>
+
+    <p><mark class="g">Parantaka-I</mark> (reign <mark class="b">907–953 AD</mark>) defeated the Madurai/Pandya king <mark class="g">Rajasimha</mark> and assumed the title <mark class="y">"Madurai-Kond."</mark> His son <mark class="g">Rajaditya</mark> fought and died at the <b>Battle of Takkolam</b> (see Military section).</p>
+
+    <h3 class="sub">Rajaraja-I — the Golden Era Begins</h3>
+    <p>The golden era of the Chola empire began with <mark class="g">Rajaraja-I</mark>'s accession (<mark class="b">985 AD</mark>). He was the <mark class="y">first Chola king to create a Naval Army</mark>. He defeated the <mark class="g">Chera naval fleet</mark> at <mark class="b">Kandalur Salai (Trivandrum)</mark> — recorded in his inscriptions as <mark class="b">"Kāndalūr śālai kalam-arutta"</mark> — and, per the Larger Leiden Copper Plates and Tiruvālangādu inscription, captured the Pandya king <mark class="g">Amarabhujanga</mark> (or his general) and overran <mark class="b">Madurai</mark>, assuming titles such as <mark class="y">"Mummudi Cholan"</mark> (Three-crowned Chola) and <mark class="y">"Pandya-kula-shani."</mark> He also invaded Sri Lanka and destroyed <mark class="b">Anuradhapura</mark>, capturing only the <mark class="b">northern part</mark> of the island (the south stayed independent until his son's reign). He built the <mark class="g">Brihadeeswara Temple</mark> at Thanjavur.</p>
+    <p>Because Rajaraja-I began the practice of inscribing victory-narratives on temple walls — a tradition his successors continued — historians have far more information about the Cholas than about their predecessors.</p>
+
+    <h3 class="sub">Rajendra-I — "Gangaikonda Chola"</h3>
+    <p><mark class="g">Rajendra Chola-I</mark>, son and successor of Rajaraja-I, is considered one of the greatest rulers and military generals of India. He completed the conquest of <mark class="b">Sri Lanka</mark>, bringing its king <mark class="g">Mahinda-V</mark> to the Chola kingdom as a prisoner, and defeated the <mark class="g">Pala ruler Mahipala</mark>, after which he adopted the title <mark class="y">"Gangaikonda Chola"</mark> and founded a new capital, <mark class="b">Gangaikonda Cholapuram</mark>. His navy — the strongest in the region — effectively converted the <mark class="b">Bay of Bengal into a "Chola Lake."</mark> He built the artificial lake <mark class="y">Chola Gangam Ponneri</mark> to commemorate his victory over the rulers of the Ganga river basin, including Bengal and Kalinga kings. He also sent an expedition against the <mark class="g">Sailendra empire</mark> of South-East Asia (partly to ease trade friction with China), and in <mark class="b">1025 CE</mark> led a successful naval campaign against <mark class="b">Kadaram (Kedah)</mark> and the maritime empire of <mark class="g">Srivijaya</mark> (Malay Peninsula, Sumatra, Java).</p>
+
+    <h3 class="sub">Later Rulers</h3>
+    <p>Under <mark class="g">Kulottunga-I</mark>, in <mark class="b">1077 AD</mark>, a Chola Buddhist trade delegation of <mark class="b">72 merchants</mark> was sent to China. When <mark class="g">Vijayabahu</mark>, the Ceylon king, proclaimed Sinhala independence during Kulottunga-I's reign, Kulottunga did not retaliate — instead marrying his daughter to the Sinhala prince <mark class="g">Virapperumal</mark>.</p>
+    <p>Generally, Chola emperors elected their <mark class="y">"Yuvraj" (heir)</mark> during their own tenure.</p>
+
+    <h3 class="sub">Administration</h3>
+    <p>A defining feature of Chola governance was <mark class="y">autonomy of village administration</mark> — implemented uniquely and systematically during the Chola era. The <mark class="g">Uttaramerur inscription</mark> gives a detailed account of the executive committee of the <mark class="y">Gram Sabha (village assembly)</mark>: every village had its own <mark class="y">'Sabha'</mark>, largely independent of central command.</p>
+
+    <table class="tbl">
+      <caption>Chola Village Committees — "Variyam"</caption>
+      <tr><th>Variyam</th><th>Function</th></tr>
+      <tr><td><mark class="y">Thotta Variyam</mark></td><td>Horticulture Board / garden administration</td></tr>
+      <tr><td><mark class="y">Samvatsara Variyam</mark></td><td>Annual committee</td></tr>
+      <tr><td><mark class="y">Eri Variyam</mark></td><td>Tanks (lakes) and water supply</td></tr>
+      <tr><td><mark class="y">Pon Variyam</mark></td><td>Gold / finance committee</td></tr>
+    </table>
+
+    <div class="card">
+      <h4>Administrative hierarchy (largest → smallest)</h4>
+      <ul>
+        <li><mark class="y">Mandalam</mark> — province; the empire was divided into <b>six</b> such provinces.</li>
+        <li><mark class="y">Kottam / Valanadu</mark> — subdivision of a Mandalam, functioning like a commissionerate.</li>
+        <li><mark class="y">Nadu</mark> — district; several Nadus made up a Kottam. The assembly of a Nadu was called <mark class="y">Nattar</mark>.</li>
+        <li><mark class="y">Kurram</mark> — village association.</li>
+        <li><mark class="y">Gram Sabha</mark> — the smallest administrative unit.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h4>Land &amp; institution terms (I.A.S. 2016 matching set)</h4>
+      <ul>
+        <li><mark class="y">Eripatti</mark> — land whose revenue was set apart for maintenance of the village tank.</li>
+        <li><mark class="y">Taniyurs</mark> — villages donated to a single Brahmin or group of Brahmins; a very large village administered as a single unit.</li>
+        <li><mark class="y">Ghatikas</mark> — colleges generally attached to temples.</li>
+      </ul>
+    </div>
+
+    <p>Territorially, Chola lands stretched from the banks of the <mark class="b">Tungabhadra</mark> to the <mark class="b">Krishna</mark> river, spanning the <mark class="b">Coromandel Coast</mark> and parts of the Deccan — including <mark class="b">Uraiyur, Kaveripattinam and Thanjavur</mark>. Capitals shifted over time: <mark class="b">Uraiyur</mark> (Sangam era) → <mark class="b">Thanjavur / Tanjore</mark> → later <mark class="b">Gangaikondacholapuram</mark>.</p>
+
+    <h3 class="sub">Military — the Battle of Takkolam</h3>
+    <p>The <mark class="y">Battle of Takkolam</mark> (<mark class="b">949 AD</mark>) was fought between <mark class="g">Rajaditya</mark>, son of Parantaka-I, and a confederacy of the <mark class="g">Western Gangas, Banas and Vaidunbas</mark> led by the <mark class="g">Rashtrakuta king Krishna-III</mark>. The Cholas were defeated and Rajaditya died on the battlefield.</p>
+
+    <h3 class="sub">Navy</h3>
+    <p>The Chola Kings maintained a powerful standing army and navy. The <mark class="y">Chola navy</mark> was central to imperial expansion — the conquest of <mark class="b">Ceylon</mark> and naval raids on <mark class="b">Srivijaya, Sinhala and the Maldives</mark>.</p>
+
+    <h3 class="sub">Art &amp; Iconography</h3>
+    <p>Chola artists (sthapatis) excelled at carving stone and, even more prolifically, casting <mark class="y">bronze sculptures</mark>. The <mark class="y">Nataraja (dancing Shiva)</mark> bronzes are counted among the world's finest sculptures, invariably depicted with <mark class="b">four arms</mark>: the <mark class="b">damru</mark> (drum of creation) in the upper right hand, <mark class="b">agni</mark> (destructive fire) in the upper left, the lower right hand forming <mark class="y">abhayamudra</mark>, and the lower left pointing to the raised left foot — signifying refuge for the troubled soul. In the right ear he wears a man's earring, in the left a woman's — a symbol of <mark class="y">Ardhanarishwara</mark>. A single Nataraja image thus depicts Shiva as creator, preserver and destroyer at once.</p>
+    <p>The <mark class="y">Dakshinamurti</mark> idol depicts Shiva as a <mark class="y">mentor/Guru/Teacher</mark>, imparting knowledge to devotees, and is conventionally installed facing <mark class="b">south</mark>.</p>
+
+    <h3 class="sub">Decline</h3>
+    <p>Around <mark class="b">1250 AD</mark>, the <mark class="g">Hoysala</mark> and <mark class="g">Pandya</mark> kingdoms defeated the Chola king <mark class="g">Rajendra III</mark>; the dynasty effectively ended by <mark class="b">~1279 AD</mark>. <mark class="g">Malik Kafur</mark> subsequently conquered South India around <mark class="b">1310 AD</mark>, overrunning the Yadava, Hoysala, Kakatiya and Pandya kingdoms — the source itself marks the question of who "devastated" the Choles as unresolved/ambiguous (answer marked "*").</p>
+  </section>
+
+  <!-- ============ 4. PALLAVA ============ -->
+  <section class="topic" id="pallava">
+    <h2><span class="num">04</span> Pallava Dynasty</h2>
+    <p>Capital: <mark class="b">Kanchipuram (Kanchi)</mark>.</p>
+    <div class="timeline">
+      <div class="item"><b>Mahendravarman-I</b> (600–630 AD) — titles <mark class="y">Vichitrachitta, Gunabhara, Mattavilasa</mark>; composed the Sanskrit comic play <mark class="y">"Mattavilasaprahasana"</mark>; a noted scholar and patron of art/literature; titles recorded in the Mandagapattu rock-cut Trimurti temple inscription.</div>
+      <div class="item"><b>Simhavishnu</b> (575–600 AD) — assumed the title <mark class="y">Avanisimha</mark>; defeated the kings of <mark class="b">Chola, Pandya, Singhal (Ceylon) and Kalabhra</mark>.</div>
+      <div class="item"><b>Narasimhavarman-I</b> (630–668 AD) — title <mark class="y">"Mahamalla"</mark> (great wrestler); built the famous <mark class="b">Panch Ratha temples</mark>; captured and destroyed the Chalukya capital <mark class="b">Vatapi</mark>, assuming the title <mark class="y">"Vatapikonda"</mark>; sent <mark class="b">two naval expeditions to Ceylon in 642 AD</mark> to aid a Sri Lankan prince.</div>
+      <div class="item"><b>Parameshvaravarman-I</b> (~670–700 AD) — titles <mark class="y">Lokaditya, Ekmalla, Ranajaya, Atyantakama, Ugradanda, Gunabhajana</mark>.</div>
+      <div class="item"><b>Nandivarman-II</b> (731–795 AD).</div>
+    </div>
+    <p>Correct chronological order of these rulers: <mark class="b">Mahendravarman I → Narasimhavarman I → Parameshvaravarman I → Nandivarman II</mark>.</p>
+    <p><mark class="b">Panamalai</mark> is associated with Pallava-era art/architecture.</p>
+  </section>
+
+  <!-- ============ 5. CHALUKYA ============ -->
+  <section class="topic" id="chalukya">
+    <h2><span class="num">05</span> Chalukya Dynasty (of Vatapi/Badami)</h2>
+    <p>Capital: <mark class="b">Vatapi</mark> — today's <mark class="b">Badami, Bagalkot district, Karnataka</mark> — Chalukya capital through the <mark class="b">6th–8th centuries</mark>. <mark class="g">Pulakesin-I</mark> was the real founder of the Vatapi Chalukya line.</p>
+    <p><mark class="g">Pulakesin-II</mark> (reign <mark class="b">610–642 AD</mark>) was the most capable and powerful Chalukya ruler; he defeated <mark class="g">Harshavardhana in 618 AD</mark>. The <mark class="b">Aihole inscription</mark>, composed by <mark class="g">Ravikirti</mark> (in Sanskrit and southern Brahmi script), records his achievements — the author claims fame comparable to poets <mark class="g">Kalidasa and Bharavi</mark>, making this the source where <mark class="y">Kalidasa's name is epigraphically attested</mark>.</p>
+    <p>The Chalukyas <em>never</em> ruled North India — their base remained the Deccan and South India; a later, prominent offshoot were the <mark class="b">Chalukyas of Kalyani</mark>.</p>
+
+    <h3 class="sub">Women in Chalukya administration</h3>
+    <p>Chalukya administration was notable for assigning women high office. <mark class="g">Vijaya Bhattarika</mark>, queen of <mark class="g">Chandraditya</mark> (brother of Vikramaditya-I), issued <mark class="b">two copper plates in her own name</mark> and was an accomplished poetess; she ran the administration after her husband's death. <mark class="g">Vijayaditya</mark> (per one line) / <mark class="g">Vikramaditya</mark> (per another) granted a village to a <mark class="b">Jain monastery</mark> on the recommendation of his younger sister <mark class="g">Kumkumdevi</mark>.</p>
+
+    <h3 class="sub">Other Chalukya notes</h3>
+    <p><mark class="g">Ma-twa-lin</mark>, a Chinese traveller, recorded the relationship between China and India during the Chalukya period.</p>
+    <p><mark class="g">Kumarapala</mark>, a later Chalukya king who reigned <mark class="b">29 years</mark>, was a <mark class="b">Jain</mark> and disciple of the scholar <mark class="g">Hemachandra</mark>; per Jain tradition, he opposed animal cruelty and sent ministers to suppress cruelty against animals in the <mark class="b">Kashi region</mark>.</p>
+  </section>
+
+  <!-- ============ 6. PANDYA ============ -->
+  <section class="topic" id="pandya">
+    <h2><span class="num">06</span> Pandya Dynasty</h2>
+    <p>The Pandyas had the <mark class="y">longest reign of any South Indian dynasty</mark> — roughly <mark class="b">200 BC to 1378 AD</mark>. Their capital moved from <mark class="b">Korkai</mark> (early phase) to <mark class="b">Madurai</mark> (later phase). A Pandya king sent an <mark class="b">ambassador to Rome in 26 BC</mark>. <mark class="g">Kadungon</mark> is listed among Pandya rulers.</p>
+    <p>The <mark class="g">Meenakshi Temple</mark> at Madurai was originally built by <mark class="g">Kulasekara Pandya</mark>; the "lotus-shaped city" of Madurai is said to completely surround it.</p>
+
+    <div class="trap">
+      <h4>⚠ Trap — the Pandya lifeline river's name</h4>
+      One passage names the lifeline river of the Pandya kingdom as the <mark class="r">Vaigai</mark> (originating near the Varushanadu hills, Madurai); another MCQ explanation in the same source calls it the <mark class="r">Vengi</mark> river (originating at "Kandan Manikanur" near Madurai) and separately says the Pandya region "was famous for its fertility." Both names are given verbatim in the source for the same river/context — the geographically standard river associated with Madurai is the <b>Vaigai</b>, so treat "Vengi" as a source inconsistency.
+    </div>
+    <p>The Pandya kingdom lay to the south of the <mark class="b">Cauvery/Kaveri</mark>, comprising the districts of modern <mark class="b">Madurai and Tirunelveli</mark>, and extending into parts of <mark class="b">Travancore/Kerala</mark>.</p>
+  </section>
+
+  <!-- ============ 7. TRADE ============ -->
+  <section class="topic" id="trade">
+    <h2><span class="num">07</span> Trade, Ports &amp; Indo-Roman Contact</h2>
+    <p>The <mark class="y">Periplus of the Erythraean Sea</mark>, written by an anonymous <mark class="g">Greek sailor</mark>, lists the ports of the Indian coasts. On the <mark class="b">western coast</mark>, the main ports were <mark class="b">Tondi and Mushiri (Muziris)</mark>, along with Naura and Nelisanda. <mark class="b">Korkai and Puhar/Poompuhar</mark>, by contrast, were <b>eastern-coast</b> ports, not western.</p>
+
+    <h3 class="sub">Arikamedu</h3>
+    <p><mark class="g">Arikamedu</mark>, an archaeological site near <mark class="b">Pondicherry</mark>, yielded an <mark class="y">intaglio</mark> carved with a figure identified as <mark class="g">Augustus Caesar</mark>, along with beads and gems — strong evidence of <mark class="y">Indo-Roman trade contact</mark>. Scholar <mark class="g">Dubreuil</mark> called Arikamedu <mark class="y">"a true Roman city."</mark> The Periplus refers to it as <mark class="b">Poduke</mark>.</p>
+    <p>An <mark class="y">Amphora Jar</mark> — a tall jar with a long, narrow neck and two handles — was used in ancient Rome to carry wine or oil; such jars are among the finds linking these sites to Roman trade.</p>
+
+    <h3 class="sub">Guilds &amp; Merchant Bodies</h3>
+    <div class="card">
+      <h4>Trade associations</h4>
+      <ul>
+        <li><mark class="y">Manigramam, Nanadesi(s), Valanjiyar</mark> — merchant guilds/trade unions of South India, encouraging trade and business; Nanadesis and Manigrama were among the biggest trading associations of the early medieval period, with significant foreign trade links.</li>
+        <li><mark class="y">Sreni</mark> — an association of traders, merchants and artisans.</li>
+        <li><mark class="y">Nagaram</mark> — a local association of merchants conducting commercial activity.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Trading Towns</h3>
+    <p><mark class="g">Uraiyur</mark>, on the banks of the <mark class="b">Cauvery</mark> in Tiruchirappalli, was a major Sangam-era town — also known as <mark class="b">Koli/Varanam</mark> — and the chief centre of the <mark class="y">cotton trade</mark>; the Periplus names it <mark class="b">Argaru</mark>. <mark class="b">Tagara</mark> was a significant trade centre on the route connecting <mark class="b">Kalyana and Vengi</mark>. <mark class="b">Korkai, Poompuhar (Kaveripattinam) and Muziris/Muchiri</mark> were all well-known ancient <mark class="y">port cities</mark> — Poompuhar additionally served as the early capital of the Chola kings, and Muziris was among the oldest ports in the world.</p>
+
+    <p><mark class="y">Black pepper</mark> was prized in the most expensive Roman cookery; the Greeks knew of it from as early as the <mark class="b">4th century BC</mark>. Because of this Roman/Greek demand, Sanskrit called it <mark class="y">"Yavanapriya"</mark> — "dear to the Yavanas (Greeks)."</p>
+  </section>
+
+  <!-- ============ 8. TEMPLES ============ -->
+  <section class="topic" id="temples">
+    <h2><span class="num">08</span> Temples &amp; Architecture</h2>
+    <p>The <mark class="g">Brihadeeswara Temple</mark> at Thanjavur — built during the reign of <mark class="g">Rajaraja-I</mark> — is an outstanding example of <mark class="y">Dravidian-style Chola architecture</mark>, considered the <mark class="y">largest and tallest temple in India</mark>. It has idols of <mark class="y">Dwarpals</mark> around the main shrine, and a gigantic <mark class="y">Nandi</mark> carved from a single rock outside the sanctum — believed to be the <mark class="y">tallest Nandi idol in India</mark>.</p>
+
+    <p>The <mark class="y">mighty gateways</mark> of South Indian temples are called <mark class="y">Gopurams</mark>. Dravidian temple style flourished especially under the <mark class="g">Pandyas and Cholas</mark>. In the Pandya period, temples themselves were relatively small but ringed with many ramparts, with grand, spacious and richly ornamented Gopuram gateways; by the Chola period, the architectural centre of gravity shifted so that the <mark class="y">Gopuram</mark>, rather than the temple proper, became the defining feature.</p>
+
+    <table class="tbl">
+      <caption>Dynasty ↔ Temple/Capital matching (from I.A.S. 1997 &amp; related sets)</caption>
+      <tr><th>Dynasty</th><th>Associated site</th></tr>
+      <tr><td><mark class="g">Gupta</mark></td><td><mark class="b">Deogarh</mark> (Dashavatara Temple, Lalitpur district, UP)</td></tr>
+      <tr><td><mark class="g">Chandela</mark></td><td><mark class="b">Khajuraho</mark> (~25 temples; Kandariya Mahadeva is the most famous)</td></tr>
+      <tr><td><mark class="g">Chalukya</mark></td><td><mark class="b">Badami</mark></td></tr>
+      <tr><td><mark class="g">Pallava</mark></td><td><mark class="b">Panamalai</mark> (capital: Kanchipuram)</td></tr>
+      <tr><td><mark class="g">Harsha</mark></td><td><mark class="b">Kannauj</mark></td></tr>
+      <tr><td><mark class="g">Pandya</mark></td><td><mark class="b">Madurai</mark></td></tr>
+    </table>
+  </section>
+
+  <!-- ============ 9. MINOR ============ -->
+  <section class="topic" id="minor">
+    <h2><span class="num">09</span> Minor Dynasties &amp; Miscellaneous</h2>
+
+    <h3 class="sub">Kadamba</h3>
+    <p>Capital: <mark class="b">Banavasi</mark> (also called <mark class="b">Vaijayanti</mark>). Founded by <mark class="g">Mayurasharman</mark>; the Kadamba state was eventually annexed by <mark class="g">Pulakesin-II</mark> of the Chalukyas. (Note: Tanjore = Chola capital, Kanchi = Pallava, Badami = Chalukya, Banavasi = Kadamba — a recurring matching set.)</p>
+
+    <h3 class="sub">Kakatiya</h3>
+    <p><mark class="b">Motupalli</mark> was an important seaport of the <mark class="g">Kakatiya kingdom</mark>; <mark class="g">Marco Polo</mark> visited the Kakatiya kingdom through this port and wrote about the prosperity and power of the Andhra region in his travelogue.</p>
+
+    <h3 class="sub">Rashtrakuta &amp; Chronology cross-check</h3>
+    <div class="timeline">
+      <div class="item"><b>Mahendravarman-I</b> establishes Pallava power — <mark class="b">600–630 AD</mark></div>
+      <div class="item"><b>Gopala</b> founds the Pala dynasty — <mark class="b">~750 AD</mark></div>
+      <div class="item"><b>Mihira Bhoja (Bhoja-I)</b>, Gurjara-Pratihara ruler — <mark class="b">836–885 AD</mark></div>
+      <div class="item"><b>Parantaka-I</b> rules the Chola kingdom — <mark class="b">907–953 AD</mark></div>
+    </div>
+    <p><mark class="g">Amoghavarsha-I</mark> is matched with the <mark class="g">Rashtrakuta</mark> dynasty in the source's ruler-dynasty matching set (alongside Mahendravarman I–Pallava, Kadungon–Pandya, Rajaraja I–Chola).</p>
+
+    <h3 class="sub">Language note</h3>
+    <p><mark class="y">Halbi</mark> belongs to the <mark class="y">(Eastern) Indo-Aryan</mark> language family — not Dravidian. It is spoken in the <mark class="b">Bastar region of Chhattisgarh</mark>, is transitional between Odia and Marathi, and is written in both the <mark class="b">Odia and Devanagari scripts</mark>.</p>
+  </section>
+
+  <div class="divider">❦</div>
+</main>
+
+<footer>South India Dossier — compiled for BPSC Prelims 2025–26 · every theory line and MCQ-explanation fact from the source has been retained above.</footer>
+
+<script>
+  const links = document.querySelectorAll('#navlist a');
+  const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href')));
+  function onScroll(){
+    let idx = 0;
+    const y = window.scrollY + 120;
+    sections.forEach((sec,i)=>{ if(sec && sec.offsetTop <= y) idx = i; });
+    links.forEach(l=>l.classList.remove('active'));
+    if(links[idx]) links[idx].classList.add('active');
+  }
+  document.addEventListener('scroll', onScroll);
+  onScroll();
+</script>
+</body>
+</html>
