@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architecture in Ancient India — The Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6efe0; --paper-deep:#efe4cc; --ink:#2b241a; --ink-soft:#5c5240;
+    --navy:#161a24; --navy-deep:#0d1017; --navy-line:#2a3142;
+    --gold:#c8a862; --maroon:#7a2e2e; --rule:#d8c9a3;
+    --y-bg:#fbe98f; --y-bd:#c9a227;
+    --b-bg:#c3ddf5; --b-bd:#3b6ea5;
+    --g-bg:#c8e8c9; --g-bd:#3e8148;
+    --r-bg:#f6c6c2; --r-bd:#a5342b;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--paper); color:var(--ink); font-family:"IBM Plex Sans", sans-serif; line-height:1.65;}
+  #sidebar{
+    position:fixed; top:0; left:0; bottom:0; width:280px;
+    background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);
+    color:#e8e2d0; overflow-y:auto; padding:26px 0 40px;
+    border-right:3px solid var(--gold); z-index:50;
+  }
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:var(--navy-line); border-radius:4px;}
+  .brand{padding:0 22px 18px; border-bottom:1px solid var(--navy-line); margin-bottom:14px;}
+  .brand .kicker{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:2.5px; color:var(--gold); text-transform:uppercase;}
+  .brand h1{font-family:"Playfair Display", serif; font-size:22px; margin:6px 0 4px; color:#f4efe0; line-height:1.25;}
+  .brand .sub{font-size:11.5px; color:#9aa0b0;}
+  nav ul{list-style:none; margin:0; padding:0 10px;}
+  nav .grp-title{font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:1.8px; text-transform:uppercase; color:#7c8296; padding:16px 12px 6px;}
+  nav a{display:block; padding:8px 12px; margin:1px 0; color:#c9cddb; text-decoration:none; font-size:13.5px; border-radius:6px; border-left:3px solid transparent; transition:all .15s ease;}
+  nav a:hover{background:rgba(200,168,98,.12); color:#fff;}
+  nav a.active{background:rgba(200,168,98,.18); border-left:3px solid var(--gold); color:#fff; font-weight:600;}
+  #main{margin-left:280px; padding:44px 52px 120px; max-width:960px;}
+  .masthead{text-align:center; padding-bottom:26px; margin-bottom:34px; border-bottom:4px double var(--maroon);}
+  .masthead .eyebrow{font-family:"IBM Plex Mono",monospace; letter-spacing:3px; font-size:11px; color:var(--maroon); text-transform:uppercase;}
+  .masthead h1{font-family:"Playfair Display", serif; font-weight:800; font-size:38px; margin:10px 0 8px; color:var(--ink);}
+  .masthead .desc{color:var(--ink-soft); font-size:14.5px; max-width:660px; margin:0 auto;}
+  .legend{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:22px auto 0; padding:14px 18px; max-width:720px; background:var(--paper-deep); border:1px solid var(--rule); border-radius:10px;}
+  .legend span{font-size:12px; font-family:"IBM Plex Mono",monospace; display:flex; align-items:center; gap:6px;}
+  .legend i{width:13px; height:13px; border-radius:3px; display:inline-block; border:1px solid rgba(0,0,0,.25);}
+  section.topic{margin-bottom:56px; scroll-margin-top:24px;}
+  section.topic h2{font-family:"Playfair Display", serif; font-size:26px; font-weight:700; color:var(--navy); margin:0 0 4px; padding-bottom:10px; border-bottom:2px solid var(--gold); display:flex; align-items:baseline; gap:10px;}
+  section.topic h2 .num{font-family:"IBM Plex Mono",monospace; font-size:14px; color:var(--maroon); font-weight:600;}
+  h3.sub{font-family:"Playfair Display", serif; font-size:18.5px; font-weight:600; color:var(--maroon); margin:26px 0 10px;}
+  p{margin:0 0 13px; font-size:15px;}
+  .lede{font-style:italic; color:var(--ink-soft); font-size:13.5px; margin-top:-2px; margin-bottom:18px;}
+  mark{padding:1.5px 4px; border-radius:3px; font-weight:500; color:var(--ink); box-decoration-break:clone;}
+  mark.y{background:var(--y-bg); box-shadow:inset 0 -1.5px 0 var(--y-bd);}
+  mark.b{background:var(--b-bg); box-shadow:inset 0 -1.5px 0 var(--b-bd);}
+  mark.g{background:var(--g-bg); box-shadow:inset 0 -1.5px 0 var(--g-bd);}
+  mark.r{background:var(--r-bg); box-shadow:inset 0 -1.5px 0 var(--r-bd); font-weight:600;}
+  .card{background:#fffdf7; border:1px solid var(--rule); border-radius:10px; padding:16px 20px; margin:16px 0; box-shadow:0 1px 3px rgba(0,0,0,.05);}
+  .card h4{margin:0 0 8px; font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:1.2px; text-transform:uppercase; color:var(--navy);}
+  .card ul{margin:0; padding-left:20px;}
+  .card li{margin-bottom:6px; font-size:14px;}
+  .trap{background:#fdf0ee; border:1px solid var(--r-bd); border-left:5px solid var(--r-bd); border-radius:8px; padding:14px 18px; margin:18px 0; font-size:13.8px;}
+  .trap h4{margin:0 0 6px; color:var(--r-bd); font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:1.2px; text-transform:uppercase; display:flex; align-items:center; gap:6px;}
+  table.tbl{width:100%; border-collapse:collapse; margin:14px 0 20px; font-size:13.6px; background:#fffdf7;}
+  table.tbl caption{text-align:left; font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-soft); margin-bottom:6px; letter-spacing:.5px;}
+  table.tbl th{background:var(--navy); color:#f0ead8; text-align:left; padding:8px 12px; font-weight:600; font-size:12.3px;}
+  table.tbl td{padding:7px 12px; border-bottom:1px solid var(--rule);}
+  table.tbl tr:nth-child(even) td{background:#f8f2e2;}
+  .timeline{border-left:3px solid var(--gold); margin:18px 0 18px 6px; padding-left:20px;}
+  .timeline .item{position:relative; margin-bottom:14px; font-size:14px;}
+  .timeline .item::before{content:""; position:absolute; left:-25.5px; top:5px; width:9px; height:9px; border-radius:50%; background:var(--maroon); border:2px solid var(--paper);}
+  .timeline .item b{color:var(--navy);}
+  .divider{text-align:center; color:var(--gold); font-size:18px; letter-spacing:12px; margin:10px 0 26px;}
+  footer{margin-left:280px; padding:26px 52px 60px; color:var(--ink-soft); font-size:12px; font-family:"IBM Plex Mono",monospace; border-top:1px solid var(--rule);}
+  @media (max-width:880px){#sidebar{display:none;} #main, footer{margin-left:0; padding:30px 20px 90px;}}
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="kicker">BPSC Prelims · The Ledger Series</div>
+    <h1>Architecture in Ancient India</h1>
+    <div class="sub">Styles · Temples · Caves · Sculpture</div>
+  </div>
+  <nav>
+    <ul id="navlist">
+      <li class="grp-title">Contents</li>
+      <li><a href="#styles">1 · Styles &amp; Classification</a></li>
+      <li><a href="#khajuraho">2 · Khajuraho &amp; Chandela</a></li>
+      <li><a href="#gupta">3 · Gupta Temples &amp; Cave Painting</a></li>
+      <li><a href="#caves">4 · Rock-cut Caves</a></li>
+      <li><a href="#pallava">5 · Pallava Architecture</a></li>
+      <li><a href="#chola">6 · Chola Temples</a></li>
+      <li><a href="#odisha">7 · Odisha Temples</a></li>
+      <li><a href="#jain">8 · Jain Temples</a></li>
+      <li><a href="#regional">9 · Other Regional &amp; Foreign Sites</a></li>
+      <li><a href="#misc">10 · Matching Sets &amp; Miscellany</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<main id="main">
+  <div class="masthead">
+    <div class="eyebrow">Indian History series companion</div>
+    <h1>Architecture in Ancient India</h1>
+    <div class="desc">Every theory line and every fact buried inside the 100 MCQ explanations, merged into one topic-wise ledger. Nothing from the source is dropped — contradictions are flagged, not silently resolved.</div>
+    <div class="legend">
+      <span><i style="background:var(--y-bg);border-color:var(--y-bd)"></i>Concept / definition</span>
+      <span><i style="background:var(--b-bg);border-color:var(--b-bd)"></i>Fact / date / place</span>
+      <span><i style="background:var(--g-bg);border-color:var(--g-bd)"></i>Person / dynasty</span>
+      <span><i style="background:var(--r-bg);border-color:var(--r-bd)"></i>MCQ trap / conflict</span>
+    </div>
+  </div>
+
+  <!-- 1. STYLES -->
+  <section class="topic" id="styles">
+    <h2><span class="num">01</span> Styles &amp; Classification of Temple Architecture</h2>
+    <p class="lede">Draws on Q12, Q13, Q14, Q27, Q95, Q96.</p>
+
+    <p><mark class="y">Nagara, Dravida and Vesara</mark> are the <mark class="y">three main styles of Indian temple architecture</mark> — not racial groups, linguistic divisions, or musical gharanas.</p>
+
+    <div class="card">
+      <h4>The three styles at a glance</h4>
+      <ul>
+        <li><mark class="y">Nagara</mark> — prevalent throughout <mark class="b">North India</mark>; the temples of <mark class="b">Odisha</mark> are purely of this style.</li>
+        <li><mark class="y">Dravida (Dravidian)</mark> — developed and spread in <mark class="b">South India</mark>, especially between the <mark class="b">Krishna River and Cape Comorin (Tamil Nadu)</mark>.</li>
+        <li><mark class="y">Vesara</mark> — grew from a mixture of Nagara and Dravidian styles; also called the <mark class="y">"Chalukya style"</mark> because it was used by the later Chalukya rulers. The <mark class="g">Hoysaleshwara Temple</mark> at Halebidu (Karnataka), built in dark schist stone by the Hoysala king, is a leading Vesara/hybrid example — neither purely Dravida nor Nagara, identifiable by star-shaped ground plans and dense decorative carving.</li>
+      </ul>
+    </div>
+
+    <p>Some monuments blend styles directly: the <mark class="b">Teli Temple of Gwalior</mark> fuses both — its <mark class="y">Shikhar (pinnacle) is Dravidian</mark> in style while its <mark class="y">ornamentation follows Nagara</mark> conventions.</p>
+
+    <p>A <mark class="y">Panchayatan</mark> temple has a <mark class="y">central shrine surrounded by four subsidiary shrines</mark> (Sanskrit: <i>pancha</i> = five, <i>ayatana</i> = containing). Examples include the <mark class="b">Kandariya Mahadeo Temple (Khajuraho)</mark>, the <mark class="b">Brahmeshwar and Lingaraja Temples (Bhubaneswar)</mark>, and the <mark class="b">Dashavatara Temple (Deogarh, UP)</mark> — the last being the earliest known Panchayatan temple in North India.</p>
+
+    <h3 class="sub">Origins of freestanding temple architecture</h3>
+    <p><mark class="y">Freestanding (mortar-and-stone) temples</mark> are believed to have originated in the <mark class="g">Gupta period</mark>. <mark class="b">Ladkhan</mark>, one of the earliest such temples, belongs to the <mark class="g">Chalukyas of Badami</mark>. At <mark class="b">Khajuraho</mark>, all compartments of a temple are connected both internally and externally. The <mark class="b">Kailashnath Temple at Kanchi</mark> — though a fine early Dravida temple built by <mark class="g">Narasimhavarman-II (Rajasimha)</mark> and completed by his son <mark class="g">Mahendravarman-II</mark> — is <mark class="r">NOT</mark> the earliest freestanding Dravida-style temple.</p>
+    <p><mark class="b">Badami's caves are NOT the oldest surviving rock-cut caves in India</mark> — that distinction belongs to the <mark class="g">Bhimbetka rock shelters</mark>.</p>
+  </section>
+
+  <!-- 2. KHAJURAHO -->
+  <section class="topic" id="khajuraho">
+    <h2><span class="num">02</span> Khajuraho &amp; Chandela Architecture</h2>
+    <p class="lede">Draws on the main theory block plus Q1–Q11.</p>
+
+    <p>The Khajuraho temples evidence the excellence of <mark class="g">Chandela architecture</mark>, located in <mark class="b">Chhatarpur district, Madhya Pradesh</mark>, built between <mark class="b">950–1050 AD</mark>. Historical record describes the construction of <mark class="b">85 temples</mark> at the site, dedicated to <mark class="y">Shiva, Vishnu, Shakta, Surya and the Jain patriarchs</mark> — i.e., a mix of <mark class="y">Hindu and Jain</mark> temples (no Buddhist dedication).</p>
+
+    <div class="card">
+      <h4>Named temples at Khajuraho</h4>
+      <ul>
+        <li><mark class="y">Kandariya Mahadev Temple</mark> — attributed to King <mark class="g">Vidyadhar</mark> (11th century); the <mark class="y">largest</mark> of the Khajuraho temples; built in <mark class="y">Nagara style</mark>.</li>
+        <li><mark class="y">Matangeshvara Temple</mark> — dedicated to <mark class="b">Shiva</mark>; built during King <mark class="g">Dhanga's</mark> reign; Nagara style.</li>
+        <li><mark class="y">Parshvanath Temple</mark> — the most famous Jain temple at the site.</li>
+        <li>Others: <mark class="b">Chausath Yogini, Brahma, Lalguan Mahadev, Lakshmana, Vishvanath</mark> temples.</li>
+      </ul>
+    </div>
+
+    <div class="trap">
+      <h4>⚠ Trap — what is NOT at Khajuraho</h4>
+      The <mark class="r">Dashavatara Temple is NOT at Khajuraho</mark> — it is located at <mark class="b">Deogarh (Lalitpur), Uttar Pradesh</mark>, and belongs to the <mark class="g">Gupta period</mark>.
+    </div>
+
+    <p><mark class="y">Khajuraho group of monuments, Bhimbetka rock shelters, and Sanchi Stupa</mark> are all listed as <mark class="y">UNESCO World Heritage Sites</mark> in India. <mark class="r">Mandu Fort is NOT</mark> a World Heritage Site.</p>
+
+    <h3 class="sub">Chausath Yogini Temple (near Morena — often studied alongside Khajuraho)</h3>
+    <p>This <mark class="y">circular</mark> temple was built during the reign of the <mark class="g">Kachchhapaghata dynasty</mark>, per an inscription dated <mark class="b">1323 CE (Vikram Samvat 1383)</mark>, under king <mark class="g">Devapala</mark>. Its circular form is popularly (though not confirmedly) believed to have inspired the design of the <mark class="y">Indian Parliament building</mark> — the shape is thought to represent a <mark class="y">Sri Yantra</mark>, with the Supreme Yogini/Maha Sakti residing at the circular central shrine. It is <mark class="r">NOT the only circular temple in India</mark>, and it was <mark class="r">NOT meant to promote the Vaishnava cult</mark>.</p>
+  </section>
+
+  <!-- 3. GUPTA -->
+  <section class="topic" id="gupta">
+    <h2><span class="num">03</span> Gupta-Period Temples &amp; Cave Painting</h2>
+    <p class="lede">Draws on Q10, Q23, Q44–Q51.</p>
+
+    <h3 class="sub">Cave painting</h3>
+    <p><mark class="y">Ajanta and Bagh caves</mark> are the <mark class="y">only two known examples of cave paintings from the Gupta period</mark>. Ajanta lies in <mark class="b">Chhatrapati Sambhaji Nagar district, Maharashtra</mark>, in the gorge/valley of the <mark class="b">Waghora river</mark>; an earlier group of caves was built during the <mark class="g">Satavahana period</mark>, with a major later portion made during the <mark class="g">Vakataka period</mark> — the art of Ajanta was mainly patronised by the <mark class="g">Vakatakas</mark>. Its murals and sculptures are considered masterpieces of religious art. <mark class="b">Cave 16</mark> carries an important painted theme, and <mark class="b">Cave 17</mark> preserves Vakataka-age painting including a huge <mark class="y">"Wheel of Life."</mark></p>
+    <p>The most famous mural at Ajanta — in <mark class="b">Cave 1</mark> — is the painting of <mark class="g">Bodhisattva Padmapani</mark> ("one who holds the lotus"): shown amid a crowd of devotees (both princesses and commoners), with long dark hair flowing beneath a jewelled crown, holding a blue lotus flower in his right hand.</p>
+    <p>Ajanta is linked to the <mark class="y">Jataka stories</mark> — its paintings concentrate on tales of the Buddha's previous life as a king. <mark class="y">Bagh caves</mark> are the other surviving Gupta-period cave painting site, and reflect scenes of ordinary public life. (For contrast: <mark class="g">Lomas Rishi caves</mark> belong to the <mark class="g">Mauryan</mark> period, located in the <mark class="b">Barabar hills, Jahanabad district, Bihar</mark>; <mark class="g">Nasik caves</mark> belong to the <mark class="g">Satavahana</mark> period.)</p>
+    <p>Mural-painting evidence is clearly visible at both <mark class="b">Ajanta</mark> and the <mark class="b">Lepakshi temple</mark> — but <mark class="r">not at Sanchi Stupa</mark>, whose core is simply a hemispherical brick structure crowned by a <mark class="y">Chhatra</mark> (parasol) honouring the Buddha's relics. Also, <mark class="r">Buddhist caves are NOT found at Sanchi or Bulsar</mark> (Ajanta and Bagh do carry Buddhist art).</p>
+
+    <h3 class="sub">Gupta temples</h3>
+    <p>The <mark class="b">Deogarh temple</mark> near Jhansi (Lalitpur) and the sculptures at the <mark class="b">Garhwa</mark> temple complex (Shankargarh, Prayagraj) are important remains of <mark class="g">Gupta art</mark>. The <mark class="y">Bhitargaon temple, Kanpur (UP)</mark> is a terraced brick building fronted with a terracotta panel, constructed during the <mark class="b">5th–6th century AD</mark>, and is one of the <mark class="y">oldest brick temples of India</mark> — built on a square plan with double-recessed corners, facing east, with a tall pyramidal spire over the garbhagriha, in <mark class="y">Nagara style</mark>.</p>
+
+    <table class="tbl">
+      <caption>Gupta-era matching set (I.A.S./U.P.P.C.S.)</caption>
+      <tr><th>Item</th><th>Location</th></tr>
+      <tr><td>Stupa</td><td><mark class="b">Sanchi (MP)</mark></td></tr>
+      <tr><td>Painting</td><td><mark class="b">Bagh (MP)</mark></td></tr>
+      <tr><td>Headless statue of Kanishka</td><td><mark class="b">Mathura (UP)</mark></td></tr>
+      <tr><td>Dashavatara Temple</td><td><mark class="b">Deogarh (UP)</mark></td></tr>
+      <tr><td>Brick-built Temple</td><td><mark class="b">Bhitargaon</mark></td></tr>
+      <tr><td>Shiva Temple</td><td><mark class="b">Bhumara</mark></td></tr>
+      <tr><td>Vishnu Temple</td><td><mark class="b">Eran</mark></td></tr>
+    </table>
+  </section>
+
+  <!-- 4. ROCK CUT CAVES -->
+  <section class="topic" id="caves">
+    <h2><span class="num">04</span> Rock-cut Cave Architecture</h2>
+    <p class="lede">Draws on Q15, Q18–Q43.</p>
+
+    <p>The classic rock-cut caves of western India are located at <mark class="b">Nasik, Ellora and Ajanta</mark>. Ajanta and Ellora both sit in the <mark class="b">Chhatrapati Sambhaji Nagar (formerly Aurangabad) district, Maharashtra</mark>. Nasik's caves are also known as <mark class="y">"Pandavleni"</mark> or <mark class="y">Trirashmi caves</mark>, representing Buddhist devotional practice from the <mark class="g">Satavahana</mark> period. <mark class="g">Kanheri caves</mark>, north of Borivali on Mumbai's western outskirts, form a group of rock-cut monuments built during the <mark class="b">1st century BC</mark>, demonstrating Buddhist influence, and constitute a centre with <mark class="y">more than 100 Buddha caves</mark>. In the <mark class="b">Barabar Hills</mark>, <mark class="g">Ashoka</mark> donated caves to the <mark class="g">Ajivikas</mark> — four caves named <mark class="b">Karan Chaupar, Lomas Rishi, Sudama and Vishva Zopari</mark>.</p>
+
+    <h3 class="sub">Ellora</h3>
+    <p><mark class="g">Ellora</mark> (locally <mark class="y">"Verul Leni"</mark>) is world-famous for rock-cut cave temples: a total of <mark class="b">34 caves</mark>, built across different periods — caves <mark class="b">1–12 Buddhist</mark>, <mark class="b">13–29 Hindu</mark>, and <mark class="b">30–34 Jain</mark>. Buddhist, Hindu and Jain rock-cut caves thus coexist at a single site. The <mark class="g">Kailasa Temple</mark> (Cave 16) is the standout example of rock-cut architecture — built by the <mark class="g">Rashtrakuta ruler Krishna-I</mark> in <mark class="y">Dravidian style</mark>, designed to recall Mount Kailasa, the abode of Shiva, and admired for its striking proportion, elaborate workmanship and sculptural ornamentation.</p>
+    <p><mark class="g">Rashtrakuta kings</mark> patronised followers of the <mark class="b">Shaiva, Vaishnava and Shakta</mark> faiths, but several were inclined toward <mark class="b">Jainism</mark> — many court scholars wrote in Sanskrit, Kannada, and some in Apabhramsha and Prakrit, and were Jains. King <mark class="g">Amoghavarsha-I</mark> was himself a disciple of the Jain Acharya <mark class="g">Jinasena</mark>, author of the <mark class="y">Adipurana</mark>.</p>
+
+    <h3 class="sub">Elephanta</h3>
+    <p><mark class="g">Elephanta caves</mark>, believed built by the <mark class="g">Rashtrakuta dynasty</mark>, sit on an island on an arm of the <mark class="b">Arabian Sea</mark>, comprising <mark class="b">five large Hindu caves</mark> and <mark class="b">two smaller Buddhist caves</mark>, dated to the <mark class="b">5th–6th century AD</mark>. The Hindu caves, dedicated to <mark class="y">Shiva (Shaiva sect)</mark>, house the famous <mark class="y">Trimurti (Mahesa-murti)</mark> statue — the three faces of Shiva echoing the Brahma-Vishnu-Mahesh trinity, which also served as the <mark class="y">royal insignia of the Rashtrakutas</mark>. Both <mark class="b">Ellora and Elephanta</mark> belong to the <mark class="g">Rashtrakuta</mark> period.</p>
+  </section>
+
+  <!-- 5. PALLAVA -->
+  <section class="topic" id="pallava">
+    <h2><span class="num">05</span> Pallava Architecture</h2>
+    <p class="lede">Draws on Q54, Q72–Q79, Q84.</p>
+
+    <p><mark class="g">Narasimhavarman-I ("Mahamalla")</mark> (630–668 AD) was among the most celebrated Pallava kings; the <mark class="y">Mamalla style</mark> developed under his reign, and the city of <mark class="b">Mamallapuram</mark> was named after his title ("great wrestler"). He built the <mark class="y">Seven Ratha Temple</mark>, adorned with seven rock-cut pagodas.</p>
+
+    <p><mark class="b">Mahabalipuram (Mamallapuram)</mark> lies on the seashore about <mark class="b">55 km south of Chennai</mark> (Chengalpattu district, Tamil Nadu) and is a <mark class="y">UNESCO World Heritage Site</mark>; it is also called the <mark class="y">"Mandapas" Rock-Cut Caves</mark> and was established across the <mark class="b">7th–10th centuries</mark> of the Pallava dynasty. It was a pilgrimage site even <em>before</em> the Pallava period, and became a major centre of Pallava art. Its famous monuments include the <mark class="y">Shore Temple</mark>, <mark class="y">Rathas</mark> carved from single rocks, <mark class="y">Arjuna's Penance</mark>, and other cave temples.</p>
+
+    <div class="trap">
+      <h4>⚠ Trap — Draupadi Rath's ornamentation</h4>
+      One passage says <mark class="r">Draupadi Rath</mark> is the smallest rath (Mamalla-style, monolithic) and is <mark class="r">"adorned with carvings, including those of Goddess Durga."</mark> An MCQ explanation elsewhere in the same source says of the same rath: <mark class="r">"there is no ornamentation found."</mark> Both statements appear verbatim — for MCQ purposes, its defining, unambiguous fact is simply that it is the <b>smallest</b> of the Pancha Rathas. The Panch Rathas as a set are accompanied by statues of an <mark class="b">elephant, a lion, and a Nandi bull</mark>.
+    </div>
+
+    <p>The <mark class="y">Kailasanathar Temple, Kanchipuram</mark> was built by the Pallava king <mark class="g">Narasimhavarman-II</mark>, in the <mark class="y">Rajsimha architectural style</mark> — marked by intricate carvings, large Gopurams, and finely detailed stone sculpture; its main deity is <mark class="b">Lord Shiva</mark>.</p>
+
+    <p>The <mark class="y">Sittanavasal cave temple</mark> was built by the Pallava king <mark class="g">Mahendravarman-I</mark> for <mark class="b">Jainism</mark>.</p>
+
+    <h3 class="sub">Chronology check</h3>
+    <p>Correct construction order: <mark class="b">Sapt Pagoda</mark> (Mamalla style, 640–674 AD) → <mark class="b">Shore Temple of Mahabalipuram</mark> (Rajsimha style, 674–800 AD) → <mark class="b">Brihadeeswara Temple</mark> (Rajaraja-I period) → <mark class="b">Gangaikonda Cholapuram Temple</mark> (Rajendra-I period).</p>
+    <p><mark class="b">Ajanta and Mahabalipuram</mark> share one feature and differ on two: both are <mark class="y">rock-cut monuments</mark>, but they were <mark class="r">NOT built in the same period</mark> (Ajanta ranges 2nd century BC–7th century AD; Mahabalipuram is 7th–10th century AD Pallava work) and belong to <mark class="r">different religious traditions</mark> (Mahabalipuram: Shiva/Vishnu; Ajanta: Buddhist).</p>
+  </section>
+
+  <!-- 6. CHOLA -->
+  <section class="topic" id="chola">
+    <h2><span class="num">06</span> Chola Temple Architecture</h2>
+    <p>The <mark class="y">Korangnath Temple</mark> of Srinivasanallur was built during the reign of Chola ruler <mark class="g">Parantaka-I</mark>. The <mark class="y">Rajarajeshwara (Brihadeeswara) Temple</mark> at Thanjavur was constructed under <mark class="g">Rajaraja-I</mark>, using <mark class="b">granite stone</mark> — and, unlike the Ellora Kailasa temple, it is <mark class="r">not an example of rock-cut architecture</mark>. During the reign of Rajaraja's son <mark class="g">Rajendra Chola</mark>, the temple at <mark class="b">Gangaikonda Cholapuram</mark> was built.</p>
+
+    <p>The <mark class="y">Gopuram</mark> — the ornamental, multi-storied gateway structure of Dravidian-style temples — traces its origin to early Pallava structures, and by the <mark class="b">12th century</mark> became a dominant feature under the <mark class="g">Pandya</mark> rulers, its scale eventually overshadowing the inner sanctuary itself, which became hidden from outside view. Temples built in <mark class="y">Dravidian style</mark> under the <mark class="g">Pandyas</mark> were themselves small, but wrapped in elaborate ramparts and richly ornamented Gopuram gateways.</p>
+  </section>
+
+  <!-- 7. ODISHA -->
+  <section class="topic" id="odisha">
+    <h2><span class="num">07</span> Odisha (and related Eastern) Temples</h2>
+    <p class="lede">Draws on Q56–Q66, Q86.</p>
+
+    <p>The <mark class="g">Konark Sun Temple</mark> is a <mark class="b">13th-century</mark> temple built by King <mark class="g">Narasimhadeva-I</mark> of the <mark class="g">Eastern Ganga Dynasty</mark>. It was conceived as a giant solar chariot with <mark class="b">twelve pairs of ornamental wheels</mark>, dragged by <mark class="b">seven rearing horses</mark>. European sailors called it the <mark class="y">"Black Pagoda"</mark> — the Jagannath Temple at Puri, by contrast, was called the <mark class="y">"White Pagoda."</mark></p>
+
+    <p>The <mark class="g">Lingaraja Temple</mark>, Bhubaneswar, is dedicated to <mark class="b">Lord Shiva</mark> (worshipped here as Lingaraj, considered a form of <mark class="b">Harihara</mark>) and is one of the oldest temples in the city. It stands roughly <mark class="b">180 ft tall</mark> and enshrines a <mark class="y">'Swayambhu' (self-originated) Shivling</mark>, built in <mark class="y">Nagara style</mark> — and is the <mark class="y">largest and tallest surviving temple in Odisha</mark> (ahead of the Brahmeshwara, Jagannath and Rajarani temples).</p>
+
+    <p>The <mark class="g">Jagannath Temple</mark>, Puri, is also in Nagara style. The idols of <mark class="b">Jagannath, Subhadra and Balbhadra</mark> in its sanctum sanctorum are carved from <mark class="y">neem wood</mark> — chosen because the <mark class="b">Bhavishya Purana</mark> names it the most auspicious wood for Vishnu images. The wood image is repainted yearly before the <mark class="y">Ratha-yatra</mark>, and replaced with a freshly carved image roughly every <mark class="b">12–19 years</mark>, timed to years when the lunar month of Asadha occurs twice under the Luni-solar Hindu calendar.</p>
+
+    <p>The temples of both <mark class="b">Bhubaneswar and Puri</mark> were built in <mark class="y">Nagara style</mark>.</p>
+
+    <p>The <mark class="g">Arasavalli Sun Temple</mark>, a prominent <mark class="b">7th-century</mark> sun temple in Andhra Pradesh, is believed to have been built by King <mark class="g">Devendra Varma</mark> of the <mark class="g">Eastern Ganga (Kalinga) Dynasty</mark>. By contrast, <mark class="r">Amarkantak and Omkareshwar (MP) are NOT sun temples</mark> — Omkareshwar (Khandwa district, on an island in the Narmada) is one of the <mark class="b">12 Jyotirlinga</mark> shrines of Shiva, and Amarkantak is the source of the Narmada, Son and Johila rivers, home to the Jaleswara Mahadev Shiva temple.</p>
+  </section>
+
+  <!-- 8. JAIN -->
+  <section class="topic" id="jain">
+    <h2><span class="num">08</span> Jain Temples</h2>
+    <p>The <mark class="g">Vimal Vasahi temple</mark>, the most famous of the <mark class="y">Dilwara Jain temples</mark> at <mark class="b">Mount Abu</mark> (Aravalli hills, Rajasthan), was built by <mark class="g">Vimal Shah</mark>, minister/feudatory of the Chalukya (Solanki) ruler <mark class="g">Bheemdev-I (Bhima-I)</mark>. It is famed for extraordinary architecture and marvellous <mark class="y">marble</mark> stone carving.</p>
+
+    <p>The <mark class="g">Palitana temples</mark> of Jainism sit on <mark class="b">Shatrunjaya hill</mark> near Palitana, <mark class="b">Bhavnagar district, Gujarat</mark>, dedicated to the <mark class="y">first Jain Tirthankara, Adinatha</mark>.</p>
+
+    <p><mark class="g">Sonagiri</mark>, about <mark class="b">15 km from Datia (MP)</mark>, is a sacred site for <mark class="y">Digambar Jain</mark> devotees and ascetics practising self-discipline, austerity and the pursuit of Nirvana. It has <mark class="b">103 Jain temples</mark> with sky-high spires; <mark class="y">Temple No. 57</mark>, dedicated to <mark class="g">Lord Chandraprabhu</mark>, is the principal one.</p>
+  </section>
+
+  <!-- 9. REGIONAL & FOREIGN -->
+  <section class="topic" id="regional">
+    <h2><span class="num">09</span> Other Regional &amp; South-East Asian Sites</h2>
+    <p>The <mark class="g">Sun Temple of Modhera</mark> (Patan, <mark class="b">Gujarat</mark>) was built by King <mark class="g">Bhimadeva-I</mark> of the <mark class="g">Solanki dynasty</mark>.</p>
+    <p>The <mark class="g">Virupaksha Temple</mark> is located at <mark class="b">Hampi, Karnataka</mark>, dedicated to Lord Shiva, worshipped here as <mark class="y">Virupaksha</mark>.</p>
+    <p><mark class="g">Angkor Wat</mark>, in present-day <mark class="b">Cambodia (Kampuchea)</mark>, was built by the Khmer king <mark class="g">Suryavarman-II</mark> at the start of the <mark class="b">12th century</mark> in his capital <mark class="b">Yashodhara Pura</mark> (present-day Angkor). Dedicated to <mark class="b">Lord Vishnu</mark>, it is the <mark class="y">world's largest religious structure</mark>, built in <mark class="y">Khmer-style architecture</mark>.</p>
+    <p>The famous <mark class="g">Borobudur stupa</mark> is on <mark class="b">Java island, Indonesia</mark> — a UNESCO World Heritage Site.</p>
+  </section>
+
+  <!-- 10. MISC -->
+  <section class="topic" id="misc">
+    <h2><span class="num">10</span> Matching Sets &amp; Miscellany</h2>
+    <p class="lede">Draws on Q53, Q55, Q80–Q83, Q85, Q87–Q100.</p>
+
+    <h3 class="sub">Folk paintings (frequently paired with architecture questions)</h3>
+    <div class="card">
+      <h4>Style ↔ origin/technique</h4>
+      <ul>
+        <li><mark class="y">Pattachitra</mark> — belongs to <mark class="b">Odisha</mark>; themes drawn from the <mark class="y">Jagannath and Vaishnav cults</mark>.</li>
+        <li><mark class="y">Manjusha painting</mark> — a folk art of <mark class="b">Bhagalpur, Bihar</mark>, one of India's oldest painting traditions; executed on temple-shaped boxes of <mark class="b">jute and paper</mark> with eight pillars, using only <mark class="y">three colours — pink, green and yellow</mark>; used in <mark class="y">Bishahari Puja</mark>.</li>
+        <li><mark class="y">Pithora painting</mark> — a ritualistic painting tradition of tribal communities in <mark class="b">Gujarat and Madhya Pradesh</mark>.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Site ↔ State matching sets</h3>
+    <table class="tbl">
+      <caption>Consolidated place-matching (multiple BPSC/UPPCS/IAS sets)</caption>
+      <tr><th>Site</th><th>State / Country</th></tr>
+      <tr><td>Hampi</td><td><mark class="b">Karnataka</mark></td></tr>
+      <tr><td>Nagarjunakonda</td><td><mark class="b">Andhra Pradesh</mark></td></tr>
+      <tr><td>Shishupalgarh</td><td><mark class="b">Odisha</mark></td></tr>
+      <tr><td>Arikamedu</td><td><mark class="b">Puducherry</mark></td></tr>
+      <tr><td>Bhimbetka</td><td><mark class="b">Madhya Pradesh</mark></td></tr>
+      <tr><td>Shore Temple</td><td><mark class="b">Tamil Nadu</mark></td></tr>
+      <tr><td>Manas (wildlife/heritage site)</td><td><mark class="b">Assam</mark></td></tr>
+      <tr><td>Shravanabelagola (Gomateshwara statue)</td><td><mark class="b">Karnataka</mark></td></tr>
+    </table>
+
+    <table class="tbl">
+      <caption>Place ↔ monument-type matching (UDA/LDA 2001)</caption>
+      <tr><th>Place</th><th>Monument type</th></tr>
+      <tr><td>Elephanta</td><td><mark class="b">Cave</mark></td></tr>
+      <tr><td>Shravanabelagola</td><td><mark class="b">Statue</mark></td></tr>
+      <tr><td>Khajuraho</td><td><mark class="b">Temple</mark></td></tr>
+      <tr><td>Sanchi</td><td><mark class="b">Stupa</mark></td></tr>
+    </table>
+
+    <div class="trap">
+      <h4>⚠ Trap — commonly mismatched dynasty-monument pairs</h4>
+      <mark class="r">Ellora Caves are NOT linked to the Sakas</mark> (built across periods, chiefly under the Rashtrakutas). <mark class="r">Meenakshi Temple was built by the Pandyas, NOT the Pallavas.</mark> <mark class="r">Mahabalipuram's temples were built by the Pallavas, NOT the Rashtrakutas.</mark> The only genuinely correct pairing among this set is <mark class="g">Khajuraho Temple ↔ Chandelas</mark>.
+    </div>
+
+    <table class="tbl">
+      <caption>Pilgrimage / temple matching (UPPCS Spl. 2004)</caption>
+      <tr><th>Place</th><th>Association</th></tr>
+      <tr><td>Baidyanath Dham</td><td><mark class="b">Shiva Temple</mark></td></tr>
+      <tr><td>Sarnath</td><td><mark class="y">Site of the Buddha's first sermon</mark> (Dharmachakra Pravartan, to his five disciples)</td></tr>
+      <tr><td>Dilwara</td><td><mark class="b">Jain Temple</mark></td></tr>
+      <tr><td>Badrinath</td><td><mark class="y">Vishnu Temple</mark>, established by <mark class="g">Shankaracharya</mark></td></tr>
+    </table>
+
+    <div class="trap">
+      <h4>⚠ Trap — Besnagar is misattributed as Shaivite in one matching item</h4>
+      Of the pairs <mark class="r">Besnagar–Shaivite cave shrine</mark>, <mark class="g">Bhaja–Buddhist cave shrine</mark>, and <mark class="g">Sittanavasal–Jain cave shrine</mark>: only <b>two</b> are correctly matched. Besnagar (Madhya Pradesh) is actually associated with the <mark class="b">Bhagwat (Vaishnavite) religion</mark> — the <mark class="y">Garuda Pillar</mark> was erected there by the Greek ambassador <mark class="g">Heliodorus</mark>. Bhaja (a village near Pune) is correctly Buddhist. Sittanavasal, built by Pallava king Mahendravarman-I, is correctly Jain.
+    </div>
+
+    <table class="tbl">
+      <caption>More matching sets</caption>
+      <tr><th>Item</th><th>Match</th></tr>
+      <tr><td>Sun Temple</td><td><mark class="b">Konark</mark></td></tr>
+      <tr><td>Lingaraja Temple</td><td><mark class="b">Bhubaneswar</mark></td></tr>
+      <tr><td>Hawa Mahal</td><td><mark class="b">Jaipur</mark></td></tr>
+      <tr><td>Statue of Gomateshwara</td><td><mark class="b">Shravanabelagola, Karnataka</mark></td></tr>
+      <tr><td>Nalanda</td><td><mark class="b">University</mark></td></tr>
+      <tr><td>Sarnath</td><td><mark class="b">Ashoka Pillar</mark></td></tr>
+      <tr><td>Sanchi</td><td><mark class="b">Stupa</mark></td></tr>
+      <tr><td>Konark</td><td><mark class="b">Sun Temple</mark></td></tr>
+    </table>
+
+    <div class="trap">
+      <h4>⚠ Trap — the Varaha Avatar sculpture's location</h4>
+      A famous huge rock-carved <mark class="y">Varaha Avatar (boar incarnation) of Vishnu</mark>, shown rescuing Goddess Earth, is sometimes paired with <mark class="r">"Mount Abu"</mark> in matching questions — this pairing is <mark class="r">incorrect</mark>. The sculpture is actually at the <mark class="g">Udayagiri caves, Madhya Pradesh</mark>. Two other pairs in the same matching set ARE correct: a grand image of the <mark class="y">Buddha's Mahaparinirvana</mark> with celestial musicians above and sorrowful followers below is at <mark class="b">Ajanta (Cave 26)</mark>; <mark class="y">"Arjuna's Penance"/"Descent of the Ganga"</mark>, carved on huge boulders, is at <mark class="b">Mamallapuram</mark>.
+    </div>
+
+    <h3 class="sub">Odds &amp; ends</h3>
+    <p><mark class="b">Naimisharanya</mark>, in <mark class="b">Sitapur district, Uttar Pradesh</mark>, is where Sage <mark class="g">Dadhichi</mark> is believed to have given up his bones to the Gods; the bones were used to make the weapon <mark class="y">Vajra</mark>, which <mark class="g">Lord Indra</mark> then used to defeat the Asuras.</p>
+    <p><mark class="b">Takshashila</mark>, established around the <mark class="b">6th–7th century BC</mark>, was located between the rivers <mark class="b">Jhelum and Indus</mark> (present-day Rawalpindi district, Punjab, Pakistan).</p>
+    <p><mark class="b">Chitrakoot</mark> is a Hindu pilgrimage site straddling both <mark class="b">Uttar Pradesh and Madhya Pradesh</mark> — its main holy place, <mark class="y">Kamadgiri</mark> (associated with Lord Kamata Nath), itself has portions in both states; BPSC's re-exam accepted <mark class="g">Madhya Pradesh</mark> as the answer despite the ambiguity.</p>
+    <p><mark class="b">Sanchi Stupa</mark> lies west of the <mark class="b">Betwa river</mark> in Raisen district, MP (built by Ashoka) — <em>not</em> in a Chambal river gorge. <mark class="b">Pandu-lena cave shrines</mark> (Nashik) lie in the <mark class="b">Godavari</mark> valley. <mark class="b">Amaravati Stupa</mark> stands on the banks of the <mark class="b">Krishna river</mark>, Palnadu district, Andhra Pradesh.</p>
+
+    <h3 class="sub">Oldest-to-newest chronology check</h3>
+    <div class="timeline">
+      <div class="item"><b>Rock-cut elephant at Dhauli</b> — Ashoka, <mark class="b">3rd century BC</mark> (oldest of this set)</div>
+      <div class="item"><b>Varaha Image at Udayagiri</b> — <mark class="b">5th century AD</mark></div>
+      <div class="item"><b>Rock-cut monuments at Mahabalipuram</b> — <mark class="b">7th–8th century AD</mark></div>
+      <div class="item"><b>Lingaraja Temple, Bhubaneswar</b> — <mark class="b">10th–11th century AD</mark></div>
+    </div>
+  </section>
+
+  <div class="divider">❦</div>
+</main>
+
+<footer>Architecture in Ancient India — compiled for BPSC Prelims 2025–26 · every theory line and MCQ-explanation fact from the source has been retained above.</footer>
+
+<script>
+  const links = document.querySelectorAll('#navlist a');
+  const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href')));
+  function onScroll(){
+    let idx = 0;
+    const y = window.scrollY + 120;
+    sections.forEach((sec,i)=>{ if(sec && sec.offsetTop <= y) idx = i; });
+    links.forEach(l=>l.classList.remove('active'));
+    if(links[idx]) links[idx].classList.add('active');
+  }
+  document.addEventListener('scroll', onScroll);
+  onScroll();
+</script>
+</body>
+</html>
