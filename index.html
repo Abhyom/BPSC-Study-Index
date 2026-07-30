@@ -136,13 +136,30 @@
 				display: flex;
 				align-items: center;
 				gap: 8px;
+				cursor: pointer;
+				user-select: none;
+				transition:
+					background 0.2s ease,
+					border-color 0.2s ease,
+					transform 0.15s ease;
+			}
+			.stat-pill:hover {
+				border-color: var(--gold-light);
+				transform: translateY(-1px);
+			}
+			.stat-pill.active {
+				background: var(--gold-light);
+				border-color: var(--gold-light);
+				color: var(--navy);
+			}
+			.stat-pill.active .num {
+				color: var(--navy);
 			}
 			.stat-pill .num {
 				color: var(--gold-light);
 				font-weight: 700;
 				font-size: 15px;
 			}
-
 			/* Search */
 			.search-wrap {
 				max-width: 1180px;
@@ -182,15 +199,13 @@
 				color: var(--ink-soft);
 				white-space: nowrap;
 			}
-
 			main {
-				max-width: 1180px;
+				max-width: 900px;
 				margin: 0 auto;
 				padding: 48px 24px 100px;
 			}
-
 			.section {
-				margin-bottom: 52px;
+				margin-bottom: 60px;
 			}
 			.section-head {
 				display: flex;
@@ -216,153 +231,96 @@
 				font-size: 23px;
 				color: var(--ink);
 			}
-			.section-count {
-				font-family: "IBM Plex Mono", monospace;
-				font-size: 12px;
-				color: var(--ink-soft);
-				background: var(--paper-dark);
-				padding: 3px 10px;
-				border-radius: 20px;
-				margin-left: auto;
-			}
 
-			.grid {
-				display: grid;
-				grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-				gap: 18px;
+			/* Vertical glowing name list */
+			.list {
+				display: flex;
+				flex-direction: column;
 			}
-
-			.card {
-				background: #fffdf8;
-				border: 1px solid var(--card-border);
-				border-radius: 14px;
-				padding: 22px 22px 20px;
+			.item {
 				text-decoration: none;
 				color: var(--ink);
 				display: flex;
-				flex-direction: column;
-				gap: 12px;
-				box-shadow: 0 2px 8px rgba(43, 36, 32, 0.05);
-				transition:
-					transform 0.18s ease,
-					box-shadow 0.18s ease,
-					border-color 0.18s ease;
-				position: relative;
-				overflow: hidden;
-			}
-			.card::before {
-				content: "";
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 5px;
-				height: 100%;
-				background: var(--accent, var(--gold));
-				opacity: 0.85;
-			}
-			.card:hover {
-				transform: translateY(-4px);
-				box-shadow: var(--shadow);
-				border-color: var(--accent, var(--gold));
-			}
-			.card-top {
-				display: flex;
-				align-items: flex-start;
-				justify-content: space-between;
-				gap: 10px;
-			}
-			.tag {
-				font-family: "IBM Plex Mono", monospace;
-				font-size: 10.5px;
-				font-weight: 600;
-				letter-spacing: 0.06em;
-				text-transform: uppercase;
-				padding: 4px 9px;
-				border-radius: 5px;
-				background: var(--accent-bg, #eee);
-				color: var(--accent-text, #444);
-				white-space: nowrap;
-			}
-			.card-file-icon {
-				font-size: 19px;
-				opacity: 0.55;
-			}
-			.card-title {
-				font-family: "Playfair Display", serif;
-				font-weight: 600;
-				font-size: 18px;
-				line-height: 1.3;
-				color: var(--ink);
-			}
-			.card-desc {
-				font-size: 13px;
-				color: var(--ink-soft);
-				line-height: 1.55;
-				flex-grow: 1;
-			}
-			.card-footer {
-				display: flex;
 				align-items: center;
-				justify-content: space-between;
-				margin-top: 4px;
-				padding-top: 12px;
-				border-top: 1px dashed var(--card-border);
+				gap: 18px;
+				padding: 18px 10px;
+				border-bottom: 1px dashed var(--card-border);
+				position: relative;
+				transition:
+					color 0.25s ease,
+					padding-left 0.25s ease,
+					text-shadow 0.25s ease;
 			}
-			.card-filename {
+			.item:last-child {
+				border-bottom: none;
+			}
+			.item-index {
 				font-family: "IBM Plex Mono", monospace;
-				font-size: 10.5px;
-				color: #a89b85;
-				overflow: hidden;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				max-width: 75%;
+				font-size: 12px;
+				color: var(--accent, var(--gold));
+				min-width: 26px;
+				flex-shrink: 0;
+				opacity: 0.75;
+			}
+			.item-title {
+				flex-grow: 1;
+				font-family: "Playfair Display", serif;
+				font-weight: 700;
+				font-size: 26px;
+				line-height: 1.2;
+				transition: inherit;
 			}
 			.open-arrow {
 				font-family: "IBM Plex Mono", monospace;
-				font-size: 13px;
+				font-size: 15px;
 				color: var(--accent, var(--gold));
 				font-weight: 700;
-				transition: transform 0.18s ease;
+				opacity: 0;
+				transform: translateX(-6px);
+				transition:
+					opacity 0.25s ease,
+					transform 0.25s ease;
+				flex-shrink: 0;
 			}
-			.card:hover .open-arrow {
-				transform: translateX(4px);
+			.item:hover {
+				padding-left: 20px;
+				color: var(--accent, var(--gold));
+			}
+			.item:hover .item-title {
+				color: var(--accent, var(--gold));
+				text-shadow:
+					0 0 10px color-mix(in srgb, var(--accent, var(--gold)) 65%, transparent),
+					0 0 26px color-mix(in srgb, var(--accent, var(--gold)) 45%, transparent);
+			}
+			.item:hover .open-arrow {
+				opacity: 1;
+				transform: translateX(0);
 			}
 
 			/* category color themes */
 			.theme-quiz {
 				--accent: var(--red);
-				--accent-bg: #f6e3e0;
-				--accent-text: #8f382f;
 			}
 			.theme-history {
 				--accent: var(--green);
-				--accent-bg: #dfe9de;
-				--accent-text: #3c6440;
 			}
 			.theme-science {
 				--accent: var(--blue);
-				--accent-bg: #dde7f2;
-				--accent-text: #2f557f;
 			}
 			.theme-ir {
 				--accent: var(--purple);
-				--accent-bg: #e6def0;
-				--accent-text: #5f4380;
 			}
 			.theme-economy {
 				--accent: var(--gold);
-				--accent-bg: #f2e6cc;
-				--accent-text: #8f6a1f;
 			}
 			.theme-health {
 				--accent: #c46b8f;
-				--accent-bg: #f4e0e9;
-				--accent-text: #9c4c6c;
 			}
 			.theme-current {
 				--accent: #3b8f8a;
-				--accent-bg: #dcf0ee;
-				--accent-text: #2a6c68;
+			}
+			.theme-biology {
+				--accent: #5c8f3b;
 			}
 
 			.section-icon.i-quiz {
@@ -389,6 +347,10 @@
 				background: #dcf0ee;
 				color: #2a6c68;
 			}
+			.section-icon.i-biology {
+				background: #e4f0dc;
+				color: #3f6b28;
+			}
 
 			.folder-badge {
 				display: inline-flex;
@@ -403,11 +365,9 @@
 				margin-bottom: 16px;
 				border: 1px solid var(--card-border);
 			}
-
 			.hidden {
 				display: none !important;
 			}
-
 			.empty-state {
 				text-align: center;
 				padding: 60px 20px;
@@ -415,7 +375,6 @@
 				font-family: "IBM Plex Mono", monospace;
 				font-size: 14px;
 			}
-
 			footer {
 				text-align: center;
 				padding: 30px 20px 50px;
@@ -423,7 +382,6 @@
 				font-size: 12px;
 				color: var(--ink-soft);
 			}
-
 			@media (max-width: 600px) {
 				header {
 					padding: 44px 18px 54px;
@@ -433,6 +391,12 @@
 				}
 				main {
 					padding: 36px 16px 70px;
+				}
+				.item-title {
+					font-size: 21px;
+				}
+				.item {
+					gap: 12px;
 				}
 			}
 		</style>
@@ -447,23 +411,22 @@
 				<div class="subtitle">
 					One home page for every note, ledger, and quiz you've built
 					— Bihar &amp; India economy, ancient history, science &amp;
-					tech, international relations, health surveys, and monthly
-					current affairs. Click any card to jump straight in.
+					tech, biology, international relations, health surveys, and monthly
+					current affairs. Click any title to jump straight in.
 				</div>
 				<div class="stat-row">
-					<div class="stat-pill">
-						<span class="num">12</span> documents
+					<div class="stat-pill active" data-filter="all">
+						<span class="num" id="totalCount">15</span> documents
 					</div>
-					<div class="stat-pill">
-						<span class="num">7</span> subjects
+					<div class="stat-pill" data-filter="theory">
+						<span class="num" id="theoryCount">10</span> Theory
 					</div>
-					<div class="stat-pill">
-						<span class="num">3</span> MCQ quizzes
+					<div class="stat-pill" data-filter="mcq">
+						<span class="num" id="mcqCount">5</span> MCQ
 					</div>
 				</div>
 			</div>
 		</header>
-
 		<div class="search-wrap">
 			<div class="search-box">
 				<svg
@@ -487,87 +450,44 @@
 				<span class="result-count" id="resultCount"></span>
 			</div>
 		</div>
-
 		<main id="main">
 			<!-- CURRENT AFFAIRS -->
 			<div class="section" data-section>
 				<div class="section-head">
 					<div class="section-icon i-current">📰</div>
 					<div class="section-title">Current Affairs — June 2026</div>
-					<div class="section-count">3 files</div>
 				</div>
 				<div class="folder-badge">📁 June Eduteria/</div>
-				<div class="grid">
+				<div class="list">
 					<a
-						class="card theme-current"
+						class="item theme-current"
 						href="June Eduteria/June_2026_Current_Affairs_Ledger.html"
 						data-name="June 2026 Current Affairs Ledger monthly national international"
+						data-type="theory"
 					>
-						<div class="card-top">
-							<span class="tag">Ledger</span
-							><span class="card-file-icon">📖</span>
-						</div>
-						<div class="card-title">
-							June 2026 Current Affairs Ledger
-						</div>
-						<div class="card-desc">
-							The core monthly ledger — national and international
-							developments for June, formatted for quick revision.
-						</div>
-						<div class="card-footer">
-							<span class="card-filename"
-								>June_2026_Current_Affairs_Ledger.html</span
-							>
-							<span class="open-arrow">Open →</span>
-						</div>
+						<span class="item-index">01</span>
+						<span class="item-title">June 2026 Current Affairs Ledger</span>
+						<span class="open-arrow">Open →</span>
 					</a>
-
 					<a
-						class="card theme-current"
+						class="item theme-current"
 						href="June Eduteria/JuneInternationEventsMCQ.html"
 						data-name="June International Events current affairs foreign world"
+						data-type="mcq"
 					>
-						<div class="card-top">
-							<span class="tag">MCQ Quiz</span
-							><span class="card-file-icon">🌐</span>
-						</div>
-						<div class="card-title">
-							June International Events — MCQ Quiz
-						</div>
-						<div class="card-desc">
-							Global and foreign-affairs events from June, tracked
-							separately for the international relations angle.
-						</div>
-						<div class="card-footer">
-							<span class="card-filename"
-								>JuneInternationEvents.html</span
-							>
-							<span class="open-arrow">Open →</span>
-						</div>
+						<span class="item-index">02</span>
+						<span class="item-title">June International Events — MCQ Quiz</span>
+						<span class="open-arrow">Open →</span>
 					</a>
-
 					<a
-						class="card theme-current theme-quiz"
+						class="item theme-current theme-quiz"
 						href="June Eduteria/June_National_Events_MCQ_Quiz.html"
 						data-name="June National Events MCQ Quiz current affairs test"
+						data-type="mcq"
 					>
-						<div class="card-top">
-							<span class="tag">MCQ Quiz</span
-							><span class="card-file-icon">✅</span>
-						</div>
-						<div class="card-title">
-							June National Events — MCQ Quiz
-						</div>
-						<div class="card-desc">
-							Self-test on June's national current affairs. Good
-							for a quick pre-exam recall check.
-						</div>
-						<div class="card-footer">
-							<span class="card-filename"
-								>June_National_Events_MCQ_Quiz.html</span
-							>
-							<span class="open-arrow">Open →</span>
-						</div>
+						<span class="item-index">03</span>
+						<span class="item-title">June National Events — MCQ Quiz</span>
+						<span class="open-arrow">Open →</span>
 					</a>
 				</div>
 			</div>
@@ -577,73 +497,37 @@
 				<div class="section-head">
 					<div class="section-icon i-economy">📊</div>
 					<div class="section-title">Economy &amp; Budget</div>
-					<div class="section-count">3 files</div>
 				</div>
-				<div class="grid">
+				<div class="list">
 					<a
-						class="card theme-economy"
+						class="item theme-economy"
 						href="ecosurveyBihar.html"
 						data-name="Bihar Economic Survey ledger state"
+						data-type="theory"
 					>
-						<div class="card-top">
-							<span class="tag">Survey</span
-							><span class="card-file-icon">🏛️</span>
-						</div>
-						<div class="card-title">Bihar Economic Survey</div>
-						<div class="card-desc">
-							14-chapter deep dive into the Bihar Economic Survey
-							— the "Ledger" edition with navy/maroon/gold theme.
-						</div>
-						<div class="card-footer">
-							<span class="card-filename"
-								>ecosurveyBihar.html</span
-							>
-							<span class="open-arrow">Open →</span>
-						</div>
+						<span class="item-index">01</span>
+						<span class="item-title">Bihar Economic Survey</span>
+						<span class="open-arrow">Open →</span>
 					</a>
-
 					<a
-						class="card theme-economy"
+						class="item theme-economy"
 						href="ecoSurveyIndia.html"
 						data-name="Economic Survey of India national"
+						data-type="theory"
 					>
-						<div class="card-top">
-							<span class="tag">Survey</span
-							><span class="card-file-icon">🇮🇳</span>
-						</div>
-						<div class="card-title">Economic Survey of India</div>
-						<div class="card-desc">
-							National-level Economic Survey notes — macro trends,
-							sectoral performance, and key indicators.
-						</div>
-						<div class="card-footer">
-							<span class="card-filename"
-								>ecoSurveyIndia.html</span
-							>
-							<span class="open-arrow">Open →</span>
-						</div>
+						<span class="item-index">02</span>
+						<span class="item-title">Economic Survey of India</span>
+						<span class="open-arrow">Open →</span>
 					</a>
-
 					<a
-						class="card theme-economy"
+						class="item theme-economy"
 						href="union-budget-2026-27.html"
 						data-name="Union Budget 2026-27 finance fiscal"
+						data-type="theory"
 					>
-						<div class="card-top">
-							<span class="tag">Budget</span
-							><span class="card-file-icon">💰</span>
-						</div>
-						<div class="card-title">Union Budget 2026–27</div>
-						<div class="card-desc">
-							Full breakdown of the Union Budget 2026–27 —
-							allocations, schemes, and fiscal highlights.
-						</div>
-						<div class="card-footer">
-							<span class="card-filename"
-								>union-budget-2026-27.html</span
-							>
-							<span class="open-arrow">Open →</span>
-						</div>
+						<span class="item-index">03</span>
+						<span class="item-title">Union Budget 2026–27</span>
+						<span class="open-arrow">Open →</span>
 					</a>
 				</div>
 			</div>
@@ -653,31 +537,37 @@
 				<div class="section-head">
 					<div class="section-icon i-science">🔬</div>
 					<div class="section-title">Science &amp; Technology</div>
-					<div class="section-count">1 file</div>
 				</div>
-				<div class="grid">
+				<div class="list">
 					<a
-						class="card theme-science"
+						class="item theme-science"
 						href="science_tech_bpsc_bhai.html"
 						data-name="Science Technology Innovation Dossier space defence IT biotech"
+						data-type="theory"
 					>
-						<div class="card-top">
-							<span class="tag">Notes</span
-							><span class="card-file-icon">🚀</span>
-						</div>
-						<div class="card-title">
-							Science &amp; Tech — The Innovation Dossier
-						</div>
-						<div class="card-desc">
-							15 chapters spanning space, defence, IT, and biotech
-							— built for BPSC 2025–26.
-						</div>
-						<div class="card-footer">
-							<span class="card-filename"
-								>science_tech_bpsc_bhai.html</span
-							>
-							<span class="open-arrow">Open →</span>
-						</div>
+						<span class="item-index">01</span>
+						<span class="item-title">Science &amp; Tech — The Innovation Dossier</span>
+						<span class="open-arrow">Open →</span>
+					</a>
+				</div>
+			</div>
+
+			<!-- BIOLOGY -->
+			<div class="section" data-section>
+				<div class="section-head">
+					<div class="section-icon i-biology">🌱</div>
+					<div class="section-title">Biology</div>
+				</div>
+				<div class="list">
+					<a
+						class="item theme-biology"
+						href="hormones.html"
+						data-name="Plant Nutrition Hormones biology botany"
+						data-type="theory"
+					>
+						<span class="item-index">01</span>
+						<span class="item-title">Plant Nutrition &amp; Hormones</span>
+						<span class="open-arrow">Open →</span>
 					</a>
 				</div>
 			</div>
@@ -687,54 +577,27 @@
 				<div class="section-head">
 					<div class="section-icon i-ir">🌍</div>
 					<div class="section-title">International Relations</div>
-					<div class="section-count">2 files</div>
 				</div>
-				<div class="grid">
+				<div class="list">
 					<a
-						class="card theme-ir"
+						class="item theme-ir"
 						href="international_relations_bpsc_bhai.html"
 						data-name="International Relations notes foreign policy"
+						data-type="theory"
 					>
-						<div class="card-top">
-							<span class="tag">Notes</span
-							><span class="card-file-icon">🕊️</span>
-						</div>
-						<div class="card-title">
-							International Relations — Notes
-						</div>
-						<div class="card-desc">
-							Core IR concepts, India's foreign policy, and major
-							global organisations and treaties.
-						</div>
-						<div class="card-footer">
-							<span class="card-filename"
-								>international_relations_bpsc_bhai.html</span
-							>
-							<span class="open-arrow">Open →</span>
-						</div>
+						<span class="item-index">01</span>
+						<span class="item-title">International Relations — Notes</span>
+						<span class="open-arrow">Open →</span>
 					</a>
-
 					<a
-						class="card theme-ir theme-quiz"
+						class="item theme-ir theme-quiz"
 						href="international_relations_bpsc_bhai_mcq.html"
 						data-name="International Relations MCQ Quiz test"
+						data-type="mcq"
 					>
-						<div class="card-top">
-							<span class="tag">MCQ Quiz</span
-							><span class="card-file-icon">✅</span>
-						</div>
-						<div class="card-title">
-							International Relations — MCQ Quiz
-						</div>
-						<div class="card-desc">
-							Practice questions to test recall on IR notes above.
-						</div>
-						<div class="card-footer">
-							<span class="card-filename"
-								>international_relations_bpsc_bhai_mcq.html</span
-							>
-							<span class="open-arrow">Open →</span>
-						</div>
+						<span class="item-index">02</span>
+						<span class="item-title">International Relations — MCQ Quiz</span>
+						<span class="open-arrow">Open →</span>
 					</a>
 				</div>
 			</div>
@@ -744,31 +607,37 @@
 				<div class="section-head">
 					<div class="section-icon i-history">🏺</div>
 					<div class="section-title">History</div>
-					<div class="section-count">1 file</div>
 				</div>
-				<div class="grid">
+				<div class="list">
 					<a
-						class="card theme-history theme-quiz"
+						class="item theme-history theme-quiz"
 						href="bihar_ancient_history_mcq_quiz.html"
 						data-name="Bihar Ancient History MCQ Quiz Vedic Buddhism Jainism"
+						data-type="mcq"
 					>
-						<div class="card-top">
-							<span class="tag">MCQ Quiz</span
-							><span class="card-file-icon">✅</span>
-						</div>
-						<div class="card-title">
-							Bihar Ancient History — MCQ Quiz
-						</div>
-						<div class="card-desc">
-							Self-test on ancient Bihar history — Vedic age,
-							Buddhism, Jainism, and early dynasties.
-						</div>
-						<div class="card-footer">
-							<span class="card-filename"
-								>bihar_ancient_history_mcq_quiz.html</span
-							>
-							<span class="open-arrow">Open →</span>
-						</div>
+						<span class="item-index">01</span>
+						<span class="item-title">Bihar Ancient History — MCQ Quiz</span>
+						<span class="open-arrow">Open →</span>
+					</a>
+					<a
+						class="item theme-history"
+						href="temples.html"
+						data-name="Architecture of Ancient India temples monuments"
+						data-type="theory"
+					>
+						<span class="item-index">02</span>
+						<span class="item-title">Architecture of Ancient India</span>
+						<span class="open-arrow">Open →</span>
+					</a>
+					<a
+						class="item theme-history"
+						href="books.html"
+						data-name="Literature of Ancient India books texts scriptures"
+						data-type="theory"
+					>
+						<span class="item-index">03</span>
+						<span class="item-title">Literature of Ancient India</span>
+						<span class="open-arrow">Open →</span>
 					</a>
 				</div>
 			</div>
@@ -783,27 +652,17 @@
 						🩺
 					</div>
 					<div class="section-title">Health &amp; Surveys</div>
-					<div class="section-count">1 file</div>
 				</div>
-				<div class="grid">
+				<div class="list">
 					<a
-						class="card theme-health"
+						class="item theme-health"
 						href="nfhs6.html"
 						data-name="NFHS-6 National Family Health Survey"
+						data-type="theory"
 					>
-						<div class="card-top">
-							<span class="tag">Survey</span
-							><span class="card-file-icon">🩺</span>
-						</div>
-						<div class="card-title">NFHS-6</div>
-						<div class="card-desc">
-							National Family Health Survey (Round 6) — key
-							indicators and state-wise health data.
-						</div>
-						<div class="card-footer">
-							<span class="card-filename">nfhs6.html</span>
-							<span class="open-arrow">Open →</span>
-						</div>
+						<span class="item-index">01</span>
+						<span class="item-title">NFHS-6</span>
+						<span class="open-arrow">Open →</span>
 					</a>
 				</div>
 			</div>
@@ -813,29 +672,17 @@
 				<div class="section-head">
 					<div class="section-icon i-quiz">🗂️</div>
 					<div class="section-title">Other Resources</div>
-					<div class="section-count">1 file</div>
 				</div>
-				<div class="grid">
+				<div class="list">
 					<a
-						class="card theme-quiz"
+						class="item theme-quiz"
 						href="eduteria 12PageMCQ.html"
 						data-name="Eduteria 12 Page MCQ practice"
+						data-type="mcq"
 					>
-						<div class="card-top">
-							<span class="tag">MCQ Quiz</span
-							><span class="card-file-icon">✅</span>
-						</div>
-						<div class="card-title">Eduteria — 12 Page MCQ Set</div>
-						<div class="card-desc">
-							A general 12-page MCQ practice set from Eduteria for
-							mixed-topic revision.
-						</div>
-						<div class="card-footer">
-							<span class="card-filename"
-								>eduteria 12PageMCQ.html</span
-							>
-							<span class="open-arrow">Open →</span>
-						</div>
+						<span class="item-index">01</span>
+						<span class="item-title">Eduteria — 12 Page MCQ Set</span>
+						<span class="open-arrow">Open →</span>
 					</a>
 				</div>
 			</div>
@@ -844,20 +691,30 @@
 				No documents match your search. Try a different keyword.
 			</div>
 		</main>
-
 		<footer>
 			Built for BPSC Prelims &amp; Mains prep · Keep all files in the same
 			folder structure for links to work
 		</footer>
-
 		<script>
 			const input = document.getElementById("searchInput");
 			const resultCount = document.getElementById("resultCount");
 			const emptyState = document.getElementById("emptyState");
-			const allCards = Array.from(document.querySelectorAll(".card"));
 			const sections = Array.from(
 				document.querySelectorAll("[data-section]"),
 			);
+			const filterPills = Array.from(
+				document.querySelectorAll(".stat-pill[data-filter]"),
+			);
+			let currentFilter = "all";
+
+			filterPills.forEach((pill) => {
+				pill.addEventListener("click", () => {
+					filterPills.forEach((p) => p.classList.remove("active"));
+					pill.classList.add("active");
+					currentFilter = pill.dataset.filter;
+					filter();
+				});
+			});
 
 			function filter() {
 				const q = input.value.trim().toLowerCase();
@@ -865,14 +722,18 @@
 
 				sections.forEach((section) => {
 					let sectionVisible = 0;
-					section.querySelectorAll(".card").forEach((card) => {
+					section.querySelectorAll(".item").forEach((item) => {
 						const haystack = (
-							card.dataset.name +
+							item.dataset.name +
 							" " +
-							card.textContent
+							item.textContent
 						).toLowerCase();
-						const match = q === "" || haystack.includes(q);
-						card.classList.toggle("hidden", !match);
+						const matchesSearch = q === "" || haystack.includes(q);
+						const matchesFilter =
+							currentFilter === "all" ||
+							item.dataset.type === currentFilter;
+						const match = matchesSearch && matchesFilter;
+						item.classList.toggle("hidden", !match);
 						if (match) {
 							sectionVisible++;
 							visibleCount++;
@@ -882,14 +743,13 @@
 				});
 
 				resultCount.textContent =
-					q === ""
+					q === "" && currentFilter === "all"
 						? ""
 						: visibleCount +
 							" result" +
 							(visibleCount === 1 ? "" : "s");
 				emptyState.classList.toggle("hidden", visibleCount !== 0);
 			}
-
 			input.addEventListener("input", filter);
 		</script>
 	</body>
