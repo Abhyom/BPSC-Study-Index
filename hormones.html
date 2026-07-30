@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Botanist's Ledger — Plant Nutrition & Hormones | BPSC Prelims</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5efe2;
+  --paper-dark:#ece3d0;
+  --ink:#2b2620;
+  --ink-soft:#5c5346;
+  --sidebar:#1f2620;
+  --sidebar-text:#cfd6c9;
+  --sidebar-active:#3a473a;
+  --accent-green:#3d6b4f;
+  --accent-green-deep:#274a34;
+  --gold:#a8792f;
+  --border:#d8ccae;
+
+  --yellow:#e0a712;
+  --yellow-bg:#fbe08a;
+  --blue:#1f6fa8;
+  --blue-bg:#a9d3ef;
+  --green:#2f7d3f;
+  --green-bg:#a9dcac;
+  --red:#c23b2c;
+  --red-bg:#f3a89e;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:'IBM Plex Sans', sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  display:flex;
+  min-height:100vh;
+}
+h1,h2,h3,h4{font-family:'Playfair Display', serif; color:var(--accent-green-deep); margin:0 0 8px 0;}
+code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+  width:270px;
+  background:var(--sidebar);
+  color:var(--sidebar-text);
+  position:fixed;
+  top:0; left:0; bottom:0;
+  overflow-y:auto;
+  padding:22px 16px 40px 16px;
+  z-index:20;
+}
+.sidebar-title{
+  font-family:'Playfair Display', serif;
+  font-size:1.25rem;
+  color:#f2ead6;
+  border-bottom:1px solid #3a473a;
+  padding-bottom:14px;
+  margin-bottom:16px;
+  line-height:1.3;
+}
+.sidebar-title .sub{
+  display:block;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.68rem;
+  color:#8fa88e;
+  letter-spacing:1px;
+  margin-top:4px;
+  text-transform:uppercase;
+}
+.tab-switch{
+  display:flex;
+  gap:6px;
+  margin-bottom:18px;
+}
+.tab-switch button{
+  flex:1;
+  background:#28312a;
+  color:#b7c2b1;
+  border:1px solid #3a473a;
+  padding:8px 4px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.7rem;
+  letter-spacing:0.5px;
+  cursor:pointer;
+  border-radius:4px;
+  text-transform:uppercase;
+}
+.tab-switch button.active{
+  background:var(--accent-green);
+  color:#fff;
+  border-color:var(--accent-green);
+}
+.nav-group{margin-bottom:6px;}
+.nav-section-label{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.65rem;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  color:#7c9279;
+  margin:16px 0 6px 4px;
+}
+.sidebar a{
+  display:block;
+  color:var(--sidebar-text);
+  text-decoration:none;
+  padding:6px 10px;
+  font-size:0.83rem;
+  border-radius:4px;
+  margin-bottom:2px;
+  border-left:2px solid transparent;
+  line-height:1.3;
+}
+.sidebar a:hover{background:#2a332a;}
+.sidebar a.active{
+  background:var(--sidebar-active);
+  border-left:2px solid var(--gold);
+  color:#fff;
+  font-weight:600;
+}
+
+/* ===== MAIN ===== */
+.main{
+  margin-left:270px;
+  flex:1;
+  padding:36px 46px 90px 46px;
+  max-width:1080px;
+}
+.page{display:none;}
+.page.active{display:block;}
+
+.hero{
+  border-bottom:2px solid var(--accent-green);
+  padding-bottom:18px;
+  margin-bottom:30px;
+}
+.hero h1{font-size:2rem;}
+.hero p{color:var(--ink-soft); font-style:italic; margin:0;}
+
+.legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:18px 0 34px 0;
+  padding:14px 16px;
+  background:var(--paper-dark);
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+.legend span{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  padding:3px 9px;
+  border-radius:3px;
+}
+.legend .l-concept{background:var(--yellow-bg); border:1px solid var(--yellow);}
+.legend .l-fact{background:var(--blue-bg); border:1px solid var(--blue);}
+.legend .l-person{background:var(--green-bg); border:1px solid var(--green);}
+.legend .l-trap{background:var(--red-bg); border:1px solid var(--red);}
+
+section{margin-bottom:46px; scroll-margin-top:20px;}
+section h2{
+  font-size:1.5rem;
+  border-bottom:2px solid var(--border);
+  padding-bottom:8px;
+  margin-bottom:16px;
+}
+section h2 .num{
+  color:var(--gold);
+  font-family:'IBM Plex Mono', monospace;
+  font-size:1rem;
+  margin-right:8px;
+}
+h3.subhead{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.85rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:var(--accent-green-deep);
+  border-left:4px solid var(--accent-green);
+  padding-left:10px;
+  margin:22px 0 10px 0;
+}
+
+mark{color:var(--ink); font-weight:600; padding:1px 5px; border-radius:3px; box-decoration-break:clone; -webkit-box-decoration-break:clone;}
+mark.concept{background:var(--yellow-bg); box-shadow:inset 0 0 0 1.5px var(--yellow);}
+mark.fact{background:var(--blue-bg); box-shadow:inset 0 0 0 1.5px var(--blue); color:#12324a;}
+mark.person{background:var(--green-bg); box-shadow:inset 0 0 0 1.5px var(--green); color:#123a1a;}
+mark.trap{background:var(--red-bg); box-shadow:inset 0 0 0 1.5px var(--red); color:#5c140b; font-weight:700;}
+
+ul.point-list{padding-left:20px; margin:8px 0;}
+ul.point-list li{margin-bottom:7px; line-height:1.55;}
+
+.callout{
+  border-radius:8px;
+  padding:12px 16px;
+  margin:14px 0;
+  font-size:0.92rem;
+  line-height:1.55;
+  border:1px solid;
+}
+.callout.trap{background:var(--red-bg); border-color:var(--red);}
+.callout.trap .tag{font-family:'IBM Plex Mono',monospace; font-weight:700; color:#a13a2c; text-transform:uppercase; font-size:0.72rem; display:block; margin-bottom:4px;}
+.callout.fact{background:var(--blue-bg); border-color:var(--blue);}
+.callout.fact .tag{font-family:'IBM Plex Mono',monospace; font-weight:700; color:#2a5a7a; text-transform:uppercase; font-size:0.72rem; display:block; margin-bottom:4px;}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:14px 0 24px 0;
+  background:#fffdf7;
+  border:1px solid var(--border);
+  box-shadow:0 1px 3px rgba(0,0,0,0.05);
+  font-size:0.87rem;
+}
+table caption{
+  caption-side:top;
+  text-align:left;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:var(--gold);
+  padding:6px 0;
+}
+th{
+  background:var(--accent-green-deep);
+  color:#f2ead6;
+  text-align:left;
+  padding:9px 12px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  text-transform:uppercase;
+  letter-spacing:0.6px;
+}
+td{
+  padding:9px 12px;
+  border-top:1px solid var(--border);
+  vertical-align:top;
+  line-height:1.5;
+}
+tr.tier-main td:first-child, tr.tier-critical td:first-child, tr.tier-secondary td:first-child{font-weight:700;}
+tr.tier-main{background:#fbf6e8;}
+tr.tier-critical{background:#fdeeea;}
+tr.tier-secondary{background:#eef5ee;}
+.tier-divider td{
+  background:var(--accent-green);
+  color:#fff;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  padding:6px 12px;
+}
+.elem-symbol{
+  display:inline-block;
+  font-family:'IBM Plex Mono', monospace;
+  font-weight:700;
+  background:var(--paper-dark);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:1px 7px;
+  margin-right:6px;
+}
+.deficiency{color:#a13a2c; font-weight:600;}
+
+.mcq-box{
+  background:#fffdf7;
+  border:1px solid var(--border);
+  border-left:4px solid var(--gold);
+  border-radius:6px;
+  padding:12px 16px;
+  margin:10px 0;
+  font-size:0.88rem;
+}
+.mcq-box .q{font-weight:600; margin-bottom:4px;}
+.mcq-box .a{color:var(--accent-green-deep); font-family:'IBM Plex Mono',monospace; font-size:0.8rem;}
+
+.two-col{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+@media(max-width:900px){.two-col{grid-template-columns:1fr;}}
+
+footer{
+  margin-top:60px;
+  padding-top:16px;
+  border-top:1px solid var(--border);
+  color:var(--ink-soft);
+  font-size:0.78rem;
+  font-family:'IBM Plex Mono', monospace;
+}
+
+/* ===== MOBILE HAMBURGER TOGGLE ===== */
+.mobile-topbar{
+  display:none;
+}
+.hamburger-btn{
+  display:none;
+}
+.sidebar-overlay{
+  display:none;
+}
+
+@media(max-width:860px){
+  .mobile-topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:fixed;
+    top:0; left:0; right:0;
+    height:56px;
+    background:var(--sidebar);
+    color:#f2ead6;
+    padding:0 14px;
+    z-index:40;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+  }
+  .mobile-topbar .mt-title{
+    font-family:'Playfair Display', serif;
+    font-size:1.05rem;
+  }
+  .hamburger-btn{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:4px;
+    width:34px;
+    height:34px;
+    background:transparent;
+    border:1px solid #3a473a;
+    border-radius:5px;
+    cursor:pointer;
+    padding:8px;
+  }
+  .hamburger-btn span{
+    display:block;
+    height:2px;
+    background:#e8e2cf;
+    border-radius:2px;
+    transition:transform 0.2s ease, opacity 0.2s ease;
+  }
+  .hamburger-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .hamburger-btn.open span:nth-child(2){opacity:0;}
+  .hamburger-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+  .sidebar{
+    top:56px;
+    left:0;
+    width:82%;
+    max-width:320px;
+    height:calc(100vh - 56px);
+    transform:translateX(-105%);
+    transition:transform 0.25s ease;
+    box-shadow:4px 0 18px rgba(0,0,0,0.25);
+  }
+  .sidebar.open{
+    transform:translateX(0);
+  }
+  .sidebar-overlay{
+    display:block;
+    position:fixed;
+    top:56px; left:0; right:0; bottom:0;
+    background:rgba(0,0,0,0);
+    pointer-events:none;
+    transition:background 0.25s ease;
+    z-index:19;
+  }
+  .sidebar-overlay.open{
+    background:rgba(0,0,0,0.4);
+    pointer-events:auto;
+  }
+  .sidebar-title{display:none;}
+
+  .main{
+    margin-left:0;
+    padding:72px 18px 60px 18px;
+    max-width:100%;
+  }
+  .hero h1{font-size:1.5rem;}
+  section h2{font-size:1.2rem;}
+  table{font-size:0.8rem;}
+  th, td{padding:7px 8px;}
+  .legend{gap:6px; padding:10px 12px;}
+  .legend span{font-size:0.66rem;}
+}
+
+@media(max-width:480px){
+  table{font-size:0.74rem;}
+  .hero h1{font-size:1.3rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="mobile-topbar">
+  <span class="mt-title">The Botanist's Ledger</span>
+  <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleSidebar()" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-title">The Botanist's Ledger
+    <span class="sub">BPSC Prelims · Plant Sciences</span>
+  </div>
+
+  <div class="tab-switch">
+    <button id="btn-tab-nutrition" class="active" onclick="switchTab('nutrition')">Nutrition</button>
+    <button id="btn-tab-hormones" onclick="switchTab('hormones')">Hormones</button>
+  </div>
+
+  <div id="nav-nutrition">
+    <div class="nav-section-label">Foundations</div>
+    <a href="#n-basics" class="navlink" data-page="nutrition">Nutrition Basics</a>
+    <a href="#n-classification" class="navlink" data-page="nutrition">Macro vs Micro</a>
+
+    <div class="nav-section-label">Macronutrients</div>
+    <a href="#n-macro-main" class="navlink" data-page="nutrition">Main — C, H, O</a>
+    <a href="#n-macro-critical" class="navlink" data-page="nutrition">Critical — N, P, K</a>
+    <a href="#n-macro-secondary" class="navlink" data-page="nutrition">Secondary — Mg, S, Ca</a>
+
+    <div class="nav-section-label">Micronutrients</div>
+    <a href="#n-micro" class="navlink" data-page="nutrition">B·Cl·Cu·Fe·Mn·Ni·Mo·Zn</a>
+
+    <div class="nav-section-label">Plant Body & Transport</div>
+    <a href="#n-vascular" class="navlink" data-page="nutrition">Xylem & Phloem</a>
+    <a href="#n-stem-stomata" class="navlink" data-page="nutrition">Stem, Roots & Stomata</a>
+    <a href="#n-cuscuta" class="navlink" data-page="nutrition">Amarbel (Cuscuta)</a>
+
+    <div class="nav-section-label">Applied Facts</div>
+    <a href="#n-applied" class="navlink" data-page="nutrition">Crop-Logging & Misc.</a>
+  </div>
+
+  <div id="nav-hormones" style="display:none;">
+    <div class="nav-section-label">Foundations</div>
+    <a href="#h-basics" class="navlink" data-page="hormones">What Are Phytohormones</a>
+
+    <div class="nav-section-label">Growth Promoters</div>
+    <a href="#h-auxins" class="navlink" data-page="hormones">Auxins</a>
+    <a href="#h-gibberellins" class="navlink" data-page="hormones">Gibberellins</a>
+    <a href="#h-cytokinins" class="navlink" data-page="hormones">Cytokinins</a>
+
+    <div class="nav-section-label">Growth Inhibitors</div>
+    <a href="#h-aba" class="navlink" data-page="hormones">Abscisic Acid</a>
+    <a href="#h-ethylene" class="navlink" data-page="hormones">Ethylene</a>
+
+    <div class="nav-section-label">Exam Consolidation</div>
+    <a href="#h-match" class="navlink" data-page="hormones">Hormone ↔ Function Map</a>
+    <a href="#h-commercial" class="navlink" data-page="hormones">Commercial Chemicals</a>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- ============================================================ -->
+<!-- PAGE 1 : PLANT NUTRITION -->
+<!-- ============================================================ -->
+<div class="page active" id="page-nutrition">
+  <div class="hero">
+    <h1>Plant Nutrition — The Element Ledger</h1>
+    <p>Every macro- and micronutrient, its function, and its deficiency disease — arranged by exam priority tier.</p>
+  </div>
+
+  <div class="legend">
+    <span class="l-concept">Yellow — Concept</span>
+    <span class="l-fact">Blue — Fact / Number</span>
+    <span class="l-person">Green — Person / Institution</span>
+    <span class="l-trap">Red — MCQ Trap</span>
+  </div>
+
+  <section id="n-basics">
+    <h2><span class="num">01</span>Nutrition Basics</h2>
+    <ul class="point-list">
+      <li>Every organism is an <mark class="concept">open system</mark> linked to its environment by a continuous exchange of energy and materials.</li>
+      <li>In ecosystems, plants and other <mark class="concept">photosynthetic autotrophs</mark> transform inorganic compounds into organic ones.</li>
+      <li>Plants need <mark class="concept">sunlight</mark> as the energy source for photosynthesis, plus inorganic raw materials — water, CO₂, and inorganic ions.</li>
+      <li>CO₂ is obtained from air, diffusing into leaves through <mark class="concept">stomata</mark>.</li>
+      <li>Most vascular plants obtain water and minerals from soil <mark class="concept">through roots</mark>.</li>
+      <li>Plants require <mark class="fact">9 macronutrients</mark> and at least <mark class="fact">8 micronutrients</mark> to sustain life.</li>
+      <li>Plants receive their nutrients <mark class="concept">mainly from soil</mark>; of the ~17 essential elements, only C, O, H are absorbed from air — the rest (including N) mainly from soil, taken up by roots along with water.</li>
+    </ul>
+  </section>
+
+  <section id="n-classification">
+    <h2><span class="num">02</span>Macro vs Micro — Classification</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Macronutrients</mark> — required in relatively large quantities. 9 total: 6 major ingredients of organic compounds (<span class="mono">C, O, H, N, S, P</span>) + <span class="mono">K, Ca, Mg</span>.</li>
+      <li><mark class="concept">Micronutrients</mark> — required in very small quantities. 8 total: <span class="mono">Fe, Cl, Cu, Zn, Mn, Mo, B, Ni</span>. Most function as <mark class="concept">cofactors</mark> — non-protein helpers in enzymatic reactions.</li>
+    </ul>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Sodium (Na) is NOT an essential plant nutrient</mark> — it is repeatedly used as the "odd one out" against Ca, K, Mg in BPSC-style questions.
+    </div>
+  </section>
+
+  <section id="n-macro-main">
+    <h2><span class="num">03</span>Macronutrients — Tier 1: Main (C · H · O)</h2>
+    <table>
+      <caption>Structural backbone elements — sourced mainly from air &amp; water</caption>
+      <thead><tr><th>Element</th><th>Core Role</th><th>Source</th><th>Deficiency / Notes</th></tr></thead>
+      <tbody>
+      <tr class="tier-main">
+        <td><span class="elem-symbol">C</span>Carbon</td>
+        <td>Forms the <mark class="concept">backbone of most plant biomolecules</mark> — proteins, starches, cellulose.</td>
+        <td>Fixed through <mark class="concept">photosynthesis</mark>; converts <mark class="fact">CO₂</mark> from air into carbohydrates used to store/transport energy.</td>
+        <td>—</td>
+      </tr>
+      <tr class="tier-main">
+        <td><span class="elem-symbol">H</span>Hydrogen</td>
+        <td>Building <mark class="concept">sugars, proteins, fats</mark> and other plant compounds.</td>
+        <td>Obtained almost entirely from <mark class="fact">water</mark>.</td>
+        <td><mark class="fact">H⁺ ions</mark> drive the <mark class="concept">proton gradient</mark> for the electron transport chain in photosynthesis &amp; respiration.</td>
+      </tr>
+      <tr class="tier-main">
+        <td><span class="elem-symbol">O</span>Oxygen</td>
+        <td>Component of many <mark class="concept">organic &amp; inorganic molecules</mark> within the plant.</td>
+        <td>As <mark class="fact">O₂ &amp; CO₂</mark> (mainly air, via leaves) and as <mark class="fact">H₂O, NO₃⁻, H₂PO₄⁻ &amp; SO₄²⁻</mark> (mainly soil water, via roots).</td>
+        <td>Produced during <mark class="concept">photosynthesis</mark> along with glucose; required for <mark class="concept">aerobic respiration</mark>.</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="n-macro-critical">
+    <h2><span class="num">04</span>Macronutrients — Tier 2: Critical (N · P · K)</h2>
+    <table>
+      <caption>Highest MCQ frequency — deficiency symptoms are exam favourites</caption>
+      <thead><tr><th>Element</th><th>Core Role</th><th>Uptake Form</th><th>Deficiency / Disease</th></tr></thead>
+      <tbody>
+      <tr class="tier-critical">
+        <td><span class="elem-symbol">N</span>Nitrogen</td>
+        <td><mark class="fact">40–50%</mark> of dry matter of protoplasm; constituent of <mark class="concept">amino acids, chlorophyll, some vitamins, nucleic acids (DNA &amp; RNA)</mark>.</td>
+        <td>Mainly as <mark class="fact">NO₃⁻ (nitrate)</mark>; in acid environments (e.g. boreal forests, low nitrification) <mark class="fact">NH₄⁺ (ammonium)</mark> dominates instead.</td>
+        <td class="deficiency"><mark class="trap">Stunted growth, slow growth, chlorosis</mark>.</td>
+      </tr>
+      <tr class="tier-critical">
+        <td><span class="elem-symbol">P</span>Phosphorus</td>
+        <td>Structural component of <mark class="concept">nucleic acids &amp; membrane phospholipids</mark>; part of <mark class="fact">ATP</mark> (cellular energy source). Stimulates <mark class="concept">root development, tillering, early flowering</mark>, hastens maturity.</td>
+        <td>Soil form: polyprotic <mark class="fact">phosphoric acid (H₃PO₄)</mark>; taken up mostly as <mark class="fact">H₂PO₄⁻</mark>. Uptake boosted via <mark class="concept">mycorrhiza mutualism</mark>.</td>
+        <td class="deficiency">Intense green coloration / reddening of leaves (chlorophyll shortage); symptoms resemble N-deficiency but are <mark class="trap">harder to diagnose</mark>.</td>
+      </tr>
+      <tr class="tier-critical">
+        <td><span class="elem-symbol">K</span>Potassium</td>
+        <td>Regulates opening/closing of stomata via a <mark class="concept">potassium-ion pump</mark>.</td>
+        <td>—</td>
+        <td class="deficiency"><mark class="trap">Necrosis or interveinal chlorosis</mark>; higher risk of pathogens, wilting, brown spotting, and frost/heat damage.</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Fertilizer component that stimulates <mark class="trap">early growth</mark> = <mark class="trap">Phosphorus</mark> (promotes root development), NOT Nitrogen — N supports rapid leaf/stem growth instead. (71st BPSC-style distinction.)
+    </div>
+    <div class="callout fact">
+      <span class="tag">Fact</span>
+      Nitrogen uptake form asked repeatedly across UPPCS/Jharkhand PCS/RO-ARO — always <mark class="fact">Nitrate (NO₃⁻)</mark>, not nitrite, nitric oxide, ammonia, or chloride.
+    </div>
+  </section>
+
+  <section id="n-macro-secondary">
+    <h2><span class="num">05</span>Macronutrients — Tier 3: Secondary (Mg · S · Ca)</h2>
+    <table>
+      <caption>Structural / regulatory secondary macronutrients</caption>
+      <thead><tr><th>Element</th><th>Core Role</th><th>Deficiency / Disease</th></tr></thead>
+      <tbody>
+      <tr class="tier-secondary">
+        <td><span class="elem-symbol">Mg</span>Magnesium</td>
+        <td>Constituent of the <mark class="fact">chlorophyll molecule</mark>; also a carrier/activator in numerous enzyme reactions, closely associated with <mark class="concept">energy-supplying phosphorus compounds</mark>.</td>
+        <td class="deficiency">(chlorosis pattern, tied to chlorophyll role — not explicitly listed in source but implied via chlorophyll linkage)</td>
+      </tr>
+      <tr class="tier-secondary">
+        <td><span class="elem-symbol">S</span>Sulphur</td>
+        <td>Structural component of <mark class="concept">amino acids (cysteine, methionine) and vitamins</mark>; essential for chloroplast growth/function; found in the <mark class="fact">iron-sulphur complex</mark> of photosynthetic electron transport chains; needed for <mark class="concept">N₂ fixation by legumes</mark>. <mark class="fact">Most important nutrient for enhancing oil content in mustard crop.</mark></td>
+        <td class="deficiency"><mark class="trap">Yellowing of leaves, stunted growth</mark>.</td>
+      </tr>
+      <tr class="tier-secondary">
+        <td><span class="elem-symbol">Ca</span>Calcium</td>
+        <td>Regulates <mark class="concept">transport of other nutrients</mark> into the plant; activates certain plant enzymes; involved in photosynthesis and plant structure.</td>
+        <td class="deficiency">Stunting; <mark class="trap">blossom end rot</mark> results from inadequate calcium.</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="n-micro">
+    <h2><span class="num">06</span>Micronutrients — B · Cl · Cu · Fe · Mn · Ni · Mo · Zn</h2>
+    <table>
+      <caption>Trace elements — mostly enzyme cofactors, required in minute quantities</caption>
+      <thead><tr><th>Element</th><th>Core Role</th><th>Deficiency / Disease</th></tr></thead>
+      <tbody>
+      <tr>
+        <td><span class="elem-symbol">B</span>Boron</td>
+        <td>Affects <mark class="concept">flowering, fruiting, pollen germination, cell division, active salt absorption</mark>. Strongly affects metabolism of amino acids, carbohydrates, calcium and water. Essential for forming/strengthening cell walls, for new cell growth in plant meristem, and for <mark class="fact">nodule formation in legumes</mark>. Associated with translocation of sugars, starches, N and P.</td>
+        <td class="deficiency">Short, thick cells → <mark class="trap">stunted fruiting bodies and roots</mark>. Failure of calcium metabolism → <mark class="trap">hollow heart in beets and peanuts</mark>.</td>
+      </tr>
+      <tr>
+        <td><span class="elem-symbol">Cl</span>Chlorine</td>
+        <td>As chloride, necessary for <mark class="concept">osmosis and ionic balance</mark>; also plays a role in photosynthesis.</td>
+        <td class="deficiency">— (osmotic/ionic imbalance)</td>
+      </tr>
+      <tr>
+        <td><span class="elem-symbol">Cu</span>Copper</td>
+        <td>Important for photosynthesis; involved in many enzyme processes, manufacture of <mark class="concept">lignin (cell walls)</mark>, and grain production.</td>
+        <td class="deficiency"><mark class="trap">Chlorosis</mark>.</td>
+      </tr>
+      <tr>
+        <td><span class="elem-symbol">Fe</span>Iron</td>
+        <td>Necessary for photosynthesis; acts as an <mark class="concept">enzyme cofactor</mark>; helps electron transport. <mark class="trap">Not a structural part of chlorophyll</mark>, but essential for its synthesis.</td>
+        <td class="deficiency"><mark class="trap">Interveinal chlorosis and necrosis</mark>.</td>
+      </tr>
+      <tr>
+        <td><span class="elem-symbol">Mn</span>Manganese</td>
+        <td>Necessary for photosynthesis, including <mark class="concept">chloroplast building</mark>.</td>
+        <td class="deficiency">Coloration abnormalities — discolored spots on leaves.</td>
+      </tr>
+      <tr>
+        <td><span class="elem-symbol">Ni</span>Nickel</td>
+        <td>Absorbed by higher (vascular) plants as <mark class="fact">Ni²⁺</mark>. Essential for activation of <mark class="fact">urease</mark>, an enzyme in nitrogen metabolism that processes urea. In lower (non-vascular) plants, activates several other enzymes.</td>
+        <td class="deficiency">Without nickel, toxic levels of urea accumulate → <mark class="trap">necrotic lesions</mark>.</td>
+      </tr>
+      <tr>
+        <td><span class="elem-symbol">Mo</span>Molybdenum</td>
+        <td>Cofactor to enzymes building amino acids; involved in nitrogen metabolism. Part of <mark class="fact">nitrate reductase</mark> (reduces nitrate) and <mark class="fact">nitrogenase</mark> (biological N-fixation) enzymes.</td>
+        <td class="deficiency">— (linked to N-metabolism disruption)</td>
+      </tr>
+      <tr>
+        <td><span class="elem-symbol">Zn</span>Zinc</td>
+        <td>Required in a <mark class="concept">large number of enzymes</mark>; essential role in <mark class="concept">DNA transcription</mark>.</td>
+        <td class="deficiency">Stunted growth of leaves ("<mark class="trap">little leaf</mark>"), caused by oxidative degradation of auxin. <mark class="trap">Khaira disease of paddy (rice)</mark> is due to zinc deficiency.</td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Zinc deficiency → auxin degradation → "little leaf"; Zinc deficiency ALSO → Khaira disease of rice. Two separate BPSC-testable consequences of the same deficiency — don't confuse with iron/manganese chlorosis patterns.
+    </div>
+  </section>
+
+  <section id="n-vascular">
+    <h2><span class="num">07</span>Vascular System — Xylem &amp; Phloem</h2>
+    <ul class="point-list">
+      <li>The vein/no-vein split divides the plant kingdom into <mark class="concept">vascular (higher)</mark> and <mark class="concept">non-vascular (lower)</mark> plants.</li>
+      <li>Most plants have xylem &amp; phloem = vascular. Algae and mosses (<mark class="fact">Bryophyta</mark>) lack xylem/phloem = non-vascular.</li>
+    </ul>
+    <table>
+      <caption>Xylem vs Phloem — a recurring comparison MCQ</caption>
+      <thead><tr><th>Feature</th><th>Xylem</th><th>Phloem</th></tr></thead>
+      <tbody>
+      <tr><td>Also called</td><td><mark class="fact">Water-conducting tissue</mark></td><td><mark class="fact">Bast tissue</mark></td></tr>
+      <tr><td>Transports</td><td><mark class="fact">Water &amp; minerals</mark> from roots to rest of plant (unidirectional, upward)</td><td><mark class="fact">Food</mark> from leaves (photosynthesis site) to non-photosynthesizing parts — roots, stems</td></tr>
+      <tr><td>Composed of</td><td><mark class="concept">Tracheids, vessels, wood parenchyma, wood fibres</mark></td><td><mark class="concept">Sieve elements, companion cells, fibres, bast fibres (sclereids), phloem parenchyma</mark></td></tr>
+      <tr><td>Cell state</td><td><mark class="trap">Dead cells</mark></td><td><mark class="trap">Living cells</mark></td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Girdling (removing bark in a ring near the base) kills a tree because the <mark class="trap">phloem</mark> (innermost soft bark layer, food transport) is cut → roots starved of energy. It is <mark class="trap">not</mark> because water can't rise — xylem lies deeper and is unaffected.
+    </div>
+  </section>
+
+  <section id="n-stem-stomata">
+    <h2><span class="num">08</span>Stem, Roots &amp; Stomata</h2>
+    <h3 class="subhead">Stem Types &amp; Functions</h3>
+    <table>
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td>Petiole</td><td>Attaches leaf to stem.</td></tr>
+        <tr><td>Shrub</td><td>Thick, hard stem with branching near the base.</td></tr>
+        <tr><td>Tree</td><td>Thick, hard stem with branches high on the plant.</td></tr>
+        <tr><td>Creeper</td><td>Weak stem which cannot stand upright.</td></tr>
+      </tbody>
+    </table>
+    <ul class="point-list">
+      <li>The stem <mark class="concept">transports food from roots to all plant parts</mark>, <mark class="fact">stores food</mark> made by leaves, and provides <mark class="fact">shape &amp; structural support</mark>; it bears leaves, flowers, fruits — aiding vegetative reproduction too.</li>
+      <li>Maximum water absorption happens through <mark class="concept">root hairs</mark> — the outermost layer of the zone of cell/root maturation.</li>
+      <li>A nail driven into a tree trunk <mark class="trap">stays at the same relative position</mark> even after years — trees grow in length via <mark class="concept">apical meristems</mark> (tips of roots/shoots) and in girth via <mark class="concept">lateral meristems</mark> under the bark; new growth is added outward around the nail.</li>
+    </ul>
+
+    <h3 class="subhead">Stomata &amp; Transpiration</h3>
+    <ul class="point-list">
+      <li>Stomata = small pores in leaf epidermis; <mark class="concept">guard cells</mark> surrounding them regulate gas exchange with the atmosphere; transpiration also occurs through stomata.</li>
+      <li>Opening/closing of stomata is governed by <mark class="concept">turgor pressure changes</mark> in guard cells (driven by water's osmotic flow) — <mark class="trap">not</mark> by nucleus position or protein composition.</li>
+      <li><strong>Day:</strong> transpiration pull → water absorbed by roots → transported via xylem → guard cells swell/turgid → pore opens.</li>
+      <li><strong>Night:</strong> less water absorbed → guard cells shrink/stiffen → pore closes.</li>
+      <li>Water reaches great heights in trees due to <mark class="concept">suction pull caused by transpiration</mark> — not evaporation or absorption alone.</li>
+    </ul>
+  </section>
+
+  <section id="n-cuscuta">
+    <h2><span class="num">09</span>Amarbel (Cuscuta / Dodder)</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Cuscuta</mark> is an angiospermic <mark class="fact">total stem parasite</mark>, genus of about 100–170 species, yellow/orange/red in colour.</li>
+      <li>Grows over host plants with inter-twined stems — common name "<mark class="fact">Devil's Hair</mark>".</li>
+      <li>The plant is <mark class="trap">leafless and rootless</mark> (leaves reduced to minute scales).</li>
+      <li>Its twining stem develops <mark class="concept">haustoria</mark> — rootlike structures that penetrate the host stem, forming contact with the host's <mark class="fact">xylem and phloem</mark>, drawing water, minerals, and prepared food.</li>
+      <li>Used in traditional medicine as a purgative, and to treat disorders of the liver, spleen and urinary tract.</li>
+    </ul>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap (Assertion-Reason)</span>
+      Cuscuta is indeed a parasitic angiosperm (Assertion TRUE) — but it draws nutrition via haustoria connecting to the host's <mark class="trap">xylem and phloem</mark>, not merely "from the leaves of the host plant" (Reason FALSE as commonly framed).
+    </div>
+  </section>
+
+  <section id="n-applied">
+    <h2><span class="num">10</span>Applied Facts</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Crop-logging</mark> = a method of <mark class="fact">plant analysis for assessing nutrient requirement</mark> for crop production. Developed by <mark class="person">Clements (USA)</mark> for sugarcane cultivation in Hawaii, where fertilizer requirements are strongly influenced by weather/climate.</li>
+      <li><mark class="fact">Sulphur</mark> is the nutrient most useful for enhancing oil content in the mustard crop.</li>
+    </ul>
+  </section>
+
+  <footer>The Botanist's Ledger · Plant Nutrition · compiled for BPSC Prelims 2025–26</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 2 : PLANT HORMONES -->
+<!-- ============================================================ -->
+<div class="page" id="page-hormones">
+  <div class="hero">
+    <h1>Plant Hormones — The Phytohormone Ledger</h1>
+    <p>Growth promoters, growth inhibitors, and every commercial/chemical application asked in prelims.</p>
+  </div>
+
+  <div class="legend">
+    <span class="l-concept">Yellow — Concept</span>
+    <span class="l-fact">Blue — Fact / Number</span>
+    <span class="l-person">Green — Person / Institution</span>
+    <span class="l-trap">Red — MCQ Trap</span>
+  </div>
+
+  <section id="h-basics">
+    <h2><span class="num">01</span>What Are Phytohormones</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Plant hormones (phytohormones)</mark> — organic substances formed in one tissue/organ, transported to other sites where they produce specific growth &amp; development effects.</li>
+      <li>Single molecules, produced within plants, occurring in <mark class="fact">extremely low concentrations</mark>.</li>
+      <li><mark class="trap">Unlike animals</mark> — where hormone production is restricted to specialized glands — <mark class="trap">every plant cell is capable of producing hormones</mark>.</li>
+      <li>Classified into two broad categories: <mark class="concept">Growth Promoters</mark> (Auxins, Gibberellins, Cytokinins) and <mark class="concept">Growth Inhibitors</mark> (Abscisic Acid, Ethylene).</li>
+    </ul>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Insulin, thyroxine and estrogen are frequently planted as decoys — all are <mark class="trap">animal hormones</mark>, not plant hormones. Correct plant hormones: Auxin, Gibberellin, Cytokinin, Abscisic acid, Ethylene.
+    </div>
+  </section>
+
+  <section id="h-auxins">
+    <h2><span class="num">02</span>Growth Promoter I — Auxins</h2>
+    <ul class="point-list">
+      <li>One of the most important hormone groups; the <mark class="trap">first growth factors identified as plant hormones</mark>.</li>
+      <li>Chief natural auxin: <mark class="fact">Indole-3-Acetic Acid (IAA, C₁₀H₉O₂N)</mark> — the most common auxin in plants.</li>
+      <li>Other natural auxins: indole-3-acetaldehyde, indole-3-pyruvic acid, indole-3-acetonitrile, indole-3-ethanol.</li>
+    </ul>
+    <table>
+      <caption>Synthetic auxin-like compounds</caption>
+      <tbody>
+        <tr><td><mark class="fact">Indole-3-butyric acid (IBA)</mark></td><td><mark class="concept">Rooting hormone</mark> — promotes root development</td></tr>
+        <tr><td><mark class="fact">1-Naphthaleneacetic acid (NAA)</mark></td><td>Synthetic auxin</td></tr>
+        <tr><td><mark class="fact">Phenylacetic acid</mark></td><td>Synthetic auxin</td></tr>
+        <tr><td><mark class="fact">2,4-D (dichlorophenoxyacetic acid)</mark></td><td>Used as a <mark class="fact">weedicide</mark></td></tr>
+        <tr><td><mark class="fact">2,4,5-T (trichlorophenoxyacetic acid)</mark></td><td>Used as a <mark class="fact">weedicide</mark></td></tr>
+      </tbody>
+    </table>
+    <h3 class="subhead">Functions of Auxins</h3>
+    <ul class="point-list">
+      <li>Primary physiological effect: <mark class="concept">prolongation (elongation) of cells in the shoot</mark>.</li>
+      <li>Controls tropic movements — <mark class="concept">phototropism and geotropism</mark>.</li>
+      <li>Enhances apical growth while <mark class="trap">retarding growth of axillary buds</mark> — this is <mark class="concept">apical dominance</mark>.</li>
+      <li>Promotes <mark class="concept">differentiation of tissues/organs</mark> — e.g. root development in grafting (root initiation).</li>
+      <li>Used to produce <mark class="concept">parthenocarpic (seedless) fruits</mark>.</li>
+      <li>Retards <mark class="concept">abscission of fruits and leaves</mark>.</li>
+      <li>Retards growth of buds — applying auxins allows <mark class="fact">potatoes to be stored longer in cold storage</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="h-gibberellins">
+    <h2><span class="num">03</span>Growth Promoter II — Gibberellins</h2>
+    <ul class="point-list">
+      <li>Discovery traces to the 19th century — a <mark class="person">Japanese farmer</mark> noticed diseased rice plants growing abnormally thin and tall, calling it "<mark class="fact">Bakaene</mark>" or foolish seedling disease.</li>
+      <li>Caused by infection from the fungus <mark class="fact">Gibberella fujikuroi</mark>; the hormone it secreted was named <mark class="concept">gibberellin</mark>.</li>
+      <li>Later discovered that <mark class="trap">plants themselves also produce gibberellins</mark>, controlling multiple aspects of development across the life cycle.</li>
+    </ul>
+    <h3 class="subhead">Functions of Gibberellins</h3>
+    <ul class="point-list">
+      <li>Protects the apical meristem from the inhibitory effect of endogenous growth inhibitors such as <mark class="fact">dormin</mark>.</li>
+      <li>Promotes shoot growth mainly by accelerating <mark class="concept">cell elongation &amp; cell division in the sub-apical meristem region</mark> (developing young internodes).</li>
+      <li><mark class="person">Lang (1960)</mark> demonstrated a marked rise in gibberellin level at the time of <mark class="fact">bolting</mark>, when a rosette (dwarf) growth form starts growing longitudinally.</li>
+      <li><mark class="trap">Gibberellins do NOT affect root growth</mark>.</li>
+      <li>Other functions: <mark class="concept">flowering, seed germination, parthenocarpy, breaking dormancy, cell division in the cambial zone, change in leaf shape/size, and enzyme activity</mark>.</li>
+      <li>Used as a spraying agent to <mark class="fact">increase sugarcane yield</mark> by lengthening the stem.</li>
+    </ul>
+  </section>
+
+  <section id="h-cytokinins">
+    <h2><span class="num">04</span>Growth Promoter III — Cytokinins</h2>
+    <ul class="point-list">
+      <li>Organic substances that promote <mark class="concept">cytokinesis</mark> during cell division.</li>
+      <li><mark class="fact">Kinetin and zeatin</mark> act as cytokinins.</li>
+      <li><mark class="trap">Coconut milk</mark> naturally contains cytokinin.</li>
+      <li>Control: <mark class="concept">cell division, morphogenesis, counteraction of apical dominance, breaking of dormancy</mark>, and <mark class="concept">delay of senescence</mark> (chlorophyll disappearance &amp; protein degradation).</li>
+      <li>Practical use: <mark class="fact">keep cut flowers fresh for longer</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="h-aba">
+    <h2><span class="num">05</span>Growth Inhibitor I — Abscisic Acid (ABA)</h2>
+    <ul class="point-list">
+      <li>Regulates <mark class="concept">dormancy of buds and seeds</mark>.</li>
+      <li>Accelerates <mark class="concept">senescence of leaves</mark>; promotes ageing and abscission of leaves.</li>
+      <li>Inhibits <mark class="concept">plant growth, metabolism, and germination of seeds</mark>.</li>
+      <li>Inhibits gibberellin-stimulated growth — hence also known as <mark class="concept">anti-gibberellin</mark>.</li>
+      <li>Inhibits gibberellin-induced <mark class="fact">α-amylase</mark> formation in barley aleurone.</li>
+      <li>Used widely as a spraying agent on trees to <mark class="fact">regulate the dropping of fruits</mark>.</li>
+      <li><mark class="concept">Drought-tolerance hormone</mark>: causes temporary closure of stomata during water shortage, useful for plants in water-deficient soil; functions as an <mark class="fact">antitranspirant</mark>; also known as the "<mark class="trap">stress hormone</mark>".</li>
+    </ul>
+  </section>
+
+  <section id="h-ethylene">
+    <h2><span class="num">06</span>Growth Inhibitor II — Ethylene (CH₂=CH₂)</h2>
+    <ul class="point-list">
+      <li><mark class="trap">Gaseous plant hormone</mark> — the only one in gaseous form.</li>
+      <li>Produced in minute quantity but <mark class="concept">active at extremely low concentrations</mark>.</li>
+      <li>Synthesized from <mark class="fact">methionine</mark>, an essential amino acid produced in the chloroplast.</li>
+      <li><mark class="concept">Both a growth promoter and a growth inhibitor</mark> depending on context.</li>
+    </ul>
+    <h3 class="subhead">Effects of Ethylene</h3>
+    <ul class="point-list">
+      <li>Enhances respiration rate during fruit ripening — this phenomenon is called "<mark class="concept">respiratory climacteric</mark>".</li>
+      <li>Induces <mark class="concept">epinasty</mark>.</li>
+      <li>Inhibits <mark class="concept">elongation growth in stems and roots</mark>.</li>
+      <li>Stimulates cells to grow <mark class="concept">isodiametrically</mark> rather than longitudinally — enhancing radial growth over elongation growth.</li>
+      <li>Induces <mark class="concept">root hair formation</mark>.</li>
+      <li>Promotes <mark class="concept">leaf &amp; flower abscission and senescence</mark>.</li>
+      <li>Applied to <mark class="fact">rubber trees</mark> to stimulate the flow of latex.</li>
+    </ul>
+  </section>
+
+  <section id="h-match">
+    <h2><span class="num">07</span>Hormone ↔ Function Consolidation Map</h2>
+    <table>
+      <caption>Most frequently matched pairing in PCS exams</caption>
+      <thead><tr><th>Hormone</th><th>Primary Function (as matched in MCQs)</th></tr></thead>
+      <tbody>
+        <tr><td>Auxin</td><td><mark class="fact">Apical dominance</mark></td></tr>
+        <tr><td>Gibberellin</td><td><mark class="fact">Cell elongation</mark></td></tr>
+        <tr><td>Cytokinin</td><td><mark class="fact">Cell division</mark></td></tr>
+        <tr><td>Abscisic acid</td><td><mark class="fact">Growth inhibition</mark></td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Don't swap Auxin/Gibberellin roles — Auxin is remembered for <mark class="trap">apical dominance</mark> (suppressing axillary buds), while Gibberellin is remembered for <mark class="trap">cell elongation</mark> (bolting, stem lengthening). Both involve "growth," but this exact pairing is what's tested.
+    </div>
+  </section>
+
+  <section id="h-commercial">
+    <h2><span class="num">08</span>Commercial &amp; Applied Chemicals</h2>
+    <table>
+      <caption>Practical/industrial applications — a favourite applied-facts MCQ zone</caption>
+      <thead><tr><th>Chemical</th><th>Actual Use</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Ethrel</mark> (Ethephon; 2-chloroethyl phosphonic acid)</td><td>Releases ethylene gas inside the plant — the standard commercial chemical to <mark class="concept">ripen bananas, mangoes, tomatoes</mark> quickly &amp; uniformly.</td></tr>
+        <tr><td><mark class="fact">Indole-3-butyric acid (IBA)</mark></td><td>"<mark class="concept">Rooting hormone</mark>" — promotes root development.</td></tr>
+        <tr><td><mark class="fact">Maleic hydrazide</mark></td><td>Growth-control hormone; <mark class="concept">prevents sprouting in potato/onion</mark>.</td></tr>
+        <tr><td><mark class="fact">Cycocel (Chlormequat chloride)</mark></td><td>Plant growth regulator (PGR) used in ornamental/nursery plants to <mark class="concept">reduce height &amp; strengthen stems</mark>.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Acetylene</mark> (from calcium carbide) is sometimes used illegally for artificial fruit ripening but is <mark class="trap">banned</mark> under the Prevention of Food Adulteration Rules, 1955 (Clause 44AA) — it is far less effective than ethylene and may contain toxic arsenic/phosphorus traces. <mark class="fact">Ethylene</mark> is the natural, safe ripening hormone.
+    </div>
+    <div class="callout fact">
+      <span class="tag">Fact</span>
+      <mark class="concept">Artificial parthenocarpy</mark>: spraying <mark class="fact">gibberellin, auxin, or cytokinin</mark> on flowers can stimulate development of seedless (parthenocarpic) fruit — useful for crops difficult to pollinate/fertilize, such as tomato and summer squash.
+    </div>
+  </section>
+
+  <footer>The Botanist's Ledger · Plant Hormones · compiled for BPSC Prelims 2025–26</footer>
+</div>
+
+</main>
+
+<script>
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
+  document.getElementById('hamburgerBtn').classList.toggle('open');
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('open');
+  document.getElementById('hamburgerBtn').classList.remove('open');
+}
+
+function switchTab(tab){
+  document.getElementById('page-nutrition').classList.toggle('active', tab==='nutrition');
+  document.getElementById('page-hormones').classList.toggle('active', tab==='hormones');
+  document.getElementById('nav-nutrition').style.display = tab==='nutrition' ? 'block' : 'none';
+  document.getElementById('nav-hormones').style.display = tab==='hormones' ? 'block' : 'none';
+  document.getElementById('btn-tab-nutrition').classList.toggle('active', tab==='nutrition');
+  document.getElementById('btn-tab-hormones').classList.toggle('active', tab==='hormones');
+  window.scrollTo(0,0);
+  closeSidebar();
+}
+
+// Scroll-spy highlighting per active page
+const navLinks = document.querySelectorAll('.navlink');
+function onScroll(){
+  const activePage = document.querySelector('.page.active');
+  if(!activePage) return;
+  const sections = activePage.querySelectorAll('section');
+  let currentId = '';
+  sections.forEach(sec=>{
+    const rect = sec.getBoundingClientRect();
+    if(rect.top <= 140) currentId = sec.id;
+  });
+  navLinks.forEach(link=>{
+    link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+  });
+}
+window.addEventListener('scroll', onScroll);
+document.querySelectorAll('.navlink').forEach(link=>{
+  link.addEventListener('click', e=>{
+    e.preventDefault();
+    const id = link.getAttribute('href').substring(1);
+    const target = document.getElementById(id);
+    if(target){
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    closeSidebar();
+  });
+});
+window.addEventListener('load', onScroll);
+</script>
+
+</body>
+</html>
