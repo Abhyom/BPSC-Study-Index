@@ -72,11 +72,13 @@ code, .mono{font-family:'IBM Plex Mono', monospace;}
 }
 .tab-switch{
   display:flex;
+  flex-wrap:wrap;
   gap:6px;
   margin-bottom:18px;
 }
 .tab-switch button{
-  flex:1;
+  flex:1 1 calc(50% - 6px);
+  min-width:70px;
   background:#28312a;
   color:#b7c2b1;
   border:1px solid #3a473a;
@@ -409,6 +411,7 @@ footer{
     <button id="btn-tab-nutrition" class="active" onclick="switchTab('nutrition')">Nutrition</button>
     <button id="btn-tab-hormones" onclick="switchTab('hormones')">Hormones</button>
     <button id="btn-tab-economic" onclick="switchTab('economic')">Economic</button>
+    <button id="btn-tab-reproduction" onclick="switchTab('reproduction')">Repro.</button>
   </div>
 
   <div id="nav-nutrition">
@@ -484,6 +487,31 @@ footer{
     <a href="#e-varieties" class="navlink" data-page="economic">Crop Varieties (MCQ Facts)</a>
     <a href="#e-source-map" class="navlink" data-page="economic">Product ↔ Plant-Part Map</a>
     <a href="#e-misc" class="navlink" data-page="economic">Species &amp; Misc. Facts</a>
+  </div>
+
+  <div id="nav-reproduction" style="display:none;">
+    <div class="nav-section-label">Foundations</div>
+    <a href="#r-basics" class="navlink" data-page="reproduction">Asexual vs Sexual</a>
+
+    <div class="nav-section-label">Asexual Reproduction</div>
+    <a href="#r-asexual" class="navlink" data-page="reproduction">Vegetative Propagation &amp; Apomixis</a>
+    <a href="#r-propagation-crops" class="navlink" data-page="reproduction">Which Crop, Which Method</a>
+
+    <div class="nav-section-label">Sexual Reproduction</div>
+    <a href="#r-flower" class="navlink" data-page="reproduction">Flower Anatomy — Four Whorls</a>
+    <a href="#r-pollination" class="navlink" data-page="reproduction">Pollination — Types &amp; Agents</a>
+    <a href="#r-sporogenesis" class="navlink" data-page="reproduction">Dichogamy &amp; Sporogenesis</a>
+    <a href="#r-fertilization" class="navlink" data-page="reproduction">Double Fertilization</a>
+
+    <div class="nav-section-label">Seeds &amp; Growth</div>
+    <a href="#r-germination" class="navlink" data-page="reproduction">Germination &amp; Dispersal</a>
+    <a href="#r-seed-genetics" class="navlink" data-page="reproduction">Seed Stages, Hybrids &amp; Genomes</a>
+
+    <div class="nav-section-label">Applied Agronomy</div>
+    <a href="#r-agronomy" class="navlink" data-page="reproduction">Crop Rotation &amp; Intercropping</a>
+
+    <div class="nav-section-label">Exam Consolidation</div>
+    <a href="#r-match" class="navlink" data-page="reproduction">Match-List &amp; Trap Table</a>
   </div>
 </nav>
 
@@ -1282,6 +1310,236 @@ footer{
   <footer>The Botanist's Ledger · Economic Importance of Plants · compiled for BPSC Prelims 2025–26</footer>
 </div>
 
+<!-- ============================================================ -->
+<!-- PAGE 4 : PLANT REPRODUCTION -->
+<!-- ============================================================ -->
+<div class="page" id="page-reproduction">
+  <div class="hero">
+    <h1>Plant Reproduction — The Propagation Ledger</h1>
+    <p>Asexual &amp; sexual reproduction, flower anatomy, pollination, fertilization and every crop-propagation fact from theory and 30 solved MCQs.</p>
+  </div>
+
+  <div class="legend">
+    <span class="l-concept">Yellow — Concept</span>
+    <span class="l-fact">Blue — Fact / Number</span>
+    <span class="l-person">Green — Person / Institution</span>
+    <span class="l-trap">Red — MCQ Trap</span>
+  </div>
+
+  <section id="r-basics">
+    <h2><span class="num">01</span>Asexual vs Sexual Reproduction</h2>
+    <ul class="point-list">
+      <li>Plant reproduction is the production of new offspring, accomplished by <mark class="concept">asexual or sexual reproduction</mark>.</li>
+      <li><mark class="concept">Asexual reproduction</mark> produces new individuals <mark class="trap">without the fusion of gametes</mark> — genetically identical to the parent (and to each other), except when mutations occur.</li>
+      <li><mark class="concept">Sexual reproduction</mark> produces offspring by the <mark class="trap">fusion of gametes</mark>, resulting in offspring genetically different from the parent(s).</li>
+      <li>Sexual reproduction involves two fundamental processes: <mark class="concept">meiosis</mark> (rearranges genes, reduces chromosome number) and <mark class="concept">fertilization</mark> (restores the complete diploid number).</li>
+      <li><mark class="fact">Flowers</mark> are the sexual organs of the plant.</li>
+    </ul>
+  </section>
+
+  <section id="r-asexual">
+    <h2><span class="num">02</span>Asexual Reproduction — Vegetative Propagation &amp; Apomixis</h2>
+    <ul class="point-list">
+      <li>Two main types of asexual reproduction: <mark class="concept">Vegetative propagation</mark> (uses a vegetative piece of the original plant — budding, tillering, etc.) and <mark class="concept">Apomixis</mark> (a replacement for sexual reproduction).</li>
+    </ul>
+    <h3 class="subhead">Apomixis</h3>
+    <ul class="point-list">
+      <li>Apomixis is the <mark class="concept">formation and dispersal of seeds that do NOT originate from fertilization of the embryo</mark> — seed production without meiosis and syngamy.</li>
+      <li>No meiotic division and no fertilization of gametes to form a zygote takes place; the entire process is cut short and seed formation occurs directly.</li>
+      <li>Two types: <mark class="fact">Sporophytic</mark> (apomixis from the diploid sporophyte) and <mark class="fact">Gametophytic</mark> (apomixis from the haploid gametophyte).</li>
+      <li>Since apomixis forms seeds without syngamy, <mark class="concept">all resulting seeds are genetically similar</mark>.</li>
+      <li>Apomixis plays an important role in <mark class="concept">hybrid seed production</mark> — it is cost-effective and prevents the loss of specific hybrid characters that would otherwise segregate during meiosis (conventional hybrid-seed cultivation is expensive for farmers).</li>
+    </ul>
+    <h3 class="subhead">Stem Cutting</h3>
+    <ul class="point-list">
+      <li>A plant cutting is a piece of a plant used in horticulture for vegetative propagation — a stem piece is placed in a suitable medium (e.g. moist soil) and, under suitable conditions, grows as a new plant independent of the parent.</li>
+      <li>This technique is classically adopted in <mark class="fact">sugarcane</mark>.</li>
+    </ul>
+    <h3 class="subhead">Layering</h3>
+    <ul class="point-list">
+      <li>A stem still attached to the parent plant is capable of forming roots on contact with a rooting medium; a <mark class="concept">layer</mark> is a rooted stem following detachment from the parent.</li>
+      <li>Plants propagated by natural layering: <mark class="fact">strawberry, raspberry, jasmine</mark>.</li>
+      <li><mark class="concept">Gootee</mark> (a form of layering) requires the rooting of aerial stems while still connected to the parent plant — also called <mark class="fact">air layering, marcotting, pot layerage, marcottage, circumposition</mark>.</li>
+    </ul>
+    <h3 class="subhead">Grafting</h3>
+    <ul class="point-list">
+      <li>A horticultural technique joining tissues of plants so they continue growing together; the upper joined part is the <mark class="fact">scion</mark>, the lower part is the <mark class="fact">root-stock</mark>.</li>
+      <li>Successful joining requires the vascular tissues to grow together — this fusion is called <mark class="concept">inosculation</mark>.</li>
+      <li>Most commonly used in asexual propagation of commercially grown horticultural/agricultural plants.</li>
+    </ul>
+  </section>
+
+  <section id="r-propagation-crops">
+    <h2><span class="num">03</span>Which Crop, Which Method — MCQ Facts</h2>
+    <table>
+      <caption>Propagation method tested directly against named crops</caption>
+      <thead><tr><th>Crop</th><th>Method</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Sugarcane</mark></td><td>Stem cutting</td><td>Belongs to the <mark class="fact">Andropogoneae</mark> tribe of family <mark class="fact">Gramineae</mark>; also propagated via bud-chip settlings raised in nursery and via tissue culture.</td></tr>
+        <tr><td><mark class="fact">Banana</mark></td><td>Suckers</td><td><mark class="trap">NOT stem cutting</mark> — suckers arise from the root, an extension of the rhizome as a lateral root; tissue-culture seedlings, rhizomes and peepers are also used.</td></tr>
+        <tr><td><mark class="fact">Mango &amp; Cotton</mark></td><td>Seeds</td><td>Generally grown from seeds, unlike sugarcane/banana.</td></tr>
+        <tr><td><mark class="fact">Jasmine, Strawberry, Raspberry</mark></td><td>Layering (natural)</td><td>Bury part of a stem/branch in soil — new roots and shoots form without taking cuttings.</td></tr>
+        <tr><td><mark class="fact">Sweet orange</mark></td><td>Grafting</td><td>Tissues from one plant inserted into another so vascular tissues join (inosculation).</td></tr>
+        <tr><td><mark class="fact">Potato</mark></td><td>Clonal selection</td><td>An asexually propagated crop — selected plants are used to produce new clones.</td></tr>
+        <tr><td><mark class="fact">Bougainvillea, Carnation, Cocoa, Grapes</mark></td><td>Stem cuttings</td><td><mark class="trap">All four are propagated by stem cuttings</mark> (also Rose, Duranta); Cocoa can additionally be propagated by seeds.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Vegetative propagation does NOT eliminate viruses</mark> — viral diseases can be transmitted through vegetative parts. It DOES produce a clonal population and CAN be practiced most of the year — a favourite "which statement is incorrect" trio.
+    </div>
+  </section>
+
+  <section id="r-flower">
+    <h2><span class="num">04</span>Flower Anatomy — Four Whorls</h2>
+    <ul class="point-list">
+      <li>Bisexual flowers contain both male and female parts; a flower has <mark class="fact">four main whorls/layers</mark>.</li>
+    </ul>
+    <table>
+      <caption>The four floral whorls, innermost to outermost function</caption>
+      <thead><tr><th>Whorl</th><th>Composed Of</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="concept">Calyx</mark></td><td>Collection of <mark class="fact">sepals</mark> (1st circle)</td><td>Typically green (occasionally coloured/"petaloid"); protects the flower in bud stage.</td></tr>
+        <tr><td><mark class="concept">Corolla</mark></td><td>Collection of <mark class="fact">petals</mark> (2nd circle)</td><td>The colourful part — attracts insects/birds to facilitate pollination.</td></tr>
+        <tr><td><mark class="concept">Androecium</mark></td><td>Collection of <mark class="fact">stamens</mark> (3rd circle) — <mark class="person">male part</mark></td><td>Each stamen = <mark class="fact">Anther</mark> (tip of filament, internally lobed, pollen grains form inside) + <mark class="fact">Filament</mark> (thin stalk holding the anther).</td></tr>
+        <tr><td><mark class="concept">Gynoecium</mark></td><td>Collection of <mark class="fact">carpels</mark> (4th circle) — <mark class="person">female part</mark></td><td><mark class="fact">Stigma</mark> (sticky pollen-landing structure) + <mark class="fact">Style</mark> (thin stalk holding stigma; fused styles/stigmas form the <mark class="concept">pistil</mark>) + <mark class="fact">Ovary</mark> (base of style, contains ovules with the female gamete).</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="r-pollination">
+    <h2><span class="num">05</span>Pollination — Types &amp; Agents</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Pollination</mark> is the transfer of pollen grains from the anther of one flower to the stigma of the same or another flower — caused by insects, birds, wind, water and animals (collectively "pollinating agents").</li>
+    </ul>
+    <table>
+      <caption>Self vs cross-pollination terminology — the exact wording is what's tested</caption>
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="concept">Self-Pollination / Autogamy</mark></td><td>Pollen transfers to the stigma of the <mark class="fact">same flower</mark>.</td></tr>
+        <tr><td><mark class="concept">Geitonogamy</mark></td><td>Pollen transfers from anther to stigma of <mark class="trap">another flower of the SAME plant</mark> — genetically a type of self-pollination, though physically cross-pollination-like.</td></tr>
+        <tr><td><mark class="concept">Cross-Pollination / Xenogamy</mark></td><td>Pollen transfers to the stigma of a flower on <mark class="trap">another (different) plant</mark> — brings genetic variation, better environmental adaptability.</td></tr>
+      </tbody>
+    </table>
+    <ul class="point-list">
+      <li>Many hermaphrodite (bisexual) flowers undergo self-pollination, but plants often have mechanisms to <mark class="concept">prevent self-pollination / promote cross-pollination</mark>, since self-pollination seeds lack genetic variation and are less robust.</li>
+      <li>Once pollen lands on the stigma, <mark class="concept">pollen tubes</mark> develop to transfer pollen to the ovules (which hold the female gamete).</li>
+      <li>Pollinating agents — <mark class="fact">Bat, Bee, Bird</mark> — are <mark class="trap">ALL valid pollinating agents</mark>; bees are the single most important pollinating agent. Bee/butterfly pollination mostly occurs in day-blooming flowers; hummingbird-pollinated flowers appear in warm colours (red, yellow, orange); bat-pollinated flowers are comparatively rarer, some found in the southern hemisphere.</li>
+    </ul>
+  </section>
+
+  <section id="r-sporogenesis">
+    <h2><span class="num">06</span>Dichogamy &amp; Sporogenesis</h2>
+    <h3 class="subhead">Dichogamy</h3>
+    <ul class="point-list">
+      <li><mark class="concept">Dichogamy</mark> = ripening of stamens and pistils of a flower at different times, preventing self-fertilization.</li>
+      <li><mark class="fact">Protandry</mark> = stamens mature before the ovary/pistil.</li>
+      <li><mark class="fact">Protogyny</mark> = ovary/pistil matures before the stamens.</li>
+    </ul>
+    <h3 class="subhead">Microsporogenesis (Male Gametes)</h3>
+    <ul class="point-list">
+      <li>Anthers contain the <mark class="concept">pollen mother cell (2n, diploid)</mark>, which undergoes meiosis to form microspores.</li>
+      <li>A <mark class="fact">Tetrad</mark> is the result of the microspore mother cell dividing — it forms <mark class="fact">4 microspores</mark>.</li>
+      <li>The anther releases microspores/pollen grains once mature.</li>
+    </ul>
+    <h3 class="subhead">Megasporogenesis (Female Gametes)</h3>
+    <ul class="point-list">
+      <li><mark class="concept">Megasporangia</mark> are the ovules — located in the ovary, containing the female gametes.</li>
+      <li>Megasporogenesis = formation of megaspores from the <mark class="concept">megaspore mother cell (diploid)</mark>; its meiosis produces <mark class="fact">4 haploid megaspore cells</mark>, of which <mark class="trap">only ONE is functional — the other three degenerate</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="r-fertilization">
+    <h2><span class="num">07</span>Double Fertilization</h2>
+    <ul class="point-list">
+      <li>Double fertilization occurs in <mark class="concept">angiosperms (flowering plants)</mark> only.</li>
+      <li>The male gamete entering the ovule carries <mark class="fact">two nuclei</mark>: one fuses with the female gamete → <mark class="concept">diploid (2n) zygote</mark>; the other fuses with the diploid polar nuclei → <mark class="concept">triploid (3n) endosperm</mark>.</li>
+      <li>The zygote develops into the future plant; the <mark class="fact">endosperm provides nutrition</mark> to the developing embryo.</li>
+      <li>After fertilization: <mark class="trap">ovary → fruit</mark>, and <mark class="trap">ovules → seeds</mark>.</li>
+    </ul>
+    <div class="callout fact">
+      <span class="tag">Fact</span>
+      In maize, the meiocyte contains <mark class="fact">20 chromosomes</mark> and the gamete has <mark class="fact">10 (n=10)</mark>. Since the endosperm is triploid (3n), it contains <mark class="fact">30 chromosomes</mark>.
+    </div>
+  </section>
+
+  <section id="r-germination">
+    <h2><span class="num">08</span>Germination &amp; Seed Dispersal</h2>
+    <ul class="point-list">
+      <li>The three most necessary circumstances for the germination of a seed are <mark class="fact">water, proper temperature, and oxygen</mark> — <mark class="trap">light/sunlight is NOT essential</mark> for germination.</li>
+      <li>Two types of seed germination: <mark class="concept">epigeal and hypogeal</mark>.</li>
+      <li>Seed dispersal = movement of seeds away from the parent plant, using abiotic and biotic dispersal vectors.</li>
+      <li>The <mark class="concept">Censer mechanism</mark> of seed dispersal is found in <mark class="fact">Poppy</mark>.</li>
+      <li>A plant <mark class="concept">bud</mark> is an <mark class="trap">embryonic shoot</mark> (not an embryonic leaf, endosperm, or seed) — typically found in the axil of a leaf or at the tip of the stem.</li>
+      <li>Buds occur in <mark class="trap">both</mark> locations — <mark class="fact">axillary buds</mark> (angle between leaf &amp; stem; develop into branches/flowers/new stems) and <mark class="fact">terminal buds</mark> (tip of stem/branch; drive vertical growth); rarer adventitious buds on roots are called <mark class="fact">radical buds</mark>, and on leaves, <mark class="fact">epiphyllous buds</mark>.</li>
+      <li><mark class="concept">Embryo</mark> is found in the <mark class="fact">seed</mark> — it develops (with other maternal cells) into the seed for the next generation, which grows into a new plant after germination.</li>
+      <li>The <mark class="trap">flower</mark> is considered the most important part of a plant's life cycle — it mediates the union of male and female gametes, beginning with pollination, continuing through fertilization, and ending with seed formation &amp; dispersal.</li>
+    </ul>
+  </section>
+
+  <section id="r-seed-genetics">
+    <h2><span class="num">09</span>Seed Multiplication Stages, Hybrids &amp; Genomes</h2>
+    <ul class="point-list">
+      <li>Chronological order of seed multiplication stages: <mark class="fact">Nucleus seed → Breeder seed → Foundation seed → Certified seed</mark>.</li>
+      <li><mark class="concept">Hybrid seed</mark> is the seed that must be <mark class="trap">changed every year</mark> — produced by cross-pollinated plants; predominant in agriculture and home gardening.</li>
+      <li>Commercial edible (bread) wheat — <mark class="fact">Triticum aestivum</mark> — carries the <mark class="fact">ABD genome (AABBDD)</mark>, a hexaploid genomic condition.</li>
+    </ul>
+  </section>
+
+  <section id="r-agronomy">
+    <h2><span class="num">10</span>Crop Rotation &amp; Intercropping</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Crop rotation</mark> = cultivation of different crops successively across changing seasons, to optimize soil nutrients/water, control pests, and suppress weeds.</li>
+      <li>Key principles: <mark class="fact">leguminous crops should be followed by non-leguminous crops</mark>; tap-rooted crops (dicots) should follow fibrous-rooted crops (monocots); slow-growing, weed-vulnerable crops should follow weed-suppressing crops; closely related species should NOT be grown successively (they act as alternate hosts for pests/diseases); <mark class="trap">deep-rooted crops should be succeeded by SHALLOW-rooted crops — not the same type</mark>; crops susceptible to soil-borne pathogens/parasitic weeds should be followed by tolerant crops.</li>
+      <li><mark class="concept">Intercropping</mark> = growing two or more crops in proximity. Pulses are commonly intercropped with coarse cereals/oilseeds under rainfed conditions, acting as <mark class="fact">complementary crops</mark>.</li>
+      <li>Pulses' <mark class="concept">tap root system</mark> does not compete for nutrients/moisture with cereals' <mark class="concept">fibrous root system</mark> — taproots anchor better and access minerals/water from deeper in the ground.</li>
+      <li>Pulses as intercrop also safeguard against moisture stress, improve profitability/resource efficiency, and can reduce or substitute the need for nitrogen application (via fixation).</li>
+    </ul>
+    <h3 class="subhead">Sugarcane Cultivation — Current Trends</h3>
+    <ul class="point-list">
+      <li><mark class="concept">'Bud chip' settlings</mark> raised in a nursery and transplanted → substantial saving in seed material vs traditional 2–3 bud setts; more economical and convenient.</li>
+      <li>With <mark class="trap">direct planting</mark> of setts, germination % is actually BETTER with <mark class="trap">many-budded setts</mark>, not single-budded setts (a commonly reversed trap).</li>
+      <li>In bad weather, <mark class="trap">large setts survive better than single-budded setts</mark> when directly planted (again, opposite of the intuitive assumption).</li>
+      <li>Sugarcane CAN be cultivated using <mark class="fact">tissue-culture settlings</mark> — a correct, testable statement.</li>
+      <li>Sugarcane is a <mark class="concept">short day plant</mark> — it blooms in winter when days are shorter; classified as an intermediate-daylength plant with quantitative short-day behaviour.</li>
+    </ul>
+  </section>
+
+  <section id="r-match">
+    <h2><span class="num">11</span>Match-List &amp; Trap Consolidation</h2>
+    <table>
+      <caption>Structure ↔ origin matching — a recurring List-I/List-II format</caption>
+      <thead><tr><th>Structure</th><th>Develops From</th></tr></thead>
+      <tbody>
+        <tr><td>Fruit</td><td><mark class="fact">Ovary</mark></td></tr>
+        <tr><td>Seed</td><td><mark class="fact">Ovule</mark></td></tr>
+        <tr><td>Wood</td><td><mark class="fact">Stem</mark></td></tr>
+        <tr><td>Starch (storage)</td><td><mark class="fact">Leaf</mark></td></tr>
+      </tbody>
+    </table>
+    <table>
+      <caption>Embryo &amp; fertilization pairs — spot the one deliberately mismatched</caption>
+      <thead><tr><th>Pair</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Fertilization – Gametes</td><td>Correctly matched</td></tr>
+        <tr><td>Triple Fusion – Double Fertilization</td><td>Correctly matched (triple fusion is part of double fertilization)</td></tr>
+        <tr><td><mark class="trap">Plumule – Root tip</mark></td><td><mark class="trap">NOT correctly matched</mark> — Plumule is the embryonic shoot; the root tip pairs with the Radicle instead.</td></tr>
+        <tr><td>Embryo sac – Female gametophyte</td><td>Correctly matched</td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Radicle</mark> = embryonic root, emerges FIRST during germination, grows downward, absorbs nutrients. <mark class="trap">Plumule</mark> = embryonic shoot, emerges AFTER the radicle, grows upward to form stem &amp; leaves. Don't swap the two.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Protogyny</mark> = female parts (pistil) mature BEFORE the male parts (stamens). <mark class="trap">Protandry</mark> = male parts mature BEFORE the female parts. Both are sub-types of <mark class="trap">Dichogamy</mark>, which itself exists to prevent self-fertilization.
+    </div>
+  </section>
+
+  <footer>The Botanist's Ledger · Plant Reproduction · compiled for BPSC Prelims 2025–26</footer>
+</div>
+
 </main>
 
 <script>
@@ -1300,12 +1558,15 @@ function switchTab(tab){
   document.getElementById('page-nutrition').classList.toggle('active', tab==='nutrition');
   document.getElementById('page-hormones').classList.toggle('active', tab==='hormones');
   document.getElementById('page-economic').classList.toggle('active', tab==='economic');
+  document.getElementById('page-reproduction').classList.toggle('active', tab==='reproduction');
   document.getElementById('nav-nutrition').style.display = tab==='nutrition' ? 'block' : 'none';
   document.getElementById('nav-hormones').style.display = tab==='hormones' ? 'block' : 'none';
   document.getElementById('nav-economic').style.display = tab==='economic' ? 'block' : 'none';
+  document.getElementById('nav-reproduction').style.display = tab==='reproduction' ? 'block' : 'none';
   document.getElementById('btn-tab-nutrition').classList.toggle('active', tab==='nutrition');
   document.getElementById('btn-tab-hormones').classList.toggle('active', tab==='hormones');
   document.getElementById('btn-tab-economic').classList.toggle('active', tab==='economic');
+  document.getElementById('btn-tab-reproduction').classList.toggle('active', tab==='reproduction');
   window.scrollTo(0,0);
   closeSidebar();
 }
