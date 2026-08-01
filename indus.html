@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indus Valley Civilization Dossier — Sites, Seals &amp; Society</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6efe0; --paper-deep:#efe4cc; --ink:#2b241a; --ink-soft:#5c5240;
+    --navy:#161a24; --navy-deep:#0d1017; --navy-line:#2a3142; --gold:#c8a862; --maroon:#7a2e2e; --rule:#d8c9a3;
+    --y-bg:#fbe98f; --y-bd:#c9a227; --b-bg:#c3ddf5; --b-bd:#3b6ea5; --g-bg:#c8e8c9; --g-bd:#3e8148; --r-bg:#f6c6c2; --r-bd:#a5342b;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{ margin:0; background:var(--paper); color:var(--ink); font-family:"IBM Plex Sans", sans-serif; line-height:1.65; }
+  #sidebar{ position:fixed; top:0; left:0; bottom:0; width:290px; background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%); color:#e8e2d0; overflow-y:auto; padding:26px 0 40px; border-right:3px solid var(--gold); z-index:50; }
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:var(--navy-line); border-radius:4px;}
+  .brand{ padding:0 22px 18px; border-bottom:1px solid var(--navy-line); margin-bottom:14px; }
+  .brand .kicker{ font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:2.5px; color:var(--gold); text-transform:uppercase; }
+  .brand h1{ font-family:"Playfair Display", serif; font-size:21px; margin:6px 0 4px; color:#f4efe0; line-height:1.25; }
+  .brand .sub{font-size:11.5px; color:#9aa0b0;}
+  nav ul{list-style:none; margin:0; padding:0 10px;}
+  nav .grp-title{ font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:1.8px; text-transform:uppercase; color:#7c8296; padding:16px 12px 6px; }
+  nav a{ display:block; padding:8px 12px; margin:1px 0; color:#c9cddb; text-decoration:none; font-size:12.8px; border-radius:6px; border-left:3px solid transparent; transition:all .15s ease; }
+  nav a:hover{background:rgba(200,168,98,.12); color:#fff;}
+  nav a.active{ background:rgba(200,168,98,.18); border-left:3px solid var(--gold); color:#fff; font-weight:600; }
+  #main{ margin-left:290px; padding:44px 52px 120px; max-width:980px; }
+  .masthead{ text-align:center; padding-bottom:26px; margin-bottom:34px; border-bottom:4px double var(--maroon); }
+  .masthead .eyebrow{ font-family:"IBM Plex Mono",monospace; letter-spacing:3px; font-size:11px; color:var(--maroon); text-transform:uppercase; }
+  .masthead h1{ font-family:"Playfair Display", serif; font-weight:800; font-size:38px; margin:10px 0 8px; color:var(--ink); }
+  .masthead .desc{color:var(--ink-soft); font-size:14.5px; max-width:700px; margin:0 auto;}
+  .legend{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:22px auto 0; padding:14px 18px; max-width:720px; background:var(--paper-deep); border:1px solid var(--rule); border-radius:10px; }
+  .legend span{font-size:12px; font-family:"IBM Plex Mono",monospace; display:flex; align-items:center; gap:6px;}
+  .legend i{width:13px; height:13px; border-radius:3px; display:inline-block; border:1px solid rgba(0,0,0,.25);}
+  section.topic{ margin-bottom:56px; scroll-margin-top:24px; }
+  section.topic h2{ font-family:"Playfair Display", serif; font-size:26px; font-weight:700; color:var(--navy); margin:0 0 4px; padding-bottom:10px; border-bottom:2px solid var(--gold); display:flex; align-items:baseline; gap:10px; }
+  section.topic h2 .num{ font-family:"IBM Plex Mono",monospace; font-size:14px; color:var(--maroon); font-weight:600; }
+  h3.sub{ font-family:"Playfair Display", serif; font-size:19px; font-weight:600; color:var(--maroon); margin:26px 0 10px; }
+  p{margin:0 0 13px; font-size:15px;}
+  .lede{font-style:italic; color:var(--ink-soft); font-size:13.5px; margin-top:-2px; margin-bottom:18px;}
+  mark{ padding:1.5px 4px; border-radius:3px; font-weight:500; color:var(--ink); box-decoration-break:clone; }
+  mark.y{background:var(--y-bg); box-shadow:inset 0 -1.5px 0 var(--y-bd);}
+  mark.b{background:var(--b-bg); box-shadow:inset 0 -1.5px 0 var(--b-bd);}
+  mark.g{background:var(--g-bg); box-shadow:inset 0 -1.5px 0 var(--g-bd);}
+  mark.r{background:var(--r-bg); box-shadow:inset 0 -1.5px 0 var(--r-bd); font-weight:600;}
+  .card{ background:#fffdf7; border:1px solid var(--rule); border-radius:10px; padding:16px 20px; margin:16px 0; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  .card h4{ margin:0 0 8px; font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:1.2px; text-transform:uppercase; color:var(--navy); }
+  .card ul{margin:0; padding-left:20px;}
+  .card li{margin-bottom:6px; font-size:14px;}
+  .trap{ background:#fdf0ee; border:1px solid var(--r-bd); border-left:5px solid var(--r-bd); border-radius:8px; padding:14px 18px; margin:18px 0; font-size:13.8px; }
+  .trap h4{ margin:0 0 6px; color:var(--r-bd); font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:1.2px; text-transform:uppercase; display:flex; align-items:center; gap:6px; }
+  table.tbl{ width:100%; border-collapse:collapse; margin:14px 0 20px; font-size:13.8px; background:#fffdf7;}
+  table.tbl caption{ text-align:left; font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-soft); margin-bottom:6px; letter-spacing:.5px;}
+  table.tbl th{ background:var(--navy); color:#f0ead8; text-align:left; padding:8px 12px; font-weight:600; font-size:12.5px;}
+  table.tbl td{ padding:7px 12px; border-bottom:1px solid var(--rule); }
+  table.tbl tr:nth-child(even) td{ background:#f8f2e2; }
+  .mcq{ background:#f6f1e4; border:1px solid var(--rule); border-radius:8px; padding:12px 16px; margin:10px 0; font-size:13.5px; }
+  .mcq .qn{ font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--maroon); font-weight:700; }
+  .figure{ margin:20px 0; text-align:center; }
+  .figure img{ max-width:100%; height:auto; max-height:380px; border-radius:8px; border:1px solid var(--rule); box-shadow:0 2px 8px rgba(0,0,0,.12); }
+  .figure figcaption{ font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-soft); margin-top:8px; letter-spacing:.3px; }
+  .figure-row{ display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin:20px 0; }
+  .figure-row .figure{ flex:1 1 260px; margin:0; }
+  .divider{ text-align:center; color:var(--gold); font-size:18px; letter-spacing:12px; margin:10px 0 26px; }
+  footer{ margin-left:290px; padding:26px 52px 60px; color:var(--ink-soft); font-size:12px; font-family:"IBM Plex Mono",monospace; border-top:1px solid var(--rule); }
+  @media (max-width:880px){
+    #sidebar{display:none;}
+    #main, footer{margin-left:0; padding:30px 20px 90px;}
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="kicker">BPSC Prelims · The Ledger Series</div>
+    <h1>Indus Valley Civilization Dossier</h1>
+    <div class="sub">Harappa · Mohenjodaro · Site Gazetteer · Material Culture</div>
+  </div>
+  <nav>
+    <ul id="navlist">
+      <li class="grp-title">Contents</li>
+      <li><a href="#discovery">1 · Discovery &amp; Nomenclature</a></li>
+      <li><a href="#chronology">2 · Chronology &amp; Dating</a></li>
+      <li><a href="#extent">3 · Geographical Extent</a></li>
+      <li><a href="#punjab-sindh">4 · Sites — Punjab &amp; Sindh</a></li>
+      <li><a href="#gujarat">5 · Sites — Gujarat</a></li>
+      <li><a href="#rajasthan-haryana">6 · Sites — Rajasthan &amp; Haryana</a></li>
+      <li><a href="#up-jk-maha">7 · Sites — UP, J&amp;K &amp; Maharashtra</a></li>
+      <li><a href="#matching">8 · Site–River–Excavator Ledger</a></li>
+      <li><a href="#material">9 · Seals, Sculpture &amp; Terracotta</a></li>
+      <li><a href="#pottery-metal">10 · Pottery, Metallurgy &amp; Measurement</a></li>
+      <li><a href="#economy">11 · Economy, Trade &amp; Metal Sources</a></li>
+      <li><a href="#religion">12 · Religion &amp; Belief System</a></li>
+      <li><a href="#theories">13 · Origin &amp; Decline Theories</a></li>
+      <li><a href="#world">14 · World Context &amp; Firsts</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<main id="main">
+  <div class="masthead">
+    <div class="eyebrow">Indian History series companion · Bronze Age India</div>
+    <h1>Indus Valley (Harappan) Civilization</h1>
+    <div class="desc">Every theory line and every one of the 96 MCQ explanations from the source, merged into one topic-wise ledger, with site photographs and artefact images woven in. Nothing is dropped; source ambiguities (disputed "correct answers", contested founders of theories) are flagged, not silently resolved.</div>
+    <div class="legend">
+      <span><i style="background:var(--y-bg);border-color:var(--y-bd)"></i>Concept / definition</span>
+      <span><i style="background:var(--b-bg);border-color:var(--b-bd)"></i>Fact / date / place</span>
+      <span><i style="background:var(--g-bg);border-color:var(--g-bd)"></i>Person / institution</span>
+      <span><i style="background:var(--r-bg);border-color:var(--r-bd)"></i>MCQ trap / conflict</span>
+    </div>
+  </div>
+
+  <!-- ========== 1. DISCOVERY ========== -->
+  <section class="topic" id="discovery">
+    <h2><span class="num">01</span> Discovery &amp; Nomenclature</h2>
+    <p class="lede">Draws on the intro plus Q2, Q7–Q11, Q40, Q59–Q64, Q80.</p>
+
+    <p>The Indus Valley Civilization is also known as the <mark class="y">Harappa Civilization</mark>. <mark class="g">Archaeologists</mark> use the term <mark class="y">"culture"</mark> for a group of objects, distinctive in style, usually found together within a specific geographical area and period. In the Harappan case, these distinctive objects include <mark class="y">seals, beads, weights, stone blades</mark> and <mark class="y">baked bricks</mark> — the <mark class="y">Harappan seal</mark> is possibly the civilization's single most distinctive artefact.</p>
+    <p><mark class="g">John Marshall</mark>, Director-General of the ASI, announced the discovery of a new civilization in the Indus Valley to the world in <mark class="b">1921</mark>. Marshall served as DG-ASI from 1902–1928, and appointed <mark class="g">Dayaram Sahni</mark>, whose excavation on the left bank of the Ravi led to the Harappa findings in 1921; <mark class="g">Rakhal Das Banerjee (R.D. Banerjee)</mark> dug out Mohenjodaro's ruins in <mark class="b">1922</mark>.</p>
+    <p>The vast mounds at Harappa were <mark class="y">first reported by Charles Masson in 1826</mark>. The first archaeologist to excavate Harappa but fail to recognise its significance was <mark class="g">Alexander Cunningham</mark>, who visited in <mark class="b">1853 and 1856 AD</mark>, making small excavations and noting pottery, stone tools and a seal without grasping their importance.</p>
+
+    <div class="card">
+      <h4>Excavation timeline at Harappa &amp; Mohenjodaro</h4>
+      <ul>
+        <li><mark class="b">January 1921</mark> — <mark class="g">Dayaram Sahni</mark> surveys Harappa (Montgomery/Sahiwal district, Punjab); excavation begins continuously.</li>
+        <li><mark class="b">1922</mark> — <mark class="g">R.D. Banerjee</mark> excavates Mohenjodaro (Larkana district, Sindh).</li>
+        <li><mark class="b">1926–27 to 1933–34</mark> — <mark class="g">Madho Sarup Vats</mark> excavates Harappa.</li>
+        <li><mark class="b">1946</mark> — <mark class="g">Mortimer Wheeler</mark> excavates Harappa.</li>
+      </ul>
+      <p style="margin:8px 0 0;font-size:13px;color:var(--ink-soft);">Also contributing to discovery: K.N. Dikshit, Ernest Mackay, Aurel Stein, A.N. Ghosh, J.P. Joshi. <mark class="r">V.A. Smith was NOT associated</mark> with the Harappan discovery — he was an Irish Indologist/historian, a recurring MCQ trap (Q63).</p>
+    </div>
+
+    <p>The first artefact uncovered at Harappa was a unique <mark class="y">stone seal carved with a unicorn and an inscription</mark>. Although the <mark class="y">Harappan script remains undeciphered</mark>, evidence from archaeological excavations (seals, terracotta, utensils, jewellery, weapons, tools) is the <mark class="y">major/main source</mark> of knowledge about Harappan culture — NOT rock edicts, religious books, or (per the dedicated MCQ on inhabitants) scripts alone; over <mark class="b">3,000 seals</mark> have been found.</p>
+
+    <div class="trap">
+      <h4>⚠ Trap — origin-of-civilization matching (Q10)</h4>
+      <mark class="g">E.J.H. Mackay</mark> → migration of people from Sumer. <mark class="g">Mortimer Wheeler</mark> (with D.H. Gordon) → migration of the <i>idea</i> of civilization from Western Asia. <mark class="g">Amalananda Ghosh</mark> → pre-Harappan culture matured into Harappan civilization. <mark class="r">M. Rafique Mughal is WRONGLY paired with "inspired by Mesopotamia"</mark> — he actually argued the opposite: that Harappan civilization developed independently in the Ravi region at Harappa and refuted Mesopotamian-inspiration theories.
+    </div>
+
+    <p><mark class="g">Mohenjodaro</mark> is a Sindhi-language term meaning <mark class="y">"Mound of the Dead."</mark> A recurring excavator-matching MCQ (Q11) pairs: <mark class="g">Harappa</mark> → Daya Ram Sahni (1923–25); <mark class="g">Hastinapur</mark> → B.B. Lal (1950–52); <mark class="g">Takshashila</mark> → John Marshall (1913–34); <mark class="g">Kaushambi</mark> → N.G. Majumdar (1936–37).</p>
+    <p>Separately (Q61): <mark class="g">Surkotada</mark> was excavated by <mark class="g">J.P. Joshi</mark> (confirmed again in Q64), NOT by B.K. Thapar; <mark class="g">Dholavira</mark> was excavated by <mark class="g">R.S. Bisht</mark>, not Thapar — a recurring MCQ trap.</p>
+  </section>
+
+  <!-- ========== 2. CHRONOLOGY ========== -->
+  <section class="topic" id="chronology">
+    <h2><span class="num">02</span> Chronology &amp; Dating</h2>
+    <p class="lede">Draws on the intro plus Q3, Q66, Q91, Q95–Q96.</p>
+
+    <p>Carbon-14 (C14) dating places the Harappan period at <mark class="b">2600 BC to 1700 BC</mark> — the most widely accepted range. The civilization's growth <mark class="y">peaked between 2300 BC and 1900 BC</mark>. <mark class="g">Mesopotamian</mark> and <mark class="g">Egyptian</mark> civilizations are contemporary to the Indus civilization.</p>
+
+    <table class="tbl">
+      <caption>Researcher timelines for different Indus Valley sites</caption>
+      <tr><th>Researcher</th><th>Site</th><th>Proposed timeline</th></tr>
+      <tr><td>John Marshall</td><td>Mohenjodaro</td><td>3250–2750 BC</td></tr>
+      <tr><td>Ernest Mackay</td><td>Mohenjodaro</td><td>2800–2500 BC</td></tr>
+      <tr><td>Madho Sarup Vats</td><td>Harappa</td><td>3500–2500 BC</td></tr>
+      <tr><td>C.J. Gadd</td><td>Trade with Mesopotamia</td><td>2350–1700 BC</td></tr>
+      <tr><td>Mortimer Wheeler</td><td>Harappa</td><td>2500–1500 BC</td></tr>
+      <tr><td>Walter A. Fairservis</td><td>—</td><td>2000–1500 BC</td></tr>
+    </table>
+
+    <p>Indus civilization existed in the <mark class="y">Proto-historic age</mark> (Q3) — writing existed but remains undeciphered, distinguishing it from both prehistoric (no writing) and historic (deciphered writing) ages.</p>
+
+    <div class="card">
+      <h4>Chronological order of key Indian developments (Q66)</h4>
+      <ol style="margin:0;padding-left:20px;font-size:14px;">
+        <li><mark class="y">Urban culture</mark> — Harappan Civilization, Bronze Age</li>
+        <li><mark class="y">Iron plough</mark> — known from post-Vedic period, ~1000 BC</li>
+        <li><mark class="y">Punch-marked silver coins</mark> — 7th–6th century BC</li>
+        <li><mark class="y">Gold coins</mark> — introduced by Indo-Greek rulers, 2nd century BC</li>
+      </ol>
+    </div>
+
+    <p>Per an <mark class="g">IIT Kharagpur</mark> study, continuous low/negligible rainfall for <mark class="b">900 years</mark> is cited as a cause of the civilization's fall (see also Decline Theories, Section 13). <mark class="g">Mesopotamia (Iraq)</mark> is generally considered the <mark class="y">world's oldest civilization</mark>, with Egyptian civilization emerging after it.</p>
+  </section>
+
+  <!-- ========== 3. EXTENT ========== -->
+  <section class="topic" id="extent">
+    <h2><span class="num">03</span> Geographical Extent</h2>
+    <p class="lede">Draws on the intro plus Q35, Q56, Q70.</p>
+
+    <div class="figure">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Indus_Valley_Civilization,_Mature_Phase_(2600-1900_BCE).png" alt="Map of the Indus Valley Civilization, Mature Phase" loading="lazy">
+      <figcaption>Extent of the Indus Valley Civilization, Mature Phase (2600–1900 BCE) · Wikimedia Commons</figcaption>
+    </div>
+
+    <p>The Harappan culture covered parts of <mark class="b">Afghanistan, Punjab, Sindh, Baluchistan</mark> (Pakistan) and, in India, <mark class="b">Gujarat, Rajasthan, Haryana</mark>, the fringes of western <mark class="b">Uttar Pradesh, J&amp;K</mark>, and western <mark class="b">Maharashtra</mark>. It extended from <mark class="g">Manda (J&amp;K)</mark> in the north to <mark class="g">Daimabad (Maharashtra)</mark> in the south, and from <mark class="g">Sutkagen Dor (Baluchistan)</mark> in the west to <mark class="g">Alamgirpur (Meerut, UP)</mark> in the east — confirmed separately (Q35) as: eastern boundary = Alamgirpur; western = Sutkagendor; northern = Manda; southern = Daimabad.</p>
+    <p>The area formed a rough triangle spanning about <mark class="b">13 lakh square kilometres</mark> — larger than Pakistan and bigger than ancient Egypt or Mesopotamia.</p>
+    <p>Geographically, the civilization straddled the rivers <mark class="b">Sindhu (Indus), Chenab and Jhelum</mark> (Q56) — spreading from the Jhelum in the north to the Hindon river (a Yamuna tributary) at Alamgirpur in the south; the <mark class="r">Ganga was NOT part of this river system</mark>.</p>
+    <p>Banawali (Fatehabad, Haryana) is located in the valley of the <mark class="b">Ghaggar</mark> and its tributaries (Q70) — as is Kalibangan.</p>
+
+    <h3 class="sub">Population</h3>
+    <p>Evidence suggests the population of Mohenjodaro was a mixture of at least <mark class="b">four races</mark>: <mark class="y">Proto-Australoids (Caucasian), Mediterraneans, Alpines</mark> and <mark class="y">Mongoloids</mark>.</p>
+
+    <div class="card">
+      <h4>Theorised "founders" of the Indus Valley Civilization</h4>
+      <ul>
+        <li><mark class="g">Dr. Laxman Swaroop</mark> — Arya (Aryans).</li>
+        <li><mark class="g">V. Gordon Childe and Wheeler</mark> — Sumerians.</li>
+        <li><mark class="g">Rakhal Das Banerji</mark> — Dravidians (Dravid).</li>
+      </ul>
+    </div>
+
+    <p>Excavated Indus Valley cities fall into three categories: <mark class="y">Central cities</mark>, <mark class="y">Coastal cities and dockyards</mark>, and <mark class="y">Other cities and towns</mark>. The four major cities/large towns were <mark class="g">Harappa, Mohenjodaro, Banawali</mark> and <mark class="g">Dholavira</mark>.</p>
+  </section>
+
+  <!-- ========== 4. PUNJAB & SINDH ========== -->
+  <section class="topic" id="punjab-sindh">
+    <h2><span class="num">04</span> Site Gazetteer — Punjab &amp; Sindh (Pakistan)</h2>
+    <p class="lede">Draws on the intro plus Q16, Q24–Q26, Q38–Q41, Q45, Q68–Q69, Q73.</p>
+
+    <h3 class="sub">Harappa</h3>
+    <p>Located in the <mark class="b">Montgomery district (now Sahiwal district), Punjab province, Pakistan</mark>, on the <mark class="b">left bank of the Ravi River</mark>. Per <mark class="g">Stuart Piggott</mark>, Harappa and Mohenjodaro were <mark class="y">"Twin capitals of one United Kingdom."</mark> Harappa had two mounds — the eastern <mark class="y">city mound</mark> and the western <mark class="y">Citadel mound</mark>. Its <mark class="y">Granary</mark> comprised 12 rooms in two rows of six.</p>
+
+    <div class="figure">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/View_of_Granary_and_Great_Hall_on_Mound_F_-_Archaeological_site_of_Harappa.jpg" alt="Granary and Great Hall on Mound F, Harappa" loading="lazy">
+      <figcaption>Granary and Great Hall, Mound F, Harappa · Wikimedia Commons</figcaption>
+    </div>
+
+    <h3 class="sub">Mohenjodaro</h3>
+    <p>Located on the <mark class="b">right bank of the Indus</mark>, Larkana district, Sindh, Pakistan. Discovered by <mark class="g">R.D. Banerjee</mark> in 1922. Its most important public place is the <mark class="y">Great Bath</mark> — used for ritual bathing (Q24–Q25). Northeast of the Great Bath stands a large ruined building, <mark class="b">70.1 × 23.77 m</mark>, perhaps the residence of a high priest or a college of priests.</p>
+
+    <div class="figure">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Great_bath_-_Mohenjo-daro.jpg" alt="The Great Bath at Mohenjo-daro" loading="lazy">
+      <figcaption>The Great Bath, Mohenjo-daro, Sindh · Wikimedia Commons</figcaption>
+    </div>
+
+    <p>Mohenjodaro's main quality was its <mark class="y">roads</mark>: the main road, 9.15 m wide, is called <mark class="y">"Rajpath."</mark> Straight roads intersected at right angles, forming square/quadrangle blocks. Key artefacts: mother goddess idol, Dancing Girl statue, seated male soapstone Priest-King, Pashupati (Shiva) seal, well skeletons, horse teeth, cotton cloth evidence, and the famous <mark class="y">humped bull seal</mark> (Q85).</p>
+
+    <h3 class="sub">Chanhudaro</h3>
+    <p>About <mark class="b">130 km south of Mohenjodaro</mark>; discovered by <mark class="g">N.G. Majumdar</mark> in 1931, excavated on a large scale by <mark class="g">E.J.H. Mackay</mark> in 1935–36 (Q40). Remnants of the <mark class="y">Jhukar and Jhangar</mark> cultures found here; likely an industrial hub for <mark class="y">shell-making, bangle-making and bead-making</mark>, with bead-making furnaces found by Mackay. Finds: ornamented elephant, toys, a dog-following-cat figurine, and lipsticks. <mark class="r">Chanhudaro has NO rock-cut architecture</mark> — that distinction belongs to Dholavira (Q73).</p>
+
+    <h3 class="sub">Ropar</h3>
+    <p>Located on the <mark class="b">left bank of the Satluj</mark>, now called <mark class="b">Rupnagar</mark>, Punjab. Discovered by <mark class="g">B.B. Lal</mark> in 1950; excavated by <mark class="g">Yagyadatt Sharma</mark> in 1953–55.</p>
+
+    <div class="trap">
+      <h4>⚠ Trap — sites confused with Sindh (Q16, Q38–Q39)</h4>
+      Not a Harappan site: <mark class="r">Sohgaura</mark> (Rapti river, Gorakhpur, UP) — this is a <mark class="r">Mauryan-period</mark> copper-plate site about storehouses, not Harappan; Chanhudaro, Kotdiji and Desalpur ARE genuine Harappan sites (Chanhudaro/Kotdiji in Sindh; Desalpur in Kachchh, Gujarat). Among Harappa/Mohenjodaro/Chanhudaro/Surkotada, only <mark class="g">Mohenjodaro and Chanhudaro</mark> are actually in Sindh — Harappa is in Punjab and Surkotada is in Gujarat.
+    </div>
+  </section>
+
+  <!-- ========== 5. GUJARAT ========== -->
+  <section class="topic" id="gujarat">
+    <h2><span class="num">05</span> Site Gazetteer — Gujarat</h2>
+    <p class="lede">Draws on the intro plus Q17, Q30–Q32, Q42, Q44–Q49, Q68, Q73–Q78.</p>
+
+    <h3 class="sub">Lothal</h3>
+    <p>Situated on the <mark class="b">Bhogava River</mark> in Ahmedabad district, Gujarat; discovered by <mark class="g">S.R. Rao</mark> in 1954. Along its eastern side, a brick basin has been identified by its excavator as a <mark class="y">dockyard</mark> — Lothal is the only Indus site with clear port/dockyard evidence, situated near the Gulf of Khambhat/Cambay for trade with Western Asia. On planning and material goods, it resembles a "mini Harappa" or "mini Mohenjodaro."</p>
+
+    <div class="figure">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lothal_Dockyard.jpg" alt="Lothal dockyard" loading="lazy">
+      <figcaption>The dockyard at Lothal, Gujarat · Wikimedia Commons</figcaption>
+    </div>
+
+    <p>Evidence found at Lothal: rice husk, metal-workers, shell-ornament makers, bead-makers, a shop, fire altars, a terracotta horse figurine, a terracotta ship model, a Persian seal, painted jars, and an <mark class="y">ivory scale</mark> (Q68). Three <mark class="y">double burials</mark> have also been found here (Q79).</p>
+
+    <h3 class="sub">Dholavira</h3>
+    <p>The <mark class="y">second-largest Harappan site in India</mark> (after Rakhigarhi), located in the <mark class="b">Rann of Kachchh</mark>. Excavated by <mark class="g">R.S. Bisht</mark> and colleagues in 1990–91. Divided into three parts — <mark class="y">Citadel, Middle Town</mark> and <mark class="y">Lower Town</mark> (Q75–Q76). Famous for a sophisticated <mark class="y">water management system</mark>: a series of dams channelling water into connected reservoirs, including a rock-cut reservoir about <mark class="b">79 m × 12 m, 7 m deep</mark> (Q77–Q78).</p>
+
+    <div class="figure">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Water_reservoir_at_Dholavira_site.jpg" alt="Water reservoir at Dholavira" loading="lazy">
+      <figcaption>Rock-cut water reservoir at Dholavira, Gujarat · Wikimedia Commons</figcaption>
+    </div>
+
+    <h3 class="sub">Surkotada, Rangpur, Padri, Desalpur</h3>
+    <p><mark class="g">Surkotada</mark> (Kachchh district) has yielded evidence of <mark class="y">horse bones</mark> and <mark class="y">pot burials</mark>; discovered/excavated by <mark class="g">J.P. Joshi</mark>. <mark class="g">Rangpur</mark> lies in the <mark class="b">Saurashtra region</mark> on the Bhadar river; vegetative remains suggest cultivation of <mark class="y">Rice, Bajra and Sorghum</mark>. <mark class="g">Padri</mark> is also a Gujarat Harappan site (Q37 matching set). <mark class="g">Desalpur</mark>, in Kachchh, is a genuine Harappan site (cross-referenced in the Q16 trap above).</p>
+
+    <div class="trap">
+      <h4>⚠ Trap — Kalibangan is NOT in Gujarat or Haryana</h4>
+      A recurring MCQ (Q30) wrongly lists <mark class="r">Kalibangan–Haryana</mark>; Kalibangan is in <mark class="g">Hanumangarh district, Rajasthan</mark>. Discovered by Italian Indologist Luigi Pio Tessitory; excavated by A. Ghosh (1950–52) and by B.B. Lal &amp; B.K. Thapar starting 1960–61 per the intro.
+    </div>
+  </section>
+
+  <!-- ========== 6. RAJASTHAN & HARYANA ========== -->
+  <section class="topic" id="rajasthan-haryana">
+    <h2><span class="num">06</span> Site Gazetteer — Rajasthan &amp; Haryana</h2>
+    <p class="lede">Draws on the intro plus Q18–Q19, Q30, Q33–Q34, Q36–B37, Q54–Q55, Q92.</p>
+
+    <h3 class="sub">Kalibangan</h3>
+    <p>Located in <mark class="b">Hanumangarh district, Rajasthan</mark>, on the bank of the <mark class="b">Ghaggar (Saraswati) River</mark>. Excavation started by <mark class="g">B.B. Lal &amp; B.K. Thapar</mark> in 1960–61. Kalibangan has given the <mark class="y">earliest evidence of a ploughed agricultural field</mark> discovered anywhere in the civilization (Q18–Q19), plus Mesopotamian seals, toy-cart wheels, and fire altars. A <mark class="y">triangular terracotta cake</mark> with a carved <mark class="y">horned deity</mark> on one side and a goat being dragged on the other was also recovered (Q92), pointing to an early sacrificial tradition.</p>
+
+    <h3 class="sub">Rakhigarhi</h3>
+    <p>Situated in <mark class="b">Hisar district, Haryana</mark>, in the Ghaggar-Hakra river plain. This is the <mark class="y">largest Indus Valley site in India</mark> (Q54–Q55).</p>
+
+    <h3 class="sub">Banawali &amp; Balu</h3>
+    <p><mark class="g">Banawali</mark> (Fatehabad district, Haryana) has yielded clay figures of the <mark class="y">mother goddess</mark> and a <mark class="y">terracotta replica of a plough</mark> (see matching ledger, Section 8). <mark class="g">Balu</mark> is also located in Haryana (Q37 matching set).</p>
+
+    <h3 class="sub">Bhagwanpura</h3>
+    <p>Located in <mark class="b">Kurukshetra district, Haryana</mark>, on the southern bank of the river <mark class="b">Saraswati</mark>; excavated by <mark class="g">J.P. Joshi</mark>.</p>
+  </section>
+
+  <!-- ========== 7. UP, J&K, MAHARASHTRA ========== -->
+  <section class="topic" id="up-jk-maha">
+    <h2><span class="num">07</span> Site Gazetteer — UP, J&amp;K &amp; Maharashtra</h2>
+    <p class="lede">Draws on the intro plus Q31, Q33, Q80–Q81.</p>
+
+    <h3 class="sub">Alamgirpur &amp; Hulas (Uttar Pradesh)</h3>
+    <p><mark class="g">Alamgirpur</mark> is in <mark class="b">Meerut district, UP</mark>, on the <mark class="b">Hindon River</mark> — marking the civilization's eastern boundary. A gold-coated terracotta bead-like structure and cloth evidence were found here, plus utensils with triangle, peacock and squirrel impressions. <mark class="g">Hulas</mark> is in <mark class="b">Saharanpur district, UP</mark>: hand-made and wheel-made pottery with black geometric/naturalistic designs, chert blades, bone points. Per Q31, of Kalibangan/Lothal/Alamgirpur/Hulas, only <mark class="g">Alamgirpur and Hulas</mark> lie in Uttar Pradesh (Kalibangan is Rajasthan, Lothal is Gujarat).</p>
+
+    <h3 class="sub">Mandi &amp; Sinauli (Uttar Pradesh)</h3>
+    <p><mark class="g">Mandi</mark> is in <mark class="b">Muzaffarnagar district, UP</mark> — famous for the 2000 discovery (and looting) of a hoard of late-Harappan gold jewellery by villagers (Q33, Q81). <mark class="g">Sinauli</mark>, in <mark class="b">Baraut Tehsil, Baghpat district, UP</mark>, has yielded <mark class="b">125 graves</mark> oriented North–South, mostly primary human burials, some with animal bones, gold, copper and bangles (Q80).</p>
+
+    <h3 class="sub">Manda (Jammu &amp; Kashmir)</h3>
+    <p>Situated on the <mark class="b">Chenab river</mark>; excavated by <mark class="g">J.P. Joshi and Madhubala</mark> (the source dates this to "1776-77," almost certainly a typo for 1976–77). Considered a site used to procure wood from Himalayan regions and float it downstream to other Indus towns.</p>
+
+    <h3 class="sub">Daimabad (Maharashtra)</h3>
+    <p>Situated on the <mark class="b">left bank of the Pravara River</mark>, Ahmednagar (now Ahilyanagar) district; discovered by <mark class="g">B.P. Bopardikar</mark> in 1958. Famous for many <mark class="y">bronze goods</mark>, some Harappan-influenced — and marks the civilization's <mark class="y">southern boundary</mark>.</p>
+
+    <h3 class="sub">Dadheri (Punjab)</h3>
+    <p><mark class="g">Dadheri (Kotla Dadheri)</mark>, in Govindgarh, Fatehgarh Sahib district, Punjab, is a <mark class="y">Late Harappan site</mark> known for <mark class="y">painted grey ware culture</mark> — associated with the arrival of the Aryans.</p>
+  </section>
+
+  <!-- ========== 8. MATCHING LEDGER ========== -->
+  <section class="topic" id="matching">
+    <h2><span class="num">08</span> Site–River–Excavator Matching Ledger</h2>
+    <p class="lede">A consolidated reference for the many "match List-I with List-II" MCQs (Q17, Q20–Q22, Q36–Q37) — these recur across exam years with the same pairs reshuffled.</p>
+
+    <table class="tbl">
+      <caption>Sites and their rivers</caption>
+      <tr><th>Site</th><th>River</th></tr>
+      <tr><td>Harappa</td><td>Ravi</td></tr>
+      <tr><td>Mohenjodaro</td><td>Indus</td></tr>
+      <tr><td>Kalibangan</td><td>Ghaggar</td></tr>
+      <tr><td>Lothal</td><td>Bhogava</td></tr>
+      <tr><td>Ropar</td><td>Sutlej</td></tr>
+      <tr><td>Manda</td><td>Chenab</td></tr>
+      <tr><td>Daimabad</td><td>Pravara</td></tr>
+      <tr><td>Alamgirpur</td><td>Hindon</td></tr>
+      <tr><td>Sutkagendor</td><td>Dasht</td></tr>
+      <tr><td>Bhagwanpura</td><td>Sarasvati</td></tr>
+    </table>
+
+    <table class="tbl">
+      <caption>Site ↔ distinctive archaeological finding</caption>
+      <tr><th>Site</th><th>Finding</th></tr>
+      <tr><td>Lothal</td><td>Dockyard</td></tr>
+      <tr><td>Kalibangan</td><td>Ploughed field / furrowed land</td></tr>
+      <tr><td>Dholavira</td><td>Inscription of ten large Harappan-script signs</td></tr>
+      <tr><td>Banawali</td><td>Terracotta replica of a plough</td></tr>
+      <tr><td>Harappa</td><td>Cemetery R-37</td></tr>
+      <tr><td>Mohenjo-Daro</td><td>Dancing Girl statue</td></tr>
+    </table>
+
+    <table class="tbl">
+      <caption>Site ↔ state/UT of India (or country)</caption>
+      <tr><th>Site</th><th>State / UT</th></tr>
+      <tr><td>Manda</td><td>Jammu &amp; Kashmir</td></tr>
+      <tr><td>Daimabad</td><td>Maharashtra</td></tr>
+      <tr><td>Kalibangan</td><td>Rajasthan</td></tr>
+      <tr><td>Rakhigarhi</td><td>Haryana</td></tr>
+      <tr><td>Balu</td><td>Haryana</td></tr>
+      <tr><td>Padri</td><td>Gujarat</td></tr>
+      <tr><td>Hulas</td><td>Uttar Pradesh</td></tr>
+      <tr><td>Lothal</td><td>Gujarat</td></tr>
+      <tr><td>Alamgirpur</td><td>Uttar Pradesh</td></tr>
+      <tr><td>Ropar</td><td>Punjab</td></tr>
+      <tr><td>Mandi (Muzaffarnagar)</td><td>Uttar Pradesh</td></tr>
+    </table>
+
+    <table class="tbl">
+      <caption>Ancient site ↔ river (broader Indian history set, incl. non-Harappan)</caption>
+      <tr><th>Site</th><th>River</th></tr>
+      <tr><td>Harappa</td><td>Ravi</td></tr>
+      <tr><td>Hastinapur</td><td>Ganga</td></tr>
+      <tr><td>Nagarjuna Konda</td><td>Krishna</td></tr>
+      <tr><td>Paithan</td><td>Godavari</td></tr>
+    </table>
+
+    <div class="trap">
+      <h4>⚠ Trap — sites often mismatched to wrong states</h4>
+      Recurring incorrect pairings across exam years: <mark class="r">Kalibangan–Haryana</mark> (correct: Rajasthan) and <mark class="r">Rakhigarhi–Rajasthan</mark> (correct: Haryana). Always double-check these two against each other since examiners swap them as distractors.
+    </div>
+  </section>
+
+  <!-- ========== 9. MATERIAL CULTURE ========== -->
+  <section class="topic" id="material">
+    <h2><span class="num">09</span> Seals, Sculpture &amp; Terracotta Art</h2>
+    <p class="lede">Draws on the intro plus Q15, Q26, Q85–Q90.</p>
+
+    <div class="figure-row">
+      <figure class="figure">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Dancing_girl_of_Mohenjo-daro.jpg" alt="Dancing Girl of Mohenjo-daro" loading="lazy">
+        <figcaption>Dancing Girl, bronze, National Museum, New Delhi</figcaption>
+      </figure>
+      <figure class="figure">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Mohenjo-daro_Priesterk%C3%B6nig.jpeg" alt="Priest-King statue of Mohenjo-daro" loading="lazy">
+        <figcaption>Priest-King, steatite, National Museum of Pakistan</figcaption>
+      </figure>
+    </div>
+
+    <p>Figures of <mark class="y">elephant, rhinoceros, tiger, deer</mark> and <mark class="y">sheep</mark> are depicted on Harappan seals and terracotta art — but the <mark class="r">cow was NOT depicted</mark> (Q15). Similarly, <mark class="r">the horse is not depicted on seals</mark> despite dispute over whether Harappans knew the animal (Q88–Q90); <mark class="r">the lion has no evidence at all</mark> from the civilization (Q89).</p>
+    <p>Clay/model <mark class="y">boats</mark> have been found from <mark class="g">Mohenjodaro</mark> (seals with boat motifs) and <mark class="g">Lothal</mark> (clay model boats) — Q26.</p>
+
+    <div class="figure">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/IndusValleySeals.JPG" alt="Stamp seals of the Indus Valley Civilization" loading="lazy">
+      <figcaption>Stamp seals of the Indus Valley Civilization, British Museum · Wikimedia Commons</figcaption>
+    </div>
+
+    <p>Most Harappan seals were made of <mark class="y">steatite</mark>, with some in terracotta, agate, and chert; mostly square, with some cube, circle and cylindrical shapes. The <mark class="y">Pipal tree</mark> is repeatedly depicted on seals, suggesting sacred/important value (Q87).</p>
+
+    <div class="figure">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Shiva_Pashupati.jpg" alt="Pashupati seal, Mohenjo-daro" loading="lazy">
+      <figcaption>The "Pashupati" seal — a seated, three-faced figure surrounded by animals</figcaption>
+    </div>
+
+    <p>The <mark class="y">Dancing Girl</mark> figurine (found at Mohenjo-daro) is made of <mark class="y">bronze</mark> — cast using the lost-wax technique, about 10.5 cm high (Q86). Two Indian archaeologists are especially associated with the discovery: <mark class="g">Rakhal Das Banerjee and Dayaram Sahni</mark> (Q60).</p>
+  </section>
+
+  <!-- ========== 10. POTTERY & METALLURGY ========== -->
+  <section class="topic" id="pottery-metal">
+    <h2><span class="num">10</span> Pottery, Metallurgy &amp; Measurement</h2>
+    <p class="lede">Draws on the intro plus Q13, Q27–Q28, Q50, Q67, Q69.</p>
+
+    <p>Harappan pottery is <mark class="y">bright or dark red</mark>, uniformly sturdy and well-baked — wheel-made, both plain and painted (Q13). Plain wares are usually red clay with or without a fine red slip; black-painted ware has a fine red-slip coating. <mark class="y">Polychrome pottery</mark> was rare, mostly small vases with geometric patterns in red, black and green, less often white and yellow. The colour scheme for painting was light black, chocolate or light red over a buff/greenish-buff background.</p>
+
+    <p>The Indus Valley Civilization was a <mark class="y">Bronze Age civilization</mark> — people were <mark class="r">NOT familiar with iron</mark> (Q27, Q69). <mark class="y">Copper</mark> was the first metal used by humans (Q67), though the exact global period varies. Harappans were familiar with <mark class="y">silver</mark> — the earliest evidence of silver use in India comes from Harappan culture (Q12), sourced from Afghanistan and Iran besides Indian mines.</p>
+
+    <div class="trap">
+      <h4>⚠ Trap — bricks, houses and road widths (Q28)</h4>
+      NOT true: <mark class="r">"same-size bricks used for all constructions"</mark> — both baked and raw bricks were used, with a general dimensional ratio of 4:2:1, but ornamental bricks (Kalibangan) and curved bricks (Chanhudaro) also occur. NOT true: <mark class="r">"mostly single-storey houses"</mark> — some houses had two storeys (stair evidence found). TRUE: main roads averaged about <mark class="b">10 metres</mark> in width.
+    </div>
+
+    <p>An <mark class="y">ivory scale/ruler</mark> was found at <mark class="g">Lothal</mark> (Q68), alongside the Mohenjodaro ruler — divided into units of 34mm with decimal subdivisions accurate to 0.13mm, using the base unit <mark class="y">angula</mark> (~17mm), predating the modern metric system by 3,000+ years.</p>
+
+    <div class="trap">
+      <h4>⚠ Trap — Gangeyadeva &amp; gold coins (cross-reference)</h4>
+      Gold coins as a category belong to a much later, early-medieval context (Kalachuri king Gangeyadeva first issued gold coins in early-medieval North India — see the Early-Medieval Dossier); within the IVC's own Bronze Age economy, no coinage of any kind existed — trade ran on <mark class="y">barter and standardized weights</mark>.
+    </div>
+  </section>
+
+  <!-- ========== 11. ECONOMY & TRADE ========== -->
+  <section class="topic" id="economy">
+    <h2><span class="num">11</span> Economy, Trade &amp; Metal Sources</h2>
+    <p class="lede">Draws on the intro plus Q1, Q4–Q6, Q47–Q49, Q82.</p>
+
+    <p><mark class="g">Human Society</mark> is considered unique because it depends mainly on <mark class="y">Economy</mark> — as the economy changes, society changes accordingly (Q1). The <mark class="y">trade and commerce</mark> of the Indus Valley were in an advanced stage, with both internal and external trade evidenced (Q27).</p>
+    <p>The <mark class="y">important reason</mark> to date the Indus Valley civilization before Aryan civilization is <mark class="y">pottery</mark> evidence (Q5) — red potteries painted with black figures were the Harappan speciality, versus grey-painted pottery used by the Aryans. Indus Valley was <mark class="y">Non-Aryan</mark> chiefly because it was an <mark class="y">urban civilization</mark> (Q4), whereas Aryan civilization was rural; other distinguishing points (Q6) include a pictographic script and no knowledge of iron or the defensive bow, versus Vedic culture's extensive iron use.</p>
+
+    <table class="tbl">
+      <caption>Major metals/materials and their production/source sites</caption>
+      <tr><th>Metal / material</th><th>Production sites</th></tr>
+      <tr><td>Copper</td><td>Khetri (Rajasthan), Balochistan, Oman</td></tr>
+      <tr><td>Lazurite</td><td>Badakhshan (Afghanistan)</td></tr>
+      <tr><td>Tin</td><td>Iran, Afghanistan</td></tr>
+      <tr><td>Silver</td><td>Jawar &amp; Ajmer mines (Rajasthan), Afghanistan, Iran</td></tr>
+      <tr><td>Lead</td><td>Afghanistan, Iran, Rajasthan</td></tr>
+      <tr><td>Shilajit</td><td>Himalaya</td></tr>
+      <tr><td>Garnet stone (Gomed)</td><td>Gujarat</td></tr>
+      <tr><td>Gold</td><td>South India (Karnataka)</td></tr>
+    </table>
+
+    <p><mark class="y">Cotton</mark> was first cultivated in India for clothing (Q82) — the earliest cotton-cultivation evidence in the world comes from Indian excavations; from India it reached Greece, where it was called <mark class="y">"Sindon."</mark> Indian cotton cultivation began around <mark class="b">3000 BC</mark>, versus <mark class="b">2500 BC</mark> in Egypt.</p>
+    <p>The most significant feature of the Indus Valley Civilization is not singular — burnt-brick buildings, the first true arches, and well-planned architecture with advanced trade all count as major features (Q50), so exam framings that ask for "the" single most significant feature often accept "more than one of the above."</p>
+  </section>
+
+  <!-- ========== 12. RELIGION ========== -->
+  <section class="topic" id="religion">
+    <h2><span class="num">12</span> Religion &amp; Belief System</h2>
+    <p class="lede">Draws on the intro plus Q14, Q57–Q58, Q83–Q84.</p>
+
+    <p>Many pieces of evidence of <mark class="y">Mother Goddess</mark> worship have been found. <mark class="g">John Marshall</mark> identified a seal figure as an early form of <mark class="y">Shiva (Rudra)</mark> or <mark class="y">Pashupati (Lord of Animals)</mark> from Mohenjodaro — the three-faced seated male god in yogic posture, surrounded by a <mark class="b">Rhino and Buffalo</mark> on the right and an <mark class="b">Elephant and Tiger</mark> on the left. This, plus cylindrical stones, led historians to conclude the Harappans worshipped <mark class="y">Lord Shiva</mark> and the <mark class="y">Lingam</mark> symbol.</p>
+
+    <p>The <mark class="y">beginning of idol worship</mark> in India is dated to the <mark class="y">Pre-Aryan</mark> period (Q14) — evident from Mohenjodaro coin/seal finds depicting deities, worshipped alongside male and female figures.</p>
+
+    <div class="trap">
+      <h4>⚠ Trap — no temples, no priest-kings confirmed (Q83)</h4>
+      NOT true of Indus religion: they possessed great <mark class="r">palaces and temples</mark>, or employed <mark class="r">horse-drawn chariots in warfare</mark> — no temple or palace has been found in IVC excavations to date. TRUE: they worshipped both <mark class="g">male and female deities</mark> — the ONLY correct statement of the three options.
+    </div>
+
+    <p>Indus Valley Civilization is considered a <mark class="y">secular civilization</mark> with no trace of theocratic or organized religion (Q84 statement 1 — correct). No temple or place of worship has been found to date; the only religious sources are mud/stone statues and seals. These indicate worship of <mark class="y">female deities, Shiva/Pashupati</mark>, and animals like <mark class="y">snakes and elephants</mark>. Worship of plants/trees or inanimate objects as <mark class="y">Linga</mark> or <mark class="y">Yoni</mark> symbols was prevalent (Q84 statement 2 — also correct, re: cotton textile manufacture during this period).</p>
+
+    <p>On burial and ritual belief (Q57, marked ambiguous "*" in the source): the undeciphered Indus script leaves room for speculation, but the people probably worshipped <mark class="y">Mother Goddess</mark> and <mark class="y">Lord Shiva</mark>, performed <mark class="y">Yagya</mark> (fire-pit evidence in Rajasthan/Gujarat sites), and burial rituals suggest belief in <mark class="y">Atma/spirit</mark> — with some evidence of human sacrifice noted at Mohenjodaro.</p>
+  </section>
+
+  <!-- ========== 13. THEORIES ========== -->
+  <section class="topic" id="theories">
+    <h2><span class="num">13</span> Origin &amp; Decline Theories</h2>
+    <p class="lede">Draws on the intro plus Q10 (see Section 1) and the researcher-opinion table on devastation.</p>
+
+    <table class="tbl">
+      <caption>Researchers and their theories on the disappearance of the Indus Valley Civilization</caption>
+      <tr><th>Reason proposed</th><th>Researchers</th></tr>
+      <tr><td>Flood</td><td>Marshall, Mackay, S.R. Rao</td></tr>
+      <tr><td>Attack of the Aryans</td><td>Gordon Childe, Mortimer Wheeler, Stuart Piggott</td></tr>
+      <tr><td>Climate change</td><td>Aurel Stein, Amalananda Ghosh</td></tr>
+      <tr><td>Geological change</td><td>M.R. Sahni, H.T. Lambrick, G.F. Dales</td></tr>
+      <tr><td>Epidemic</td><td>K.A.R. Kennedy</td></tr>
+    </table>
+
+    <p>A modern data-driven addition to this debate: per <mark class="g">IIT Kharagpur</mark>, <mark class="b">900 years</mark> of continuous low/negligible rainfall (i.e. sustained drought) is identified as a cause of civilizational collapse (see Chronology section).</p>
+    <p>On origins (see Section 1's trap box for the full matching set): theories range from <mark class="g">Mesopotamian-inspired migration (Mackay)</mark>, to <mark class="g">diffusion of the idea of civilization from Western Asia (Wheeler/Gordon)</mark>, to <mark class="g">indigenous maturation of a pre-Harappan culture (Amalananda Ghosh)</mark>, to <mark class="g">independent Ravi-region development refuting Mesopotamian inspiration (M.R. Mughal)</mark>.</p>
+  </section>
+
+  <!-- ========== 14. WORLD CONTEXT ========== -->
+  <section class="topic" id="world">
+    <h2><span class="num">14</span> World Context: Contemporary Civilizations &amp; Firsts</h2>
+    <p class="lede">Draws on the intro plus Q93–Q96.</p>
+
+    <p>Ancient <mark class="g">Egyptian Civilization</mark> flourished along the banks of the <mark class="b">River Nile</mark> for almost <mark class="b">3,000 years</mark> — the Nile, known as the <mark class="y">"lifeline of Egypt,"</mark> is a major north-flowing river in northeastern Africa and generally regarded as the world's longest river (Q93). The <mark class="g">Indus Valley Civilization (India)</mark> and <mark class="g">Mesopotamian civilization (Iraq)</mark> are contemporary civilizations to Egypt's.</p>
+
+    <div class="card">
+      <h4>Mesoamerican &amp; South American civilizations — North-to-South sequence (Q94)</h4>
+      <ul>
+        <li><mark class="g">Aztec</mark> — northern Mesoamerica (central Mexico, Belize, Guatemala, El Salvador, Honduras, Nicaragua, northern Costa Rica).</li>
+        <li><mark class="g">Maya</mark> — southern Mesoamerica.</li>
+        <li><mark class="g">Muisca</mark> — eastern Colombia, South America.</li>
+        <li><mark class="g">Inca</mark> — western South America, from north of Quito to Santiago in the south.</li>
+      </ul>
+      <p style="margin:8px 0 0;">Correct order, North to South: <mark class="y">Aztec → Maya → Muisca → Inca.</mark></p>
+    </div>
+
+    <p><mark class="g">Sumerian Civilization</mark> people were the first to develop the art of writing in a proper system (Q96) — their <mark class="y">Cuneiform script</mark> is one of the earliest known writing systems, though their original script was simple and primitive.</p>
+    <p>The <mark class="y">oldest civilization in the world</mark> is generally considered to be <mark class="g">Mesopotamia (Iraq)</mark> (Q95), with Egyptian civilization emerging in the Nile basin after it.</p>
+  </section>
+
+  <div class="divider">❦</div>
+</main>
+
+<footer>Indus Valley Civilization Dossier — compiled for BPSC Prelims 2025–26 · organized topic-wise · every theory line and all 96 MCQ explanations from the source have been retained above · site &amp; artefact photographs via Wikimedia Commons (respective licenses apply).</footer>
+
+<script>
+  const links = document.querySelectorAll('#navlist a');
+  const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href')));
+  function onScroll(){
+    let idx = 0;
+    const y = window.scrollY + 120;
+    sections.forEach((sec,i)=>{ if(sec && sec.offsetTop <= y) idx = i; });
+    links.forEach(l=>l.classList.remove('active'));
+    if(links[idx]) links[idx].classList.add('active');
+  }
+  document.addEventListener('scroll', onScroll);
+  onScroll();
+</script>
+</body>
+</html>
