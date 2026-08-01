@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Early-Medieval Period Dossier — Pratihara, Pala, Chandela, Paramara, Chauhan &amp; More</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6efe0;
+    --paper-deep:#efe4cc;
+    --ink:#2b241a;
+    --ink-soft:#5c5240;
+    --navy:#161a24;
+    --navy-deep:#0d1017;
+    --navy-line:#2a3142;
+    --gold:#c8a862;
+    --maroon:#7a2e2e;
+    --rule:#d8c9a3;
+
+    --y-bg:#fbe98f;
+    --y-bd:#c9a227;
+    --b-bg:#c3ddf5;
+    --b-bd:#3b6ea5;
+    --g-bg:#c8e8c9;
+    --g-bd:#3e8148;
+    --r-bg:#f6c6c2;
+    --r-bd:#a5342b;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", sans-serif;
+    line-height:1.65;
+  }
+  #sidebar{
+    position:fixed; top:0; left:0; bottom:0; width:290px;
+    background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);
+    color:#e8e2d0;
+    overflow-y:auto;
+    padding:26px 0 40px;
+    border-right:3px solid var(--gold);
+    z-index:50;
+  }
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:var(--navy-line); border-radius:4px;}
+  .brand{ padding:0 22px 18px; border-bottom:1px solid var(--navy-line); margin-bottom:14px; }
+  .brand .kicker{ font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:2.5px; color:var(--gold); text-transform:uppercase; }
+  .brand h1{ font-family:"Playfair Display", serif; font-size:21px; margin:6px 0 4px; color:#f4efe0; line-height:1.25; }
+  .brand .sub{font-size:11.5px; color:#9aa0b0;}
+  nav ul{list-style:none; margin:0; padding:0 10px;}
+  nav .grp-title{ font-family:"IBM Plex Mono",monospace; font-size:10px; letter-spacing:1.8px; text-transform:uppercase; color:#7c8296; padding:16px 12px 6px; }
+  nav a{ display:block; padding:8px 12px; margin:1px 0; color:#c9cddb; text-decoration:none; font-size:13px; border-radius:6px; border-left:3px solid transparent; transition:all .15s ease; }
+  nav a:hover{background:rgba(200,168,98,.12); color:#fff;}
+  nav a.active{ background:rgba(200,168,98,.18); border-left:3px solid var(--gold); color:#fff; font-weight:600; }
+  #main{ margin-left:290px; padding:44px 52px 120px; max-width:960px; }
+  .masthead{ text-align:center; padding-bottom:26px; margin-bottom:34px; border-bottom:4px double var(--maroon); }
+  .masthead .eyebrow{ font-family:"IBM Plex Mono",monospace; letter-spacing:3px; font-size:11px; color:var(--maroon); text-transform:uppercase; }
+  .masthead h1{ font-family:"Playfair Display", serif; font-weight:800; font-size:38px; margin:10px 0 8px; color:var(--ink); }
+  .masthead .desc{color:var(--ink-soft); font-size:14.5px; max-width:680px; margin:0 auto;}
+  .legend{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:22px auto 0; padding:14px 18px; max-width:720px; background:var(--paper-deep); border:1px solid var(--rule); border-radius:10px; }
+  .legend span{font-size:12px; font-family:"IBM Plex Mono",monospace; display:flex; align-items:center; gap:6px;}
+  .legend i{width:13px; height:13px; border-radius:3px; display:inline-block; border:1px solid rgba(0,0,0,.25);}
+  section.topic{ margin-bottom:56px; scroll-margin-top:24px; }
+  section.topic h2{ font-family:"Playfair Display", serif; font-size:26px; font-weight:700; color:var(--navy); margin:0 0 4px; padding-bottom:10px; border-bottom:2px solid var(--gold); display:flex; align-items:baseline; gap:10px; }
+  section.topic h2 .num{ font-family:"IBM Plex Mono",monospace; font-size:14px; color:var(--maroon); font-weight:600; }
+  h3.sub{ font-family:"Playfair Display", serif; font-size:19px; font-weight:600; color:var(--maroon); margin:26px 0 10px; }
+  p{margin:0 0 13px; font-size:15px;}
+  .lede{font-style:italic; color:var(--ink-soft); font-size:13.5px; margin-top:-2px; margin-bottom:18px;}
+  mark{ padding:1.5px 4px; border-radius:3px; font-weight:500; color:var(--ink); box-decoration-break:clone; }
+  mark.y{background:var(--y-bg); box-shadow:inset 0 -1.5px 0 var(--y-bd);}
+  mark.b{background:var(--b-bg); box-shadow:inset 0 -1.5px 0 var(--b-bd);}
+  mark.g{background:var(--g-bg); box-shadow:inset 0 -1.5px 0 var(--g-bd);}
+  mark.r{background:var(--r-bg); box-shadow:inset 0 -1.5px 0 var(--r-bd); font-weight:600;}
+  .card{ background:#fffdf7; border:1px solid var(--rule); border-radius:10px; padding:16px 20px; margin:16px 0; box-shadow:0 1px 3px rgba(0,0,0,.05); }
+  .card h4{ margin:0 0 8px; font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:1.2px; text-transform:uppercase; color:var(--navy); }
+  .card ul{margin:0; padding-left:20px;}
+  .card li{margin-bottom:6px; font-size:14px;}
+  .trap{ background:#fdf0ee; border:1px solid var(--r-bd); border-left:5px solid var(--r-bd); border-radius:8px; padding:14px 18px; margin:18px 0; font-size:13.8px; }
+  .trap h4{ margin:0 0 6px; color:var(--r-bd); font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:1.2px; text-transform:uppercase; display:flex; align-items:center; gap:6px; }
+  table.tbl{ width:100%; border-collapse:collapse; margin:14px 0 20px; font-size:13.8px; background:#fffdf7;}
+  table.tbl caption{ text-align:left; font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-soft); margin-bottom:6px; letter-spacing:.5px;}
+  table.tbl th{ background:var(--navy); color:#f0ead8; text-align:left; padding:8px 12px; font-weight:600; font-size:12.5px;}
+  table.tbl td{ padding:7px 12px; border-bottom:1px solid var(--rule); }
+  table.tbl tr:nth-child(even) td{ background:#f8f2e2; }
+  .timeline{border-left:3px solid var(--gold); margin:18px 0 18px 6px; padding-left:20px;}
+  .timeline .item{position:relative; margin-bottom:14px; font-size:14px;}
+  .timeline .item::before{ content:""; position:absolute; left:-25.5px; top:5px; width:9px; height:9px; border-radius:50%; background:var(--maroon); border:2px solid var(--paper); }
+  .timeline .item b{color:var(--navy);}
+  .mcq{ background:#f6f1e4; border:1px solid var(--rule); border-radius:8px; padding:12px 16px; margin:10px 0; font-size:13.5px; }
+  .mcq .qn{ font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--maroon); font-weight:700; }
+  .mcq .ans{ color:var(--g-bd); font-weight:700; }
+  .divider{ text-align:center; color:var(--gold); font-size:18px; letter-spacing:12px; margin:10px 0 26px; }
+  footer{ margin-left:290px; padding:26px 52px 60px; color:var(--ink-soft); font-size:12px; font-family:"IBM Plex Mono",monospace; border-top:1px solid var(--rule); }
+  @media (max-width:880px){
+    #sidebar{display:none;}
+    #main, footer{margin-left:0; padding:30px 20px 90px;}
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="kicker">BPSC Prelims · The Ledger Series</div>
+    <h1>Early-Medieval Period Dossier</h1>
+    <div class="sub">Dynasties ordered by founding date · 8th–15th century AD</div>
+  </div>
+  <nav>
+    <ul id="navlist">
+      <li class="grp-title">Contents (chronological)</li>
+      <li><a href="#pratihara">1 · Gurjara-Pratihara (730 AD)</a></li>
+      <li><a href="#rashtrakuta">2 · Rashtrakuta (753 AD)</a></li>
+      <li><a href="#pala">3 · Pala Dynasty (~750 AD)</a></li>
+      <li><a href="#chandela">4 · Chandela Dynasty (9th c.)</a></li>
+      <li><a href="#paramara">5 · Paramara Dynasty (9th c.)</a></li>
+      <li><a href="#chauhan">6 · Chahamana / Chauhan</a></li>
+      <li><a href="#solanki">7 · Chalukya (Solanki) of Gujarat</a></li>
+      <li><a href="#kalachuri">8 · Kalachuri Dynasty</a></li>
+      <li><a href="#tomar">9 · Tomar Dynasty (1052 AD)</a></li>
+      <li><a href="#karnata">10 · Karnata Dynasty (Mithila)</a></li>
+      <li><a href="#gahadavala">11 · Gahadavala Dynasty</a></li>
+      <li><a href="#sena">12 · Sena Dynasty (Bengal)</a></li>
+      <li><a href="#kashmir">13 · Later Coda: Kashmir Sultanate</a></li>
+      <li><a href="#misc">14 · Cross-Dynasty Ledger: Jurists, Ports &amp; Terms</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<main id="main">
+  <div class="masthead">
+    <div class="eyebrow">Indian History series companion · North &amp; Central India</div>
+    <h1>Early-Medieval Period: Pratihara to Sena</h1>
+    <div class="desc">Every theory line and every one of the 73 MCQ explanations from the source, merged into one topic-wise ledger and re-ordered so dynasty sections run chronologically by founding date. Nothing is dropped; source conflicts are flagged, not silently resolved.</div>
+    <div class="legend">
+      <span><i style="background:var(--y-bg);border-color:var(--y-bd)"></i>Concept / definition</span>
+      <span><i style="background:var(--b-bg);border-color:var(--b-bd)"></i>Fact / date / place</span>
+      <span><i style="background:var(--g-bg);border-color:var(--g-bd)"></i>Person / institution</span>
+      <span><i style="background:var(--r-bg);border-color:var(--r-bd)"></i>MCQ trap / conflict</span>
+    </div>
+  </div>
+
+  <!-- ========== 1. PRATIHARA ========== -->
+  <section class="topic" id="pratihara">
+    <h2><span class="num">01</span> Gurjara-Pratihara Dynasty <small style="font-size:14px;color:var(--ink-soft);">(founded 730 AD)</small></h2>
+    <p class="lede">Earliest-founded dynasty in this dossier. Draws on the intro plus Q36–Q41, Q47–Q49, Q51–Q55, Q67.</p>
+
+    <p><mark class="g">Nagabhata I</mark> (<mark class="b">730–760 AD</mark>) is considered the founder of the <mark class="g">Gurjara-Pratihara dynasty</mark>, but the <mark class="r">actual founder was Vatsaraja</mark>. Pratihara dynasty belonged to the <mark class="y">"Agni" clan of Rajputs</mark>; Gurjars were first mentioned in the <mark class="b">Aihole inscription of Pulakesin-II</mark> and in <mark class="g">Banabhatta's Harshacharita</mark>. Nagabhatta-I destroyed the army of a Malecha ruler, saving western India from Arab invasion — recorded in the <mark class="b">Gwalior inscription</mark>.</p>
+    <p><mark class="g">Mihirbhoja</mark> (a.k.a. <mark class="g">Bhoja-I</mark>, <mark class="b">836–885 AD</mark>) was the <mark class="y">most prominent/greatest Pratihara ruler</mark>. He was a follower of <mark class="y">Vaishnavism</mark> and attained the titles <mark class="y">"Aadi Varaha"</mark> and <mark class="y">"Prabhas."</mark> The capital of the Pratiharas was <mark class="b">Kannauj</mark>, whose ancient names were <mark class="b">Mahodaya Shri</mark> and <mark class="b">Kanyakubja</mark> during Mihirbhoj's regime — also called <mark class="b">Mahodaya</mark> and <mark class="y">"Nagar Mahoday Shri."</mark></p>
+
+    <div class="trap">
+      <h4>⚠ Trap — Mihir Bhoja's parentage &amp; identity</h4>
+      Emperor <mark class="r">Ramabhadra</mark> and queen <mark class="r">Appa Devi</mark> were his parents (i.e. he was <mark class="r">son of Nagabhatta-II</mark>, NOT directly of Ramabhadra by an earlier-generation reading — the two statements both occur in the source). He seized Kannauj around <mark class="b">836 AD</mark>. Arab traveller <mark class="g">Al-Masudi</mark> (of Baghdad) called the Gurjara-Pratihara kingdom <mark class="b">"Al-Juzr"</mark> and its king <mark class="b">"Baura"</mark> — a mispronunciation of <mark class="y">Adivaraha</mark>, though Bhoja had already died by the time of the visit. Separately, Arab traveller <mark class="g">Suleman</mark> visited India during Mihir Bhoja/Bhoja-I's own reign.
+    </div>
+
+    <table class="tbl">
+      <caption>Pratihara ruler chronology (ascending)</caption>
+      <tr><th>Ruler</th><th>Reign</th></tr>
+      <tr><td>Vatsaraja</td><td>775–800 AD</td></tr>
+      <tr><td>Nagabhatta II</td><td>800–833 AD</td></tr>
+      <tr><td>Mihirbhoja / Bhoja-I</td><td>836–885 AD</td></tr>
+      <tr><td>Mahendrapala-I</td><td>885–910 AD</td></tr>
+      <tr><td>Mahipala</td><td>912–944 AD</td></tr>
+    </table>
+
+    <p><mark class="g">Rajashekhara</mark> was a courtier-scholar of Gurjar-Pratihara king <mark class="g">Mahendrapala-I</mark> and his son <mark class="g">Mahipala-I</mark>. He compiled <mark class="y">Karpuramanjari, Kavyamimamsa, Viddhasalabhanjika, Bal Ramayana</mark> and <mark class="y">Bhuvankosh</mark> — <mark class="r">"Prabandhachintamani" is NOT his work</mark>, a recurring MCQ trap.</p>
+    <p><mark class="g">Vakpati</mark>, court poet of <mark class="g">Yashovarman of Kannauj</mark>, authored <mark class="y">"Gaudavaho."</mark></p>
+
+    <h3 class="sub">Kannauj &amp; the Tripartite Struggle</h3>
+    <p>After Harsha's death, <mark class="b">Kannauj</mark> became the object of a <mark class="y">tripartite struggle</mark> among the <mark class="g">Pala, Gurjara-Pratihara and Rashtrakuta</mark> dynasties during the <mark class="b">8th–9th century AD</mark> — the <mark class="r">Cholas were NOT part of this struggle</mark>. The <mark class="g">Pratiharas ultimately emerged victorious</mark>.</p>
+
+    <div class="card">
+      <h4>Not a Pratihara ruler — MCQ trap</h4>
+      <p style="margin:0;font-size:14px;"><mark class="r">Bharatrabhatta-I</mark> does not belong to the Gurjara-Pratihara dynasty, unlike Nagabhatta-II, Mahendrapala-I, and (per one listing) Devapala's inclusion in a ruler-list is itself disputed since Devapala was a Pala king.</p>
+    </div>
+
+    <div class="mcq"><span class="qn">Q49 (matching)</span> Pratihara → Kannauj; Chola → Tanjore; Paramara → Dhara; Solanki → Anhilwada. <span class="ans">Ans: 4,2,3,1</span></div>
+    <div class="mcq"><span class="qn">Q54–56</span> Mahodaya = old name of Kannauj; "Nagar Mahoday Shri" = Kannauj; Jejakabhukti (NOT "Kaushambi") = Bundelkhand.</div>
+  </section>
+
+  <!-- ========== 2. RASHTRAKUTA ========== -->
+  <section class="topic" id="rashtrakuta">
+    <h2><span class="num">02</span> Rashtrakuta Dynasty <small style="font-size:14px;color:var(--ink-soft);">(founded 753 AD)</small></h2>
+    <p class="lede">Draws on Q33–Q35, Q57 — the Rashtrakutas appear mainly as the third party in the tripartite struggle and as Pratihara adversaries.</p>
+    <p><mark class="g">Danti Durga</mark> laid the foundation of the <mark class="g">Rashtrakuta Empire</mark> in <mark class="b">753 AD</mark>; his capital was <mark class="b">Manyakheta</mark>. He is said to have performed the <mark class="y">"Hiranyagarbha"</mark> oblation ritual at <mark class="b">Ujjayini</mark>.</p>
+    <p><mark class="g">Amoghavarsha-I</mark> was born in <mark class="b">800 AD</mark> at <mark class="b">Shribhavan</mark> near the <mark class="b">Narmada</mark> river, in a military camp, while his father <mark class="g">Govind-III</mark> was returning from a successful North India campaign.</p>
+    <p><mark class="g">Govind-III</mark>, successor of Rashtrakuta king <mark class="g">Dhruva</mark>, attacked North India after consolidating southern power and defeated Gurjara-Pratihara ruler <mark class="g">Nagabhatta-II</mark> — recorded in the <mark class="b">Sanjan</mark> and <mark class="b">Radhanpur</mark> copper-plate inscriptions.</p>
+    <p>Rashtrakuta king <mark class="g">Krishna-III</mark> led a confederacy of the <mark class="g">Western Gangas, Banas and Vaidumbas</mark> against the Cholas at the <mark class="y">Battle of Takkolam</mark> (see Chola material in the South India dossier for the Chola side of this engagement).</p>
+  </section>
+
+  <!-- ========== 3. PALA ========== -->
+  <section class="topic" id="pala">
+    <h2><span class="num">03</span> Pala Dynasty <small style="font-size:14px;color:var(--ink-soft);">(founded ~750 AD)</small></h2>
+    <p class="lede">Draws on the intro plus Q3–Q4, Q17–Q32.</p>
+
+    <p><mark class="g">Gopala</mark> was the <mark class="y">founder of the Pala dynasty</mark>. Per Tibetan historian <mark class="g">Lama Taranath</mark>, Gopala was born near <mark class="b">Pundravardhana</mark> and was <mark class="y">elected king of Bengal by the people</mark> — the <mark class="b">Khalimpur inscription of Dharmapala</mark> describes this election as a means to overcome <mark class="y">Matsya Nyaya (Law of the Jungle)</mark>. (Separately, Pallava ruler <mark class="g">Nandivarman Pallavamalla</mark> was also publicly elected, after the sudden death of Permeshwar Varman.)</p>
+    <p><mark class="b">Pundravardhana Bhukti</mark> was located in the North Bengal region in ancient times; its territory expanded beyond northern Bihar during the era of the <mark class="g">Pala, Chandra and Sena</mark> dynasties.</p>
+
+    <h3 class="sub">Dharmapala — the Builder of Universities</h3>
+    <p><mark class="g">Dharmapala</mark> (<mark class="b">770–810 AD</mark>) was an enthusiastic Buddhist, called <mark class="y">"Paramsaugat"</mark> in his inscriptions. He constructed the famous Buddhist monasteries at <mark class="b">Vikramshila</mark> and <mark class="b">Somapura (Paharpur)</mark>. Renowned Buddhist commentator <mark class="g">Haribhadra</mark> was part of his court; per Taranath he founded <mark class="b">50 religious schools</mark> yet showed no religious intolerance.</p>
+    <p><mark class="g">Vikramshila University</mark> was established by Dharmapala at <mark class="b">Bhagalpur, Bihar</mark> — after Nalanda's decline it became the main centre of Buddhist studies, teaching Vedic texts, rituals, Vedangas, reasoning, medicine, law, astronomy and city-planning. It was later <mark class="r">demolished by Bakhtiyar Khalji</mark>.</p>
+    <p><mark class="g">Odantapuri</mark> (also called <mark class="b">Udnapur</mark>), a prominent Bihar education centre, was established by Pala ruler <mark class="g">Gopala</mark>.</p>
+
+    <div class="trap">
+      <h4>⚠ Trap — Vikramshila location statement-set (69th BPSC 2023)</h4>
+      Of four statements — (1) it was in present-day <mark class="r">Banka district</mark>, (2) established by <mark class="r">Gopala-I</mark>, (3) Vajrayana Buddhism flourished there, (4) Astronomy/Logic/Law/Grammar/Philosophy also taught — statements <b>1 and 2 are INCORRECT</b>: it is actually in <mark class="b">Bhagalpur district</mark>, established by <mark class="g">Dharmapala</mark>, not Gopala. Statements 3 and 4 are correct.
+    </div>
+
+    <h3 class="sub">Devapala — the Nalanda Grant</h3>
+    <p>The <mark class="b">Nalanda copper-plate of Devapala</mark> records that <mark class="g">Balaputradeva</mark>, ruler of <mark class="b">Suvarnabhumi</mark> (Sailendra dynasty, Java), built a monastery at Nalanda and requested Devapala — also a Buddhist, styled <mark class="y">"Param Saugat"</mark> — to grant <mark class="b">five villages</mark> for its upkeep, which he did. This is cited as evidence that early Bihar rulers had contact with <mark class="b">Java-Sumatra</mark>.</p>
+    <p><mark class="g">Vijayasena</mark> did NOT build Sompura Mahavihar — that was <mark class="g">Dharmapala</mark>, sometimes confused in MCQ distractors with Kumaragupta-I or Harsha.</p>
+    <p>Not a centre of learning during the early-medieval period: <mark class="r">Taxila</mark> — Taxila was an earlier (ancient, pre-medieval) Buddhist learning centre near modern <mark class="b">Rawalpindi</mark>, where <mark class="g">Chanakya, Chandragupta Maurya, Charaka and Jivaka</mark> studied; Nalanda (5th c., by Kumaragupta) and Vikramshila/Odantapuri (Pala era) are the correct early-medieval centres.</p>
+  </section>
+
+  <!-- ========== 4. CHANDELA ========== -->
+  <section class="topic" id="chandela">
+    <h2><span class="num">04</span> Chandela Dynasty of Jejakabhukti <small style="font-size:14px;color:var(--ink-soft);">(founded early 9th c.)</small></h2>
+    <p class="lede">Draws on the intro plus Q7–Q8, Q13–Q15, Q50, Q56.</p>
+
+    <p><mark class="y">Jejakabhukti</mark> was the ancient name of <mark class="b">Bundelkhand</mark>, named after <mark class="g">Jay Shakti</mark> (also called <mark class="g">Jeja/Jejak</mark>), grandson of <mark class="g">Nannuk</mark>, the founder of the Chandel dynasty. A recurring MCQ trap wrongly pairs <mark class="r">"Jaijakbhukti–Kaushambi"</mark> — the correct present-day region is Bundelkhand, not Kaushambi.</p>
+    <p><mark class="g">Dhangadev</mark> (also known as <mark class="g">Dhanga</mark>) was a king of the <mark class="g">Chandel dynasty of Jejakabhukti</mark>. His successor <mark class="g">Vidyadhara</mark> built the <mark class="y">Kandariya Mahadev temple</mark>. Dhanga attained <mark class="y">Moksha</mark> by abandoning his body in the waters of the <mark class="b">Ganga and Yamuna at Sangam, Prayagraj</mark>.</p>
+
+    <table class="tbl">
+      <caption>Chronological order of Chandel rulers (Q15)</caption>
+      <tr><th>Order</th><th>Ruler</th><th>Approx. reign</th></tr>
+      <tr><td>1</td><td>Yashovarman</td><td>925–950 AD</td></tr>
+      <tr><td>2</td><td>Dhanga</td><td>950–1002 AD</td></tr>
+      <tr><td>3</td><td>Vidyadhara</td><td>1017/19–1029 AD</td></tr>
+      <tr><td>4</td><td>Keertivarman</td><td>1060–1100 AD</td></tr>
+    </table>
+
+    <p><mark class="g">Alha and Udal</mark> were commandants of Chandel king <mark class="g">Parmardidev / Parmal</mark> (<mark class="b">1165–1203 AD</mark>), who died fighting <mark class="g">Prithviraj Chauhan</mark>. This Chandel–Chauhan struggle is described in <mark class="y">"Prithviraj Raso"</mark> by <mark class="g">Chand Bardai</mark> and the <mark class="y">"Alha-Khand"</mark> section of <mark class="y">"Parmal Raso"</mark> by <mark class="g">Jagnik</mark>.</p>
+
+    <div class="trap">
+      <h4>⚠ Trap — Q50 pairing set</h4>
+      <mark class="g">Nannuka–Chandela</mark> ✓ and <mark class="g">Jayashakti–Chandela</mark> ✓ are correctly matched (the source question lists Jayashakti against "Paramara," which is wrong); <mark class="g">Nagabhata II–Gurjara Pratihara</mark> ✓ is correct; <mark class="r">Bhoja–Rashtrakuta</mark> is WRONG (Bhoja was Paramara). Only two of the four listed pairs are actually correct.
+    </div>
+  </section>
+
+  <!-- ========== 5. PARAMARA ========== -->
+  <section class="topic" id="paramara">
+    <h2><span class="num">05</span> Paramara Dynasty <small style="font-size:14px;color:var(--ink-soft);">(founded 9th century AD)</small></h2>
+    <p class="lede">Draws on the intro plus Q16, Q59–Q64.</p>
+
+    <p>Paramara dynasty was founded in the <mark class="b">9th century AD</mark> by <mark class="g">Upendra</mark> (also called <mark class="g">Krishnaraj</mark>). The early power-centre of the Paramaras was <mark class="b">Ujjain</mark>; the capital later shifted to <mark class="b">Dhara</mark>. The <mark class="y">real founder</mark> is separately identified as <mark class="g">Siyak-II</mark> in the dynasty-capital summary — both figures appear in the source.</p>
+
+    <div class="trap">
+      <h4>⚠ Commission dispute — founder of the Paramara dynasty</h4>
+      One MCQ's official answer key accepted <mark class="r">"Kanakpala"</mark> as the founder, but the source explicitly states the <mark class="r">correct answer is Upendra/Krishnaraj</mark> — keep both in mind for exam purposes.
+    </div>
+
+    <h3 class="sub">King Bhoj</h3>
+    <p><mark class="g">King Bhoj</mark> was a Paramara ruler who ruled from <mark class="b">Dhara</mark>. After his death, scholars lamented: <mark class="y">"Adya Dhara Nira Dhara, Niralamba Saraswati, Pandita Khandita sarve Bhoj Raje Divangate."</mark></p>
+    <p>Bhoj authored <mark class="y">'Samarangana Sutradhara'</mark> (on architecture and artificial/scientific equipment — the answer key was later revised from Bhoja to "Govindaraja" in one contested question, but the source treats Bhoja as primary author). His other works include <mark class="y">Saraswati Kanthabharan, Siddhanta Sangraha, Yoga Sutra Vritti, Rajamartand, Yukti-Kalpataru</mark> and <mark class="y">Charucharya</mark>.</p>
+    <p>The <mark class="b">Udaipur Prashasti</mark> praises Bhoja — comparing him to King Prithu and crediting him with ruling from Kailash to the Malaya mountains, "achieving, accomplishing and understanding everything that no one else could."</p>
+    <p><mark class="g">Bhoj</mark> also built the <mark class="y">Samidheshwar / Tribhuvan Narayan temple</mark> at Chittour (Bhoj Jagti), housing a three-faced Shiva idol resembling the main idol of the Elephanta caves, Mumbai.</p>
+
+    <h3 class="sub">Bhojshala</h3>
+    <p><mark class="b">Bhojshala temple</mark>, in <mark class="b">Dhar district, Madhya Pradesh</mark>, was established by Paramara King Bhoj in <mark class="b">1035 AD</mark> as a Sanskrit school. Its presiding deity is <mark class="g">Goddess Saraswati</mark>. It now stands within the premises of the <mark class="b">Kamal Maula Mosque</mark>.</p>
+    <p><mark class="r">Gangeyadeva was NOT a Parmar king</mark> — a recurring MCQ trap, since he actually belonged to the Kalachuri dynasty (see next section). Upendra, Munj and Udayaditya were genuine Paramara kings.</p>
+  </section>
+
+  <!-- ========== 6. CHAUHAN ========== -->
+  <section class="topic" id="chauhan">
+    <h2><span class="num">06</span> Chahamana (Chauhan) Dynasty of Ajmer</h2>
+    <p class="lede">Legendary origin per the Hammir Epic; culminates with the fall of Delhi/Ajmer in 1192 AD. Draws on the intro plus Q1–Q2, Q6, Q9–Q11.</p>
+
+    <p>Per the <mark class="y">Hammir Epic</mark>, the <mark class="g">Chauhans</mark> are described as <mark class="y">Suryavanshi</mark> — scions of <mark class="g">"Chahman,"</mark> the son of the Sun, and one of the <mark class="y">four fire clans</mark>. <mark class="g">Vasudeva</mark> and <mark class="g">Naradev</mark> are named as the initial kings of the dynasty. <mark class="g">Jodhraj</mark> wrote <mark class="y">Hammir Raso</mark> (a recurring trap wrongly credits this to "Abdur Rehman").</p>
+
+    <div class="card">
+      <h4>Prithviraj III — "Prithviraj Chauhan"</h4>
+      <ul>
+        <li>Ruler of <mark class="b">Ajmer</mark>, commonly known as <mark class="g">Prithviraj Chauhan</mark>.</li>
+        <li>Defeated <mark class="g">Muhammad Ghori</mark> in the <mark class="y">1st Battle of Tarain</mark> — <mark class="b">1191 AD</mark>.</li>
+        <li>Suffered defeat in the <mark class="y">2nd Battle of Tarain</mark> — <mark class="b">1192 AD</mark>.</li>
+      </ul>
+    </div>
+
+    <p><mark class="g">Vigraharaj IV</mark>, the most powerful ruler of the Chauhan dynasty prior to Prithviraj III, conquered nearby regions, triumphed over the <mark class="g">Tomaras</mark>, and took possession of <mark class="b">Eastern Punjab and Delhi</mark>, also defeating the Muslim ruler of Punjab.</p>
+
+    <div class="card">
+      <h4>Author ledger — Chauhan-era chronicles</h4>
+      <ul>
+        <li><mark class="y">Prithviraj Raso</mark> — <mark class="g">Chand Bardai</mark>.</li>
+        <li><mark class="y">Prithviraja Vijaya</mark> — <mark class="g">Jayanaka</mark>.</li>
+        <li><mark class="y">Hammir Raso</mark> — <mark class="g">Jodhraj</mark> (NOT Abdur Rehman).</li>
+        <li><mark class="y">Visal Dev Raso</mark> — <mark class="g">Narpati Nalh</mark>.</li>
+        <li><mark class="y">Alha-Khand</mark> (of <i>Parmal Raso</i>) — <mark class="g">Jagnik</mark> (see Chandela section).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== 7. SOLANKI ========== -->
+  <section class="topic" id="solanki">
+    <h2><span class="num">07</span> Chalukya (Solanki) Dynasty of Gujarat <small style="font-size:14px;color:var(--ink-soft);">(founded by Mularaja-I)</small></h2>
+    <p class="lede">Draws on the intro plus Q42, Q49, Q58.</p>
+
+    <p>The <mark class="g">Chalukyas (Solanki)</mark> belonged to the <mark class="y">Agni Clan</mark> lineage, founded by <mark class="g">Mularaja-I</mark>. Their capital was <mark class="b">Anhilwada</mark>.</p>
+    <p><mark class="g">Jayasimha Siddharaja</mark> (<mark class="b">1093–1143 AD</mark>) was a religiously tolerant Solanki king; per Muslim author <mark class="g">Muhammad Aufi</mark>, he granted <mark class="b">1 lakh Balom (currency)</mark> for the restoration of a demolished mosque in <mark class="b">Khambhat</mark>.</p>
+    <p>Jain scholar <mark class="g">Hemchandra</mark> rose to fame under Jaysimha Siddharaja, but adorned the court of his successor <mark class="g">Kumarapala</mark> (<mark class="b">1143–1172 AD</mark>) as advisor.</p>
+  </section>
+
+  <!-- ========== 8. KALACHURI ========== -->
+  <section class="topic" id="kalachuri">
+    <h2><span class="num">08</span> Kalachuri Dynasty <small style="font-size:14px;color:var(--ink-soft);">(Gangeyadeva, mid-11th c.)</small></h2>
+    <p class="lede">Draws on the intro plus Q64–Q65.</p>
+    <p><mark class="g">Gangeyadeva</mark> was a ruler of the <mark class="g">Kalachuri dynasty</mark>, capital <mark class="b">Tripuri</mark>. He adopted the title <mark class="y">"Vikramaditya"</mark> and was the first to start issuing <mark class="y">gold coins</mark> in early-medieval North India.</p>
+    <p>Arab writer and geographer <mark class="g">Al-Biruni</mark> — Khwarazmian Iranian scholar, author of <mark class="y">Tarikh al-Hind</mark> — described Gangeyadeva and his capital Tripuri (NOT Al-Bahari, Al-Masudi, or Ibn Battuta).</p>
+  </section>
+
+  <!-- ========== 9. TOMAR ========== -->
+  <section class="topic" id="tomar">
+    <h2><span class="num">09</span> Tomar Dynasty of Delhi <small style="font-size:14px;color:var(--ink-soft);">(founded Delhi 1052 AD)</small></h2>
+    <p class="lede">Draws on the intro plus Q12.</p>
+    <p><mark class="g">Anangpal Tomar Rajput</mark> (Tomar dynasty), originally feudatories of the <mark class="g">Gurjar-Pratiharas</mark>, founded the city of <mark class="y">Dhillika</mark> (modern Delhi) in <mark class="b">1052 AD</mark>. The Tomars were later defeated by the Chauhans under <mark class="g">Vigraharaj IV</mark>, who annexed Delhi (see Chauhan section).</p>
+  </section>
+
+  <!-- ========== 10. KARNATA ========== -->
+  <section class="topic" id="karnata">
+    <h2><span class="num">10</span> Karnata Dynasty of Mithila <small style="font-size:14px;color:var(--ink-soft);">(founded by Nanyadev, 1097 AD)</small></h2>
+    <p class="lede">Draws on Q71–Q72.</p>
+    <p><mark class="g">Nanyadev</mark> (<mark class="b">1097–1147 AD</mark>), a great warrior, founded the <mark class="y">Karnata dynasty</mark>, establishing his capital at <mark class="b">Simraungadh</mark> and ruling the <mark class="b">Mithila</mark> region.</p>
+    <p><mark class="g">Harisimha</mark> (<mark class="b">1295/1296–1324 AD</mark>) was the <mark class="y">last ruler</mark> of the Karnata dynasty — a great protector of art and literature, who started the <mark class="y">Panji system</mark>.</p>
+  </section>
+
+  <!-- ========== 11. GAHADAVALA ========== -->
+  <section class="topic" id="gahadavala">
+    <h2><span class="num">11</span> Gahadavala Dynasty of Kannauj</h2>
+    <p class="lede">Draws on the intro plus Q5.</p>
+    <p><mark class="g">Kumaradevi</mark>, queen of <mark class="g">Govind Chandra Gahadavala</mark>, was Buddhist and constructed the <mark class="y">Dharmachakra Jain Vihar</mark> at <mark class="b">Sarnath</mark>.</p>
+    <p><mark class="y">Krityakalpataru</mark> was written by <mark class="g">Lakshmidhar</mark>, minister of Govind Chandra.</p>
+    <p><mark class="g">Jayachandra</mark> was the <mark class="y">last powerful ruler</mark> of the Gahadavala dynasty.</p>
+  </section>
+
+  <!-- ========== 12. SENA ========== -->
+  <section class="topic" id="sena">
+    <h2><span class="num">12</span> Sena Dynasty of Bengal <small style="font-size:14px;color:var(--ink-soft);">(culminates 1178–1206 AD)</small></h2>
+    <p class="lede">Draws on the intro plus Q43–Q44, Q46.</p>
+    <p><mark class="g">Lakshmanasena</mark> (<mark class="b">1178–1206 AD</mark>) was king of the <mark class="g">Sen Dynasty</mark>; he reigned <mark class="b">28 years</mark> and initiated a new Samvat called <mark class="y">"Lakshmana Samvat"</mark> — also referred to as the <mark class="y">"Luxman Era."</mark></p>
+    <table class="tbl">
+      <caption>Sena rulers of Bengal, ascending chronological order</caption>
+      <tr><th>Order</th><th>Ruler</th></tr>
+      <tr><td>1</td><td>Samantasena</td></tr>
+      <tr><td>2</td><td>Hemantasena</td></tr>
+      <tr><td>3</td><td>Vijayasena</td></tr>
+      <tr><td>4</td><td>Ballalasena (Ballal Sena)</td></tr>
+      <tr><td>5</td><td>Lakshmanasena</td></tr>
+      <tr><td>6</td><td>Visvarupasena</td></tr>
+    </table>
+  </section>
+
+  <!-- ========== 13. KASHMIR CODA ========== -->
+  <section class="topic" id="kashmir">
+    <h2><span class="num">13</span> Later Coda: Sultanate of Kashmir <small style="font-size:14px;color:var(--ink-soft);">(15th century AD — later medieval)</small></h2>
+    <p class="lede">This ruler falls well outside the early-medieval window (8th–13th c.) covered above, but appears in the source (Q69–Q70) and is retained here as an appendix rather than dropped.</p>
+    <p><mark class="g">Zain-ul-Abidin</mark>, originally named <mark class="g">Shahi Khan</mark>, was the brother of Ali Shah and ascended the Kashmir throne in <mark class="b">1420 AD</mark>, ruling for nearly <mark class="b">50 years</mark>. Owing to his liberal religious policy, patronage of learning, and interest in art and architecture, he was called the <mark class="y">"Akbar of Kashmir."</mark></p>
+  </section>
+
+  <!-- ========== 14. MISC ========== -->
+  <section class="topic" id="misc">
+    <h2><span class="num">14</span> Cross-Dynasty Ledger: Jurists, Seaports &amp; Terms</h2>
+    <p class="lede">Facts that cut across dynasties or don't anchor to one ruling house. Draws on the intro plus Q45, remaining seaport/matching/terminology questions.</p>
+
+    <h3 class="sub">Famous Jurists of Early-Medieval India</h3>
+    <div class="card">
+      <h4>Jurist ↔ Work</h4>
+      <ul>
+        <li><mark class="g">Vigyaneshwara</mark> — wrote <mark class="y">"Mitakshara."</mark></li>
+        <li><mark class="g">Jimutavahana</mark> — wrote <mark class="y">"Dayabhaga."</mark></li>
+        <li><mark class="g">Hemadri</mark> — the third famous jurist of the period.</li>
+      </ul>
+      <p style="margin:8px 0 0;font-size:13px;color:var(--ink-soft);">Rajashekhara (see Pratihara section) is a court scholar, not one of these three jurists — a recurring MCQ distractor pairs him in the same list.</p>
+    </div>
+
+    <h3 class="sub">Motupalli — the Kakatiya Seaport</h3>
+    <p><mark class="b">Motupalli</mark> was a very important seaport of the <mark class="g">Kakatiya kingdom</mark>, presently located in the <mark class="b">Bapatla district, Andhra Pradesh</mark>. Italian traveller <mark class="g">Marco Polo</mark> visited this port and wrote of the prosperity and power of the Andhra region. The <mark class="b">Motupalli epigraph</mark> specifies rates assessed on goods including <mark class="y">sandal, camphor, rose-water, ivory, pearls, corals, copper, zinc, lead, silk, pepper and areca nuts</mark> — giving insight into the port's exports and imports.</p>
+
+    <h3 class="sub">Terminology</h3>
+    <p><mark class="y">Araghatta</mark> — in medieval Indian economic history, refers to a <mark class="y">Persian-wheel waterwheel</mark> used for land irrigation, typically animal-operated (bullocks, buffaloes, camels); mentioned in the <mark class="b">Panchatantra</mark> and <mark class="b">Rajatarangini</mark>.</p>
+
+    <h3 class="sub">Bastar Inscriptions — Nagavamsa Dynasty</h3>
+    <p>The <mark class="b">Kuruspal village</mark> (Bastar district, Chhattisgarh) has yielded multiple inscriptions:</p>
+    <div class="card">
+      <ul>
+        <li><mark class="y">Kuruspal stone inscription of Someswardeva</mark> — much mutilated; records a land grant by <mark class="g">Someswardeva of the Nagavamsa</mark> dynasty (also referenced as <mark class="g">Mahashivgupta Balarjun</mark> in the associated MCQ).</li>
+        <li><mark class="y">Kuruspal Tank slab of Dharana Mahadevi</mark> — built into a tank's steps; records a land grant near <mark class="b">Kalamba village</mark> to god <mark class="g">Kamesvara (Shiva)</mark> by queen <mark class="g">Dharna Mahadevi</mark> during the reign of <mark class="g">Someshwardeva/Someshwar-I</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="trap">
+      <h4>⚠ Cross-check — dynasty/capital matching set (recurring across exams)</h4>
+      <mark class="g">Pratihara</mark> → <mark class="b">Kannauj</mark> · <mark class="g">Paramara</mark> → <mark class="b">Dhara</mark> · <mark class="g">Solanki</mark> → <mark class="b">Anhilwada</mark> · <mark class="g">Chola</mark> → <mark class="b">Tanjore</mark>. Keep these distinct from the South India dossier's Kadamba–Banavasi / Chalukya-of-Badami–Vatapi / Pallava–Kanchipuram set, since "Chalukya" alone is ambiguous between the Deccan (Badami) and Gujarat (Solanki) branches.
+    </div>
+  </section>
+
+  <div class="divider">❦</div>
+</main>
+
+<footer>Early-Medieval Period Dossier — compiled for BPSC Prelims 2025–26 · dynasty sections ordered by founding date · every theory line and all 73 MCQ explanations from the source have been retained above.</footer>
+
+<script>
+  const links = document.querySelectorAll('#navlist a');
+  const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href')));
+  function onScroll(){
+    let idx = 0;
+    const y = window.scrollY + 120;
+    sections.forEach((sec,i)=>{ if(sec && sec.offsetTop <= y) idx = i; });
+    links.forEach(l=>l.classList.remove('active'));
+    if(links[idx]) links[idx].classList.add('active');
+  }
+  document.addEventListener('scroll', onScroll);
+  onScroll();
+</script>
+</body>
+</html>
