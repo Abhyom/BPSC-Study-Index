@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Pathogen's Ledger — Diseases &amp; Treatment | BPSC Prelims</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5efe2;
+  --paper-dark:#ece3d0;
+  --ink:#2b2620;
+  --ink-soft:#5c5346;
+  --sidebar:#1f2620;
+  --sidebar-text:#cfd6c9;
+  --sidebar-active:#3a473a;
+  --accent-green:#3d6b4f;
+  --accent-green-deep:#274a34;
+  --gold:#a8792f;
+  --border:#d8ccae;
+
+  --yellow:#e0a712;
+  --yellow-bg:#fbe08a;
+  --blue:#1f6fa8;
+  --blue-bg:#a9d3ef;
+  --green:#2f7d3f;
+  --green-bg:#a9dcac;
+  --red:#c23b2c;
+  --red-bg:#f3a89e;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'IBM Plex Sans', sans-serif;background:var(--paper);color:var(--ink);display:flex;min-height:100vh;}
+h1,h2,h3,h4{font-family:'Playfair Display', serif; color:var(--accent-green-deep); margin:0 0 8px 0;}
+code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+.sidebar{width:270px;background:var(--sidebar);color:var(--sidebar-text);position:fixed;top:0;left:0;bottom:0;overflow-y:auto;padding:22px 16px 40px 16px;z-index:20;}
+.sidebar-title{font-family:'Playfair Display', serif;font-size:1.25rem;color:#f2ead6;border-bottom:1px solid #3a473a;padding-bottom:14px;margin-bottom:16px;line-height:1.3;}
+.sidebar-title .sub{display:block;font-family:'IBM Plex Mono', monospace;font-size:0.68rem;color:#8fa88e;letter-spacing:1px;margin-top:4px;text-transform:uppercase;}
+.tab-switch{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.tab-switch button{flex:1 1 calc(50% - 6px);min-width:70px;background:#28312a;color:#b7c2b1;border:1px solid #3a473a;padding:8px 3px;font-family:'IBM Plex Mono', monospace;font-size:0.62rem;letter-spacing:0.3px;cursor:pointer;border-radius:4px;text-transform:uppercase;}
+.tab-switch button.active{background:var(--accent-green);color:#fff;border-color:var(--accent-green);}
+.nav-group{margin-bottom:6px;}
+.nav-section-label{font-family:'IBM Plex Mono', monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.2px;color:#7c9279;margin:16px 0 6px 4px;}
+.sidebar a{display:block;color:var(--sidebar-text);text-decoration:none;padding:6px 10px;font-size:0.83rem;border-radius:4px;margin-bottom:2px;border-left:2px solid transparent;line-height:1.3;}
+.sidebar a:hover{background:#2a332a;}
+.sidebar a.active{background:var(--sidebar-active);border-left:2px solid var(--gold);color:#fff;font-weight:600;}
+
+.main{margin-left:270px;flex:1;padding:36px 46px 90px 46px;max-width:1120px;}
+.page{display:none;}
+.page.active{display:block;}
+
+.hero{border-bottom:2px solid var(--accent-green);padding-bottom:18px;margin-bottom:30px;}
+.hero h1{font-size:2rem;}
+.hero p{color:var(--ink-soft);font-style:italic;margin:0;}
+
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 34px 0;padding:14px 16px;background:var(--paper-dark);border:1px solid var(--border);border-radius:8px;}
+.legend span{font-family:'IBM Plex Mono', monospace;font-size:0.72rem;padding:3px 9px;border-radius:3px;}
+.legend .l-concept{background:var(--yellow-bg);border:1px solid var(--yellow);}
+.legend .l-fact{background:var(--blue-bg);border:1px solid var(--blue);}
+.legend .l-person{background:var(--green-bg);border:1px solid var(--green);}
+.legend .l-trap{background:var(--red-bg);border:1px solid var(--red);}
+
+section{margin-bottom:46px;scroll-margin-top:20px;}
+section h2{font-size:1.5rem;border-bottom:2px solid var(--border);padding-bottom:8px;margin-bottom:16px;}
+section h2 .num{color:var(--gold);font-family:'IBM Plex Mono', monospace;font-size:1rem;margin-right:8px;}
+h3.subhead{font-family:'IBM Plex Mono', monospace;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;color:var(--accent-green-deep);border-left:4px solid var(--accent-green);padding-left:10px;margin:22px 0 10px 0;}
+
+mark{color:var(--ink);font-weight:600;padding:1px 5px;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+mark.concept{background:var(--yellow-bg);box-shadow:inset 0 0 0 1.5px var(--yellow);}
+mark.fact{background:var(--blue-bg);box-shadow:inset 0 0 0 1.5px var(--blue);color:#12324a;}
+mark.person{background:var(--green-bg);box-shadow:inset 0 0 0 1.5px var(--green);color:#123a1a;}
+mark.trap{background:var(--red-bg);box-shadow:inset 0 0 0 1.5px var(--red);color:#5c140b;font-weight:700;}
+
+ul.point-list{padding-left:20px;margin:8px 0;}
+ul.point-list li{margin-bottom:7px;line-height:1.55;}
+
+.callout{border-radius:8px;padding:12px 16px;margin:14px 0;font-size:0.92rem;line-height:1.55;border:1px solid;}
+.callout.trap{background:var(--red-bg);border-color:var(--red);}
+.callout.trap .tag{font-family:'IBM Plex Mono',monospace;font-weight:700;color:#a13a2c;text-transform:uppercase;font-size:0.72rem;display:block;margin-bottom:4px;}
+.callout.fact{background:var(--blue-bg);border-color:var(--blue);}
+.callout.fact .tag{font-family:'IBM Plex Mono',monospace;font-weight:700;color:#2a5a7a;text-transform:uppercase;font-size:0.72rem;display:block;margin-bottom:4px;}
+
+table{width:100%;border-collapse:collapse;margin:14px 0 24px 0;background:#fffdf7;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,0.05);font-size:0.87rem;}
+table caption{caption-side:top;text-align:left;font-family:'IBM Plex Mono', monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gold);padding:6px 0;}
+th{background:var(--accent-green-deep);color:#f2ead6;text-align:left;padding:9px 12px;font-family:'IBM Plex Mono', monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.6px;}
+td{padding:9px 12px;border-top:1px solid var(--border);vertical-align:top;line-height:1.5;}
+tr.tier-main td:first-child, tr.tier-critical td:first-child, tr.tier-secondary td:first-child{font-weight:700;}
+tr.tier-main{background:#fbf6e8;}
+tr.tier-critical{background:#fdeeea;}
+tr.tier-secondary{background:#eef5ee;}
+
+table.master-table td{font-weight:500;}
+table.master-table td, table.master-table th{border-top:1px solid rgba(0,0,0,0.08);}
+
+
+.mcq-box{background:#fffdf7;border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:6px;padding:12px 16px;margin:10px 0;font-size:0.88rem;}
+.mcq-box .q{font-weight:600;margin-bottom:4px;}
+.mcq-box .a{color:var(--accent-green-deep);font-family:'IBM Plex Mono',monospace;font-size:0.8rem;}
+
+/* Master table — unique pastel tint per column */
+table.master-table th{background:var(--accent-green-deep);}
+table.master-table td:nth-child(1){background:#f9d7de;}
+table.master-table td:nth-child(2){background:#d3e6fa;}
+table.master-table td:nth-child(3){background:#d6f0d6;}
+table.master-table td:nth-child(4){background:#fbecc2;}
+table.master-table td:nth-child(5){background:#e6dcf7;}
+table.master-table tr:hover td{filter:brightness(0.96);}
+table.master-table td{border-top:1px solid #fffdf7;}
+table.master-table caption{margin-bottom:2px;}
+
+footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--border);color:var(--ink-soft);font-size:0.78rem;font-family:'IBM Plex Mono', monospace;}
+
+.mobile-topbar{display:none;}
+.hamburger-btn{display:none;}
+.sidebar-overlay{display:none;}
+
+@media(max-width:860px){
+  .mobile-topbar{display:flex;align-items:center;justify-content:space-between;position:fixed;top:0;left:0;right:0;height:56px;background:var(--sidebar);color:#f2ead6;padding:0 14px;z-index:40;box-shadow:0 2px 6px rgba(0,0,0,0.15);}
+  .mobile-topbar .mt-title{font-family:'Playfair Display', serif;font-size:1.05rem;}
+  .hamburger-btn{display:flex;flex-direction:column;justify-content:center;gap:4px;width:34px;height:34px;background:transparent;border:1px solid #3a473a;border-radius:5px;cursor:pointer;padding:8px;}
+  .hamburger-btn span{display:block;height:2px;background:#e8e2cf;border-radius:2px;transition:transform 0.2s ease, opacity 0.2s ease;}
+  .hamburger-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .hamburger-btn.open span:nth-child(2){opacity:0;}
+  .hamburger-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+  .sidebar{top:56px;left:0;width:82%;max-width:320px;height:calc(100vh - 56px);transform:translateX(-105%);transition:transform 0.25s ease;box-shadow:4px 0 18px rgba(0,0,0,0.25);}
+  .sidebar.open{transform:translateX(0);}
+  .sidebar-overlay{display:block;position:fixed;top:56px;left:0;right:0;bottom:0;background:rgba(0,0,0,0);pointer-events:none;transition:background 0.25s ease;z-index:19;}
+  .sidebar-overlay.open{background:rgba(0,0,0,0.4);pointer-events:auto;}
+  .sidebar-title{display:none;}
+  .main{margin-left:0;padding:72px 18px 60px 18px;max-width:100%;}
+  .hero h1{font-size:1.5rem;}
+  section h2{font-size:1.2rem;}
+  table{font-size:0.8rem;}
+  th, td{padding:7px 8px;}
+  .legend{gap:6px;padding:10px 12px;}
+  .legend span{font-size:0.66rem;}
+}
+@media(max-width:480px){table{font-size:0.74rem;}.hero h1{font-size:1.3rem;}}
+</style>
+</head>
+<body>
+
+<div class="mobile-topbar">
+  <span class="mt-title">The Pathogen's Ledger</span>
+  <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleSidebar()" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-title">The Pathogen's Ledger
+    <span class="sub">BPSC Prelims · Diseases &amp; Treatment</span>
+  </div>
+
+  <div class="tab-switch">
+    <button id="btn-tab-viral" class="active" onclick="switchTab('viral')">Viral</button>
+    <button id="btn-tab-bacterial" onclick="switchTab('bacterial')">Bacterial</button>
+    <button id="btn-tab-fungal" onclick="switchTab('fungal')">Fungal</button>
+    <button id="btn-tab-parasitic" onclick="switchTab('parasitic')">Parasitic</button>
+    <button id="btn-tab-genetic" onclick="switchTab('genetic')">Genetic</button>
+    <button id="btn-tab-other" onclick="switchTab('other')">Deficiency &amp; Other</button>
+  </div>
+
+  <div id="nav-viral">
+    <div class="nav-section-label">Master Table</div>
+    <a href="#v-master" class="navlink" data-page="viral">All Viral Diseases — Cause &amp; Symptoms</a>
+
+    <div class="nav-section-label">Foundations</div>
+    <a href="#v-basics" class="navlink" data-page="viral">What is a Virus</a>
+    <a href="#v-discovery" class="navlink" data-page="viral">Discovery Timeline</a>
+
+    <div class="nav-section-label">Respiratory &amp; Systemic</div>
+    <a href="#v-polio" class="navlink" data-page="viral">Polio</a>
+    <a href="#v-rhino" class="navlink" data-page="viral">Rhinovirus (Common Cold)</a>
+    <a href="#v-hepb" class="navlink" data-page="viral">Hepatitis-B</a>
+    <a href="#v-mumps" class="navlink" data-page="viral">Mumps &amp; Meningitis</a>
+    <a href="#v-herpes-rabies" class="navlink" data-page="viral">Herpes &amp; Rabies</a>
+
+    <div class="nav-section-label">Mosquito-Borne Viral</div>
+    <a href="#v-dengue" class="navlink" data-page="viral">Dengue Fever</a>
+    <a href="#v-chik-zika" class="navlink" data-page="viral">Chikungunya &amp; Zika</a>
+    <a href="#v-yellow-je" class="navlink" data-page="viral">Yellow Fever &amp; Japanese Encephalitis</a>
+
+    <div class="nav-section-label">Retrovirus</div>
+    <a href="#v-aids" class="navlink" data-page="viral">AIDS / HIV</a>
+
+    <div class="nav-section-label">Hemorrhagic &amp; Emerging</div>
+    <a href="#v-ebola-nipah" class="navlink" data-page="viral">Ebola &amp; Nipah</a>
+
+    <div class="nav-section-label">COVID-19</div>
+    <a href="#v-covid" class="navlink" data-page="viral">Overview &amp; Timeline</a>
+    <a href="#v-covid-vax" class="navlink" data-page="viral">Vaccine Ledger</a>
+
+    <div class="nav-section-label">Animal &amp; Other Viral</div>
+    <a href="#v-flu" class="navlink" data-page="viral">Bird Flu &amp; Swine Flu</a>
+    <a href="#v-animal" class="navlink" data-page="viral">Rotavirus, FMD, Rinderpest, Ranikhet</a>
+
+    <div class="nav-section-label">Exam Consolidation</div>
+    <a href="#v-terms" class="navlink" data-page="viral">Endemic·Epidemic·Pandemic</a>
+    <a href="#v-match" class="navlink" data-page="viral">Match-List &amp; MCQ Traps</a>
+  </div>
+
+  <div id="nav-bacterial" style="display:none;">
+    <div class="nav-section-label">Master Table</div>
+    <a href="#b-master" class="navlink" data-page="bacterial">All Bacterial Diseases — Cause &amp; Symptoms</a>
+
+    <div class="nav-section-label">Foundations</div>
+    <a href="#b-basics" class="navlink" data-page="bacterial">What is Bacteria</a>
+    <a href="#b-ledger" class="navlink" data-page="bacterial">Disease Ledger — 12 Core Diseases</a>
+
+    <div class="nav-section-label">Food &amp; Toxin-Borne</div>
+    <a href="#b-food" class="navlink" data-page="bacterial">Salmonella &amp; Botulism</a>
+    <a href="#b-caries" class="navlink" data-page="bacterial">Dental Caries</a>
+
+    <div class="nav-section-label">Vaccines &amp; Drugs</div>
+    <a href="#b-vaccines" class="navlink" data-page="bacterial">DPT &amp; BCG</a>
+    <a href="#b-drugs" class="navlink" data-page="bacterial">Sulpha Drugs &amp; Antibiotics</a>
+    <a href="#b-mdr" class="navlink" data-page="bacterial">Antimicrobial Resistance (MDR)</a>
+
+    <div class="nav-section-label">Exam Consolidation</div>
+    <a href="#b-match" class="navlink" data-page="bacterial">Transmission &amp; Match-List Traps</a>
+  </div>
+
+  <div id="nav-fungal" style="display:none;">
+    <div class="nav-section-label">Master Table</div>
+    <a href="#f-master" class="navlink" data-page="fungal">All Fungal Diseases — Cause &amp; Symptoms</a>
+
+    <div class="nav-section-label">Foundations</div>
+    <a href="#f-basics" class="navlink" data-page="fungal">What is Fungi</a>
+
+    <div class="nav-section-label">Toxins</div>
+    <a href="#f-aflatoxin" class="navlink" data-page="fungal">Aflatoxins</a>
+    <a href="#f-ergot" class="navlink" data-page="fungal">Ergotism &amp; Amanita</a>
+
+    <div class="nav-section-label">Infections</div>
+    <a href="#f-infections" class="navlink" data-page="fungal">Athlete's Foot, Mucormycosis &amp; More</a>
+
+    <div class="nav-section-label">Exam Consolidation</div>
+    <a href="#f-match" class="navlink" data-page="fungal">Zoonotic Exclusion &amp; MCQ Traps</a>
+  </div>
+
+  <div id="nav-parasitic" style="display:none;">
+    <div class="nav-section-label">Master Table</div>
+    <a href="#p-master" class="navlink" data-page="parasitic">All Parasitic Diseases — Cause &amp; Symptoms</a>
+
+    <div class="nav-section-label">Foundations</div>
+    <a href="#p-basics" class="navlink" data-page="parasitic">Protozoa · Platyhelminthes · Nematoda</a>
+
+    <div class="nav-section-label">Protozoan Diseases</div>
+    <a href="#p-malaria" class="navlink" data-page="parasitic">Malaria</a>
+    <a href="#p-kalaazar" class="navlink" data-page="parasitic">Kala-azar &amp; Sleeping Sickness</a>
+    <a href="#p-amoeba" class="navlink" data-page="parasitic">Amoebiasis</a>
+
+    <div class="nav-section-label">Platyhelminth Diseases</div>
+    <a href="#p-schisto" class="navlink" data-page="parasitic">Schistosomiasis &amp; Fascioliasis</a>
+    <a href="#p-taenia" class="navlink" data-page="parasitic">Taeniasis &amp; Neurocysticercosis</a>
+
+    <div class="nav-section-label">Nematode Diseases</div>
+    <a href="#p-filaria" class="navlink" data-page="parasitic">Filariasis &amp; Ascariasis</a>
+    <a href="#p-guinea" class="navlink" data-page="parasitic">Guinea Worm Disease</a>
+
+    <div class="nav-section-label">Exam Consolidation</div>
+    <a href="#p-match" class="navlink" data-page="parasitic">Vector Map &amp; MCQ Traps</a>
+  </div>
+
+  <div id="nav-genetic" style="display:none;">
+    <div class="nav-section-label">Master Table</div>
+    <a href="#g-master" class="navlink" data-page="genetic">All Genetic Disorders — Cause &amp; Symptoms</a>
+
+    <div class="nav-section-label">Foundations</div>
+    <a href="#g-basics" class="navlink" data-page="genetic">What Is a Genetic Disease</a>
+    <a href="#g-sexlinked" class="navlink" data-page="genetic">Sex Chromosomes &amp; Sex-Linked Inheritance</a>
+
+    <div class="nav-section-label">Inherited Single-Gene Disorders</div>
+    <a href="#g-albinism" class="navlink" data-page="genetic">Albinism</a>
+    <a href="#g-pku" class="navlink" data-page="genetic">Phenylketonuria (PKU)</a>
+    <a href="#g-haemophilia" class="navlink" data-page="genetic">Haemophilia</a>
+    <a href="#g-aku" class="navlink" data-page="genetic">Alkaptonuria</a>
+    <a href="#g-md-scid" class="navlink" data-page="genetic">Muscular Dystrophy &amp; SCID (Bubble Baby)</a>
+    <a href="#g-sickle-thal" class="navlink" data-page="genetic">Sickle Cell Disease &amp; Thalassemia</a>
+
+    <div class="nav-section-label">Sex-Linked &amp; Vision</div>
+    <a href="#g-colourblind" class="navlink" data-page="genetic">Colour Blindness &amp; Inheritance Probabilities</a>
+
+    <div class="nav-section-label">Chromosomal Aberrations</div>
+    <a href="#g-down" class="navlink" data-page="genetic">Down Syndrome</a>
+    <a href="#g-turner-kline" class="navlink" data-page="genetic">Turner &amp; Klinefelter Syndrome</a>
+
+    <div class="nav-section-label">Exam Consolidation</div>
+    <a href="#g-match" class="navlink" data-page="genetic">Match-List &amp; MCQ Traps</a>
+  </div>
+
+  <div id="nav-other" style="display:none;">
+    <div class="nav-section-label">Master Table</div>
+    <a href="#o-master" class="navlink" data-page="other">All Deficiency/Non-Contagious Diseases</a>
+
+    <div class="nav-section-label">Foundations</div>
+    <a href="#o-basics" class="navlink" data-page="other">Deficiency vs Non-Contagious Diseases</a>
+
+    <div class="nav-section-label">Cancer &amp; Blood Disorders</div>
+    <a href="#o-cancer" class="navlink" data-page="other">Cancer, Metastasis &amp; Oncogenes</a>
+    <a href="#o-leukaemia" class="navlink" data-page="other">Leukaemia &amp; Radioisotope Therapy</a>
+
+    <div class="nav-section-label">Deficiency Diseases</div>
+    <a href="#o-deficiency" class="navlink" data-page="other">Vitamin/Mineral Deficiency Ledger</a>
+    <a href="#o-beriberi" class="navlink" data-page="other">Beriberi, Goitre &amp; Scurvy</a>
+
+    <div class="nav-section-label">Metabolic &amp; Endocrine</div>
+    <a href="#o-diabetes" class="navlink" data-page="other">Diabetes Mellitus &amp; Insipidus</a>
+
+    <div class="nav-section-label">Neurological &amp; Psychiatric</div>
+    <a href="#o-neuro" class="navlink" data-page="other">Cerebral Palsy, Alzheimer's &amp; EEG</a>
+    <a href="#o-psych" class="navlink" data-page="other">Hysteria, Phobias &amp; Eating Disorders</a>
+
+    <div class="nav-section-label">Eye &amp; Sensory Disorders</div>
+    <a href="#o-eye" class="navlink" data-page="other">Myopia, Hypermetropia, Astigmatism &amp; Cataract</a>
+    <a href="#o-sensory" class="navlink" data-page="other">Anosmia, Itching &amp; Sleep Apnea</a>
+
+    <div class="nav-section-label">Cardiac &amp; Organ Disease</div>
+    <a href="#o-heart" class="navlink" data-page="other">Heart Attack &amp; Cardiac Procedures</a>
+    <a href="#o-liver" class="navlink" data-page="other">Liver Cirrhosis, Jaundice &amp; OSF</a>
+
+    <div class="nav-section-label">Pollution &amp; Occupational Disease</div>
+    <a href="#o-pollution" class="navlink" data-page="other">Itai-Itai, Minamata &amp; Blue Baby Syndrome</a>
+    <a href="#o-occupational" class="navlink" data-page="other">Silicosis, Dropsy &amp; Lathyrism</a>
+
+    <div class="nav-section-label">Exam Consolidation</div>
+    <a href="#o-match" class="navlink" data-page="other">Match-List, Radioisotopes &amp; MCQ Traps</a>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- ============================================================ -->
+<!-- PAGE 1 : VIRAL DISEASES -->
+<!-- ============================================================ -->
+<div class="page active" id="page-viral">
+  <div class="hero">
+    <h1>Viral Diseases — The Virology Ledger</h1>
+    <p>Every virus, vaccine, timeline and outbreak fact from theory and 87 solved MCQs.</p>
+  </div>
+  <div class="legend">
+    <span class="l-concept">Yellow — Concept</span>
+    <span class="l-fact">Blue — Fact / Number</span>
+    <span class="l-person">Green — Person / Institution</span>
+    <span class="l-trap">Red — MCQ Trap</span>
+  </div>
+
+  <section id="v-master">
+    <h2><span class="num">00</span>All Viral Diseases — Cause &amp; Symptoms Master Table</h2>
+    <div class="legend">
+      <span style="background:#f9d7de;border:1px solid #c23b2c;">Col 1 — Disease (rose)</span>
+      <span style="background:#d3e6fa;border:1px solid #1f6fa8;">Col 2 — Causative Agent (sky)</span>
+      <span style="background:#d6f0d6;border:1px solid #2f7d3f;">Col 3 — Transmission/Vector (mint)</span>
+      <span style="background:#fbecc2;border:1px solid #e0a712;">Col 4 — Key Symptoms (amber)</span>
+    </div>
+    <table class="master-table">
+      <caption>Every viral disease in this chapter, in one place — Disease · Causative Agent · Vector/Transmission · Symptoms</caption>
+      <thead><tr><th>Disease</th><th>Causative Agent</th><th>Transmission / Vector</th><th>Key Symptoms</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Poliomyelitis</mark></td><td><mark class="concept">Poliovirus</mark></td><td><mark class="trap">Fecal-oral</mark>; <mark class="concept">contaminated food/water</mark></td><td><mark class="trap">Muscle weakness</mark>, <mark class="trap">paralysis</mark> — destroys <mark class="concept">brain &amp; spinal cord</mark> motor cells</td></tr>
+        <tr><td><mark class="fact">Common Cold</mark></td><td><mark class="concept">Rhinovirus</mark></td><td><mark class="concept">Airborne droplets</mark>, contact</td><td><mark class="concept">Sore throat</mark>, <mark class="concept">runny/congested nose</mark>, sneezing, cough, fatigue, headache</td></tr>
+        <tr><td><mark class="fact">Hepatitis-B</mark></td><td><mark class="concept">Hepatitis-B Virus (HBV)</mark></td><td><mark class="trap">Blood &amp; body fluids</mark>, mother-to-child at birth</td><td><mark class="concept">Jaundice</mark>, fever, fatigue, nausea, vomiting; <mark class="trap">cirrhosis / liver cancer</mark> risk</td></tr>
+        <tr><td><mark class="fact">Mumps</mark></td><td><mark class="concept">Mumps virus</mark></td><td>Saliva, nasal secretions, close contact</td><td>Fever, muscle pain, headache; <mark class="trap">swollen parotid (salivary) glands</mark></td></tr>
+        <tr><td><mark class="fact">Meningitis</mark></td><td><mark class="concept">Virus</mark> (or bacteria/other microbes)</td><td>Varies by causative organism</td><td><mark class="concept">Inflammation of meninges</mark> — fever, headache, <mark class="trap">neck stiffness</mark>, confusion</td></tr>
+        <tr><td><mark class="fact">Herpes</mark></td><td><mark class="concept">Herpes Simplex Virus</mark></td><td>Direct/skin contact</td><td>Sores around <mark class="concept">mouth, lips and genitals</mark></td></tr>
+        <tr><td><mark class="fact">Rabies (Hydrophobia)</mark></td><td><mark class="concept">Rabies lyssavirus</mark></td><td>Bite/scratch from infected dog, cat, bat, fox</td><td>Fever, tingling; <mark class="trap">fear of water</mark>, confusion, coma — <mark class="trap">nearly always fatal once symptomatic</mark></td></tr>
+        <tr><td><mark class="fact">Dengue Fever</mark></td><td><mark class="concept">Dengue virus</mark></td><td><mark class="fact">Aedes aegypti</mark> (also A. albopictus)</td><td>High fever, headache, joint/muscle pain, rash, retro-orbital pain; <mark class="trap">low platelet count</mark></td></tr>
+        <tr><td><mark class="fact">Chikungunya</mark></td><td><mark class="concept">Chikungunya virus (CHIKV)</mark></td><td>Aedes albopictus &amp; A. aegypti</td><td>Fever, <mark class="trap">severe joint pain</mark>, muscle pain, headache; <mark class="trap">not contagious</mark></td></tr>
+        <tr><td><mark class="fact">Zika Fever</mark></td><td><mark class="concept">Zika virus</mark></td><td>Aedes mosquito; also <mark class="trap">sexual transmission</mark></td><td>Fever, red eyes, joint pain, headache, rash</td></tr>
+        <tr><td><mark class="fact">Yellow Fever</mark></td><td><mark class="concept">Yellow fever virus</mark></td><td>Aedes aegypti (also A. albopictus)</td><td>Fever, headache, <mark class="concept">jaundice</mark>, muscle pain, vomiting</td></tr>
+        <tr><td><mark class="fact">Japanese Encephalitis</mark></td><td><mark class="concept">JE Virus (JEV)</mark></td><td><mark class="trap">Culex mosquito</mark> (not Aedes/Anopheles)</td><td>Headache, vomiting, fever, confusion, <mark class="trap">seizures</mark></td></tr>
+        <tr><td><mark class="fact">AIDS</mark></td><td><mark class="concept">HIV (retrovirus)</mark></td><td>Sexual contact, blood, shared needles, mother-to-child</td><td>Weight loss, night sweats, <mark class="trap">swollen lymph nodes</mark>, diarrhoea, pneumonia</td></tr>
+        <tr><td><mark class="fact">Ebola Virus Disease</mark></td><td><mark class="concept">Ebola virus</mark></td><td>Direct contact with infected animal/person (bats, primates)</td><td><mark class="trap">Haemorrhagic fever</mark>, organ failure; high fatality</td></tr>
+        <tr><td><mark class="fact">Nipah Virus Infection</mark></td><td><mark class="concept">Nipah virus (NiV)</mark></td><td>Fruit bats; sick pigs; raw palm sap</td><td>Fever, cough, headache, breathlessness; may progress to <mark class="trap">coma</mark></td></tr>
+        <tr><td><mark class="fact">COVID-19</mark></td><td><mark class="concept">SARS-CoV-2</mark></td><td>Respiratory droplets, aerosols, contact</td><td>Fever, cough, breathlessness, <mark class="trap">loss of smell/taste</mark>; severe: ARDS, cytokine storm</td></tr>
+        <tr><td><mark class="fact">Bird Flu</mark></td><td><mark class="concept">H5N1 virus</mark></td><td>Direct bird contact; rare human-human</td><td>Severe influenza-like illness</td></tr>
+        <tr><td><mark class="fact">Swine Flu</mark></td><td><mark class="concept">H1N1 virus</mark></td><td>Human-to-human via cough/sneeze</td><td>Influenza-like symptoms</td></tr>
+        <tr><td><mark class="fact">Rotavirus Diarrhoea</mark></td><td><mark class="concept">Rotavirus</mark> (dsRNA, Reoviridae)</td><td><mark class="trap">Fecal-oral</mark></td><td><mark class="trap">Most common cause of severe diarrhoea in infants</mark></td></tr>
+        <tr><td><mark class="fact">Foot &amp; Mouth Disease</mark></td><td><mark class="concept">Aphthovirus</mark> (Picornaviridae)</td><td>Direct contact among cloven-hoofed animals</td><td>Mouth/foot lesions in cattle, sheep, goat, pig</td></tr>
+        <tr><td><mark class="fact">Rinderpest</mark></td><td><mark class="concept">Morbillivirus</mark> (Paramyxoviridae)</td><td>Direct contact among cattle/buffalo</td><td>Cattle plague — <mark class="trap">eradicated globally in 2011</mark></td></tr>
+        <tr><td><mark class="fact">Ranikhet Disease</mark></td><td><mark class="concept">Virus</mark></td><td>Direct contact among poultry</td><td>Highly infectious disease of <mark class="concept">chicken</mark></td></tr>
+        <tr><td><mark class="fact">Smallpox</mark></td><td><mark class="concept">Variola virus</mark></td><td>Infective droplets, close contact</td><td>Fever, red rash/pustules; <mark class="trap">globally eradicated 1980</mark> (India-free 1977)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+
+  <section id="v-basics">
+    <h2><span class="num">01</span>What Is a Virus</h2>
+    <ul class="point-list">
+      <li>The word <mark class="concept">'VIRUS'</mark> comes from the Latin neuter word meaning <mark class="fact">'venomous substance'</mark>.</li>
+      <li>A virus is an <mark class="concept">ultramicroscopic (20–300 nm)</mark>, metabolically inert, infectious agent that replicates <mark class="trap">only within the cells of living hosts</mark> (bacteria, plants, animals); composed of an RNA or DNA core, a protein coat, and — in complex types — a surrounding envelope.</li>
+      <li>The protein coat is called the <mark class="concept">capsid</mark>; its subunit is the <mark class="concept">capsomere</mark>.</li>
+      <li>Genetic material may be <mark class="fact">single- or double-stranded RNA or DNA</mark>.</li>
+      <li>The entire infectious particle is a <mark class="trap">virion</mark> — the active, infectious form — whereas 'virus' refers to the nucleoprotein particle generally.</li>
+      <li>A virus is considered a <mark class="concept">link between non-living and living matter</mark>: non-living outside a host cell (no cellular machinery of its own), but 'living' once inside a host, hijacking host machinery to replicate and eventually destroying the host cell.</li>
+      <li>Viruses <mark class="trap">lack enzymes necessary for energy generation</mark> and therefore <mark class="trap">cannot be cultured in any synthetic medium</mark>.</li>
+      <li>Some viral particles do carry a small number of their own enzymes — e.g. <mark class="fact">reverse transcriptase, RNA-dependent RNA polymerase, integrase, neuraminidase</mark>.</li>
+      <li>Viruses are transmitted between organisms by <mark class="concept">multiple means</mark> — air, water, food, insects, direct contact — <mark class="trap">not by biological vectors only</mark>.</li>
+      <li>Viruses exist in <mark class="trap">very large numbers in ocean waters</mark> and remain highly active — the statement "no virus can survive in ocean waters" is factually incorrect; likewise viruses <mark class="trap">can infect bacteria</mark> (bacteriophages) and <mark class="trap">can alter transcriptional activity</mark> of host cells.</li>
+      <li>A <mark class="concept">bacteriophage</mark> is a virus that infects bacteria — its outer covering is protein, with DNA or RNA inside. The river <mark class="person">Ganga</mark> is noted for self-cleansing/healing properties partly attributed to bacteriophages that kill bacteria in its water; <mark class="concept">Phage Therapy</mark> uses bacteriophages to treat bacterial infections.</li>
+      <li>The branch of biology studying viruses is <mark class="concept">Virology</mark>.</li>
+      <li>Viruses are on the <mark class="fact">WHO List of Essential Medicines</mark> is <mark class="trap">NOT correct</mark> — rather, certain antiviral drugs/vaccines are; the list covers the most effective/safe medicines needed in a health system generally.</li>
+      <li><mark class="concept">DNA viruses</mark>: genome of DNA replicated by DNA polymerase; may be double-stranded (dsDNA) or single-stranded (ssDNA) — <mark class="trap">DNA-based viruses are usually double-stranded, NOT single-stranded</mark> (a reversed MCQ trap).</li>
+      <li><mark class="concept">RNA-based viruses accumulate MORE genetic mutations</mark> than DNA-based viruses (higher mutation rate — lack of proofreading in RNA replication).</li>
+    </ul>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      A classic "which is NOT true about viruses" question tests: term 'virus' coined by <mark class="trap">Beijerinck (not Ivanovsky)</mark>; genome can be DNA or RNA; DNA viruses are usually double-stranded (not single); RNA viruses mutate faster than DNA viruses.
+    </div>
+  </section>
+
+  <section id="v-discovery">
+    <h2><span class="num">02</span>Discovery Timeline</h2>
+    <table>
+      <caption>Milestones in virology — names are a favourite one-liner MCQ</caption>
+      <thead><tr><th>Year</th><th>Scientist</th><th>Contribution</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">1892</mark></td><td><mark class="person">Dmitri Ivanovsky</mark> (Russian)</td><td>Showed a tobacco plant disease was transmitted by an agent (later Tobacco Mosaic Virus) passing through a filter that blocked bacteria.</td></tr>
+        <tr><td><mark class="fact">1898</mark></td><td><mark class="person">Martinus Beijerinck</mark></td><td>Independently repeated Ivanovsky's filtration work, showed the agent could reproduce/multiply in host cells, and <mark class="trap">coined the term 'virus'</mark>.</td></tr>
+        <tr><td><mark class="fact">1935</mark></td><td><mark class="person">Wendell Meredith Stanley</mark></td><td><mark class="concept">Tobacco Mosaic Virus (TMV)</mark> was the first virus to be crystallized; showed TMV remains active after crystallization.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="v-polio">
+    <h2><span class="num">03</span>Polio (Poliomyelitis)</h2>
+    <ul class="point-list">
+      <li>Caused by the <mark class="fact">poliovirus</mark>; spreads person-to-person mainly through <mark class="concept">infected fecal matter entering the mouth</mark> (fecal-oral route), also via contaminated food/water or, less commonly, infected saliva.</li>
+      <li>Infected people may spread the disease for up to <mark class="fact">6 weeks</mark> even without symptoms.</li>
+      <li>Poliovirus destroys cells of the <mark class="concept">brain and spinal cord</mark> controlling muscle function, causing muscle weakness and paralysis.</li>
+      <li><mark class="person">Jonas Salk</mark> developed the <mark class="fact">first (injectable) polio vaccine in 1952</mark>, used from 1955.</li>
+      <li><mark class="person">Albert Sabin</mark> developed the <mark class="concept">oral polio vaccine</mark>, in commercial use from <mark class="fact">1961</mark>.</li>
+      <li><mark class="concept">Trivalent OPV</mark> covered all three poliovirus types (Type 1, 2, 3).</li>
+      <li>India was declared <mark class="fact">smallpox-free in 1977</mark> (separate disease, noted alongside polio timeline).</li>
+      <li>WHO gave India its official <mark class="concept">'Polio Free' certification on 27 March 2014</mark>.</li>
+      <li>In <mark class="fact">September 2015</mark>, WHO declared <mark class="trap">poliovirus Type 2 eradicated</mark> globally — no case since November 1999 — leading to a switch from trivalent to <mark class="concept">bivalent OPV (Type 1 &amp; 3) in April 2016</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="v-rhino">
+    <h2><span class="num">04</span>Rhinovirus — The Common Cold</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Rhinovirus</mark> (Greek 'rhinos' = of the nose) is the <mark class="trap">most common viral infectious agent in humans</mark> and predominant cause of the common cold.</li>
+      <li>Proliferates best at <mark class="fact">33–35°C (91–95°F)</mark> — the temperature inside the human nose.</li>
+      <li><mark class="fact">Three species (A, B, C)</mark> comprise around <mark class="fact">160 recognized human rhinovirus types</mark>, differing by surface protein serotypes.</li>
+      <li>Symptoms: sore throat, runny nose, nasal congestion, sneezing, cough, fatigue, headache.</li>
+    </ul>
+  </section>
+
+  <section id="v-hepb">
+    <h2><span class="num">05</span>Hepatitis-B</h2>
+    <ul class="point-list">
+      <li>Caused by the <mark class="fact">Hepatitis-B virus (HBV)</mark> — a <mark class="trap">partially double-stranded DNA virus</mark> (genus Orthohepadnavirus, family Hepadnaviridae) — affects the <mark class="concept">liver</mark>.</li>
+      <li>Can cause acute and chronic infection; may lead to <mark class="trap">liver scarring/cirrhosis and liver cancer</mark>.</li>
+      <li>Spreads via contact with blood, open sores, or body fluids — <mark class="trap">transmitted much like HIV</mark>; the most frequent route is around birth or via childhood blood contact — <mark class="trap">NOT via water contamination</mark> (unlike typhoid/cholera/jaundice).</li>
+      <li>Symptoms: jaundice, fever, prolonged fatigue, loss of appetite, nausea, vomiting, belly pain.</li>
+      <li><mark class="trap">Hepatitis-B HAS a vaccine</mark> (recommended at birth and up to 18 years) — <mark class="trap">Hepatitis-C does NOT have a vaccine</mark> (reverse of a commonly planted false claim).</li>
+      <li>Globally (WHO 2022 est.): ~<mark class="fact">254 million</mark> infected with Hep-B, ~<mark class="fact">50 million</mark> with Hep-C — several times more than global HIV infections.</li>
+    </ul>
+  </section>
+
+  <section id="v-mumps">
+    <h2><span class="num">06</span>Mumps &amp; Meningitis</h2>
+    <h3 class="subhead">Mumps</h3>
+    <ul class="point-list">
+      <li>Caused by the <mark class="fact">mumps virus</mark>; spreads via saliva, nasal secretions and close contact.</li>
+      <li>Primarily affects the <mark class="concept">salivary (parotid) glands</mark> — hallmark symptom is <mark class="trap">swelling of the salivary glands</mark>.</li>
+      <li>Initial symptoms: fever, muscle pain, headache, poor appetite, malaise; more severe in adults than children.</li>
+      <li>Complications: meningitis, pancreatitis, permanent deafness, testicular inflammation (rarely causing infertility).</li>
+    </ul>
+    <h3 class="subhead">Meningitis</h3>
+    <ul class="point-list">
+      <li><mark class="concept">Inflammation of the meninges</mark> — the three membranes covering the brain and spinal cord — occurring when fluid around them becomes infected.</li>
+      <li>Symptoms: fever, headache, neck stiffness, confusion, vomiting, intolerance to light/loud noise.</li>
+      <li>May be caused by <mark class="trap">viruses, bacteria, or other microorganisms</mark> — meningococcal-bacterial meningitis may show a characteristic rash.</li>
+    </ul>
+  </section>
+
+  <section id="v-herpes-rabies">
+    <h2><span class="num">07</span>Herpes &amp; Rabies</h2>
+    <h3 class="subhead">Herpes</h3>
+    <ul class="point-list">
+      <li>Caused by the <mark class="fact">herpes simplex virus</mark>; causes sores around the mouth/lips and genital organs.</li>
+    </ul>
+    <h3 class="subhead">Rabies (Hydrophobia)</h3>
+    <ul class="point-list">
+      <li>Caused by <mark class="fact">Rabies lyssavirus</mark> (formerly 'rabies virus'), a neurotropic virus.</li>
+      <li>Transmitted through the <mark class="concept">saliva of infected animals</mark> — dogs, cats, bats, foxes and other wild animals — via bite or scratch.</li>
+      <li>Also called <mark class="trap">hydrophobia</mark> ('fear of water') — patients become afraid of rivers, lakes, seas.</li>
+      <li>Early symptoms: fever, tingling at exposure site; later: violent movements, uncontrolled excitement, fear of water, confusion, loss of consciousness.</li>
+      <li><mark class="trap">Once symptoms appear, the result is nearly always death</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="v-dengue">
+    <h2><span class="num">08</span>Dengue Fever</h2>
+    <ul class="point-list">
+      <li>Transmitted by the bite of an <mark class="fact">Aedes mosquito</mark> (mainly <mark class="fact">A. aegypti</mark>) infected with dengue virus; the <mark class="fact">tiger mosquito (Aedes albopictus)</mark> can also serve as vector.</li>
+      <li>Symptoms begin <mark class="fact">3–14 days</mark> after infection: high fever, headache, vomiting, muscle/joint pains, characteristic skin rash, retro-orbital (behind-the-eye) pain, bleeding from nose/gums.</li>
+      <li>Also known as <mark class="concept">'breakbone fever'</mark>.</li>
+      <li>Causes <mark class="trap">bone marrow suppression</mark> → deficiency of blood cells → <mark class="trap">low platelet count</mark> — platelets are the blood component most reduced by dengue.</li>
+      <li><mark class="trap">Dengue is viral, NOT protozoan</mark> — a frequently planted false statement.</li>
+    </ul>
+  </section>
+
+  <section id="v-chik-zika">
+    <h2><span class="num">09</span>Chikungunya &amp; Zika Fever</h2>
+    <h3 class="subhead">Chikungunya</h3>
+    <ul class="point-list">
+      <li>Caused by <mark class="fact">Chikungunya virus (CHIKV)</mark>, transmitted by <mark class="fact">Aedes albopictus</mark> (tiger mosquito) and <mark class="fact">Aedes aegypti</mark>.</li>
+      <li>Causes fever and <mark class="concept">severe joint pain</mark>; also muscle pain, headache, nausea, fatigue, rash.</li>
+      <li><mark class="trap">NOT contagious</mark> — an infected person cannot directly spread it to others (only via mosquito).</li>
+    </ul>
+    <h3 class="subhead">Zika Fever</h3>
+    <ul class="point-list">
+      <li>Caused by <mark class="fact">Zika virus</mark>; symptoms: fever, red eyes, joint pain, headache, maculopapular rash.</li>
+      <li>Transmitted primarily via <mark class="concept">Aedes aegypti / Aedes albopictus</mark> bite; also <mark class="trap">sexually transmissible</mark> and potentially via blood transfusion.</li>
+      <li>Infection in pregnant women can spread to the baby.</li>
+    </ul>
+    <div class="callout fact">
+      <span class="tag">Fact</span>
+      Zika transmission is <mark class="fact">by the same mosquito that transmits dengue</mark> (Aedes) in tropical regions, and sexual transmission is genuinely possible — both correct statements in a common two-part MCQ.
+    </div>
+  </section>
+
+  <section id="v-yellow-je">
+    <h2><span class="num">10</span>Yellow Fever &amp; Japanese Encephalitis</h2>
+    <h3 class="subhead">Yellow Fever</h3>
+    <ul class="point-list">
+      <li>An acute viral haemorrhagic disease transmitted by <mark class="fact">yellow fever virus</mark> via infected mosquito, mainly <mark class="fact">Aedes aegypti</mark> (tiger mosquito Aedes albopictus can also serve as vector).</li>
+      <li>Symptoms: fever, headache, jaundice, muscle pain, nausea, vomiting, fatigue.</li>
+      <li>Prevented by an <mark class="concept">extremely effective, safe and affordable vaccine</mark>.</li>
+      <li><mark class="trap">Japanese Encephalitis is the ONE mosquito-borne disease NOT transmitted by tiger mosquitoes</mark> among Yellow Fever/Dengue/Chikungunya/JE — JE uses Culex instead.</li>
+    </ul>
+    <h3 class="subhead">Japanese Encephalitis (JE)</h3>
+    <ul class="point-list">
+      <li>Brain infection caused by the <mark class="fact">Japanese Encephalitis Virus (JEV)</mark>.</li>
+      <li>Vector: <mark class="concept">Culex mosquitoes</mark> (main vector) — <mark class="trap">NOT Anopheles or Aedes</mark>.</li>
+      <li>Most infections mild/asymptomatic; occasional brain inflammation causes headache, vomiting, fever, confusion, seizures.</li>
+      <li><mark class="trap">No specific treatment or cure</mark> — only symptomatic relief; prevention/care are the best approach.</li>
+      <li><mark class="concept">Domestic pigs and wild birds</mark> are viral reservoirs — <mark class="trap">keeping pigs away from human settlements helps eradicate JE</mark>.</li>
+      <li>Anopheles mosquitoes (besides malaria) can occasionally also serve as vectors for <mark class="trap">certain encephalitis strains and filariasis</mark> in specific regions — a nuanced exception to the "Anopheles = malaria only" assumption.</li>
+    </ul>
+  </section>
+
+  <section id="v-aids">
+    <h2><span class="num">11</span>AIDS / HIV</h2>
+    <ul class="point-list">
+      <li><mark class="concept">AIDS</mark> = Acquired Immune Deficiency Syndrome, a spectrum of conditions caused by <mark class="fact">Human Immunodeficiency Virus (HIV)</mark>, a <mark class="concept">retrovirus</mark> (RNA + reverse transcriptase, protease, integrase enzymes).</li>
+      <li>HIV infects <mark class="concept">T-helper lymphocytes</mark>, disabling both B-lymphocytes (antibody production) and other T-lymphocytes (virus-infected cell killing) — rendering the immune system ineffective against HIV and other infections.</li>
+      <li>Transmission: <mark class="fact">sexual intercourse, blood transfusion, shared needles, mother-to-child (placenta/birth/breast milk)</mark> — <mark class="trap">NOT via mosquitoes or other blood-sucking insects, coughing, sneezing, or casual contact</mark>.</li>
+      <li>Symptoms: rapid weight loss, recurring fever/night sweats, extreme tiredness, swollen lymph glands, prolonged diarrhoea, mouth/genital sores, pneumonia, skin blotches, memory loss/depression.</li>
+      <li>Tests: <mark class="concept">ELISA</mark> (first widely used, high sensitivity screening test) confirmed by <mark class="concept">Western Blot</mark> — combined ~<mark class="fact">99.9% accurate</mark>.</li>
+      <li><mark class="fact">HIV-1 subtype C (HIV-1C)</mark> is the dominant strain in India.</li>
+      <li><mark class="person">Robert Gallo</mark> discovered <mark class="fact">HTLV-III</mark>, the AIDS-causing factor.</li>
+      <li>Most-used AIDS medicine: <mark class="fact">Zidovudine (Azidothymidine)</mark>, an anti-retroviral.</li>
+      <li><mark class="concept">World AIDS Day</mark> — <mark class="fact">1 December</mark>, observed every year since 1988.</li>
+      <li>Tattooing can transmit <mark class="trap">Hepatitis-B and HIV-AIDS</mark> via contaminated equipment (Chikungunya, being mosquito-borne, is NOT tattoo-transmissible).</li>
+    </ul>
+  </section>
+
+  <section id="v-ebola-nipah">
+    <h2><span class="num">12</span>Ebola &amp; Nipah Virus</h2>
+    <h3 class="subhead">Ebola Virus Disease</h3>
+    <ul class="point-list">
+      <li>A rare, deadly haemorrhagic disease in people and non-human primates; first identified in <mark class="fact">1976</mark> in two simultaneous outbreaks — <mark class="person">Nzara (South Sudan)</mark> and <mark class="person">Yambuku (DR Congo)</mark>, a village near the <mark class="concept">Ebola river</mark>, from which the disease takes its name (<mark class="trap">named after a river, not a city, province, or mountain</mark>).</li>
+      <li>Transmission: direct contact with an infected animal (bats, non-human primates) or a sick/dead infected person.</li>
+      <li>Largest outbreak: <mark class="fact">West Africa, Dec 2013 – Jan 2016</mark> — <mark class="fact">28,646 cases, 11,323 deaths</mark>.</li>
+    </ul>
+    <h3 class="subhead">Nipah Virus Infection</h3>
+    <ul class="point-list">
+      <li>Caused by <mark class="fact">Nipah virus (NiV)</mark>, an <mark class="concept">RNA virus</mark> normally circulating among <mark class="concept">fruit bats</mark>.</li>
+      <li>First identified in <mark class="person">Malaysia, 1998</mark>, named after the village <mark class="fact">Sungai Nipah</mark>.</li>
+      <li>Indian outbreaks in <mark class="person">Kerala</mark>: <mark class="fact">May 2018 (17 deaths)</mark>, <mark class="fact">September 2021 (1 death, 12-yr-old)</mark>, <mark class="fact">July–Sept 2024 (2 deaths)</mark>.</li>
+      <li>Symptoms range from none to fever, cough, headache, shortness of breath, confusion — may worsen to coma.</li>
+      <li><mark class="trap">No vaccine or specific treatment exists</mark> — management is supportive care only; prevention = avoiding bats, sick pigs, and raw date-palm sap (toddy).</li>
+      <li>For Nipah, several <mark class="concept">monoclonal antibodies</mark> (man-made proteins that bind specific antigens to trigger immune response) have been developed, e.g. <mark class="fact">m102.4, hu1F5, MBP1F5</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="v-covid">
+    <h2><span class="num">13</span>COVID-19 — Overview &amp; Timeline</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Coronaviruses</mark> are a large family of RNA viruses causing respiratory infections from common cold to severe disease: <mark class="fact">SARS (2002)</mark>, <mark class="fact">MERS/camel flu (2012)</mark>, and <mark class="fact">COVID-19</mark>.</li>
+      <li>COVID-19 is caused by <mark class="fact">SARS-CoV-2 (Novel Coronavirus/nCOV)</mark>; first identified <mark class="fact">December 2019 in Wuhan, China</mark>.</li>
+      <li>WHO declared it a <mark class="concept">Public Health Emergency of International Concern on 30 January 2020</mark>, and a <mark class="concept">pandemic on 11 March 2020</mark>.</li>
+      <li>Symptoms: respiratory issues, fever, cough, shortness of breath, fatigue, loss of smell/taste; severe cases may progress to <mark class="fact">ARDS</mark> via <mark class="concept">cytokine storm</mark>, multi-organ failure, septic shock, severe clotting.</li>
+      <li><mark class="concept">ACE2 (Angiotensin-Converting Enzyme 2)</mark> is a surface protein/enzyme regulating blood pressure, wound healing, inflammation — it also serves as the <mark class="trap">cellular entry receptor</mark> for SARS-CoV, SARS-CoV-2, and HCoV-NL63.</li>
+      <li>Vaccination stimulates immunity by introducing a <mark class="trap">live, attenuated form of the virus</mark> (per BPSC 2023 framing) or, more generally across platforms, harmless viral components.</li>
+      <li><mark class="concept">Viral vector vaccines</mark> work by placing the target virus's genetic material inside a modified, harmless different virus (the 'vector'), which then enters cells to trigger spike-protein production and immunity.</li>
+      <li>India's vaccination rollout: <mark class="fact">16 Jan 2021</mark> — healthcare workers (Covishield &amp; Covaxin); <mark class="fact">2 Feb 2021</mark> — frontline workers; <mark class="fact">1 Mar 2021</mark> — age 60+ and 45+ with comorbidities; <mark class="fact">1 Apr 2021</mark> — all above 45; <mark class="fact">1 May 2021</mark> — all above 18; <mark class="fact">3 Jan 2022</mark> — adolescents 15–18; <mark class="fact">10 Jan 2022</mark> — precaution booster doses begin; <mark class="fact">16 Mar 2022</mark> — children 12–14 (Corbevax only); <mark class="fact">10 Apr 2022</mark> — booster doses via private centres for 18+.</li>
+      <li>As of <mark class="fact">5 May 2026</mark>, India had the <mark class="trap">second-highest confirmed case count (after USA)</mark> at ~<mark class="fact">45,056,126</mark> cases, and the <mark class="trap">third-highest death count (after USA and Brazil)</mark> at <mark class="fact">533,847</mark> deaths.</li>
+      <li>By December 2025, India had administered over <mark class="fact">2.2 billion doses</mark> overall.</li>
+    </ul>
+  </section>
+
+  <section id="v-covid-vax">
+    <h2><span class="num">14</span>COVID-19 Vaccine Ledger</h2>
+    <table>
+      <caption>Vaccine ↔ platform ↔ manufacturer — the single most repeated MCQ format for this topic</caption>
+      <thead><tr><th>Vaccine</th><th>Platform</th><th>Manufacturer / Origin</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Covishield</mark></td><td>Viral vector (non-replicating; chimpanzee adenovirus)</td><td><mark class="trap">Serum Institute of India</mark> (Pune), Oxford-AstraZeneca license — <mark class="trap">NOT mRNA-based</mark></td></tr>
+        <tr><td><mark class="fact">Covaxin</mark></td><td>Whole-virion inactivated pathogen</td><td><mark class="person">Bharat Biotech</mark> + ICMR + National Institute of Virology</td></tr>
+        <tr><td><mark class="fact">Sputnik V / Sputnik Light</mark></td><td>Adenovirus viral vector</td><td><mark class="person">Gamaleya Research Institute, Russia</mark>; India: Dr. Reddy's Labs (+ Serum Institute from Sept 2021)</td></tr>
+        <tr><td><mark class="fact">Moderna &amp; Pfizer-BioNTech</mark></td><td><mark class="concept">mRNA vaccine</mark></td><td>USA (Moderna + NIAID + BARDA)</td></tr>
+        <tr><td><mark class="fact">Sinovac (CoronaVac)</mark></td><td>Whole inactivated virus</td><td>China</td></tr>
+        <tr><td><mark class="fact">Sinopharm (BBIBP-CorV, WIBP)</mark></td><td>Conventional inactivated</td><td>China</td></tr>
+        <tr><td><mark class="fact">Oxford-AstraZeneca</mark></td><td>Viral vector</td><td>UK / Oxford</td></tr>
+        <tr><td><mark class="fact">Ad5-nCoV</mark></td><td>Viral vector</td><td>CanSino Biologics, China</td></tr>
+        <tr><td><mark class="fact">EpiVacCorona</mark></td><td>Peptide vaccine</td><td>Vector Institute, Russia</td></tr>
+        <tr><td><mark class="fact">ZyCoV-D</mark></td><td><mark class="concept">World's first DNA-based COVID-19 vaccine</mark></td><td>Zydus Cadila, India</td></tr>
+        <tr><td><mark class="fact">Corbevax</mark></td><td>Protein subunit</td><td>Texas Children's Hospital + Baylor College + Dynavax (USA), licensed to <mark class="person">Biological E. Limited</mark>, India</td></tr>
+        <tr><td><mark class="fact">Covovax</mark></td><td>Protein-based recombinant nanoparticle</td><td>Novavax + CEPI</td></tr>
+        <tr><td><mark class="fact">Johnson &amp; Johnson</mark></td><td>Viral vector</td><td>USA</td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Covishield is a <mark class="trap">viral vector vaccine, NOT mRNA</mark> — this exact false statement ("Serum Institute produced Covishield using mRNA platform") was tested directly. Sputnik V is vector-based (correct); Covaxin is inactivated-pathogen based (correct).
+    </div>
+    <div class="callout fact">
+      <span class="tag">Fact</span>
+      Covishield dosage: <mark class="fact">0.5 ml per dose</mark>, two doses, gap of <mark class="fact">12–16 weeks</mark> recommended between doses in India.
+    </div>
+  </section>
+
+  <section id="v-flu">
+    <h2><span class="num">15</span>Bird Flu &amp; Swine Flu</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Bird flu (avian influenza)</mark> is caused by the <mark class="fact">H5N1</mark> virus; contagious, mainly affects birds (hens, cocks, ducks); spreads to humans via direct hen-contact or (rarely) human-to-human transmission.</li>
+      <li><mark class="fact">Tamiflu</mark> is an antiviral blocking influenza A and B virus action.</li>
+      <li><mark class="concept">Swine Flu</mark> is caused by <mark class="fact">H1N1</mark> — first detected in <mark class="fact">2009</mark>, named for similarity to viruses found in pigs; the virus gained the ability to spread human-to-human via coughing/sneezing.</li>
+    </ul>
+  </section>
+
+  <section id="v-animal">
+    <h2><span class="num">16</span>Rotavirus, Foot &amp; Mouth Disease, Rinderpest, Ranikhet</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Rotavirus</mark> — a group of double-stranded RNA viruses (family Reoviridae) — is the <mark class="trap">most common cause of severe diarrhoea among infants/young children</mark>; in India, <mark class="fact">1 in every 200 babies</mark> dies of diarrhoea caused by rotavirus.</li>
+      <li><mark class="concept">Foot and Mouth Disease (FMD)</mark> is caused by an <mark class="fact">Aphthovirus</mark> (family Picornaviridae); affects <mark class="fact">cloven-hoofed animals</mark> — cattle, sheep, goats, pigs.</li>
+      <li><mark class="concept">Rinderpest (cattle plague)</mark> — caused by a virus of family Paramyxoviridae, genus Morbillivirus — was declared <mark class="fact">eradicated in 2011</mark>, the <mark class="trap">first animal disease ever eliminated in human history</mark>.</li>
+      <li><mark class="concept">Ranikhet disease</mark> is a highly infectious viral disease related to <mark class="fact">chicken</mark>.</li>
+      <li>Blackleg/Black Quarter (bacterial, Clostridium chauvoei), Anthrax (bacterial), Cowpox (viral) and FMD (viral) are <mark class="trap">all infectious diseases of milching animals</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="v-terms">
+    <h2><span class="num">17</span>Endemic · Epidemic · Pandemic · Epizootic</h2>
+    <table>
+      <thead><tr><th>Term</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="concept">Endemic</mark></td><td>A disease regularly found in a particular place or among a particular group, difficult to eliminate.</td></tr>
+        <tr><td><mark class="concept">Epidemic</mark></td><td>A large number of cases of a disease occurring in a given population within a short period.</td></tr>
+        <tr><td><mark class="concept">Pandemic</mark></td><td>An infectious disease spread across a large region — a whole country, multiple continents, or worldwide — affecting a substantial number of people.</td></tr>
+        <tr><td><mark class="concept">Epizootic</mark></td><td>A disease affecting a large number of <mark class="trap">animals</mark> (not humans) in a particular region within a short time.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="v-match">
+    <h2><span class="num">18</span>Match-List &amp; MCQ Trap Consolidation</h2>
+    <table>
+      <caption>Vector–disease–pathogen sets — spot the deliberately incorrect combination</caption>
+      <thead><tr><th>Vector</th><th>Disease</th><th>Pathogen Type</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Aedes</td><td>Chikungunya</td><td>Virus</td><td><mark class="trap">Commonly mismatched as "Bacteria" — INCORRECT if so labelled</mark></td></tr>
+        <tr><td>Culex</td><td>Lymphatic Filariasis</td><td>Parasite (nematode)</td><td>Correct</td></tr>
+        <tr><td>Anopheles</td><td>Malaria</td><td>Parasite (protozoan)</td><td>Correct</td></tr>
+        <tr><td>Aedes</td><td>Dengue</td><td>Virus</td><td>Correct</td></tr>
+      </tbody>
+    </table>
+    <table>
+      <caption>Which mosquito species is NOT common between diseases</caption>
+      <tbody>
+        <tr><td>Malaria vs Dengue</td><td>Share fever and mosquito-bite transmission and human host, but <mark class="trap">use DIFFERENT mosquito species</mark> — Anopheles (malaria) vs Aedes aegypti (dengue).</td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Wolbachia bacteria (present in 50–60% of insect species) blocks dengue, chikungunya and Zika from growing inside <mark class="trap">Aedes aegypti</mark> mosquitoes — the "Wolbachia method" controls viral diseases spread by mosquitoes without harming ecosystems.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Classic "set includes ALL viral diseases" question: correct set is <mark class="trap">Mumps, Rabies, Herpes</mark> — Tuberculosis is bacterial and is the usual decoy planted alongside genuine viral diseases.
+    </div>
+    <div class="callout fact">
+      <span class="tag">Fact</span>
+      TB alone kills the largest number of people annually per WHO (excluding COVID-19 pandemic period) — <mark class="fact">1.25 million deaths in 2023</mark> globally, including <mark class="fact">3.23 lakh in India</mark>.
+    </div>
+  </section>
+
+  <footer>The Pathogen's Ledger · Viral Diseases · compiled for BPSC Prelims 2025–26</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 2 : BACTERIAL DISEASES -->
+<!-- ============================================================ -->
+<div class="page" id="page-bacterial">
+  <div class="hero">
+    <h1>Bacterial Diseases — The Microbiology Ledger</h1>
+    <p>Every bacterium, disease, vaccine and drug fact from theory and 46 solved MCQs.</p>
+  </div>
+  <div class="legend">
+    <span class="l-concept">Yellow — Concept</span>
+    <span class="l-fact">Blue — Fact / Number</span>
+    <span class="l-person">Green — Person / Institution</span>
+    <span class="l-trap">Red — MCQ Trap</span>
+  </div>
+
+  <section id="b-master">
+    <h2><span class="num">00</span>All Bacterial Diseases — Cause &amp; Symptoms Master Table</h2>
+    <div class="legend">
+      <span style="background:#f9d7de;border:1px solid #c23b2c;">Col 1 — Disease (rose)</span>
+      <span style="background:#d3e6fa;border:1px solid #1f6fa8;">Col 2 — Causative Bacterium (sky)</span>
+      <span style="background:#d6f0d6;border:1px solid #2f7d3f;">Col 3 — Transmission (mint)</span>
+      <span style="background:#fbecc2;border:1px solid #e0a712;">Col 4 — Key Symptoms (amber)</span>
+    </div>
+    <table class="master-table">
+      <caption>Every bacterial disease in this chapter, in one place — Disease · Causative Bacterium · Transmission · Symptoms</caption>
+      <thead><tr><th>Disease</th><th>Causative Bacterium</th><th>Transmission</th><th>Key Symptoms</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Cholera</mark></td><td><mark class="concept">Vibrio cholerae</mark></td><td><mark class="trap">Contaminated water/food</mark></td><td>Infection of <mark class="concept">small intestine</mark>; severe watery diarrhoea, dehydration</td></tr>
+        <tr><td><mark class="fact">Plague</mark></td><td><mark class="concept">Yersinia (Pasteurella) pestis</mark></td><td><mark class="trap">Flea bite</mark> (infected rodents)</td><td><mark class="trap">Swollen lymph nodes (buboes)</mark> in groin/armpit/neck; can be fatal</td></tr>
+        <tr><td><mark class="fact">Leprosy</mark></td><td><mark class="concept">Mycobacterium leprae / M. lepromatosis</mark></td><td>Prolonged close contact</td><td><mark class="concept">Skin lesions</mark>, peripheral nerve damage, affects eyes &amp; respiratory mucosa</td></tr>
+        <tr><td><mark class="fact">Pneumonia</mark></td><td><mark class="concept">Streptococcus pneumoniae</mark></td><td>Airborne droplets</td><td>Chest pain, fever, cough, <mark class="trap">shortness of breath</mark></td></tr>
+        <tr><td><mark class="fact">Typhoid</mark></td><td><mark class="concept">Salmonella typhi</mark></td><td>Contaminated food/water</td><td>High fever, diarrhoea, vomiting; affects <mark class="concept">intestines</mark></td></tr>
+        <tr><td><mark class="fact">Diphtheria</mark></td><td><mark class="concept">Corynebacterium diphtheriae</mark></td><td>Respiratory droplets, contact</td><td><mark class="concept">Throat and nose</mark> infection</td></tr>
+        <tr><td><mark class="fact">Gonorrhoea</mark></td><td><mark class="concept">Neisseria gonorrhoeae</mark></td><td><mark class="trap">Sexual contact</mark></td><td>Infection of reproductive organs</td></tr>
+        <tr><td><mark class="fact">Syphilis</mark></td><td><mark class="concept">Treponema pallidum</mark></td><td><mark class="trap">Sexual contact</mark></td><td><mark class="concept">Painless sore</mark> on genitals, rectum, or mouth</td></tr>
+        <tr><td><mark class="fact">Whooping Cough</mark></td><td><mark class="concept">Bordetella / Haemophilus pertussis</mark></td><td>Highly contagious — airborne</td><td>Severe hacking cough with a <mark class="trap">high-pitched 'whoop'</mark></td></tr>
+        <tr><td><mark class="fact">Tetanus (Lockjaw)</mark></td><td><mark class="concept">Clostridium tetani</mark></td><td><mark class="trap">Wound contamination</mark></td><td>Muscle spasm beginning at the <mark class="concept">jaw</mark>, progressing through body</td></tr>
+        <tr><td><mark class="fact">Tuberculosis</mark></td><td><mark class="concept">Mycobacterium tuberculosis</mark></td><td>Airborne droplets</td><td>Mainly affects <mark class="concept">lungs</mark>; persistent cough, weight loss, fever</td></tr>
+        <tr><td><mark class="fact">Rheumatic Fever</mark></td><td><mark class="concept">Streptococcus pyogenes</mark></td><td>Follows untreated strep throat</td><td>Inflammation of <mark class="concept">heart, joints, skin, brain</mark></td></tr>
+        <tr><td><mark class="fact">Salmonellosis (Food Poisoning)</mark></td><td><mark class="concept">Salmonella bacilli</mark> (gram-negative)</td><td>Contaminated food/water</td><td><mark class="concept">Intestinal tract</mark> infection, diarrhoea, vomiting</td></tr>
+        <tr><td><mark class="fact">Botulism</mark></td><td><mark class="concept">Clostridium botulinum</mark> (also C. butyricum, C. baratii — gram-positive)</td><td>Contaminated (home-canned) food; wound; infant spore ingestion</td><td><mark class="trap">Toxin attacks nerves</mark> — breathing difficulty, muscle paralysis, death</td></tr>
+        <tr><td><mark class="fact">Anthrax (Splenic Fever)</mark></td><td><mark class="concept">Bacillus anthracis</mark></td><td>Contact with infected livestock/products</td><td>Sudden fever, lethargy, <mark class="trap">respiratory/cardiac distress</mark>, seizures</td></tr>
+        <tr><td><mark class="fact">Dental Caries</mark></td><td><mark class="concept">Oral bacteria</mark> + fermentable carbohydrates</td><td>Sugar/carbohydrate residue in mouth</td><td>Tooth decay, cavity formation</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="b-basics">
+    <h2><span class="num">01</span>What Is Bacteria</h2>
+    <ul class="point-list">
+      <li>Bacteria are <mark class="concept">single-celled, prokaryotic microorganisms</mark> — cosmopolitan, thriving in soil, ocean, and the human gut.</li>
+      <li>The human relationship with bacteria is complex: helpful (curdling milk into yogurt, aiding digestion) as well as destructive (causing disease).</li>
+      <li>Pathogenic bacteria can infect <mark class="concept">all systems of the human body</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="b-ledger">
+    <h2><span class="num">02</span>Disease Ledger — 12 Core Bacterial Diseases</h2>
+    <table>
+      <caption>Disease ↔ causative bacterium ↔ organs affected — the highest-frequency table in this chapter</caption>
+      <thead><tr><th>Disease</th><th>Bacterium</th><th>Affected Organs / Notes</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Cholera</mark></td><td><mark class="fact">Vibrio cholerae</mark></td><td>Infection of the small intestine; spread mainly via contaminated water/food; <mark class="trap">waterborne, not airborne</mark>.</td></tr>
+        <tr><td><mark class="fact">Plague</mark></td><td><mark class="fact">Pasteurella (Yersinia) pestis</mark></td><td>Swollen lymph nodes (buboes) in groin/armpit/neck; spread by <mark class="concept">flea bites from rodents</mark>; can be fatal; pneumonic form (lungs) fatal within 24 hours if untreated.</td></tr>
+        <tr><td><mark class="fact">Leprosy (Hansen's Disease)</mark></td><td><mark class="fact">Mycobacterium leprae</mark> or <mark class="fact">M. lepromatosis</mark></td><td>Skin, peripheral nerves, mucosal surfaces of upper respiratory tract, and eyes.</td></tr>
+        <tr><td><mark class="fact">Pneumonia</mark></td><td><mark class="fact">Streptococcus pneumoniae</mark></td><td>Lung infection; chest pain, fever, cough, shortness of breath. (Can also be viral/fungal in origin.)</td></tr>
+        <tr><td><mark class="fact">Typhoid</mark></td><td><mark class="fact">Salmonella typhi</mark></td><td>Spread via contaminated food/water; high fever, diarrhoea, vomiting; can be fatal; mainly affects the <mark class="concept">intestines</mark>.</td></tr>
+        <tr><td><mark class="fact">Diphtheria</mark></td><td><mark class="fact">Corynebacterium diphtheriae</mark></td><td>Affects throat and nose; vaccine type is <mark class="concept">Toxoid</mark>; usage cut cases by &gt;90% globally (1980–2000).</td></tr>
+        <tr><td><mark class="fact">Gonorrhoea</mark></td><td><mark class="fact">Neisseria gonorrhoeae</mark></td><td>Sexually transmitted; affects reproductive organs.</td></tr>
+        <tr><td><mark class="fact">Syphilis</mark></td><td><mark class="fact">Treponema pallidum</mark></td><td>Spread by sexual contact; painless sore on genitals/rectum/mouth.</td></tr>
+        <tr><td><mark class="fact">Whooping Cough (Pertussis)</mark></td><td><mark class="fact">Haemophilus pertussis</mark> / <mark class="fact">Bordetella pertussis</mark></td><td>Highly contagious respiratory infection; severe hacking cough followed by a high-pitched 'whoop' intake of breath.</td></tr>
+        <tr><td><mark class="fact">Tetanus (Lockjaw)</mark></td><td><mark class="fact">Clostridium tetani</mark></td><td>Muscle spasm beginning in the jaw, progressing through the body; enters via wounds; produces a toxin causing painful muscle tightness.</td></tr>
+        <tr><td><mark class="fact">Tuberculosis (TB)</mark></td><td><mark class="fact">Mycobacterium tuberculosis</mark></td><td>Mainly affects the <mark class="concept">lungs</mark>; a leading global infectious killer; diagnostic test = <mark class="fact">Montoux (Tuberculin) Skin Test</mark>; treatable with <mark class="fact">P-amino salicylic acid</mark> (also used for leprosy).</td></tr>
+        <tr><td><mark class="fact">Rheumatic Fever</mark></td><td><mark class="fact">Streptococcus pyogenes</mark></td><td>Inflammatory disease that can involve heart, joints, skin and brain.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Anthrax</mark> is also called <mark class="trap">splenic fever</mark> — a highly contagious bacterial disease of livestock, transmissible to humans, characterized by sudden fever, lethargy, respiratory/cardiac distress, and possible death.
+    </div>
+  </section>
+
+  <section id="b-food">
+    <h2><span class="num">03</span>Salmonella &amp; Botulism</h2>
+    <h3 class="subhead">Salmonella / Food Poisoning</h3>
+    <ul class="point-list">
+      <li><mark class="concept">Salmonella bacilli</mark> is responsible for food poisoning — a <mark class="fact">gram-negative, flagellated, facultatively anaerobic</mark> bacillus with flagella around it.</li>
+      <li>Salmonella infection (salmonellosis) affects the <mark class="concept">intestinal tract</mark>; typically transmitted via contaminated water/food.</li>
+    </ul>
+    <h3 class="subhead">Botulism</h3>
+    <ul class="point-list">
+      <li>A rare but serious illness caused by a <mark class="concept">toxin attacking the body's nerves</mark>, causing breathing difficulty, muscle paralysis, even death.</li>
+      <li>Toxin produced by <mark class="fact">Clostridium botulinum</mark>, and sometimes <mark class="fact">C. butyricum, C. baratii</mark> — all <mark class="trap">gram-positive bacteria</mark>.</li>
+      <li>Botulism is classified as <mark class="trap">food-borne intoxication</mark> (not infection) — the harmful bacteria produce the toxin in low-oxygen environments (e.g. home-canned food).</li>
+      <li>Three forms: <mark class="concept">Foodborne</mark> (home-canned food), <mark class="concept">Wound</mark> (bacteria enter a cut), <mark class="concept">Infant</mark> (spores grow in a baby's intestinal tract — the most common form).</li>
+    </ul>
+  </section>
+
+  <section id="b-caries">
+    <h2><span class="num">04</span>Dental Caries</h2>
+    <ul class="point-list">
+      <li>Tooth decay is mostly caused by interaction in the mouth between bacteria and food particles of <mark class="trap">carbohydrates</mark> — <mark class="trap">not proteins, fats, or salads</mark>.</li>
+      <li>Four criteria required for caries: a tooth surface, caries-causing bacteria, fermentable carbohydrates (e.g. sucrose), and time.</li>
+      <li>Dental caries is caused by <mark class="concept">bacterial infection</mark>, not viral, contaminated water, or hereditary reasons.</li>
+    </ul>
+  </section>
+
+  <section id="b-vaccines">
+    <h2><span class="num">05</span>DPT &amp; BCG Vaccines</h2>
+    <ul class="point-list">
+      <li><mark class="concept">DPT vaccine</mark> (Triple Antigen) provides immunity against three bacterial diseases: <mark class="fact">Diphtheria, Pertussis (Whooping Cough), Tetanus</mark> — <mark class="trap">NOT Polio, T.B., or Smallpox</mark> (commonly planted decoys).</li>
+      <li><mark class="concept">BCG (Bacillus Calmette-Guérin)</mark> is used primarily against <mark class="fact">Tuberculosis</mark>; must be inoculated <mark class="trap">just after birth</mark> (can be given up to 12 months, but effectiveness decreases with delay).</li>
+      <li><mark class="concept">ATS (Anti-Tetanus Serum)</mark> is used for prophylaxis/treatment of Tetanus — <mark class="trap">not BCG</mark> (a commonly mismatched pair).</li>
+      <li>Correctly matched pair: <mark class="fact">Malaria — Chloroquine</mark>; incorrectly matched decoys: Scurvy–Thiamine (actually Vitamin-C deficiency; thiamine is B1), Tuberculosis–ATS (actually BCG), Tetanus–BCG (actually ATS).</li>
+    </ul>
+  </section>
+
+  <section id="b-drugs">
+    <h2><span class="num">06</span>Sulpha Drugs &amp; Antibiotics</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Sulpha drugs (sulphonamides)</mark> are synthetic antibacterial substances containing the sulphanilamide molecular structure — the <mark class="trap">first chemical substances systematically used to treat/prevent bacterial infections</mark> in humans.</li>
+      <li><mark class="fact">Prontosil</mark> was the first sulpha drug discovered (<mark class="fact">1932</mark>), by German physician-chemist <mark class="person">Gerhard Domagk (1895–1964)</mark>.</li>
+      <li>Other sulpha drugs: <mark class="fact">Cibazole</mark> (short-acting, effective vs wide range of gram-positive/negative organisms, still used in cattle), sulfadiazine, sulfasalazine, sulfisoxazole, sulfacetamide, sulphaguanidine.</li>
+      <li><mark class="concept">Broad-spectrum antibiotics</mark> act on both gram-positive and gram-negative bacteria (or a wide range of disease-causing bacteria), unlike <mark class="concept">narrow-spectrum antibiotics</mark> effective against only a specific group. <mark class="fact">Ampicillin</mark> is a commonly used broad-spectrum antibiotic.</li>
+      <li><mark class="fact">Chloramphenicol</mark> (a.k.a. chloronitromycin) is a broad-spectrum antibiotic; used as an eye ointment for conjunctivitis, and orally/by injection for meningitis, plague, cholera, typhoid.</li>
+      <li>The term <mark class="concept">'antibiotic'</mark> was coined by <mark class="person">Selman Waksman</mark> in <mark class="fact">1942</mark> — he also discovered <mark class="fact">streptomycin</mark>.</li>
+      <li><mark class="person">Alexander Fleming</mark> discovered <mark class="fact">Penicillin in 1928</mark>, from the mould <mark class="fact">Penicillium notatum</mark>, which inhibited bacterial growth.</li>
+      <li><mark class="trap">Aspirin and Paracetamol are NOT antibiotics</mark> (analgesic/antipyretic) — a frequently repeated "which is an antibiotic" trap alongside Penicillin/Sulphadiazine/Chloramphenicol/Sulphaguanidine as correct answers.</li>
+    </ul>
+  </section>
+
+  <section id="b-mdr">
+    <h2><span class="num">07</span>Antimicrobial Resistance (MDR)</h2>
+    <ul class="point-list">
+      <li>Per the <mark class="person">Department of Biotechnology (DBT)</mark> 'Scoping Report on Antimicrobial Resistance in India' (<mark class="fact">Nov 2017</mark>), main drivers of multi-drug resistance (MDR) include: <mark class="concept">incorrect antibiotic dosing / self-medication</mark>, <mark class="concept">heavy antibiotic use in livestock farming</mark>, high consumption of broad-spectrum antibiotics, injudicious fixed-dose combinations, pharmaceutical pollution, poor sanitation/sewage disposal, poor infection-prevention in healthcare.</li>
+      <li><mark class="trap">Genetic predisposition and multiple chronic diseases in patients are NOT listed causes</mark> of MDR per the report — a commonly tested exclusion.</li>
+    </ul>
+  </section>
+
+  <section id="b-match">
+    <h2><span class="num">08</span>Transmission &amp; Match-List Traps</h2>
+    <table>
+      <caption>Transmission route ↔ disease — a repeated matching format</caption>
+      <thead><tr><th>Route</th><th>Disease</th></tr></thead>
+      <tbody>
+        <tr><td>By Air</td><td><mark class="fact">Tuberculosis</mark></td></tr>
+        <tr><td>By Water</td><td><mark class="fact">Cholera</mark></td></tr>
+        <tr><td>By Contact</td><td><mark class="fact">Syphilis</mark></td></tr>
+        <tr><td>By Wound</td><td><mark class="fact">Tetanus</mark></td></tr>
+      </tbody>
+    </table>
+    <table>
+      <caption>Additional disease-cause matching sets</caption>
+      <tbody>
+        <tr><td>Plague</td><td><mark class="fact">Spreads through flea-bites</mark></td></tr>
+        <tr><td>Filaria</td><td>Caused by mosquitoes (parasitic, not bacterial)</td></tr>
+        <tr><td>Beri-beri</td><td>Vitamin B deficiency (not infectious)</td></tr>
+        <tr><td>Typhoid</td><td><mark class="fact">Affects the intestines</mark></td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      People drinking water from a shallow handpump risk <mark class="trap">cholera, typhoid, jaundice</mark> (all microbe/contamination-linked) — but <mark class="trap">NOT fluorosis</mark>, which is a cosmetic dental condition from excess fluoride, unrelated to microbial contamination.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Typhoid and Cholera are the textbook pair of <mark class="trap">waterborne diseases</mark>; Tuberculosis (bacterial-airborne) and Malaria (parasitic-mosquito) are common decoys in "which is a waterborne disease" questions.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Analogy trap: <mark class="trap">Tuberculosis : Lungs :: Typhoid : Intestine</mark> (not brain, lungs, or kidney).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Genetic disease decoy: <mark class="trap">Tuberculosis is bacterial, NOT genetic</mark> — this pairing ("Genetic disease – Tuberculosis") is the incorrect one in a four-option "spot the mismatch" question, alongside correctly matched Autoimmune–Rheumatoid arthritis, Scabies–Mite, Mental disease–Schizophrenia.
+    </div>
+  </section>
+
+  <footer>The Pathogen's Ledger · Bacterial Diseases · compiled for BPSC Prelims 2025–26</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 3 : FUNGAL DISEASES -->
+<!-- ============================================================ -->
+<div class="page" id="page-fungal">
+  <div class="hero">
+    <h1>Fungal Diseases — The Mycology Ledger</h1>
+    <p>Every fungal toxin and infection fact from theory and 7 solved MCQs.</p>
+  </div>
+  <div class="legend">
+    <span class="l-concept">Yellow — Concept</span>
+    <span class="l-fact">Blue — Fact / Number</span>
+    <span class="l-person">Green — Person / Institution</span>
+    <span class="l-trap">Red — MCQ Trap</span>
+  </div>
+
+  <section id="f-master">
+    <h2><span class="num">00</span>All Fungal Diseases — Cause &amp; Symptoms Master Table</h2>
+    <div class="legend">
+      <span style="background:#f9d7de;border:1px solid #c23b2c;">Col 1 — Disease/Condition (rose)</span>
+      <span style="background:#d3e6fa;border:1px solid #1f6fa8;">Col 2 — Causative Fungus (sky)</span>
+      <span style="background:#d6f0d6;border:1px solid #2f7d3f;">Col 3 — Transmission/Source (mint)</span>
+      <span style="background:#fbecc2;border:1px solid #e0a712;">Col 4 — Key Symptoms (amber)</span>
+    </div>
+    <table class="master-table">
+      <caption>Every fungal disease/toxin in this chapter, in one place — Disease · Causative Fungus · Transmission · Symptoms</caption>
+      <thead><tr><th>Disease / Condition</th><th>Causative Fungus</th><th>Transmission / Source</th><th>Key Symptoms / Effects</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Aflatoxin Poisoning</mark></td><td><mark class="concept">Aspergillus flavus &amp; A. parasiticus</mark></td><td>Contaminated maize, peanuts, cotton seeds, tree nuts</td><td>DNA damage; <mark class="trap">liver cancer</mark> risk (natural carcinogen)</td></tr>
+        <tr><td><mark class="fact">Ergotism (St Anthony's Fire)</mark></td><td><mark class="concept">Claviceps purpurea</mark></td><td><mark class="trap">Contaminated rye/cereal grains</mark></td><td><mark class="concept">Vasoconstriction/gangrene</mark>, nervous &amp; endocrine effects; poultry beak/comb necrosis</td></tr>
+        <tr><td><mark class="fact">Athlete's Foot (Tinea pedis)</mark></td><td><mark class="concept">Trichophyton, Epidermophyton, Microsporum</mark></td><td>Contaminated floors/towels/clothing; sweaty confined feet</td><td>Scaly, <mark class="trap">itching</mark>, cracking, stinging, burning rash between toes</td></tr>
+        <tr><td><mark class="fact">Mucormycosis (Black Fungus)</mark></td><td><mark class="concept">Mucormycetes</mark> (mold group)</td><td>Environmental exposure in immunocompromised people</td><td>Nose/sinus/eye/brain infection; <mark class="trap">not zoonotic</mark></td></tr>
+        <tr><td><mark class="fact">Aspergillosis</mark></td><td><mark class="concept">Aspergillus genus</mark></td><td>Inhalation of spores; risk higher with TB/COPD</td><td>Respiratory disease of varying severity</td></tr>
+        <tr><td><mark class="fact">Dermatitis / Baldness / Candidiasis / Geotrichosis</mark></td><td><mark class="concept">Various fungi</mark></td><td>Direct skin/scalp exposure</td><td>Skin/scalp inflammation, <mark class="trap">hair loss</mark>, related symptoms</td></tr>
+        <tr><td><mark class="fact">Mushroom Poisoning</mark></td><td><mark class="concept">Amanita species</mark> (toxin: α-amantin)</td><td>Ingestion of toxic wild mushrooms</td><td><mark class="trap">~95% of fatal mushroom-poisoning cases</mark>; organ toxicity</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="f-basics">
+    <h2><span class="num">01</span>What Is Fungi</h2>
+    <ul class="point-list">
+      <li>Fungi form a <mark class="concept">separate kingdom</mark> of living things; a fungus (plural fungi) includes <mark class="fact">yeast, moulds (molds), and mushrooms</mark>.</li>
+      <li>Fungi are <mark class="concept">eukaryotic organisms</mark> (cells have nuclei).</li>
+      <li>The fungal <mark class="trap">cell wall contains chitin</mark>, unlike plant cell walls, which contain cellulose.</li>
+      <li>Most fungi grow as tubular filaments called <mark class="concept">hyphae</mark>; an interwoven mass of hyphae is a <mark class="concept">mycelium</mark>. Hyphal walls are strengthened with <mark class="fact">chitin</mark>, a polymer of N-acetylglucosamine.</li>
+      <li>The study of fungi is <mark class="concept">Mycology</mark>.</li>
+      <li>All fungi are <mark class="trap">heterotrophs</mark> — either parasitic or saprotrophic — never autotrophic.</li>
+    </ul>
+  </section>
+
+  <section id="f-aflatoxin">
+    <h2><span class="num">02</span>Aflatoxins</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Aflatoxins</mark> are a family of toxins produced by certain fungi found on agricultural crops — <mark class="fact">maize, peanuts, cotton seeds, tree nuts</mark>.</li>
+      <li>Main producing fungi: <mark class="fact">Aspergillus flavus</mark> and <mark class="fact">Aspergillus parasiticus</mark>, abundant in warm/humid regions.</li>
+      <li>Contamination can occur in the field, at harvest, or during storage.</li>
+      <li>Aflatoxin is a <mark class="concept">natural carcinogen</mark> linked to increased <mark class="trap">liver cancer</mark> risk — causes DNA damage; prolonged exposure accumulates mutations, raising cancer-cell risk.</li>
+      <li>The <mark class="trap">liver</mark> is the human organ most affected by aflatoxin food-adulterant consumption.</li>
+    </ul>
+  </section>
+
+  <section id="f-ergot">
+    <h2><span class="num">03</span>Ergotism &amp; Amanita</h2>
+    <h3 class="subhead">Ergotism</h3>
+    <ul class="point-list">
+      <li>Long-term ergot poisoning, traditionally from ingesting alkaloids produced by <mark class="fact">Claviceps purpurea</mark> fungus, which infects <mark class="concept">rye and other cereals</mark> (i.e. caused by <mark class="trap">consumption of contaminated grains</mark>, not vegetables, water, or stale food).</li>
+      <li>Also called <mark class="concept">ergotoxicosis</mark> or <mark class="concept">Saint Anthony's Fire</mark>.</li>
+      <li>Toxins affect the nervous, vascular (vasoconstriction and gangrene), and endocrine systems.</li>
+      <li>In poultry: decreased food intake/growth, necrosis of beak/comb/toes, distorted feather development, enteritis; primarily affects leghorns and other laying breeds.</li>
+    </ul>
+    <h3 class="subhead">Amanita &amp; Mushroom Toxins</h3>
+    <ul class="point-list">
+      <li><mark class="fact">Amanita</mark> is a toxic mushroom genus responsible for approximately <mark class="fact">95% of fatalities</mark> from mushroom poisoning.</li>
+      <li>Most potent toxin present: <mark class="fact">α-amantin</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="f-infections">
+    <h2><span class="num">04</span>Athlete's Foot, Mucormycosis &amp; More</h2>
+    <table>
+      <caption>Named fungal infections and their causative organisms</caption>
+      <thead><tr><th>Infection</th><th>Cause</th><th>Key Facts</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><mark class="fact">Athlete's Foot (Tinea pedis)</mark></td>
+          <td><mark class="fact">Trichophyton, Epidermophyton, Microsporum</mark></td>
+          <td>Begins between the toes; affects upper skin layer of the foot; common in sweaty feet confined in tight shoes; contagious via floors/towels/clothing; scaly, itching, cracking, stinging, burning rash. Named for common occurrence in athletes — <mark class="trap">it is fungal, NOT viral</mark>.</td>
+        </tr>
+        <tr>
+          <td><mark class="fact">Mucormycosis</mark></td>
+          <td>Group of molds called <mark class="fact">mucormycetes</mark></td>
+          <td>Previously called <mark class="concept">zygomycosis</mark>; also known as <mark class="trap">black fungus</mark>; molds live throughout the environment; mainly affects people with lowered immune resistance; most commonly infects nose, sinuses, eye, brain (runny nose, facial swelling/pain, headache, fever, blurred vision, proptosis, tissue death); can also affect lungs, stomach/intestines, skin. <mark class="trap">NOT a zoonotic disease</mark> (unlike Rabies, Plague, SARS).</td>
+        </tr>
+        <tr>
+          <td><mark class="fact">Aspergillosis</mark></td>
+          <td>Fungi of genus <mark class="fact">Aspergillus</mark></td>
+          <td>Occurs in humans, birds, and other animals; majority of cases occur in people with an underlying illness such as TB or COPD.</td>
+        </tr>
+        <tr>
+          <td><mark class="fact">Dermatitis / Baldness / Candidiasis / Geotrichosis</mark></td>
+          <td>Various fungi</td>
+          <td>All are fungal-borne diseases; <mark class="concept">seborrheic dermatitis</mark> is an inflammatory skin disorder of scalp/face/torso caused by fungi; <mark class="trap">baldness is classified as a fungal disease in this exam context</mark> (vs decoys Allergy, Colour blindness (genetic), AIDS (viral)).</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="f-match">
+    <h2><span class="num">05</span>Zoonotic Exclusion &amp; MCQ Traps</h2>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      A zoonotic disease jumps from animal to human. Rabies, Plague, and SARS are zoonotic; <mark class="trap">Mucormycosis is NOT zoonotic</mark> — it arises from environmental molds affecting immunocompromised people, not from an animal-to-human jump.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Compound statement trap: "Femur is the longest bone in the human body" (TRUE) + "Cholera is caused by bacteria" (TRUE) + "Athlete's foot is caused by virus" (FALSE — it's fungal) → correct selection is <mark class="trap">only the first two statements</mark>.
+    </div>
+    <div class="callout fact">
+      <span class="tag">Fact</span>
+      "Which disease is caused by fungi" trios commonly pit <mark class="fact">Dermatitis (fungal — correct)</mark> against Polio (viral) and Cholera (bacterial) as decoys.
+    </div>
+  </section>
+
+  <footer>The Pathogen's Ledger · Fungal Diseases · compiled for BPSC Prelims 2025–26</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 4 : PARASITIC DISEASES -->
+<!-- ============================================================ -->
+<div class="page" id="page-parasitic">
+  <div class="hero">
+    <h1>Parasitic Diseases — The Protozoa &amp; Helminth Ledger</h1>
+    <p>Every parasite, vector, and life-cycle fact from theory and 23+ solved MCQs.</p>
+  </div>
+  <div class="legend">
+    <span class="l-concept">Yellow — Concept</span>
+    <span class="l-fact">Blue — Fact / Number</span>
+    <span class="l-person">Green — Person / Institution</span>
+    <span class="l-trap">Red — MCQ Trap</span>
+  </div>
+
+  <section id="p-master">
+    <h2><span class="num">00</span>All Parasitic Diseases — Cause &amp; Symptoms Master Table</h2>
+    <div class="legend">
+      <span style="background:#f9d7de;border:1px solid #c23b2c;">Col 1 — Disease (rose)</span>
+      <span style="background:#d3e6fa;border:1px solid #1f6fa8;">Col 2 — Causative Parasite (sky)</span>
+      <span style="background:#d6f0d6;border:1px solid #2f7d3f;">Col 3 — Vector/Transmission (mint)</span>
+      <span style="background:#fbecc2;border:1px solid #e0a712;">Col 4 — Key Symptoms (amber)</span>
+    </div>
+    <table class="master-table">
+      <caption>Every parasitic disease in this chapter, in one place — Disease · Causative Parasite · Vector/Transmission · Symptoms</caption>
+      <thead><tr><th>Disease</th><th>Causative Parasite</th><th>Vector / Transmission</th><th>Key Symptoms</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Malaria</mark></td><td><mark class="concept">Plasmodium vivax/ovale/malariae/falciparum</mark> (protozoan)</td><td><mark class="fact">Female Anopheles mosquito</mark></td><td>Shaking chills, high fever, sweating, headache; <mark class="trap">anaemia</mark>, organ complications</td></tr>
+        <tr><td><mark class="fact">Kala-azar (Visceral Leishmaniasis)</mark></td><td><mark class="concept">Leishmania</mark> (protozoan)</td><td><mark class="fact">Female sandfly Phlebotomus argentipes</mark></td><td>Fever, weight loss, <mark class="trap">greyish skin discolouration</mark>, liver/spleen inflammation</td></tr>
+        <tr><td><mark class="fact">Sleeping Sickness</mark></td><td><mark class="concept">Trypanosoma gambiense/rhodesiense</mark> (protozoan)</td><td><mark class="fact">Tsetse fly (Glossina)</mark></td><td>Fever, headache, joint pain → <mark class="trap">lethargy, personality change, coma</mark></td></tr>
+        <tr><td><mark class="fact">Amoebiasis</mark></td><td><mark class="concept">Entamoeba histolytica</mark> (protozoan)</td><td>Contaminated food/water (fecal-oral)</td><td>Abdominal pain, diarrhoea, <mark class="trap">bloody diarrhoea</mark></td></tr>
+        <tr><td><mark class="fact">Schistosomiasis (Snail Fever)</mark></td><td><mark class="concept">Schistosoma spp.</mark> (flatworm)</td><td>Contact with infested water (snail host)</td><td>Abdominal pain, diarrhoea, <mark class="trap">blood in urine/stool</mark></td></tr>
+        <tr><td><mark class="fact">Fascioliasis (Liver Rot)</mark></td><td><mark class="concept">Fasciola hepatica/gigantica</mark> (liver fluke)</td><td>Ingesting raw watercress/water-plants with larvae</td><td>Fever, sweating, weight loss, abdominal pain</td></tr>
+        <tr><td><mark class="fact">Taeniasis / Neurocysticercosis</mark></td><td><mark class="concept">Taenia solium</mark> (pork tapeworm)</td><td>Undercooked pork; fecal-oral egg ingestion</td><td>Intestinal infection; CNS larvae → <mark class="trap">seizures, epilepsy</mark></td></tr>
+        <tr><td><mark class="fact">Filariasis (Elephantiasis)</mark></td><td><mark class="concept">Wuchereria bancrofti</mark> (roundworm)</td><td><mark class="fact">Female Culex mosquito</mark></td><td>Lymph gland swelling; <mark class="trap">elephantiasis</mark> of legs/arms/scrotum</td></tr>
+        <tr><td><mark class="fact">Ascariasis</mark></td><td><mark class="concept">Ascaris lumbricoides</mark> (roundworm)</td><td>Ingesting eggs from contaminated soil/food</td><td>Coughing, wheezing, abdominal pain/swelling, <mark class="trap">malabsorption</mark></td></tr>
+        <tr><td><mark class="fact">Guinea Worm Disease (Dracunculiasis)</mark></td><td><mark class="concept">Dracunculus medinensis</mark> (nematode)</td><td>Drinking water with infected Cyclops (water fleas)</td><td>Painful skin blister (~1 yr later); <mark class="trap">eradicated in India, 2000</mark></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="p-basics">
+    <h2><span class="num">01</span>Protozoa · Platyhelminthes · Nematoda</h2>
+    <ul class="point-list">
+      <li>Besides virus, bacteria, and fungus, some members of phylum <mark class="concept">Protozoa</mark>, <mark class="concept">Platyhelminthes</mark> (flatworms), and <mark class="concept">Nematoda</mark> (roundworms) cause disease.</li>
+      <li>Parasites like <mark class="fact">Toxoplasma gondii</mark> and <mark class="fact">Plasmodium spp.</mark> cause disease directly; others act via toxins they produce.</li>
+      <li><mark class="fact">Fasciola, Schistosoma, and Taenia</mark> are all members of phylum <mark class="concept">Platyhelminthes</mark>.</li>
+      <li>Roughly <mark class="fact">50 species</mark> of phylum <mark class="concept">Nematoda</mark> (roundworms) are found as human parasites.</li>
+    </ul>
+  </section>
+
+  <section id="p-malaria">
+    <h2><span class="num">02</span>Malaria</h2>
+    <ul class="point-list">
+      <li>A life-threatening disease transmitted through the bite of the <mark class="fact">female Anopheles mosquito</mark> — <mark class="trap">primary host is man, secondary host is the female Anopheles</mark>.</li>
+      <li>Infected mosquitoes carry the <mark class="concept">Plasmodium</mark> parasite (a unicelled protozoan); released into bloodstream on bite, travels to the <mark class="concept">liver</mark> to mature, then infects <mark class="concept">red blood corpuscles (RBCs)</mark>.</li>
+      <li>Within <mark class="fact">48–72 hours</mark>, parasites inside RBCs multiply, bursting infected cells; symptoms cycle every <mark class="fact">2–3 days</mark>.</li>
+      <li>Four species infecting humans: <mark class="fact">Plasmodium vivax, P. ovale, P. malariae, P. falciparum</mark>.</li>
+      <li><mark class="fact">P. falciparum</mark> causes <mark class="trap">malignant malaria</mark> — the most severe form, with the highest death risk.</li>
+      <li><mark class="fact">P. vivax</mark> is responsible for about <mark class="fact">65% of malaria cases in India</mark> (and in Asia/South America generally).</li>
+      <li>Symptoms: shaking chills, high fever, profuse sweating, headache, nausea, vomiting.</li>
+      <li>Complications: cerebral malaria (blood vessel swelling in brain), pulmonary oedema, kidney/liver/spleen failure, anaemia (RBC destruction), low blood sugar. The <mark class="trap">spleen</mark> is the organ most classically noted as affected/enlarged.</li>
+      <li><mark class="concept">Congenital malaria</mark>: an infected mother can pass the disease to her baby at birth.</li>
+      <li>Also transmissible via <mark class="concept">organ transplant, blood transfusion, shared needles/syringes</mark> — malaria is blood-transmitted.</li>
+      <li><mark class="person">Ronald Ross</mark>, a British Medical doctor (in British Indian Army), discovered the malarial parasite in the mosquito gastro-intestinal tract in <mark class="fact">1897</mark>, proving mosquito transmission — won the <mark class="fact">Nobel Prize for Physiology or Medicine in 1902</mark>.</li>
+      <li><mark class="fact">Quinine</mark>, first isolated in <mark class="fact">1820</mark> from cinchona bark, is the age-old malaria drug; other antimalarials: <mark class="fact">chloroquine, amodiaquine, atovaquone, proguanil, sulphonamides, mefloquine, primaquine</mark>.</li>
+      <li><mark class="concept">Chemoprophylaxis</mark> = regular use of antimalarial drugs to prevent malaria in affected regions.</li>
+      <li>Control: pesticides like <mark class="fact">DDT</mark> against Anopheles; <mark class="fact">Gambusia affinis</mark> fish eats mosquito larvae; ducks also help eradicate larvae.</li>
+      <li><mark class="concept">World Malaria Day</mark>: <mark class="fact">25 April</mark> every year.</li>
+      <li><mark class="fact">R21/Matrix-M</mark> — malaria vaccine developed by Oxford's Jenner Institute + <mark class="person">Serum Institute of India</mark> (using Novavax's saponin adjuvant tech); WHO-recommended for children in endemic regions, <mark class="fact">October 2023</mark>. <mark class="trap">RTS,S/AS01 (Mosquirix) was the FIRST WHO-approved malaria vaccine</mark>, not R21.</li>
+      <li>Besides malaria, Anopheles mosquitoes are also vectors for certain <mark class="trap">Encephalitis strains (e.g. JEV in some regions) and Filariasis</mark> — <mark class="trap">NOT Dengue</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="p-kalaazar">
+    <h2><span class="num">03</span>Kala-azar &amp; Sleeping Sickness</h2>
+    <h3 class="subhead">Kala-azar (Visceral Leishmaniasis)</h3>
+    <ul class="point-list">
+      <li>Caused by protozoan parasite genus <mark class="fact">Leishmania</mark>; chronic, potentially fatal, chiefly tropical.</li>
+      <li>Infects the <mark class="concept">reticuloendothelial system</mark> — found in bone marrow, spleen, liver.</li>
+      <li>Name meaning: <mark class="concept">'Black fever'</mark> — greyish discolouration of skin (hands, feet, abdomen, face) in light-coloured persons; also fever, weight loss, liver/spleen inflammation.</li>
+      <li>Vector: female sandfly <mark class="fact">Phlebotomus argentipes</mark> — most active in humid environments, warmer months, night (dusk to dawn).</li>
+      <li><mark class="concept">Dogs</mark> can serve as reservoirs; transmission animal→sandfly→human, also human-human via blood transfusion/shared needles.</li>
+      <li>The <mark class="trap">second-largest parasitic killer in the world, after malaria</mark>.</li>
+    </ul>
+    <h3 class="subhead">Sleeping Sickness (African Trypanosomiasis)</h3>
+    <ul class="point-list">
+      <li>Caused by <mark class="fact">Trypanosoma gambiense or T. rhodesiense</mark> (unicellular protozoan animals), especially common in tropical Africa.</li>
+      <li>Transmitted by the bite of the <mark class="fact">tsetse fly (genus Glossina)</mark>.</li>
+      <li>Stage 1: fever, headache, muscle/joint pain, lymph node inflammation. Stage 2 (weeks to 1–2 years later): brain/spinal cord involvement, personality changes, sleep disturbances, profound lethargy — often fatal if untreated.</li>
+      <li><mark class="trap">NOT a mosquito-borne disease</mark> — a commonly tested exclusion alongside genuinely mosquito-borne Dengue, Filariasis, Malaria.</li>
+    </ul>
+  </section>
+
+  <section id="p-amoeba">
+    <h2><span class="num">04</span>Amoebiasis (Amoebic Dysentery)</h2>
+    <ul class="point-list">
+      <li>Caused by anaerobic parasite <mark class="fact">Entamoeba histolytica</mark> (phylum Protozoa).</li>
+      <li>Symptoms may be absent, mild, or severe: abdominal pain, diarrhoea, or bloody diarrhoea.</li>
+    </ul>
+  </section>
+
+  <section id="p-schisto">
+    <h2><span class="num">05</span>Schistosomiasis &amp; Fascioliasis</h2>
+    <h3 class="subhead">Schistosomiasis</h3>
+    <ul class="point-list">
+      <li>Also known as <mark class="concept">Snail fever</mark> or <mark class="concept">bilharzia</mark>; caused by parasitic flatworms called <mark class="fact">schistosomes</mark> (phylum Platyhelminthes).</li>
+      <li>Urinary tract or intestines may be infected; symptoms: abdominal pain, diarrhoea, bloody stool or blood in urine.</li>
+      <li>In developing countries, malaria, dysentery, and schistosomiasis have taken epidemic form due to unsafe potable water and poor sanitation.</li>
+    </ul>
+    <h3 class="subhead">Fascioliasis (Liver Rot)</h3>
+    <ul class="point-list">
+      <li>Caused by liver flukes <mark class="fact">Fasciola hepatica</mark> and <mark class="fact">Fasciola gigantica</mark>.</li>
+      <li>Main hosts: ruminants (cattle, sheep); humans get infected by eating raw watercress/water-grown plants contaminated with larvae.</li>
+      <li>Young worms move through intestinal wall, abdominal cavity, liver tissue, into bile ducts.</li>
+      <li>Symptoms: fever, sweating, weight loss, abdominal pain.</li>
+    </ul>
+  </section>
+
+  <section id="p-taenia">
+    <h2><span class="num">06</span>Taeniasis &amp; Neurocysticercosis</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Taeniasis</mark> = intestinal infection caused by three tapeworm species: <mark class="fact">Taenia solium (pork), T. saginata (beef), T. asiatica</mark> — <mark class="trap">only T. solium causes major health problems</mark>.</li>
+      <li>T. solium taeniasis acquired via ingestion of larval cysts (cysticerci) in undercooked/infected pork; T. solium eggs (via poor hygiene/fecal-oral route or contaminated food/water) develop into larvae (cysticerci) in body organs.</li>
+      <li>When larvae enter the <mark class="concept">central nervous system</mark> (brain/spinal cord), the condition is called <mark class="fact">Neurocysticercosis (NCC)</mark> — causes neurological symptoms including epileptic seizures.</li>
+      <li>NCC is a <mark class="trap">leading cause of seizures/acquired epilepsy</mark> and the most common CNS parasitic disease in the developing world.</li>
+      <li>Tennis player <mark class="person">Leander Paes</mark> was forced off court in <mark class="fact">2003</mark> after a <mark class="trap">cyst (cysticercus granuloma)</mark> was detected in his brain — caused by the larval form of the pork tapeworm.</li>
+    </ul>
+  </section>
+
+  <section id="p-filaria">
+    <h2><span class="num">07</span>Filariasis &amp; Ascariasis</h2>
+    <h3 class="subhead">Filariasis (Elephantiasis)</h3>
+    <ul class="point-list">
+      <li>Caused by the roundworm (nematode) <mark class="fact">Wuchereria bancrofti</mark>; also called <mark class="concept">elephantiasis</mark> — swollen lymph glands.</li>
+      <li>Can affect legs, arms, vulva, breasts, scrotum (hydrocele formation).</li>
+      <li>Vector: <mark class="fact">female Culex mosquito</mark>.</li>
+      <li>Edema is a common symptom, potentially progressing to elephantiasis with thickened skin and massive swelling.</li>
+    </ul>
+    <h3 class="subhead">Ascariasis</h3>
+    <ul class="point-list">
+      <li>Infection of the small intestine caused by parasitic roundworm <mark class="fact">Ascaris lumbricoides</mark>.</li>
+      <li>Acquired by accidentally ingesting eggs found in soil contaminated by human feces, or uncooked food contaminated by such soil; children often infected via hand-to-mouth contact after playing in contaminated soil.</li>
+      <li>Symptoms: coughing/gagging, wheezing/shortness of breath, blood in mucus, chest discomfort, abdominal swelling/pain, diarrhoea; can cause nausea, vomiting, appetite loss, growth impairment (malabsorption) in children.</li>
+      <li>Treatment: <mark class="concept">Anthelminthic medications</mark> — <mark class="fact">chenopodium oil, albendazole, mebendazole</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="p-guinea">
+    <h2><span class="num">08</span>Guinea Worm Disease (GWD)</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Dracunculiasis</mark> — was an important public health problem in many Indian states before being <mark class="trap">eradicated in 2000</mark>.</li>
+      <li>Caused by a large nematode, <mark class="fact">Dracunculus medinensis</mark>, with a life cycle through <mark class="concept">two hosts — Man and Cyclops (water fleas)</mark>.</li>
+      <li>Infection occurs by drinking water containing infected Cyclops carrying guinea worm larvae; initially asymptomatic — about <mark class="fact">one year later</mark>, the female worm forms a painful blister in the skin, usually on the lower limb.</li>
+    </ul>
+  </section>
+
+  <section id="p-match">
+    <h2><span class="num">09</span>Vector Map &amp; MCQ Trap Consolidation</h2>
+    <table>
+      <caption>Disease ↔ organism-type — the classic four-way classification MCQ</caption>
+      <thead><tr><th>Disease</th><th>Organism Type</th></tr></thead>
+      <tbody>
+        <tr><td>Malaria</td><td><mark class="fact">Protozoan (parasite)</mark></td></tr>
+        <tr><td>Poliomyelitis</td><td><mark class="fact">Virus</mark></td></tr>
+        <tr><td>Tuberculosis</td><td><mark class="fact">Bacteria</mark></td></tr>
+        <tr><td>Ringworm</td><td><mark class="fact">Fungi</mark></td></tr>
+        <tr><td>Plague</td><td><mark class="fact">Bacteria</mark></td></tr>
+        <tr><td>AIDS</td><td><mark class="fact">Virus</mark></td></tr>
+        <tr><td>Baldness</td><td><mark class="fact">Fungus</mark></td></tr>
+        <tr><td>Peptic Ulcers</td><td><mark class="fact">Bacteria</mark> (H. pylori)</td></tr>
+        <tr><td>Dengue</td><td><mark class="fact">Virus</mark></td></tr>
+        <tr><td>Elephant Foot (Filariasis)</td><td><mark class="fact">Worm (parasite)</mark></td></tr>
+      </tbody>
+    </table>
+    <table>
+      <caption>Vector ↔ disease ↔ pathogen-type set — spot the incorrect combination</caption>
+      <thead><tr><th>Vector</th><th>Disease</th><th>Pathogen Type</th></tr></thead>
+      <tbody>
+        <tr><td>Anopheles</td><td>Malaria</td><td><mark class="fact">Parasite (Plasmodium, protozoan)</mark></td></tr>
+        <tr><td>Culex</td><td>Lymphatic Filariasis</td><td><mark class="fact">Parasite (nematode)</mark></td></tr>
+        <tr><td>Aedes</td><td>Dengue</td><td><mark class="fact">Virus</mark></td></tr>
+        <tr><td>Aedes</td><td>Chikungunya</td><td><mark class="trap">Virus — NOT Bacteria (common false pairing)</mark></td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Three main communicable diseases in developing countries from unsafe water/poor sanitation: <mark class="trap">Malaria, Acute Diarrhoea, Schistosomiasis</mark>.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Peptic ulcers are bacterial, Dengue is viral, Elephant Foot is a worm/parasite, and Malaria is protozoan — a frequently reshuffled four-way match-list where each disease is deliberately assigned to the WRONG category as a decoy.
+    </div>
+  </section>
+
+  <footer>The Pathogen's Ledger · Parasitic Diseases · compiled for BPSC Prelims 2025–26</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 5 : GENETIC DISORDERS -->
+<!-- ============================================================ -->
+<div class="page" id="page-genetic">
+  <div class="hero">
+    <h1>Genetic Disorders — The Heredity Ledger</h1>
+    <p>Every inherited disorder, chromosomal aberration, and inheritance-pattern fact from theory and 24 solved MCQs.</p>
+  </div>
+  <div class="legend">
+    <span class="l-concept">Yellow — Concept</span>
+    <span class="l-fact">Blue — Fact / Number</span>
+    <span class="l-person">Green — Person / Institution</span>
+    <span class="l-trap">Red — MCQ Trap</span>
+  </div>
+
+  <section id="g-master">
+    <h2><span class="num">00</span>All Genetic Disorders — Cause &amp; Symptoms Master Table</h2>
+    <div class="legend">
+      <span style="background:#f9d7de;border:1px solid #c23b2c;">Col 1 — Disorder (rose)</span>
+      <span style="background:#d3e6fa;border:1px solid #1f6fa8;">Col 2 — Genetic Cause (sky)</span>
+      <span style="background:#d6f0d6;border:1px solid #2f7d3f;">Col 3 — Inheritance Pattern (mint)</span>
+      <span style="background:#fbecc2;border:1px solid #e0a712;">Col 4 — Key Symptoms (amber)</span>
+    </div>
+    <table class="master-table">
+      <caption>Every genetic disorder in this chapter, in one place — Disorder · Genetic Cause · Inheritance · Symptoms</caption>
+      <thead><tr><th>Disorder</th><th>Genetic Cause</th><th>Inheritance Pattern</th><th>Key Symptoms</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Albinism</mark></td><td><mark class="concept">Absence/defect of tyrosinase</mark> (copper-containing enzyme)</td><td><mark class="trap">Recessive gene alleles</mark></td><td>Absent/partial <mark class="concept">melanin</mark> in skin, hair, eyes; sunburn/skin-cancer susceptibility</td></tr>
+        <tr><td><mark class="fact">Phenylketonuria (PKU)</mark></td><td>Lack of <mark class="concept">phenylalanine hydroxylase</mark> enzyme</td><td><mark class="trap">Recessive (inborn error of metabolism)</mark></td><td><mark class="trap">Brain damage</mark>, severe intellectual disability, seizures</td></tr>
+        <tr><td><mark class="fact">Haemophilia</mark></td><td>Defect in blood-clotting factor gene</td><td><mark class="trap">X-linked recessive</mark> — found in males, carried by females</td><td>Impaired blood clotting; also called <mark class="concept">Bleeder's / Royal Disease</mark></td></tr>
+        <tr><td><mark class="fact">Alkaptonuria (AKU)</mark></td><td>Mutation in the <mark class="concept">HGD gene</mark> → homogentisic acid buildup</td><td><mark class="trap">Autosomal recessive</mark></td><td><mark class="trap">Dark urine (turns black on standing)</mark>; ochronosis, osteoarthropathy</td></tr>
+        <tr><td><mark class="fact">Muscular Dystrophy</mark></td><td>Abnormal gene interferes with muscle protein production</td><td><mark class="trap">X-linked recessive</mark></td><td>Progressive muscle weakness</td></tr>
+        <tr><td><mark class="fact">SCID (Bubble Baby Disease)</mark></td><td>Numerous genetic mutations affecting T/B cell development</td><td>Genetic (various forms)</td><td><mark class="trap">No functioning immune system</mark> at birth</td></tr>
+        <tr><td><mark class="fact">Sickle Cell Disease</mark></td><td>Gene mutation affecting the <mark class="concept">haemoglobin molecule</mark></td><td><mark class="trap">Inherited single-gene disorder</mark></td><td>Sickle-shaped RBCs; chronic anaemia, painful episodes, organ damage</td></tr>
+        <tr><td><mark class="fact">Thalassemia</mark></td><td>Deficient alpha or beta <mark class="concept">globin protein</mark> synthesis</td><td>Inherited blood disorder</td><td>Fewer RBCs, low haemoglobin, mild-to-severe <mark class="trap">anaemia</mark></td></tr>
+        <tr><td><mark class="fact">Colour Blindness (Daltonism)</mark></td><td>Defect in one/more colour-sensing cone cell genes</td><td><mark class="trap">X-linked recessive</mark></td><td>Decreased ability to distinguish colours</td></tr>
+        <tr><td><mark class="fact">Down Syndrome</mark></td><td><mark class="concept">Trisomy 21</mark> — non-disjunction error</td><td><mark class="trap">Chromosomal aberration</mark> (47 chromosomes)</td><td>Flat facial features, small head/ears, short neck, poor muscle tone, intellectual disability</td></tr>
+        <tr><td><mark class="fact">Turner Syndrome</mark></td><td>Partial/complete loss of one <mark class="concept">X chromosome</mark></td><td><mark class="trap">Chromosomal aberration</mark> (45 chromosomes, affects only females)</td><td>Short height, webbed neck, low-set ears, sterile ovaries, heart defects</td></tr>
+        <tr><td><mark class="fact">Klinefelter Syndrome</mark></td><td>Extra <mark class="concept">X chromosome</mark> in males</td><td><mark class="trap">Chromosomal aberration</mark> (47 chromosomes, XXY)</td><td>Gynecomastia, less body hair, sterile, longer limbs, wider hips</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="g-basics">
+    <h2><span class="num">01</span>What Is a Genetic Disease</h2>
+    <ul class="point-list">
+      <li>A <mark class="concept">genetic disease</mark> is any disease caused by an <mark class="fact">abnormality in an individual's genome</mark>.</li>
+      <li>Some genetic disorders are <mark class="concept">inherited from parents</mark>; others are caused by <mark class="concept">acquired changes/mutations</mark> in pre-existing genes.</li>
+      <li>Mutations occur <mark class="trap">either randomly or due to environmental exposure</mark>.</li>
+      <li>Genetic disorders passed generation to generation: <mark class="fact">Albinism, Haemophilia, Muscular Dystrophy, Phenylketonuria, Alkaptonuria</mark>.</li>
+      <li><mark class="fact">Down syndrome, Klinefelter syndrome, Turner syndrome</mark> are genetic disorders caused by <mark class="concept">chromosomal aberrations</mark> rather than single-gene inheritance.</li>
+      <li><mark class="trap">Night blindness is NOT a genetic disease</mark> — it's caused by <mark class="concept">Vitamin A deficiency</mark>, a commonly planted decoy against Albinism/Haemophilia/Colour blindness (all genuinely genetic).</li>
+      <li><mark class="trap">Irritable Bowel Syndrome (IBS) is NOT a genetic disorder</mark> — it's a common gut disorder of unclear cause (decoy against Down syndrome/Haemophilia/Sickle Cell Anaemia).</li>
+    </ul>
+  </section>
+
+  <section id="g-sexlinked">
+    <h2><span class="num">02</span>Sex Chromosomes &amp; Sex-Linked Inheritance</h2>
+    <ul class="point-list">
+      <li>A <mark class="concept">sex chromosome</mark> is either of a pair of chromosomes determining whether an individual is male or female.</li>
+      <li>Besides the sex-determining gene, other genes on the sex chromosomes determine body characters — termed <mark class="concept">sex-linked characters</mark>, and their inheritance is <mark class="concept">sex-linked inheritance</mark>.</li>
+      <li>Males have <mark class="trap">only one X-chromosome</mark>, so one recessive mutation is sufficient to cause an X-linked condition; females (two X-chromosomes) are usually protected by the second, unaffected copy and act as <mark class="concept">carriers</mark>.</li>
+      <li>A characteristic of X-linked inheritance: <mark class="trap">fathers cannot pass X-linked traits to their sons</mark> (sons get the Y from father).</li>
+    </ul>
+  </section>
+
+  <section id="g-albinism">
+    <h2><span class="num">03</span>Albinism</h2>
+    <ul class="point-list">
+      <li>A congenital genetic disorder marked by <mark class="concept">complete/partial absence of melanin</mark> pigment in skin, hair, eyes.</li>
+      <li>Increases susceptibility to <mark class="trap">sunburn and skin cancer</mark>; also affects immune-cell granules, raising infection susceptibility.</li>
+      <li>Results from inheritance of <mark class="trap">recessive gene alleles</mark>.</li>
+      <li>Due to absence/defect of <mark class="fact">tyrosinase</mark>, a copper-containing enzyme involved in melanin production.</li>
+    </ul>
+  </section>
+
+  <section id="g-pku">
+    <h2><span class="num">04</span>Phenylketonuria (PKU)</h2>
+    <ul class="point-list">
+      <li>A type of <mark class="concept">amino acid metabolism disorder</mark>; an inherited disease.</li>
+      <li>Due to lack of <mark class="fact">phenylalanine hydroxylase</mark> enzyme, phenylalanine is not converted to tyrosine, raising phenylalanine levels in the body.</li>
+      <li>Can damage the brain → <mark class="trap">severe intellectual disability / mental idiocy</mark> and mental disorders.</li>
+      <li>The 'error' in this inborn error of metabolism refers to an <mark class="trap">inherited lack of an enzyme</mark> (not hormonal overproduction, gland atrophy, or non-disjunction).</li>
+      <li>Dominant gene 'P' codes for phenylalanine hydroxylase in liver cells; in homozygous recessive genotypes, the enzyme's absence causes high phenylalanine in blood/tissue fluid — effects include progressive mental retardation from a few months after birth, seizures, tooth/bone anomalies.</li>
+    </ul>
+  </section>
+
+  <section id="g-haemophilia">
+    <h2><span class="num">05</span>Haemophilia</h2>
+    <ul class="point-list">
+      <li>An inherited condition impairing the body's ability to <mark class="concept">form blood clots</mark>.</li>
+      <li>Caused by a defective gene for blood-clotting factors, located on the <mark class="fact">X-chromosome</mark> — making it an <mark class="trap">X-linked recessive disease</mark>.</li>
+      <li><mark class="trap">Generally found in males, while females are carriers</mark> — women carry it, men manifest it (since men have only one X-chromosome).</li>
+      <li>Blood clotting can take up to <mark class="fact">24 hours</mark> due to lack of thromboplastin protein.</li>
+      <li>Not contagious; also known as <mark class="concept">Bleeder's Disease</mark>.</li>
+      <li>Also called <mark class="concept">'Royal Disease'</mark> because <mark class="person">Queen Victoria of England</mark> suffered from it.</li>
+      <li><mark class="trap">Haemophilia is NOT caused by bacteria, virus, or pollutants</mark> — it is purely a hereditary defect.</li>
+    </ul>
+  </section>
+
+  <section id="g-aku">
+    <h2><span class="num">06</span>Alkaptonuria (AKU)</h2>
+    <ul class="point-list">
+      <li>A rare disorder of <mark class="concept">autosomal recessive inheritance</mark> — the body cannot process phenylalanine and tyrosine.</li>
+      <li>Caused by a mutation in the <mark class="fact">HGD gene</mark>, resulting in accumulation of <mark class="concept">homogentisic acid (HGA)</mark>.</li>
+      <li>Characteristic sign: sufferers pass <mark class="trap">dark urine that turns black on standing</mark>.</li>
+      <li>Over time, HGA deposition in collagenous tissue causes <mark class="concept">ochronosis</mark> (bluish/black tissue discolouration) and ochronotic osteoarthropathy.</li>
+    </ul>
+  </section>
+
+  <section id="g-md-scid">
+    <h2><span class="num">07</span>Muscular Dystrophy &amp; SCID (Bubble Baby Disease)</h2>
+    <h3 class="subhead">Muscular Dystrophy</h3>
+    <ul class="point-list">
+      <li>Caused by an <mark class="trap">X-linked recessive gene</mark>.</li>
+      <li>Abnormal genes interfere with production of proteins needed to form healthy muscle; an inheritable disease.</li>
+      <li>Caused by expression of a <mark class="trap">recessive gene on a sex chromosome</mark> (not rheumatism, nervous shock, or cerebral haemorrhage).</li>
+    </ul>
+    <h3 class="subhead">Bubble Baby Disease (SCID)</h3>
+    <ul class="point-list">
+      <li>Also known as <mark class="concept">Severe Combined Immunodeficiency (SCID)</mark>, alymphocytosis, Glanzmann-Rinker syndrome, severe mixed immunodeficiency syndrome, thymic alymphoplasia.</li>
+      <li>Children are born <mark class="trap">without a functioning immune system</mark>; historically kept in a sterile plastic bubble — hence the name.</li>
+      <li>Rare genetic disorder from disturbed development of functional <mark class="concept">T cells and B cells</mark>, caused by numerous genetic mutations.</li>
+      <li>Only routine cure: <mark class="fact">bone marrow transplant</mark> (provides a new immune system); gene therapy has shown success in trials but with complications.</li>
+    </ul>
+  </section>
+
+  <section id="g-sickle-thal">
+    <h2><span class="num">08</span>Sickle Cell Disease &amp; Thalassemia</h2>
+    <h3 class="subhead">Sickle Cell Disease (SCD)</h3>
+    <ul class="point-list">
+      <li>A group of <mark class="concept">inherited disorders affecting haemoglobin</mark>, the main oxygen-carrying protein in RBCs.</li>
+      <li>Gene mutation makes RBCs misshapen — <mark class="trap">crescent/'sickle'-shaped</mark> instead of disc-shaped and flexible — blocking blood flow.</li>
+      <li>A <mark class="concept">chronic single-gene disorder</mark> causing chronic anaemia, acute painful episodes, organ infarction/damage, reduced life expectancy.</li>
+      <li>Complications: chronic pain, stroke, lung problems, eye problems, infections, kidney disease.</li>
+      <li><mark class="person">National Sickle Cell Anaemia Elimination Mission (NSCEM)</mark> — launched by <mark class="person">PM Narendra Modi</mark> in <mark class="fact">Shahdol, Madhya Pradesh, July 2023</mark> — targets tribal populations; aims to <mark class="fact">eliminate sickle cell genetic transmission by 2047</mark> in India.</li>
+    </ul>
+    <h3 class="subhead">Thalassemia</h3>
+    <ul class="point-list">
+      <li>Inherited blood disorders characterized by <mark class="concept">abnormal haemoglobin production</mark>; body has fewer RBCs and less haemoglobin — mild to severe anaemia.</li>
+      <li>Haemoglobin synthesis needs two proteins — <mark class="fact">alpha and beta</mark>; deficiency of either impairs oxygen carriage.</li>
+      <li><mark class="concept">Alpha thalassemia</mark> = lacking alpha haemoglobin; <mark class="concept">Beta thalassemia</mark> = lacking beta haemoglobin.</li>
+      <li>The body is unable to synthesise enough <mark class="trap">haemoglobin</mark> — the disease affects <mark class="concept">blood</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="g-colourblind">
+    <h2><span class="num">09</span>Colour Blindness &amp; Inheritance Probabilities</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Colour Blindness (Daltonism)</mark>, a.k.a. Colour Vision Deficiency, is a decreased ability to see colour/differences in colour.</li>
+      <li>Most common cause: an inherited problem in development of colour-sensing cone cells — a <mark class="trap">recessive X-linked inheritance</mark> disease.</li>
+      <li>Males are more likely affected than females, since the responsible genes sit on the <mark class="fact">X-chromosome</mark>; females (two X's) are usually compensated by the second copy and act as <mark class="concept">carriers</mark>.</li>
+      <li>The <mark class="fact">Ishihara Test</mark> (designed by <mark class="person">Shinobu Ishihara</mark>, University of Tokyo, first published <mark class="fact">1917</mark>) is the classic red-green colour-deficiency test, using pseudoisochromatic plates.</li>
+    </ul>
+    <table>
+      <caption>Four inheritance probabilities for colour blindness</caption>
+      <thead><tr><th>Parents</th><th>Offspring Outcome</th></tr></thead>
+      <tbody>
+        <tr><td>Normal female (XX) × Colour-blind male (XᶜY)</td><td>All daughters carrier; all sons normal</td></tr>
+        <tr><td>Carrier female (XᶜX) × Normal male (XY)</td><td>50% colour-blind sons; 50% carrier daughters</td></tr>
+        <tr><td>Carrier female (XᶜX) × Colour-blind male (XᶜY)</td><td>50% colour-blind sons; 50% colour-blind daughters, 50% carrier daughters</td></tr>
+        <tr><td>Colour-blind female (XᶜXᶜ) × Normal male (XY)</td><td><mark class="trap">All sons colour-blind; all daughters carriers</mark></td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      If a <mark class="trap">colour-blind man</mark> marries a normal woman (parents not colour-blind), their children are all normal — colour blindness can appear only in the <mark class="trap">sons of daughters</mark> (grandsons), not directly in sons or daughters.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      If a <mark class="trap">colour-blind woman</mark> marries a normal man: <mark class="trap">sons are all colour-blind, daughters are all carriers (unaffected)</mark> — the reverse-sex trap.
+    </div>
+  </section>
+
+  <section id="g-down">
+    <h2><span class="num">10</span>Down Syndrome (45+2 = 47 Chromosomes)</h2>
+    <ul class="point-list">
+      <li>Usually caused by an error in cell division called <mark class="concept">non-disjunction</mark> — prior to/at conception, the 21st chromosome pair in sperm or egg fails to separate.</li>
+      <li>Results in an embryo with <mark class="fact">three copies of chromosome 21</mark> instead of the usual two — replicated in every body cell as development proceeds.</li>
+      <li>This type is called <mark class="concept">Trisomy 21</mark>.</li>
+      <li>Signs at birth: flat facial features, small head/ears, short neck, bulging tongue, upward-slanting eyes, poor muscle tone, mild-to-moderate mental disability.</li>
+      <li>Also known as <mark class="trap">Mongoloid idiocy / Mongolian idiocy</mark>.</li>
+      <li>Caused by <mark class="trap">changes in chromosome number</mark> (not structure of chromosome/DNA/RNA).</li>
+    </ul>
+  </section>
+
+  <section id="g-turner-kline">
+    <h2><span class="num">11</span>Turner Syndrome &amp; Klinefelter Syndrome</h2>
+    <table>
+      <caption>Two commonly confused sex-chromosome aberrations</caption>
+      <thead><tr><th>Syndrome</th><th>Chromosome Formula</th><th>Key Facts</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Turner Syndrome</mark></td><td><mark class="fact">44+X = 45 chromosomes</mark></td><td>Affects <mark class="trap">only females</mark>; one X chromosome partly/completely missing; short height, webbed neck, low-set ears, ovaries fail to develop, heart defects; <mark class="trap">females are sterile</mark>.</td></tr>
+        <tr><td><mark class="fact">Klinefelter Syndrome</mark></td><td><mark class="fact">44+XXY = 47 chromosomes</mark></td><td>Affects <mark class="trap">males</mark>; extra X chromosome; affected male is <mark class="trap">sterile</mark>; gynecomastia, less facial/body hair, less muscle tone, longer arms/legs, wider hips.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="g-match">
+    <h2><span class="num">12</span>Match-List &amp; MCQ Trap Consolidation</h2>
+    <table>
+      <caption>Disease ↔ disease-type — the classic four-way genetic/hormonal/deficiency/fungal match</caption>
+      <thead><tr><th>Disease</th><th>Type</th></tr></thead>
+      <tbody>
+        <tr><td>Haemophilia</td><td><mark class="fact">Genetic disease</mark></td></tr>
+        <tr><td>Diabetes</td><td><mark class="fact">Hormonal disorder</mark></td></tr>
+        <tr><td>Rickets</td><td><mark class="fact">Deficiency disease</mark></td></tr>
+        <tr><td>Ringworm</td><td><mark class="fact">Fungal infection</mark></td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Correct set: <mark class="trap">Colour blindness, Haemophilia, and Sickle Cell Anaemia = Hereditary</mark> diseases; Diphtheria/Pneumonia/Leprosy are bacterial; AIDS is viral (syphilis/gonorrhoea are bacterial); Polio/Japanese-B-Encephalitis are viral while Plague is bacterial — a five-way category-matching favourite.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Vitamin A deficiency causes <mark class="trap">night blindness, NOT colour blindness</mark> — colour blindness is purely genetic (X-linked recessive), a frequently mismatched pair against Thiamine–Beriberi, Ascorbic acid–Scurvy, Vitamin K–Blood clotting (all correctly matched).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Trisomy of chromosome 21 → <mark class="trap">Down Syndrome</mark> (not Klinefelter, Turner, or Haemophilia) — also known as Trisomy 21 or Mongolian idiocy.
+    </div>
+  </section>
+
+  <footer>The Pathogen's Ledger · Genetic Disorders · compiled for BPSC Prelims 2025–26</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 6 : DEFICIENCY, NON-CONTAGIOUS & OTHER DISEASES -->
+<!-- ============================================================ -->
+<div class="page" id="page-other">
+  <div class="hero">
+    <h1>Deficiency, Non-Contagious &amp; Other Diseases — The General Pathology Ledger</h1>
+    <p>Every deficiency disease, cancer fact, radioisotope, pollution disease, and organ disorder from theory and 128 solved MCQs.</p>
+  </div>
+  <div class="legend">
+    <span class="l-concept">Yellow — Concept</span>
+    <span class="l-fact">Blue — Fact / Number</span>
+    <span class="l-person">Green — Person / Institution</span>
+    <span class="l-trap">Red — MCQ Trap</span>
+  </div>
+
+  <section id="o-master">
+    <h2><span class="num">00</span>All Deficiency/Non-Contagious Diseases — Cause &amp; Symptoms Master Table</h2>
+    <div class="legend">
+      <span style="background:#f9d7de;border:1px solid #c23b2c;">Col 1 — Disease (rose)</span>
+      <span style="background:#d3e6fa;border:1px solid #1f6fa8;">Col 2 — Cause (sky)</span>
+      <span style="background:#d6f0d6;border:1px solid #2f7d3f;">Col 3 — Affected Organ/System (mint)</span>
+      <span style="background:#fbecc2;border:1px solid #e0a712;">Col 4 — Key Symptoms (amber)</span>
+    </div>
+    <table class="master-table">
+      <caption>Every non-contagious/deficiency disease in this chapter, in one place</caption>
+      <thead><tr><th>Disease</th><th>Cause</th><th>Affected Organ/System</th><th>Key Symptoms</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Anaemia</mark></td><td><mark class="concept">Iron deficiency</mark></td><td>Blood</td><td>Fatigue, weakness (reduced oxygen-carrying capacity)</td></tr>
+        <tr><td><mark class="fact">Goitre</mark></td><td><mark class="concept">Iodine deficiency</mark></td><td>Thyroid gland</td><td>Abnormal thyroid enlargement, cough, swallow/breathe difficulty</td></tr>
+        <tr><td><mark class="fact">Marasmus</mark></td><td><mark class="concept">Severe malnutrition / prolonged starvation</mark></td><td>Whole body</td><td>Lean, weak body; depressed eyes, wrinkled skin</td></tr>
+        <tr><td><mark class="fact">Kwashiorkor</mark></td><td><mark class="concept">Protein deficiency</mark></td><td>Whole body</td><td>Swelling, appetite loss, muscle/fat wasting, enlarged liver</td></tr>
+        <tr><td><mark class="fact">Rickets</mark></td><td><mark class="concept">Vitamin D deficiency</mark></td><td>Bones</td><td>Defective bone mineralization in children</td></tr>
+        <tr><td><mark class="fact">Beriberi</mark></td><td><mark class="concept">Vitamin B1 (Thiamine) deficiency</mark></td><td>Heart (wet) / Nerves (dry)</td><td>Wet: heart failure risk; Dry: muscle weakness/paralysis</td></tr>
+        <tr><td><mark class="fact">Scurvy</mark></td><td><mark class="concept">Vitamin C deficiency</mark></td><td>Gums, blood vessels</td><td>Spongy/bleeding gums, loose teeth, skin haemorrhages</td></tr>
+        <tr><td><mark class="fact">Xerophthalmia / Night Blindness</mark></td><td><mark class="concept">Vitamin A deficiency</mark></td><td>Eyes</td><td>Dryness, poor vision in low light</td></tr>
+        <tr><td><mark class="fact">Khaira Disease (in paddy)</mark></td><td><mark class="concept">Zinc deficiency</mark></td><td>Plant/crop (not human)</td><td>Stunted leaf growth</td></tr>
+        <tr><td><mark class="fact">Diabetes Mellitus</mark></td><td><mark class="concept">Insulin deficiency / resistance</mark></td><td>Pancreas</td><td>High blood sugar, frequent urination, thirst, hunger</td></tr>
+        <tr><td><mark class="fact">Mad Cow Disease</mark></td><td><mark class="concept">Prions (abnormal protein)</mark></td><td>Brain (cattle)</td><td>Neurological degeneration</td></tr>
+        <tr><td><mark class="fact">Cancer</mark></td><td><mark class="concept">Abnormal/uncontrolled cell growth</mark> (carcinogens, oncogenes)</td><td>Any organ; can metastasize</td><td>Lump, abnormal bleeding, prolonged cough, unexplained weight loss</td></tr>
+        <tr><td><mark class="fact">Leukaemia</mark></td><td><mark class="concept">Abnormal WBC overproduction</mark> in bone marrow</td><td>Bone marrow, blood</td><td>Fever, fatigue, infections, weight loss, easy bleeding/bruising</td></tr>
+        <tr><td><mark class="fact">Epidemic Dropsy</mark></td><td><mark class="concept">Argemone mexicana</mark> oil adulteration in mustard oil</td><td>Blood vessels, kidneys</td><td>Oedema of extremities, proteinuria</td></tr>
+        <tr><td><mark class="fact">Silicosis</mark></td><td><mark class="concept">Inhaled silica dust</mark></td><td>Lungs</td><td>Lung fibrosis, breathing difficulty</td></tr>
+        <tr><td><mark class="fact">Itai-Itai Disease</mark></td><td><mark class="trap">Cadmium poisoning</mark></td><td>Bones, kidneys</td><td>Severe spine/joint pain, bone softening, kidney failure</td></tr>
+        <tr><td><mark class="fact">Minamata Disease</mark></td><td><mark class="trap">Mercury poisoning</mark> (methylmercury in fish)</td><td>Nervous system</td><td>Ataxia, numbness, muscle weakness, hearing/speech damage</td></tr>
+        <tr><td><mark class="fact">Blue Baby Syndrome</mark></td><td><mark class="trap">Nitrate</mark> in drinking water → methemoglobin</td><td>Blood (oxygen transport)</td><td>Blue skin colouration in infants; can be fatal</td></tr>
+        <tr><td><mark class="fact">Knock-Knee Syndrome</mark></td><td><mark class="trap">Fluoride</mark> toxicity</td><td>Bones (knees)</td><td>Knees angle inward and touch</td></tr>
+        <tr><td><mark class="fact">Cerebral Palsy</mark></td><td>Brain injury/malformation during development</td><td>Brain, movement control</td><td>Poor coordination, stiff/weak muscles, tremors</td></tr>
+        <tr><td><mark class="fact">Alzheimer's Disease</mark></td><td>β-amyloid precursor protein accumulation; genetic factors</td><td>Brain</td><td>Progressive memory loss, dementia</td></tr>
+        <tr><td><mark class="fact">Liver Cirrhosis</mark></td><td>Alcoholism, hepatitis, fatty liver disease</td><td>Liver</td><td>Fatigue, itching, leg swelling, yellow skin, fluid in abdomen</td></tr>
+        <tr><td><mark class="fact">Jaundice</mark></td><td>Bilirubin buildup in blood</td><td>Liver (bile excretion)</td><td>Yellowish skin/eyes; not contagious</td></tr>
+        <tr><td><mark class="fact">Oral Submucous Fibrosis (OSF)</mark></td><td>Areca nut/gutkha/tobacco chewing</td><td>Oral cavity</td><td>Progressive fibrosis, inability to open mouth fully</td></tr>
+        <tr><td><mark class="fact">Lathyrism</mark></td><td>Excess consumption of <mark class="concept">Khesari dal</mark> (Lathyrus sativus)</td><td>Nervous system (lower limbs)</td><td>Muscle weakness, spasms, paralysis of lower limbs</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="o-basics">
+    <h2><span class="num">01</span>Deficiency vs Non-Contagious Diseases</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Deficiency diseases</mark> are caused by the lack of nutrients in the diet — usually a particular vitamin or mineral.</li>
+      <li><mark class="concept">Non-contagious diseases</mark> include diabetes, high blood pressure, cancer, etc. — they do not spread person-to-person.</li>
+    </ul>
+  </section>
+
+  <section id="o-cancer">
+    <h2><span class="num">02</span>Cancer, Metastasis &amp; Oncogenes</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Cancer</mark> = a group of diseases involving <mark class="trap">abnormal cell growth</mark> with potential to invade/spread — contrasted with benign tumours, which do not spread.</li>
+      <li>Signs: a new lump, abnormal bleeding, prolonged cough, unexplained weight loss, changed bowel movements.</li>
+      <li><mark class="concept">Metastasis</mark> = spread of cancer cells from their <mark class="fact">primary location</mark> to another body region, via bloodstream or lymphatic vessels. Steps: local invasion → intravasation → circulation → arrest/extravasation → proliferation → angiogenesis.</li>
+      <li><mark class="concept">Oncogene</mark> = a gene with potential to cause cancer in tumour cells, often mutated/overexpressed; normal cells undergo <mark class="fact">apoptosis</mark> (programmed cell death) when malfunctioning — cancer cells evade this.</li>
+      <li>The first identified oncogene was <mark class="fact">SRC (sarcoma)</mark>, in <mark class="fact">1970</mark>, from the <mark class="concept">Rous sarcoma virus</mark> — a retrovirus, the <mark class="trap">first oncovirus ever described</mark>, causing sarcoma in chickens.</li>
+      <li><mark class="concept">Carcinogens</mark> = physical, chemical, or biological agents that transform normal cells into cancerous (neoplastic) cells via DNA mutation.</li>
+      <li><mark class="trap">Ionized radiation can both cause AND cure cancer</mark>, depending on intensity/use (unlike tobacco, alcohol, UV rays, which are purely harmful in this context).</li>
+      <li>Treatments: <mark class="concept">Intensity Modulated Radiotherapy (IMRT)</mark> — precise radiation dose confirmation, used for nearly all solid tumours; <mark class="concept">Immunotherapy</mark> and <mark class="concept">Molecularly targeted therapy</mark> are newer approaches; <mark class="fact">platinum compounds</mark> (cisplatin, carboplatin, oxaliplatin) are widely used chemotherapy drugs for carcinoma.</li>
+      <li><mark class="fact">Interferon Alfa-2A</mark> treats leukaemia, melanoma, and viral infections (chronic Hep-B/C) — identical to a naturally produced body protein.</li>
+      <li><mark class="trap">Human organ LEAST susceptible to harmful radiation is the brain</mark> (eyes are most susceptible).</li>
+    </ul>
+  </section>
+
+  <section id="o-leukaemia">
+    <h2><span class="num">03</span>Leukaemia &amp; Radioisotope Therapy</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Leukaemia</mark> = malignant progressive disease where bone marrow/blood-forming organs produce increased <mark class="trap">immature or abnormal white blood cells (leucocytes)</mark>.</li>
+      <li>Symptoms: fever/chills, fatigue, frequent/severe infections, weight loss, swollen lymph nodes, enlarged liver/spleen, easy bleeding/bruising, night sweats, bone pain.</li>
+    </ul>
+    <table>
+      <caption>Radioisotope ↔ medical use — a heavily repeated matching set</caption>
+      <thead><tr><th>Radioisotope</th><th>Medical Use</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Phosphorus-32 (P-32)</mark></td><td>Treatment of <mark class="concept">leukaemia</mark></td></tr>
+        <tr><td><mark class="fact">Cobalt-60 (Co-60)</mark></td><td>Radiotherapy for <mark class="concept">cancer</mark> — emits <mark class="trap">gamma rays</mark></td></tr>
+        <tr><td><mark class="fact">Arsenic-74</mark></td><td>Locating <mark class="concept">tumours</mark> with pinpoint accuracy</td></tr>
+        <tr><td><mark class="fact">Gold-198 (Au-198)</mark></td><td>Cancer radiotherapy; beta decay to stable Hg-198, half-life <mark class="fact">2.697 days</mark></td></tr>
+        <tr><td><mark class="fact">Iodine-131</mark></td><td>Studying <mark class="concept">thyroid gland activity</mark></td></tr>
+        <tr><td><mark class="fact">Sodium-24</mark></td><td>Detecting <mark class="concept">blood disorders/clots</mark>; measuring blood flow speed</td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Gold-198 is NOT used for retinal disorders</mark> — it's used for cancer treatment; a commonly mismatched option against correctly-paired Cobalt-60 (internal neoplasms), Iodine-131 (thyroid neoplasm), Phosphorus-32 (leukaemia).
+    </div>
+  </section>
+
+  <section id="o-deficiency">
+    <h2><span class="num">04</span>Vitamin/Mineral Deficiency Ledger</h2>
+    <table>
+      <caption>The master deficiency-disease matching table — the single most repeated MCQ format in this chapter</caption>
+      <thead><tr><th>Disease</th><th>Deficiency</th></tr></thead>
+      <tbody>
+        <tr><td>Anaemia</td><td><mark class="fact">Iron</mark></td></tr>
+        <tr><td>Goitre</td><td><mark class="fact">Iodine</mark></td></tr>
+        <tr><td>Night-blindness</td><td><mark class="fact">Vitamin A</mark></td></tr>
+        <tr><td>Beri-beri</td><td><mark class="fact">Vitamin B1 (Thiamine)</mark></td></tr>
+        <tr><td>Scurvy</td><td><mark class="fact">Vitamin C</mark></td></tr>
+        <tr><td>Rickets</td><td><mark class="fact">Vitamin D</mark></td></tr>
+        <tr><td>Khaira (in paddy)</td><td><mark class="trap">Zinc</mark></td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Use of <mark class="trap">polished rice</mark> in diet (husk/bran/germ removed) causes <mark class="trap">Beriberi</mark> (Vitamin B1/Thiamine deficiency) — NOT goitre, night blindness, or colour blindness.
+    </div>
+  </section>
+
+  <section id="o-beriberi">
+    <h2><span class="num">05</span>Beriberi, Goitre &amp; Scurvy — Detail</h2>
+    <h3 class="subhead">Beriberi</h3>
+    <ul class="point-list">
+      <li>Caused by <mark class="concept">Vitamin B1 (Thiamine) deficiency</mark>; two types — <mark class="fact">Wet beriberi</mark> (heart/circulatory system, can cause heart failure) and <mark class="fact">Dry beriberi</mark> (nerve damage, muscle paralysis).</li>
+      <li>Due to lack of thiamine in birds, <mark class="concept">polyneuritis</mark> is caused.</li>
+      <li>Sources of Vitamin B1: husk of cereals, meat, liver, dried milk, nuts, oranges, legumes, yeast.</li>
+    </ul>
+    <h3 class="subhead">Goitre</h3>
+    <ul class="point-list">
+      <li><mark class="concept">Abnormal enlargement of the thyroid gland</mark>, located at the base of the neck below the Adam's apple.</li>
+      <li>Caused mainly by <mark class="concept">lack of iodine</mark>, necessary for <mark class="fact">thyroxine</mark> hormone synthesis.</li>
+      <li>Main iodine sources: <mark class="fact">seafoods and iodised salt</mark>.</li>
+    </ul>
+    <h3 class="subhead">Scurvy</h3>
+    <ul class="point-list">
+      <li>Caused by <mark class="concept">Vitamin C deficiency</mark>; a diet of only milk, egg, and bread would cause scurvy.</li>
+      <li>Symptoms: spongy/bleeding gums, loose/falling teeth, blood vessel fragility, skin haemorrhages.</li>
+      <li><mark class="fact">Indian gooseberry (Amla)</mark> is the best source of Vitamin C, useful in treating scurvy.</li>
+    </ul>
+  </section>
+
+  <section id="o-diabetes">
+    <h2><span class="num">06</span>Diabetes Mellitus &amp; Diabetes Insipidus</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Diabetes Mellitus (DM)</mark> = group of metabolic disorders with high blood sugar over prolonged periods; symptoms — frequent urination, increased thirst, increased hunger.</li>
+      <li><mark class="fact">Type 1 diabetes</mark> ('insulin-dependent'/'juvenile-onset') — autoimmune; body attacks its own pancreas, damaging <mark class="concept">beta cells</mark>, causing insufficient insulin.</li>
+      <li><mark class="fact">Type 2 diabetes</mark> ('non-insulin-dependent'/'adult-onset') — begins with <mark class="concept">insulin resistance</mark>; most common cause: excess body weight + insufficient exercise.</li>
+      <li><mark class="concept">World Diabetes Day</mark>: <mark class="fact">14 November</mark>, coordinated by the <mark class="person">International Diabetes Federation</mark>; 2025 theme: 'Diabetes across life stages' (multi-year 2024–2026 theme: 'Diabetes and well-being').</li>
+      <li><mark class="concept">Diabetes Insipidus (DI)</mark> — a.k.a. 'water diabetes' — caused by insufficient <mark class="fact">antidiuretic hormone (ADH/vasopressin)</mark>, secreted by the <mark class="concept">pituitary gland</mark>.</li>
+      <li>Drinking alcohol/whiskey increases urination frequency because alcohol <mark class="trap">suppresses vasopressin secretion</mark> (not because it speeds up secretion — a reversed MCQ trap).</li>
+      <li><mark class="fact">Methi (fenugreek)</mark> seeds and <mark class="fact">Curry leaf tree (Murraya koenigii)</mark> leaves are both used to help control blood sugar.</li>
+      <li><mark class="person">Frederick Banting</mark> and <mark class="person">Charles Best</mark> discovered/isolated insulin (early 1920s) under <mark class="person">John Macleod</mark> at the University of Toronto; <mark class="person">James Collip</mark> helped purify it. Banting &amp; Macleod won the <mark class="fact">Nobel Prize in 1923</mark>.</li>
+      <li><mark class="trap">Diabetes cannot be controlled by vaccination</mark> — unlike Polio, Whooping Cough, Smallpox.</li>
+      <li>Diabetes is most commonly associated with the <mark class="trap">pancreas</mark> (produces insulin via beta cells of islets of Langerhans).</li>
+      <li>Blood glucose level is commonly expressed as <mark class="fact">milligram per decilitre (mg/dL)</mark>.</li>
+      <li><mark class="fact">Glycosylated haemoglobin (HbA1c)</mark> measurement is used for diabetes mellitus management, reflecting average blood glucose over the prior <mark class="fact">8–12 weeks</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="o-neuro">
+    <h2><span class="num">07</span>Cerebral Palsy, Alzheimer's &amp; EEG</h2>
+    <h3 class="subhead">Cerebral Palsy</h3>
+    <ul class="point-list">
+      <li>A group of <mark class="concept">permanent movement disorders</mark> appearing in early childhood; caused by <mark class="trap">brain injury/malformation during development</mark> (before, during, or after birth) — <mark class="trap">not by muscle/nerve problems directly</mark>.</li>
+      <li>Symptoms: poor coordination, stiff/weak muscles, tremors; may affect sensation, vision, hearing, swallowing, speech.</li>
+      <li>Generally found in <mark class="trap">small children</mark>.</li>
+    </ul>
+    <h3 class="subhead">Alzheimer's Disease</h3>
+    <ul class="point-list">
+      <li>A chronic <mark class="concept">neurodegenerative disease</mark>; most common cause of <mark class="concept">dementia</mark>.</li>
+      <li>Leading cause: accumulation of <mark class="fact">β-amyloid precursor protein</mark> plus hyperphosphorylated/cleaved <mark class="fact">tau protein</mark>; may also be genetic.</li>
+      <li>Affects the <mark class="trap">brain</mark>; early sign — forgetting recent events/conversations, progressing to severe memory impairment.</li>
+      <li>First identified by <mark class="person">Dr. Alois Alzheimer</mark>, a German psychiatrist/neuropathologist.</li>
+      <li><mark class="person">Arvid Carlsson</mark> won the <mark class="fact">Nobel Prize in 2000</mark> (with Eric Kandel and Paul Greengard) for work on <mark class="concept">Parkinson's disease</mark> treatment via dopamine research.</li>
+    </ul>
+    <h3 class="subhead">Electroencephalogram (EEG)</h3>
+    <ul class="point-list">
+      <li>A non-invasive test recording <mark class="concept">electrical brain activity</mark> via scalp electrodes; used to diagnose seizures, epilepsy, head injuries, sleep problems, and <mark class="trap">can confirm brain death</mark>.</li>
+      <li>Invented by <mark class="person">Hans Berger</mark>, a German psychiatrist.</li>
+    </ul>
+  </section>
+
+  <section id="o-psych">
+    <h2><span class="num">08</span>Hysteria, Phobias &amp; Eating Disorders</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Hysteria</mark> = an uncontrollable outburst of emotion/fear, marked by irrationality, laughter, weeping; a psychoneurotic disorder with sensory/motor disturbances and auto-suggestion effects. Generally occurs in <mark class="trap">young women</mark> (unmarried).</li>
+      <li><mark class="concept">Anthophobia</mark> = abnormal, persistent <mark class="fact">fear of flowers</mark> (Greek: anthos=flower, phobos=fear).</li>
+      <li><mark class="concept">Bulimia Nervosa</mark> = eating disorder of <mark class="fact">binge eating followed by purging</mark> (vomiting/laxatives) — a person who <mark class="trap">doesn't know when to stop eating</mark> suffers from bulimia, distinct from <mark class="concept">Anorexia Nervosa</mark> (food restriction, fear of weight gain).</li>
+      <li>Correct matching: <mark class="fact">Anorexia = Eating disorder</mark>, <mark class="fact">Insomnia = Sleep disorder</mark>, <mark class="fact">Dyspnoea = Shortness of breath</mark>, <mark class="fact">Anosmia = Partial/full loss of smell</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="o-eye">
+    <h2><span class="num">09</span>Myopia, Hypermetropia, Astigmatism &amp; Cataract</h2>
+    <table>
+      <caption>Refractive eye disorders and their corrective lenses</caption>
+      <thead><tr><th>Condition</th><th>Cause</th><th>Correction</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Myopia (Near-sightedness)</mark></td><td>Eyeball too long / cornea too curved — light focuses <mark class="trap">in front of retina</mark></td><td><mark class="trap">Concave lens</mark></td></tr>
+        <tr><td><mark class="fact">Hypermetropia (Far-sightedness)</mark></td><td>Eyeball shorter than usual — light focuses <mark class="trap">behind retina</mark></td><td><mark class="trap">Convex lens</mark></td></tr>
+        <tr><td><mark class="fact">Astigmatism</mark></td><td>Irregular <mark class="concept">cornea shape</mark></td><td><mark class="trap">Cylindrical lens</mark></td></tr>
+        <tr><td><mark class="fact">Cataract</mark></td><td>Clouding of the eye <mark class="concept">lens</mark> due to <mark class="fact">protein</mark> breakdown/clumping (ageing)</td><td>Lens removal/replacement or laser treatment</td></tr>
+      </tbody>
+    </table>
+    <ul class="point-list">
+      <li>Myopia: close objects clear, distant objects blurred. Hypermetropia: distant objects clearer, close objects blurred.</li>
+      <li><mark class="concept">Blind spot</mark> and <mark class="concept">yellow spot (macula lutea / fovea centralis)</mark> are both found in the <mark class="trap">retina</mark>.</li>
+      <li>The retina develops as an outgrowth of the <mark class="concept">diencephalon</mark> (brain).</li>
+    </ul>
+  </section>
+
+  <section id="o-sensory">
+    <h2><span class="num">10</span>Anosmia, Itching &amp; Sleep Apnea</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Anosmia</mark> = complete loss of sense of <mark class="fact">smell</mark>; commonly from nasal congestion (cold, allergy, sinus infection) or brain injury; some are born with it (congenital).</li>
+      <li>Scratching relieves itching because it stimulates nerves that direct the brain to increase production of <mark class="concept">antihistaminic chemicals</mark>.</li>
+      <li><mark class="concept">Sleep Apnea</mark> = a serious sleep disorder where breathing is <mark class="trap">briefly and repeatedly interrupted during sleep</mark>; snoring is a noticeable sign.</li>
+      <li><mark class="fact">Lukoskin</mark> (dual therapy — oral liquid + ointment) treats <mark class="concept">Vitiligo/Leucoderma</mark>; developed by <mark class="person">DIBER, a DRDO wing</mark>, at Haldwani, Uttarakhand. Other DRDO polyherbal products: <mark class="fact">Amtooth</mark> (toothache), <mark class="fact">Eczit</mark> (eczema) — <mark class="trap">Nocdurna is NOT a DRDO product</mark> (it's for nocturnal polyuria).</li>
+    </ul>
+  </section>
+
+  <section id="o-heart">
+    <h2><span class="num">11</span>Heart Attack &amp; Cardiac Procedures</h2>
+    <ul class="point-list">
+      <li>Common cause: <mark class="concept">plaque buildup (atherosclerosis)</mark> in arteries preventing blood reaching heart muscle; also blood clots or torn blood vessels.</li>
+      <li>Sequence: <mark class="fact">plaque forms from fibrous tissue/cholesterol → narrows vessel orifice → blood clots reach coronary arteries → inadequate blood/oxygen supply</mark>.</li>
+      <li>Risk factors: smoking, high cholesterol, obesity, lack of exercise, diet/alcohol, stress.</li>
+      <li><mark class="concept">'Golden Hour'</mark> = the critical first hour after a heart attack onset — most deaths occur in this window if untreated.</li>
+      <li><mark class="fact">Beta-blockers</mark> treat heart attack, hypertension, angina, abnormal heart rhythms.</li>
+      <li><mark class="fact">Potassium</mark> is essential to regulate heartbeat; its deficiency causes <mark class="trap">low blood pressure</mark>.</li>
+      <li><mark class="concept">Coronary artery bypass surgery</mark> uses a healthy vessel (leg vein, forearm/chest artery — <mark class="trap">any of these</mark>) to bypass blocked coronary arteries; the <mark class="fact">saphenous vein</mark> is commonly used.</li>
+      <li><mark class="concept">Cath Lab (Cardiac Catheterization Laboratory)</mark> — special room for minimally invasive cardiovascular diagnosis/treatment, found in the <mark class="trap">Cardiology</mark> department.</li>
+      <li><mark class="fact">Aspirin</mark> — a neurologically active drug (analgesic, antipyretic, anti-inflammatory) with <mark class="trap">anti-blood-clotting action</mark> — used in heart attack prevention; it is a <mark class="trap">non-narcotic (not narcotic) analgesic</mark>.</li>
+      <li><mark class="concept">CPR (Cardiopulmonary Resuscitation)</mark> — emergency procedure for cardiac arrest; immediate CPR can double/triple survival chances.</li>
+      <li>Infrared radiation is used to relieve <mark class="concept">muscle/body aches</mark> by increasing blood flow.</li>
+    </ul>
+  </section>
+
+  <section id="o-liver">
+    <h2><span class="num">12</span>Liver Cirrhosis, Jaundice &amp; Oral Submucous Fibrosis</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Liver Cirrhosis</mark> — chronic liver disease with cell degeneration, inflammation, fibrous scarring; typically from <mark class="trap">alcoholism</mark>, hepatitis, or non-alcoholic fatty liver disease.</li>
+      <li>Symptoms: fatigue, weakness, itching, leg swelling, yellow skin, abdominal fluid buildup, spider-like blood vessels.</li>
+      <li><mark class="concept">Jaundice</mark> — buildup of <mark class="fact">bilirubin</mark> in blood causing yellowish skin, mucus membranes, eye whites; bilirubin forms from RBC breakdown, excreted via bile.</li>
+      <li>Jaundice itself is not dangerous but may signal gallstones, liver cancer, etc.; <mark class="trap">jaundice is NOT contagious</mark> (unlike Measles, Cholera, TB).</li>
+      <li><mark class="concept">Oral Submucous Fibrosis (OSF/OSMF)</mark> — chronic oral cavity disease with inflammation and progressive fibrosis of submucosal tissue, causing rigidity and inability to open the mouth; caused by <mark class="trap">habitual areca nut/tobacco/gutkha chewing</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="o-pollution">
+    <h2><span class="num">13</span>Itai-Itai, Minamata &amp; Blue Baby Syndrome</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Itai-Itai Disease</mark> — mass <mark class="trap">cadmium</mark> poisoning, Toyama Prefecture, Japan, starting ~<mark class="fact">1912</mark>; name reflects severe spine/joint pain; causes bone softening, kidney failure; cadmium released into rivers by mining companies (successfully sued).</li>
+      <li><mark class="concept">Minamata Disease</mark> — neurological syndrome from severe <mark class="trap">mercury</mark> poisoning; symptoms: ataxia, numbness, muscle weakness, narrowed vision field, hearing/speech damage; first occurred in <mark class="person">Minamata city, Japan</mark> from eating mercury-contaminated fish (Chisso Corporation wastewater, 1932–1968).</li>
+      <li>The <mark class="concept">Four Big Pollution Diseases of Japan</mark>: <mark class="fact">Itai-Itai, Minamata Disease, Niigata Minamata Disease, Yokkaichi Asthma</mark>.</li>
+      <li><mark class="concept">Blue Baby Syndrome (Methemoglobinemia)</mark> — caused by <mark class="trap">nitrates</mark> in drinking water; nitrates convert haemoglobin to methemoglobin (cannot bind oxygen); infant condition can be fatal; also linked to congenital heart defects like <mark class="fact">Tetralogy of Fallot</mark>.</li>
+      <li><mark class="concept">Knock-Knee Syndrome (Genu Valgum)</mark> — caused by <mark class="trap">fluoride</mark> toxicity, leading to osteoporosis and skeletal deformity.</li>
+      <li><mark class="trap">Fluoride excess causes dental fluorosis (not 'indigestion')</mark> — a commonly mismatched pollutant-disease pair.</li>
+    </ul>
+  </section>
+
+  <section id="o-occupational">
+    <h2><span class="num">14</span>Silicosis, Dropsy &amp; Lathyrism</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Silicosis</mark> — lung fibrosis from inhaling <mark class="fact">silica dust</mark>; risk occupations: coal/hard-rock mining, construction, tunnel work, masonry, sandblasting, glass/ceramic work.</li>
+      <li><mark class="concept">Epidemic Dropsy</mark> — oedema from poisoning by <mark class="fact">Argemone mexicana</mark> (Mexican prickly poppy) seed oil adulterating mustard oil; toxic alkaloids <mark class="fact">sanguinarine and dihydrosanguinarine</mark> cause capillary dilation/permeability; results in <mark class="concept">proteinuria</mark> (albumin loss) and oedema resembling nephrotic syndrome. Argemone seeds resemble mustard seeds, enabling adulteration; major Indian outbreak in <mark class="fact">1998</mark>.</li>
+      <li><mark class="concept">Lathyrism</mark> — a neurological disorder from excessive consumption of <mark class="fact">Khesari dal (Lathyrus sativus)</mark>; causes muscle weakness, spasms, and paralysis (especially lower limbs).</li>
+      <li><mark class="concept">Pneumoconiosis</mark> — occupational restrictive lung disease from dust inhalation, mainly affecting <mark class="trap">coal mining industry</mark> workers.</li>
+    </ul>
+  </section>
+
+  <section id="o-match">
+    <h2><span class="num">15</span>Match-List, Radioisotopes &amp; MCQ Trap Consolidation</h2>
+    <table>
+      <caption>Disease ↔ affected organ — a heavily repeated matching set</caption>
+      <thead><tr><th>Disease</th><th>Affected Organ/System</th></tr></thead>
+      <tbody>
+        <tr><td>Cataract</td><td><mark class="fact">Eye</mark></td></tr>
+        <tr><td>Jaundice</td><td><mark class="fact">Liver</mark></td></tr>
+        <tr><td>Typhoid</td><td><mark class="fact">Intestine</mark></td></tr>
+        <tr><td>Pneumonia</td><td><mark class="fact">Lungs</mark></td></tr>
+        <tr><td>Malaria</td><td><mark class="fact">Blood cells</mark></td></tr>
+        <tr><td>Filaria</td><td><mark class="fact">Lymph node</mark></td></tr>
+        <tr><td>Encephalitis</td><td><mark class="fact">Brain</mark></td></tr>
+        <tr><td>Leukaemia</td><td><mark class="fact">Bone marrow</mark></td></tr>
+        <tr><td>Diabetes</td><td><mark class="fact">Metabolism (Pancreas)</mark></td></tr>
+        <tr><td>Astigmatism / Myopia</td><td><mark class="fact">Eyes</mark></td></tr>
+        <tr><td>Bright's Disease</td><td><mark class="trap">Kidney</mark> (nephritis)</td></tr>
+      </tbody>
+    </table>
+    <table>
+      <caption>Deficiency ↔ disease — a second heavily repeated matching set</caption>
+      <thead><tr><th>Deficiency</th><th>Disease</th></tr></thead>
+      <tbody>
+        <tr><td>Vitamin B</td><td><mark class="fact">Beriberi</mark></td></tr>
+        <tr><td>Iodine</td><td><mark class="fact">Goitre</mark></td></tr>
+        <tr><td>Vitamin A</td><td><mark class="fact">Night-blindness</mark></td></tr>
+        <tr><td>Iron</td><td><mark class="fact">Anaemia</mark></td></tr>
+        <tr><td>Zinc</td><td><mark class="trap">Khaira disease</mark> (in rice)</td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Arthritis/Gout is caused by deposition of <mark class="trap">uric acid crystals</mark> in joints — not urea, albumin, or cholesterol.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Muscle fatigue is caused by <mark class="trap">lactic acid</mark> buildup (anaerobic metabolism byproduct) — not uric/benzoic acid or pyruvic acid alone.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Marasmus = <mark class="trap">prolonged starvation</mark> (energy + protein deficiency); Kwashiorkor = <mark class="trap">protein deficiency alone</mark> — the two are frequently swapped in MCQs.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Pollutant-disease pairs: <mark class="trap">Mercury→Minamata, Cadmium→Itai-Itai, Nitrate→Blue Baby</mark> are correct; <mark class="trap">Fluoride→dental fluorosis (NOT 'indigestion')</mark> is the deliberately incorrect pairing.
+    </div>
+    <div class="callout fact">
+      <span class="tag">Fact</span>
+      Urine is &gt;<mark class="fact">95% water</mark>, plus urea, sodium/potassium chlorides, creatinine, uric acid; <mark class="fact">urobilin/urochrome</mark> gives urine its yellow colour. Presence of <mark class="trap">albumin</mark> in urine signals possible kidney failure.
+    </div>
+  </section>
+
+  <footer>The Pathogen's Ledger · Deficiency, Non-Contagious &amp; Other Diseases · compiled for BPSC Prelims 2025–26</footer>
+</div>
+
+</main>
+
+<script>
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
+  document.getElementById('hamburgerBtn').classList.toggle('open');
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('open');
+  document.getElementById('hamburgerBtn').classList.remove('open');
+}
+
+const ALL_TABS = ['viral','bacterial','fungal','parasitic','genetic','other'];
+function switchTab(tab){
+  ALL_TABS.forEach(t=>{
+    const page = document.getElementById('page-'+t);
+    const nav = document.getElementById('nav-'+t);
+    const btn = document.getElementById('btn-tab-'+t);
+    if(page) page.classList.toggle('active', t===tab);
+    if(nav) nav.style.display = (t===tab) ? 'block' : 'none';
+    if(btn) btn.classList.toggle('active', t===tab);
+  });
+  window.scrollTo(0,0);
+  closeSidebar();
+}
+
+const navLinks = document.querySelectorAll('.navlink');
+function onScroll(){
+  const activePage = document.querySelector('.page.active');
+  if(!activePage) return;
+  const sections = activePage.querySelectorAll('section');
+  let currentId = '';
+  sections.forEach(sec=>{
+    const rect = sec.getBoundingClientRect();
+    if(rect.top <= 140) currentId = sec.id;
+  });
+  navLinks.forEach(link=>{
+    link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+  });
+}
+window.addEventListener('scroll', onScroll);
+document.querySelectorAll('.navlink').forEach(link=>{
+  link.addEventListener('click', e=>{
+    e.preventDefault();
+    const id = link.getAttribute('href').substring(1);
+    const target = document.getElementById(id);
+    if(target){
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    closeSidebar();
+  });
+});
+window.addEventListener('load', onScroll);
+</script>
+
+</body>
+</html>
