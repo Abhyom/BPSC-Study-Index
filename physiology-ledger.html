@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Physiologist's Ledger — Digestion &amp; Respiration | BPSC Prelims</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5efe2;
+  --paper-dark:#ece3d0;
+  --ink:#2b2620;
+  --ink-soft:#5c5346;
+  --sidebar:#1f2620;
+  --sidebar-text:#cfd6c9;
+  --sidebar-active:#3a473a;
+  --accent-green:#3d6b4f;
+  --accent-green-deep:#274a34;
+  --gold:#a8792f;
+  --border:#d8ccae;
+
+  --yellow:#e0a712;
+  --yellow-bg:#fbe08a;
+  --blue:#1f6fa8;
+  --blue-bg:#a9d3ef;
+  --green:#2f7d3f;
+  --green-bg:#a9dcac;
+  --red:#c23b2c;
+  --red-bg:#f3a89e;
+
+  --card-trap-bg:#fbeeec;
+  --card-trap-border:#e3a99e;
+  --card-trap-text:#8a3225;
+  --card-fact-bg:#eaf3fa;
+  --card-fact-border:#a9c9dd;
+  --card-fact-text:#1f5a80;
+  --card-concept-bg:#fdf6e3;
+  --card-concept-border:#e3d19a;
+  --card-concept-text:#8a6a12;
+  --card-glossary-bg:#eef3ec;
+  --card-glossary-border:#b7cdb9;
+  --card-glossary-text:#2f5c3d;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:'IBM Plex Sans', sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  display:flex;
+  min-height:100vh;
+}
+h1,h2,h3,h4{font-family:'Playfair Display', serif; color:var(--accent-green-deep); margin:0 0 8px 0;}
+code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+  width:270px;
+  background:var(--sidebar);
+  color:var(--sidebar-text);
+  position:fixed;
+  top:0; left:0; bottom:0;
+  overflow-y:auto;
+  padding:22px 16px 40px 16px;
+  z-index:20;
+}
+.sidebar-title{
+  font-family:'Playfair Display', serif;
+  font-size:1.25rem;
+  color:#f2ead6;
+  border-bottom:1px solid #3a473a;
+  padding-bottom:14px;
+  margin-bottom:16px;
+  line-height:1.3;
+}
+.sidebar-title .sub{
+  display:block;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.68rem;
+  color:#8fa88e;
+  letter-spacing:1px;
+  margin-top:4px;
+  text-transform:uppercase;
+}
+.tab-switch{
+  display:flex;
+  gap:6px;
+  margin-bottom:18px;
+}
+.tab-switch button{
+  flex:1 1 50%;
+  background:#28312a;
+  color:#b7c2b1;
+  border:1px solid #3a473a;
+  padding:10px 6px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.66rem;
+  letter-spacing:0.3px;
+  cursor:pointer;
+  border-radius:4px;
+  text-transform:uppercase;
+}
+.tab-switch button.active{
+  background:var(--accent-green);
+  color:#fff;
+  border-color:var(--accent-green);
+}
+.nav-section-label{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.65rem;
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  color:#7c9279;
+  margin:16px 0 6px 4px;
+}
+.sidebar a{
+  display:block;
+  color:var(--sidebar-text);
+  text-decoration:none;
+  padding:6px 10px;
+  font-size:0.83rem;
+  border-radius:4px;
+  margin-bottom:2px;
+  border-left:2px solid transparent;
+  line-height:1.3;
+}
+.sidebar a:hover{background:#2a332a;}
+.sidebar a.active{
+  background:var(--sidebar-active);
+  border-left:2px solid var(--gold);
+  color:#fff;
+  font-weight:600;
+}
+
+/* ===== MAIN ===== */
+.main{
+  margin-left:270px;
+  flex:1;
+  padding:36px 46px 90px 46px;
+  max-width:1080px;
+}
+.page{display:none;}
+.page.active{display:block;}
+
+.hero{
+  border-bottom:2px solid var(--accent-green);
+  padding-bottom:18px;
+  margin-bottom:30px;
+}
+.hero h1{font-size:2rem;}
+.hero p{color:var(--ink-soft); font-style:italic; margin:0;}
+
+.legend{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:18px 0 34px 0;
+  padding:14px 16px;
+  background:var(--paper-dark);
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+.legend span{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  padding:3px 9px;
+  border-radius:3px;
+}
+.legend .l-concept{background:var(--yellow-bg); border:1px solid var(--yellow);}
+.legend .l-fact{background:var(--blue-bg); border:1px solid var(--blue);}
+.legend .l-person{background:var(--green-bg); border:1px solid var(--green);}
+.legend .l-trap{background:var(--red-bg); border:1px solid var(--red);}
+.legend .l-gloss{background:var(--card-glossary-bg); border:1px solid var(--card-glossary-border); color:var(--card-glossary-text);}
+
+section{margin-bottom:46px; scroll-margin-top:20px;}
+section h2{
+  font-size:1.5rem;
+  border-bottom:2px solid var(--border);
+  padding-bottom:8px;
+  margin-bottom:16px;
+}
+section h2 .num{
+  color:var(--gold);
+  font-family:'IBM Plex Mono', monospace;
+  font-size:1rem;
+  margin-right:8px;
+}
+h3.subhead{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.85rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:var(--accent-green-deep);
+  border-left:4px solid var(--accent-green);
+  padding-left:10px;
+  margin:22px 0 10px 0;
+}
+
+mark{color:var(--ink); font-weight:600; padding:1px 5px; border-radius:3px; box-decoration-break:clone; -webkit-box-decoration-break:clone;}
+mark.concept{background:var(--yellow-bg); box-shadow:inset 0 0 0 1.5px var(--yellow);}
+mark.fact{background:var(--blue-bg); box-shadow:inset 0 0 0 1.5px var(--blue); color:#12324a;}
+mark.person{background:var(--green-bg); box-shadow:inset 0 0 0 1.5px var(--green); color:#123a1a;}
+mark.trap{background:var(--red-bg); box-shadow:inset 0 0 0 1.5px var(--red); color:#5c140b; font-weight:700;}
+
+ul.point-list{padding-left:20px; margin:8px 0;}
+ul.point-list li{margin-bottom:7px; line-height:1.55;}
+
+.callout{
+  border-radius:10px;
+  padding:14px 18px;
+  margin:14px 0;
+  font-size:0.92rem;
+  line-height:1.6;
+  border:1px solid;
+  box-shadow:0 1px 2px rgba(0,0,0,0.04);
+}
+.callout .tag{
+  font-family:'IBM Plex Mono',monospace;
+  font-weight:700;
+  text-transform:uppercase;
+  font-size:0.7rem;
+  letter-spacing:0.6px;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-bottom:6px;
+}
+.callout .tag::before{
+  content:"";
+  display:inline-block;
+  width:7px; height:7px;
+  border-radius:50%;
+}
+.callout.trap{background:var(--card-trap-bg); border-color:var(--card-trap-border); color:var(--ink);}
+.callout.trap .tag{color:var(--card-trap-text);}
+.callout.trap .tag::before{background:var(--red);}
+
+.callout.fact{background:var(--card-fact-bg); border-color:var(--card-fact-border); color:var(--ink);}
+.callout.fact .tag{color:var(--card-fact-text);}
+.callout.fact .tag::before{background:var(--blue);}
+
+.callout.concept{background:var(--card-concept-bg); border-color:var(--card-concept-border); color:var(--ink);}
+.callout.concept .tag{color:var(--card-concept-text);}
+.callout.concept .tag::before{background:var(--yellow);}
+
+.callout.glossary{background:var(--card-glossary-bg); border-color:var(--card-glossary-border); color:var(--ink);}
+.callout.glossary .tag{color:var(--card-glossary-text);}
+.callout.glossary .tag::before{background:var(--accent-green);}
+.callout.glossary dl{margin:6px 0 0 0;}
+.callout.glossary dt{font-weight:700; font-family:'IBM Plex Mono',monospace; font-size:0.82rem; color:var(--accent-green-deep); margin-top:10px;}
+.callout.glossary dt:first-child{margin-top:0;}
+.callout.glossary dd{margin:2px 0 0 0; line-height:1.55;}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin:14px 0 24px 0;
+  background:#fffdf7;
+  border:1px solid var(--border);
+  box-shadow:0 1px 3px rgba(0,0,0,0.05);
+  font-size:0.87rem;
+}
+table caption{
+  caption-side:top;
+  text-align:left;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  text-transform:uppercase;
+  letter-spacing:1px;
+  color:var(--gold);
+  padding:6px 0;
+}
+th{
+  background:var(--accent-green-deep);
+  color:#f2ead6;
+  text-align:left;
+  padding:9px 12px;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.72rem;
+  text-transform:uppercase;
+  letter-spacing:0.6px;
+}
+td{
+  padding:9px 12px;
+  border-top:1px solid var(--border);
+  vertical-align:top;
+  line-height:1.5;
+}
+tr.tier-organ td:first-child{font-weight:700; background:#fbf6e8;}
+.arrow-chain{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:0.85rem;
+  background:#fffdf7;
+  border:1px solid var(--border);
+  border-left:4px solid var(--gold);
+  border-radius:6px;
+  padding:10px 14px;
+  margin:10px 0;
+  line-height:1.8;
+}
+
+.two-col{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+@media(max-width:900px){.two-col{grid-template-columns:1fr;}}
+
+footer{
+  margin-top:60px;
+  padding-top:16px;
+  border-top:1px solid var(--border);
+  color:var(--ink-soft);
+  font-size:0.78rem;
+  font-family:'IBM Plex Mono', monospace;
+}
+
+/* ===== MOBILE HAMBURGER TOGGLE ===== */
+.mobile-topbar{display:none;}
+.hamburger-btn{display:none;}
+.sidebar-overlay{display:none;}
+
+@media(max-width:860px){
+  .mobile-topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:fixed;
+    top:0; left:0; right:0;
+    height:56px;
+    background:var(--sidebar);
+    color:#f2ead6;
+    padding:0 14px;
+    z-index:40;
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
+  }
+  .mobile-topbar .mt-title{font-family:'Playfair Display', serif; font-size:1.05rem;}
+  .hamburger-btn{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:4px;
+    width:34px; height:34px;
+    background:transparent;
+    border:1px solid #3a473a;
+    border-radius:5px;
+    cursor:pointer;
+    padding:8px;
+  }
+  .hamburger-btn span{display:block; height:2px; background:#e8e2cf; border-radius:2px; transition:transform 0.2s ease, opacity 0.2s ease;}
+  .hamburger-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .hamburger-btn.open span:nth-child(2){opacity:0;}
+  .hamburger-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+  .sidebar{
+    top:56px; left:0;
+    width:82%; max-width:320px;
+    height:calc(100vh - 56px);
+    transform:translateX(-105%);
+    transition:transform 0.25s ease;
+    box-shadow:4px 0 18px rgba(0,0,0,0.25);
+  }
+  .sidebar.open{transform:translateX(0);}
+  .sidebar-overlay{
+    display:block;
+    position:fixed;
+    top:56px; left:0; right:0; bottom:0;
+    background:rgba(0,0,0,0);
+    pointer-events:none;
+    transition:background 0.25s ease;
+    z-index:19;
+  }
+  .sidebar-overlay.open{background:rgba(0,0,0,0.4); pointer-events:auto;}
+  .sidebar-title{display:none;}
+
+  .main{margin-left:0; padding:72px 18px 60px 18px; max-width:100%;}
+  .hero h1{font-size:1.5rem;}
+  section h2{font-size:1.2rem;}
+  table{font-size:0.8rem;}
+  th, td{padding:7px 8px;}
+  .legend{gap:6px; padding:10px 12px;}
+  .legend span{font-size:0.66rem;}
+}
+@media(max-width:480px){
+  table{font-size:0.74rem;}
+  .hero h1{font-size:1.3rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="mobile-topbar">
+  <span class="mt-title">The Physiologist's Ledger</span>
+  <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleSidebar()" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-title">The Physiologist's Ledger
+    <span class="sub">BPSC Prelims · Human Physiology</span>
+  </div>
+
+  <div class="tab-switch">
+    <button id="btn-tab-digestion" class="active" onclick="switchTab('digestion')">Digestion</button>
+    <button id="btn-tab-respiration" onclick="switchTab('respiration')">Respiration</button>
+  </div>
+
+  <div id="nav-digestion">
+    <div class="nav-section-label">Foundations</div>
+    <a href="#d-canal" class="navlink" data-page="digestion">Alimentary Canal &amp; Gut Wall</a>
+
+    <div class="nav-section-label">The Digestive Tract, In Order</div>
+    <a href="#d-mouth" class="navlink" data-page="digestion">Mouth — Teeth &amp; Tongue</a>
+    <a href="#d-saliva" class="navlink" data-page="digestion">Salivary Glands &amp; Saliva</a>
+    <a href="#d-pharynx" class="navlink" data-page="digestion">Pharynx &amp; Oesophagus</a>
+    <a href="#d-stomach-anatomy" class="navlink" data-page="digestion">Stomach — Anatomy</a>
+    <a href="#d-stomach-digestion" class="navlink" data-page="digestion">Stomach — Gastric Digestion</a>
+    <a href="#d-liver" class="navlink" data-page="digestion">Liver, Gallbladder &amp; Bile</a>
+    <a href="#d-pancreas" class="navlink" data-page="digestion">Pancreas &amp; Pancreatic Juice</a>
+    <a href="#d-duodenum" class="navlink" data-page="digestion">Duodenum</a>
+    <a href="#d-jejunum-ileum" class="navlink" data-page="digestion">Jejunum &amp; Ileum</a>
+    <a href="#d-enzyme-map" class="navlink" data-page="digestion">Enzyme ↔ Reaction Map</a>
+    <a href="#d-absorption" class="navlink" data-page="digestion">Absorption Mechanisms</a>
+    <a href="#d-large-intestine" class="navlink" data-page="digestion">Large Intestine, Caecum &amp; Appendix</a>
+    <a href="#d-rectum" class="navlink" data-page="digestion">Rectum, Anus &amp; Defecation</a>
+
+    <div class="nav-section-label">Regulation &amp; Applied</div>
+    <a href="#d-control" class="navlink" data-page="digestion">Neural &amp; Hormonal Control</a>
+    <a href="#d-calorific" class="navlink" data-page="digestion">Calorific Values</a>
+    <a href="#d-disorders" class="navlink" data-page="digestion">Disorders of the Digestive System</a>
+    <a href="#d-pem" class="navlink" data-page="digestion">PEM — Marasmus &amp; Kwashiorkor</a>
+
+    <div class="nav-section-label">Exam Consolidation</div>
+    <a href="#d-taste" class="navlink" data-page="digestion">Tongue &amp; Taste — MCQ Facts</a>
+    <a href="#d-match" class="navlink" data-page="digestion">Match-List &amp; Trap Table</a>
+  </div>
+
+  <div id="nav-respiration" style="display:none;">
+    <div class="nav-section-label">Foundations</div>
+    <a href="#r-organs" class="navlink" data-page="respiration">Respiratory Organs Across Animals</a>
+    <a href="#r-pathway" class="navlink" data-page="respiration">The Human Airway, In Order</a>
+    <a href="#r-lungs" class="navlink" data-page="respiration">Lungs, Pleura &amp; Thorax</a>
+
+    <div class="nav-section-label">Mechanics of Breathing</div>
+    <a href="#r-mechanism" class="navlink" data-page="respiration">Mechanism — Inspiration &amp; Expiration</a>
+    <a href="#r-volumes" class="navlink" data-page="respiration">Respiratory Volumes &amp; Capacities</a>
+
+    <div class="nav-section-label">Gas Exchange &amp; Transport</div>
+    <a href="#r-exchange" class="navlink" data-page="respiration">Exchange of Gases — Diffusion</a>
+    <a href="#r-o2-transport" class="navlink" data-page="respiration">Transport of Oxygen</a>
+    <a href="#r-co2-transport" class="navlink" data-page="respiration">Transport of Carbon Dioxide</a>
+
+    <div class="nav-section-label">Regulation &amp; Applied</div>
+    <a href="#r-regulation" class="navlink" data-page="respiration">Regulation of Respiration</a>
+    <a href="#r-disorders" class="navlink" data-page="respiration">Disorders of the Respiratory System</a>
+    <a href="#r-hypoxia" class="navlink" data-page="respiration">Hypoxia, Hypoxemia &amp; CO Poisoning</a>
+
+    <div class="nav-section-label">Cellular Respiration</div>
+    <a href="#r-cellular" class="navlink" data-page="respiration">Cellular Respiration — ATP Explained</a>
+    <a href="#r-glycolysis" class="navlink" data-page="respiration">Glycolysis &amp; Krebs Cycle</a>
+    <a href="#r-rq" class="navlink" data-page="respiration">Respiratory Quotient</a>
+
+    <div class="nav-section-label">Exam Consolidation</div>
+    <a href="#r-match" class="navlink" data-page="respiration">Match-List &amp; Trap Table</a>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- ============================================================ -->
+<!-- PAGE 1 : DIGESTION & ABSORPTION -->
+<!-- ============================================================ -->
+<div class="page active" id="page-digestion">
+
+<div class="hero">
+  <h1>Digestion &amp; Absorption — The Alimentary Ledger</h1>
+  <p>Every organ of the gut, in the order food actually travels through it — theory + 45 solved MCQs compiled together, gaps explained.</p>
+</div>
+
+<div class="legend">
+  <span class="l-concept">Yellow — Concept</span>
+  <span class="l-fact">Blue — Fact / Number</span>
+  <span class="l-person">Green — Person / Institution</span>
+  <span class="l-trap">Red — MCQ Trap</span>
+  <span class="l-gloss">Green card — Glossary / Explainer</span>
+</div>
+
+<!-- ============================================================ -->
+<section id="d-canal">
+  <h2><span class="num">01</span>The Alimentary Canal &amp; Gut Wall</h2>
+  <ul class="point-list">
+    <li><mark class="concept">Digestion</mark> is the breakdown of large insoluble food molecules into small, water-soluble molecules so they can be absorbed into the watery blood plasma — a form of <mark class="concept">catabolism</mark>.</li>
+    <li>Two components: <mark class="concept">Mechanical digestion</mark> (physical breakdown of food into smaller pieces, e.g. chewing) and <mark class="concept">chemical digestion</mark> (enzymes breaking food into usable small molecules).</li>
+    <li>The <mark class="concept">alimentary canal (gastrointestinal tract)</mark> is a long tube running from mouth to anus, through which food is taken in and digested; the <mark class="concept">accessory/digestive glands</mark> (salivary glands, liver, pancreas, plus the tongue and gall bladder) support it but are not part of the tube itself.</li>
+    <li>Full path in order: <mark class="fact">Mouth → Buccal cavity → Pharynx → Oesophagus → Stomach → Small intestine (Duodenum → Jejunum → Ileum) → Large intestine (Caecum → Colon → Rectum) → Anus</mark>.</li>
+    <li>In humans, this passage is about <mark class="fact">30 feet (9 metres)</mark> long from oesophagus to anus.</li>
+  </ul>
+
+  <h3 class="subhead">The Four Layers of the Gut Wall</h3>
+  <ul class="point-list">
+    <li>From oesophagus to rectum, the gut wall has <mark class="fact">four layers</mark>, from outside in: <mark class="concept">Serosa → Muscularis → Sub-mucosa → Mucosa</mark>. All four layers show local modifications in different parts of the canal.</li>
+  </ul>
+  <table>
+    <caption>The four gut-wall layers, outermost to innermost</caption>
+    <thead><tr><th>Layer</th><th>What It's Made Of</th><th>Role</th></tr></thead>
+    <tbody>
+      <tr class="tier-organ"><td>Serosa</td><td>Thin <mark class="concept">mesothelium</mark> (epithelium of visceral organs) plus some connective tissue.</td><td>Outermost protective covering.</td></tr>
+      <tr class="tier-organ"><td>Muscularis</td><td>Smooth muscle, usually an <mark class="concept">inner circular layer</mark> + an <mark class="concept">outer longitudinal layer</mark> (an oblique layer is present in some regions, e.g. stomach).</td><td>Drives <mark class="concept">peristalsis</mark> — the wave-like contractions that push food along, and churning movements in the stomach.</td></tr>
+      <tr class="tier-organ"><td>Sub-mucosa</td><td>Loose connective tissue carrying nerves, blood and lymph vessels. In the <mark class="fact">duodenum</mark> specifically, glands (Brunner's glands) also sit in this layer.</td><td>Support, supply, and — in the duodenum — extra alkaline secretion.</td></tr>
+      <tr class="tier-organ"><td>Mucosa</td><td>Innermost layer lining the lumen; forms irregular folds (<mark class="fact">rugae</mark>) in the stomach and finger-like foldings (<mark class="fact">villi</mark>) in the small intestine.</td><td>Where absorption and most secretion actually happens.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout glossary">
+    <span class="tag">Glossary — Terms the source text uses but never fully explains</span>
+    <dl>
+      <dt>Mucosa vs "mucosal gland" / mucous gland</dt>
+      <dd>The <strong>mucosa</strong> is simply the innermost tissue layer lining the gut tube. A <strong>mucosal gland</strong> (or "gland of the mucosa") is any gland whose secretory cells sit within this mucosal layer itself, rather than being a separate large organ connected by a duct — e.g. the <mark class="fact">gastric glands</mark> in the stomach's mucosa, or the <mark class="fact">crypts of Lieberkuhn</mark> in the intestine's mucosa. This is different from an "accessory gland" like the liver or pancreas, which is a whole separate organ that empties its secretion into the canal via a duct.</dd>
+      <dt>Sub-mucosal gland</dt>
+      <dd>A gland whose secretory tissue sits one layer deeper, in the sub-mucosa rather than the mucosa. The only named example here is <mark class="fact">Brunner's glands</mark> in the duodenum.</dd>
+      <dt>Goblet cells</dt>
+      <dd>Individual mucus-secreting cells scattered within the mucosal epithelium (not a "gland" in the organ sense) — found lining the stomach, small intestine and large intestine; their mucus lubricates and protects the lining.</dd>
+      <dt>Villi vs Microvilli vs Crypts</dt>
+      <dd><strong>Villi</strong> are finger-like foldings of the whole mucosa (visible to the naked eye) that increase surface area in the small intestine. <strong>Microvilli</strong> are much smaller projections on the surface of each individual villus cell, giving a "brush border" appearance and increasing surface area further still. <strong>Crypts of Lieberkuhn</strong> are pit-like glandular indentations found in between the bases of adjacent villi.</dd>
+      <dt>Chyme vs Chyle</dt>
+      <dd><strong>Chyme</strong> is the acidic, semi-liquid mass of partly digested food leaving the stomach. <strong>Chyle</strong> is the later, milky-watery fluid formed once digestion is essentially complete in the ileum — it contains the soluble end-products of digestion, ready for absorption.</dd>
+    </dl>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-mouth">
+  <h2><span class="num">02</span>Mouth — Buccal Cavity, Teeth &amp; Tongue</h2>
+  <ul class="point-list">
+    <li>The mouth leads into the <mark class="concept">buccal (oral) cavity</mark>, which contains the teeth and a muscular tongue, and performs two jobs: <mark class="concept">mastication (chewing) of food</mark> and <mark class="concept">facilitation of swallowing</mark>.</li>
+    <li>Each tooth sits in a socket of the jaw bone — this attachment type is called <mark class="fact">thecodont</mark>.</li>
+    <li>Most mammals, including humans, form <mark class="concept">two sets of teeth</mark> across life: temporary <mark class="fact">milk/deciduous teeth</mark> replaced later by <mark class="fact">permanent/adult teeth</mark> — this pattern of two successive sets is called <mark class="fact">diphyodont</mark> dentition.</li>
+    <li>An adult human has <mark class="fact">32 permanent teeth</mark> of four types (<mark class="fact">heterodont</mark> dentition): <mark class="fact">incisors (I), canines (C), premolars (PM), molars (M)</mark>. The dental formula (per half-jaw, upper/lower) is written as <mark class="fact">2, 1, 2, 3</mark> for each side.</li>
+    <li>The hard chewing surface of teeth is made of <mark class="concept">enamel</mark>, which aids mastication.</li>
+    <li>The tongue is a freely movable muscular organ attached to the floor of the oral cavity by the <mark class="fact">frenulum</mark>; its upper surface bears small projections called <mark class="concept">papillae</mark>, some of which carry <mark class="concept">taste buds</mark>.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-saliva">
+  <h2><span class="num">03</span>Salivary Glands &amp; Saliva</h2>
+  <ul class="point-list">
+    <li>Saliva is produced by <mark class="fact">three pairs</mark> of salivary glands, situated just outside the buccal cavity and secreting into it: <mark class="concept">parotids</mark> (cheek), <mark class="concept">sub-maxillary/sub-mandibular</mark> (lower jaw), and <mark class="concept">sub-lingual</mark> (below the tongue).</li>
+    <li>Human saliva is about <mark class="fact">99.5% water</mark>; the remaining ~0.5% is electrolytes, mucus, white blood cells, epithelial cells (a source of DNA), enzymes (<mark class="concept">amylase/ptyalin, lipase</mark>), and antimicrobial agents (<mark class="concept">secretory IgA, lysozyme</mark>).</li>
+    <li>A healthy person produces roughly <mark class="fact">0.75 to 1.5 litres</mark> of saliva per day.</li>
+    <li>Digestive functions of saliva: moistens food and helps form it into a <mark class="concept">bolus</mark> for easy swallowing; also begins carbohydrate digestion.</li>
+    <li><mark class="concept">Salivary amylase (ptyalin)</mark> hydrolyses starch into the disaccharide <mark class="fact">maltose</mark> (and dextrin) at an optimum pH of <mark class="fact">6.8</mark>; about <mark class="fact">30%</mark> of starch is broken down at this stage — digestion of carbohydrate <mark class="trap">starts in the mouth</mark>, not protein or fat.</li>
+    <li><mark class="concept">Lysozyme</mark> in saliva hydrolyses bacterial cell walls, acting as an antibacterial agent that prevents infection.</li>
+  </ul>
+  <div class="arrow-chain">Starch —(salivary amylase, pH 6.8)→ Maltose</div>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    In the buccal cavity, digestion of <mark class="trap">carbohydrate</mark> begins — not protein, not fat. Protein digestion begins later, in the <mark class="trap">stomach</mark>.
+  </div>
+  <div class="callout fact">
+    <span class="tag">Fact</span>
+    Certain drugs placed under the tongue or against the cheek lining are absorbed directly into blood capillaries there — the mouth is a minor absorption site, mainly for such drugs.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-pharynx">
+  <h2><span class="num">04</span>Pharynx &amp; Oesophagus</h2>
+  <ul class="point-list">
+    <li>The oral cavity opens into a short <mark class="concept">pharynx</mark>, a shared passage for both food and air — the oesophagus and the trachea (windpipe) both open into it.</li>
+    <li>A cartilaginous flap, the <mark class="concept">epiglottis</mark>, covers the glottis (the windpipe's opening) during swallowing, preventing food from entering the airway.</li>
+    <li>The bolus passes from mouth to pharynx to oesophagus by the act of swallowing, called <mark class="fact">deglutition</mark>.</li>
+    <li>The <mark class="concept">oesophagus</mark> (also called the <mark class="fact">gullet or food pipe</mark>) is a thin, muscular tube about <mark class="fact">25 cm</mark> long, running through the neck, thorax and diaphragm to the stomach.</li>
+    <li>Food is pushed down the oesophagus by successive waves of muscular contraction called <mark class="concept">peristalsis</mark> — the oesophageal walls squeeze together and relax in sequence.</li>
+    <li>The <mark class="concept">gastro-oesophageal sphincter</mark> (a muscular valve) regulates and controls passage of food from the oesophagus into the stomach.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-stomach-anatomy">
+  <h2><span class="num">05</span>Stomach — Anatomy</h2>
+  <ul class="point-list">
+    <li>The stomach is a muscular, <mark class="fact">'J'-shaped</mark> sac lying between the oesophagus and small intestine in the upper-left abdomen; it has strong muscular walls and acts as both a food store and a mixer/grinder.</li>
+    <li>Four regions: <mark class="concept">cardiac portion</mark> (where the oesophagus opens in), <mark class="concept">fundic region</mark>, <mark class="concept">body</mark> (main central region), and <mark class="concept">pyloric portion</mark> (opens into the small intestine).</li>
+    <li>The <mark class="concept">pyloric sphincter</mark> guards the opening from stomach into the duodenum, the first part of the small intestine.</li>
+    <li>The mucosa of the stomach is thrown into folds called <mark class="fact">rugae</mark>, and contains embedded <mark class="concept">gastric glands</mark> — a type of mucosal gland (see glossary above).</li>
+  </ul>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-stomach-digestion">
+  <h2><span class="num">06</span>Stomach — Gastric Digestion</h2>
+  <h3 class="subhead">Gastric Gland Cell Types</h3>
+  <ul class="point-list">
+    <li>Gastric glands have <mark class="fact">three</mark> major cell types:</li>
+  </ul>
+  <table>
+    <caption>Cells of the gastric gland and their secretions</caption>
+    <thead><tr><th>Cell Type</th><th>Secretes</th><th>Function</th></tr></thead>
+    <tbody>
+      <tr><td><mark class="concept">Mucus neck cells</mark></td><td>Mucus</td><td>Lines and protects the stomach's internal surface from the highly concentrated HCl, preventing excoriation (erosion) of the mucosal epithelium.</td></tr>
+      <tr><td><mark class="concept">Peptic / Chief cells</mark></td><td>The proenzyme <mark class="fact">pepsinogen</mark></td><td>Inactive form of pepsin, activated only once exposed to acid.</td></tr>
+      <tr><td><mark class="concept">Parietal / Oxyntic cells</mark></td><td><mark class="fact">HCl</mark> and <mark class="fact">intrinsic factor</mark></td><td>HCl provides the acidic medium; intrinsic factor is essential for absorption of <mark class="fact">vitamin B12</mark> (further down, in the ileum).</td></tr>
+    </tbody>
+  </table>
+  <ul class="point-list">
+    <li>The stomach stores food for <mark class="fact">4–5 hours</mark>, mixing it thoroughly with acidic gastric juice via churning movements of the muscular wall — this semi-digested acidic mixture is called <mark class="concept">chyme</mark>.</li>
+    <li>Roles of HCl: provides the <mark class="concept">acidic medium</mark> needed for digestion, <mark class="concept">kills bacteria</mark>, dissolves small foreign matter (stones/bone fragments) that entered with food, and <mark class="concept">activates pepsin and renin</mark>. Optimal pH for pepsin activity is around <mark class="fact">pH 1.8</mark>.</li>
+    <li><mark class="concept">Mucin</mark> is a glycoprotein forming the protective mucus layer over the stomach's internal lining.</li>
+    <li><mark class="concept">Pepsinogen</mark>, on exposure to HCl, converts into the active proteolytic enzyme <mark class="fact">pepsin</mark>, which converts proteins into <mark class="fact">proteoses and peptones</mark> (partially broken-down peptides) — this is where <mark class="trap">protein digestion begins</mark>.</li>
+    <li><mark class="concept">Renin</mark> (also called rennin) is a proteolytic enzyme found in the gastric juice of <mark class="trap">infants</mark> specifically, which helps digest milk protein.</li>
+    <li>Small amounts of <mark class="fact">lipase</mark> are also secreted by gastric glands, breaking down some fat into glycerol and fatty acids even at this early stage.</li>
+    <li>Absorption already begins in the stomach: <mark class="concept">water, simple sugars, and alcohol</mark> are absorbed here, along with some medicines.</li>
+  </ul>
+  <div class="callout glossary">
+    <span class="tag">Glossary — Renin (stomach) vs Renin (kidney) — do not confuse</span>
+    <dl>
+      <dt>Gastric renin</dt>
+      <dd>A digestive enzyme in infant gastric juice that clots/curdles milk protein for easier digestion.</dd>
+      <dt>Kidney renin</dt>
+      <dd>A completely different enzyme, secreted by the kidneys, that converts angiotensinogen in the blood into angiotensin (blood-pressure regulation) — this is the "Renin" tested in the Ptyalin/Pepsin/Renin/Oxytocin match-list MCQ below.</dd>
+    </dl>
+  </div>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    HCl is secreted by the <mark class="trap">parietal (oxyntic) cells</mark> of gastric glands, located in the <mark class="trap">stomach</mark> — not the intestine, liver, or pancreas. It is <mark class="trap">hydrochloric acid</mark>, not sulphuric, nitric, or phosphoric acid.
+  </div>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    Of the three enzymes released in the stomach for protein digestion — <mark class="trap">only Pepsin</mark> is correct. Trypsin and Chymotrypsin are secreted by the pancreas in inactive forms and act later, in the duodenum/small intestine — not in the stomach.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-liver">
+  <h2><span class="num">07</span>Liver, Gallbladder &amp; Bile</h2>
+  <ul class="point-list">
+    <li>The <mark class="concept">liver</mark> is the <mark class="fact">largest gland/largest internal organ</mark> of the human body, weighing about <mark class="fact">1.2–1.5 kg</mark> (roughly 22 cm long, 15 cm wide), located in the abdominal cavity just below the diaphragm, with <mark class="fact">two lobes</mark>.</li>
+    <li>The <mark class="concept">hepatic lobules</mark> are the structural and functional units of the liver, containing hepatic cells arranged in cords; each lobule is covered by a connective tissue sheath called <mark class="fact">Glisson's capsule</mark>.</li>
+    <li>Liver functions beyond digestion: making proteins and blood-clotting factors, manufacturing triglycerides and cholesterol, <mark class="concept">glycogen synthesis and storage</mark>, bile production, converting harmful ammonia to <mark class="fact">urea</mark>, breakdown of RBCs, and — critically — the liver produces <mark class="trap">no digestive enzymes of its own</mark>.</li>
+    <li>Bile secreted by hepatic cells passes through hepatic ducts and is stored/concentrated in the <mark class="concept">gall bladder</mark>, a thin muscular sac (~8 cm long, 4 cm diameter).</li>
+    <li>Duct pathway: hepatic duct (from liver) + cystic duct (from gall bladder) → <mark class="concept">common bile duct</mark> → joins the pancreatic duct → forms the <mark class="fact">common hepato-pancreatic duct</mark>, which opens into the <mark class="fact">duodenum</mark>, guarded by the <mark class="concept">sphincter of Oddi</mark>.</li>
+    <li>Composition of bile: about <mark class="fact">97% water, 0.7% bile salts, 0.2% bilirubin, 0.51% fats</mark> (cholesterol, fatty acids, lecithin) and a small amount of inorganic salts; it also contains bile pigments (<mark class="fact">bilirubin and bili-verdin</mark>) — <mark class="trap">but no digestive enzymes at all</mark>.</li>
+    <li>About <mark class="fact">800–1000 ml</mark> of bile is produced per day in adults.</li>
+    <li>Bile's main job is <mark class="concept">emulsification of fats</mark> — breaking large fat globules into very small micelles — and it also <mark class="concept">activates lipase</mark>; it acts to some extent as a surfactant.</li>
+  </ul>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap (Assertion–Reason)</span>
+    "The liver plays an important role in fat digestion" is <mark class="trap">true</mark>, but "the liver produces two important fat-digesting enzymes" is <mark class="trap">false</mark> — the liver produces no digestive enzymes at all; it aids fat digestion only indirectly, via bile-driven emulsification.
+  </div>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    Gallstones (usually cholesterol/bilirubin) block the bile duct, which primarily disrupts digestion of <mark class="trap">fats</mark> — since bile emulsifies fat, not carbohydrate or protein.
+  </div>
+  <div class="callout fact">
+    <span class="tag">Fact</span>
+    Bile is <mark class="fact">produced</mark> in the liver but <mark class="fact">stored</mark> in the gallbladder, and finally <mark class="fact">received</mark> by the small intestine (duodenum) — three separate, commonly-confused MCQ answers about the "same" bile.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-pancreas">
+  <h2><span class="num">08</span>Pancreas &amp; Pancreatic Juice</h2>
+  <ul class="point-list">
+    <li>The <mark class="concept">pancreas</mark> is both an <mark class="fact">endocrine</mark> and <mark class="fact">exocrine</mark> gland — hence called a <mark class="concept">"mixed gland"</mark>. It is a compound, elongated organ situated between the limbs of the 'C'-shaped duodenum, behind the stomach.</li>
+    <li>It is the <mark class="fact">second-largest gland</mark> in the human body (after the liver), about <mark class="fact">12–15 cm long</mark>, lobulated, salmon-coloured.</li>
+    <li>As an <mark class="concept">endocrine gland</mark>, it regulates blood sugar by secreting the hormones <mark class="fact">insulin, glucagon, and somatostatin</mark>, plus pancreatic polypeptide — this secretion goes directly into blood, not the gut.</li>
+    <li>As an <mark class="concept">exocrine gland</mark>, it secretes <mark class="fact">alkaline pancreatic juice</mark> containing enzymes, released into the duodenum.</li>
+    <li>Pancreatic juice contains enzymes mostly in <mark class="trap">inactive forms</mark>: <mark class="fact">trypsinogen, chymotrypsinogen, procarboxypeptidases, amylases, lipases, and nucleases</mark>.</li>
+    <li><mark class="concept">Trypsinogen</mark> is activated into active <mark class="fact">trypsin</mark> by the enzyme <mark class="fact">enterokinase</mark>, which is itself secreted by the intestinal mucosa; active trypsin then activates the other pancreatic enzymes in turn.</li>
+    <li>Because pancreatic juice digests carbohydrates, proteins, and fats all together, it is called the <mark class="concept">"complete digestive juice"</mark>.</li>
+  </ul>
+  <table>
+    <caption>Pancreatic enzymes and their targets</caption>
+    <thead><tr><th>Enzyme</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td><mark class="fact">Amylase</mark></td><td>Converts starch into disaccharides.</td></tr>
+      <tr><td><mark class="fact">Trypsin</mark></td><td>Converts protein into smaller peptides, further hydrolysed into amino acids.</td></tr>
+      <tr><td><mark class="fact">Lipase</mark></td><td>Converts fat into glycerol and fatty acids.</td></tr>
+      <tr><td><mark class="fact">Elastase</mark></td><td>Breaks down proteins.</td></tr>
+      <tr><td><mark class="fact">Nuclease</mark></td><td>Breaks nucleic acids down into nucleotides.</td></tr>
+    </tbody>
+  </table>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    The pancreas is the <mark class="trap">second largest gland</mark>, with an <mark class="trap">alkaline</mark> secretion described as the "complete digestive juice" — this exact combination of three clues (2nd-largest + alkaline + complete digestive juice) is a favourite "identify the gland" question, and the answer is always the <mark class="trap">pancreas</mark>, not the liver or salivary glands.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-duodenum">
+  <h2><span class="num">09</span>Duodenum</h2>
+  <ul class="point-list">
+    <li>The small intestine is a long, narrow, coiled tube, about <mark class="fact">6.7–7.6 metres (22–25 feet)</mark> long in adults, distinguished into three successive regions: <mark class="concept">duodenum → jejunum → ileum</mark>.</li>
+    <li>The <mark class="fact">duodenum</mark> is a short, 'C'-shaped structure (~<mark class="fact">20–25 cm</mark> long), adjacent to the stomach and surrounding the head of the pancreas — the <mark class="trap">shortest</mark> of the three regions.</li>
+    <li>Ducts from the liver, gallbladder, and pancreas all enter the duodenum, delivering juices that <mark class="concept">neutralize the acid</mark> arriving from the stomach and help digest proteins, carbohydrates and fats.</li>
+    <li>Digestion here occurs in an <mark class="concept">alkaline medium</mark> — a direct contrast with the acidic stomach.</li>
+    <li><mark class="concept">Brunner's glands</mark>, located in the sub-mucosa (see glossary in Section 01), produce a mucus-rich <mark class="fact">alkaline</mark> secretion containing bicarbonate; combined with pancreatic bicarbonate, this neutralizes stomach acid in the chyme, providing the right pH (~<mark class="fact">7.8</mark>) for enzymes to work.</li>
+    <li>Proteolytic breakdown in the duodenum: <mark class="concept">Proteins/Proteoses/Peptones</mark> —(trypsin/chymotrypsin, carboxypeptidase)→ <mark class="fact">Dipeptides</mark>.</li>
+    <li>Carbohydrate breakdown: <mark class="concept">Polysaccharides (starch)</mark> —(amylase)→ <mark class="fact">Disaccharides</mark>.</li>
+    <li>Fat breakdown: <mark class="concept">Fats</mark> —(lipases, aided by bile)→ <mark class="fact">Diglycerides</mark>.</li>
+    <li>Nucleic acid breakdown: <mark class="concept">Nucleic acids</mark> —(nucleases)→ <mark class="fact">Nucleotides and Nucleosides</mark>.</li>
+  </ul>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    Order of decreasing length among the three small-intestine parts: <mark class="trap">Ileum &gt; Jejunum &gt; Duodenum</mark> (approx. 3.5 m, 2.5 m, 0.25 m respectively) — the duodenum is by far the shortest despite doing much of the heavy enzymatic work.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-jejunum-ileum">
+  <h2><span class="num">10</span>Jejunum &amp; Ileum</h2>
+  <h3 class="subhead">Jejunum</h3>
+  <ul class="point-list">
+    <li>The <mark class="fact">jejunum</mark> is the middle, second part of the small intestine, about <mark class="fact">2.5 metres</mark> long.</li>
+    <li>Its lining is specialised for <mark class="concept">absorption by enterocytes</mark> — small nutrient molecules already digested in the duodenum are absorbed here.</li>
+    <li>Once absorbed, nutrients (except fat, which routes via the lymph) pass through the <mark class="concept">enterohepatic circulation</mark> and enter the liver for processing.</li>
+    <li>The jejunum is specifically involved in <mark class="fact">magnesium absorption</mark>.</li>
+  </ul>
+
+  <h3 class="subhead">Ileum</h3>
+  <ul class="point-list">
+    <li>The <mark class="fact">ileum</mark> is the lower/final part of the small intestine and the <mark class="concept">largest section of the entire alimentary canal</mark>, about <mark class="fact">3.5 metres</mark> long.</li>
+    <li>Its inner wall has secretory cells: some secrete mucus, others secrete an alkaline fluid known as <mark class="concept">succus entericus</mark> (intestinal juice) — the arrival of chyme in the ileum stimulates this secretion.</li>
+    <li>Succus entericus is formed from the combined secretions of <mark class="concept">brush border cells</mark> of the mucosa and the <mark class="concept">goblet cells</mark>; it contains disaccharidases (e.g. <mark class="fact">maltase</mark>), dipeptidases, lipases, nucleosidases, and more.</li>
+  </ul>
+  <table>
+    <caption>Enzymes of succus entericus (ileal juice)</caption>
+    <thead><tr><th>Enzyme</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td><mark class="fact">Erepsin</mark></td><td>Breaks down peptones into amino acids.</td></tr>
+      <tr><td><mark class="fact">Lipase</mark></td><td>Breaks down fats into fatty acids and glycerol.</td></tr>
+      <tr><td><mark class="fact">Maltase</mark></td><td>Breaks down maltose into two glucose molecules.</td></tr>
+      <tr><td><mark class="fact">Sucrase</mark></td><td>Breaks sucrose into glucose and fructose.</td></tr>
+      <tr><td><mark class="fact">Lactase</mark></td><td>Breaks lactose into glucose and galactose.</td></tr>
+      <tr><td><mark class="fact">Dipeptidases</mark></td><td>Break dipeptides into amino acids.</td></tr>
+      <tr><td><mark class="fact">Nucleotidases &amp; Nucleosidases</mark></td><td>Break nucleotides/nucleosides down to bases, sugars, phosphoric acid.</td></tr>
+    </tbody>
+  </table>
+  <ul class="point-list">
+    <li>These final steps of digestion happen very close to the <mark class="concept">mucosal epithelial cells</mark> of the intestine — i.e. right at the absorbing surface.</li>
+    <li><mark class="concept">Digestion is completed in the ileum</mark>; the resulting watery substance is called <mark class="fact">chyle</mark>, containing soluble digestion products ready for absorption.</li>
+    <li>Absorption itself is described as occurring "through the mucosa of the ileum" — the inner epithelial lining is folded into <mark class="concept">villi</mark>, which greatly increase surface area for absorbing digested food.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-enzyme-map">
+  <h2><span class="num">11</span>Enzyme ↔ Reaction Consolidation Map</h2>
+  <ul class="point-list">
+    <li>The full biochemical chain, source-organ by source-organ:</li>
+  </ul>
+  <div class="arrow-chain">
+    Dipeptides —(Dipeptidases)→ Amino acids<br>
+    Maltose —(Maltase)→ Glucose + Glucose<br>
+    Sucrose —(Sucrase)→ Glucose + Fructose<br>
+    Lactose —(Lactase)→ Glucose + Galactose<br>
+    Nucleotides —(Nucleotidases)→ Nucleosides<br>
+    Di- &amp; Monoglycerides —(Lipases)→ Fatty acids + Glycerol
+  </div>
+  <table>
+    <caption>Enzyme origin ↔ site of action — a recurring match-list format</caption>
+    <thead><tr><th>Enzyme</th><th>Produced By</th><th>Acts In</th></tr></thead>
+    <tbody>
+      <tr><td>Ptyalin (Salivary amylase)</td><td><mark class="concept">Salivary glands</mark></td><td>Mouth</td></tr>
+      <tr><td>Pepsin</td><td><mark class="concept">Gastric glands</mark> (chief cells)</td><td>Stomach</td></tr>
+      <tr><td>Rennin (gastric)</td><td><mark class="concept">Gastric glands</mark></td><td>Stomach (infants)</td></tr>
+      <tr><td>Trypsin, Chymotrypsin, Amylase, Lipase, Nuclease</td><td><mark class="concept">Pancreas</mark></td><td>Duodenum / small intestine</td></tr>
+      <tr><td>Erepsin, Maltase, Sucrase, Lactase, Dipeptidases</td><td><mark class="concept">Intestinal mucosa (succus entericus)</mark></td><td>Ileum</td></tr>
+      <tr><td>Enterokinase</td><td><mark class="concept">Intestinal mucosa</mark></td><td>Activates trypsinogen → trypsin, in the duodenum</td></tr>
+    </tbody>
+  </table>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap — Match-List</span>
+    <mark class="trap">Ptyalin</mark> digests starch; <mark class="trap">Pepsin</mark> digests protein; <mark class="trap">(kidney) Renin</mark> converts angiotensinogen to angiotensin; <mark class="trap">Oxytocin</mark> induces smooth-muscle contraction. Don't let the identically-spelled gastric "rennin" and kidney "renin" get swapped in this list.
+  </div>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    <mark class="trap">Trypsin</mark> converts proteins specifically into <mark class="trap">smaller peptides</mark> (via peptide-bond hydrolysis), which other proteases then further reduce to amino acids — trypsin's direct product is peptides, not amino acids and not "peptones" in the same step.
+  </div>
+  <div class="callout fact">
+    <span class="tag">Fact</span>
+    <mark class="fact">Zymase</mark> converts glucose into ethyl alcohol and carbon dioxide (fermentation), occurring naturally in yeast — it is not a human digestive enzyme, but is a frequent decoy option in "which enzyme does X" MCQs.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-absorption">
+  <h2><span class="num">12</span>Absorption Mechanisms</h2>
+  <ul class="point-list">
+    <li><mark class="concept">Absorption</mark> is the process by which end products of digestion pass through the intestinal mucosa into the blood or lymph, via <mark class="fact">passive, active, or facilitated transport</mark>.</li>
+    <li><mark class="concept">Simple diffusion</mark>: small amounts of glucose, amino acids, and electrolytes like chloride ions pass into the blood, driven purely by <mark class="fact">concentration gradients</mark>.</li>
+    <li><mark class="concept">Facilitated transport</mark>: glucose and amino acids are also absorbed with the help of <mark class="fact">carrier proteins</mark>.</li>
+    <li><mark class="concept">Osmosis</mark>: water transport depends on the <mark class="fact">osmotic gradient</mark>.</li>
+    <li><mark class="concept">Active transport</mark>: moves substances against the concentration gradient and therefore <mark class="fact">requires energy</mark>; used for amino acids, glucose, and electrolytes such as <mark class="fact">Na⁺</mark>.</li>
+    <li><mark class="trap">Fatty acids and glycerol are insoluble</mark> and cannot be absorbed directly into blood. They are first packaged into small droplets called <mark class="concept">micelles</mark>, which move into the intestinal mucosa; there they are reformed into protein-coated fat globules called <mark class="fact">chylomicrons</mark>, which are transported into the lymph vessels (<mark class="concept">lacteals</mark>) inside the villi, eventually draining into the bloodstream.</li>
+  </ul>
+  <table>
+    <caption>Summary of absorption by region</caption>
+    <thead><tr><th>Region</th><th>What Is Absorbed</th></tr></thead>
+    <tbody>
+      <tr><td>Mouth</td><td>Certain drugs contacting the mucosa of the mouth/underside of tongue, absorbed directly into local blood capillaries.</td></tr>
+      <tr><td>Stomach</td><td><mark class="fact">Water, simple sugars, and alcohol</mark>; also some medicines.</td></tr>
+      <tr><td>Small Intestine</td><td>Principal site of absorption; digestion is completed here — final products (<mark class="fact">glucose, fructose, fatty acids, glycerol, amino acids</mark>) absorbed via the mucosa into blood and lymph. <mark class="trap">Maximum absorption occurs in the small intestine</mark>, overall.</td></tr>
+      <tr><td>Large Intestine</td><td>Absorption of some <mark class="fact">water, minerals, and drugs</mark> — no significant digestive activity occurs here.</td></tr>
+    </tbody>
+  </table>
+  <ul class="point-list">
+    <li>Absorbed substances finally reach body tissues, which use them for cellular activity — this end process is called <mark class="concept">assimilation</mark>.</li>
+  </ul>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    "Most of the digestive process takes place in..." → the answer is the <mark class="trap">small intestine</mark>, since digestion begins in the mouth but is essentially completed there, using enzymes from the pancreas plus bile from the liver.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-large-intestine">
+  <h2><span class="num">13</span>Large Intestine, Caecum &amp; Vermiform Appendix</h2>
+  <ul class="point-list">
+    <li>Undigested, unabsorbed food passes from the ileum into the large intestine via the <mark class="concept">ileo-caecal valve</mark>, which prevents backflow of faecal matter.</li>
+    <li>The large intestine (colon) consists of the <mark class="fact">caecum, colon, and rectum</mark>. The colon itself has four parts: <mark class="concept">ascending, transverse, descending, and sigmoid</mark> colon.</li>
+    <li><mark class="trap">No significant digestive activity occurs in the large intestine</mark>. Its two main functions are: (i) absorption of some water, minerals, and certain drugs; (ii) secretion of mucus, which helps bind undigested waste particles together and lubricates them for easy passage.</li>
+    <li>Water and salts are absorbed through the epithelial wall's many convolutions — <mark class="fact">most of the body's water reabsorption from waste happens here</mark>.</li>
+    <li>Wastes become semisolid <mark class="concept">faeces</mark>, developing a characteristic bad odour from bacterial decomposition of undigested food, which produces gases like <mark class="fact">methane, sulphur dioxide, ammonia, and carbon dioxide</mark>.</li>
+    <li>The <mark class="concept">caecum</mark> is a small, blind pouch-like sac at the junction of the small and large intestine, hosting <mark class="fact">symbiotic micro-organisms</mark>; it absorbs remaining fluids/salts and mixes contents with mucus.</li>
+    <li>The <mark class="concept">vermiform appendix</mark> is a narrow, finger-like, blind-ended tube arising from the caecum — a <mark class="fact">vestigial organ</mark> in humans (once useful for digestion, now largely redundant as humans evolved).</li>
+    <li>In <mark class="trap">herbivores</mark>, by contrast, the vermiform appendix is well-developed and actively helps digest <mark class="fact">cellulose</mark> — a sharp human/herbivore contrast worth remembering.</li>
+  </ul>
+  <div class="callout glossary">
+    <span class="tag">Explainer — Why can't humans digest cellulose?</span>
+    No enzyme capable of breaking cellulose down is found anywhere in the human digestive system. The starch-digesting enzyme <mark class="fact">diastase</mark> (an alternate name sometimes used for salivary/pancreatic amylase) is present in human saliva, but it acts only on starch, not on cellulose — the two are both polysaccharides of glucose but linked differently, and diastase cannot break cellulose's particular bond type.
+  </div>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    The appendix is anatomically attached to the <mark class="trap">large intestine</mark> (specifically the caecum), which is considered the beginning of the large intestine embryologically — not the small intestine, stomach, or gallbladder.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-rectum">
+  <h2><span class="num">14</span>Rectum, Anus &amp; Defecation</h2>
+  <ul class="point-list">
+    <li>The descending colon opens into the <mark class="concept">rectum</mark>, which opens out through the <mark class="fact">anus</mark>.</li>
+    <li>Digestive waste solidifies into coherent <mark class="concept">faeces</mark> in the rectum, which triggers a <mark class="fact">neural reflex</mark> causing the urge to defecate.</li>
+    <li><mark class="concept">Egestion</mark> (defaecation) — passing faeces out through the anal opening — is a <mark class="trap">voluntary process</mark>, carried out by a mass peristaltic movement.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-control">
+  <h2><span class="num">15</span>Neural &amp; Hormonal Control</h2>
+  <ul class="point-list">
+    <li>Gastro-intestinal activity is coordinated by both <mark class="concept">neural and hormonal control</mark>.</li>
+    <li>The <mark class="concept">sight, smell, and/or presence of food</mark> in the oral cavity can stimulate saliva secretion by neural signalling — a reflex response even before eating starts.</li>
+    <li>Gastric and intestinal secretions are similarly stimulated by <mark class="concept">neural signals</mark>, both local and via the <mark class="fact">central nervous system (CNS)</mark>.</li>
+    <li>Hormonal control of digestive-juice secretion is carried out by <mark class="concept">local hormones produced by the gastric and intestinal mucosa</mark> itself — these are the "mucosal glands" referenced in Section 01's glossary, now functioning as endocrine tissue.</li>
+  </ul>
+  <table>
+    <caption>Named gut hormones and their triggers</caption>
+    <thead><tr><th>Hormone</th><th>Produced By / Where</th><th>Trigger &amp; Function</th></tr></thead>
+    <tbody>
+      <tr><td><mark class="fact">Secretin</mark></td><td>S-cells, mainly in the <mark class="concept">mucosa of the duodenum</mark></td><td>Released in response to acidity (low pH) in the duodenum, caused by HCl arriving with chyme from the stomach; neutralizes duodenal pH so pancreatic enzymes can function optimally.</td></tr>
+      <tr><td><mark class="fact">Enterogastrone</mark></td><td>Mucosa of the <mark class="concept">duodenum</mark></td><td>Secreted in response to <mark class="fact">fatty acids</mark> present in the stomach or small intestine; inhibits (slows) the forward/anal-ward motion of stomach contents.</td></tr>
+      <tr><td><mark class="fact">Gastrin</mark></td><td>G-cells of the <mark class="concept">pyloric antrum</mark> of the stomach, duodenum, and pancreas</td><td>Stimulates secretion of gastric acid (HCl) by parietal cells, and aids gastric motility — it is <mark class="trap">not itself a digestive enzyme</mark>, unlike trypsin, ptyalin, or pepsin.</td></tr>
+    </tbody>
+  </table>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    <mark class="trap">Gastrin</mark> is a peptide hormone, not a digestive enzyme — a classic "which one of these is not a digestive enzyme" trap alongside genuine enzymes trypsin, ptyalin, and pepsin.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-calorific">
+  <h2><span class="num">16</span>Calorific Values of Food</h2>
+  <ul class="point-list">
+    <li>Energy content of food is measured in heat-energy units — <mark class="concept">calorie (cal)</mark> or <mark class="concept">joule (J)</mark>: 1 calorie is the heat needed to raise 1 g of water by 1°C; physiologists commonly use <mark class="fact">kilocalorie (kcal)</mark> or <mark class="fact">kilojoule (kJ)</mark> instead. Nutritionists' "Calorie" (capitalised) = 1 kcal.</li>
+    <li><mark class="concept">Gross calorific value</mark> = heat liberated from complete combustion of 1 g of food in a <mark class="fact">bomb calorimeter</mark> (a sealed metal chamber filled with O₂). The <mark class="concept">physiologic value</mark> is the actual energy the body extracts from combusting that food, which is somewhat lower.</li>
+  </ul>
+  <table>
+    <caption>Gross vs physiologic calorific values (kcal/g)</caption>
+    <thead><tr><th>Nutrient</th><th>Gross Calorific Value</th><th>Physiologic Value</th></tr></thead>
+    <tbody>
+      <tr><td>Carbohydrates</td><td><mark class="fact">4.1</mark></td><td><mark class="fact">4.0</mark></td></tr>
+      <tr><td>Proteins</td><td><mark class="fact">5.65</mark></td><td><mark class="fact">4.0</mark></td></tr>
+      <tr><td>Fats</td><td><mark class="fact">9.45</mark></td><td><mark class="fact">9.0</mark></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-disorders">
+  <h2><span class="num">17</span>Disorders of the Digestive System</h2>
+  <ul class="point-list">
+    <li>Inflammation of the intestinal tract is the <mark class="concept">most common ailment</mark>, caused by bacterial or viral infection, or by parasites such as <mark class="fact">tapeworm, roundworm, threadworm, hookworm, and pinworm</mark>.</li>
+  </ul>
+  <table>
+    <caption>Named digestive disorders</caption>
+    <thead><tr><th>Disorder</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><mark class="concept">Jaundice</mark></td><td>Liver affected; skin and eyes turn yellow due to deposit of <mark class="fact">bile pigments</mark>.</td></tr>
+      <tr><td><mark class="concept">Vomiting</mark></td><td>Ejection of stomach contents through the mouth; controlled by the <mark class="fact">vomit centre in the medulla</mark>; preceded by a feeling of nausea.</td></tr>
+      <tr><td><mark class="concept">Diarrhoea</mark></td><td>Abnormal frequency of bowel movement with increased liquidity of faecal discharge; reduces absorption of food.</td></tr>
+      <tr><td><mark class="concept">Constipation</mark></td><td>Faeces retained in the colon as bowel movements occur irregularly.</td></tr>
+      <tr><td><mark class="concept">Indigestion</mark></td><td>Food not properly digested, causing a feeling of fullness; caused by inadequate enzyme secretion, anxiety, food poisoning, overeating, or spicy food.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-pem">
+  <h2><span class="num">18</span>Protein-Energy Malnutrition (PEM)</h2>
+  <ul class="point-list">
+    <li>Dietary deficiency of proteins and total food calories, widespread across parts of <mark class="fact">South and South-east Asia, South America, and West/Central Africa</mark> — worsened during drought, famine, and political turmoil (historical examples: <mark class="person">Bangladesh's liberation war</mark>, <mark class="person">Ethiopia's mid-1980s drought</mark>).</li>
+    <li>PEM chiefly affects <mark class="concept">infants and children</mark>, producing two distinct conditions: <mark class="fact">Marasmus</mark> and <mark class="fact">Kwashiorkor</mark>.</li>
+  </ul>
+  <table>
+    <caption>Marasmus vs Kwashiorkor — a classic comparison MCQ</caption>
+    <thead><tr><th>Feature</th><th>Marasmus</th><th>Kwashiorkor</th></tr></thead>
+    <tbody>
+      <tr><td>Cause</td><td><mark class="trap">Simultaneous</mark> deficiency of proteins AND calories</td><td>Protein deficiency <mark class="trap">without</mark> calorie deficiency</td></tr>
+      <tr><td>Typical age</td><td>Infants <mark class="fact">under 1 year</mark> (mother's milk replaced too early with poor food)</td><td>Children <mark class="fact">over 1 year</mark> (high-calorie, low-protein diet replaces mother's milk)</td></tr>
+      <tr><td>Body fat</td><td><mark class="trap">Extreme emaciation</mark> — thinning of limbs, dry/thin/wrinkled skin</td><td><mark class="trap">Some fat still remains</mark> under the skin</td></tr>
+      <tr><td>Distinctive sign</td><td>Considerable decline in growth rate and body weight</td><td><mark class="trap">Extensive oedema</mark> and swelling of body parts</td></tr>
+      <tr><td>Shared features</td><td colspan="2">Both show wasting of muscles, thinning of limbs, and impaired growth/brain development.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-taste">
+  <h2><span class="num">19</span>Tongue &amp; Taste — MCQ Facts</h2>
+  <ul class="point-list">
+    <li>The tongue detects five true tastes: <mark class="fact">Sweet, Bitter, Salty, Umami, Sour</mark> — sensed by taste buds across <mark class="trap">all parts</mark> of the tongue, though the sides are somewhat more sensitive overall than the middle.</li>
+    <li><mark class="trap">"Spicy" and "Pungent" are NOT tastes</mark> — they are pain/heat signals from touch-and-temperature nerves, not taste-bud signals; the compound <mark class="fact">capsaicin</mark> in chilli triggers this sensation.</li>
+    <li>Exception to the "all parts equally sensitive" rule: the <mark class="concept">posterior (back) of the tongue</mark> is specifically more sensitive to <mark class="fact">bitter</mark> taste — an evolutionary protection mechanism, helping reject spoiled or poisonous food before it's swallowed.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ -->
+<section id="d-match">
+  <h2><span class="num">20</span>Match-List &amp; Trap Consolidation</h2>
+  <table>
+    <caption>Enzyme identity traps — frequently confused pairs</caption>
+    <thead><tr><th>Question Pattern</th><th>Correct Answer</th></tr></thead>
+    <tbody>
+      <tr><td>Enzyme that converts glucose → ethanol + CO₂</td><td><mark class="trap">Zymase</mark> (not Invertase, Maltase, or Diastase)</td></tr>
+      <tr><td>Ultimate substance carbohydrates are degraded to</td><td><mark class="trap">Glucose</mark> (not amino acid, glycerol, or maltose)</td></tr>
+      <tr><td>Extra glucose converted &amp; stored as glycogen — where?</td><td><mark class="trap">Liver</mark> (and muscle cells)</td></tr>
+      <tr><td>Energy storage form in liver/muscles</td><td><mark class="trap">Glycogen</mark> (not carbohydrate, fat, or protein generically)</td></tr>
+      <tr><td>Liver's glucose level after 10+ days of fasting</td><td><mark class="trap">Diminishes</mark> — glycogen stores exhausted, body shifts to fat/protein breakdown and ketone-body production</td></tr>
+      <tr><td>Enzymes are basically made of</td><td><mark class="trap">Proteins</mark> (biocatalysts) — not fats, sugars, vitamins, or RNA</td></tr>
+    </tbody>
+  </table>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    <mark class="trap">Restriction endonuclease (e.g. EcoRII)</mark> is a bacterial enzyme (from E. coli) that cuts DNA at specific recognition sequences — useful for genetic engineering, but has nothing to do with human digestion; a favourite decoy in "match the enzyme with its function" lists mixing molecular-biology and physiology enzymes together.
+  </div>
+  <div class="callout fact">
+    <span class="tag">Fact — Vitamin / Enzyme / Hormone / Protein cross-check</span>
+    A classic four-way match list: <mark class="fact">Vitamin → Carotene</mark>, <mark class="fact">Enzyme → Pepsin</mark>, <mark class="fact">Hormone → Testosterone/Progesterone</mark>, <mark class="fact">Protein → Keratin</mark>. Useful for eliminating wrong categories fast — Pepsin is always the "Enzyme" answer in this style of question, never mistaken for a hormone or protein-category answer.
+  </div>
+</section>
+
+<footer>The Physiologist's Ledger · Digestion &amp; Absorption · compiled for BPSC Prelims 2025–26</footer>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 2 : RESPIRATION -->
+<!-- ============================================================ -->
+<div class="page" id="page-respiration">
+
+<div class="hero">
+  <h1>Breathing &amp; Exchange of Gases — The Respiratory Ledger</h1>
+  <p>The full airway in order, breathing mechanics, gas transport, and the cellular-respiration chemistry behind it all — 11 solved MCQs folded in, hard concepts explained.</p>
+</div>
+
+<div class="legend">
+  <span class="l-concept">Yellow — Concept</span>
+  <span class="l-fact">Blue — Fact / Number</span>
+  <span class="l-person">Green — Person / Institution</span>
+  <span class="l-trap">Red — MCQ Trap</span>
+  <span class="l-gloss">Green card — Glossary / Explainer</span>
+</div>
+
+<!-- ============================================================ -->
+<section id="r-organs">
+  <h2><span class="num">01</span>Respiratory Organs Across Animals</h2>
+  <ul class="point-list">
+    <li><mark class="concept">Breathing (respiration)</mark> is the exchange of O₂ from the atmosphere with CO₂ produced by body cells — O₂ is used to indirectly break down glucose, amino acids, and fatty acids to release usable energy; the harmful by-product CO₂ must be continuously removed.</li>
+    <li>Mechanisms vary by habitat and organisation level:</li>
+  </ul>
+  <table>
+    <caption>Respiratory organs across the animal kingdom</caption>
+    <thead><tr><th>Group</th><th>Respiratory Structure</th></tr></thead>
+    <tbody>
+      <tr><td>Sponges, coelenterates, flatworms (lower invertebrates)</td><td><mark class="concept">Simple diffusion</mark> across the entire body surface</td></tr>
+      <tr><td>Earthworms</td><td><mark class="fact">Moist cuticle</mark></td></tr>
+      <tr><td>Insects</td><td>Network of <mark class="fact">tracheal tubes</mark> carrying air directly within the body</td></tr>
+      <tr><td>Aquatic arthropods &amp; molluscs</td><td>Vascularised <mark class="concept">gills</mark> — "branchial respiration"</td></tr>
+      <tr><td>Terrestrial vertebrates (generally)</td><td>Vascularised <mark class="concept">lungs</mark> — "pulmonary respiration"</td></tr>
+      <tr><td>Fishes</td><td><mark class="fact">Gills</mark></td></tr>
+      <tr><td>Amphibians, reptiles, birds, mammals</td><td><mark class="fact">Lungs</mark></td></tr>
+      <tr><td>Amphibians (frogs) — additionally</td><td>Moist skin — "<mark class="concept">cutaneous respiration</mark>" — an extra route unique to this group</td></tr>
+    </tbody>
+  </table>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    <mark class="trap">Mammals respire by lungs</mark> — not gills, trachea (the trachea is only a conducting passage, not itself the exchange organ), or skin.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="r-pathway">
+  <h2><span class="num">02</span>The Human Airway, In Order</h2>
+  <ul class="point-list">
+    <li>Full pathway: <mark class="fact">External nostrils → Nasal chamber (via nasal passage) → Pharynx → Larynx → Trachea → Primary bronchi → Secondary bronchi → Tertiary bronchi → Bronchioles → Terminal bronchioles → Alveoli</mark>.</li>
+    <li>A pair of <mark class="concept">external nostrils</mark> opens above the upper lips, leading via the nasal passage into the <mark class="fact">nasal chamber</mark>.</li>
+    <li>In the nasal cavity, a layer of <mark class="concept">mucous membrane</mark> filters the air, trapping pollutants and other harmful substances.</li>
+    <li>The nasal chamber opens into the <mark class="concept">pharynx (throat)</mark> — the same shared passage for food and air described in the Digestion tab, containing the intersection between oesophagus and larynx.</li>
+    <li>The pharynx opens through the <mark class="concept">larynx</mark> region into the trachea. The larynx is a cartilaginous box that also helps in <mark class="fact">sound production</mark>, hence called the <mark class="concept">"sound box"</mark>.</li>
+    <li>During swallowing, the <mark class="concept">glottis</mark> (opening of the larynx) is covered by the thin elastic cartilaginous flap called the <mark class="fact">epiglottis</mark>, preventing food from entering the larynx/airway.</li>
+    <li>The <mark class="concept">trachea (windpipe)</mark> is a straight tube extending to the mid-thoracic cavity, dividing at the level of the <mark class="fact">5th thoracic vertebra</mark> into right and left <mark class="concept">primary bronchi</mark>.</li>
+    <li>Each primary bronchus divides repeatedly: <mark class="fact">secondary (lobar) bronchi → tertiary (segmental) bronchi → many smaller bronchioles → terminal bronchioles</mark>.</li>
+    <li>The trachea, primary/secondary/tertiary bronchi, and initial bronchioles are all supported by <mark class="concept">incomplete cartilaginous rings</mark>, keeping the airway from collapsing while still allowing flexibility (e.g. for the oesophagus to expand behind it during swallowing).</li>
+    <li>Each terminal bronchiole gives rise to numerous thin, irregular-walled, vascularised bag-like structures called <mark class="concept">alveoli</mark> — roughly <mark class="fact">15 crore (150 million) alveoli per lung</mark>.</li>
+    <li>The branching network of bronchi, bronchioles, and alveoli together comprise the <mark class="concept">lungs</mark>.</li>
+  </ul>
+  <div class="arrow-chain">
+    Nostrils → Nasal chamber → Pharynx → Larynx → Trachea → Primary bronchi → Secondary bronchi → Tertiary bronchi → Bronchioles → Terminal bronchioles → Alveoli
+  </div>
+  <div class="callout concept">
+    <span class="tag">Concept — Conducting Part vs Exchange (Respiratory) Part</span>
+    Everything from the <mark class="concept">external nostrils up to the terminal bronchioles</mark> is the <mark class="fact">conducting part</mark> — it transports atmospheric air to the alveoli, clears foreign particles, humidifies the air, and brings it to body temperature, but does <mark class="trap">no gas exchange itself</mark>. Only the <mark class="fact">alveoli and their ducts</mark> form the <mark class="concept">respiratory/exchange part</mark> — the actual site where O₂ and CO₂ diffuse between blood and air.
+  </div>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    The actual site of gaseous exchange in the lungs is the <mark class="trap">alveoli</mark> — not tracheoles (an insect structure), bronchioles (still part of the conducting zone), or the pulmonary vein (a blood vessel, not an exchange surface).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="r-lungs">
+  <h2><span class="num">03</span>Lungs, Pleura &amp; the Thoracic Cavity</h2>
+  <ul class="point-list">
+    <li>Humans have <mark class="fact">two lungs</mark>, situated in the thoracic cavity on either side of the heart. The <mark class="trap">right lung is bigger</mark> than the left (which shares chest space with the heart); the right lung has <mark class="fact">three lobes</mark>, the left has <mark class="fact">two</mark>.</li>
+    <li>Each lung is covered by a double-layered <mark class="concept">pleura</mark>, with <mark class="fact">pleural fluid</mark> between the two layers, reducing friction on the lung surface during breathing.</li>
+    <li>The <mark class="concept">outer/parietal pleura</mark> is in close contact with the thoracic lining (chest wall); the <mark class="concept">inner/visceral pleura</mark> is in contact with the lung surface itself. Together they enclose the <mark class="fact">pleural cavity</mark>, which holds the pleural fluid.</li>
+    <li>The thoracic chamber is anatomically an <mark class="concept">air-tight chamber</mark>, formed <mark class="fact">dorsally by the vertebral column, ventrally by the sternum, laterally by the ribs</mark>, and on the lower side by the dome-shaped <mark class="concept">diaphragm</mark>.</li>
+    <li>Because of this sealed anatomical setup, any change in thoracic-cavity volume is directly reflected as a matching change in pulmonary (lung) cavity volume — essential for breathing, since the lungs cannot alter their own volume directly.</li>
+    <li>At the base of the lungs sits the <mark class="concept">diaphragm</mark>, a sheet of skeletal muscle and the <mark class="fact">main muscle of respiration</mark>.</li>
+    <li>Between the ribs lie many small <mark class="concept">intercostal muscles</mark> (external and internal) that assist the diaphragm in expanding and compressing the lungs.</li>
+  </ul>
+  <div class="callout glossary">
+    <span class="tag">Explainer — Why is the thoracic cavity "airtight" but the lungs still fill with air?</span>
+    "Airtight" here means the thoracic cavity does not let outside air leak directly into the space around the lungs (the pleural cavity) — it is sealed by bone, muscle, and the diaphragm. The lungs themselves are the only path air can take into the chest, via the trachea. Because the pleural cavity is sealed and airtight, when the diaphragm/intercostals expand the rib cage, the whole airtight thoracic volume increases — and since the lungs are the only elastic, air-connected structures inside it, they expand to fill that larger sealed space, which is exactly what pulls air in.
+  </div>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap — Sequence</span>
+    Correct sequence of O₂ transport in the body: <mark class="trap">Lungs → Blood → Tissue</mark> (uptake at the lungs, transport by blood, delivery to tissues) — not blood-first or tissue-first orderings.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="r-mechanism">
+  <h2><span class="num">04</span>Mechanism of Breathing — Inspiration &amp; Expiration</h2>
+  <ul class="point-list">
+    <li>Breathing has two stages: <mark class="concept">inspiration</mark> (atmospheric air drawn in) and <mark class="concept">expiration</mark> (alveolar air released out).</li>
+    <li>Air movement is driven by a <mark class="concept">pressure gradient</mark> between lungs and atmosphere — the body cannot alter pulmonary volume directly, so it changes thoracic volume instead, and the airtight setup (Section 03) transmits that change to the lungs.</li>
+  </ul>
+  <table>
+    <caption>Inspiration vs Expiration — mechanics compared</caption>
+    <thead><tr><th>Stage</th><th>Muscle Action</th><th>Pressure Relationship</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><mark class="concept">Inspiration</mark> (<mark class="fact">active</mark> process)</td>
+        <td><mark class="fact">Diaphragm contracts</mark> (flattens, moves down) — increases thoracic volume in the antero-posterior axis. <mark class="fact">External intercostal muscles contract</mark> — lift the ribs and sternum, increasing thoracic volume in the dorso-ventral axis.</td>
+        <td>Intra-pulmonary pressure becomes <mark class="trap">less than</mark> atmospheric pressure (a "negative" pressure relative to outside).</td>
+        <td>Air is forced from outside into the lungs.</td>
+      </tr>
+      <tr>
+        <td><mark class="concept">Expiration</mark></td>
+        <td><mark class="fact">Diaphragm and intercostal muscles relax</mark>, returning to their normal dome shape/position — thoracic volume decreases.</td>
+        <td>Intra-pulmonary pressure rises to <mark class="trap">slightly above</mark> atmospheric pressure.</td>
+        <td>Air is expelled from the lungs.</td>
+      </tr>
+    </tbody>
+  </table>
+  <ul class="point-list">
+    <li>Additional abdominal muscles can be recruited to increase the strength/force of both inspiration and expiration (forced breathing).</li>
+    <li>On average, a healthy human breathes <mark class="fact">12–16 times per minute</mark> at rest (one alternate source cites a broader range of <mark class="fact">15–25 times/minute</mark>, and about <mark class="fact">35 times/minute</mark> in babies — always use 12–16/min as the standard NCERT figure unless the question specifies "infant").</li>
+    <li>Breathing-movement air volumes are clinically measured with a <mark class="concept">spirometer</mark> — this measurement process itself is called <mark class="fact">spirometry</mark>.</li>
+    <li><mark class="trap">In females, the diaphragm plays a comparatively smaller role in inspiration (to avoid injuring a foetus in the uterus)</mark> — the ribs take on the greater share of the work; in males, the diaphragm is the dominant driver.</li>
+  </ul>
+  <div class="callout glossary">
+    <span class="tag">Explainer — "Negative pressure" in plain terms</span>
+    "Negative intra-pulmonary pressure" does not mean a vacuum or pressure below zero — it simply means the air pressure inside the lungs has dropped to be slightly <em>lower</em> than the surrounding atmospheric pressure, purely because the lung's volume increased (the same amount of air molecules now occupy more space). Since gases always flow from high pressure to low pressure, outside air rushes in to equalize this small difference — that inward rush of air <em>is</em> inspiration.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="r-volumes">
+  <h2><span class="num">05</span>Respiratory Volumes &amp; Capacities</h2>
+  <ul class="point-list">
+    <li>Four basic <mark class="concept">respiratory volumes</mark>; capacities are obtained by summing two or more volumes together.</li>
+  </ul>
+  <table>
+    <caption>The four respiratory volumes</caption>
+    <thead><tr><th>Volume</th><th>Definition</th><th>Approx. Value</th></tr></thead>
+    <tbody>
+      <tr><td><mark class="concept">Tidal Volume (TV)</mark></td><td>Air inspired or expired during <mark class="fact">normal, quiet</mark> respiration.</td><td><mark class="fact">~500 mL</mark> (≈6000–8000 mL/minute of normal breathing)</td></tr>
+      <tr><td><mark class="concept">Inspiratory Reserve Volume (IRV)</mark></td><td>Additional air a person can inspire by <mark class="fact">forcible</mark> inspiration, beyond tidal volume.</td><td><mark class="fact">2500–3000 mL</mark></td></tr>
+      <tr><td><mark class="concept">Expiratory Reserve Volume (ERV)</mark></td><td>Additional air a person can expire by <mark class="fact">forcible</mark> expiration, beyond tidal volume.</td><td><mark class="fact">1000–1100 mL</mark></td></tr>
+      <tr><td><mark class="concept">Residual Volume (RV)</mark></td><td>Air <mark class="trap">remaining in the lungs even after the most forcible expiration</mark> — this air can never be expelled voluntarily.</td><td><mark class="fact">1100–1200 mL</mark></td></tr>
+    </tbody>
+  </table>
+  <table>
+    <caption>The derived respiratory capacities (sums of volumes)</caption>
+    <thead><tr><th>Capacity</th><th>Formula</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><mark class="concept">Inspiratory Capacity (IC)</mark></td><td><mark class="fact">TV + IRV</mark></td><td>Total air a person can inspire after a normal expiration.</td></tr>
+      <tr><td><mark class="concept">Expiratory Capacity (EC)</mark></td><td><mark class="fact">TV + ERV</mark></td><td>Total air a person can expire after a normal inspiration.</td></tr>
+      <tr><td><mark class="concept">Functional Residual Capacity (FRC)</mark></td><td><mark class="fact">ERV + RV</mark></td><td>Air remaining in the lungs after a normal (not forced) expiration.</td></tr>
+      <tr><td><mark class="concept">Vital Capacity (VC)</mark></td><td><mark class="fact">ERV + TV + IRV</mark></td><td>Maximum air a person can breathe out after a forced inspiration, or breathe in after a forced expiration — approx. <mark class="fact">3.5–4.5 litres</mark>; higher in athletes and mountain dwellers, lower in women, the elderly, and smokers.</td></tr>
+      <tr><td><mark class="concept">Total Lung Capacity (TLC)</mark></td><td><mark class="fact">RV + ERV + TV + IRV</mark> (i.e. Vital Capacity + Residual Volume)</td><td>Total air the lungs can hold at the end of a forced inspiration.</td></tr>
+    </tbody>
+  </table>
+  <div class="callout glossary">
+    <span class="tag">Glossary — Dead space (an additional term worth knowing)</span>
+    <strong>Dead space</strong> refers to the volume of air (~150 mL) sitting in the nasopharynx, trachea, and bronchi — i.e. the conducting part of the airway — which never reaches the alveoli and is therefore <em>not available</em> for actual gas exchange, even though it is technically "inhaled."
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="r-exchange">
+  <h2><span class="num">06</span>Exchange of Gases — Diffusion at the Alveolus</h2>
+  <ul class="point-list">
+    <li><mark class="concept">Alveoli</mark> are the primary sites of gas exchange; exchange also occurs between blood and tissues. In both places, O₂ and CO₂ move by <mark class="fact">simple diffusion</mark>, driven mainly by <mark class="concept">pressure/concentration gradients</mark>.</li>
+    <li>Other factors affecting diffusion rate: <mark class="concept">solubility of the gases</mark> and the <mark class="concept">thickness of the diffusion membrane</mark>.</li>
+    <li><mark class="concept">Partial pressure</mark> is the pressure contributed by one individual gas within a mixture of gases — written as <mark class="fact">pO₂</mark> for oxygen and <mark class="fact">pCO₂</mark> for carbon dioxide.</li>
+  </ul>
+  <table>
+    <caption>Partial pressures (mm Hg) at each stage of gas exchange</caption>
+    <thead><tr><th>Location</th><th>pO₂</th><th>pCO₂</th></tr></thead>
+    <tbody>
+      <tr><td>Atmospheric air</td><td><mark class="fact">159</mark></td><td><mark class="fact">0.3</mark></td></tr>
+      <tr><td>Alveolar air</td><td><mark class="fact">104</mark></td><td><mark class="fact">40</mark></td></tr>
+      <tr><td>Deoxygenated blood (arriving at lungs)</td><td><mark class="fact">40</mark></td><td><mark class="fact">45</mark></td></tr>
+      <tr><td>Oxygenated blood (leaving lungs)</td><td><mark class="fact">95</mark></td><td><mark class="fact">40</mark></td></tr>
+      <tr><td>Tissues</td><td><mark class="fact">40</mark></td><td><mark class="fact">45</mark></td></tr>
+    </tbody>
+  </table>
+  <ul class="point-list">
+    <li>This data shows a clear <mark class="concept">concentration gradient for O₂</mark> from alveoli → blood → tissues (high to low), and an <mark class="concept">opposite gradient for CO₂</mark>, from tissues → blood → alveoli.</li>
+    <li>CO₂'s solubility is <mark class="fact">20–25 times higher</mark> than that of O₂ — so for the same partial-pressure difference, far more CO₂ diffuses across the membrane than O₂ would.</li>
+    <li>The <mark class="concept">diffusion membrane</mark> has three layers: the thin <mark class="fact">squamous epithelium of the alveolus</mark>, the <mark class="fact">endothelium of the alveolar capillary</mark>, and the <mark class="fact">basement substance</mark> in between (a thin basement membrane supporting the epithelium, plus the basement membrane around the capillary's single-layer endothelial cells). Despite three layers, total thickness is <mark class="trap">much less than a millimetre</mark> — thin enough that diffusion is highly efficient.</li>
+  </ul>
+  <div class="callout glossary">
+    <span class="tag">Explainer — Partial pressure, in plain terms</span>
+    Air (or blood) is a mixture of several gases together. "Partial pressure" of one gas (say O₂) is simply the share of the total pressure that gas alone is responsible for — as if you separated out just the O₂ molecules and asked how hard they alone are pushing. A gas always diffuses from where its own partial pressure is higher to where it is lower, exactly like a concentration gradient — it does not care about the pressure of the other gases mixed in with it.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="r-o2-transport">
+  <h2><span class="num">07</span>Transport of Oxygen</h2>
+  <ul class="point-list">
+    <li>Blood is the transport medium for both O₂ and CO₂. About <mark class="fact">97%</mark> of O₂ is transported bound to <mark class="concept">RBCs (haemoglobin)</mark>; the remaining <mark class="fact">3%</mark> travels dissolved directly in plasma.</li>
+    <li><mark class="concept">Haemoglobin</mark> is a red, iron-containing pigment in RBCs; O₂ binds to it reversibly to form <mark class="fact">oxyhaemoglobin</mark>. Each haemoglobin molecule can carry a maximum of <mark class="fact">four molecules of O₂</mark>.</li>
+    <li>Binding is primarily driven by <mark class="concept">pO₂</mark>; also affected by <mark class="concept">pCO₂, H⁺ concentration (pH), and temperature</mark>.</li>
+    <li>The <mark class="concept">oxygen dissociation curve</mark> is a sigmoid (S-shaped) curve plotting % saturation of haemoglobin with O₂ against pO₂ — it's the standard tool for studying how pCO₂/H⁺/temperature affect O₂ binding.</li>
+    <li>In the <mark class="fact">alveoli</mark> — high pO₂, low pCO₂, low H⁺, lower temperature — all factors favour <mark class="concept">oxyhaemoglobin formation</mark> (loading).</li>
+    <li>In the <mark class="fact">tissues</mark> — low pO₂, high pCO₂, high H⁺, higher temperature — all factors favour <mark class="concept">dissociation of O₂</mark> from oxyhaemoglobin (unloading).</li>
+    <li>Every <mark class="fact">100 mL</mark> of oxygenated blood delivers around <mark class="fact">5 mL</mark> of O₂ to tissues under normal physiological conditions.</li>
+    <li>Normal haemoglobin concentration in a healthy person is about <mark class="fact">12–18 g/100 mL</mark> of blood; approximately <mark class="fact">1.34 mL</mark> of O₂ binds per gram of haemoglobin, so roughly <mark class="fact">20 mL</mark> of O₂ is carried per 100 mL of blood.</li>
+  </ul>
+  <div class="callout glossary">
+    <span class="tag">Explainer — Why is the oxygen dissociation curve S-shaped, not a straight line?</span>
+    Each haemoglobin molecule has four O₂-binding sites, and binding the first O₂ molecule slightly reshapes the protein, making it easier for the next O₂ to bind (called "cooperative binding"). This creates a slow start, a steep middle rise, and a flattening near full saturation — the characteristic S/sigmoid shape. Practically, this means haemoglobin picks up O₂ very efficiently in the high-pO₂ lungs and releases it very efficiently in the lower-pO₂ tissues, rather than binding/releasing gradually and inefficiently throughout.
+  </div>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap — Carbon Monoxide Poisoning</span>
+    <mark class="trap">Carbon monoxide (CO)</mark> binds to haemoglobin at the <mark class="trap">same site as O₂</mark> but roughly <mark class="fact">250 times more tightly</mark>, forming stable <mark class="fact">carboxyhaemoglobin (HbCO)</mark>. This displaces oxygen and prevents haemoglobin from carrying it to tissues — so CO poisoning mainly affects the <mark class="trap">oxygen-carrying capacity of blood</mark> (leading to hypoxia), not digestive, liver, or kidney function directly. Recovery is slow because the HbCO complex is very stable.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="r-co2-transport">
+  <h2><span class="num">08</span>Transport of Carbon Dioxide</h2>
+  <ul class="point-list">
+    <li>CO₂ is transported in three forms: <mark class="fact">~20–25%</mark> bound to haemoglobin as <mark class="concept">carbamino-haemoglobin</mark>, <mark class="fact">~70%</mark> as <mark class="concept">bicarbonate (HCO₃⁻)</mark>, and <mark class="fact">~7%</mark> dissolved directly in plasma.</li>
+    <li>Carbamino-haemoglobin binding is related to <mark class="concept">pCO₂</mark>; pO₂ is a major factor affecting this binding too — when pCO₂ is high and pO₂ is low (as in tissues), more CO₂ binds; when pCO₂ is low and pO₂ is high (as in alveoli), CO₂ dissociates from carbamino-haemoglobin and is released.</li>
+    <li>RBCs contain a very high concentration of the enzyme <mark class="concept">carbonic anhydrase</mark> (minute amounts are also present in plasma), which catalyses a reversible reaction in both directions.</li>
+  </ul>
+  <div class="arrow-chain">CO₂ + H₂O ⇌ (carbonic anhydrase) ⇌ H₂CO₃ ⇌ HCO₃⁻ + H⁺</div>
+  <ul class="point-list">
+    <li>At the <mark class="fact">tissue site</mark> — where pCO₂ is high due to ongoing catabolism — CO₂ diffuses into blood (RBCs and plasma) and the reaction runs <mark class="concept">forward</mark>, forming HCO₃⁻ and H⁺ (CO₂ "trapped" as bicarbonate).</li>
+    <li>At the <mark class="fact">alveolar site</mark> — where pCO₂ is low — the reaction runs in <mark class="concept">reverse</mark>, regenerating CO₂ and H₂O, so the CO₂ carried as bicarbonate from the tissues is released out through the lungs.</li>
+    <li>Every <mark class="fact">100 mL</mark> of deoxygenated blood delivers approximately <mark class="fact">4 mL</mark> of CO₂ to the alveoli.</li>
+  </ul>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    During normal breathing, the percentage of <mark class="trap">nitrogen</mark> in expired vs inspired air stays essentially <mark class="trap">unchanged</mark> — nitrogen is not consumed or produced by respiration. In contrast, exhaled air has <mark class="trap">less oxygen</mark> and <mark class="trap">more CO₂ and water vapour</mark> than inhaled air.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="r-regulation">
+  <h2><span class="num">09</span>Regulation of Respiration</h2>
+  <ul class="point-list">
+    <li>Humans can maintain and moderate their <mark class="concept">respiratory rhythm</mark> to match the body's metabolic demands — this is done through the <mark class="fact">neural system</mark>.</li>
+    <li>The <mark class="concept">respiratory rhythm centre</mark>, in the <mark class="fact">medulla</mark> region of the brain, is primarily responsible for this regulation.</li>
+    <li>The <mark class="concept">pneumotaxic centre</mark>, in the <mark class="fact">pons</mark> region of the brain, can moderate the rhythm centre's function — its neural signals can reduce the duration of inspiration, thereby altering respiratory rate.</li>
+    <li>A <mark class="concept">chemosensitive area</mark>, situated adjacent to the rhythm centre, is highly sensitive to <mark class="fact">CO₂ and H⁺ ions</mark>; an increase in either activates this area, which signals the rhythm centre to adjust breathing so as to eliminate the excess.</li>
+    <li>Receptors in the <mark class="concept">aortic arch and carotid artery</mark> also detect changes in CO₂ and H⁺ concentration, sending signals to the rhythm centre for remedial action.</li>
+    <li>The role of <mark class="trap">oxygen itself in regulating respiratory rhythm is quite insignificant</mark> — regulation is driven mainly by CO₂/H⁺ levels, not by O₂ levels directly.</li>
+  </ul>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    When blood oxygen concentration <mark class="trap">decreases</mark>, the rate of breathing <mark class="trap">increases</mark> (via hypoxemia triggering compensatory faster breathing) — even though O₂ itself plays only an "insignificant" direct role in rhythm regulation compared to CO₂/H⁺, a drop in O₂ still indirectly drives the body to breathe faster to correct the deficit.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="r-disorders">
+  <h2><span class="num">10</span>Disorders of the Respiratory System</h2>
+  <table>
+    <caption>Named respiratory disorders</caption>
+    <thead><tr><th>Disorder</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td><mark class="concept">Asthma</mark></td><td>Difficulty in breathing, causing <mark class="fact">wheezing</mark>, due to inflammation of the bronchi and bronchioles.</td></tr>
+      <tr><td><mark class="concept">Emphysema</mark></td><td>A chronic disorder in which <mark class="fact">alveolar walls are damaged</mark>, decreasing the respiratory (exchange) surface area; one major cause is <mark class="trap">cigarette smoking</mark>.</td></tr>
+      <tr><td><mark class="concept">Occupational respiratory disorders</mark></td><td>In industries involving grinding or stone-breaking, excess dust overwhelms the body's defence mechanisms; long exposure causes inflammation leading to <mark class="fact">fibrosis</mark> (proliferation of fibrous tissue) and serious lung damage. Workers in such industries should wear <mark class="concept">protective masks</mark>.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============================================================ -->
+<section id="r-hypoxia">
+  <h2><span class="num">11</span>Hypoxia, Hypoxemia &amp; Body-Temperature Regulation</h2>
+  <ul class="point-list">
+    <li><mark class="concept">Hypoxia</mark> is a condition where the body, or a region of it, is deprived of adequate oxygen supply at the tissue level; it may be <mark class="fact">generalized</mark> (whole body) or <mark class="fact">local</mark> (one region).</li>
+    <li><mark class="concept">Hypoxemia</mark> is abnormally low oxygen level specifically <mark class="trap">in the blood</mark> — this can cause hypoxia when blood fails to carry enough oxygen to meet tissue demand.</li>
+    <li>Both conditions are dangerous — without adequate oxygen, the <mark class="fact">brain, liver, and other organs</mark> can be damaged within minutes of symptom onset.</li>
+    <li>The <mark class="concept">lungs help maintain body temperature</mark>: energy is produced in tissues by oxidation of food, and body water is vaporised through breathing (inhaling O₂-rich air, exhaling CO₂-laden, moisture-laden air) — this process helps regulate core temperature.</li>
+  </ul>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    The organ that helps maintain body temperature through this oxidation/vaporisation mechanism is the <mark class="trap">lungs</mark> — not the heart, liver, or kidney.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="r-cellular">
+  <h2><span class="num">12</span>Cellular Respiration — ATP, Explained From Scratch</h2>
+  <ul class="point-list">
+    <li><mark class="concept">Cellular respiration</mark> is the biochemical pathway by which cells release energy from the chemical bonds of food molecules, making that energy available for life's essential processes. It can be <mark class="fact">aerobic</mark> (with oxygen) or <mark class="fact">anaerobic</mark> (without oxygen).</li>
+  </ul>
+  <div class="callout glossary">
+    <span class="tag">Explainer — What is ATP, and why does everything point to it?</span>
+    <dl>
+      <dt>The core idea</dt>
+      <dd>Food (glucose, fat, etc.) stores energy in its chemical bonds, but cells cannot use that energy directly to power things like muscle contraction. Instead, cells convert food energy into a single "universal currency" molecule called <strong>ATP (adenosine triphosphate)</strong> — think of digesting food as "earning money in a foreign currency," and ATP as the "local currency" every part of the cell can actually spend.</dd>
+      <dt>Why triphosphate?</dt>
+      <dd>ATP is adenosine attached to <em>three</em> phosphate groups chained together. The bond holding the outermost (third) phosphate on is a high-energy bond. When the cell needs energy, an enzyme breaks that one bond, releasing the stored energy and leaving behind <strong>ADP (adenosine diphosphate)</strong> — adenosine with only two phosphates — plus a free phosphate (Pi):<br><span class="mono">ATP + H₂O → ADP + Pi + energy</span></dd>
+      <dt>Why is ADP → ATP the "maximum energy" answer in MCQs?</dt>
+      <dd>The conversion <strong>ATP → ADP</strong> is the step that <em>releases</em> stored energy for the cell to use — this is the reaction that actually powers muscle contraction, ion pumps, and biosynthesis, so it is the answer to "which biotransformation provides maximum energy to the body." The reverse step, <strong>ADP → ATP</strong>, is where the cell <em>recharges</em> the "battery" using energy harvested from food — this is what respiration (glycolysis + Krebs cycle) is doing at every step.</dd>
+      <dt>Where does the energy in respiration end up?</dt>
+      <dd>Respiration is not one single reaction — it is a stepwise pathway that gradually strips energy out of glucose and uses it to recharge many ADP molecules back into ATP. The ATP produced is then carried elsewhere in the cell and spent (converted back to ADP) to do actual work.</dd>
+    </dl>
+  </div>
+  <table>
+    <caption>Anaerobic vs Aerobic respiration compared</caption>
+    <thead><tr><th>Feature</th><th>Anaerobic Respiration</th><th>Aerobic Respiration</th></tr></thead>
+    <tbody>
+      <tr><td>Oxygen needed?</td><td><mark class="trap">No</mark> — incomplete oxidation of glucose</td><td><mark class="trap">Yes</mark></td></tr>
+      <tr><td>End products</td><td><mark class="fact">Alcohol + CO₂</mark> (or lactic acid in muscle)</td><td><mark class="fact">CO₂ + H₂O</mark></td></tr>
+      <tr><td>Equation</td><td><span class="mono">C₆H₁₂O₆ → 2C₂H₅OH + 2CO₂ + 56 Kcal</span></td><td><span class="mono">C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + 656 Kcal</span></td></tr>
+      <tr><td>Energy yield</td><td><mark class="trap">Much lower</mark> (56 Kcal)</td><td><mark class="trap">Much higher</mark> (656 Kcal)</td></tr>
+      <tr><td>Where found</td><td>Resting seeds, fruit pericarps, micro-organisms, and (as lactic acid) in animal muscle during oxygen-poor exertion</td><td>Ongoing continuously in animal and plant cells</td></tr>
+      <tr><td>Location in cell</td><td><mark class="concept">Cytoplasm</mark> (fluid portion) — for both glycolysis and fermentation</td><td>Bulk of energy yield occurs in the <mark class="concept">mitochondria</mark></td></tr>
+    </tbody>
+  </table>
+  <ul class="point-list">
+    <li><mark class="concept">Fermentation</mark> is a specific type of anaerobic respiration.</li>
+    <li>Formation of <mark class="fact">lactic acid</mark> in muscle cells (during intense exercise, when oxygen supply can't keep up) is also a form of anaerobic respiration in animals.</li>
+  </ul>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    The complete conversion of glucose, <mark class="trap">in the presence of oxygen</mark>, into CO₂ and water with release of energy is called <mark class="trap">aerobic respiration</mark> — not anaerobic respiration, glycolysis alone (glycolysis is only the first stage), or hydrolysis (a generic bond-breaking-by-water term, not specific to respiration).
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="r-glycolysis">
+  <h2><span class="num">13</span>Glycolysis &amp; Krebs Cycle</h2>
+  <h3 class="subhead">Glycolysis (the "EMP Pathway")</h3>
+  <ul class="point-list">
+    <li><mark class="concept">Glycolysis</mark> is the metabolic pathway that converts <mark class="fact">glucose into pyruvic acid (pyruvate)</mark>; the free energy released is captured by forming the high-energy molecules <mark class="fact">ATP</mark> and <mark class="fact">NADH</mark> (reduced nicotinamide adenine dinucleotide).</li>
+    <li>Also known as the <mark class="concept">EMP Pathway</mark>, named for its discoverers <mark class="person">Embden, Meyerhof, and Parnas</mark>.</li>
+    <li>Glycolysis takes place in the <mark class="fact">cytoplasm</mark>, and does not itself require oxygen.</li>
+    <li>One molecule of glucose (6-carbon) yields <mark class="trap">two molecules of pyruvic acid</mark> — each pyruvate has <mark class="trap">three carbon atoms</mark> (not four).</li>
+    <li>During glycolysis, <mark class="fact">4 ATP</mark> molecules are formed, but <mark class="fact">2 ATP</mark> are consumed earlier in the pathway (phosphorylation steps) — so the <mark class="concept">net gain is 4 − 2 = 2 ATP</mark> per glucose molecule.</li>
+    <li>Depending on oxygen availability, pyruvate then follows different paths: with O₂ present, it proceeds into aerobic respiration (Krebs cycle) producing CO₂ and water plus energy; <mark class="trap">without oxygen</mark>, pyruvate converts to <mark class="trap">lactic acid</mark> in muscle, or to <mark class="trap">CO₂ and ethanol</mark> in yeast/plants (fermentation) — both are anaerobic routes, distinct from each other by organism/tissue type.</li>
+  </ul>
+
+  <h3 class="subhead">Krebs Cycle (Citric Acid Cycle)</h3>
+  <ul class="point-list">
+    <li>Discovered by the British scientist <mark class="person">Hans Krebs</mark>.</li>
+    <li>Takes place in the <mark class="concept">mitochondria</mark> of eukaryotic cells (in the cell membrane of prokaryotes, which lack mitochondria).</li>
+    <li>Here, pyruvic acid undergoes total oxidation in the presence of oxygen and various enzymes; end products are <mark class="fact">carbon dioxide, water</mark>, and released energy.</li>
+    <li>Net gain from the Krebs cycle: <mark class="fact">36 ATP</mark> (from oxidation of the 2 pyruvic acid molecules produced per original glucose).</li>
+    <li><mark class="concept">Total net ATP gain across all of aerobic respiration</mark> (glycolysis + Krebs cycle combined): <mark class="fact">38 ATP</mark> per glucose molecule.</li>
+  </ul>
+  <div class="arrow-chain">
+    Glucose —(Glycolysis, cytoplasm)→ 2 Pyruvate (net +2 ATP)<br>
+    2 Pyruvate —(Krebs cycle, mitochondria, +O₂)→ CO₂ + H₂O (net +36 ATP)<br>
+    Total aerobic respiration: net +38 ATP per glucose molecule
+  </div>
+  <div class="callout trap">
+    <span class="tag">MCQ Trap</span>
+    Regarding glucose breakdown: <mark class="trap">(i) is false</mark> — pyruvate has three carbons, not four. <mark class="trap">(ii) is true</mark> — lack of oxygen converts pyruvate to lactic acid (in muscle). <mark class="trap">(iii) is true</mark> — absence of oxygen converts pyruvate to CO₂ and ethanol (in yeast/plant cells). So the correct combination is <mark class="trap">(ii) and (iii) only</mark>.
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="r-rq">
+  <h2><span class="num">14</span>Respiratory Quotient (RQ)</h2>
+  <ul class="point-list">
+    <li><mark class="concept">Respiratory Quotient (RQ)</mark> = the ratio of the volume of CO₂ evolved to the volume of O₂ consumed, by an organism/tissue/cell, in a given time.</li>
+    <li>RQ indicates <mark class="concept">which macronutrient is being metabolised</mark>, since fats, carbohydrates, and proteins each use different energy pathways.</li>
+  </ul>
+  <table>
+    <caption>RQ values by macronutrient</caption>
+    <thead><tr><th>Macronutrient</th><th>RQ</th></tr></thead>
+    <tbody>
+      <tr><td>Fat</td><td><mark class="fact">0.7</mark></td></tr>
+      <tr><td>Protein</td><td><mark class="fact">0.8</mark></td></tr>
+      <tr><td>Carbohydrate</td><td><mark class="fact">1.0</mark></td></tr>
+    </tbody>
+  </table>
+  <ul class="point-list">
+    <li>RQ is measured using <mark class="concept">Ganong's respirometer</mark>.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ -->
+<section id="r-match">
+  <h2><span class="num">15</span>Match-List &amp; Trap Consolidation</h2>
+  <table>
+    <caption>Frequently confused respiration facts</caption>
+    <thead><tr><th>Question Pattern</th><th>Correct Answer</th></tr></thead>
+    <tbody>
+      <tr><td>Site of gaseous exchange in lungs</td><td><mark class="trap">Alveoli</mark> (not tracheoles, bronchioles, or pulmonary vein)</td></tr>
+      <tr><td>Sequence of O₂ transport in the body</td><td><mark class="trap">Lungs → Blood → Tissue</mark></td></tr>
+      <tr><td>Effect of falling blood O₂ on breathing rate</td><td><mark class="trap">Increases</mark></td></tr>
+      <tr><td>Main effect of carbon monoxide poisoning</td><td><mark class="trap">Reduces oxygen-carrying capacity of blood</mark></td></tr>
+      <tr><td>Biotransformation giving maximum energy to the body</td><td><mark class="trap">ATP → ADP</mark> (not ADP→AMP, ADP→ATP, or AMP→ADP)</td></tr>
+      <tr><td>Form in which energy is produced during respiration</td><td><mark class="trap">ATP</mark> (not ADP, NADP, or CO₂)</td></tr>
+      <tr><td>Complete oxidation of glucose with O₂ → CO₂ + H₂O + energy</td><td><mark class="trap">Aerobic respiration</mark></td></tr>
+      <tr><td>Body component whose air percentage is unchanged by respiration</td><td><mark class="trap">Nitrogen</mark></td></tr>
+      <tr><td>Organ maintaining body temperature via breathing</td><td><mark class="trap">Lungs</mark></td></tr>
+      <tr><td>Mammals respire by</td><td><mark class="trap">Lungs</mark> (not gills, trachea, or skin)</td></tr>
+    </tbody>
+  </table>
+  <div class="callout fact">
+    <span class="tag">Fact — Quick cross-reference to the Digestion tab</span>
+    Both systems share the <mark class="fact">pharynx</mark> as a common passage, and both use an <mark class="fact">epiglottis</mark> to keep the two tracts separate during swallowing — food-safe glottis-closure and airway-safe oesophagus-bypass are two sides of the same anatomical junction covered in Digestion §04.
+  </div>
+</section>
+
+<footer>The Physiologist's Ledger · Breathing &amp; Exchange of Gases · compiled for BPSC Prelims 2025–26</footer>
+
+</div>
+
+</main>
+
+<script>
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
+  document.getElementById('hamburgerBtn').classList.toggle('open');
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('open');
+  document.getElementById('hamburgerBtn').classList.remove('open');
+}
+
+function switchTab(tab){
+  document.getElementById('page-digestion').classList.toggle('active', tab==='digestion');
+  document.getElementById('page-respiration').classList.toggle('active', tab==='respiration');
+  document.getElementById('nav-digestion').style.display = tab==='digestion' ? 'block' : 'none';
+  document.getElementById('nav-respiration').style.display = tab==='respiration' ? 'block' : 'none';
+  document.getElementById('btn-tab-digestion').classList.toggle('active', tab==='digestion');
+  document.getElementById('btn-tab-respiration').classList.toggle('active', tab==='respiration');
+  window.scrollTo(0,0);
+  closeSidebar();
+  onScroll();
+}
+
+const navLinks = document.querySelectorAll('.navlink');
+function onScroll(){
+  const activePage = document.querySelector('.page.active');
+  if(!activePage) return;
+  const sections = activePage.querySelectorAll('section');
+  let currentId = '';
+  sections.forEach(sec=>{
+    const rect = sec.getBoundingClientRect();
+    if(rect.top <= 140) currentId = sec.id;
+  });
+  navLinks.forEach(link=>{
+    link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+  });
+}
+window.addEventListener('scroll', onScroll);
+document.querySelectorAll('.navlink').forEach(link=>{
+  link.addEventListener('click', e=>{
+    e.preventDefault();
+    const id = link.getAttribute('href').substring(1);
+    const target = document.getElementById(id);
+    if(target){
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    closeSidebar();
+  });
+});
+window.addEventListener('load', onScroll);
+</script>
+
+</body>
+</html>
