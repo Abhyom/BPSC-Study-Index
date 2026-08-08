@@ -1,0 +1,3387 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>
+			The Budget Ledger — Concepts, Process & Bihar Budget 2026-27
+		</title>
+		<style>
+			:root {
+				--ink: #2b2114;
+				--paper: #f6ecd4;
+				--paper-2: #efe1bd;
+				--sidebar: #171c2b;
+				--sidebar-2: #232a3f;
+				--sidebar-text: #cfd6e8;
+				--accent: #8a3b26;
+				--yellow: #e0a712;
+				--yellow-bg: #fbe08a;
+				--blue: #1f6fa8;
+				--blue-bg: #a9d3ef;
+				--green: #2f7d3f;
+				--green-bg: #a9dcac;
+				--red: #c23b2c;
+				--red-bg: #f3a89e;
+				--purple: #6a3f9c;
+				--purple-bg: #d3bdef;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				-webkit-text-size-adjust: 100%;
+			}
+			body {
+				margin: 0;
+				font-family: "Georgia", "Cambria", serif;
+				color: var(--ink);
+				background: var(--sidebar);
+				font-size: 16px;
+				line-height: 1.7;
+			}
+			mark {
+				color: var(--ink);
+				font-weight: 700;
+				padding: 3px 7px;
+				border-radius: 4px;
+				box-decoration-break: clone;
+				-webkit-box-decoration-break: clone;
+				line-height: 2;
+				display: inline;
+				unicode-bidi: isolate;
+			}
+			mark.concept {
+				background: var(--yellow-bg);
+				box-shadow: inset 0 0 0 1.5px var(--yellow);
+			}
+			mark.fact {
+				background: var(--blue-bg);
+				box-shadow: inset 0 0 0 1.5px var(--blue);
+				color: #12324a;
+			}
+			mark.person {
+				background: var(--green-bg);
+				box-shadow: inset 0 0 0 1.5px var(--green);
+				color: #123a1a;
+			}
+			mark.trap {
+				background: var(--red-bg);
+				box-shadow: inset 0 0 0 1.5px var(--red);
+				color: #4a0f08;
+			}
+			mark.rule {
+				background: var(--purple-bg);
+				box-shadow: inset 0 0 0 1.5px var(--purple);
+				color: #2a1740;
+			}
+			p,
+			li,
+			td,
+			.card p,
+			.boxsub,
+			.arrowbox,
+			.branchnode,
+			.flowstep .ftext p {
+				line-height: 2.05;
+			}
+
+			/* ===== Layout ===== */
+			.app {
+				display: flex;
+				min-height: 100vh;
+			}
+			.sidebar {
+				width: 270px;
+				background: linear-gradient(
+					180deg,
+					var(--sidebar),
+					var(--sidebar-2)
+				);
+				color: var(--sidebar-text);
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				overflow-y: auto;
+				padding: 22px 16px 40px;
+				z-index: 50;
+				transition: transform 0.25s ease;
+			}
+			.sidebar h1 {
+				font-size: 17px;
+				color: #f4e6bd;
+				letter-spacing: 0.5px;
+				margin: 0 0 4px;
+				border-bottom: 2px solid #4b567a;
+				padding-bottom: 12px;
+			}
+			.sidebar .sub {
+				font-size: 11px;
+				color: #8a93b3;
+				margin-bottom: 18px;
+			}
+			.tabbtn {
+				display: block;
+				width: 100%;
+				text-align: left;
+				background: none;
+				border: none;
+				color: var(--sidebar-text);
+				font-family: inherit;
+				font-size: 14.5px;
+				padding: 11px 12px;
+				border-radius: 8px;
+				cursor: pointer;
+				margin-bottom: 6px;
+				border-left: 3px solid transparent;
+				transition: 0.15s;
+			}
+			.tabbtn:hover {
+				background: #2c3552;
+			}
+			.tabbtn.active {
+				background: #31406b;
+				color: #ffe9a8;
+				border-left: 3px solid var(--yellow);
+				font-weight: 700;
+			}
+			.navgroup {
+				margin-top: 16px;
+			}
+			.navgroup .navtitle {
+				font-size: 10.5px;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				color: #7480a3;
+				margin: 16px 4px 8px;
+			}
+			.navlink {
+				display: block;
+				font-size: 12.5px;
+				color: #aab4d1;
+				padding: 6px 10px;
+				border-radius: 6px;
+				text-decoration: none;
+				margin-bottom: 2px;
+			}
+			.navlink:hover {
+				background: #2c3552;
+				color: #fff;
+			}
+			.hamburger {
+				display: none;
+				position: fixed;
+				top: 14px;
+				left: 14px;
+				z-index: 60;
+				background: var(--sidebar);
+				color: #f4e6bd;
+				border: none;
+				font-size: 20px;
+				padding: 8px 12px;
+				border-radius: 8px;
+				cursor: pointer;
+			}
+
+			.content {
+				margin-left: 270px;
+				flex: 1;
+				background: radial-gradient(
+					ellipse at top,
+					#fbf2d9,
+					var(--paper)
+				);
+				min-height: 100vh;
+				padding: 34px 42px 80px;
+			}
+			.panel {
+				display: none;
+			}
+			.panel.active {
+				display: block;
+				animation: fade 0.3s ease;
+			}
+			@keyframes fade {
+				from {
+					opacity: 0;
+					transform: translateY(6px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.pagehead {
+				border-bottom: 3px double var(--accent);
+				padding-bottom: 12px;
+				margin-bottom: 26px;
+			}
+			.pagehead h2 {
+				font-size: 26px;
+				margin: 0;
+				color: #3a2a15;
+			}
+			.pagehead p {
+				margin: 6px 0 0;
+				color: #6b5a3f;
+				font-size: 13.5px;
+			}
+
+			section.block {
+				margin-bottom: 34px;
+			}
+			h3.secttl {
+				font-size: 18px;
+				background: var(--sidebar);
+				color: #f4e6bd;
+				display: inline-block;
+				padding: 6px 18px;
+				border-radius: 4px 14px 4px 14px;
+				margin-bottom: 16px;
+				box-shadow: 2px 2px 0 var(--accent);
+			}
+			h4.subttl {
+				font-size: 14.5px;
+				color: var(--accent);
+				border-bottom: 1.5px solid var(--accent);
+				display: inline-block;
+				padding-bottom: 2px;
+				margin: 18px 0 10px;
+			}
+
+			/* ===== Cards ===== */
+			.cardgrid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+				gap: 14px;
+				margin-bottom: 14px;
+			}
+			.card {
+				background: #fffaf0;
+				border: 1.5px solid #d8c69a;
+				border-radius: 10px;
+				padding: 16px 18px;
+				box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.05);
+			}
+			.card h5 {
+				margin: 0 0 10px;
+				font-size: 16px;
+				color: var(--accent);
+			}
+			.card p {
+				margin: 8px 0;
+				font-size: 15px;
+			}
+			.card.g-blue {
+				border-left: 5px solid var(--blue);
+			}
+			.card.g-green {
+				border-left: 5px solid var(--green);
+			}
+			.card.g-yellow {
+				border-left: 5px solid var(--yellow);
+			}
+			.card.g-red {
+				border-left: 5px solid var(--red);
+			}
+			.card.g-purple {
+				border-left: 5px solid var(--purple);
+			}
+
+			/* ===== Tables ===== */
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-bottom: 18px;
+				font-size: 14.5px;
+				background: #fffdf6;
+			}
+			th,
+			td {
+				border: 1px solid #cbb989;
+				padding: 11px 12px;
+				text-align: left;
+				vertical-align: top;
+				line-height: 1.7;
+			}
+			th {
+				background: var(--sidebar);
+				color: #f4e6bd;
+				font-size: 13.5px;
+			}
+			.col-blue td:nth-child(1),
+			.tbl-pastel td:nth-child(1) {
+				background: #eaf3fb;
+			}
+			.tbl-pastel td:nth-child(2) {
+				background: #fbf3e0;
+			}
+			.tbl-pastel td:nth-child(3) {
+				background: #eaf7ec;
+			}
+			.tbl-pastel td:nth-child(4) {
+				background: #fbe9e6;
+			}
+			.tbl-pastel td:nth-child(5) {
+				background: #f1e7fa;
+			}
+			tr:nth-child(even) td {
+				filter: brightness(0.98);
+			}
+
+			/* ===== Trap box ===== */
+			.trapbox {
+				background: #fdeceb;
+				border: 2px dashed var(--red);
+				border-radius: 8px;
+				padding: 20px 18px 16px;
+				margin: 20px 0 24px;
+				position: relative;
+			}
+			.trapbox::before {
+				content: "⚠ MCQ TRAP";
+				position: absolute;
+				top: -13px;
+				left: 14px;
+				background: var(--red);
+				color: #fff;
+				font-size: 11.5px;
+				padding: 3px 12px;
+				border-radius: 10px;
+				letter-spacing: 0.5px;
+			}
+			.trapbox p {
+				margin: 8px 0;
+				font-size: 15px;
+			}
+			.trapbox ul {
+				margin: 8px 0 0;
+				padding-left: 20px;
+				font-size: 15px;
+			}
+			.trapbox li {
+				margin-bottom: 6px;
+			}
+
+			.notebox {
+				background: #eaf3fb;
+				border: 2px solid var(--blue);
+				border-radius: 8px;
+				padding: 20px 18px 16px;
+				margin: 20px 0 24px;
+				position: relative;
+			}
+			.notebox::before {
+				content: "📌 NOTE";
+				position: absolute;
+				top: -13px;
+				left: 14px;
+				background: var(--blue);
+				color: #fff;
+				font-size: 11.5px;
+				padding: 3px 12px;
+				border-radius: 10px;
+			}
+			.notebox p {
+				margin: 8px 0;
+				font-size: 15px;
+			}
+
+			/* ===== Formula blocks ===== */
+			.formulagrid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+				gap: 14px;
+				margin-bottom: 16px;
+			}
+			.fblock {
+				border-radius: 10px;
+				padding: 14px;
+				color: #fff;
+				box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.15);
+			}
+			.fblock h5 {
+				margin: 0 0 4px;
+				font-size: 13.5px;
+				opacity: 0.9;
+			}
+			.fblock .short {
+				font-size: 19px;
+				font-weight: 800;
+				margin: 6px 0;
+			}
+			.fblock .full {
+				font-size: 12.5px;
+				opacity: 0.95;
+				line-height: 1.4;
+			}
+			.fblock.rd {
+				background: linear-gradient(135deg, #1f6fa8, #123a5c);
+			}
+			.fblock.fd {
+				background: linear-gradient(135deg, #c23b2c, #7a2016);
+			}
+			.fblock.pd {
+				background: linear-gradient(135deg, #2f7d3f, #164821);
+			}
+			.fblock.erd {
+				background: linear-gradient(135deg, #6a3f9c, #3d2261);
+			}
+
+			/* ===== Tree / Mind map ===== */
+			.tree {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				margin: 24px 0;
+			}
+			.tree .root {
+				background: var(--sidebar);
+				color: #f4e6bd;
+				padding: 12px 24px;
+				border-radius: 8px;
+				font-weight: 700;
+				font-size: 15.5px;
+				margin-bottom: 10px;
+			}
+			.tree .branches {
+				display: flex;
+				gap: 16px;
+				flex-wrap: wrap;
+				justify-content: center;
+				position: relative;
+				padding-top: 26px;
+				row-gap: 30px;
+			}
+			.tree .branches::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 10%;
+				right: 10%;
+				height: 2px;
+				background: #8a6b34;
+			}
+			.branchnode {
+				background: #fffaf0;
+				border: 1.5px solid #8a6b34;
+				border-radius: 8px;
+				padding: 12px 16px;
+				font-size: 14px;
+				max-width: 210px;
+				position: relative;
+				text-align: center;
+				line-height: 1.6;
+			}
+			.branchnode::before {
+				content: "";
+				position: absolute;
+				top: -26px;
+				left: 50%;
+				width: 2px;
+				height: 26px;
+				background: #8a6b34;
+			}
+			.branchnode b {
+				display: block;
+				font-size: 14.5px;
+				margin-bottom: 5px;
+				color: var(--accent);
+			}
+
+			.flow {
+				display: flex;
+				flex-direction: column;
+				gap: 0;
+			}
+			.flowstep {
+				display: flex;
+				align-items: flex-start;
+				gap: 14px;
+				padding: 14px 0;
+				border-left: 3px solid var(--accent);
+				margin-left: 18px;
+				padding-left: 22px;
+				position: relative;
+			}
+			.flowstep::before {
+				content: attr(data-n);
+				position: absolute;
+				left: -19px;
+				top: 14px;
+				background: var(--accent);
+				color: #fff;
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 14px;
+				font-weight: 700;
+			}
+			.flowstep .ftext b {
+				color: var(--accent);
+				font-size: 15.5px;
+				line-height: 1.6;
+			}
+			.flowstep .ftext p {
+				margin: 6px 0 0;
+				font-size: 14.5px;
+			}
+
+			/* Vertical hierarchy list */
+			.hierlist {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.hierlist li {
+				background: #fffaf0;
+				border: 1px solid #d8c69a;
+				border-radius: 8px;
+				padding: 13px 16px;
+				margin-bottom: 10px;
+				font-size: 15px;
+				position: relative;
+				padding-left: 44px;
+				line-height: 1.6;
+			}
+			.hierlist li::before {
+				content: attr(data-rank);
+				position: absolute;
+				left: 10px;
+				top: 50%;
+				transform: translateY(-50%);
+				background: var(--yellow);
+				color: #3a2a00;
+				font-weight: 800;
+				font-size: 13px;
+				width: 24px;
+				height: 24px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			/* Box diagram (revenue/capital) */
+			.boxdiagram {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 18px;
+				margin: 20px 0;
+			}
+			.boxcol {
+				border: 2px solid var(--sidebar);
+				border-radius: 10px;
+				padding: 14px;
+				background: #fffdf6;
+			}
+			.boxcol h5 {
+				text-align: center;
+				background: var(--sidebar);
+				color: #f4e6bd;
+				margin: -14px -14px 12px;
+				padding: 10px;
+				border-radius: 8px 8px 0 0;
+				font-size: 15px;
+			}
+			.boxsub {
+				border: 1.5px dashed #8a6b34;
+				border-radius: 8px;
+				padding: 10px 12px;
+				margin-bottom: 10px;
+				font-size: 14px;
+				line-height: 1.7;
+			}
+			.boxsub b {
+				color: var(--accent);
+				display: block;
+				margin-bottom: 5px;
+				font-size: 14.5px;
+			}
+
+			/* Arrow diagram for incidence/impact */
+			.arrowflow {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				flex-wrap: wrap;
+				margin: 20px 0;
+			}
+			.arrowbox {
+				background: #fffaf0;
+				border: 2px solid var(--sidebar);
+				border-radius: 8px;
+				padding: 14px 18px;
+				font-size: 14.5px;
+				text-align: center;
+				min-width: 150px;
+				line-height: 1.6;
+			}
+			.arrowbox b {
+				display: block;
+				color: var(--accent);
+				font-size: 15px;
+				margin-bottom: 5px;
+			}
+			.arrow {
+				font-size: 22px;
+				color: var(--accent);
+				font-weight: 700;
+			}
+
+			/* ===== MCQ ===== */
+			.mcqcat {
+				margin: 26px 0 14px;
+			}
+			.mcq {
+				background: #fffaf0;
+				border: 1.5px solid #d8c69a;
+				border-radius: 10px;
+				padding: 16px 18px;
+				margin-bottom: 16px;
+				box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.05);
+			}
+			.mcq .qtext {
+				font-size: 15.5px;
+				font-weight: 700;
+				margin: 0 0 10px;
+				line-height: 1.7;
+				color: #2b2114;
+			}
+			.mcq .options {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 8px 14px;
+				font-size: 14.5px;
+				margin-bottom: 10px;
+				line-height: 1.6;
+			}
+			.mcq details {
+				margin-top: 8px;
+			}
+			.mcq summary {
+				cursor: pointer;
+				font-size: 13.5px;
+				color: #fff;
+				background: var(--accent);
+				display: inline-block;
+				padding: 6px 14px;
+				border-radius: 14px;
+				font-weight: 700;
+				list-style: none;
+			}
+			.mcq summary::-webkit-details-marker {
+				display: none;
+			}
+			.mcq details[open] summary {
+				background: var(--sidebar);
+			}
+			.mcq .ans {
+				margin-top: 10px;
+				padding: 10px 14px;
+				background: #eafbea;
+				border-left: 4px solid var(--green);
+				border-radius: 6px;
+				font-size: 14.5px;
+				line-height: 1.7;
+			}
+
+			@media (max-width: 900px) {
+				.sidebar {
+					transform: translateX(-100%);
+					width: 82%;
+					max-width: 300px;
+				}
+				.sidebar.open {
+					transform: translateX(0);
+				}
+				.hamburger {
+					display: block;
+				}
+				.content {
+					margin-left: 0;
+					padding: 70px 14px 60px;
+				}
+				.boxdiagram {
+					grid-template-columns: 1fr;
+				}
+				.cardgrid {
+					grid-template-columns: 1fr;
+					gap: 16px;
+				}
+				.formulagrid {
+					grid-template-columns: 1fr;
+					gap: 16px;
+				}
+				.tree .branches {
+					gap: 22px;
+					row-gap: 34px;
+				}
+				.branchnode {
+					margin-top: 4px;
+				}
+				mark {
+					line-height: 2.1;
+					display: inline-block;
+					margin: 2px 0;
+				}
+				p,
+				li,
+				td,
+				.card p {
+					line-height: 2.15;
+				}
+				table {
+					font-size: 13.5px;
+				}
+				th,
+				td {
+					padding: 9px 8px;
+				}
+				.mcq .options {
+					grid-template-columns: 1fr;
+				}
+				h3.secttl {
+					font-size: 16px;
+					padding: 6px 14px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<button
+			class="hamburger"
+			onclick="
+				document.querySelector('.sidebar').classList.toggle('open')
+			"
+		>
+			☰
+		</button>
+		<div class="app">
+			<nav class="sidebar">
+				<h1>📒 THE BUDGET LEDGER</h1>
+				<div class="sub">BPSC Prelims · Polity & Economy Dossier</div>
+				<button class="tabbtn active" onclick="showTab('t1', this)">
+					I. Budget: Concepts &amp; Process
+				</button>
+				<button class="tabbtn" onclick="showTab('t2', this)">
+					II. Bihar Budget 2026-27
+				</button>
+				<button class="tabbtn" onclick="showTab('t3', this)">
+					III. MCQ Practice Set
+				</button>
+				<div class="navgroup" id="nav1">
+					<div class="navtitle">Tab I Sections</div>
+					<a class="navlink" href="#s1">Types of Budgets</a>
+					<a class="navlink" href="#s2">Three Govt Accounts</a>
+					<a class="navlink" href="#s3">Constitutional Articles</a>
+					<a class="navlink" href="#s4">Steps in Passage of Budget</a>
+					<a class="navlink" href="#s5">Types of Expenditure</a>
+					<a class="navlink" href="#s6"
+						>Revenue vs Capital (Structure)</a
+					>
+					<a class="navlink" href="#s7">4-Way Table &amp; Trick</a>
+					<a class="navlink" href="#s8">Incidence vs Impact of Tax</a>
+					<a class="navlink" href="#s9">Railway Budget History</a>
+					<a class="navlink" href="#s10">Deficit Formulas</a>
+				</div>
+				<div class="navgroup" id="nav2" style="display: none">
+					<div class="navtitle">Tab II Sections</div>
+					<a class="navlink" href="#b1">Basics &amp; Growth</a>
+					<a class="navlink" href="#b2">Total Break-up</a>
+					<a class="navlink" href="#b3">Sources &amp; Application</a>
+					<a class="navlink" href="#b4">Deficit / GSDP</a>
+					<a class="navlink" href="#b5">Department Allocation</a>
+					<a class="navlink" href="#b6">Finance Commission</a>
+					<a class="navlink" href="#b7">Agriculture &amp; Farmers</a>
+					<a class="navlink" href="#b8">Eco-Tourism &amp; Wetlands</a>
+					<a class="navlink" href="#b9"
+						>Industry &amp; Women Schemes</a
+					>
+					<a class="navlink" href="#b10"
+						>Art, Culture &amp; Tourism</a
+					>
+				</div>
+				<div class="navgroup" id="nav3" style="display: none">
+					<div class="navtitle">Tab III Sections</div>
+					<a class="navlink" href="#m1"
+						>Budget Concepts &amp; Process</a
+					>
+					<a class="navlink" href="#m2">Bihar Budget 2026-27</a>
+				</div>
+			</nav>
+
+			<main class="content">
+				<!-- ================= TAB 1 ================= -->
+				<div class="panel active" id="t1">
+					<div class="pagehead">
+						<h2>Budget: Constitutional Framework &amp; Process</h2>
+						<p>
+							🟨 Concept &nbsp; 🟦 Fact/Number &nbsp; 🟩
+							Person/Institution &nbsp; 🟥 MCQ Trap &nbsp; 🟪
+							Rule/Formula
+						</p>
+					</div>
+
+					<section class="block" id="s1">
+						<h3 class="secttl">1. Types of Budgets</h3>
+						<div class="cardgrid">
+							<div class="card g-purple">
+								<h5>Gender Budget</h5>
+								<p>Start: <mark class="fact">2008-09</mark></p>
+								<p>
+									Objective: Allocating
+									<mark class="concept"
+										>separate funds for women's development,
+										education and health</mark
+									>; reflects govt's commitment to women.
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>Green Budget</h5>
+								<p>Start: <mark class="fact">2020-21</mark></p>
+								<p>
+									Objective: Using the budget for
+									<mark class="concept"
+										>environmental protection &amp; tackling
+										climate change</mark
+									>; evaluates environmental impact of
+									budgetary policies.
+								</p>
+							</div>
+							<div class="card g-yellow">
+								<h5>Child Budget</h5>
+								<p>Start: <mark class="fact">2013-14</mark></p>
+								<p>
+									Objective: Highlight schemes run for
+									<mark class="concept"
+										>welfare of children</mark
+									>.
+								</p>
+								<p>
+									<mark class="person">Bihar</mark> is the
+									<mark class="trap">first state</mark> to
+									prepare Child Budget formulation process
+									with support of
+									<mark class="person"
+										>UNICEF &amp; ADRI</mark
+									>
+									(in <mark class="fact">2019</mark>).
+								</p>
+							</div>
+							<div class="card g-blue">
+								<h5>Outcome Budget</h5>
+								<p>Start: <mark class="fact">2006-07</mark></p>
+								<p>
+									Objective: Not just spending money, but
+									seeing
+									<mark class="concept"
+										>what outcome resulted</mark
+									>
+									from that spending. An
+									<mark class="concept"
+										>'Achievement Report'</mark
+									>
+									is also presented.
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="s2">
+						<h3 class="secttl">
+							2. Three Government Accounts (Public Finance)
+						</h3>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>
+									1. Consolidated Fund of the State —
+									<mark class="fact">Article 266</mark>
+								</h5>
+								<p>• Main govt account.</p>
+								<p>
+									• All revenues (tax + non-tax), loans
+									raised, and loan recoveries credited here.
+								</p>
+								<p>
+									• No money withdrawn without
+									<mark class="trap"
+										>legislative approval</mark
+									>
+									through the Appropriation Act.
+								</p>
+							</div>
+							<div class="card g-yellow">
+								<h5>
+									2. Contingency Fund of the State —
+									<mark class="fact">Article 267</mark>
+								</h5>
+								<p>
+									• Used for
+									<mark class="concept"
+										>urgent &amp; unforeseen
+										expenditure</mark
+									>.
+								</p>
+								<p>
+									• Placed at the disposal of the
+									<mark class="person">Governor</mark>.
+								</p>
+								<p>
+									• Later recouped from Consolidated Fund
+									after legislative approval.
+									<mark class="fact">₹350 crore</mark> (30,000
+									cr India).
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>
+									3. Public Account of the State —
+									<mark class="fact">Article 266</mark>
+								</h5>
+								<p>
+									• Includes
+									<mark class="concept"
+										>PF, small savings, deposits, reserve
+										funds</mark
+									>, etc.
+								</p>
+								<p>
+									•
+									<mark class="trap"
+										>No legislative approval required</mark
+									>
+									for withdrawal.
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="s3">
+						<h3 class="secttl">
+							3. Constitutional Articles: Union vs State (Budget)
+						</h3>
+						<table class="tbl-pastel">
+							<tr>
+								<th>Financial Component</th>
+								<th>Central Govt (Union)</th>
+								<th>State Government</th>
+							</tr>
+							<tr>
+								<td>Annual Financial Statement (Budget)</td>
+								<td><mark class="fact">Article 112</mark></td>
+								<td><mark class="fact">Article 202</mark></td>
+							</tr>
+							<tr>
+								<td>Voting on Demands for Grants</td>
+								<td><mark class="fact">Article 113</mark></td>
+								<td><mark class="fact">Article 203</mark></td>
+							</tr>
+							<tr>
+								<td>Appropriation Bill</td>
+								<td><mark class="fact">Article 114</mark></td>
+								<td><mark class="fact">Article 204</mark></td>
+							</tr>
+							<tr>
+								<td>Finance Bill (Taxation / Revenue)</td>
+								<td>
+									<mark class="fact"
+										>Art 110 (Def.) &amp; Art 117</mark
+									>
+								</td>
+								<td>
+									<mark class="fact"
+										>Art 199 (Def.) &amp; Art 207</mark
+									>
+								</td>
+							</tr>
+						</table>
+						<div class="notebox">
+							<p>
+								Under <mark class="concept">Article 202</mark>,
+								it is the
+								<mark class="trap"
+									>constitutional obligation</mark
+								>
+								of the State Government to present the Annual
+								Financial Statement (Budget) before the
+								Legislature.
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s4">
+						<h3 class="secttl">
+							4. Steps in Passage of the State Budget (Articles
+							202-207)
+						</h3>
+						<div class="flow">
+							<div class="flowstep" data-n="1">
+								<div class="ftext">
+									<b
+										>Preparation of Demands for Grants
+										(DoG)</b
+									>
+									<p>
+										Departments prepare expenditure
+										estimates and submit to the Finance
+										Department before the budget is
+										finalized.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="2">
+								<div class="ftext">
+									<b
+										>Presentation of Budget —
+										<mark class="fact">Article 202</mark></b
+									>
+									<p>
+										The Annual Financial Statement (Budget)
+										is laid before the Legislature by the
+										Finance Minister.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="3">
+								<div class="ftext">
+									<b>General Discussion</b>
+									<p>
+										Overall discussion on fiscal policy and
+										priorities,
+										<mark class="trap">without voting</mark
+										>.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="4">
+								<div class="ftext">
+									<b>Examination by DRSC</b>
+									<p>
+										Demands for Grants referred to
+										Departmentally Related Standing
+										Committees for detailed scrutiny;
+										committees submit reports to the
+										Legislature.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="5">
+								<div class="ftext">
+									<b
+										>Voting on Demands for Grants —
+										<mark class="fact">Article 203</mark></b
+									>
+									<p>
+										Only the Legislative Assembly votes. Cut
+										Motions may be moved.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="6">
+								<div class="ftext">
+									<b
+										>Appropriation Bill —
+										<mark class="fact">Article 204</mark></b
+									>
+									<p>
+										Authorizes withdrawal from the
+										Consolidated Fund of the State.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="7">
+								<div class="ftext">
+									<b
+										>Finance Bill —
+										<mark class="fact">Article 207</mark></b
+									>
+									<p>
+										Enacts the taxation proposals of the
+										budget.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="8">
+								<div class="ftext">
+									<b>Governor's Assent</b>
+									<p>
+										Budget becomes
+										<mark class="concept"
+											>legally operational</mark
+										>.
+									</p>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="s5">
+						<h3 class="secttl">5. Types of Expenditure</h3>
+						<table class="tbl-pastel">
+							<tr>
+								<th>Aspect</th>
+								<th>Establishment Expenditure</th>
+								<th>Scheme Expenditure</th>
+								<th>Commitment Expenditure</th>
+							</tr>
+							<tr>
+								<td>Meaning</td>
+								<td>
+									Spending on running government machinery
+								</td>
+								<td>
+									Spending on development schemes &amp;
+									welfare programmes
+								</td>
+								<td>
+									Spending on mandatory financial liabilities
+									of govt
+								</td>
+							</tr>
+							<tr>
+								<td>Nature</td>
+								<td>
+									<mark class="concept">Administrative</mark>
+								</td>
+								<td>
+									<mark class="concept"
+										>Development / Programmatic</mark
+									>
+								</td>
+								<td>
+									<mark class="concept"
+										>Obligatory / Non-discretionary</mark
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>Purpose</td>
+								<td>Maintain offices &amp; govt staff</td>
+								<td>
+									Achieve policy goals, welfare,
+									infrastructure creation
+								</td>
+								<td>
+									Fulfil past commitments &amp; legal
+									obligations
+								</td>
+							</tr>
+							<tr>
+								<td>Key Components</td>
+								<td>Salaries, allowances, office expenses</td>
+								<td>
+									Centrally Sponsored Schemes (CSS), State
+									schemes, projects
+								</td>
+								<td>
+									Salary of police/secretariat staff,
+									pensions, interest payments, debt repayment
+								</td>
+							</tr>
+							<tr>
+								<td>Example</td>
+								<td>Vidhan Sabha admin expenses</td>
+								<td>
+									PMGSY roads, Jal Jeevan Mission, Saat
+									Nischay schemes (Bihar)
+								</td>
+								<td>
+									Pension to retired employees, interest on
+									state debt
+								</td>
+							</tr>
+						</table>
+					</section>
+
+					<section class="block" id="s6">
+						<h3 class="secttl">
+							6. Revenue vs Capital — Budget Structure (Art. 112 /
+							202)
+						</h3>
+						<div class="boxdiagram">
+							<div class="boxcol">
+								<h5>🅡 REVENUE</h5>
+								<div class="boxsub">
+									<b>Receipt — Tax</b>Direct: Corporation Tax,
+									Income Tax, STT<br />Indirect: GST, Excise,
+									Custom
+								</div>
+								<div class="boxsub">
+									<b>Receipt — Non-Tax</b>Selling
+									goods/services, Dividend &amp; Profit,
+									Interest received, Grants received
+								</div>
+								<div class="boxsub">
+									<b>Expenditure</b>Interest paid on loans,
+									Grants given, Subsidies, Defence, Salaries
+									&amp; Pension
+								</div>
+							</div>
+							<div class="boxcol">
+								<h5>🅒 CAPITAL</h5>
+								<div class="boxsub">
+									<b>Receipt — Debt</b>Internal borrowings,
+									External borrowings
+								</div>
+								<div class="boxsub">
+									<b>Receipt — Non-Debt</b>Loan recovered,
+									Disinvestment
+								</div>
+								<div class="boxsub">
+									<b>Expenditure</b>Loans given, Capital goods
+									/ assets purchase
+								</div>
+							</div>
+						</div>
+						<div class="notebox">
+							<p>
+								<mark class="rule"
+									>Total Receipts = Total Expenditure</mark
+								>
+								— Yes, they are always presented as
+								<mark class="concept">equal</mark> in the
+								budget's accounting framework (balanced by
+								borrowing/deficit financing).
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s7">
+						<h3 class="secttl">
+							7. Four-Way Classification Table &amp;
+							Identification Trick
+						</h3>
+						<table class="tbl-pastel">
+							<tr>
+								<th>Revenue Receipt 💰</th>
+								<th>Revenue Expenditure 💸</th>
+								<th>Capital Receipt 💰</th>
+								<th>Capital Expenditure 💸</th>
+							</tr>
+							<tr>
+								<td><b>Regular/current income</b></td>
+								<td><b>Day-to-day/current expenses</b></td>
+								<td>
+									<b>Creates liability or reduces asset</b>
+								</td>
+								<td>
+									<b
+										>Creates/acquires asset or reduces
+										liability</b
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>Income Tax</td>
+								<td>Salaries</td>
+								<td>Government borrowing</td>
+								<td>Construction of highway</td>
+							</tr>
+							<tr>
+								<td>GST</td>
+								<td>Pensions</td>
+								<td>Sale of LIC shares</td>
+								<td>Construction of hospital</td>
+							</tr>
+							<tr>
+								<td>Customs duty</td>
+								<td>Subsidies</td>
+								<td>Sale of government land</td>
+								<td>Purchase of machinery</td>
+							</tr>
+							<tr>
+								<td>Toll/road tax</td>
+								<td>Interest on govt debt</td>
+								<td>Recovery of loans given</td>
+								<td>Purchase of land</td>
+							</tr>
+							<tr>
+								<td>Fees &amp; fines</td>
+								<td>Routine maintenance</td>
+								<td>Disinvestment of PSU</td>
+								<td>Giving loans to states/PSUs</td>
+							</tr>
+							<tr>
+								<td>Dividends from PSUs</td>
+								<td>Office/electricity expenses</td>
+								<td>—</td>
+								<td>Repayment of govt debt</td>
+							</tr>
+							<tr>
+								<td>Interest received</td>
+								<td>Food subsidy</td>
+								<td>—</td>
+								<td>Major infra projects</td>
+							</tr>
+						</table>
+						<div class="formulagrid">
+							<div class="fblock rd">
+								<h5>THE ULTIMATE 2-LINE TRICK — RECEIPT</h5>
+								<div class="short">
+									Asset ↓ or Liability ↑ = CAPITAL
+								</div>
+								<div class="full">Otherwise → REVENUE</div>
+							</div>
+							<div class="fblock fd">
+								<h5>THE ULTIMATE 2-LINE TRICK — EXPENDITURE</h5>
+								<div class="short">
+									Asset ↑ or Liability ↓ = CAPITAL
+								</div>
+								<div class="full">Otherwise → REVENUE</div>
+							</div>
+						</div>
+						<div class="trapbox">
+							<p><b>Quick Fire:</b></p>
+							<ul>
+								<li>
+									Tax →
+									<mark class="fact">Revenue Receipt</mark>
+								</li>
+								<li>
+									Salary →
+									<mark class="fact"
+										>Revenue Expenditure</mark
+									>
+								</li>
+								<li>
+									Borrowing →
+									<mark class="trap">Capital Receipt</mark>
+								</li>
+								<li>
+									Highway construction →
+									<mark class="trap"
+										>Capital Expenditure</mark
+									>
+								</li>
+							</ul>
+						</div>
+					</section>
+
+					<section class="block" id="s8">
+						<h3 class="secttl">
+							8. Point of Incidence vs Point of Impact (Direct
+							&amp; Indirect Tax)
+						</h3>
+						<h4 class="subttl">
+							Direct Tax — Impact = Incidence (Same Person)
+						</h4>
+						<div class="arrowflow">
+							<div class="arrowbox">
+								<b>Government levies tax</b>e.g. Income Tax
+							</div>
+							<div class="arrow">→</div>
+							<div class="arrowbox">
+								<b>Point of Impact</b>Taxpayer pays it first
+								(immediate money burden)
+							</div>
+							<div class="arrow">=</div>
+							<div class="arrowbox">
+								<b>Point of Incidence</b>Same taxpayer bears
+								final burden —
+								<mark class="trap">cannot be shifted</mark>
+							</div>
+						</div>
+						<h4 class="subttl">
+							Indirect Tax — Impact ≠ Incidence (Shifted)
+						</h4>
+						<div class="arrowflow">
+							<div class="arrowbox">
+								<b>Government levies tax</b>e.g. GST on seller
+							</div>
+							<div class="arrow">→</div>
+							<div class="arrowbox">
+								<b>Point of Impact</b>Seller/manufacturer pays
+								first —
+								<mark class="concept">initial liability</mark>
+							</div>
+							<div class="arrow">→ shifted →</div>
+							<div class="arrowbox">
+								<b>Point of Incidence</b>Final consumer bears
+								actual burden (via higher price)
+							</div>
+						</div>
+						<div class="notebox">
+							<p>
+								<mark class="concept">Point of Impact</mark> =
+								where the tax is
+								<mark class="fact"
+									>first imposed / initially paid</mark
+								>.
+								<mark class="concept">Point of Incidence</mark>
+								= where the
+								<mark class="fact">final money burden</mark>
+								actually rests, after any shifting.
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s9">
+						<h3 class="secttl">
+							9. Railway Budget History (from committee timeline)
+						</h3>
+						<div class="flow">
+							<div class="flowstep" data-n="1">
+								<div class="ftext">
+									<b>1920-21 — Acworth Committee</b>
+									<p>
+										10-member committee (incl. 3 Indians)
+										headed by British railway economist
+										<mark class="person"
+											>Sir William Acworth</mark
+										>, constituted to review Indian
+										Railways' finances &amp; administration;
+										recommended
+										<mark class="concept"
+											>consolidation,
+											nationalisation</mark
+										>
+										and separation of railway finances from
+										general revenues.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="2">
+								<div class="ftext">
+									<b
+										>1923 — Financial Commissioner for
+										Railways appointed</b
+									>
+									<p>
+										Groundwork laid for separating railway
+										accounts.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="3">
+								<div class="ftext">
+									<b
+										>20 September 1924 — Separation
+										Convention</b
+									>
+									<p>
+										Railway finances formally separated from
+										the General Budget under Viceroy
+										<mark class="person">Lord Reading</mark>
+										(Viceroy 1921–26); Railway Budget
+										introduced separately from
+										<mark class="fact">1924-25</mark>.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="4">
+								<div class="ftext">
+									<b
+										>1925 — First separate Railway Budget
+										presented</b
+									>
+									<p>
+										Practice continued every year
+										thereafter.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="5">
+								<div class="ftext">
+									<b
+										>1947 — First Railway Budget of
+										Independent India</b
+									>
+									<p>
+										Presented by
+										<mark class="person">John Mathai</mark>
+										on 20 Nov 1947.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="6">
+								<div class="ftext">
+									<b>21 September 2016 — Merger approved</b>
+									<p>
+										<mark class="person"
+											>Modi government</mark
+										>
+										approved merging Railway &amp; General
+										Budgets, based on NITI Aayog white paper
+										<i
+											>"Dispensing with the Railway
+											Budget"</i
+										>
+										by the
+										<mark class="person"
+											>Bibek Debroy Committee</mark
+										>.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="7">
+								<div class="ftext">
+									<b
+										>2017 (Budget 2017-18) — Merger
+										implemented</b
+									>
+									<p>
+										Ended a
+										<mark class="fact">92-year-old</mark>
+										practice; Railway Budget merged into the
+										Union Budget, presented by FM
+										<mark class="person">Arun Jaitley</mark
+										>.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="trapbox">
+							<p>
+								Do not confuse direction:
+								<mark class="trap">1924 = SEPARATED</mark>
+								(Acworth Committee) vs
+								<mark class="trap">2017 = MERGED BACK</mark>
+								(Bibek Debroy Committee).
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s10">
+						<h3 class="secttl">
+							10. Types of Deficit — Formulas &amp; Meaning
+						</h3>
+						<div class="formulagrid">
+							<div class="fblock rd">
+								<h5>Revenue Deficit (RD)</h5>
+								<div class="short">RD = RE − RR</div>
+								<div class="full">
+									Full form: Revenue Deficit = Revenue
+									Expenditure − Revenue Receipts.<br />One-liner:
+									Govt's day-to-day spending exceeds its
+									regular income.
+								</div>
+							</div>
+							<div class="fblock fd">
+								<h5>Fiscal Deficit (FD)</h5>
+								<div class="short">
+									FD = TE − (RR + Non-debt CR)
+								</div>
+								<div class="full">
+									Full form: Fiscal Deficit = Total
+									Expenditure − (Revenue Receipts + Non-Debt
+									Capital Receipts).<br />One-liner: Total gap
+									the govt must fill by borrowing.
+								</div>
+							</div>
+							<div class="fblock pd">
+								<h5>Primary Deficit (PD)</h5>
+								<div class="short">
+									PD = FD − Interest Payment
+								</div>
+								<div class="full">
+									Full form: Primary Deficit = Fiscal Deficit
+									− Interest Payments.<br />One-liner:
+									Borrowing need excluding the burden of past
+									debt's interest.
+								</div>
+							</div>
+							<div class="fblock erd">
+								<h5>Effective Revenue Deficit (ERD)</h5>
+								<div class="short">
+									ERD = RD − Grants for Capital Assets
+								</div>
+								<div class="full">
+									Full form: Effective Revenue Deficit =
+									Revenue Deficit − Grants-in-aid for creation
+									of Capital Assets.<br />One-liner: Real
+									"unproductive" revenue gap, after removing
+									grants that actually build assets.
+								</div>
+							</div>
+						</div>
+						<div class="tree">
+							<div class="root">TYPES OF DEFICIT</div>
+							<div class="branches">
+								<div class="branchnode">
+									<b>Revenue Deficit</b>RE &gt; RR<br />Shows
+									weakness in day-to-day finances
+								</div>
+								<div class="branchnode">
+									<b>Fiscal Deficit</b>Total borrowing
+									requirement of govt
+								</div>
+								<div class="branchnode">
+									<b>Primary Deficit</b>Fiscal deficit minus
+									interest burden
+								</div>
+								<div class="branchnode">
+									<b>Effective Revenue Deficit</b>Revenue
+									deficit minus capital-asset grants
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- ================= TAB 2 ================= -->
+				<div class="panel" id="t2">
+					<div class="pagehead">
+						<h2>Bihar Budget 2026-27 — Complete Notes</h2>
+						<p>
+							Presented:
+							<mark class="fact">3 February 2026</mark> · FM:
+							<mark class="person">Bijendra Prasad Yadav</mark>
+							&nbsp;|&nbsp; 🟨 Concept &nbsp; 🟦 Fact/Number
+							&nbsp; 🟩 Person/Institution &nbsp; 🟥 MCQ Trap
+						</p>
+					</div>
+
+					<section class="block" id="b1">
+						<h3 class="secttl">1. Basics &amp; Growth Rate</h3>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>Total Size</h5>
+								<p>
+									<mark class="fact">₹3,47,589.76 crore</mark>
+									—
+									<mark class="trap"
+										>largest budget in Bihar's history</mark
+									>
+								</p>
+							</div>
+							<div class="card g-yellow">
+								<h5>Rise over 2025-26</h5>
+								<p>
+									<mark class="fact">9.68%</mark> increase
+									(2025-26 was ₹3.17 lakh cr; rise of
+									~₹30,000-30,694 cr)
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>GSDP Growth Rate</h5>
+								<p>
+									<mark class="fact">14.9%</mark> (GSDP: ₹13.1
+									lakh crore)
+								</p>
+							</div>
+						</div>
+						<table>
+							<tr>
+								<th></th>
+								<th>Rate</th>
+							</tr>
+							<tr>
+								<td>Budget growth rate</td>
+								<td><mark class="fact">9.68%</mark></td>
+							</tr>
+							<tr>
+								<td>GSDP (economy) growth rate</td>
+								<td><mark class="fact">14.9%</mark></td>
+							</tr>
+						</table>
+						<h4 class="subttl">Saat Nischay-3</h4>
+						<div class="notebox">
+							<p>
+								Official name is
+								<mark class="trap">"Saat Nischay-3"</mark> (not
+								just "7 Nischay"). Timeline:
+								<mark class="fact">2025-30</mark>. Goals:
+								<mark class="concept"
+									>Double Per Capita Income</mark
+								>;
+								<mark class="fact">1 crore jobs by 2030</mark>.
+								Allocation:
+								<mark class="fact">₹14,800 cr</mark>.
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="b2">
+						<h3 class="secttl">2. Total Budget Break-up</h3>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>(a) Scheme Expenditure</h5>
+								<p>
+									<mark class="fact"
+										>₹1,22,155.42 cr (~35%)</mark
+									>
+								</p>
+							</div>
+							<div class="card g-red">
+								<h5>
+									(b) Establishment &amp; Commitment
+									Expenditure
+								</h5>
+								<p>
+									<mark class="fact"
+										>₹2,25,434.34 cr (64.85%)</mark
+									>
+								</p>
+							</div>
+						</div>
+						<h4 class="subttl">Revenue vs Capital</h4>
+						<table>
+							<tr>
+								<th>Component</th>
+								<th>Amount</th>
+								<th>Share</th>
+							</tr>
+							<tr>
+								<td>Revenue Expenditure</td>
+								<td>
+									<mark class="fact">₹2,84,133.92 cr</mark>
+								</td>
+								<td><mark class="concept">81.74%</mark></td>
+							</tr>
+							<tr>
+								<td>Capital Expenditure</td>
+								<td><mark class="fact">₹63,455.84 cr</mark></td>
+								<td><mark class="concept">18.26%</mark></td>
+							</tr>
+							<tr>
+								<td>Revenue Receipt</td>
+								<td><mark class="fact"> 2.85 LCr </mark></td>
+								<td><mark class="concept">82.03%</mark></td>
+							</tr>
+							<tr>
+								<td>Capital Receipt</td>
+								<td>—</td>
+								<td>17.97%</td>
+							</tr>
+						</table>
+						<div class="trapbox">
+							<p>
+								Capital Expenditure is
+								<mark class="trap"
+									>₹63,455 CRORE — NOT 63 lakh crore.</mark
+								>
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="b3">
+						<h3 class="secttl">
+							3. Sources &amp; Application of Funds
+						</h3>
+						<h4 class="subttl">
+							Money Comes From (Sources of Receipts) — descending
+							order
+						</h4>
+						<ol class="hierlist">
+							<li data-rank="1">
+								States' Share in Central Taxes<mark
+									class="concept"
+									>(45%)</mark
+								>
+							</li>
+							<li data-rank="2">State Govt. Tax Revenue</li>
+							<li data-rank="3">Public Debt</li>
+							<li data-rank="4">Grant-in-Aid</li>
+							<li data-rank="5">State's Non-tax Revenue</li>
+							<li data-rank="6">Loans</li>
+						</ol>
+						<h4 class="subttl">
+							Money Goes To (Expenditure) — descending order
+						</h4>
+						<ol class="hierlist">
+							<li data-rank="1">Social Services</li>
+							<li data-rank="2">General Services</li>
+							<li data-rank="3">Economic Services</li>
+							<li data-rank="4">Repayment of Public Debt</li>
+							<li data-rank="5">Loans &amp; Advances</li>
+							<li data-rank="6">Grant-in-Aid</li>
+						</ol>
+					</section>
+<section class="block" id="s10">
+						<h3 class="secttl">
+							10. Types of Deficit — Formulas &amp; Meaning
+						</h3>
+						<div class="formulagrid">
+							<div class="fblock rd">
+								<h5>Revenue Deficit (RD)</h5>
+								<div class="short">RD = RE − RR</div>
+								<div class="full">
+									Full form: Revenue Deficit = Revenue
+									Expenditure − Revenue Receipts.<br />One-liner:
+									Govt's day-to-day spending exceeds its
+									regular income.
+								</div>
+							</div>
+							<div class="fblock fd">
+								<h5>Fiscal Deficit (FD)</h5>
+								<div class="short">
+									FD = TE − (RR + Non-debt CR)
+								</div>
+								<div class="full">
+									Full form: Fiscal Deficit = Total
+									Expenditure − (Revenue Receipts + Non-Debt
+									Capital Receipts).<br />One-liner: Total gap
+									the govt must fill by borrowing.
+								</div>
+							</div>
+							<div class="fblock pd">
+								<h5>Primary Deficit (PD)</h5>
+								<div class="short">
+									PD = FD − Interest Payment
+								</div>
+								<div class="full">
+									Full form: Primary Deficit = Fiscal Deficit
+									− Interest Payments.<br />One-liner:
+									Borrowing need excluding the burden of past
+									debt's interest.
+								</div>
+							</div>
+							<div class="fblock erd">
+								<h5>Effective Revenue Deficit (ERD)</h5>
+								<div class="short">
+									ERD = RD − Grants for Capital Assets
+								</div>
+								<div class="full">
+									Full form: Effective Revenue Deficit =
+									Revenue Deficit − Grants-in-aid for creation
+									of Capital Assets.<br />One-liner: Real
+									"unproductive" revenue gap, after removing
+									grants that actually build assets.
+								</div>
+							</div>
+						</div>
+						<div class="tree">
+							<div class="root">TYPES OF DEFICIT</div>
+							<div class="branches">
+								<div class="branchnode">
+									<b>Revenue Deficit</b>RE &gt; RR<br />Shows
+									weakness in day-to-day finances
+								</div>
+								<div class="branchnode">
+									<b>Fiscal Deficit</b>Total borrowing
+									requirement of govt
+								</div>
+								<div class="branchnode">
+									<b>Primary Deficit</b>Fiscal deficit minus
+									interest burden
+								</div>
+								<div class="branchnode">
+									<b>Effective Revenue Deficit</b>Revenue
+									deficit minus capital-asset grants
+								</div>
+							</div>
+						</div>
+					</section>
+				</div>
+					<section class="block" id="b4">
+						<h3 class="secttl">4. Deficit / GSDP Indicators</h3>
+						<div class="cardgrid">
+							<div class="card g-green">
+								<h5>Revenue Surplus</h5>
+								<p>
+									<mark class="fact">0.09% of GSDP</mark>
+									(₹1,143.19 cr)
+								</p>
+							</div>
+							<div class="card g-red">
+								<h5>Fiscal Deficit</h5>
+								<p>
+									<mark class="fact">2.99% of GSDP</mark>
+									(₹39,112 cr)
+								</p>
+							</div>
+							<div class="card g-yellow">
+								<h5>Primary Deficit</h5>
+								<p><mark class="fact">1.05%</mark></p>
+							</div>
+							<div class="card g-blue">
+								<h5>GSDP</h5>
+								<p>
+									<mark class="fact">₹13.09 lakh crore</mark>
+									(growth 14.9-15%)
+								</p>
+							</div>
+							<div class="card g-purple">
+								<h5>Public Debt</h5>
+								<p>~<mark class="fact">29% of GSDP (3.88 Lakh cr)</mark></p>
+							</div>
+							<div class="card g-purple">
+								<h5>
+									Total Debt (including Public Account
+									Liabilities)
+								</h5>
+								<p>
+									~<mark class="fact"
+										>34% of GSDP(4.46 Lakh cr)</mark
+									>
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="b5">
+						<h3 class="secttl">5. Department-wise Allocation</h3>
+						<h4 class="subttl">
+							By Annual Scheme Outlay (Scheme Expenditure)
+						</h4>
+						<table>
+							<tr>
+								<th>Department</th>
+								<th>Share</th>
+							</tr>
+							<tr>
+								<td>
+									<mark class="trap"
+										>Rural Development Dept.</mark
+									>
+								</td>
+								<td>
+									<mark class="fact">18.33%</mark> —
+									<mark class="trap"
+										>TOP in Scheme Expenditure</mark
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>Education Dept.</td>
+								<td>15.02%</td>
+							</tr>
+							<tr>
+								<td>Health</td>
+								<td>8.21%</td>
+							</tr>
+							<tr>
+								<td>Urban Dev. &amp; Housing Dept.</td>
+								<td>7.77%</td>
+							</tr>
+						</table>
+						<h4 class="subttl">
+							By Establishment &amp; Committed Expenditure
+						</h4>
+						<table>
+							<tr>
+								<th>Department</th>
+								<th>Share</th>
+							</tr>
+							<tr>
+								<td>Education (dept. only)</td>
+								<td>17.32% <mark class="person">60K Cr. </mark></td>
+							</tr>
+							<tr>
+								<td>Pension</td>
+								<td>10.12%</td>
+							</tr>
+							<tr>
+								<td>Interest Payment</td>
+								<td>7.30%</td>
+							</tr>
+							<tr>
+								<td>Rural Development</td>
+								<td>6.82%</td>
+							</tr>
+						</table>
+						<div class="notebox">
+							<p>
+								<b
+									>Overall Education (incl. Higher
+									Education):</b
+								>
+								17.32 + 2.31 =
+								<mark class="fact">19.63% (₹68,216.95 cr)</mark>
+								— highest
+								<mark class="concept">sectoral</mark> allocation
+								(across both Scheme + Establishment expenditure
+								combined).<br /><b
+									>But by Scheme Expenditure alone, Rural
+									Development is top</b
+								>
+								(18.33%),
+								<mark class="trap">not Education</mark>.
+							</p>
+						</div>
+						<h4 class="subttl">
+							Sector-wise Priority (declared order)
+						</h4>
+						<div class="tree">
+							<div class="root">TOP PRIORITY SECTORS</div>
+							<div class="branches">
+								<div class="branchnode">
+									<b>1. Education <mark class="person">68K Cr.</mark></b>
+								</div>
+								<div class="branchnode">
+									<b>2. Rural Development <mark class="person">26.5K Cr.</mark></b>
+								</div>
+
+								<div class="branchnode"><b>3. Health <mark class="person">21.2K Cr.</mark></b></div>
+                <div class="branchnode"><b>4. Home <mark class="person">20K Cr.</mark></b></div>
+								<div class="branchnode"><b>5. Energy <mark class="person">18K Cr.</mark></b></div>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="b6">
+						<h3 class="secttl">
+							6. Finance Commission (16th FC) Devolution
+						</h3>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>Centre's Share in Revenue Receipts</h5>
+								<p>
+									<mark class="fact">73.63%</mark> comes from
+									Centre (Grants + FC Devolution)
+								</p>
+							</div>
+							<div class="card g-red">
+								<h5>Bihar's Share in Divisible Pool</h5>
+								<p>
+									16th FC → <mark class="fact">9.95%</mark> |
+									15th FC → <mark class="fact">10.06%</mark
+									><br /><mark class="trap"
+										>Bihar LOST 0.11 percentage points</mark
+									>
+								</p>
+							</div>
+						</div>
+						<h4 class="subttl">
+							Parameters for State-wise Allocation (16th FC)
+						</h4>
+						<div class="tree">
+							<div class="root">
+								16th FC ALLOCATION PARAMETERS
+							</div>
+							<div class="branches">
+								<div class="branchnode">
+									<b>Income Distance</b>
+								</div>
+								<div class="branchnode"><b>Population</b></div>
+								<div class="branchnode">
+									<b>Demographic Performance</b>
+								</div>
+								<div class="branchnode"><b>Area</b></div>
+								<div class="branchnode">
+									<b>Forest Cover</b>
+								</div>
+								<div class="branchnode">
+									<b>Contribution to GDP/GSDP</b
+									><mark class="trap"
+										>used for the first time</mark
+									>
+								</div>
+								<div class="branchnode">
+									<b>Tax &amp; Fiscal Effort</b>(inverse
+									relation)
+								</div>
+							</div>
+						</div>
+						<h4 class="subttl">
+							Local Body Grants (2026-31, five-year totals)
+						</h4>
+						<table>
+							<tr>
+								<th>Grant</th>
+								<th>Amount</th>
+							</tr>
+							<tr>
+								<td>Rural Local Body</td>
+								<td><mark class="fact">₹51,923 cr</mark></td>
+							</tr>
+							<tr>
+								<td>Urban Local Body</td>
+								<td><mark class="fact">₹9,169 cr</mark></td>
+							</tr>
+							<tr>
+								<td>Disaster Management</td>
+								<td><mark class="fact">₹13,615 cr</mark></td>
+							</tr>
+						</table>
+					</section>
+
+					<section class="block" id="b7">
+						<h3 class="secttl">
+							7. Agriculture &amp; Farmers' Welfare
+						</h3>
+						<h4 class="subttl">India Ranking (Bihar's Position)</h4>
+						<div class="cardgrid">
+							<div class="card g-green">
+								<h5>Makhana</h5>
+								<p>
+									<mark class="fact">1st in India</mark> (~85%
+									national share)
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>Litchi</h5>
+								<p>
+									<mark class="fact">1st in India</mark>
+									(~40-43% national share)
+								</p>
+							</div>
+							<div class="card g-yellow">
+								<h5>Maize</h5>
+								<p><mark class="fact">5th nationally</mark></p>
+							</div>
+						</div>
+						<div class="notebox">
+							<p>
+								₹<mark class="fact">1 lakh cr</mark> for Cold
+								Storage under
+								<mark class="concept"
+									>Agri Infrastructure Mission</mark
+								>.
+							</p>
+						</div>
+						<h4 class="subttl">Farmers' Welfare</h4>
+						<div class="card g-blue">
+							<h5>
+								Jananayak Karpoori Thakur Kisan Samman Nidhi
+							</h5>
+							<p>
+								<mark class="fact">₹3,000 per YEAR</mark> —
+								state top-up added to central PM-KISAN
+								<mark class="fact">₹6,000/year</mark>, giving
+								farmers a combined
+								<mark class="fact">₹9,000/year total</mark>.
+								Benefits ~<mark class="fact"
+									>73 lakh farmers</mark
+								>.
+							</p>
+						</div>
+						<div class="trapbox">
+							<p>
+								It is
+								<mark class="trap"
+									>₹3,000 PER YEAR, not monthly.</mark
+								>
+							</p>
+						</div>
+						<div class="notebox">
+							<p>
+								Bihar's first dedicated skill university is the
+								<mark class="person"
+									>Bharat Ratna Jan Nayak Karpoori Thakur
+									Skill University</mark
+								>, inaugurated on
+								<mark class="fact">4 October 2025</mark>.
+								Focuses on modern technical &amp; vocational
+								education aligned with
+								<mark class="concept">Industry 4.0</mark> (AI,
+								IoT, advanced manufacturing) through frameworks
+								like <mark class="concept">PMKVY 4.0</mark>.
+							</p>
+						</div>
+						<ul>
+							<li>
+								<mark class="concept">Tarkari Outlets:</mark>
+								<mark class="fact">200 blocks</mark> (to ensure
+								fair price)
+							</li>
+							<li>
+								<mark class="person"
+									>Goat Semen Station, Gaya</mark
+								>
+								— <mark class="trap">1st in Bihar</mark>
+							</li>
+							<li>
+								Cooperative Sugar Mills on closed mill lands at
+								<mark class="fact">Sakri (Madhubani)</mark> and
+								<mark class="fact">Raiyam (Darbhanga)</mark>
+							</li>
+						</ul>
+					</section>
+
+					<section class="block" id="b8">
+						<h3 class="secttl">
+							8. Eco-Tourism Projects &amp; Wetlands / Environment
+						</h3>
+						<h4 class="subttl">Eco-Tourism Projects</h4>
+						<table>
+							<tr>
+								<th>District</th>
+								<th>Project</th>
+							</tr>
+							<tr>
+								<td>Rohtas–Kaimur</td>
+								<td><mark class="trap">Karamchat Eco-Tourism</mark> / Adventure Hub</td>
+							</tr>
+							<tr>
+								<td>Nawada</td>
+								<td>
+									<mark class="person">Khuri Biodiversity Park</mark> + <mark class="person">Sanjeevini Vatika</mark>
+									(at Budhaul)
+								</td>
+							</tr>
+							<tr>
+								<td>Jamui</td>
+								<td>
+									Garhi (Dam) — part of bird-sanctuary cluster
+									with Nagi &amp; Nakti
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<mark class="person">Vaishali</mark> (also
+									Saran/Samastipur belt)
+								</td>
+								<td>
+									<mark class="fact">Baraila Lake</mark>
+									eco-tourism development
+								</td>
+							</tr>
+						</table>
+						<h4 class="subttl">Wetlands / Environment</h4>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>Kawar (Kanwar) Lake — Begusarai</h5>
+								<p>
+									Asia's largest freshwater lake;
+									<mark class="concept">Ramsar site</mark>
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>Nagi, Nakti Dams — Jamui</h5>
+								<p>
+									Bird sanctuaries; part of same cluster as
+									Garhi
+								</p>
+							</div>
+							<div class="card g-blue">
+								<h5>Gokul Reservoir — Buxar</h5>
+							</div>
+							<div class="card g-blue">
+								<h5>Udaipur Lake — Bettiah, West Champaran</h5>
+							</div>
+							<div class="card g-yellow">
+								<h5>Gogabil — Katihar</h5>
+								<p>
+									Bihar's
+									<mark class="trap"
+										>first Community Reserve</mark
+									>
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="b9">
+						<h3 class="secttl">
+							9. Industrial Development &amp; Women-Centric
+							Schemes
+						</h3>
+						<h4 class="subttl">Industrial Development</h4>
+						<table>
+							<tr>
+								<th>Project</th>
+								<th>Location</th>
+								<th>Detail</th>
+							</tr>
+							<tr>
+								<td>Multi-Model Logistics Park</td>
+								<td>Fatuha, Patna</td>
+								<td>—</td>
+							</tr>
+							<tr>
+								<td>FinTech City</td>
+								<td>Fatuha, Patna</td>
+								<td>
+									<mark class="fact"
+										>242 acres, ₹408.81 cr</mark
+									>
+									for land acquisition; modeled on Gujarat's
+									GIFT City
+								</td>
+							</tr>
+							<tr>
+								<td>Pharmaceutical Park</td>
+								<td>Amanour, Saran</td>
+								<td>
+									<mark class="fact">100 acres</mark>, under
+									Bihar Pharmaceutical Promotion Policy 2024
+								</td>
+							</tr>
+						</table>
+						<h4 class="subttl">Women-Centric Schemes</h4>
+						<div class="cardgrid">
+							<div class="card g-purple">
+								<h5>Mukhyamantri Mahila Rojgar Yojana</h5>
+								<p>
+									<mark class="fact">1.56 crore women</mark>
+									received ₹10,000 each (first installment)
+									for income-generating activities
+								</p>
+							</div>
+							<div class="card g-purple">
+								<h5>Women Entrepreneurship Support</h5>
+								<p>
+									Additional assistance up to
+									<mark class="fact">₹2 lakh</mark> (staged,
+									after enterprise review)
+								</p>
+							</div>
+							<div class="card g-purple">
+								<h5>Lakhpati Didi Scheme</h5>
+								<p>
+									<mark class="fact"
+										>31.71 lakh Jeevika Didis</mark
+									>
+									declared "Lakhpati" (confirmed in Assembly,
+									Feb 2026)
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="b10">
+						<h3 class="secttl">10. Art, Culture &amp; Tourism</h3>
+						<h4 class="subttl">Art &amp; Culture</h4>
+						<div class="card g-yellow">
+							<h5>Mukhyamantri Kalakar Pension Yojana</h5>
+							<p>
+								<mark class="fact">₹3,000/month</mark>.
+								Eligibility: artists aged
+								<mark class="fact">50+</mark>,
+								<mark class="fact">10+ years</mark> of
+								contribution, annual family income under
+								<mark class="fact">₹1.2 lakh</mark>.
+							</p>
+						</div>
+						<div class="trapbox">
+							<p>
+								Kalakar Pension is
+								<mark class="trap"
+									>₹3,000/month — NOT ₹30,000/month.</mark
+								>
+							</p>
+						</div>
+						<table>
+							<tr>
+								<th>Scheme</th>
+								<th>Detail</th>
+							</tr>
+							<tr>
+								<td>
+									Mukhyamantri Guru-Shishya Parampara Yojana
+								</td>
+								<td>
+									Guru:
+									<mark class="fact">₹15,000/month</mark> |
+									Shishya:
+									<mark class="fact">₹3,000/month</mark>
+								</td>
+							</tr>
+							<tr>
+								<td>Atal Kala Bhawan Construction Scheme</td>
+								<td>
+									Built in each district headquarters; will
+									function as a
+									<mark class="concept"
+										>town hall to showcase local
+										talent</mark
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Buddha Samyak Darshan Museum-cum-Memorial
+									Stupa
+								</td>
+								<td>Vaishali</td>
+							</tr>
+						</table>
+						<h4 class="subttl">Tourism</h4>
+						<table>
+							<tr>
+								<th>Scheme</th>
+								<th>Site</th>
+								<th>Amount</th>
+							</tr>
+							<tr>
+								<td>Swadesh Darshan 2.0</td>
+								<td>Sonepur Mela (Saran)</td>
+								<td><mark class="fact">₹24.29 cr</mark></td>
+							</tr>
+							<tr>
+								<td>PRASHAD Scheme</td>
+								<td>Ambika Bhawani Temple (Saran)</td>
+								<td><mark class="fact">₹13.29 cr</mark></td>
+							</tr>
+							<tr>
+								<td>—</td>
+								<td>
+									Buddhist Meditation Centre, Gaya (Bodh Gaya)
+								</td>
+								<td><mark class="fact">₹165.44 cr</mark></td>
+							</tr>
+							<tr>
+								<td>—</td>
+								<td>Matsyagandha Lake, Saharsa</td>
+								<td>—</td>
+							</tr>
+						</table>
+						<div class="trapbox">
+							<p>
+								Correct spelling:
+								<mark class="trap">PRASHAD</mark> (not "PRASAD")
+								— Pilgrimage Rejuvenation And Spiritual,
+								Heritage Augmentation Drive.
+							</p>
+						</div>
+						<h4 class="subttl">
+							The 3 Confirmed &amp; Sanctioned PRASHAD Projects in
+							Bihar
+						</h4>
+						<table>
+							<tr>
+								<th>#</th>
+								<th>Project</th>
+								<th>District</th>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>Patna Sahib</td>
+								<td>Patna</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Vishnupad Temple</td>
+								<td>Gaya</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Ambika Bhawani Temple / Aami Mandir</td>
+								<td>Saran</td>
+							</tr>
+						</table>
+						<h4 class="subttl">Environment Note</h4>
+						<div class="notebox">
+							<p>
+								<mark class="person"
+									>Bihar Pollution Control Board</mark
+								>
+								signed MoU with
+								<mark class="person">UNEP</mark> to prepare a
+								<mark class="concept"
+									>Climate-Resilient and Low-Carbon
+									Development Pathway</mark
+								>, targeting
+								<mark class="fact">Net Zero Carbon by 2070</mark
+								>.
+							</p>
+						</div>
+					</section>
+				</div>
+
+				<!-- ================= TAB 3 : MCQ ================= -->
+				<div class="panel" id="t3">
+					<div class="pagehead">
+						<h2>MCQ Practice Set — Prelims Level</h2>
+						<p>
+							Statement / matching / assertion-based questions in
+							UPSC-BPSC prelims style. Tap "Show Answer" to
+							reveal.
+						</p>
+					</div>
+
+					<section class="block" id="m1">
+						<h3 class="secttl">
+							Section A — Budget: Concepts &amp; Process
+						</h3>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q1. Consider the following statements regarding
+								budgets prepared by governments in India:<br />1.
+								The Green Budget evaluates the environmental
+								impact of budgetary policies.<br />2. Bihar was
+								the first Indian state to prepare a Child Budget
+								formulation process, with support from UNICEF
+								and ADRI.<br />Which of the statements given
+								above is/are correct?
+							</p>
+							<div class="options">
+								(a) 1 only &nbsp; (b) 2 only<br />(c) Both 1 and
+								2 &nbsp; (d) Neither 1 nor 2
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Both 1 and 2.</b> Green Budget
+									(started 2020-21) evaluates environmental
+									impact; Bihar (2019, with UNICEF &amp; ADRI)
+									was first to prepare the Child Budget
+									process.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q2. The "Outcome Budget," which links spending
+								to actual results and includes an Achievement
+								Report, was first introduced in which financial
+								year?
+							</p>
+							<div class="options">
+								(a) 2005-06 &nbsp; (b) 2006-07<br />(c) 2008-09
+								&nbsp; (d) 2010-11
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans"><b>(b) 2006-07.</b></div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q3. Which Article of the Constitution places the
+								Contingency Fund of a State at the disposal of
+								the Governor?
+							</p>
+							<div class="options">
+								(a) Article 202 &nbsp; (b) Article 266<br />(c)
+								Article 267 &nbsp; (d) Article 283
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Article 267.</b> Article 266 covers
+									the Consolidated Fund and Public Account;
+									Article 202 covers the Annual Financial
+									Statement.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q4. With reference to the Public Account of a
+								State (Article 266), consider the following
+								statements:<br />1. It includes provident fund,
+								small savings, and reserve funds.<br />2.
+								Withdrawal of money from this account requires
+								legislative approval, just like the Consolidated
+								Fund.<br />Which of the statements given above
+								is/are correct?
+							</p>
+							<div class="options">
+								(a) 1 only &nbsp; (b) 2 only<br />(c) Both 1 and
+								2 &nbsp; (d) Neither 1 nor 2
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) 1 only.</b> No legislative approval
+									is required for withdrawal from the Public
+									Account — this is what distinguishes it from
+									the Consolidated Fund.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q5. Match List-I with List-II and select the
+								correct answer using the codes given below:<br /><b
+									>List-I (Instrument, State)</b
+								>
+								— A. Annual Financial Statement &nbsp; B. Voting
+								on Demands for Grants &nbsp; C. Appropriation
+								Bill &nbsp; D. Finance Bill<br /><b
+									>List-II (Article)</b
+								>
+								— 1. Article 207 &nbsp; 2. Article 202 &nbsp; 3.
+								Article 204 &nbsp; 4. Article 203
+							</p>
+							<div class="options">
+								(a) A-2, B-4, C-3, D-1<br />(b) A-1, B-2, C-4,
+								D-3<br />(c) A-2, B-3, C-4, D-1<br />(d) A-4,
+								B-2, C-1, D-3
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) A-2, B-4, C-3, D-1.</b>
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q6. In the passage of a State Budget, at which
+								stage does discussion on overall fiscal policy
+								and priorities take place, WITHOUT any voting?
+							</p>
+							<div class="options">
+								(a) Voting on Demands for Grants &nbsp; (b)
+								General Discussion<br />(c) Examination by DRSC
+								&nbsp; (d) Appropriation Bill stage
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) General Discussion.</b>
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q7. The Appropriation Bill, enacted under
+								Article 204, primarily authorises:
+							</p>
+							<div class="options">
+								(a) Levy of fresh taxes &nbsp; (b) Withdrawal of
+								money from the Consolidated Fund of the State<br />(c)
+								Withdrawal from the Public Account &nbsp; (d)
+								Constitution of the Contingency Fund
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b).</b> The Finance Bill (Article 207)
+									is what enacts taxation proposals.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q8. Which category of government expenditure is
+								described as "obligatory / non-discretionary,"
+								typically covering pensions, salaries of
+								essential staff, and interest payments?
+							</p>
+							<div class="options">
+								(a) Scheme Expenditure &nbsp; (b) Establishment
+								Expenditure<br />(c) Commitment Expenditure
+								&nbsp; (d) Capital Expenditure
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Commitment Expenditure.</b>
+									Establishment Expenditure is about running
+									government machinery (offices/staff);
+									Commitment Expenditure is about mandatory
+									financial liabilities.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q9. Consider the following items:<br />1.
+								Recovery of loans given by the government<br />2.
+								Sale of government land<br />3. Interest
+								received by the government<br />4. Disinvestment
+								of a PSU<br />How many of the above are
+								classified as Capital Receipts?
+							</p>
+							<div class="options">
+								(a) Only one &nbsp; (b) Only two<br />(c) Only
+								three &nbsp; (d) All four
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Only three.</b> Items 1, 2, and 4 are
+									Capital Receipts; interest received is a
+									Revenue Receipt.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q10. Which of the following would be classified
+								as Capital Expenditure for a government?
+							</p>
+							<div class="options">
+								(a) Payment of salaries to school teachers
+								&nbsp; (b) Payment of interest on public debt<br />(c)
+								Purchase of land for a new government hospital
+								&nbsp; (d) Payment of food subsidy
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c).</b> Applying the rule: Asset ↑ or
+									Liability ↓ = Capital. Land purchase
+									increases the government's assets.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q11. In the context of taxation, "Point of
+								Impact" refers to:
+							</p>
+							<div class="options">
+								(a) The point where the final monetary burden of
+								a tax rests &nbsp; (b) The person on whom a tax
+								is originally levied and who pays it first<br />(c)
+								The rate at which a tax is levied &nbsp; (d) The
+								authority responsible for collecting the tax
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b).</b> Option (a) describes Point of
+									Incidence, not Point of Impact.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q12. Which of the following statements about
+								indirect taxes, such as GST, is correct?
+							</p>
+							<div class="options">
+								(a) Point of impact and point of incidence
+								always fall on the same person &nbsp; (b) The
+								tax burden can be shifted from the point of
+								impact to a different person at the point of
+								incidence<br />(c) The tax burden can never be
+								shifted &nbsp; (d) Only the final consumer ever
+								pays the tax initially
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b).</b> This shiftability is precisely
+									what distinguishes indirect taxes from
+									direct taxes.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q13. The recommendations of which committee led
+								to the separation of Railway Finances from the
+								General Budget of India in 1924?
+							</p>
+							<div class="options">
+								(a) Bibek Debroy Committee &nbsp; (b) Acworth
+								Committee<br />(c) Wanchoo Committee &nbsp; (d)
+								Muddiman Committee
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) Acworth Committee</b> (1920-21,
+									chaired by Sir William Acworth).
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q14. The Railway Budget was formally separated
+								from the General Budget, through the Separation
+								Convention of 1924, during the tenure of which
+								Viceroy of India?
+							</p>
+							<div class="options">
+								(a) Lord Chelmsford &nbsp; (b) Lord Reading<br />(c)
+								Lord Irwin &nbsp; (d) Lord Willingdon
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) Lord Reading</b> (Viceroy, 1921-26).
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q15. The 92-year-old practice of presenting a
+								separate Railway Budget was ended and merged
+								with the General Budget (from Budget 2017-18),
+								based on a white paper by which committee?
+							</p>
+							<div class="options">
+								(a) Acworth Committee &nbsp; (b) Bibek Debroy
+								Committee<br />(c) Vijay Kelkar Committee &nbsp;
+								(d) 15th Finance Commission
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) Bibek Debroy Committee</b> — white
+									paper titled "Dispensing with the Railway
+									Budget."
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q16. If a government's Revenue Expenditure
+								exceeds its Revenue Receipts, the resulting gap
+								is termed:
+							</p>
+							<div class="options">
+								(a) Fiscal Deficit &nbsp; (b) Primary Deficit<br />(c)
+								Revenue Deficit &nbsp; (d) Effective Revenue
+								Deficit
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Revenue Deficit</b> (RD = RE − RR).
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q17. Primary Deficit is obtained by deducting
+								which of the following from the Fiscal Deficit?
+							</p>
+							<div class="options">
+								(a) Revenue Deficit &nbsp; (b) Interest
+								Payments<br />(c) Grants for creation of capital
+								assets &nbsp; (d) Non-debt capital receipts
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) Interest Payments</b> (PD = FD −
+									Interest Payment).
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q18. The Effective Revenue Deficit is arrived at
+								by reducing the Revenue Deficit by:
+							</p>
+							<div class="options">
+								(a) Total capital expenditure &nbsp; (b)
+								Interest payments<br />(c) Grants-in-aid given
+								for creation of capital assets &nbsp; (d)
+								Subsidies
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c).</b> ERD = RD − Grants for creation
+									of capital assets.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="m2">
+						<h3 class="secttl">Section B — Bihar Budget 2026-27</h3>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q19. The Bihar Budget for 2026-27, at
+								approximately ₹3.48 lakh crore, registered a
+								growth over the previous year's budget size of
+								about:
+							</p>
+							<div class="options">
+								(a) 6.8% &nbsp; (b) 9.68%<br />(c) 14.9% &nbsp;
+								(d) 18.26%
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) 9.68%.</b> 14.9% is the GSDP growth
+									rate, not the budget's growth rate — a
+									common trap.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q20. Who presented the Bihar State Budget for
+								2026-27 in the Legislature?
+							</p>
+							<div class="options">
+								(a) Nitish Kumar &nbsp; (b) Bijendra Prasad
+								Yadav<br />(c) Samrat Chaudhary &nbsp; (d) Vijay
+								Kumar Chaudhary
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) Bijendra Prasad Yadav</b>, Finance
+									Minister, on 3 February 2026.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q21. Consider the following statements about
+								"Saat Nischay-3":<br />1. It covers the period
+								2025-30.<br />2. Its stated goals include
+								doubling Bihar's per capita income and creating
+								1 crore jobs by 2030.<br />Which of the
+								statements given above is/are correct?
+							</p>
+							<div class="options">
+								(a) 1 only &nbsp; (b) 2 only<br />(c) Both 1 and
+								2 &nbsp; (d) Neither 1 nor 2
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans"><b>(c) Both.</b></div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q22. In the Bihar Budget 2026-27, Capital
+								Expenditure as a share of total expenditure is
+								approximately:
+							</p>
+							<div class="options">
+								(a) 35% &nbsp; (b) 64.85%<br />(c) 18.26% &nbsp;
+								(d) 81.74%
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) 18.26%.</b> (81.74% is Revenue
+									Expenditure's share.)
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q23. Which of the following represents the
+								correct descending order of sources of receipts
+								("Money Comes From") in the Bihar Budget
+								2026-27?
+							</p>
+							<div class="options">
+								(a) State Tax Revenue &gt; Central Tax Share
+								&gt; Public Debt &gt; Grant-in-Aid<br />(b)
+								States' Share in Central Taxes &gt; State Govt.
+								Tax Revenue &gt; Public Debt &gt;
+								Grant-in-Aid<br />(c) Public Debt &gt; Central
+								Tax Share &gt; Grant-in-Aid &gt; State Tax
+								Revenue<br />(d) Grant-in-Aid &gt; Central Tax
+								Share &gt; Public Debt &gt; State Tax Revenue
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans"><b>(b).</b></div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q24. With reference to Bihar's fiscal indicators
+								for 2026-27, consider the following
+								statements:<br />1. The budget shows a Revenue
+								Surplus equal to about 0.1% of GSDP.<br />2. The
+								Fiscal Deficit is estimated at 3% of GSDP.<br />Which
+								of the statements given above is/are correct?
+							</p>
+							<div class="options">
+								(a) 1 only &nbsp; (b) 2 only<br />(c) Both 1 and
+								2 &nbsp; (d) Neither 1 nor 2
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Both.</b> A Revenue Surplus and a
+									Fiscal Deficit can coexist — the fiscal
+									deficit here is driven by capital account
+									borrowing, not revenue-side weakness.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q25. Which department received the HIGHEST
+								allocation under Annual Scheme Outlay (Scheme
+								Expenditure) in the Bihar Budget 2026-27?
+							</p>
+							<div class="options">
+								(a) Education Dept. &nbsp; (b) Health Dept.<br />(c)
+								Rural Development Dept. &nbsp; (d) Urban
+								Development &amp; Housing Dept.
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Rural Development Dept.</b> (18.33%)
+									— Education leads only when Scheme +
+									Establishment expenditure are combined (see
+									Q26).
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q26. Considering Scheme Expenditure AND
+								Establishment/Committed Expenditure together,
+								the highest overall sectoral allocation (19.63%,
+								₹68,216.95 cr) in the Bihar Budget 2026-27 went
+								to:
+							</p>
+							<div class="options">
+								(a) Rural Development &nbsp; (b) Health<br />(c)
+								Education (incl. Higher Education) &nbsp; (d)
+								Energy
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans"><b>(c) Education.</b></div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q27. What approximate percentage of Bihar's
+								Revenue Receipts for 2026-27 is estimated to
+								come from the Centre (Grants + Finance
+								Commission Devolution combined)?
+							</p>
+							<div class="options">
+								(a) 64.85% &nbsp; (b) 73.63%<br />(c) 82.03%
+								&nbsp; (d) 9.95%
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans"><b>(b) 73.63%.</b></div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q28. Bihar's share in the divisible pool of
+								central taxes, as recommended by the 16th
+								Finance Commission, is:
+							</p>
+							<div class="options">
+								(a) 10.06% &nbsp; (b) 9.95%<br />(c) 14.9%
+								&nbsp; (d) 18.33%
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) 9.95%</b> — down from 10.06% under
+									the 15th FC, a loss of 0.11 percentage
+									points.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q29. Which of the following criteria was used by
+								the 16th Finance Commission for horizontal
+								devolution among states for the FIRST TIME?
+							</p>
+							<div class="options">
+								(a) Population &nbsp; (b) Forest Cover<br />(c)
+								Contribution to GDP/GSDP &nbsp; (d) Income
+								Distance
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Contribution to GDP/GSDP.</b>
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q30. Consider the following crops and Bihar's
+								ranking in national production, as cited in the
+								2026-27 budget context:<br />1. Makhana — 1st in
+								India<br />2. Litchi — 1st in India<br />3.
+								Maize — 1st in India<br />How many of the above
+								pairs are correctly matched?
+							</p>
+							<div class="options">
+								(a) Only one &nbsp; (b) Only two<br />(c) All
+								three &nbsp; (d) None
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) Only two.</b> Makhana and Litchi are
+									ranked 1st; Bihar is ranked 5th nationally
+									in Maize production, not 1st.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q31. The Jananayak Karpoori Thakur Kisan Samman
+								Nidhi provides Bihar's farmers with a state
+								top-up of:
+							</p>
+							<div class="options">
+								(a) ₹3,000 per month, over and above PM-KISAN
+								&nbsp; (b) ₹3,000 per year, over and above
+								PM-KISAN's ₹6,000/year<br />(c) ₹6,000 per year,
+								matching PM-KISAN &nbsp; (d) ₹9,000 per month
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b).</b> Combined with PM-KISAN, farmers
+									receive ₹9,000/year in total, benefiting ~73
+									lakh farmers.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q32. The Bharat Ratna Jan Nayak Karpoori Thakur
+								Skill University — Bihar's first dedicated skill
+								university, aligned with Industry 4.0 and PMKVY
+								4.0 — was inaugurated in:
+							</p>
+							<div class="options">
+								(a) October 2024 &nbsp; (b) October 2025<br />(c)
+								February 2026 &nbsp; (d) October 2019
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) October 2025</b> (4 October 2025).
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q33. Which of the following wetland/water-body
+								and district pairs is INCORRECTLY matched?
+							</p>
+							<div class="options">
+								(a) Kanwar Lake — Begusarai &nbsp; (b) Gogabil —
+								Katihar<br />(c) Udaipur Lake — Purnia &nbsp;
+								(d) Gokul Reservoir — Buxar
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) is incorrect.</b> Udaipur Lake is
+									located in Bettiah, West Champaran — not
+									Purnia.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q34. Gogabil, mentioned in the Bihar Budget
+								2026-27 in the context of wetland conservation,
+								holds which of the following distinctions?
+							</p>
+							<div class="options">
+								(a) Asia's largest freshwater lake &nbsp; (b)
+								Bihar's first Ramsar site<br />(c) Bihar's first
+								Community Reserve &nbsp; (d) India's first bird
+								sanctuary
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Bihar's first Community Reserve.</b>
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q35. Kanwar (Kawar) Lake in Begusarai district
+								is notable for being:
+							</p>
+							<div class="options">
+								(a) Asia's largest freshwater oxbow lake and a
+								Ramsar site &nbsp; (b) Bihar's largest man-made
+								reservoir<br />(c) A UNESCO World Heritage
+								wetland &nbsp; (d) India's deepest lake
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans"><b>(a).</b></div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q36. The proposed FinTech City announced in the
+								Bihar Budget 2026-27, to come up at Fatuha
+								(Patna), is explicitly stated to be modeled on:
+							</p>
+							<div class="options">
+								(a) Mumbai's BKC &nbsp; (b) Gujarat's GIFT
+								City<br />(c) Hyderabad's HITEC City &nbsp; (d)
+								Bengaluru's Electronic City
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) Gujarat's GIFT City.</b>
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q37. Under the Mukhyamantri Mahila Rojgar
+								Yojana, the FIRST installment amount disbursed
+								to each of the 1.56 crore women beneficiaries
+								was:
+							</p>
+							<div class="options">
+								(a) ₹2 lakh &nbsp; (b) ₹10,000<br />(c) ₹1 lakh
+								&nbsp; (d) ₹15,000
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) ₹10,000.</b> The ₹2 lakh figure is
+									the additional, staged Women
+									Entrepreneurship Support — not the first
+									installment.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q38. Which scheme in the Bihar Budget 2026-27
+								provides a monthly pension of ₹3,000 to artists
+								aged 50 and above, with at least 10 years of
+								contribution and family income under ₹1.2
+								lakh/year?
+							</p>
+							<div class="options">
+								(a) Mukhyamantri Guru-Shishya Parampara Yojana
+								&nbsp; (b) Mukhyamantri Kalakar Pension
+								Yojana<br />(c) Lakhpati Didi Scheme &nbsp; (d)
+								Saat Nischay-3
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b).</b> Note the pension is
+									₹3,000/month, not ₹30,000/month.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q39. Under the Mukhyamantri Guru-Shishya
+								Parampara Yojana, the monthly stipends for the
+								Guru and the Shishya (student) respectively are:
+							</p>
+							<div class="options">
+								(a) ₹10,000 and ₹5,000 &nbsp; (b) ₹15,000 and
+								₹3,000<br />(c) ₹20,000 and ₹5,000 &nbsp; (d)
+								₹3,000 and ₹15,000
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans"><b>(b).</b></div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q40. The PRASHAD scheme project sanctioned for
+								the Ambika Bhawani Temple lies in which district
+								of Bihar?
+							</p>
+							<div class="options">
+								(a) Gaya &nbsp; (b) Patna<br />(c) Saran &nbsp;
+								(d) Vaishali
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans"><b>(c) Saran.</b></div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q41. Which of the following is NOT among the
+								three centrally sanctioned PRASHAD scheme
+								projects in Bihar?
+							</p>
+							<div class="options">
+								(a) Patna Sahib &nbsp; (b) Vishnupad Temple,
+								Gaya<br />(c) Mahabodhi Temple, Bodh Gaya &nbsp;
+								(d) Ambika Bhawani Temple, Saran
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c).</b> The Buddhist Meditation Centre
+									at Gaya/Bodh Gaya is a separate tourism
+									allocation, not one of the three
+									PRASHAD-sanctioned projects.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q42. The Bihar Pollution Control Board has
+								signed an MoU with which international body to
+								prepare a Climate-Resilient and Low-Carbon
+								Development Pathway targeting Net Zero Carbon by
+								2070?
+							</p>
+							<div class="options">
+								(a) UNDP &nbsp; (b) UNEP<br />(c) UNFCCC &nbsp;
+								(d) WWF
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) UNEP</b> (United Nations Environment
+									Programme).
+								</div>
+							</details>
+						</div>
+					</section>
+				</div>
+			</main>
+		</div>
+
+		<script>
+			function showTab(id, btn) {
+				document
+					.querySelectorAll(".panel")
+					.forEach((p) => p.classList.remove("active"));
+				document.getElementById(id).classList.add("active");
+				document
+					.querySelectorAll(".tabbtn")
+					.forEach((b) => b.classList.remove("active"));
+				btn.classList.add("active");
+				document.getElementById("nav1").style.display =
+					id === "t1" ? "block" : "none";
+				document.getElementById("nav2").style.display =
+					id === "t2" ? "block" : "none";
+				document.getElementById("nav3").style.display =
+					id === "t3" ? "block" : "none";
+				document.querySelector(".sidebar").classList.remove("open");
+				window.scrollTo(0, 0);
+			}
+		</script>
+	</body>
+</html>
