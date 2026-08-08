@@ -662,6 +662,60 @@
 				margin-bottom: 10px;
 				line-height: 1.6;
 			}
+			.mcq .options.interactive {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+			}
+			.mcq .optbtn {
+				display: block;
+				width: 100%;
+				text-align: left;
+				font-family: inherit;
+				font-size: 14.5px;
+				line-height: 1.6;
+				color: var(--ink);
+				background: #fffdf6;
+				border: 1.5px solid #d8c69a;
+				border-radius: 8px;
+				padding: 9px 12px;
+				cursor: pointer;
+				transition: 0.15s;
+			}
+			.mcq .optbtn:hover:not(:disabled) {
+				background: #fbf0d6;
+				border-color: var(--accent);
+			}
+			.mcq .optbtn:disabled {
+				cursor: default;
+			}
+			.mcq .optbtn.opt-correct {
+				background: #dff3e0;
+				border-color: var(--green);
+				color: #123a1a;
+				font-weight: 700;
+			}
+			.mcq .optbtn.opt-incorrect {
+				background: #fbe1de;
+				border-color: var(--red);
+				color: #4a0f08;
+				font-weight: 700;
+			}
+			.mcq .pickmsg {
+				display: inline-block;
+				margin: 2px 0 8px;
+				font-size: 13px;
+				font-weight: 700;
+				padding: 4px 12px;
+				border-radius: 12px;
+			}
+			.mcq .pickmsg.right {
+				background: #dff3e0;
+				color: #164821;
+			}
+			.mcq .pickmsg.wrong {
+				background: #fbe1de;
+				color: #4a0f08;
+			}
 			.mcq details {
 				margin-top: 8px;
 			}
@@ -1794,83 +1848,8 @@
 							<li data-rank="6">Grant-in-Aid</li>
 						</ol>
 					</section>
-<section class="block" id="b4">
-						<h3 class="secttl">
-							10. Types of Deficit — Formulas &amp; Meaning
-						</h3>
-						<div class="formulagrid">
-							<div class="fblock rd">
-								<h5>Revenue Deficit (RD)</h5>
-								<div class="short">RD = RE − RR</div>
-								<div class="full">
-									Full form: Revenue Deficit = Revenue
-									Expenditure − Revenue Receipts.<br />One-liner:
-									Govt's day-to-day spending exceeds its
-									regular income.
-								</div>
-							</div>
-							<div class="fblock fd">
-								<h5>Fiscal Deficit (FD)</h5>
-								<div class="short">
-									FD = TE − (RR + Non-debt CR)
-								</div>
-								<div class="full">
-									Full form: Fiscal Deficit = Total
-									Expenditure − (Revenue Receipts + Non-Debt
-									Capital Receipts).<br />One-liner: Total gap
-									the govt must fill by borrowing.
-								</div>
-							</div>
-							<div class="fblock pd">
-								<h5>Primary Deficit (PD)</h5>
-								<div class="short">
-									PD = FD − Interest Payment
-								</div>
-								<div class="full">
-									Full form: Primary Deficit = Fiscal Deficit
-									− Interest Payments.<br />One-liner:
-									Borrowing need excluding the burden of past
-									debt's interest.
-								</div>
-							</div>
-							<div class="fblock erd">
-								<h5>Effective Revenue Deficit (ERD)</h5>
-								<div class="short">
-									ERD = RD − Grants for Capital Assets
-								</div>
-								<div class="full">
-									Full form: Effective Revenue Deficit =
-									Revenue Deficit − Grants-in-aid for creation
-									of Capital Assets.<br />One-liner: Real
-									"unproductive" revenue gap, after removing
-									grants that actually build assets.
-								</div>
-							</div>
-						</div>
-						<div class="tree">
-							<div class="root">TYPES OF DEFICIT</div>
-							<div class="branches">
-								<div class="branchnode">
-									<b>Revenue Deficit</b>RE &gt; RR<br />Shows
-									weakness in day-to-day finances
-								</div>
-								<div class="branchnode">
-									<b>Fiscal Deficit</b>Total borrowing
-									requirement of govt
-								</div>
-								<div class="branchnode">
-									<b>Primary Deficit</b>Fiscal deficit minus
-									interest burden
-								</div>
-								<div class="branchnode">
-									<b>Effective Revenue Deficit</b>Revenue
-									deficit minus capital-asset grants
-								</div>
-							</div>
-						</div>
-					</section>
-				</div>
-					<section class="block" id="">
+
+					<section class="block" id="b4">
 						<h3 class="secttl">4. Deficit / GSDP Indicators</h3>
 						<div class="cardgrid">
 							<div class="card g-green">
@@ -3382,6 +3361,78 @@
 				document.querySelector(".sidebar").classList.remove("open");
 				window.scrollTo(0, 0);
 			}
+
+			function makeMcqInteractive(mcq) {
+				const optionsDiv = mcq.querySelector(".options");
+				const details = mcq.querySelector("details");
+				const ansDiv = mcq.querySelector(".ans");
+				if (!optionsDiv || !details || !ansDiv) return;
+
+				// Parse "(a) text (b) text (c) text (d) text" from the raw markup
+				const raw = optionsDiv.innerHTML;
+				const regex = /\(([a-d])\)\s*([\s\S]*?)(?=\([a-d]\)|$)/g;
+				const opts = [];
+				let m;
+				while ((m = regex.exec(raw)) !== null) {
+					let text = m[2]
+						.replace(/<br\s*\/?>/gi, "")
+						.replace(/&nbsp;/gi, "")
+						.trim();
+					if (text) opts.push({ letter: m[1], text: text });
+				}
+				if (opts.length < 2) return;
+
+				// Determine correct letter from the first bold tag inside .ans
+				const ansMatch = ansDiv.innerHTML.match(/\(([a-d])\)/i);
+				const correctLetter = ansMatch ? ansMatch[1].toLowerCase() : null;
+				if (!correctLetter) return;
+
+				optionsDiv.classList.add("interactive");
+				optionsDiv.innerHTML = "";
+				const msg = document.createElement("div");
+				msg.className = "pickmsg";
+				msg.style.display = "none";
+				msg.style.gridColumn = "1 / -1";
+
+				opts.forEach((opt) => {
+					const btn = document.createElement("button");
+					btn.type = "button";
+					btn.className = "optbtn";
+					btn.dataset.letter = opt.letter;
+					btn.innerHTML = "(" + opt.letter + ") " + opt.text;
+					btn.addEventListener("click", function () {
+						if (optionsDiv.classList.contains("answered")) return;
+						optionsDiv.classList.add("answered");
+						const chosen = btn.dataset.letter;
+						optionsDiv
+							.querySelectorAll(".optbtn")
+							.forEach((b) => {
+								b.disabled = true;
+								if (b.dataset.letter === correctLetter) {
+									b.classList.add("opt-correct");
+								} else if (b.dataset.letter === chosen) {
+									b.classList.add("opt-incorrect");
+								}
+							});
+						msg.style.display = "inline-block";
+						if (chosen === correctLetter) {
+							msg.textContent = "✔ Correct!";
+							msg.className = "pickmsg right";
+						} else {
+							msg.textContent =
+								"✘ Incorrect — correct answer is (" +
+								correctLetter +
+								")";
+							msg.className = "pickmsg wrong";
+						}
+						details.open = true;
+					});
+					optionsDiv.appendChild(btn);
+				});
+				optionsDiv.appendChild(msg);
+			}
+
+			document.querySelectorAll(".mcq").forEach(makeMcqInteractive);
 		</script>
 	</body>
 </html>
