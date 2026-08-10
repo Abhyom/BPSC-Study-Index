@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Metallurgist's Ledger — Metals, Ores &amp; Alloys</title>
+<style>
+:root{
+  --ink:#2b2114; --paper:#f6ecd4; --paper-2:#efe1bd;
+  --sidebar:#171c2b; --sidebar-2:#232a3f; --sidebar-text:#cfd6e8;
+  --accent:#8a3b26;
+  --yellow:#e0a712; --yellow-bg:#fbe08a;
+  --blue:#1f6fa8; --blue-bg:#a9d3ef;
+  --green:#2f7d3f; --green-bg:#a9dcac;
+  --red:#c23b2c; --red-bg:#f3a89e;
+  --purple:#6a3f9c; --purple-bg:#d3bdef;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"Georgia","Cambria",serif;color:var(--ink);background:var(--sidebar);font-size:16px;line-height:1.7}
+mark{color:var(--ink);font-weight:700;padding:2px 6px;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone;line-height:1.9;display:inline;unicode-bidi:isolate}
+mark.concept{background:var(--yellow-bg);box-shadow:inset 0 0 0 1.5px var(--yellow)}
+mark.fact{background:var(--blue-bg);box-shadow:inset 0 0 0 1.5px var(--blue);color:#12324a}
+mark.person{background:var(--green-bg);box-shadow:inset 0 0 0 1.5px var(--green);color:#123a1a}
+mark.trap{background:var(--red-bg);box-shadow:inset 0 0 0 1.5px var(--red);color:#4a0f08}
+mark.rule{background:var(--purple-bg);box-shadow:inset 0 0 0 1.5px var(--purple);color:#2a1740}
+p,li,td,.card p,.boxsub,.arrowbox,.branchnode,.flowstep .ftext p{line-height:2.05}
+td mark, th mark{line-height:1.75}
+.app{display:flex;min-height:100vh}
+.sidebar{width:270px;background:linear-gradient(180deg,var(--sidebar),var(--sidebar-2));color:var(--sidebar-text);position:fixed;top:0;left:0;bottom:0;overflow-y:auto;padding:22px 16px 40px;z-index:50;transition:transform .25s ease}
+.sidebar h1{font-size:16px;color:#f4e6bd;letter-spacing:.5px;margin:0 0 4px;border-bottom:2px solid #4b567a;padding-bottom:12px}
+.sidebar .sub{font-size:11px;color:#8a93b3;margin-bottom:18px}
+.tabbtn{display:block;width:100%;text-align:left;background:none;border:none;color:var(--sidebar-text);font-family:inherit;font-size:14.5px;padding:11px 12px;border-radius:8px;cursor:pointer;margin-bottom:6px;border-left:3px solid transparent;transition:.15s}
+.tabbtn:hover{background:#2c3552}
+.tabbtn.active{background:#31406b;color:#ffe9a8;border-left:3px solid var(--yellow);font-weight:700}
+.navgroup{margin-top:16px}
+.navgroup .navtitle{font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:#7480a3;margin:16px 4px 8px}
+.navlink{display:block;font-size:12.5px;color:#aab4d1;padding:6px 10px;border-radius:6px;text-decoration:none;margin-bottom:2px}
+.navlink:hover{background:#2c3552;color:#fff}
+.hamburger{display:none;position:fixed;top:14px;left:14px;z-index:60;background:var(--sidebar);color:#f4e6bd;border:none;font-size:20px;padding:8px 12px;border-radius:8px;cursor:pointer}
+.content{margin-left:270px;flex:1;background:radial-gradient(ellipse at top,#fbf2d9,var(--paper));min-height:100vh;padding:34px 42px 80px}
+.panel{display:none}
+.panel.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.pagehead{border-bottom:3px double var(--accent);padding-bottom:12px;margin-bottom:26px}
+.pagehead h2{font-size:25px;margin:0;color:#3a2a15}
+.pagehead p{margin:6px 0 0;color:#6b5a3f;font-size:13.5px}
+section.block{margin-bottom:34px}
+h3.secttl{font-size:18px;background:var(--sidebar);color:#f4e6bd;display:inline-block;padding:6px 18px;border-radius:4px 14px 4px 14px;margin-bottom:16px;box-shadow:2px 2px 0 var(--accent)}
+h4.subttl{font-size:14.5px;color:var(--accent);border-bottom:1.5px solid var(--accent);display:inline-block;padding-bottom:2px;margin:18px 0 10px}
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:14px}
+.card{background:#fffaf0;border:1.5px solid #d8c69a;border-radius:10px;padding:14px 16px;box-shadow:2px 3px 0 rgba(0,0,0,.05)}
+.card h5{margin:0 0 8px;font-size:15px;color:var(--accent)}
+.card p{margin:6px 0;font-size:14.5px}
+.card.g-blue{border-left:5px solid var(--blue)} .card.g-green{border-left:5px solid var(--green)}
+.card.g-yellow{border-left:5px solid var(--yellow)} .card.g-red{border-left:5px solid var(--red)}
+.card.g-purple{border-left:5px solid var(--purple)}
+table{width:100%;border-collapse:collapse;margin-bottom:18px;font-size:14px;background:#fffdf6}
+th,td{border:1px solid #cbb989;padding:9px 11px;text-align:left;vertical-align:top;line-height:1.65}
+th{background:var(--sidebar);color:#f4e6bd;font-size:13px}
+.tbl-pastel td:nth-child(1){background:#eaf3fb}
+.tbl-pastel td:nth-child(2){background:#fbf3e0}
+.tbl-pastel td:nth-child(3){background:#eaf7ec}
+.tbl-pastel td:nth-child(4){background:#fbe9e6}
+tr:nth-child(even) td{filter:brightness(.98)}
+.trapbox{background:#fdeceb;border:2px dashed var(--red);border-radius:8px;padding:20px 18px 16px;margin:20px 0 24px;position:relative}
+.trapbox::before{content:"⚠ MCQ TRAP";position:absolute;top:-13px;left:14px;background:var(--red);color:#fff;font-size:11px;padding:3px 12px;border-radius:10px;letter-spacing:.5px}
+.trapbox p{margin:8px 0;font-size:14.5px}
+.trapbox ul{margin:8px 0 0;padding-left:20px;font-size:14.5px}
+.trapbox li{margin-bottom:6px}
+.notebox{background:#eaf3fb;border:2px solid var(--blue);border-radius:8px;padding:20px 18px 16px;margin:20px 0 24px;position:relative}
+.notebox::before{content:"📌 FACTS";position:absolute;top:-13px;left:14px;background:var(--blue);color:#fff;font-size:11px;padding:3px 12px;border-radius:10px}
+.notebox p{margin:8px 0;font-size:14.5px}
+.notebox ul{margin:6px 0 0;padding-left:20px;font-size:14.5px}
+.notebox li{margin-bottom:7px}
+.greenbox{background:#eafbea;border:2px solid var(--green);border-radius:8px;padding:20px 18px 16px;margin:20px 0 24px;position:relative}
+.greenbox::before{content:"🧪 PROPERTIES / USES";position:absolute;top:-13px;left:14px;background:var(--green);color:#fff;font-size:11px;padding:3px 12px;border-radius:10px}
+.greenbox p,.greenbox li{font-size:14.5px}
+.greenbox ul{margin:6px 0 0;padding-left:20px}
+.formulagrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:16px}
+.fblock{border-radius:10px;padding:14px;color:#fff;box-shadow:2px 3px 0 rgba(0,0,0,.15)}
+.fblock h5{margin:0 0 4px;font-size:13px;opacity:.9}
+.fblock .short{font-size:17px;font-weight:800;margin:6px 0}
+.fblock .full{font-size:12.5px;opacity:.95;line-height:1.4}
+.fblock.rd{background:linear-gradient(135deg,#1f6fa8,#123a5c)}
+.fblock.fd{background:linear-gradient(135deg,#c23b2c,#7a2016)}
+.fblock.pd{background:linear-gradient(135deg,#2f7d3f,#164821)}
+.fblock.erd{background:linear-gradient(135deg,#6a3f9c,#3d2261)}
+.tree{display:flex;flex-direction:column;align-items:center;margin:24px 0}
+.tree .root{background:var(--sidebar);color:#f4e6bd;padding:12px 24px;border-radius:8px;font-weight:700;font-size:15px;margin-bottom:10px}
+.tree .branches{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;position:relative;padding-top:26px;row-gap:30px}
+.tree .branches::before{content:"";position:absolute;top:0;left:10%;right:10%;height:2px;background:#8a6b34}
+.branchnode{background:#fffaf0;border:1.5px solid #8a6b34;border-radius:8px;padding:12px 16px;font-size:13.5px;max-width:220px;position:relative;text-align:center;line-height:1.6}
+.branchnode::before{content:"";position:absolute;top:-26px;left:50%;width:2px;height:26px;background:#8a6b34}
+.branchnode b{display:block;font-size:14px;margin-bottom:5px;color:var(--accent)}
+.flow{display:flex;flex-direction:column;gap:0}
+.flowstep{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-left:3px solid var(--accent);margin-left:18px;padding-left:22px;position:relative}
+.flowstep::before{content:attr(data-n);position:absolute;left:-19px;top:14px;background:var(--accent);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+.flowstep .ftext b{color:var(--accent);font-size:15px;line-height:1.6}
+.flowstep .ftext p{margin:6px 0 0;font-size:14px}
+@media (max-width:900px){
+  .sidebar{transform:translateX(-100%);width:82%;max-width:300px}
+  .sidebar.open{transform:translateX(0)}
+  .hamburger{display:block}
+  .content{margin-left:0;padding:70px 14px 60px}
+  .cardgrid{grid-template-columns:1fr;gap:16px}
+  .formulagrid{grid-template-columns:1fr;gap:16px}
+  .tree .branches{gap:22px;row-gap:34px}
+  mark{line-height:2.05;display:inline-block;margin:2px 0}
+  p,li,td,.card p{line-height:2.1}
+  table{font-size:13px}
+  th,td{padding:8px 7px}
+  h3.secttl{font-size:16px;padding:6px 14px}
+}
+</style>
+</head>
+<body>
+<button class="hamburger" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+<div class="app">
+<nav class="sidebar">
+  <h1>🔩 THE METALLURGIST'S LEDGER</h1>
+  <div class="sub">BPSC Prelims · General Science Dossier</div>
+  <button class="tabbtn active" onclick="showTab('t1', this)">I. Metals &amp; Compounds</button>
+  <button class="tabbtn" onclick="showTab('t2', this)">II. Ores, Minerals &amp; Extraction</button>
+  <button class="tabbtn" onclick="showTab('t3', this)">III. Alloys</button>
+
+  <div class="navgroup" id="nav1">
+    <div class="navtitle">Tab I Sections</div>
+    <a class="navlink" href="#g1">General Properties of Metals</a>
+    <a class="navlink" href="#m-na">Sodium (Na)</a>
+    <a class="navlink" href="#m-mg">Magnesium (Mg)</a>
+    <a class="navlink" href="#m-ca">Calcium (Ca)</a>
+    <a class="navlink" href="#m-al">Aluminium (Al)</a>
+    <a class="navlink" href="#m-mn">Manganese (Mn)</a>
+    <a class="navlink" href="#m-fe">Iron (Fe)</a>
+    <a class="navlink" href="#m-cu">Copper (Cu)</a>
+    <a class="navlink" href="#m-ag">Silver (Ag)</a>
+    <a class="navlink" href="#m-au">Gold (Au)</a>
+    <a class="navlink" href="#m-zn">Zinc (Zn)</a>
+    <a class="navlink" href="#m-hg">Mercury (Hg)</a>
+    <a class="navlink" href="#m-pb">Lead (Pb)</a>
+    <a class="navlink" href="#m-rare">U, Th, Pt, Pu &amp; Others</a>
+    <a class="navlink" href="#m-gems">Gems, Minerals &amp; Misc. Facts</a>
+  </div>
+  <div class="navgroup" id="nav2" style="display:none">
+    <div class="navtitle">Tab II Sections</div>
+    <a class="navlink" href="#o1">Metallurgy: Basic Terms</a>
+    <a class="navlink" href="#o2">Concentration of Ores</a>
+    <a class="navlink" href="#o3">Conversion to Oxide</a>
+    <a class="navlink" href="#o4">Reduction of Oxide to Metal</a>
+    <a class="navlink" href="#o5">Refining of Metals</a>
+    <a class="navlink" href="#o6">Master Ores &amp; Minerals Table</a>
+    <a class="navlink" href="#o7">Extraction Facts &amp; Traps</a>
+  </div>
+  <div class="navgroup" id="nav3" style="display:none">
+    <div class="navtitle">Tab III Sections</div>
+    <a class="navlink" href="#a1">Master Alloys Table</a>
+    <a class="navlink" href="#a2">Karat &amp; Carat</a>
+    <a class="navlink" href="#a3">Alloy Facts &amp; Traps</a>
+  </div>
+</nav>
+
+<main class="content">
+<!-- ============ TAB 1: METALS ============ -->
+<div class="panel active" id="t1">
+  <div class="pagehead">
+    <h2>Metals &amp; Their Compounds</h2>
+    <p>🟨 Concept &nbsp; 🟦 Fact/Number &nbsp; 🟩 Person/Place &nbsp; 🟥 MCQ Trap &nbsp; 🟪 Rule</p>
+  </div>
+
+  <section class="block" id="g1">
+    <h3 class="secttl">0. General Properties of Metals</h3>
+    <div class="notebox">
+      <p>Elements with a tendency to <mark class="concept">lose electrons and form cations</mark> are called metals. Except the right-hand corner, all <mark class="concept">s, d and f-block</mark> elements are metals. In pre-historic times only <mark class="fact">three metals</mark> were known — <mark class="person">Copper, Silver, Gold</mark>; today <mark class="fact">~90 metals</mark> are known.</p>
+    </div>
+    <h4 class="subttl">Physical Properties</h4>
+    <ul>
+      <li>All metals except <mark class="trap">mercury</mark> are <mark class="concept">solid at room temperature</mark>.</li>
+      <li><mark class="concept">Metallic lustre</mark> due to free electrons; metals can be polished.</li>
+      <li>Generally <mark class="concept">hard</mark>, <mark class="trap">except sodium, potassium, calcium</mark> (soft).</li>
+      <li><mark class="concept">Malleable</mark> (hammered into sheets) — <mark class="fact">gold and silver most malleable</mark>.</li>
+      <li><mark class="concept">Ductile</mark> — <mark class="fact">gold most ductile</mark>; from 1 mg gold a <mark class="fact">200 m long wire</mark> can be drawn.</li>
+      <li>Good conductors of heat — <mark class="fact">silver and copper best</mark>; <mark class="trap">lead and mercury comparatively poor</mark>.</li>
+      <li>Good conductors of <mark class="concept">electricity</mark>; <mark class="concept">sonorous</mark>.</li>
+      <li>High densities, <mark class="trap">except sodium and potassium</mark>.</li>
+      <li>High melting points, <mark class="trap">except gallium and cesium</mark> (low).</li>
+    </ul>
+    <h4 class="subttl">Chemical Properties</h4>
+    <ul>
+      <li><mark class="concept">Electropositive</mark> — lose electrons to form cations; react readily with non-metals.</li>
+      <li>Metal + Oxygen → <mark class="concept">Metal oxide</mark> (e.g. Cu→CuO black; Al→Al₂O₃).</li>
+      <li>Metal oxides are generally <mark class="concept">basic</mark>; <mark class="trap">Al₂O₃ and ZnO are amphoteric</mark> (both acidic + basic). Oxides soluble in water are called <mark class="concept">alkalis</mark>.</li>
+      <li>Reaction with water: highly reactive (<mark class="fact">Na, K, Ca, Mg</mark>) → metal hydroxide + H₂; moderately reactive (<mark class="fact">Al, Fe, Zn</mark>) → react with steam → metal oxide + H₂; least reactive (<mark class="fact">Pb, Ag, Cu, Au</mark>) → <mark class="trap">no reaction at all</mark>.</li>
+      <li>Reaction with dilute acids → salt + hydrogen; <mark class="trap">dilute HNO₃ does NOT evolve H₂</mark> (strong oxidiser, itself reduced to nitrogen oxides) — <mark class="trap">exception: Mg and Mn give H₂ even with dilute HNO₃</mark>.</li>
+      <li>More reactive metals displace less reactive metals from salt solutions, e.g. <mark class="rule">Fe + CuSO₄ → FeSO₄ + Cu↓</mark>.</li>
+    </ul>
+    <div class="formulagrid">
+      <div class="fblock rd"><h5>REACTIVITY SERIES</h5><div class="short">K&gt;Na&gt;Ca&gt;Mg&gt;Al&gt;Zn&gt;Fe&gt;Pb&gt;H&gt;Cu&gt;Hg&gt;Ag&gt;Au</div><div class="full">Decreasing order of activity — most reactive to least.</div></div>
+    </div>
+    <h4 class="subttl">Flame Colouration (Alkali &amp; Alkaline Earth Metals)</h4>
+    <table class="tbl-pastel">
+      <tr><th>Metal</th><th>Flame Colour</th><th>Metal</th><th>Flame Colour</th></tr>
+      <tr><td><mark class="person">Sodium</mark></td><td><mark class="fact">Golden yellow</mark></td><td><mark class="person">Lithium</mark></td><td><mark class="fact">Crimson red</mark></td></tr>
+      <tr><td><mark class="person">Potassium</mark></td><td><mark class="fact">Violet</mark></td><td><mark class="person">Calcium</mark></td><td><mark class="fact">Red / brick red</mark></td></tr>
+      <tr><td><mark class="person">Rubidium</mark></td><td><mark class="fact">Violet</mark></td><td><mark class="person">Strontium</mark></td><td><mark class="fact">Crimson red</mark></td></tr>
+      <tr><td><mark class="person">Barium</mark></td><td><mark class="fact">Apple green / green</mark></td><td>—</td><td>—</td></tr>
+    </table>
+    <div class="notebox">
+      <ul>
+        <li><mark class="trap">Beryllium and magnesium</mark> do NOT impart flame colour (high ionisation energy).</li>
+        <li><mark class="person">Lithium</mark> is the <mark class="concept">lightest metallic element</mark> and a very strong reducing agent.</li>
+        <li>K and Na react so vigorously with oxygen they catch fire in open air — kept immersed in <mark class="concept">kerosene oil</mark>.</li>
+        <li>At ordinary temp, <mark class="fact">Mg, Al, Zn, Pb</mark> are covered by a protective oxide layer preventing further oxidation.</li>
+        <li>Iron doesn't burn on heating but iron filings burn vigorously when sprinkled in a burner flame.</li>
+        <li><mark class="trap">Silver and gold do not react with oxygen even at high temperature.</mark></li>
+      </ul>
+    </div>
+    <div class="trapbox">
+      <p><b>Quick-fire traps:</b></p>
+      <ul>
+        <li>Most abundant <mark class="trap">metal</mark> in earth's crust = <mark class="fact">Aluminium</mark>; most abundant <mark class="trap">element (non-metal)</mark> = Oxygen, then Silicon.</li>
+        <li>Most abundant element in the human body = <mark class="fact">Oxygen</mark>.</li>
+        <li>Silicon is sometimes classed as a <mark class="concept">metalloid</mark> (properties of both metal &amp; non-metal).</li>
+        <li>Less reactive metals (<mark class="fact">Au, Pt</mark>) occur in <mark class="fact">free/native state</mark>; more reactive metals occur combined; <mark class="fact">Cu and Ag occur in BOTH free and combined states</mark>.</li>
+        <li><mark class="trap">Iron pyrite is a mineral of iron but NOT its ore</mark> — extraction from it is uneconomical.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SODIUM -->
+  <section class="block" id="m-na">
+    <h3 class="secttl">1. Sodium (Na) and Its Compounds</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">11 / 23</mark></p></div>
+      <div class="card g-green"><h5>Group / Period / Block</h5><p><mark class="concept">Group-1, 3rd period, s-block</mark></p></div>
+      <div class="card g-yellow"><h5>Electronic Config.</h5><p><mark class="fact">1s²2s²2p⁶3s¹</mark></p></div>
+      <div class="card g-purple"><h5>Crustal Abundance</h5><p><mark class="fact">2.27%</mark> by weight</p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Light, soft, silvery-white metal — <mark class="concept">can be cut with a knife</mark>.</li>
+        <li>Highly reactive; kept stored in <mark class="concept">kerosene oil</mark> to prevent contact with oxygen (reaction is strongly exothermic).</li>
+        <li>Reacts with air → <mark class="fact">sodium oxide (Na₂O)</mark>; reacts with water → <mark class="fact">NaOH + H₂</mark>.</li>
+        <li>Soluble in benzene. With ammonia → sodamide; with alcohol → sodium alkoxide + H₂; with acids → salt + H₂.</li>
+        <li>Extracted by electrolysis of molten NaOH (<mark class="person">Castner's process</mark>) or molten NaCl (<mark class="person">Down's process</mark>).</li>
+        <li>Uses: <mark class="concept">reducing agent</mark>, alloying metal, anti-scaling agent; coolant in nuclear reactors (liquefied form — used in <mark class="trap">Fast Breeder Test Reactor, FBTR</mark>, not standard reactors which use water/heavy water); making <mark class="fact">TEL (tetraethyl lead)</mark> via sodium-lead alloy.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Compounds of Sodium</h4>
+    <table class="tbl-pastel">
+      <tr><th>Compound</th><th>Common Name</th><th>Key Uses / Facts</th></tr>
+      <tr><td><mark class="fact">Sodium Chloride (NaCl)</mark></td><td><mark class="concept">Table / common salt</mark></td><td>Human food; anti-icing; preservative for pickles, meat, fish; raw material for NaOH, washing soda, bleaching powder</td></tr>
+      <tr><td><mark class="fact">Sodium Hydroxide (NaOH)</mark></td><td><mark class="concept">Caustic soda</mark></td><td>Soap &amp; detergent manufacture; pH regulation; lab reagent; petroleum purifier</td></tr>
+      <tr><td><mark class="fact">Sodium Carbonate (Na₂CO₃·10H₂O)</mark></td><td><mark class="concept">Washing soda</mark> / soda crystals; anhydrous = <mark class="concept">soda ash</mark></td><td>Alkaline detergent; removes permanent water hardness; grease/oil/wine stain removal; borax, soap, caustic soda, paper, paint, glass, petroleum, textile industries</td></tr>
+      <tr><td><mark class="fact">Sodium Bicarbonate (NaHCO₃)</mark></td><td><mark class="concept">Baking soda</mark> / cooking soda / bread soda</td><td>Soda-acid fire extinguishers; baking bread &amp; cakes</td></tr>
+      <tr><td><mark class="fact">Glauber Salt (Na₂SO₄·10H₂O)</mark></td><td>—</td><td>Pulp-paper, detergent, drug industries; water-glass production; drying agent, purgative; preparation of sodium sulphide</td></tr>
+      <tr><td><mark class="fact">Sodium Thiosulphate (Na₂S₂O₃·5H₂O)</mark></td><td><mark class="concept">Hypo</mark></td><td>Fixing agent in film/photography (removes AgBr as soluble complex); antidote to cyanide poisoning; removes chlorine (anti-chlor) from aquarium tap water</td></tr>
+      <tr><td><mark class="fact">Microcosmic Salt [Na(NH₄)HPO₄·4H₂O]</mark></td><td>—</td><td>Found in human urine; heating gives sodium metaphosphate + ammonia; used in microcosmic salt bead test</td></tr>
+    </table>
+    <div class="notebox">
+      <ul>
+        <li>NaCl + ice at lower pressure/moderate temp gives a <mark class="concept">freezing mixture</mark>.</li>
+        <li>Human body requires <mark class="fact">~500 mg sodium/day</mark>; regulates blood pressure and body pH.</li>
+        <li><mark class="trap">Pure NaCl is NOT hygroscopic</mark> — apparent hygroscopic nature is due to impurities of <mark class="fact">MgCl₂ and CaCl₂</mark> (this is why salt gets moist in the rainy season).</li>
+        <li>During dehydration/vomiting/loose motion, body salt levels fall abruptly.</li>
+        <li>On exposure to air, NaOH absorbs CO₂ and converts to Na₂CO₃ — this <mark class="concept">efflorescence</mark> causes it to crumble to white powder.</li>
+        <li>Baking soda + tartaric acid = <mark class="concept">baking powder</mark>; CO₂ released makes bread/cake rise, soft and spongy.</li>
+        <li>Sodium chloride was an important symbol of India's <mark class="person">freedom struggle</mark> (salt satyagraha).</li>
+        <li>Sodium never occurs free in nature — it is highly reactive and always found combined.</li>
+        <li>Sodium vapour street lamps glow <mark class="fact">yellow</mark> because sodium atoms emit excess absorbed energy in the yellow region of the spectrum; the light is <mark class="concept">monochromatic</mark> and does not scatter/split through water droplets/fog — hence preferred for street lighting.</li>
+        <li>Water-softening agent: <mark class="fact">Na₃PO₄</mark>. Sodium calcium silicate is called <mark class="trap">soft glass</mark>.</li>
+        <li>Detergent powder's dominant chemical = <mark class="fact">sodium alkyl sulphate</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MAGNESIUM -->
+  <section class="block" id="m-mg">
+    <h3 class="secttl">2. Magnesium (Mg) and Its Compounds</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">12 / 24</mark></p></div>
+      <div class="card g-green"><h5>Group / Period / Block</h5><p><mark class="concept">Group-2, 3rd period, s-block</mark></p></div>
+      <div class="card g-yellow"><h5>Structure</h5><p>Shiny grey solid, <mark class="concept">hexagonal close packing (hcp)</mark></p></div>
+      <div class="card g-purple"><h5>Config.</h5><p><mark class="fact">1s²2s²2p⁶3s²</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Word "magnesium" from Greek "magnesia". Does not occur free (high reactivity); occurs as chlorides, carbonates, sulphates.</li>
+        <li>Extracted from <mark class="fact">magnesite</mark> by electrolytic reduction, or from <mark class="fact">carnallite</mark> by electrolysis of anhydrous MgCl₂.</li>
+        <li>Occurs in <mark class="concept">chlorophyll</mark> — responsible for green colour of leaves; used in flash bulbs (powder form).</li>
+        <li>Melting/boiling points: <mark class="fact">650°C / 1110°C</mark>. Malleable and ductile.</li>
+        <li>Evolves H₂ with dilute acids <mark class="trap">but not with bases</mark>.</li>
+        <li>With dry ether + alkyl halide (RX) → alkyl magnesium halide = <mark class="concept">Grignard's reagent</mark>.</li>
+        <li>Because of high reactivity, magnesium ribbon is kept in an atmosphere of nitrogen.</li>
+        <li>Uses: flashlight ribbon, firecrackers, photography, fireworks (<mark class="fact">brilliant white light</mark>); alloy <b><mark class="fact">Electron</mark></b> = Mg(95%)+Zn(4.5%)+Cu(0.5%), used in aircraft frames and motor vehicles.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Compounds of Magnesium</h4>
+    <table class="tbl-pastel">
+      <tr><th>Compound</th><th>Common Name</th><th>Key Uses / Facts</th></tr>
+      <tr><td><mark class="fact">Magnesium Hydroxide [Mg(OH)₂]</mark></td><td><mark class="concept">Milk of magnesia</mark> (suspension in water)</td><td>Antacid, laxative, neutralising acidic wastewater; chewable tablets/capsules; dandruff treatment</td></tr>
+      <tr><td><mark class="fact">Magnesium Sulphate (MgSO₄·7H₂O)</mark></td><td><mark class="concept">Epsom salt</mark> / epsomite</td><td>Fireproof fabrics; ceramics, cement, matchbox manufacture; mordant in dyeing/tanning; purgative</td></tr>
+      <tr><td><mark class="fact">Magnesium Carbonate (MgCO₃)</mark></td><td>Occurs as magnesite/dolomite</td><td>Used as magnesium alva (drug) and antacid</td></tr>
+      <tr><td><mark class="fact">Magnesium Alba [2MgCO₃·Mg(OH)₂·3H₂O]</mark></td><td>—</td><td>Removes acidity from stomach; dental abrasive (toothpaste); cosmetics</td></tr>
+      <tr><td><mark class="fact">Sorel Cement [MgCl₂·5MgO·nH₂O]</mark></td><td>—</td><td>Dental fillings; cementing glass and porcelain</td></tr>
+    </table>
+  </section>
+
+  <!-- CALCIUM -->
+  <section class="block" id="m-ca">
+    <h3 class="secttl">3. Calcium (Ca) and Its Compounds</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">20 / 40</mark></p></div>
+      <div class="card g-green"><h5>Discovered by</h5><p><mark class="person">Humphry Davy, 1808</mark></p></div>
+      <div class="card g-yellow"><h5>Abundance</h5><p><mark class="trap">3rd most abundant element</mark> in earth's crust</p></div>
+      <div class="card g-purple"><h5>Group / Period / Block</h5><p><mark class="concept">Group-2, 4th period, s-block</mark>; config <mark class="fact">1s²2s²2p⁶3s²3p⁶4s²</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Present in soil, plants, bones, eggshells. Extracted by electrolysis of fused <mark class="fact">85% CaCl₂ + 15% CaF₂</mark> (CaF₂ lowers melting point). CaCl₂ obtained as a by-product of the <mark class="concept">Solvay process</mark>.</li>
+        <li>Soft (but harder than lead), silvery white; melting/boiling points <mark class="fact">1115 K / 1757 K</mark>; relative density <mark class="fact">1.55</mark>.</li>
+        <li>Gives H₂ with acids and water, <mark class="trap">but not with bases</mark>.</li>
+        <li>Uses: dehydrating agent (absolute alcohol prep), producing high vacuum, oxidiser for cast iron/steel/copper, reducing agent for chromium/thorium.</li>
+        <li>Electron configuration <mark class="fact">2,8,8,2</mark> is characteristic of calcium — a classic "identify the metal from config" trap.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Compounds of Calcium</h4>
+    <table class="tbl-pastel">
+      <tr><th>Compound</th><th>Common Name / Formula</th><th>Key Uses / Facts</th></tr>
+      <tr><td><mark class="fact">Calcium Oxide (CaO)</mark></td><td><mark class="concept">Quicklime</mark></td><td>Cement, mortar, bleaching powder, glass manufacture; sugar purification; hissing sound on dissolving in water</td></tr>
+      <tr><td><mark class="fact">Calcium Hydroxide [Ca(OH)₂]</mark></td><td><mark class="concept">Slaked lime</mark>; aqueous soln = limewater; suspension = milk of lime</td><td>Mortar, glass, bleaching powder (Cl₂ over dry slaked lime), whitewash</td></tr>
+      <tr><td><mark class="fact">Calcium Carbonate (CaCO₃)</mark></td><td><mark class="concept">Limestone, chalk, marble, pearl</mark></td><td>Building material (marble); filler in cosmetics; high-quality paper production; decomposes at 1200 K to release CO₂; <mark class="fact">ingredient of toothpaste</mark></td></tr>
+      <tr><td><mark class="fact">Calcium Chloride (CaCl₂)</mark></td><td>—</td><td>Found in seawater; hygroscopic &amp; deliquescent; water-absorbing/dehydrating agent; <mark class="trap">cannot dry alcohol or ammonia</mark> (forms addition products)</td></tr>
+      <tr><td><mark class="fact">Bleaching Powder [Ca(OCl)Cl]</mark></td><td>Calcium chlorooxychlorite</td><td>Disinfectant, water purifier, germicide, insecticide, textile/paper/jute bleaching agent</td></tr>
+      <tr><td><mark class="fact">Gypsum (CaSO₄·2H₂O)</mark></td><td>—</td><td>Production of Plaster of Paris; ammonium sulphate fertilizer; enables cement's setting (mixed with clinker)</td></tr>
+      <tr><td><mark class="fact">Plaster of Paris [CaSO₄·½H₂O]</mark></td><td>Calcium sulphate hemihydrate</td><td>Obtained heating gypsum at ~150°C; insoluble in water; hydrates back to gypsum on contact with water (exothermic "setting"); plastering fractured bones, dentistry, statues, toys, ornamental work</td></tr>
+      <tr><td><mark class="fact">Super Phosphate of Lime [CaH₄(PO₄)₂ + CaSO₄·2H₂O]</mark></td><td>—</td><td>Fertilizer — soluble, easily assimilated by plants</td></tr>
+    </table>
+    <div class="notebox">
+      <ul>
+        <li><mark class="fact">Nitrolim (CaCN₂)</mark> is prepared by heating CaC₂ with N₂ gas at <mark class="fact">2000°C</mark>.</li>
+        <li><mark class="fact">Hydrolith (CaH₂)</mark> is a ready supplier of H₂ gas (reacts with water).</li>
+        <li><mark class="fact">Calcium phosphate [Ca₃(PO₄)₂]</mark> is used in toothpaste and gives teeth/bones their strength and rigidity.</li>
+        <li>Adding a limited amount of water breaks lumps of lime and converts it into slaked lime — this is called <mark class="concept">slaking of lime</mark>.</li>
+        <li>Chalk and marble are both different forms of <mark class="fact">calcium carbonate</mark>.</li>
+        <li>Salt found in maximum amount in human bones = <mark class="fact">calcium phosphate</mark>.</li>
+        <li>Calcium sulphate dihydrate is commonly known as <mark class="fact">gypsum</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ALUMINIUM -->
+  <section class="block" id="m-al">
+    <h3 class="secttl">4. Aluminium (Al) and Its Compounds</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">13 / 27</mark></p></div>
+      <div class="card g-green"><h5>Group / Period / Block</h5><p><mark class="concept">Group-13, 3rd period, p-block</mark>; config <mark class="fact">1s²2s²2p⁶3s²3p¹</mark></p></div>
+      <div class="card g-yellow"><h5>Abundance</h5><p><mark class="trap">3rd most abundant element</mark>, MOST abundant <mark class="fact">metal</mark> in earth's crust</p></div>
+      <div class="card g-purple"><h5>Chief Ore</h5><p><mark class="fact">Bauxite</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Does not occur in free state. Chief ore is bauxite, concentrated by <mark class="person">Baeyer's process</mark> (if Fe₂O₃ is main impurity) or <mark class="person">Hall's process</mark>; white bauxite (SiO₂ impurity) concentrated by <mark class="person">Serpek's process</mark>.</li>
+        <li>Cryolite and fluorspar lower the temperature during electrolytic extraction. Purification done by <mark class="person">Hoope's electrolytic process</mark>.</li>
+        <li>Melting/boiling points <mark class="fact">659.8°C / 2200°C</mark>; good conductor of heat/electricity; specific gravity <mark class="fact">2.7</mark>.</li>
+        <li>Releases H₂ with conc. HCl or dilute H₂SO₄; gives SO₂ with conc. H₂SO₄; evolves H₂ with alkalies (NaOH, KOH) forming aluminate salt; gives aluminium nitrite with nitrogen.</li>
+        <li>Uses: reducing agent in metallurgy; thin foil for sweets/cigarette packing; silvery paints (Al powder in linseed oil); light alloys for aeroplane parts.</li>
+        <li>Aluminium surface is often "anodized" — deposition of a protective layer of <mark class="fact">aluminium oxide</mark>.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Alloys of Aluminium</h4>
+    <table class="tbl-pastel">
+      <tr><th>Alloy</th><th>Composition</th><th>Uses</th></tr>
+      <tr><td><mark class="person">Aluminium bronze</mark></td><td><mark class="fact">Al (10%), Cu (90%)</mark></td><td>Coins, utensils</td></tr>
+      <tr><td><mark class="person">Duralumin</mark></td><td><mark class="fact">Al (95%), Mg (0.5%), Cu (4%), Mn (0.5%)</mark></td><td>Pressure cookers, aircraft</td></tr>
+      <tr><td><mark class="person">Nickel alloy</mark></td><td><mark class="fact">Al (90%), Ni (6%), Cu (4%)</mark></td><td>Aerospace manufacturing</td></tr>
+      <tr><td><mark class="person">Magnalium</mark></td><td><mark class="fact">Al (95-96%), Cu+Fe (2-3%), Mg (2%)</mark></td><td>Aerospace industry</td></tr>
+    </table>
+    <h4 class="subttl">Compounds of Aluminium</h4>
+    <table class="tbl-pastel">
+      <tr><th>Compound</th><th>Nature</th><th>Key Uses / Facts</th></tr>
+      <tr><td><mark class="fact">Aluminium Chloride (AlCl₃)</mark></td><td>White deliquescent solid, fumes in air</td><td>Petroleum refining; synthetic polymers/rubber production; catalyst in gasoline production &amp; Friedel-Crafts reaction; hardening agent; antiperspirant</td></tr>
+    </table>
+    <div class="notebox">
+      <ul>
+        <li><mark class="fact">Aluminium carbide (Al₄C₃)</mark> = methanide, reacts with water to form CH₄ gas.</li>
+        <li><mark class="fact">Aluminium acetate</mark> = red liquor, used as mordant in dyeing/calico printing.</li>
+        <li><mark class="trap">Al₂O₃ and ZnO</mark> are the classic <mark class="trap">amphoteric metal oxides</mark>.</li>
+        <li>Rubies and sapphires are chemically <mark class="fact">Aluminium Oxide (Al₂O₃)</mark> — corundum variety coloured by trace impurities.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MANGANESE -->
+  <section class="block" id="m-mn">
+    <h3 class="secttl">5. Manganese (Mn) and Its Compounds</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">25 / 55</mark></p></div>
+      <div class="card g-green"><h5>Group / Period / Block</h5><p><mark class="concept">Group-7, 4th period, d-block</mark>; config <mark class="fact">[Ar]3d⁵4s²</mark></p></div>
+      <div class="card g-yellow"><h5>Appearance</h5><p>Ultrapure = silvery white; commercial samples have pink tinge</p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Extracted from <mark class="fact">pyrolusite</mark> ore by carbon reduction or aluminothermic process; pure Mn obtained by electrolysis of aqueous MnSO₄ solution.</li>
+        <li>Alloys: <b><mark class="person">Spiegeleisen</mark></b> (Mn+Fe+C, used in steel manufacture); <b><mark class="person">Ferromanganese</mark></b> (<mark class="fact">70-80% Mn</mark>).</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Compounds of Manganese</h4>
+    <table class="tbl-pastel">
+      <tr><th>Compound</th><th>Nature</th><th>Key Uses / Facts</th></tr>
+      <tr><td><mark class="fact">Potassium Permanganate (KMnO₄)</mark></td><td>Dark violet, rhombic, prismatic crystalline solid; also called "red medicine"; isomorphous with KClO₄; gives off O₂ on heating at 200°C</td><td>Prepared by fusion of MnO₂ (pyrolusite) with KOH + electrolytic oxidation; oxidising agent; disinfectant/germicide for water; estimation of Fe²⁺ and C₂O₄²⁻; redox titrations; Cl₂ preparation in lab; colour remover for oils; bleaching agent for wool/silk/cotton</td></tr>
+    </table>
+  </section>
+
+  <!-- IRON -->
+  <section class="block" id="m-fe">
+    <h3 class="secttl">6. Iron (Fe) and Its Compounds</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">26 / 56</mark></p></div>
+      <div class="card g-green"><h5>Group / Period / Block</h5><p><mark class="concept">Group-8, 4th period, d-block</mark></p></div>
+      <div class="card g-yellow"><h5>Abundance</h5><p><mark class="trap">4th most abundant element</mark> in earth's crust</p></div>
+      <div class="card g-purple"><h5>Chief Ore</h5><p><mark class="fact">Haematite (Fe₂O₃)</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Discovered before <mark class="fact">5000 BC</mark>; most useful metal. Present abundantly in green vegetables and in the haemoglobin of blood.</li>
+        <li>Extracted from haematite (Fe₂O₃) in the blast furnace by carbon-reduction process.</li>
+        <li><mark class="concept">Ferromagnetic</mark>, lustrous, greyish-tinge; melting/boiling points <mark class="fact">1533°C / 2450°C</mark>.</li>
+        <li>Does not react with dry air/water; passing steam over red-hot iron produces H₂ gas.</li>
+        <li>With cold, dilute HNO₃ → ferrous nitrate + ammonium nitrate. With hot conc. H₂SO₄ → ferrous/ferric sulphate + SO₂. With cold conc. HNO₃ → ferric nitrate + NO₂. Forms halides/sulphides with halogens/sulphur.</li>
+        <li><b>Passivity of Iron:</b> highly concentrated HNO₃ forms a layer of <mark class="fact">Fe₃O₄</mark> on iron's surface, making it passive/unreactive; reactivated by heating in a flow of H₂ gas.</li>
+        <li>Iron deficiency causes <mark class="concept">anaemia</mark>; excess intake leads to <mark class="concept">siderosis</mark> (tribal Africans historically at risk from brewing beer in iron utensils).</li>
+        <li>Iron is present in <mark class="fact">cytochrome</mark>.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Varieties of Iron</h4>
+    <table class="tbl-pastel">
+      <tr><th>Variety</th><th>Carbon %</th><th>Notes / Uses</th></tr>
+      <tr><td><mark class="person">Pig Iron</mark></td><td><mark class="fact">~4% C</mark> + impurities (S,P,Si,Mn)</td><td>Obtained directly from blast furnace</td></tr>
+      <tr><td><mark class="person">Cast Iron</mark></td><td><mark class="fact">~3% C</mark></td><td>Made by melting pig iron with scrap iron + coke, hot air blast; hard &amp; brittle; casting, railing, hot-water pipes, utensils, type-writer covers, electric poles; also used to make wrought iron and steel</td></tr>
+      <tr><td><mark class="person">Wrought Iron</mark></td><td><mark class="fact">0.12–0.25% C</mark></td><td><mark class="fact">Purest commercial form of iron</mark>; manufactured from cast iron by oxidising impurities in a reverberatory furnace lined with haematite (limestone flux); tough, highly malleable, ductile, high magnetic permeability; chains, hooks, nails, bolts, wires, bars</td></tr>
+      <tr><td><mark class="person">Steel</mark></td><td><mark class="fact">0.1–2%</mark></td><td>Alloy of iron &amp; carbon; made from cast iron by Bessemer, LD, or Open Hearth processes; mild/medium/hard/alloy steel varieties</td></tr>
+    </table>
+    <h4 class="subttl">Alloys of Steel</h4>
+    <table class="tbl-pastel">
+      <tr><th>Alloy</th><th>Special Component</th><th>Properties</th><th>Uses</th></tr>
+      <tr><td><mark class="person">Nickel steel</mark></td><td><mark class="fact">Ni (3.5%)</mark></td><td>Hard, flexible, rust resistant</td><td>Cable, armour plates, auto parts, axles</td></tr>
+      <tr><td><mark class="person">Stainless steel</mark></td><td><mark class="fact">Cr (12-18%)</mark></td><td>Hard, rust resistant</td><td>Utensils, surgical instruments, blades; non-magnetic when Ni added</td></tr>
+      <tr><td><mark class="person">Chrome vanadium steel</mark></td><td><mark class="fact">Cr (1-10%), V (0.15-0.51%)</mark></td><td>High tensile strength, load bearing</td><td>Axles, springs, wheels, ball bearings, gears</td></tr>
+      <tr><td><mark class="person">Manganese steel</mark></td><td><mark class="fact">Mn (12-15%)</mark></td><td>Extremely hard, high melting point, rust-free</td><td>Rock cutters, burglar-proof safes, railway tracks/axles</td></tr>
+      <tr><td><mark class="person">Invar</mark></td><td><mark class="fact">Ni (36%)</mark></td><td>Absence of expansion</td><td>Clock pendulums, scales, yardsticks</td></tr>
+      <tr><td><mark class="person">Tungsten steel</mark></td><td><mark class="fact">W (14-20%)</mark></td><td>Very hard and strong</td><td>Springs, cutting tools</td></tr>
+      <tr><td><mark class="person">Chrome steel</mark></td><td><mark class="fact">Cr (5%)</mark></td><td>High tensile strength, heat resistant, abrasion resistant</td><td>Cutting tools, cutlery</td></tr>
+    </table>
+    <div class="notebox">
+      <p>Stainless steel cooking pans are fabricated with a <mark class="concept">copper bottom</mark> because copper is <mark class="trap">more thermally conductive</mark> than stainless steel.</p>
+    </div>
+    <h4 class="subttl">Heat &amp; Surface Treatment of Steel</h4>
+    <table class="tbl-pastel">
+      <tr><th>Process</th><th>Method</th><th>Purpose</th></tr>
+      <tr><td><mark class="concept">Annealing</mark></td><td>Heat to bright redness, cool very slowly</td><td>Makes steel soft and ductile</td></tr>
+      <tr><td><mark class="concept">Quenching</mark></td><td>Heat to bright redness, cool suddenly (water/oil)</td><td>Makes steel very hard and brittle</td></tr>
+      <tr><td><mark class="concept">Tempering</mark></td><td>Heat quenched steel below redness, cool slowly</td><td>Neither too hard nor too brittle; thin oxide film forms</td></tr>
+      <tr><td><mark class="concept">Case Hardening</mark></td><td>Heat mild steel with charcoal, plunge in oil</td><td>Resistant to wear and tear</td></tr>
+      <tr><td><mark class="concept">Nitriding</mark></td><td>Heat in dry ammonia atmosphere, 500-600°C, 3-4 days</td><td>Hard iron-nitride coating on surface</td></tr>
+    </table>
+    <h4 class="subttl">Compounds of Iron</h4>
+    <table class="tbl-pastel">
+      <tr><th>Compound</th><th>Common Name</th><th>Key Uses / Facts</th></tr>
+      <tr><td><mark class="fact">Ferrous Sulphate (FeSO₄·7H₂O)</mark></td><td><mark class="concept">Green vitriol</mark></td><td>Iron-containing drugs; blue/black inks, Mohr's salt production; mordant in dyeing; insecticide</td></tr>
+      <tr><td><mark class="fact">Iron Oxides (FeO, Fe₂O₃)</mark></td><td>Fe₂O₃ also called <mark class="concept">jeweller's rouge</mark></td><td>—</td></tr>
+      <tr><td><mark class="fact">Mohr's Salt [FeSO₄·(NH₄)₂SO₄·6H₂O]</mark></td><td><mark class="concept">Ferrous ammonium sulphate</mark></td><td>Green crystalline double salt (soluble in water, insoluble in alcohol); reducing agent; textile colouration; blue ink; insecticide; leather colouration</td></tr>
+    </table>
+    <div class="trapbox">
+      <p><b>Rust &amp; corrosion traps:</b></p>
+      <ul>
+        <li>Rust requires <mark class="trap">iron, oxygen and moisture</mark> together — not just oxygen.</li>
+        <li>On rusting, the weight of iron <mark class="trap">increases</mark> (oxygen is added, forming hydrated iron(III) oxide).</li>
+        <li>Rust is iron oxide — <mark class="trap">not tannin</mark> (a common distractor).</li>
+        <li><mark class="concept">Galvanized iron</mark> (zinc-coated) does not rust — zinc oxidises preferentially (sacrificial protection); this is why oil should <mark class="trap">not</mark> be stored in galvanized pots (zinc reacts with fatty acids/moisture to form toxic compounds and hasten rancidity).</li>
+        <li>Iron does <mark class="trap">not form an amalgam</mark> with mercury — the notable exception among metals; hence mercury is transported in iron containers.</li>
+        <li><mark class="person">Bailadila range</mark> (Dantewada, Chhattisgarh) is a major source of high-grade <mark class="fact">haematite</mark>, first geologically mapped by <mark class="person">P.N. Bose</mark> (1898-1900).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- COPPER -->
+  <section class="block" id="m-cu">
+    <h3 class="secttl">7. Copper (Cu) and Its Compounds</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">29 / 64</mark></p></div>
+      <div class="card g-green"><h5>Group / Period / Block</h5><p><mark class="concept">Group-11, 4th period, d-block</mark>; config <mark class="fact">[Ar]3d¹⁰4s¹</mark></p></div>
+      <div class="card g-yellow"><h5>Named After</h5><p><mark class="person">Cyprus</mark>, Roman era ~9000 BC</p></div>
+      <div class="card g-purple"><h5>Chief Ores</h5><p><mark class="fact">Copper pyrite (chalcopyrite), copper glance (chalcocite)</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Transition element; called "coinage/currency metal" along with silver and gold. Second most useful metal.</li>
+        <li>Exists in native as well as combined form; extracted mainly from copper pyrite (CuFeS₂) and copper glance (Cu₂S) by <mark class="concept">auto-reduction process</mark>.</li>
+        <li>Reddish-orange, malleable, ductile, good conductor; melting/boiling points <mark class="fact">1083°C / 2310°C</mark>; specific gravity <mark class="fact">8.95</mark>.</li>
+        <li>Does not react with dry air, but with moist air forms basic copper carbonate (<mark class="concept">green coating/patina</mark>).</li>
+        <li><mark class="trap">Does NOT react with dilute, cold HCl and H₂SO₄</mark>.</li>
+        <li>Hot conc. H₂SO₄ → SO₂ gas; dilute HNO₃ → NO₂ gas; 50% HNO₃ → NO gas; conc. HNO₃ → NO₂ gas. N₂ gas forms when HNO₃ vapours are passed over hot copper.</li>
+        <li>Essential element of living organisms — main constituent of respiratory enzyme complex <mark class="concept">cytochrome C oxidase</mark>.</li>
+        <li>Uses: electroplating, electrotyping, wires, electrical appliances, calorimeters, domestic utensils, coins, alloys.</li>
+        <li>Copper is <mark class="trap">NOT extracted by thermal (smelting) reduction</mark> — it is extracted by the auto-reduction process, being low in the reactivity series.</li>
+        <li><mark class="trap">No reaction occurs when steam is passed over copper</mark> (unlike Al, Fe, Zn which do react with steam).</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Alloys of Copper</h4>
+    <table class="tbl-pastel">
+      <tr><th>Alloy</th><th>Composition</th><th>Uses</th></tr>
+      <tr><td><mark class="person">Brass</mark></td><td><mark class="fact">Cu (70%), Zn (30%)</mark></td><td>Household utensils, idols; tin-coated to prevent Cu contamination</td></tr>
+      <tr><td><mark class="person">Bronze</mark></td><td><mark class="fact">Cu (90%), Sn (10%)</mark></td><td>Utensils, bells, idols, coins, statues, medals</td></tr>
+      <tr><td><mark class="person">Gunmetal</mark></td><td><mark class="fact">Cu (88%), Sn (10%), Zn (2%)</mark></td><td>Machine equipment, gun engineering goods</td></tr>
+      <tr><td><mark class="person">Constantan</mark></td><td><mark class="fact">Cu (60%), Ni (40%)</mark></td><td>Electrical tools/apparatus</td></tr>
+      <tr><td><mark class="person">Bell metal</mark></td><td><mark class="fact">Cu (80%), Sn (20%)</mark></td><td>Utensils, bells, idols, coins</td></tr>
+      <tr><td><mark class="person">German silver</mark></td><td><mark class="fact">Cu (50%), Zn (35%), Ni (15%)</mark></td><td>Utensils, idols — <mark class="trap">contains NO silver despite the name</mark></td></tr>
+      <tr><td><mark class="person">Rolled gold</mark> (artificial gold)</td><td><mark class="fact">Cu (90%), Al (10%)</mark></td><td>Cheap ornaments</td></tr>
+      <tr><td><mark class="person">Delta metal</mark></td><td><mark class="fact">Cu (60%), Zn (38%), Fe (2%)</mark></td><td>Ship propellers (sea-water resistant)</td></tr>
+      <tr><td><mark class="person">Muntz metal</mark></td><td><mark class="fact">Cu (60%), Zn (40%)</mark></td><td>Coins, tubes, castings</td></tr>
+      <tr><td><mark class="person">Monel metal</mark></td><td><mark class="fact">Cu (70%), Ni (30%)</mark></td><td>Alkali-resistant containers</td></tr>
+      <tr><td><mark class="person">Dutch metal</mark></td><td><mark class="fact">Cu (80%), Zn (20%)</mark></td><td>Cheap ornaments (green-yellow golden colour)</td></tr>
+    </table>
+    <h4 class="subttl">Compounds of Copper</h4>
+    <table class="tbl-pastel">
+      <tr><th>Compound</th><th>Common Name</th><th>Key Uses / Facts</th></tr>
+      <tr><td><mark class="fact">Copper (II) Sulphate (CuSO₄·5H₂O)</mark></td><td><mark class="concept">Blue vitriol / Nila thotha</mark></td><td>Poisonous nature; parasitic fish infections; fungicide/germicide (Bordeaux mixture); electroplating; electric cells; refining crude copper; green dyes; loses blue colour on strong heating because water of crystallisation is lost</td></tr>
+      <tr><td><mark class="fact">Fehling's Solution (A + B)</mark></td><td>—</td><td>A = copper sulphate; B = alkaline sodium potassium tartrate; gives red precipitate of Cu₂O with aldehydes/monosaccharides (e.g. glucose) — used to test their presence</td></tr>
+    </table>
+    <div class="trapbox">
+      <p>Bordeaux mixture consists of <mark class="trap">copper sulphate and lime</mark> — NOT sodium sulphate and lime.</p>
+    </div>
+  </section>
+
+  <!-- SILVER -->
+  <section class="block" id="m-ag">
+    <h3 class="secttl">8. Silver (Ag) and Its Compounds</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">47 / 108</mark></p></div>
+      <div class="card g-green"><h5>Group / Period / Block</h5><p><mark class="concept">Group-11, 5th period, d-block</mark>; config <mark class="fact">[Kr]4d¹⁰5s¹</mark></p></div>
+      <div class="card g-yellow"><h5>Chief Ores</h5><p><mark class="fact">Argentite (Ag₂S), horn silver (AgCl), ruby silver (3Ag₂S·Sb₂S₃)</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Soft, white, lustrous transition metal; found in free (native) and combined states.</li>
+        <li>Extracted mainly from argentite by <mark class="person">MacArthur cyanide process</mark>; commercially obtained as a by-product during gold extraction.</li>
+        <li>Melting/boiling points <mark class="fact">960°C / 1955°C</mark>; relative density <mark class="fact">10.47</mark>; <mark class="fact">best conductor of both heat and electricity</mark> among all metals.</li>
+        <li>Inert to dry heat and H₂S-free air; but <mark class="trap">turns black in presence of H₂S</mark> (forms black silver sulphide, Ag₂S: 2Ag + H₂S → Ag₂S + H₂). This is why silver articles tarnish black in polluted air, and why it's risky to eat egg (contains sulphur) with a silver spoon.</li>
+        <li>Inert to acids and bases, but dissolves in NaCN (with O₂) to give soluble sodium argentocyanide complex.</li>
+        <li>Inert to dilute H₂SO₄ but evolves SO₂ with concentrated; gives NO / NO₂ with dilute / concentrated HNO₃ respectively.</li>
+        <li>Uses: coins, utensils, ornaments; filling tooth cavities (alloyed); silver plating.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Silver Halides &amp; Compounds</h4>
+    <table class="tbl-pastel">
+      <tr><th>Compound</th><th>Common Name</th><th>Key Uses / Facts</th></tr>
+      <tr><td><mark class="fact">Silver Bromide (AgBr)</mark></td><td>—</td><td>Used in <mark class="fact">photography</mark></td></tr>
+      <tr><td><mark class="fact">Silver Chloride (AgCl)</mark></td><td><mark class="concept">Horn silver</mark></td><td>Photochromatic glasses</td></tr>
+      <tr><td><mark class="fact">Silver Iodide (AgI)</mark></td><td>—</td><td>Producing artificial rains (cloud seeding)</td></tr>
+      <tr><td><mark class="fact">Silver Nitrate (AgNO₃)</mark></td><td><mark class="concept">Lunar caustic</mark></td><td>Produced from Ag + hot dilute HNO₃; m.p. 214°C; kept in coloured bottle (decomposes in sunlight); voter's finger marker; washerman's cloth-marking ink; electroplating of Ag; hair dyes; lab reagent</td></tr>
+    </table>
+    <div class="notebox"><p>An alloy called "German silver" (Cu+Zn+Ni) contains <mark class="trap">zero percent silver</mark> — a classic naming trap.</p></div>
+  </section>
+
+  <!-- GOLD -->
+  <section class="block" id="m-au">
+    <h3 class="secttl">9. Gold (Au) and Its Compounds</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">79 / 197</mark></p></div>
+      <div class="card g-green"><h5>Group / Period / Block</h5><p><mark class="concept">Group-11, 6th period, d-block</mark>; config <mark class="fact">[Xe]4f¹⁴5d¹⁰6s¹</mark></p></div>
+      <div class="card g-yellow"><h5>Chief Ores</h5><p><mark class="fact">Calaverite (AuTe₂), Sylvanite (AgAuTe₂)</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Soft, bright yellow, lustrous metal; occurs free (native)/alluvial deposits/ores; also extracted from auriferous sand by amalgamation (alloying with Hg).</li>
+        <li>Melting/boiling points <mark class="fact">1064°C / 2610°C</mark>; specific gravity <mark class="fact">19.3</mark> — <mark class="fact">among the densest common metals</mark> (Gold &gt; Mercury &gt; Steel in decreasing density).</li>
+        <li>Inert to most reagents, but dissolves in <mark class="concept">aqua regia</mark> (HCl : HNO₃ = 3:1) — hence gold's title "king of metals".</li>
+        <li>Inert to air, but reacts with K/Na cyanide in excess of air to give aurocyanide ion.</li>
+        <li>Very soft — alloyed with copper for ornaments (increases hardness).</li>
+        <li>Uses: ornaments, coins, electroplating, sugar and pharmaceutical industries.</li>
+        <li><mark class="fact">Most ductile metal</mark> among common metals; also most malleable along with silver.</li>
+        <li>Accessed in the <mark class="fact">native (free) state</mark> in nature — a classic noble-metal example (along with platinum). <mark class="trap">Uranium and lead are NOT noble metals.</mark></li>
+        <li>Gold is chemically non-toxic in nature.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Purity &amp; Compounds</h4>
+    <table class="tbl-pastel">
+      <tr><th>Item</th><th>Detail</th></tr>
+      <tr><td>Purity of gold</td><td>Expressed in carat; Cu mixed with Au for hardness. <mark class="fact">24 carat = pure gold</mark>; 23 &amp; 22 carat have 1 and 2 parts Cu respectively</td></tr>
+      <tr><td><mark class="fact">Purple of Cassius [Au + Sn(OH)₄]</mark></td><td>Colloidal gold, purple colour, named after <mark class="person">Cassius</mark>; used in ruby glass and colouring expensive potteries</td></tr>
+    </table>
+  </section>
+
+  <!-- ZINC -->
+  <section class="block" id="m-zn">
+    <h3 class="secttl">10. Zinc (Zn) and Its Compounds</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">30 / 65</mark></p></div>
+      <div class="card g-green"><h5>Discovered</h5><p>Before <mark class="fact">1000 BC</mark></p></div>
+      <div class="card g-yellow"><h5>Group / Period / Block</h5><p><mark class="concept">Group-12, 4th period, d-block</mark></p></div>
+      <div class="card g-purple"><h5>Chief Ore</h5><p><mark class="fact">Zinc blende (ZnS)</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Occurs combined as zinc blende (ZnS), zincite (ZnO), calamine (ZnCO₃); extracted mainly from zinc blende by <mark class="concept">carbon reduction process</mark>.</li>
+        <li>Bluish-white, hard, brittle, <mark class="trap">non-malleable and non-ductile</mark>. Melting/boiling points <mark class="fact">419°C / 920°C</mark>; specific gravity <mark class="fact">7.1</mark>; good conductor of heat/electricity.</li>
+        <li>Reacts with dilute HCl, H₂SO₄, HNO₃ to form H₂, SO₂, NO₂ gases respectively; <mark class="trap">gives NO ordinary H₂ with nitric acid</mark> because nitrate ions are preferentially reduced over hydronium ions.</li>
+        <li>Reacts with NaOH/KOH → H₂ + sodium zincate. Displaces copper from CuSO₄ solution.</li>
+        <li>Uses: galvanising iron, alloy production, household items, smoke screen in battlefield, dihydrogen gas production, extraction of gold.</li>
+        <li>Food cans are coated with <mark class="trap">tin, not zinc</mark>, since zinc is more reactive and could contaminate food; tin, being less reactive, is safer.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Compounds of Zinc</h4>
+    <table class="tbl-pastel">
+      <tr><th>Compound</th><th>Common Name</th><th>Key Uses / Facts</th></tr>
+      <tr><td><mark class="fact">Zinc Sulphate (ZnSO₄·7H₂O)</mark></td><td><mark class="concept">White vitriol</mark></td><td>Colourless crystalline, water-miscible; dyes/printing industries; electrolyte in zinc plating; mordant in dyeing/calico printing; forms double sulphates with alkali sulphates</td></tr>
+      <tr><td><mark class="fact">Zinc Oxide (ZnO)</mark></td><td><mark class="concept">Philosopher's wool</mark></td><td>—</td></tr>
+      <tr><td><mark class="fact">Lithopone (BaSO₄ + ZnS)</mark></td><td>—</td><td>White pigment; doesn't react with H₂S; turns grey in sunlight, white in dark; ingredient of white paint/enamels</td></tr>
+    </table>
+  </section>
+
+  <!-- MERCURY -->
+  <section class="block" id="m-hg">
+    <h3 class="secttl">11. Mercury (Hg) and Its Compounds</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">80 / 200</mark></p></div>
+      <div class="card g-green"><h5>Common Name</h5><p><mark class="concept">Quicksilver</mark></p></div>
+      <div class="card g-yellow"><h5>Group / Period / Block</h5><p><mark class="concept">Group-12, 6th period, d-block</mark></p></div>
+      <div class="card g-purple"><h5>Chief Ore</h5><p><mark class="fact">Cinnabar (HgS)</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Found as cinnabar ore; obtained by carbon-reduction process.</li>
+        <li>Silvery white metal, <mark class="fact">exists in liquid form at room temperature</mark> (the only common metal to do so).</li>
+        <li>At <mark class="fact">4.12 K</mark>, its electrical resistance vanishes and it acts as a superconductor.</li>
+        <li>Mixture of Hg with fats/sugar on strong mobilisation gives a brown powder — called "deadening of mercury".</li>
+        <li>On exposure to ozone, loses its meniscus and sticks to glass (superficial oxidation).</li>
+        <li>Forms alloys with all metals <mark class="trap">except iron and platinum</mark> — such alloys are called <mark class="concept">amalgams</mark>; hence mercury is transported in iron containers.</li>
+        <li>Does not react with water, steam, alkalis, or dilute HCl/H₂SO₄.</li>
+        <li>Cold, dilute HNO₃ → mercurous nitrate + NO; conc. HNO₃ → mercuric nitrate + NO + NO₂. Dissolves in aqua regia. Forms HgCl₂ with chlorine/sulphur.</li>
+        <li>Uses: thermometers, barometers, amalgams, cosmetics (mascara), mercury-vapour/fluorescent lamps, tube lights (Hg vapour + Ar), contact liquid in electrical connections, extraction of Ag/Au, vermillion making, LCD screens, batteries.</li>
+        <li>Mercury is the <mark class="fact">poorest conductor of heat among metals</mark> compared to other common metals; mercury and lead give greater electrical resistance compared to other metals when passing electric current.</li>
+        <li>An immediate rise or fall in barometer reading indicates clear weather or an approaching cyclone respectively.</li>
+        <li>Mercury is preferred in thermometers because it is reflective (easy to read), doesn't wet the glass, is a heat-conducting metal, expands evenly/linearly with high circulation power, and has a large liquid-range of temperature.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Compounds of Mercury</h4>
+    <table class="tbl-pastel">
+      <tr><th>Compound</th><th>Common Name</th><th>Key Uses / Facts</th></tr>
+      <tr><td><mark class="fact">Mercuric Sulphide (HgS)</mark></td><td><mark class="concept">Vermillion</mark></td><td>Red, crystalline; immiscible with water, doesn't react with acid; dissolves in aqua regia to give HgCl₂; used in medicines and watercolours</td></tr>
+      <tr><td><mark class="fact">Mercurous Chloride (Hg₂Cl₂)</mark></td><td><mark class="concept">Calomel</mark></td><td>White solid, immiscible with water; production of drugs/medicines</td></tr>
+      <tr><td><mark class="fact">Mercuric Chloride (HgCl₂)</mark></td><td><mark class="concept">Corrosive sublimate</mark></td><td>Colourless crystalline, poisonous — best antidote is white of an egg; used in Nessler's reagent (KHgI₄ + NaOH) to test ammonia/ammonium ion; sterilising surgical equipment; herbicide; dry cell; wood preservative</td></tr>
+    </table>
+  </section>
+
+  <!-- LEAD -->
+  <section class="block" id="m-pb">
+    <h3 class="secttl">12. Lead (Pb) and Its Compounds</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">82 / 207</mark></p></div>
+      <div class="card g-green"><h5>Group / Period / Block</h5><p><mark class="concept">Group-14, 6th period, p-block</mark></p></div>
+      <div class="card g-yellow"><h5>Stability</h5><p><mark class="concept">Most stable element</mark></p></div>
+      <div class="card g-purple"><h5>Chief Ore</h5><p><mark class="fact">Galena (PbS)</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Soft bluish-white metal, gives dull greyish colour on reaction with air. Extracted by self-reduction or carbon/CO reduction; pure lead by the <mark class="person">Betts electrolytic process</mark>.</li>
+        <li><mark class="concept">Amphoteric</mark> metal; melting/boiling points <mark class="fact">327°C / 1620°C</mark>; quite malleable but <mark class="trap">not ductile</mark>; heavy metal, specific density <mark class="fact">11.34</mark>.</li>
+        <li>Inert to dry air but reacts with moist air; forms oxides with O₂, PbCl₂ with chlorine, PbS with sulphur, PbSO₄ with H₂SO₄; forms plumbate and releases H₂ with dilute HNO₃; conc. HNO₃ gives NO₂ (brown smoke).</li>
+        <li>Uses: lead chambers, storage batteries, electric cable covering, bullets, pipes, alloys, protection from radioactive emissions, soldering circuit boards.</li>
+        <li><mark class="trap">Lead pipes for drinking water are now banned</mark> — form poisonous compounds with water.</li>
+        <li>Lead does <mark class="trap">not react with water at all</mark> — along with copper, silver, gold, platinum (least reactive metals).</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Alloys of Lead</h4>
+    <table class="tbl-pastel">
+      <tr><th>Alloy</th><th>Composition</th></tr>
+      <tr><td><mark class="person">Pewter</mark></td><td><mark class="fact">Sn (75%), Pb (25%)</mark></td></tr>
+      <tr><td><mark class="person">Solder</mark></td><td><mark class="fact">Sn (50-70%), Pb (50-30%)</mark></td></tr>
+      <tr><td><mark class="person">Type metal</mark></td><td><mark class="fact">Pb (75%), Sb (20%), Sn (6%)</mark></td></tr>
+    </table>
+    <h4 class="subttl">Compounds of Lead</h4>
+    <table class="tbl-pastel">
+      <tr><th>Compound</th><th>Common Name</th><th>Key Uses / Facts</th></tr>
+      <tr><td><mark class="fact">Lead Oxide (PbO)</mark></td><td><mark class="concept">Litharge</mark></td><td>Yellow, volatile, amphoteric oxide; lead storage batteries, flint glasses</td></tr>
+      <tr><td><mark class="fact">Red Lead (Pb₃O₄)</mark></td><td><mark class="concept">Minium / Sindhoor</mark></td><td>Red powder, insoluble in water; red pigment in glass industry, match industry, protective paint for iron/steel</td></tr>
+      <tr><td><mark class="fact">Tetraethyl Lead [Pb(C₂H₅)₄]</mark></td><td><mark class="concept">TEL</mark></td><td>Colourless mobile liquid; anti-knocking agent added to petrol; petrol with TEL is red-coloured, called leaded/ethyl petrol</td></tr>
+      <tr><td><mark class="fact">Lead Carbonate (PbCO₃)</mark></td><td><mark class="concept">White lead</mark></td><td>Immiscible with water, dissolves in HCl/HNO₃; white pigments</td></tr>
+      <tr><td><mark class="fact">Lead Acetate [Pb(CH₃COO)₂]</mark></td><td><mark class="concept">Sugar of lead</mark></td><td>White crystalline, water-soluble, sweet taste; detects presence of H₂S; mordant</td></tr>
+    </table>
+  </section>
+
+  <!-- RARE / RADIOACTIVE / OTHER -->
+  <section class="block" id="m-rare">
+    <h3 class="secttl">13. Uranium, Thorium, Platinum, Plutonium &amp; Other Notable Metals</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Uranium (U)</h5><p>At. no. <mark class="fact">92</mark>, mass <mark class="fact">238</mark>; discovered by <mark class="person">M.H. Klaproth</mark>; group-3, 7th period, f-block; extracted from pitchblende (uraninite); <mark class="trap">heaviest naturally occurring element</mark></p></div>
+      <div class="card g-green"><h5>Thorium (Th)</h5><p>At. no. <mark class="fact">90</mark>, mass <mark class="fact">232</mark>; naturally radioactive; found as <mark class="fact">monazite</mark> (also source of Lanthanum, Cerium); brown metal; group-3, 7th period, f-block</p></div>
+      <div class="card g-yellow"><h5>Platinum (Pt)</h5><p>At. no. <mark class="fact">78</mark>, mass <mark class="fact">195</mark>; noble metal; called <mark class="concept">white gold / Adam's catalyst</mark>; group-10, 6th period, d-block; inert to air &amp; acids; paramagnetic; <mark class="fact">heaviest metal among Au, Ag, Hg, Pt</mark> (density 21.09 g/cm³)</p></div>
+      <div class="card g-purple"><h5>Plutonium (Pu)</h5><p>At. no. <mark class="fact">94</mark>, mass <mark class="fact">244</mark>; artificial radioactive element; used in nuclear fission bombs</p></div>
+    </div>
+    <div class="notebox">
+      <ul>
+        <li>Uranium isotopes: <mark class="fact">U-238 (99.28%)</mark>, U-235 (0.71%, <mark class="trap">only fissionable isotope</mark>, used as nuclear fuel), U-234 (0.006%). Uranium oxide is smuggled as "yellow cake"; called "metal of hope"; used in Haber's process catalyst, alloys, drugs, nitrates/acetates, photography (uranium acetate/nitrate).</li>
+        <li>Thorium used in Mag-Thor alloy (aircraft engines, rockets), nuclear energy, incandescent gas mantle (tungsten filament/arc lamp).</li>
+        <li>Platinum used in alloys, pen-nozzle tips, lab devices, ornaments, catalyst in Ostwald's process.</li>
+        <li>Plutonium: the Hiroshima bomb contained <mark class="fact">U-235</mark>; the Nagasaki bomb contained <mark class="fact">Pu-239</mark>. Research nuclear reactors use plutonium.</li>
+        <li><mark class="fact">Uraninite</mark> is the ore/mineral of uranium; radium is obtained from <mark class="fact">pitchblende</mark>.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Other Important Metals — Quick Facts</h4>
+    <table class="tbl-pastel">
+      <tr><th>Metal</th><th>Key Fact</th></tr>
+      <tr><td><mark class="person">Tungsten (W)</mark></td><td>Melting point <mark class="fact">3500°C</mark> (<mark class="fact">hardest metal</mark>); produced from <mark class="fact">Degana mines, Rajasthan</mark>; used for electric bulb filaments (bulb evacuated to prevent burning)</td></tr>
+      <tr><td><mark class="person">Titanium (Ti)</mark></td><td>"Strategic metal" — used in defence; stronger but lighter than steel; used for boats (doesn't corrode in seawater); important ore = <mark class="fact">Ilmenite (FeTiO₃)</mark>, widely found along Indian coastline</td></tr>
+      <tr><td><mark class="person">Zirconium (Zr)</mark></td><td>Burns in both oxygen and nitrogen; neutron-absorbing — used in atomic reactors</td></tr>
+      <tr><td><mark class="person">Chromium (Cr)</mark></td><td>Used in magnetic recording products (audio cassettes, VHS tapes); key alloying element for stainless steel &amp; corrosion/heat resistant tool steel</td></tr>
+      <tr><td><mark class="person">Beryllium (Be)</mark></td><td>Main ore = <mark class="fact">beryl</mark>; used in circuit boards, hard disks, motherboards; does not impart flame colour</td></tr>
+      <tr><td><mark class="person">Francium (Fr)</mark></td><td>Radioactive liquid metal; among elements that are liquid near room temperature (with Bromine, Mercury, Caesium, Gallium, Rubidium)</td></tr>
+      <tr><td><mark class="fact">Tin Sulphide (SnS₂)</mark></td><td>Called <mark class="concept">Mosaic Gold</mark>; used as paint</td></tr>
+      <tr><td>Lead-Tin Alloy</td><td>Fuse wire in domestic electric circuits</td></tr>
+      <tr><td><mark class="person">Palladium (Pd)</mark></td><td>Used in aircraft manufacturing</td></tr>
+      <tr><td><mark class="person">Gallium (Ga)</mark></td><td>Exists in liquid state at ordinary temperature</td></tr>
+      <tr><td><mark class="person">Cesium (Cs)</mark></td><td>Used in manufacturing photoelectric cells</td></tr>
+      <tr><td>Barium Sulphate</td><td>Used as X-ray contrast agent ("barium meal") — good absorber of X-rays</td></tr>
+      <tr><td>Potassium Bromide (KBr)</td><td>Used in <mark class="fact">photography</mark></td></tr>
+      <tr><td>Potassium Nitrate (KNO₃)</td><td>Used in <mark class="fact">gunpowder</mark> (<mark class="trap">not photography</mark> — that's AgBr)</td></tr>
+      <tr><td>Monopotassium Tartrate</td><td>Used in bakery</td></tr>
+      <tr><td>Potassium Carbonate (K₂CO₃)</td><td>Known as <mark class="concept">pearlash</mark></td></tr>
+      <tr><td><mark class="person">Nichrome</mark></td><td>Alloy of nickel, chromium (± iron); very hard, very ductile; used in heating coils/elements</td></tr>
+      <tr><td><mark class="person">Cadmium (Cd)</mark></td><td>Use in electronic products banned by EU (2004); elsewhere used in soldering semiconductors/chip resistors</td></tr>
+      <tr><td><mark class="person">Osmium (Os)</mark></td><td><mark class="fact">Heaviest metal</mark></td></tr>
+      <tr><td><mark class="person">Britannia metal</mark></td><td>Alloy of antimony (Sb), copper (Cu), tin (Sn)</td></tr>
+      <tr><td><mark class="person">Babbitt metal</mark></td><td><mark class="fact">Sn (89%), Sb (9%), Cu (2%)</mark></td></tr>
+    </table>
+    <div class="trapbox">
+      <p><b>Weight/density traps:</b></p>
+      <ul>
+        <li><mark class="trap">Lightest metal = Lithium; heaviest metal = Osmium</mark> (density 22.61 g/cm³ vs Li 0.534 g/cm³).</li>
+        <li>Metals lighter than water (density &lt;1 g/cm³): <mark class="fact">Lithium, Sodium, Potassium</mark>.</li>
+        <li>Decreasing density order: <mark class="fact">Gold &gt; Mercury &gt; Steel</mark>.</li>
+        <li>Every naturally occurring radioactive element eventually transforms into a stable element — <mark class="fact">lead</mark>.</li>
+        <li>Hardest naturally occurring substance overall = <mark class="fact">Diamond</mark> (non-metal); hardest metal = <mark class="fact">Tungsten</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="m-gems">
+    <h3 class="secttl">14. Gems, Minerals &amp; Miscellaneous Facts</h3>
+    <div class="notebox">
+      <ul>
+        <li>Pearl's chemical structure = mainly <mark class="fact">Calcium Carbonate</mark> (82–86% aragonite, 10–14% conchiolin — a protein binding agent, 2–4% water).</li>
+        <li>Chemical formula of sapphire (ruby) = <mark class="fact">Al₂O₃</mark> (Aluminium Oxide, a corundum variety).</li>
+        <li>Softest mineral, <mark class="fact">Talc (soapstone)</mark>, is mainly <mark class="fact">Magnesium Silicate</mark> — rated 1 on Mohs scale; diamond rated 10.</li>
+        <li>Chemical name of limestone = <mark class="fact">Calcium Carbonate</mark>; main ingredients of cement = limestone + silica-bearing clay, heated to 1450°C in a kiln (calcination liberates CO₂, forms clinker); clinker ground with gypsum (CaSO₄·2H₂O) to make Ordinary Portland Cement (OPC). Cement industry contributes roughly <mark class="fact">5–8% of global CO₂ emissions</mark>.</li>
+        <li>Mica: good conductor of <mark class="concept">heat</mark> but bad conductor of electricity; used as raw material in the electrical industry.</li>
+        <li><mark class="fact">Monazite</mark> = ore of Thorium (found in coastal placer sands of Kerala, Tamil Nadu, Odisha, Andhra Pradesh, Maharashtra, Gujarat; inland deposits in Jharkhand, West Bengal, Tamil Nadu).</li>
+        <li>Match: Diamond = Carbon; Marble = Calcium; Sand = Silicon; Ruby = Aluminium.</li>
+        <li>Match: Cracking = Petroleum industry; Smelting = Copper industry; Hydrogenation = Edible Fats industry; Vulcanization = Rubber industry.</li>
+        <li>Minerals are classed as <mark class="concept">inorganic solids</mark>.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- ============ TAB 2: ORES / EXTRACTION ============ -->
+<div class="panel" id="t2">
+  <div class="pagehead">
+    <h2>Extraction of Metals — Ores, Minerals &amp; Metallurgy</h2>
+    <p>🟨 Concept &nbsp; 🟦 Fact/Number &nbsp; 🟩 Person/Place &nbsp; 🟥 MCQ Trap &nbsp; 🟪 Rule</p>
+  </div>
+
+  <section class="block" id="o1">
+    <h3 class="secttl">1. Metallurgy: Basic Terms</h3>
+    <div class="notebox">
+      <ul>
+        <li><b><mark class="concept">Extraction of metals</mark></b> = attainment of pure metal from its compound.</li>
+        <li><b><mark class="concept">Metallurgy</mark></b> = the entire scientific/technological process for extracting and isolating metal from ore.</li>
+        <li><b><mark class="concept">Minerals</mark></b> = naturally occurring chemical substances in the earth's crust, obtainable by mining (e.g. bauxite, kaolinite) — classed as inorganic solids.</li>
+        <li><b><mark class="concept">Ores</mark></b> = minerals from which metals can be extracted <mark class="concept">conveniently and profitably</mark>. <mark class="trap">All ores are minerals, but all minerals are NOT ores</mark> — e.g. iron pyrite is a mineral of iron but not its ore (extraction too costly).</li>
+        <li><b><mark class="concept">Gangue / Matrix</mark></b> = earthen impurities (soil, sand, etc.) present in the ore.</li>
+      </ul>
+    </div>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Hydrometallurgy</h5><p>Extraction of metal by <mark class="concept">dissolving in aqueous solution</mark>.</p></div>
+      <div class="card g-red"><h5>Pyrometallurgy</h5><p>Extraction by <mark class="concept">heating with a suitable reducing agent</mark>.</p></div>
+      <div class="card g-green"><h5>Electrometallurgy</h5><p>Extraction of metal by <mark class="concept">using electricity</mark>.</p></div>
+    </div>
+    <div class="trapbox">
+      <p><b>Reasoning traps:</b></p>
+      <ul>
+        <li>Ore-classification criterion: a mineral is called an ore if a metal can be <mark class="trap">profitably</mark> extracted from it (not just "extracted", and not about cost of the metal itself).</li>
+        <li>Some minerals contain a large percentage of metal, others only a small percentage — both statements are valid/possible.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="o2">
+    <h3 class="secttl">2. Concentration of Ores</h3>
+    <p>Removal of gangue/unwanted material from ore is called <mark class="concept">ore concentration, dressing, or benefaction</mark>. Besides hand-picking, key techniques:</p>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Hydraulic Washing</h5><p>Gravity separation — an upward stream of running water washes powdered ore; lighter gangue is washed away, heavier ore remains. Used for <mark class="fact">iron ores (Fe₂O₃, Fe₃O₄)</mark>.</p></div>
+      <div class="card g-green"><h5>Magnetic Separation</h5><p>Based on differing magnetic properties of ore and gangue. Used for <mark class="fact">tungsten from cassiterite (SnO₂)</mark>, Fe₂O₃, Cr₂O₃, etc. Also increases concentration of haematite ore.</p></div>
+      <div class="card g-yellow"><h5>Froth Floatation</h5><p>For removing gangue from <mark class="concept">sulphide ores</mark>. Collectors (pine oils) and froth stabilizers (cresols) added; oiled ore particles rise with froth, which is skimmed off.</p></div>
+      <div class="card g-purple"><h5>Leaching</h5><p>Used when ore is soluble in a suitable solvent. Bauxite leached with conc. NaOH; silver and gold leached with dilute sodium/potassium cyanide.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="o3">
+    <h3 class="secttl">3. Extraction from Concentrated Ore — Step 1: Conversion to Oxide</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Calcination</h5><p>Heating ore with or without air; volatile matter escapes, leaving metal oxide. Done for <mark class="concept">carbonate, hydroxide, oxide ores</mark>.</p></div>
+      <div class="card g-red"><h5>Roasting</h5><p>Done only for <mark class="concept">sulphide ores</mark>; ore heated in regular air supply below the metal's melting point; impurities (S, As) oxidise &amp; escape as volatile gases, leaving metal oxide.<br><mark class="rule">CuFeS₂ + 3O₂ → CuO + FeO + 2SO₂</mark></p></div>
+    </div>
+  </section>
+
+  <section class="block" id="o4">
+    <h3 class="secttl">4. Step 2: Reduction of Oxide to Metal</h3>
+    <div class="flow">
+      <div class="flowstep" data-n="1"><div class="ftext"><b>Smelting</b><p>Reduction by carbon or CO; used for metals in the <mark class="concept">middle of the reactivity series</mark> (Pb, Fe, Sn, Zn). Ore heated above its melting point with coke; <mark class="concept">flux</mark> is added.<br><mark class="rule">PbO + CO → Pb (molten) + CO₂</mark></p></div></div>
+      <div class="flowstep" data-n="2"><div class="ftext"><b>Flux &amp; Slag</b><p>Flux converts infusible impurities into a fusible substance called <mark class="concept">slag</mark> (Flux + Acidic/Basic Impurities → Slag), which floats lighter above the molten metal. <mark class="rule">Acidic flux (e.g. SiO₂)</mark> removes basic impurities; <mark class="rule">basic flux (e.g. CaO, FeO)</mark> removes acidic impurities.<br>e.g. In iron smelting, limestone (CaCO₃ → CaO at 1000°C) reacts with SiO₂ impurity to form <mark class="fact">CaSiO₃ slag</mark>.</p></div></div>
+      <div class="flowstep" data-n="3"><div class="ftext"><b>Aluminothermic Process</b><p>Oxides of chromium and manganese reduced by aluminium.<br><mark class="rule">Cr₂O₃ + 2Al → Al₂O₃ + 2Cr</mark></p></div></div>
+      <div class="flowstep" data-n="4"><div class="ftext"><b>Auto-Reduction</b><p>Used for metals <mark class="concept">low in the reactivity series</mark> — oxides of <mark class="fact">Cu, Hg, Pb</mark> reduced to metal by heating alone.</p></div></div>
+      <div class="flowstep" data-n="5"><div class="ftext"><b>Electrolytic Method</b><p>Used for metals <mark class="concept">high in the reactivity series</mark> — <mark class="fact">Na, Al, Ca</mark>; their oxides are reduced to metals electrolytically. Sodium obtained by electrolysis of NaCl.</p></div></div>
+    </div>
+    <div class="notebox">
+      <ul>
+        <li>Alkali and alkaline earth metals are obtained by electrolysis of their chlorides, oxides or hydroxides.</li>
+        <li>In the <mark class="person">Hall-Héroult process</mark> of aluminium electrolysis, purified Al₂O₃ is mixed with <mark class="fact">Na₃AlF₆ (cryolite)</mark> or <mark class="fact">CaF₂</mark> to lower the melting point and increase conductivity.</li>
+        <li><mark class="fact">Thermite mixture = Fe₂O₃ + Al (3:1)</mark> — used for welding railway lines.</li>
+        <li>The extraction of iron from its ore is termed <mark class="fact">reduction</mark>; smelting is the metallurgical process in which a metal is obtained in a <mark class="fact">fused state</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="o5">
+    <h3 class="secttl">5. Refining of Metals</h3>
+    <p><mark class="concept">Refining</mark> = extraction of pure metal from its impure/crude form under suitable conditions.</p>
+    <table class="tbl-pastel">
+      <tr><th>Method</th><th>Principle</th><th>Metals Refined</th></tr>
+      <tr><td><mark class="person">Distillation</mark></td><td>Low boiling point metals distilled off</td><td><mark class="fact">Zn, Cd, Hg</mark></td></tr>
+      <tr><td><mark class="person">Liquation</mark></td><td>Low melting point metals melted away from impurities</td><td><mark class="fact">Sn, Hg, Pb</mark></td></tr>
+      <tr><td><mark class="person">Electrolytic Refining</mark></td><td>Impure metal = anode, pure metal = cathode, metal salt = electrolyte</td><td><mark class="fact">Cu, Ag, Au, Al, Pb</mark></td></tr>
+      <tr><td><mark class="person">Zone Refining</mark></td><td>Impurities more soluble in molten than in solid state of metal</td><td><mark class="fact">Semiconductors: Ge, Si, B, Ga, In</mark></td></tr>
+      <tr><td><mark class="person">Mond's Process</mark> (vapour phase)</td><td>Metal converted to volatile compound, then decomposed to give pure metal</td><td><mark class="fact">Nickel</mark> — <mark class="rule">Ni + 4CO → Ni(CO)₄ → Ni + 4CO</mark></td></tr>
+      <tr><td><mark class="person">van Arkel Process</mark> (vapour phase)</td><td>Same principle, at 1600°C</td><td><mark class="fact">Zirconium, Titanium</mark> — <mark class="rule">Ti + 2I₂ → TiI₄ → Ti + 2I₂</mark></td></tr>
+      <tr><td><mark class="person">Chromatographic Method</mark></td><td>Different mixture components differentially absorbed</td><td>—</td></tr>
+    </table>
+    <div class="notebox">
+      <p><mark class="fact">Borax or KNO₃</mark> is used as flux in the refining of silver. <mark class="fact">Wrought/malleable iron</mark> is the purest form of commercial iron; cast iron is used in manufacturing wrought iron and steel.</p>
+    </div>
+  </section>
+
+  <section class="block" id="o6">
+    <h3 class="secttl">6. Master Ores &amp; Minerals Table (Metal-wise)</h3>
+    <table class="tbl-pastel">
+      <tr><th>Metal</th><th>Principal Ores / Minerals</th><th>Formula(e)</th></tr>
+      <tr><td><mark class="person">Sodium (Na)</mark></td><td>Chile saltpetre, Rock salt / Common salt, Trona, Borax, Glauberite, Glauber's salt</td><td><mark class="fact">NaNO₃; NaCl; Na₃H(CO₃)₂·2H₂O; Na₂B₄O₇·10H₂O; Na₂Ca(SO₄)₂; Na₂SO₄·10H₂O</mark></td></tr>
+      <tr><td><mark class="person">Potassium (K)</mark></td><td>Nitre/saltpetre, Potassium chloride, Carnallite, Schoenite, Potassium carbonate, Sylvine</td><td><mark class="fact">KNO₃; KCl; KCl·MgCl₂·6H₂O; K₂Mg(SO₄)₂·6H₂O; K₂CO₃</mark></td></tr>
+      <tr><td><mark class="person">Magnesium (Mg)</mark></td><td>Magnesite, Dolomite, Carnallite, Kieserite, Epsom salt</td><td><mark class="fact">MgCO₃; CaMg(CO₃)₂; KCl·MgCl₂·6H₂O; MgSO₄·H₂O; MgSO₄·7H₂O</mark></td></tr>
+      <tr><td><mark class="person">Calcium (Ca)</mark></td><td>Limestone / Calcite, Gypsum, Fluorspar</td><td><mark class="fact">CaCO₃; CaSO₄·2H₂O; CaF₂</mark></td></tr>
+      <tr><td><mark class="person">Aluminium (Al)</mark></td><td>Bauxite, Cryolite, Feldspar, Corundum, Diaspore</td><td><mark class="fact">Al₂O₃·2H₂O; Na₃AlF₆; KAlSi₃O₈; Al₂O₃; AlO(OH)</mark></td></tr>
+      <tr><td><mark class="person">Manganese (Mn)</mark></td><td>Pyrolusite, Manganite, Hausmannite</td><td><mark class="fact">MnO₂; MnO(OH); Mn₃O₄</mark></td></tr>
+      <tr><td><mark class="person">Iron (Fe)</mark></td><td>Haematite, Magnetite (loadstone), Limonite, Siderite, Iron Pyrites</td><td><mark class="fact">Fe₂O₃; Fe₃O₄; 2Fe₂O₃·3H₂O; FeCO₃; FeS₂</mark></td></tr>
+      <tr><td><mark class="person">Copper (Cu)</mark></td><td>Copper pyrite / Chalcopyrite, Copper glance / Chalcocite, Cuprite, Malachite, Azurite</td><td><mark class="fact">CuFeS₂; Cu₂S; Cu₂O; Cu(OH)₂·CuCO₃; Cu₃(CO₃)₂(OH)₂</mark></td></tr>
+      <tr><td><mark class="person">Silver (Ag)</mark></td><td>Native silver, Argentite, Horn silver / Cerargyrite, Ruby silver</td><td><mark class="fact">Ag; Ag₂S; AgCl; 3Ag₂S·Sb₂S₃</mark></td></tr>
+      <tr><td><mark class="person">Gold (Au)</mark></td><td>Calaverite, Sylvanite, Auric chloride</td><td><mark class="fact">AuTe₂; AgAuTe₂; AuCl₃</mark></td></tr>
+      <tr><td><mark class="person">Zinc (Zn)</mark></td><td>Zinc blende / Black Jack, Calamine / Smithsonite, Zincite / Red Zinc, Franklinite, Willemite</td><td><mark class="fact">ZnS; ZnCO₃; ZnO; —; Zn₂SiO₄</mark></td></tr>
+      <tr><td><mark class="person">Mercury (Hg)</mark></td><td>Cinnabar</td><td><mark class="fact">HgS</mark></td></tr>
+      <tr><td><mark class="person">Lead (Pb)</mark></td><td>Galena, Cerussite, Matlockite</td><td><mark class="fact">PbS; PbCO₃; PbFCl</mark></td></tr>
+      <tr><td><mark class="person">Tin (Sn)</mark></td><td>Cassiterite / Tinstone</td><td><mark class="fact">SnO₂</mark></td></tr>
+      <tr><td><mark class="person">Uranium (U)</mark></td><td>Pitchblende / Uraninite</td><td><mark class="fact">U₃O₈</mark></td></tr>
+      <tr><td><mark class="person">Thorium (Th)</mark></td><td>Monazite</td><td>—</td></tr>
+      <tr><td><mark class="person">Titanium (Ti)</mark></td><td>Ilmenite</td><td><mark class="fact">FeTiO₃</mark></td></tr>
+    </table>
+    <div class="trapbox">
+      <p><b>Ore-matching traps:</b></p>
+      <ul>
+        <li>Cinnabar (HgS) is the ore of <mark class="trap">Mercury — NOT Copper</mark> (a commonly mismatched pair).</li>
+        <li>Copper's actual ores are Cuprite, Chalcopyrite, Chalcocite, Malachite, Azurite — not Cinnabar.</li>
+        <li>Magnetite (Fe₃O₄) is an ore of <mark class="trap">Iron — NOT Aluminium</mark>.</li>
+        <li>Bauxite, Cryolite, Corundum are all ores of <mark class="fact">Aluminium</mark> — most important ore is <mark class="fact">Bauxite</mark>.</li>
+        <li>Uraninite = ore of Uranium; Ilmenite = ore of Titanium; Monazite = ore of Thorium.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="o7">
+    <h3 class="secttl">7. Extraction &amp; Ore Facts / MCQ Traps</h3>
+    <div class="notebox">
+      <ul>
+        <li><mark class="fact">Lime, silica and magnesium oxide</mark> are commonly used as <mark class="concept">refractory materials</mark> for furnace lining because they can withstand very high temperatures.</li>
+        <li>Match: <mark class="fact">Cyanide process = Extraction of Gold (Au)</mark>; <mark class="fact">Froth floatation = Dressing of ZnS</mark>; <mark class="fact">Electrolytic reduction = Extraction of Aluminium</mark>; <mark class="fact">Zone refining = Ultra-pure Germanium</mark>.</li>
+        <li>Steel slag (by-product of steel manufacture) can be used for: construction of road base, improvement of agricultural soil, and production of cement — all three uses are valid.</li>
+        <li>Roasting converts sulphide ores to oxides; makes the ore porous and removes moisture; done below the metal's melting point — all three statements are correct about roasting.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- ============ TAB 3: ALLOYS ============ -->
+<div class="panel" id="t3">
+  <div class="pagehead">
+    <h2>Alloys — Composition &amp; Uses</h2>
+    <p>🟨 Concept &nbsp; 🟦 Fact/Number &nbsp; 🟥 MCQ Trap</p>
+  </div>
+
+  <section class="block" id="a1">
+    <h3 class="secttl">1. Master Alloys Table</h3>
+    <div class="notebox">
+      <p>An <mark class="concept">alloy</mark> is a homogeneous or heterogeneous metallic mixture of two or more chemical elements, of which at least one is a metal, having bulk properties different from its constituents. <mark class="fact">Steel</mark> = iron + carbon (up to/under 2% carbon). <mark class="fact">Sterling silver</mark> = 92.5% pure silver + 7.5% other metal (usually copper) — copper adds hardness without much loss of lustre.</p>
+    </div>
+    <table class="tbl-pastel">
+      <tr><th>Alloy</th><th>Composition</th><th>Uses</th></tr>
+      <tr><td><mark class="person">Brass</mark></td><td><mark class="fact">Copper + Zinc (~70:30)</mark></td><td>Utensils, decorative materials, idols; coated with tin to prevent copper contamination; fades/blackens in air due to hydrogen sulphide</td></tr>
+      <tr><td><mark class="person">Bronze</mark></td><td><mark class="fact">Copper + Tin (~88:12)</mark></td><td>Bearings, non-sparking tools, coins, medals, sculptures, musical instruments, bells, idols; <mark class="fact">has the maximum copper % among Brass/Bronze/German silver/Gunmetal</mark></td></tr>
+      <tr><td><mark class="person">Steel</mark></td><td><mark class="fact">Iron + Carbon (0.1-2%)</mark></td><td>Buildings, infrastructure, tools, ships, automobiles, appliances, weapons; hardness increases with more carbon</td></tr>
+      <tr><td><mark class="person">Stainless Steel</mark></td><td><mark class="fact">Steel + Chromium (10-18%) + Nickel/Manganese/Carbon</mark></td><td>Utensils, surgical/medical equipment, architecture, automotive, aerospace; Chromium imparts rust resistance; Nickel makes it non-magnetic; Silicon is <mark class="trap">not</mark> a standard constituent</td></tr>
+      <tr><td><mark class="person">Solder</mark></td><td><mark class="fact">Tin + Lead (~32:68)</mark>, or Tin+Silver, or Tin+Silver+Copper</td><td>Joining metals by heating with a filler metal; used for welding broken iron rails/machine parts</td></tr>
+      <tr><td><mark class="person">Duralumin</mark></td><td><mark class="fact">Aluminium + Copper + Magnesium + Manganese</mark></td><td>Aircraft construction, cookware, pressure cookers</td></tr>
+      <tr><td><mark class="person">German Silver</mark></td><td><mark class="fact">Copper + Nickel + Zinc</mark></td><td>Tableware, marine fittings, plumbing fixtures, heating coils; <mark class="trap">contains ZERO silver</mark></td></tr>
+      <tr><td><mark class="person">Alnico</mark></td><td><mark class="fact">Iron + Aluminium + Nickel + Cobalt</mark></td><td>Permanent magnets</td></tr>
+      <tr><td><mark class="person">Nichrome</mark></td><td><mark class="fact">Nickel + Chromium (± Iron)</mark></td><td>Heating elements; very hard and ductile; high specific resistivity, high melting point</td></tr>
+      <tr><td><mark class="person">Gunmetal</mark></td><td><mark class="fact">Copper (88%), Tin (10%), Zinc (2%)</mark></td><td>Machine equipment, gun engineering goods</td></tr>
+      <tr><td><mark class="person">Constantan</mark></td><td><mark class="fact">Copper (60%), Nickel (40%)</mark></td><td>Electrical tools and apparatus</td></tr>
+      <tr><td><mark class="person">Monel metal</mark></td><td><mark class="fact">Copper (70%), Nickel (30%)</mark></td><td>Alkali-resistant containers</td></tr>
+      <tr><td><mark class="person">Delta metal</mark></td><td><mark class="fact">Copper, Zinc, Iron (2%)</mark></td><td>Ship propellers (sea-water resistant)</td></tr>
+      <tr><td><mark class="person">Muntz metal</mark></td><td><mark class="fact">Copper (60%), Zinc (40%)</mark></td><td>Coins, tubes, castings</td></tr>
+      <tr><td><mark class="person">Rolled gold</mark></td><td><mark class="fact">Copper (90%), Aluminium (10%)</mark></td><td>Cheap ornaments</td></tr>
+      <tr><td><mark class="person">Dutch metal</mark></td><td><mark class="fact">Copper (80%), Zinc (20%)</mark></td><td>Cheap ornaments (golden colour)</td></tr>
+      <tr><td><mark class="person">Aluminium bronze</mark></td><td><mark class="fact">Aluminium (10%), Copper (90%)</mark></td><td>Coins, utensils</td></tr>
+      <tr><td><mark class="person">Nickel alloy</mark></td><td><mark class="fact">Aluminium (90%), Nickel (6%), Copper (4%)</mark></td><td>Aerospace manufacturing</td></tr>
+      <tr><td><mark class="person">Magnalium</mark></td><td><mark class="fact">Aluminium (95-96%), Cu+Fe (2-3%), Magnesium (2%)</mark></td><td>Aerospace industry</td></tr>
+      <tr><td><mark class="person">Electron</mark></td><td><mark class="fact">Magnesium (95%), Zinc (4.5%), Copper (0.5%)</mark></td><td>Aircraft frames, motor vehicles</td></tr>
+      <tr><td><mark class="person">Spiegeleisen</mark></td><td>Manganese + Iron + Carbon</td><td>Steel manufacture</td></tr>
+      <tr><td><mark class="person">Ferromanganese</mark></td><td><mark class="fact">Mn (70-80%)</mark></td><td>Steel manufacture</td></tr>
+      <tr><td><mark class="person">Nickel Steel</mark></td><td><mark class="fact">Iron + Nickel (3.5%)</mark></td><td>Cables, armour plates, auto parts, axles</td></tr>
+      <tr><td><mark class="person">Chrome-vanadium steel</mark></td><td><mark class="fact">Cr (1-10%), V (0.15-0.51%)</mark></td><td>Axles, springs, wheels, ball bearings, gears</td></tr>
+      <tr><td><mark class="person">Manganese steel</mark></td><td><mark class="fact">Mn (12-15%)</mark></td><td>Rock cutters, burglar-proof safes, railway tracks</td></tr>
+      <tr><td><mark class="person">Invar</mark></td><td><mark class="fact">Nickel (36%)</mark></td><td>Clock pendulums, scales, yardsticks (no thermal expansion)</td></tr>
+      <tr><td><mark class="person">Tungsten steel</mark></td><td><mark class="fact">W (14-20%)</mark></td><td>Springs, cutting tools</td></tr>
+      <tr><td><mark class="person">Chrome steel</mark></td><td><mark class="fact">Cr (5%)</mark></td><td>Cutting tools, cutlery</td></tr>
+      <tr><td><mark class="person">Pewter</mark></td><td><mark class="fact">Tin (75%), Lead (25%)</mark></td><td>Decorative/utility ware</td></tr>
+      <tr><td><mark class="person">Type metal</mark></td><td><mark class="fact">Lead (75%), Antimony (20%), Tin (6%)</mark></td><td>Printing type</td></tr>
+      <tr><td><mark class="person">Britannia metal</mark></td><td>Antimony + Copper + Tin</td><td>Decorative ware</td></tr>
+      <tr><td><mark class="person">Babbitt metal</mark></td><td><mark class="fact">Tin (89%), Antimony (9%), Copper (2%)</mark></td><td>Bearings</td></tr>
+    </table>
+  </section>
+
+  <section class="block" id="a2">
+    <h3 class="secttl">2. Karat / Carat</h3>
+    <div class="cardgrid">
+      <div class="card g-yellow"><h5>Karat (Gold Purity)</h5><p><mark class="fact">24-karat gold = pure (≥99.9%) gold.</mark> 18-karat = 75% gold + 25% other metals. 1 g of 12-karat gold contains 0.5 g (50%) pure gold. Each karat = 1/24th of the whole. Copper/silver mixed with pure gold for hardness (pure gold too soft for jewellery).</p></div>
+      <div class="card g-blue"><h5>Carat (Gemstone Weight)</h5><p>Standard unit of weight for gemstones including diamonds. <mark class="fact">1 carat = exactly 200 mg = 0.2 g.</mark> "Carat" (UK/Australia/India) is also sometimes used for gold purity where the US uses "karat".</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="a3">
+    <h3 class="secttl">3. Alloy Facts &amp; MCQ Traps</h3>
+    <div class="trapbox">
+      <ul>
+        <li>Copper is <mark class="trap">not an alloy</mark> — it's a pure metal; steel, brass, and bronze ARE alloys.</li>
+        <li><mark class="trap">German silver contains NO silver</mark> — it's Cu+Ni+Zn only, a persistent naming trap.</li>
+        <li>An amalgam is specifically a mercury-metal mixture; <mark class="trap">iron is the one common metal that does NOT form an amalgam</mark> with mercury.</li>
+        <li>Solder is generally <mark class="fact">Tin + Lead (~32% Sn : 68% Pb)</mark> — low melting point, good for heat-sensitive components.</li>
+        <li>Match: <mark class="fact">German silver → Nickel</mark> (as component, along with Cu &amp; Zn); <mark class="fact">Solder → Tin</mark>; <mark class="fact">Bleaching powder → Chlorine</mark>; <mark class="fact">Hypo → Sodium</mark> (thiosulphate).</li>
+        <li>Statement check: "Brass is an alloy of copper and zinc" — <mark class="fact">TRUE</mark>; "Magnetite is the main ore of Aluminium" — <mark class="trap">FALSE</mark> (it's iron's ore); "Amalgams mainly involve mercury" — <mark class="fact">TRUE</mark>; "KNO₃ is used in photography" — <mark class="trap">FALSE</mark> (that's AgBr; KNO₃ is used in gunpowder).</li>
+        <li>Stainless steel becomes <mark class="fact">non-magnetic</mark> specifically due to <mark class="fact">nickel</mark> addition; extra carbon is added for hardness.</li>
+        <li>To increase steel's hardness, the <mark class="fact">quantity of carbon</mark> is increased (Carbon distorts the iron crystal lattice).</li>
+        <li><mark class="fact">Chromium</mark> is the key metal added to iron to produce <mark class="fact">stainless steel</mark> and to make it rust-free / heat-resistant / abrasion-resistant.</li>
+        <li>Only <mark class="fact">Copper</mark> is common to Brass, Bronze AND German Silver among their constituent metals.</li>
+        <li>Copper alloys (classic pairing question) = <mark class="fact">Brass and Bronze</mark> — NOT Invar (a nickel-steel) and NOT Nichrome (a nickel-chromium alloy).</li>
+      </ul>
+    </div>
+  </section>
+</div>
+</main>
+</div>
+
+<script>
+function showTab(id, btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tabbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('nav1').style.display = id==='t1' ? 'block':'none';
+  document.getElementById('nav2').style.display = id==='t2' ? 'block':'none';
+  document.getElementById('nav3').style.display = id==='t3' ? 'block':'none';
+  document.querySelector('.sidebar').classList.remove('open');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
