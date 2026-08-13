@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPSC Mock Test - 99 Questions</title>
+<style>
+  :root {
+    --navy: #0f2544;
+    --navy-light: #1a3a63;
+    --gold: #c9972f;
+    --green: #1e8449;
+    --green-bg: #eafaf1;
+    --red: #c0392b;
+    --red-bg: #fdedec;
+    --gray-bg: #f4f6f8;
+    --border: #dfe4ea;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--gray-bg);
+    color: #1c2733;
+  }
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    color: #fff;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  header h1 {
+    font-size: 1.15rem;
+    margin: 0;
+    font-weight: 600;
+  }
+  header .sub {
+    font-size: 0.75rem;
+    color: #b9c6d6;
+    margin-top: 2px;
+  }
+  #timer-box {
+    background: var(--navy-light);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--gold);
+    min-width: 110px;
+    text-align: center;
+  }
+  #timer-box.warning { color: #e74c3c; border-color: #e74c3c; animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.5;} }
+
+  #progress-bar-wrap {
+    background: #d6dde3;
+    height: 6px;
+    width: 100%;
+  }
+  #progress-bar {
+    background: linear-gradient(90deg, var(--gold), #e0b04d);
+    height: 100%;
+    width: 0%;
+    transition: width 0.2s;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+
+  #submit-panel {
+    max-width: 900px;
+    margin: 10px auto 0;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  #answered-count { font-size: 0.9rem; color: #445; }
+  #submit-btn, #restart-btn {
+    background: var(--gold);
+    color: #1c2733;
+    border: none;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    transition: transform 0.1s;
+  }
+  #submit-btn:hover, #restart-btn:hover { transform: translateY(-1px); }
+  #submit-btn:disabled { background: #b8bec4; cursor: not-allowed; }
+
+  .section-heading {
+    background: var(--navy);
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px;
+    margin: 26px 0 14px;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+  .section-heading .count {
+    font-weight: 400;
+    color: var(--gold);
+    font-size: 0.85rem;
+    float: right;
+  }
+  .chapter-tag {
+    display: inline-block;
+    background: #eef2f6;
+    border: 1px solid var(--border);
+    color: #3a4a5c;
+    font-size: 0.72rem;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+  }
+
+  .q-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .q-card.unanswered-flag {
+    border-color: #e0a020;
+    box-shadow: 0 0 0 2px rgba(224,160,32,0.25);
+  }
+  .q-header {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .q-num {
+    flex-shrink: 0;
+    background: var(--navy);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .q-text {
+    white-space: pre-wrap;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    font-weight: 600;
+    color: #1c2733;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-left: 38px;
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 9px 12px;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+    font-size: 0.93rem;
+  }
+  .option:hover { background: #f0f4f8; }
+  .option input { accent-color: var(--navy); }
+  .option.selected {
+    border-color: var(--navy);
+    background: #eaf0f8;
+  }
+  .option .opt-letter {
+    font-weight: 700;
+    color: var(--navy-light);
+    width: 18px;
+  }
+
+  /* Result states */
+  .option.correct-answer {
+    background: var(--green-bg);
+    border-color: var(--green);
+  }
+  .option.correct-answer .opt-letter { color: var(--green); }
+  .option.wrong-answer {
+    background: var(--red-bg);
+    border-color: var(--red);
+  }
+  .option.wrong-answer .opt-letter { color: var(--red); }
+  .result-icon { margin-left: auto; font-weight: 700; font-size: 1rem; }
+  .result-icon.tick { color: var(--green); }
+  .result-icon.cross { color: var(--red); }
+
+  .explanation {
+    margin: 12px 0 0 38px;
+    background: #f7f9fb;
+    border-left: 4px solid var(--gold);
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: #33404d;
+    border-radius: 0 6px 6px 0;
+    display: none;
+    white-space: pre-wrap;
+  }
+  .explanation strong { color: var(--navy); }
+  .q-status-badge {
+    margin-left: auto;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 10px;
+    display: none;
+  }
+  .q-status-badge.correct { background: var(--green-bg); color: var(--green); display: inline-block; }
+  .q-status-badge.wrong { background: var(--red-bg); color: var(--red); display: inline-block; }
+  .q-status-badge.skipped { background: #fdf2e3; color: #b9770e; display: inline-block; }
+
+  #score-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,37,68,0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  #score-modal {
+    background: #fff;
+    border-radius: 14px;
+    max-width: 520px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 30px 28px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  }
+  #score-modal h2 { margin-top: 0; color: var(--navy); }
+  #score-big {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin: 10px 0 0;
+  }
+  #score-big span { font-size: 1.5rem; color: #7a8a9a; }
+  #score-marking-note {
+    font-size: 0.72rem;
+    color: #8a97a6;
+    margin-bottom: 6px;
+  }
+  .score-stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .score-stat { text-align: center; min-width: 60px; }
+  .score-stat .num { font-size: 1.4rem; font-weight: 700; }
+  .score-stat .label { font-size: 0.75rem; color: #7a8a9a; }
+  .stat-correct .num { color: var(--green); }
+  .stat-wrong .num { color: var(--red); }
+  .stat-skipped .num { color: #b9770e; }
+  .stat-accuracy .num { color: var(--navy-light); }
+
+  #chapter-analysis {
+    margin-top: 22px;
+    text-align: left;
+  }
+  #chapter-analysis h3 {
+    font-size: 0.95rem;
+    color: var(--navy);
+    margin: 0 0 10px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+  }
+  .topic-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 0;
+    border-bottom: 1px solid #f0f2f5;
+    font-size: 0.82rem;
+  }
+  .topic-row:last-child { border-bottom: none; }
+  .topic-name {
+    flex: 1;
+    color: #2a3745;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .topic-bar-wrap {
+    flex: 1;
+    background: #eef1f4;
+    border-radius: 4px;
+    height: 8px;
+    overflow: hidden;
+    display: flex;
+  }
+  .topic-bar-correct { background: var(--green); height: 100%; }
+  .topic-bar-wrong { background: var(--red); height: 100%; }
+  .topic-bar-skipped { background: #e0a020; height: 100%; }
+  .topic-counts {
+    font-size: 0.72rem;
+    color: #66748a;
+    white-space: nowrap;
+    width: 92px;
+    text-align: right;
+  }
+  .topic-counts .c { color: var(--green); font-weight: 700; }
+  .topic-counts .w { color: var(--red); font-weight: 700; }
+  .topic-counts .s { color: #b9770e; font-weight: 700; }
+
+  #score-modal .btn-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 22px;
+  }
+  #score-modal button {
+    padding: 10px 22px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  #view-answers-btn { background: var(--navy); color: #fff; }
+  #modal-restart-btn { background: var(--gold); color: #1c2733; }
+
+  footer {
+    text-align: center;
+    color: #8a97a6;
+    font-size: 0.78rem;
+    padding: 24px 0 40px;
+  }
+
+  @media (max-width: 600px) {
+    .options, .explanation { margin-left: 0; }
+    header h1 { font-size: 1rem; }
+    #timer-box { font-size: 1.05rem; padding: 6px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>BPSC Mock Test</h1>
+    <div class="sub">99 Questions &bull; Ancient History &bull; Indian Polity &bull; Chemistry</div>
+  </div>
+  <div id="timer-box">45:00</div>
+</header>
+<div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+
+<div id="submit-panel">
+  <div id="answered-count">0 / 99 answered</div>
+  <button id="submit-btn">Submit Test</button>
+</div>
+
+<div class="container" id="quiz-container"></div>
+
+<footer>Good luck for BPSC &mdash; review every explanation carefully.</footer>
+
+<div id="score-modal-overlay">
+  <div id="score-modal">
+    <h2>Test Submitted</h2>
+    <div id="score-big">0<span> / 99</span></div>
+    <div id="score-marking-note">Net score (+1 correct, &minus;1/3 wrong)</div>
+    <div class="score-stats">
+      <div class="score-stat stat-correct"><div class="num" id="stat-correct">0</div><div class="label">Correct</div></div>
+      <div class="score-stat stat-wrong"><div class="num" id="stat-wrong">0</div><div class="label">Wrong</div></div>
+      <div class="score-stat stat-skipped"><div class="num" id="stat-skipped">0</div><div class="label">Skipped</div></div>
+      <div class="score-stat stat-accuracy"><div class="num" id="stat-accuracy">0%</div><div class="label">Accuracy</div></div>
+    </div>
+    <div id="chapter-analysis">
+      <h3>Topic-wise Analysis</h3>
+      <div id="chapter-analysis-rows"></div>
+    </div>
+    <div class="btn-row">
+      <button id="view-answers-btn">Review Answers</button>
+      <button id="modal-restart-btn">Restart Test</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const QUIZ_DATA = [{"num": 1, "section": "Ancient History of India", "chapter": "Stone Age", "q": "The Palaeolithic rock-shelter site of Bhimbetka, inscribed on the UNESCO World Heritage List, is situated in which of the following states?", "opts": ["Madhya Pradesh", "Chhattisgarh", "Rajasthan", "Maharashtra"], "ans": 0, "exp": "Bhimbetka lies in the Raisen district of Madhya Pradesh, on the southern edge of the Vindhyan range. The shelters were brought to scholarly notice by V. S. Wakankar in 1957 and were declared a World Heritage Site in 2003. Of about 750 shelters, over 400 carry paintings whose sequence runs from the Upper Palaeolithic through the Mesolithic, Chalcolithic and early historic periods into medieval times."}, {"num": 2, "section": "Ancient History of India", "chapter": "Stone Age", "q": "Consider the following statements with reference to the Mesolithic Age in India:\n1. The characteristic tools of this phase were microliths — tiny blades and geometric forms hafted into bone or wood.\n2. Adamgarh in Madhya Pradesh and Bagor in Rajasthan have yielded the earliest evidence of the domestication of animals in India.\n3. Sarai Nahar Rai, Mahadaha and Damdama in Uttar Pradesh have yielded Mesolithic human burials.\nWhich of the statements given above are correct?", "opts": ["1 and 2 only", "1 and 3 only", "2 and 3 only", "1, 2 and 3"], "ans": 3, "exp": "All three statements are correct. The Mesolithic (c. 9000–4000 BCE) is defined by microlithic technology. Adamgarh and Bagor provide the earliest Indian evidence of animal domestication (sheep, goat, cattle), placing the beginnings of pastoralism before settled agriculture. The Ganga valley sites of Sarai Nahar Rai, Mahadaha and Damdama in the Pratapgarh region of Uttar Pradesh have produced human skeletons, in some cases buried with grave goods, indicating belief in an afterlife."}, {"num": 3, "section": "Ancient History of India", "chapter": "Stone Age", "q": "Match List I with List II and select the correct answer using the codes given below the lists:\nList I: A. Burzahom  B. Chirand  C. Koldihwa  D. Hallur\nList II: 1. Extensive Neolithic bone tools  2. Pit dwellings and the burial of a dog with its master  3. Earliest evidence of iron in South India  4. Earliest evidence of rice cultivation", "opts": ["A-2, B-1, C-4, D-3", "A-2, B-4, C-1, D-3", "A-4, B-1, C-2, D-3", "A-4, B-1, C-3, D-2"], "ans": 0, "exp": "Burzahom (Kashmir) is famous for underground pit dwellings and a grave in which a dog was interred with its master. Chirand (Saran district, Bihar), on the Ganga, is noted for an exceptional Neolithic bone-tool industry. Koldihwa in the Belan valley (Uttar Pradesh) has yielded the earliest evidence of rice cultivation in the subcontinent. Hallur in Karnataka has produced the earliest iron objects in peninsular India (c. 1000 BCE)."}, {"num": 4, "section": "Ancient History of India", "chapter": "Stone Age", "q": "Assertion (A): The Neolithic phase marks the beginning of food production in the Indian subcontinent.\nReason (R): Microliths, that is tiny geometric blades hafted into bone or wood, were the characteristic tools of the Neolithic phase.\nIn the light of the above statements, select the correct answer from the codes given below:", "opts": ["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"], "ans": 2, "exp": "The assertion is correct, since the Neolithic Revolution shifted human beings from food gathering to food production. The reason is wrong: microliths are the diagnostic tools of the Mesolithic, not the Neolithic. The Neolithic is identified instead by ground and polished stone axes, cereal cultivation, animal domestication and handmade pottery."}, {"num": 5, "section": "Ancient History of India", "chapter": "Stone Age", "q": "Mehrgarh, which has yielded the earliest evidence of agriculture (wheat and barley) and animal husbandry in the Indian subcontinent, is located in:", "opts": ["Sindh", "Gujarat", "Baluchistan", "Punjab"], "ans": 2, "exp": "Mehrgarh lies on the Kachi plain of Baluchistan (Pakistan), near the Bolan Pass, and was excavated by Jean-François Jarrige from 1974. Its earliest levels go back to about 7000 BCE, making it the oldest known farming village of the subcontinent and an important pre-Harappan antecedent of the Indus civilization."}, {"num": 6, "section": "Ancient History of India", "chapter": "Indus Valley Civilization", "q": "The Harappan site of Harappa was first excavated in 1921 under the direction of:", "opts": ["R. D. Banerjee", "Sir John Marshall", "M. S. Vats", "Daya Ram Sahni"], "ans": 3, "exp": "Daya Ram Sahni excavated Harappa on the Ravi in 1921; R. D. Banerjee excavated Mohenjodaro on the Indus in 1922. Sir John Marshall, then Director-General of the Archaeological Survey of India, announced the discovery of the civilization to the world in 1924 in the Illustrated London News."}, {"num": 7, "section": "Ancient History of India", "chapter": "Indus Valley Civilization", "q": "Consider the following statements regarding the Harappan site of Lothal:\n1. It lies in Gujarat on the river Bhogavo, near the Gulf of Khambhat.\n2. It has yielded a structure widely identified as a dockyard.\n3. It has produced evidence of rice husk and of a bead-making factory.\n4. It is the only Harappan settlement from which a ploughed field has been reported.\nWhich of the statements given above are correct?", "opts": ["1 and 2 only", "1, 2 and 3 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 1, "exp": "The first three statements are correct; the fourth is not, since the ploughed field was found at Kalibangan, not at Lothal. Lothal, excavated by S. R. Rao, is the best known Harappan port; its baked-brick basin with an inlet channel and spill-way is generally interpreted as a dockyard. Rice husk has been recovered here and at Rangpur, rice being otherwise rare in the Harappan repertoire, along with a bead factory and a row of fire altars."}, {"num": 8, "section": "Ancient History of India", "chapter": "Indus Valley Civilization", "q": "Match the Harappan sites in List I with the rivers in List II on which they were situated:\nList I: A. Harappa  B. Mohenjodaro  C. Kalibangan  D. Lothal\nList II: 1. Bhogavo  2. Indus  3. Ravi  4. Ghaggar", "opts": ["A-2, B-3, C-4, D-1", "A-3, B-2, C-1, D-4", "A-3, B-2, C-4, D-1", "A-4, B-2, C-1, D-3"], "ans": 2, "exp": "Harappa stands on the left bank of the Ravi in Montgomery (now Sahiwal) district; Mohenjodaro on the right bank of the Indus in Larkana district; Kalibangan in Hanumangarh district, Rajasthan, on the dried bed of the Ghaggar (identified by many with the Vedic Saraswati); and Lothal in Ahmedabad district, Gujarat, on the Bhogavo, a tributary flowing towards the Gulf of Khambhat."}, {"num": 9, "section": "Ancient History of India", "chapter": "Indus Valley Civilization", "q": "Evidence of a ploughed agricultural field, the earliest in the subcontinent, has been found at:", "opts": ["Mohenjodaro", "Banawali", "Kalibangan", "Surkotada"], "ans": 2, "exp": "A pre-Harappan ploughed field with two sets of furrows crossing at right angles was excavated at Kalibangan, indicating that two crops were raised together. Kalibangan is also known for its fire altars, its evidence of an earthquake, and for being the site whose name means 'black bangles'."}, {"num": 10, "section": "Ancient History of India", "chapter": "Indus Valley Civilization", "q": "Assertion (A): The Indus civilization is described as a Bronze Age civilization.\nReason (R): The Harappans were familiar with the use of iron for making tools and weapons.\nIn the light of the above statements, select the correct answer from the codes given below:", "opts": ["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"], "ans": 2, "exp": "The assertion is true — the Harappans used copper and its alloy bronze for tools, vessels and figures such as the famous dancing girl of Mohenjodaro. The reason is false: iron was wholly unknown to them. Iron appears in the subcontinent only in the Painted Grey Ware and megalithic contexts of the early first millennium BCE, well after the decline of the Harappan cities."}, {"num": 11, "section": "Ancient History of India", "chapter": "Indus Valley Civilization", "q": "The Harappan site of Dholavira is especially noted for:", "opts": ["The Great Bath and the Great Granary", "A dockyard and a bead factory", "Pit dwellings and bone tools", "An elaborate system of water reservoirs and a large inscribed signboard"], "ans": 3, "exp": "Dholavira, on Khadir island in the Rann of Kachchh, Gujarat, was excavated by R. S. Bisht. Its outstanding features are a series of rock-cut reservoirs and check dams for water harvesting, a unique three-fold division of the city into citadel, middle town and lower town, and a large inscribed board of ten Harappan signs found near the north gate. The Great Bath and the granary belong to Mohenjodaro; the dockyard to Lothal."}, {"num": 12, "section": "Ancient History of India", "chapter": "Indus Valley Civilization", "q": "With reference to Harappan religion and society, consider the following statements:\n1. A seal depicting a horned deity seated in a yogic posture surrounded by animals has been identified by some scholars as a proto-Shiva.\n2. No structure that can be identified with certainty as a temple has been found at any Harappan site.\n3. Terracotta figurines suggest the worship of a mother goddess.\n4. The horse was a common domesticated animal throughout the Harappan period.\nWhich of the statements given above is/are NOT correct?", "opts": ["1 only", "4 only", "2 and 4 only", "3 and 4 only"], "ans": 1, "exp": "Only the fourth statement is incorrect. The horse was not a normal part of Harappan animal husbandry; the doubtful horse bones from Surkotada and the late levels at Lothal are exceptions and remain debated, and the horse is absent from the seals. The other three statements are accepted: the Pashupati seal, the absence of identifiable temples, and the abundant mother-goddess figurines are standard features of Harappan religion."}, {"num": 13, "section": "Ancient History of India", "chapter": "Indus Valley Civilization", "q": "Which one of the following metals was NOT known to the people of the Indus Valley Civilization?", "opts": ["Bronze", "Copper", "Iron", "Lead"], "ans": 2, "exp": "The Harappans worked copper, bronze, tin, lead, silver and gold, but not iron. The absence of iron is one of the defining criteria that place the civilization in the Bronze Age. They were also unfamiliar with the use of the true arch and of writing that has yet been deciphered."}, {"num": 14, "section": "Ancient History of India", "chapter": "Indus Valley Civilization", "q": "The Harappan site that has yielded bones claimed to be those of the horse is:", "opts": ["Ropar", "Alamgirpur", "Surkotada", "Chanhudaro"], "ans": 2, "exp": "Surkotada in Kachchh, Gujarat, excavated by J. P. Joshi, produced bones identified by the Hungarian archaeozoologist Sándor Bökönyi as those of the domesticated horse — an identification still contested. Chanhudaro is known for bead making, Ropar in Punjab was the first Harappan site excavated after Independence, and Alamgirpur in Uttar Pradesh is the easternmost site."}, {"num": 15, "section": "Ancient History of India", "chapter": "Indus Valley Civilization", "q": "Match List I (Harappan site) with List II (distinctive find) and select the correct answer:\nList I: A. Chanhudaro  B. Banawali  C. Mohenjodaro  D. Ropar\nList II: 1. A toy plough of terracotta  2. The first Harappan site excavated after Independence  3. The only major city without a citadel; a bead-making centre  4. A bronze figurine of a dancing girl", "opts": ["A-1, B-3, C-4, D-2", "A-3, B-1, C-2, D-4", "A-3, B-1, C-4, D-2", "A-3, B-2, C-4, D-1"], "ans": 2, "exp": "Chanhudaro in Sindh, excavated by N. G. Majumdar and E. J. H. Mackay, is the only sizeable Harappan settlement without a fortified citadel and specialised in bead, bangle and seal manufacture. Banawali in Hisar, Haryana, yielded a terracotta model of a plough. Mohenjodaro produced the celebrated bronze dancing girl and the steatite bearded priest. Ropar (Rupnagar) in Punjab was excavated by Y. D. Sharma in 1953, the first such excavation in independent India."}, {"num": 16, "section": "Ancient History of India", "chapter": "Vedic Age", "q": "The Gayatri Mantra, contained in the Rigveda, is addressed to:", "opts": ["Agni", "Varuna", "Indra", "Savitri"], "ans": 3, "exp": "The Gayatri Mantra occurs in the third mandala of the Rigveda and is ascribed to the sage Vishvamitra. It invokes Savitri, the solar deity of the life-giving light. Indra is the most frequently invoked god of the Rigveda with about 250 hymns, followed by Agni with about 200; Varuna is the upholder of rita, the cosmic and moral order."}, {"num": 17, "section": "Ancient History of India", "chapter": "Vedic Age", "q": "The national motto of India, 'Satyameva Jayate', inscribed below the State Emblem, is taken from:", "opts": ["The Bhagavad Gita", "The Chhandogya Upanishad", "The Rigveda", "The Mundaka Upanishad"], "ans": 3, "exp": "The phrase is drawn from the Mundaka Upanishad, which belongs to the Atharvaveda. It was popularised by Madan Mohan Malaviya and was adopted along with the Lion Capital of Ashoka as part of the State Emblem on 26 January 1950. 'Aham Brahmasmi' is from the Brihadaranyaka and 'Tat tvam asi' from the Chhandogya Upanishad."}, {"num": 18, "section": "Ancient History of India", "chapter": "Vedic Age", "q": "Consider the following statements regarding Rigvedic polity:\n1. The Sabha, the Samiti and the Vidatha were the popular assemblies of the period.\n2. Women could attend the Sabha and the Vidatha.\n3. The Purushasukta, which gives the earliest reference to the fourfold varna order, occurs in the tenth mandala of the Rigveda.\n4. The king levied a regular tax called bali which was compulsory in nature.\nWhich of the statements given above are correct?", "opts": ["1 and 4 only", "1, 2 and 3 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 1, "exp": "The first three are correct. The fourth is not: bali in the Rigvedic period was a voluntary offering made by the vish to the rajan, and there was no regular system of taxation or of revenue officials; it hardened into a compulsory levy only in later Vedic times. The Purushasukta of the tenth mandala, one of the latest portions of the Rigveda, describes the origin of the four varnas from the cosmic being."}, {"num": 19, "section": "Ancient History of India", "chapter": "Vedic Age", "q": "Match the Vedas in List I with the priests associated with them in List II:\nList I: A. Rigveda  B. Yajurveda  C. Samaveda  D. Atharvaveda\nList II: 1. Hotri  2. Adhvaryu  3. Brahma  4. Udgatri", "opts": ["A-1, B-2, C-4, D-3", "A-1, B-3, C-2, D-4", "A-3, B-2, C-1, D-4", "A-4, B-3, C-1, D-2"], "ans": 0, "exp": "The Hotri recited the invocations of the Rigveda; the Adhvaryu performed the physical acts of the sacrifice while muttering the formulae of the Yajurveda; the Udgatri chanted the melodies of the Samaveda, which is regarded as the origin of Indian music; and the Brahma, associated with the Atharvaveda, supervised the whole sacrifice and corrected errors."}, {"num": 20, "section": "Ancient History of India", "chapter": "Vedic Age", "q": "The Dasarajna or Battle of Ten Kings, described in the Rigveda, was fought on the banks of the river:", "opts": ["Parushni", "Vipasa", "Sutudri", "Askini"], "ans": 0, "exp": "The battle was fought on the Parushni, the modern Ravi, in which Sudas, the Bharata king of the Tritsu family, defeated a confederacy of ten tribes. Vipasa is the Beas, Sutudri the Sutlej and Askini the Chenab. The Bharata victory is regarded as decisive in the formation of the Kuru people of the later Vedic period."}, {"num": 21, "section": "Ancient History of India", "chapter": "Vedic Age", "q": "Assertion (A): The later Vedic period witnessed the rise of large territorial kingdoms such as Kuru, Panchala, Kosala and Videha.\nReason (R): The Rigvedic economy was primarily pastoral and wealth was reckoned chiefly in cattle.\nIn the light of the above statements, select the correct answer from the codes given below:", "opts": ["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"], "ans": 1, "exp": "Both statements are true but the reason does not explain the assertion. The rise of territorial kingdoms is explained by the knowledge of iron, known in later Vedic texts as krishna ayas, which permitted the clearing of the doab forests and raised the agricultural surplus. The pastoral character of the Rigvedic economy — attested by words such as gavishthi for war, literally the search for cows — describes the preceding age rather than the cause of the change."}, {"num": 22, "section": "Ancient History of India", "chapter": "Vedic Age", "q": "The term 'Vedanta' literally means the end of the Vedas and refers to:", "opts": ["The Upanishads", "The Vedangas", "The Aranyakas", "The Brahmanas"], "ans": 0, "exp": "The Upanishads form the concluding philosophical portion of Vedic literature and are therefore called Vedanta. They shift the emphasis from ritual to knowledge, and deal with the nature of Brahman and Atman, the theory of transmigration and karma. The Brahmanas explain the ritual, the Aranyakas or forest books form a bridge between ritual and philosophy, and the six Vedangas are auxiliary sciences such as grammar and astronomy."}, {"num": 23, "section": "Ancient History of India", "chapter": "Vedic Age", "q": "Consider the following statements about the later Vedic period:\n1. Elaborate royal sacrifices such as the Rajasuya, the Ashvamedha and the Vajapeya were performed to enhance the prestige of the king.\n2. The varna order became rigid and birth increasingly determined status.\n3. The position of women improved and they continued to attend the assemblies as before.\n4. The gods Indra and Agni lost their earlier pre-eminence to Prajapati, Rudra and Vishnu.\nWhich of the statements given above are correct?", "opts": ["1 and 3 only", "1, 2 and 4 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 1, "exp": "The third statement is wrong. In the later Vedic age the status of women declined markedly: they were denied participation in the assemblies, upanayana was withdrawn from them, and the Aitareya Brahmana refers to the daughter as a source of misery. The other three statements accurately describe the political, social and religious changes of the period, in which Prajapati the creator became the supreme deity."}, {"num": 24, "section": "Ancient History of India", "chapter": "Vedic Age", "q": "The river described in the Rigveda as 'Naditama', the best of rivers, is:", "opts": ["Sindhu", "Yamuna", "Saraswati", "Ganga"], "ans": 2, "exp": "The Saraswati is called Naditama in the Rigveda and is the most sacred river of the text, praised in three entire hymns. The Sindhu is the river most frequently mentioned, while the Ganga occurs only once and the Yamuna thrice — a distribution that shows the Rigvedic people were settled mainly in the Saptasindhu or land of the seven rivers, in the north-west."}, {"num": 25, "section": "Ancient History of India", "chapter": "Buddhism", "q": "Match the events in the life of the Buddha in List I with the places in List II:\nList I: A. Birth  B. Enlightenment  C. First sermon  D. Mahaparinirvana\nList II: 1. Kushinagar  2. Bodh Gaya  3. Lumbini  4. Sarnath", "opts": ["A-2, B-1, C-4, D-3", "A-3, B-1, C-4, D-2", "A-3, B-2, C-1, D-4", "A-3, B-2, C-4, D-1"], "ans": 3, "exp": "Siddhartha Gautama was born at Lumbini in the Nepal tarai, where Ashoka later raised a pillar recording his visit. He attained enlightenment under a pipal tree at Bodh Gaya on the Niranjana. He delivered his first sermon, the Dharmachakrapravartana, in the deer park at Sarnath near Varanasi. He passed away at Kushinagar in the territory of the Mallas."}, {"num": 26, "section": "Ancient History of India", "chapter": "Buddhism", "q": "Match the Buddhist councils in List I with the rulers under whom they were held in List II:\nList I: A. First Council, Rajgriha  B. Second Council, Vaishali  C. Third Council, Pataliputra  D. Fourth Council, Kashmir\nList II: 1. Ashoka  2. Ajatashatru  3. Kalashoka  4. Kanishka", "opts": ["A-2, B-3, C-1, D-4", "A-2, B-3, C-4, D-1", "A-3, B-2, C-1, D-4", "A-3, B-2, C-4, D-1"], "ans": 0, "exp": "The first council met at Rajgriha soon after the Buddha's death under the patronage of Ajatashatru and the presidency of Mahakassapa, and compiled the Vinaya and Sutta Pitakas. The second met at Vaishali under Kalashoka and led to the split between the Sthaviravadins and the Mahasanghikas. The third met at Pataliputra under Ashoka, presided over by Moggaliputta Tissa, and added the Abhidhamma Pitaka. The fourth met in Kashmir under Kanishka with Vasumitra as president and Ashvaghosha as vice-president, and the Mahayana school took definite shape."}, {"num": 27, "section": "Ancient History of India", "chapter": "Buddhism", "q": "Consider the following statements regarding the teachings of the Buddha:\n1. The Four Noble Truths hold that suffering exists, that it has a cause, that it can be ended, and that there is a path leading to its cessation.\n2. The Eightfold Path is described as the middle path between extreme indulgence and extreme asceticism.\n3. The Buddha accepted the authority of the Vedas but rejected the caste system.\n4. The Buddha was silent on the question of the existence of God.\nWhich of the statements given above are correct?", "opts": ["1, 2 and 3 only", "1, 2 and 4 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 1, "exp": "The third statement is incorrect: Buddhism is a nastika or heterodox system precisely because it rejects the authority of the Vedas, along with the efficacy of sacrifice and the supremacy of the Brahmanas. The Buddha did not deny caste in principle but held it irrelevant to salvation. He avoided metaphysical speculation about God and the soul, holding such questions unprofitable for the ending of suffering."}, {"num": 28, "section": "Ancient History of India", "chapter": "Buddhism", "q": "Which one of the three Pitakas of the Buddhist canon deals with the rules of monastic discipline?", "opts": ["Sutta Pitaka", "Vinaya Pitaka", "Khuddaka Nikaya", "Abhidhamma Pitaka"], "ans": 1, "exp": "The Vinaya Pitaka lays down the rules of conduct for the Sangha. The Sutta Pitaka contains the discourses of the Buddha arranged in five Nikayas, and the Abhidhamma Pitaka expounds the philosophy and psychology of the doctrine. The Khuddaka Nikaya, which includes the Jatakas and the Dhammapada, is a division within the Sutta Pitaka. The canon is written in Pali."}, {"num": 29, "section": "Ancient History of India", "chapter": "Buddhism", "q": "Assertion (A): Buddhism spread rapidly among the common people of the sixth century BCE.\nReason (R): He preached in the ordinary spoken language of the people instead of Sanskrit, and admitted men and women of all varnas into the Sangha.\nIn the light of the above statements, select the correct answer from the codes given below:", "opts": ["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"], "ans": 0, "exp": "Both statements are true and the second explains the first. By preaching in the language people actually spoke rather than in Sanskrit, the Buddha removed the linguistic barrier of the Brahmanical religion; the canon was subsequently written down in Pali. The open membership of the Sangha attracted vaishyas, shudras and women, and the opposition to costly sacrifices and to the killing of cattle won the support of the trading classes and the cultivators."}, {"num": 30, "section": "Ancient History of India", "chapter": "Buddhism", "q": "Match the events in the Buddha's life in List I with the symbols by which they were represented in early Buddhist art in List II:\nList I: A. Birth  B. Enlightenment  C. First sermon  D. Mahaparinirvana\nList II: 1. Bodhi tree  2. Stupa  3. Lotus and bull  4. Wheel", "opts": ["A-3, B-1, C-4, D-2", "A-3, B-2, C-4, D-1", "A-3, B-4, C-1, D-2", "A-4, B-1, C-3, D-2"], "ans": 0, "exp": "Early Buddhist art at Sanchi, Bharhut and Amaravati was aniconic: the Buddha was never shown in human form. The lotus and bull stood for his birth, the pipal or Bodhi tree for the enlightenment, the wheel for the first sermon at Sarnath, the horse for the great renunciation and the stupa for the mahaparinirvana. Images of the Buddha appear only from the first century CE in the Gandhara and Mathura schools."}, {"num": 31, "section": "Ancient History of India", "chapter": "Buddhism", "q": "Consider the following statements about the Mahayana school of Buddhism:\n1. It gave importance to the worship of images of the Buddha and of Bodhisattvas.\n2. Its texts were largely composed in Sanskrit.\n3. It took definite shape at the fourth Buddhist council held under Kanishka.\n4. Nagarjuna, who propounded the Madhyamika or Shunyavada philosophy, belonged to this school.\nWhich of the statements given above are correct?", "opts": ["1, 2 and 3 only", "1, 3 and 4 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 3, "exp": "All four are correct. Mahayana, the 'greater vehicle', held the Buddha to be divine and worshipped images and Bodhisattvas such as Avalokiteshvara and Maitreya, opening salvation to laymen through devotion. Its literature, including the Prajnaparamita texts, is in Sanskrit. The school crystallised at the fourth council held in Kashmir under Kanishka, at whose court Ashvaghosha is traditionally placed. Nagarjuna, the founder of the Madhyamika school, is generally assigned to the second century CE."}, {"num": 32, "section": "Ancient History of India", "chapter": "Buddhism", "q": "The doctrine of 'Anatta' or 'Anatma' in Buddhism refers to:", "opts": ["The denial of a permanent, unchanging soul", "The impermanence of all worldly objects", "The law of dependent origination", "Non-violence towards all living beings"], "ans": 0, "exp": "Anatta denies the existence of a permanent, substantial self, holding the individual to be a stream of constantly changing physical and mental aggregates. Impermanence is anichcha, non-violence is ahimsa, and dependent origination is pratityasamutpada — the chain of twelve causes explaining the arising of suffering. Anatta is the point on which Buddhism differs most sharply from the Upanishadic doctrine of the Atman."}, {"num": 33, "section": "Ancient History of India", "chapter": "Buddhism", "q": "Which of the following rulers were contemporaries of Gautama Buddha?\n1. Bimbisara of Magadha\n2. Prasenajit of Kosala\n3. Udayana of Vatsa\n4. Chandragupta Maurya\nSelect the correct answer using the codes given below:", "opts": ["1 and 2 only", "1, 2 and 3 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 1, "exp": "Bimbisara, Prasenajit and Udayana were the Buddha's contemporaries, as was Ajatashatru in the later part of his life. Chandragupta Maurya founded the Mauryan dynasty about 322 BCE, nearly a century and a half after the Buddha's mahaparinirvana, which is conventionally placed in 483 BCE."}, {"num": 34, "section": "Ancient History of India", "chapter": "Jain Religion", "q": "Consider the following statements about Vardhamana Mahavira:\n1. He was born at Kundagrama near Vaishali in the Jnatrika clan.\n2. His father Siddhartha was the head of the clan and his mother Trishala was a Licchavi princess.\n3. He attained kaivalya at Jrimbhikagrama on the bank of the river Rijupalika.\n4. He passed away at Pavapuri, which lay in the territory of the Vajji confederacy.\nWhich of the statements given above are correct?", "opts": ["1 and 3 only", "2 and 4 only", "1, 2 and 3 only", "1, 2, 3 and 4"], "ans": 2, "exp": "The first three statements are correct; the fourth is not, since Pavapuri lay in the kingdom of the Mallas and not in the Vajji confederacy. Mahavira, the twenty-fourth Tirthankara, was born about 540 BCE at Kundagrama, a suburb of Vaishali. He renounced the world at thirty and, after twelve years of penance, attained kaivalya under a sal tree at Jrimbhikagrama on the Rijupalika. He died at Pavapuri near Rajgir about 468 BCE."}, {"num": 35, "section": "Ancient History of India", "chapter": "Jain Religion", "q": "Which of the five great vows of Jainism was added by Mahavira to the four already taught by Parshvanatha?", "opts": ["Asteya", "Brahmacharya", "Aparigraha", "Satya"], "ans": 1, "exp": "Parshvanatha, the twenty-third Tirthankara, taught four vows — ahimsa, satya, asteya and aparigraha. Mahavira added brahmacharya, the vow of celibacy, completing the Pancha Mahavrata. The three jewels or Triratna of Jainism are right faith, right knowledge and right conduct."}, {"num": 36, "section": "Ancient History of India", "chapter": "Jain Religion", "q": "The second Jain council, which produced the final compilation of the twelve Angas, was held at:", "opts": ["Vaishali", "Pataliputra", "Ujjain", "Valabhi"], "ans": 3, "exp": "The first Jain council met at Pataliputra in the third century BCE under the presidency of Sthulabhadra. The second met at Valabhi in Gujarat in the fifth century CE under Devardhi Kshamasramana, where the surviving canon was finally written down in Ardha-Magadhi."}, {"num": 37, "section": "Ancient History of India", "chapter": "Jain Religion", "q": "Match the Tirthankaras in List I with their emblems in List II:\nList I: A. Rishabhadeva  B. Neminatha  C. Parshvanatha  D. Mahavira\nList II: 1. Lion  2. Bull  3. Serpent  4. Conch", "opts": ["A-2, B-3, C-1, D-4", "A-2, B-3, C-4, D-1", "A-2, B-4, C-1, D-3", "A-2, B-4, C-3, D-1"], "ans": 3, "exp": "Rishabhadeva or Adinatha, the first Tirthankara, is identified by the bull and is mentioned in the Rigveda and the Vishnu Purana. Neminatha, the twenty-second, bears the conch and is traditionally regarded as a cousin of Krishna. Parshvanatha, the twenty-third and the first for whom historicity is generally accepted, bears the serpent hood. Mahavira's emblem is the lion."}, {"num": 38, "section": "Ancient History of India", "chapter": "Jain Religion", "q": "Assertion (A): Jainism became divided into the Svetambara and the Digambara sects.\nReason (R): A severe famine in Magadha led Bhadrabahu to migrate south with a body of followers, while those who remained under Sthulabhadra altered certain practices.\nIn the light of the above statements, select the correct answer from the codes given below:", "opts": ["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"], "ans": 0, "exp": "Both statements are true and the reason explains the assertion. A twelve-year famine in Magadha in the reign of Chandragupta Maurya prompted Bhadrabahu to lead a group to Shravanabelagola in Karnataka. His followers retained the strict practice of nudity and came to be called Digambaras, while those who stayed behind under Sthulabhadra adopted white garments and became the Svetambaras."}, {"num": 39, "section": "Ancient History of India", "chapter": "Sixth Century B.C.E.", "q": "The list of the sixteen Mahajanapadas of the sixth century BCE is found in which of the following texts?", "opts": ["Ashtadhyayi", "Arthashastra", "Digha Nikaya", "Anguttara Nikaya"], "ans": 3, "exp": "The Anguttara Nikaya of the Buddhist Sutta Pitaka gives the standard list of the sixteen Mahajanapadas. The Jain text Bhagavati Sutra gives a somewhat different list. Of the sixteen, four — Magadha, Kosala, Vatsa and Avanti — emerged as contenders for supremacy, and Magadha eventually prevailed."}, {"num": 40, "section": "Ancient History of India", "chapter": "Sixth Century B.C.E.", "q": "Match the Mahajanapadas in List I with their capitals in List II:\nList I: A. Magadha  B. Kosala  C. Vatsa  D. Avanti\nList II: 1. Ujjain  2. Rajgriha  3. Shravasti  4. Kaushambi", "opts": ["A-2, B-3, C-1, D-4", "A-2, B-3, C-4, D-1", "A-2, B-4, C-3, D-1", "A-3, B-2, C-1, D-4"], "ans": 1, "exp": "The early capital of Magadha was Rajgriha or Girivraja, later shifted to Pataliputra by Udayin. Kosala had its capital at Shravasti, Vatsa at Kaushambi on the Yamuna, and Avanti in its northern part at Ujjain, with Mahishmati as the southern capital. Kashi had its capital at Varanasi and the Vajji confederacy at Vaishali."}, {"num": 41, "section": "Ancient History of India", "chapter": "Sixth Century B.C.E.", "q": "Consider the following statements about the rise of Magadha:\n1. Its capitals Rajgriha and later Pataliputra occupied strategically strong positions.\n2. It had access to rich deposits of iron ore in the neighbouring regions.\n3. The fertile alluvium of the middle Ganga plain yielded a large agricultural surplus.\n4. It was a gana-sangha or republic, which allowed it to mobilise its people more effectively than the monarchies.\nWhich of the statements given above are correct?", "opts": ["1 and 4 only", "1, 2 and 3 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 1, "exp": "The fourth statement is incorrect: Magadha was a monarchy, and the ambitious and often unscrupulous policies of Bimbisara, Ajatashatru and Mahapadma Nanda were a factor in its rise. Rajgriha was girdled by five hills and Pataliputra stood at the confluence of the Ganga and the Son. Iron from the Chotanagpur region supplied weapons and tools, and elephants from the eastern forests gave Magadha a military advantage."}, {"num": 42, "section": "Ancient History of India", "chapter": "Sixth Century B.C.E.", "q": "Bimbisara and Ajatashatru, under whom Magadha rose to pre-eminence in the sixth century B.C.E., belonged to which dynasty?", "opts": ["Maurya dynasty", "Nanda dynasty", "Haryanka dynasty", "Shishunaga dynasty"], "ans": 2, "exp": "The order of the Magadhan dynasties was Haryanka, Shishunaga, Nanda and Maurya. Bimbisara of the Haryanka line pursued conquest and matrimonial alliances and annexed Anga; his son Ajatashatru defeated Kosala and the Vajji confederacy. Shishunaga later destroyed the power of Avanti, and Mahapadma Nanda, described as the ekarat and the uprooter of all kshatriyas, built the first great empire in the Ganga valley."}, {"num": 43, "section": "Indian Polity", "chapter": "Sources of the Constitution", "q": "The idea of the Concurrent List in the Indian Constitution has been borrowed from the Constitution of:", "opts": ["United States of America", "Australia", "Ireland", "Canada"], "ans": 1, "exp": "From Australia the framers drew the Concurrent List, the provision for freedom of trade, commerce and intercourse across the territory of India, and the joint sitting of the two Houses of Parliament. From Canada came the federation with a strong Centre, the vesting of residuary powers in the Union, the appointment of Governors by the Centre and the advisory jurisdiction of the Supreme Court."}, {"num": 44, "section": "Indian Polity", "chapter": "Sources of the Constitution", "q": "Match the features in List I with the countries from which they were borrowed in List II:\nList I: A. Directive Principles of State Policy  B. Suspension of Fundamental Rights during an emergency  C. Fundamental Duties  D. Procedure established by law\nList II: 1. Ireland  2. Erstwhile USSR  3. Japan  4. Germany (Weimar Constitution)", "opts": ["A-1, B-4, C-2, D-3", "A-1, B-4, C-3, D-2", "A-3, B-2, C-4, D-1", "A-4, B-3, C-2, D-1"], "ans": 0, "exp": "The Directive Principles, the nomination of members to the Rajya Sabha and the method of election of the President came from Ireland. The suspension of Fundamental Rights during an emergency was drawn from the Weimar Constitution of Germany. Fundamental Duties and the ideal of justice — social, economic and political — in the Preamble came from the erstwhile Soviet Union. The expression 'procedure established by law' in Article 21 was taken from Japan."}, {"num": 45, "section": "Indian Polity", "chapter": "Sources of the Constitution", "q": "Which of the following features of the Indian Constitution have been drawn from the British Constitution?\n1. Parliamentary form of government\n2. Rule of law\n3. Single citizenship\n4. Writs issued by the courts\nSelect the correct answer using the codes given below:", "opts": ["1, 2 and 3 only", "1, 3 and 4 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 3, "exp": "All four are of British origin, along with the institution of the Speaker, the legislative procedure, the cabinet system, bicameralism and the doctrine of parliamentary privileges. It should be noted that although the prerogative writs are British in origin, judicial review as a doctrine came from the United States."}, {"num": 46, "section": "Indian Polity", "chapter": "Sources of the Constitution", "q": "The provision that residuary powers shall vest in the Union has been adopted from the Constitution of:", "opts": ["United States of America", "Australia", "South Africa", "Canada"], "ans": 3, "exp": "Canada furnished the model of a federation with a strong Centre in which the residuary powers rest with the Union, in deliberate contrast to the American and Australian federations where the residue is left to the states. In India the residuary power is exercised by Parliament under Article 248 read with Entry 97 of the Union List."}, {"num": 47, "section": "Indian Polity", "chapter": "Sources of the Constitution", "q": "Assertion (A): The Government of India Act, 1935 is regarded as the single largest source of the Indian Constitution.\nReason (R): The federal scheme, the office of the Governor, the powers of the judiciary, the public service commissions, the emergency provisions and the administrative details were largely drawn from it.\nIn the light of the above statements, select the correct answer from the codes given below:", "opts": ["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"], "ans": 0, "exp": "Both statements are true and the reason explains the assertion. Nearly two-thirds of the provisions of the Constitution can be traced in substance to the Act of 1935, which is why critics such as K. Hanumanthaiya and others in the Constituent Assembly described the Constitution as a carbon copy of the 1935 Act. B. R. Ambedkar defended the borrowing on the ground that the Act had already been tested in Indian administrative conditions."}, {"num": 48, "section": "Indian Polity", "chapter": "Sources of the Constitution", "q": "The procedure for the amendment of the Constitution and the manner of election of members of the Rajya Sabha have been borrowed from the Constitution of:", "opts": ["France", "Canada", "Ireland", "South Africa"], "ans": 3, "exp": "South Africa supplied the model for the amendment procedure and for the election of members of the Rajya Sabha by the elected members of the state legislative assemblies through proportional representation by means of the single transferable vote. From France came the ideals of liberty, equality and fraternity in the Preamble and the concept of the republic."}, {"num": 49, "section": "Indian Polity", "chapter": "Sources of the Constitution", "q": "Consider the following features and identify those borrowed from the Constitution of the United States of America:\n1. Fundamental Rights\n2. Independence of the judiciary and judicial review\n3. Impeachment of the President and removal of judges of the Supreme Court and High Courts\n4. The office of the Vice-President\nWhich of the above are correct?", "opts": ["1, 2 and 3 only", "1, 2 and 4 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 3, "exp": "All four are of American origin. The United States also gave India the preamble beginning with 'We, the People', the post of the Vice-President who is the ex-officio Chairman of the Rajya Sabha in imitation of the President of the Senate, and the ideas of judicial review and of the independence of the judiciary."}, {"num": 50, "section": "Indian Polity", "chapter": "Sources of the Constitution", "q": "The ideals of Liberty, Equality and Fraternity enshrined in the Preamble were inspired by:", "opts": ["The French Revolution", "The Russian Revolution", "The American Declaration of Independence", "The Irish nationalist movement"], "ans": 0, "exp": "The triad of liberty, equality and fraternity is the motto of the French Revolution of 1789 and was expressly acknowledged as such by the framers. Dr. Ambedkar, however, added that he derived these principles not only from the French Revolution but from the teachings of the Buddha, and stressed that fraternity was indispensable if liberty and equality were to endure."}, {"num": 51, "section": "Indian Polity", "chapter": "The Preamble", "q": "The words 'Socialist', 'Secular' and 'Integrity' were inserted into the Preamble by which Constitutional Amendment Act?", "opts": ["The 24th Amendment Act, 1971", "The 44th Amendment Act, 1978", "The 42nd Amendment Act, 1976", "The 52nd Amendment Act, 1985"], "ans": 2, "exp": "The 42nd Amendment Act, 1976, often called the Mini-Constitution, changed the description of India from a 'Sovereign Democratic Republic' to a 'Sovereign Socialist Secular Democratic Republic' and altered the phrase 'unity of the Nation' to 'unity and integrity of the Nation'. This remains the only occasion on which the Preamble has been amended."}, {"num": 52, "section": "Indian Polity", "chapter": "The Preamble", "q": "Consider the following statements regarding the Preamble to the Constitution of India:\n1. The Supreme Court held in the Kesavananda Bharati case (1973) that the Preamble is a part of the Constitution.\n2. The Preamble is enforceable in a court of law.\n3. The Preamble is neither a source of power for the legislature nor a limitation upon its powers.\n4. The Preamble can be amended under Article 368 subject to the basic structure doctrine.\nWhich of the statements given above are correct?", "opts": ["2 and 4 only", "1, 2 and 3 only", "1, 3 and 4 only", "1, 2, 3 and 4"], "ans": 2, "exp": "The second statement is incorrect. The Preamble is non-justiciable: its provisions cannot be enforced in a court of law, although it may be used as an aid to the interpretation of ambiguous provisions of the Constitution and of statutes. The other three propositions are settled law following the Kesavananda Bharati judgment."}, {"num": 53, "section": "Indian Polity", "chapter": "The Preamble", "q": "In which of the following cases did the Supreme Court hold that the Preamble is NOT a part of the Constitution?", "opts": ["Golaknath case, 1967", "Kesavananda Bharati case, 1973", "Berubari Union case, 1960", "Minerva Mills case, 1980"], "ans": 2, "exp": "In the Berubari Union case (1960), rendered on a presidential reference regarding the transfer of territory to Pakistan, the Supreme Court described the Preamble as the key to the mind of the makers but held that it was not a part of the Constitution. This opinion was expressly overruled in Kesavananda Bharati (1973), where the Court held that the Preamble is a part of the Constitution and can be amended without damaging the basic structure."}, {"num": 54, "section": "Indian Polity", "chapter": "The Preamble", "q": "The date mentioned in the Preamble to the Constitution of India, on which the people of India adopted, enacted and gave to themselves the Constitution, is:", "opts": ["26 January 1950", "26 November 1949", "15 August 1947", "26 January 1930"], "ans": 1, "exp": "The Preamble records 26 November 1949 as the date of adoption. Certain provisions relating to citizenship, elections, provisional Parliament and the like came into force at once on that date, while the Constitution as a whole commenced on 26 January 1950. The latter date was chosen because the Lahore session of the Congress had celebrated Purna Swaraj Day on 26 January 1930."}, {"num": 55, "section": "Indian Polity", "chapter": "The Preamble", "q": "Assertion (A): The Preamble to the Constitution of India has been amended only once so far.\nReason (R): The Supreme Court has held that the Preamble, not being a part of the Constitution, cannot be amended under Article 368.\nIn the light of the above statements, select the correct answer from the codes given below:", "opts": ["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"], "ans": 2, "exp": "The assertion is true: the sole amendment was made by the 42nd Amendment Act, 1976. The reason is false. In Kesavananda Bharati (1973) the Supreme Court overruled the Berubari opinion and held that the Preamble is a part of the Constitution and is amendable under Article 368, provided the amendment does not damage the basic structure."}, {"num": 56, "section": "Indian Polity", "chapter": "The Preamble", "q": "With reference to the terms used in the Preamble, consider the following:\n1. 'Sovereign' means that India is neither a dependency nor a dominion of any other nation and is free to conduct its internal and external affairs.\n2. 'Republic' means that the head of the state is an elected person and not a hereditary monarch.\n3. 'Secular' implies that the state has adopted a particular religion but tolerates all others.\n4. 'Democratic' in the Preamble embraces not merely political but also social and economic democracy.\nWhich of the statements given above are correct?", "opts": ["1, 2 and 3 only", "1, 2 and 4 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 1, "exp": "The third statement is wrong. Indian secularism means that the state has no religion of its own and gives equal respect and protection to all religions — the doctrine of sarva dharma sambhava — as affirmed by the Supreme Court in the S. R. Bommai case (1994), where secularism was held to be a basic feature. Dr. Ambedkar stressed in the Constituent Assembly that democracy in India was intended to be social and economic as well as political."}, {"num": 57, "section": "Indian Polity", "chapter": "The Preamble", "q": "The phrase 'We, the People of India' occurring in the Preamble signifies:", "opts": ["The sovereignty of Parliament", "The federal character of the polity", "The supremacy of the judiciary", "Popular sovereignty, that is, that the ultimate authority rests with the people"], "ans": 3, "exp": "The opening words indicate that the Constitution derives its authority from the people of India and not from any external power or from the Indian Independence Act, 1947. The same phrase is echoed in the closing words 'do hereby adopt, enact and give to ourselves this Constitution'. The expression was inspired by the Preamble to the Constitution of the United States."}, {"num": 58, "section": "Indian Polity", "chapter": "The Preamble", "q": "Consider the following statements about the Objectives Resolution:\n1. It was moved in the Constituent Assembly by Jawaharlal Nehru on 13 December 1946.\n2. It was adopted by the Constituent Assembly on 22 January 1947.\n3. It laid down the philosophy and the fundamentals that shaped the Preamble.\n4. It was moved before the Constituent Assembly had elected its permanent Chairman.\nWhich of the statements given above are correct?", "opts": ["1 and 2 only", "1, 2 and 3 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 1, "exp": "The first three statements are correct and the fourth is not. The Constituent Assembly met on 9 December 1946 with Sachchidananda Sinha as temporary chairman and elected Dr. Rajendra Prasad as its permanent Chairman on 11 December 1946 — that is, two days before Nehru moved the Objectives Resolution on 13 December 1946. The Resolution was adopted on 22 January 1947 and its ideals were substantially embodied in the Preamble."}, {"num": 59, "section": "Indian Polity", "chapter": "The Preamble", "q": "According to the Preamble as it stands today, India is described as a:", "opts": ["Sovereign Socialist Secular Democratic Republic", "Union of States", "Sovereign Democratic Republic", "Sovereign Socialist Secular Federal Democratic Republic"], "ans": 0, "exp": "After the 42nd Amendment the Preamble describes India as a Sovereign Socialist Secular Democratic Republic. The expression 'Union of States' occurs not in the Preamble but in Article 1, and it deliberately avoids the word 'federation' to convey that the Union is indestructible and was not the result of an agreement among the states."}, {"num": 60, "section": "Indian Polity", "chapter": "The Preamble", "q": "Which one of the following words does NOT occur in the Preamble to the Constitution of India?", "opts": ["Dignity", "Federal", "Fraternity", "Integrity"], "ans": 1, "exp": "The word 'federal' finds no place in the Preamble or anywhere else in the Constitution. The Preamble speaks of justice, liberty and equality, and of fraternity assuring the dignity of the individual and the unity and integrity of the Nation. The federal nature of the polity is inferred from provisions such as the division of powers and the independence of the judiciary."}, {"num": 61, "section": "Indian Polity", "chapter": "The Preamble", "q": "With reference to the objectives listed in the Preamble, consider the following statements:\n1. Justice is described in three forms — social, economic and political.\n2. Liberty is guaranteed in respect of thought, expression, belief, faith and worship.\n3. Equality is promised in respect of status and of opportunity.\n4. Fraternity is to assure the dignity of the individual and the unity and integrity of the Nation.\nWhich of the statements given above are correct?", "opts": ["1 and 4 only", "1, 2 and 3 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 3, "exp": "All four correctly reproduce the objectives set out in the Preamble. The order in which they appear — justice, liberty, equality and fraternity — is itself significant: justice is placed first, reflecting the influence of the Russian Revolution, while the remaining three reflect the French Revolution."}, {"num": 62, "section": "Indian Polity", "chapter": "Schedules of the Constitution", "q": "The Constitution of India originally contained how many Schedules, and how many does it contain at present?", "opts": ["8 originally and 12 at present", "8 originally and 11 at present", "12 originally and 12 at present", "10 originally and 12 at present"], "ans": 0, "exp": "The Constitution as adopted in 1949 had 8 Schedules. Four have since been added — the Ninth by the 1st Amendment (1951), the Tenth by the 52nd Amendment (1985), and the Eleventh and Twelfth by the 73rd and 74th Amendments (1992), bringing the total to 12."}, {"num": 63, "section": "Indian Polity", "chapter": "Schedules of the Constitution", "q": "Match the Schedules in List I with their subject matter in List II:\nList I: A. Fourth Schedule  B. Sixth Schedule  C. Ninth Schedule  D. Tenth Schedule\nList II: 1. Administration of tribal areas in Assam, Meghalaya, Tripura and Mizoram  2. Allocation of seats in the Rajya Sabha  3. Acts and Regulations placed beyond challenge on the ground of violation of Fundamental Rights  4. Provisions relating to disqualification on the ground of defection", "opts": ["A-1, B-2, C-3, D-4", "A-2, B-1, C-3, D-4", "A-2, B-3, C-1, D-4", "A-3, B-1, C-4, D-2"], "ans": 1, "exp": "The Fourth Schedule allots seats in the Council of States to the states and union territories. The Fifth Schedule deals with scheduled areas and scheduled tribes generally, while the Sixth Schedule provides autonomous district and regional councils for the tribal areas of the four north-eastern states named. The Ninth Schedule was created to protect land-reform legislation, and the Tenth contains the anti-defection provisions."}, {"num": 64, "section": "Indian Polity", "chapter": "Schedules of the Constitution", "q": "The Ninth Schedule was added to the Constitution by which Amendment Act?", "opts": ["The 1st Amendment Act, 1951", "The 25th Amendment Act, 1971", "The 4th Amendment Act, 1955", "The 17th Amendment Act, 1964"], "ans": 0, "exp": "The First Amendment Act, 1951 inserted Articles 31A and 31B along with the Ninth Schedule in order to shield zamindari abolition and other land-reform laws from judicial challenge on the ground of violation of Fundamental Rights. It also added the three new grounds of reasonable restriction on freedom of speech — public order, friendly relations with foreign states, and incitement to an offence."}, {"num": 65, "section": "Indian Polity", "chapter": "Schedules of the Constitution", "q": "The Tenth Schedule, containing provisions relating to disqualification on the ground of defection, was added by:", "opts": ["The 42nd Amendment Act, 1976", "The 52nd Amendment Act, 1985", "The 91st Amendment Act, 2003", "The 61st Amendment Act, 1989"], "ans": 1, "exp": "The 52nd Amendment Act, 1985, enacted during the prime ministership of Rajiv Gandhi, introduced the anti-defection law in the Tenth Schedule. The 91st Amendment Act, 2003 later deleted the provision that had exempted a split of one-third of a legislature party, leaving merger by two-thirds as the only surviving exception, and also capped the size of the council of ministers at fifteen per cent of the strength of the House."}, {"num": 66, "section": "Indian Polity", "chapter": "Schedules of the Constitution", "q": "Consider the following statements regarding the Eleventh and Twelfth Schedules:\n1. The Eleventh Schedule was added by the 73rd Amendment Act and contains 29 subjects relating to Panchayats.\n2. The Twelfth Schedule was added by the 74th Amendment Act and contains 18 subjects relating to Municipalities.\n3. Both Schedules were added in the year 1992.\n4. The subjects listed in these Schedules are automatically transferred to the local bodies without any action by the state legislature.\nWhich of the statements given above are correct?", "opts": ["1 and 2 only", "1, 2 and 3 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 1, "exp": "The fourth statement is incorrect. Articles 243G and 243W leave it to the state legislature to endow the Panchayats and Municipalities with such powers and authority as may be necessary, so the devolution of the listed subjects is not automatic. The 73rd and 74th Amendment Acts were passed in 1992 and came into force on 24 April and 1 June 1993 respectively."}, {"num": 67, "section": "Indian Polity", "chapter": "Schedules of the Constitution", "q": "Assertion (A): Laws placed in the Ninth Schedule are not wholly immune from judicial review.\nReason (R): In I. R. Coelho v. State of Tamil Nadu (2007), the Supreme Court held that laws inserted into the Ninth Schedule after 24 April 1973 can be tested against the basic structure doctrine.\nIn the light of the above statements, select the correct answer from the codes given below:", "opts": ["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"], "ans": 0, "exp": "Both are true and the reason explains the assertion. The date 24 April 1973 is that of the Kesavananda Bharati judgment, which laid down the basic structure doctrine. In I. R. Coelho the nine-judge bench held unanimously that although Article 31B confers protection, any law placed in the Schedule after that date is open to challenge if it damages or destroys the basic structure, including the Fundamental Rights under Articles 14, 19 and 21."}, {"num": 68, "section": "Indian Polity", "chapter": "Schedules of the Constitution", "q": "With reference to the Eighth Schedule of the Constitution, consider the following statements:\n1. It originally recognised 14 languages and at present recognises 22.\n2. Sindhi was added by the 21st Amendment Act, 1967.\n3. Konkani, Manipuri and Nepali were added by the 71st Amendment Act, 1992.\n4. Bodo, Dogri, Maithili and Santhali were added by the 92nd Amendment Act, 2003.\nWhich of the statements given above are correct?", "opts": ["1 and 4 only", "1, 2 and 3 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 3, "exp": "All four statements are correct. The Eighth Schedule began with 14 languages; Sindhi took the number to 15 in 1967, the addition of Konkani, Manipuri and Nepali in 1992 raised it to 18, and the four languages added in 2003 brought the present total to 22. English, it should be noted, is not included in the Eighth Schedule."}, {"num": 69, "section": "Chemistry", "chapter": "Atomic Structure", "q": "Match the discoveries in List I with the scientists associated with them in List II:\nList I: A. Electron  B. Canal rays, which led to the recognition of the proton  C. Neutron  D. Nucleus\nList II: 1. Ernest Rutherford  2. E. Goldstein  3. J. J. Thomson  4. James Chadwick", "opts": ["A-1, B-2, C-4, D-3", "A-1, B-4, C-2, D-3", "A-2, B-1, C-4, D-3", "A-3, B-2, C-4, D-1"], "ans": 3, "exp": "J. J. Thomson identified the electron in 1897 through cathode-ray experiments. E. Goldstein discovered anode or canal rays in 1886, leading to the recognition of the proton, which Rutherford later characterised. James Chadwick discovered the neutron in 1932 and received the Nobel Prize for it in 1935. Rutherford's gold-foil experiment of 1911 established the existence of the nucleus."}, {"num": 70, "section": "Chemistry", "chapter": "Atomic Structure", "q": "Atoms of the same element having the same atomic number but different mass numbers are called:", "opts": ["Isotones", "Isobars", "Isotopes", "Isomers"], "ans": 2, "exp": "Isotopes have the same number of protons but different numbers of neutrons, as in protium, deuterium and tritium. Isobars have the same mass number but different atomic numbers, such as argon-40 and calcium-40. Isotones have the same number of neutrons. Isomers are compounds with the same molecular formula but different structures."}, {"num": 71, "section": "Chemistry", "chapter": "Atomic Structure", "q": "Match the radioisotopes in List I with their principal applications in List II:\nList I: A. Cobalt-60  B. Iodine-131  C. Carbon-14  D. Uranium-235\nList II: 1. Treatment of goitre and disorders of the thyroid  2. Determination of the age of fossils and archaeological objects  3. Fuel in nuclear reactors  4. Treatment of cancer", "opts": ["A-1, B-4, C-3, D-2", "A-2, B-1, C-4, D-3", "A-2, B-4, C-1, D-3", "A-4, B-1, C-2, D-3"], "ans": 3, "exp": "Cobalt-60 emits gamma rays used in radiotherapy and in the sterilisation of food and surgical instruments. Iodine-131 is concentrated by the thyroid gland and is used in the diagnosis and treatment of thyroid disorders. Carbon-14 dating, developed by Willard Libby, uses a half-life of about 5730 years to date organic remains. Uranium-235 is the fissile isotope used as reactor fuel."}, {"num": 72, "section": "Chemistry", "chapter": "Atomic Structure", "q": "The maximum number of electrons that can be accommodated in a shell having principal quantum number n is given by:", "opts": ["n(n+1)", "2n²", "n²", "2n"], "ans": 1, "exp": "By the Bohr–Bury scheme the capacity of a shell is 2n², so the K, L, M and N shells hold at most 2, 8, 18 and 32 electrons respectively. Two further rules apply: the outermost shell cannot hold more than 8 electrons, and a new shell begins only after the penultimate shell has acquired 8 or 18 electrons."}, {"num": 73, "section": "Chemistry", "chapter": "Atomic Structure", "q": "Assertion (A): An atom as a whole is electrically neutral.\nReason (R): In a neutral atom the number of protons in the nucleus is equal to the number of electrons revolving around it.\nIn the light of the above statements, select the correct answer from the codes given below:", "opts": ["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"], "ans": 0, "exp": "Both are true and the reason explains the assertion. The proton carries a charge of +1.6 × 10⁻¹⁹ coulomb and the electron an equal negative charge, so equality of number produces exact cancellation. When this equality is disturbed by the loss or gain of electrons the atom becomes a positively charged cation or a negatively charged anion."}, {"num": 74, "section": "Chemistry", "chapter": "Atomic Structure", "q": "The model of the atom in which electrons revolve in fixed circular orbits of definite energy, without radiating energy, was proposed by:", "opts": ["Niels Bohr", "Ernest Rutherford", "J. J. Thomson", "John Dalton"], "ans": 0, "exp": "Bohr in 1913 postulated stationary orbits in which the angular momentum is an integral multiple of h/2π and in which the revolving electron does not radiate. Thomson had proposed the plum-pudding model, Rutherford the nuclear model which could not explain atomic stability, and Dalton the indivisible-atom theory of 1808."}, {"num": 75, "section": "Chemistry", "chapter": "Atomic Structure", "q": "Consider the following statements about the isotopes of hydrogen:\n1. Protium contains one proton and no neutron.\n2. Deuterium contains one proton and one neutron.\n3. Deuterium is radioactive and is the heaviest isotope of hydrogen.\n4. Heavy water, used as a moderator in nuclear reactors, is an oxide of deuterium.\nWhich of the statements given above are correct?", "opts": ["1, 2 and 3 only", "1, 2 and 4 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 1, "exp": "The third statement is incorrect. The heaviest and the only radioactive isotope of hydrogen is tritium, which has two neutrons and a half-life of about 12.3 years; deuterium is stable. Heavy water, D₂O, is used as a moderator in the pressurised heavy-water reactors of the Indian nuclear programme because it slows neutrons while absorbing very few of them."}, {"num": 76, "section": "Chemistry", "chapter": "Physical and Chemical Changes, Solution", "q": "Which one of the following is a chemical change?", "opts": ["Melting of ice", "Dissolution of common salt in water", "Evaporation of water", "Rusting of iron"], "ans": 3, "exp": "Rusting produces hydrated iron(III) oxide, a new substance with properties different from those of iron, and the change cannot be reversed by simple physical means. The other three are physical changes in which no new substance is formed and the original material can be recovered — the dissolved salt, for instance, by evaporating the water."}, {"num": 77, "section": "Chemistry", "chapter": "Physical and Chemical Changes, Solution", "q": "Consider the following statements about chemical changes:\n1. A new substance with a different chemical composition is formed.\n2. The change is generally irreversible.\n3. The change is usually accompanied by the absorption or evolution of energy.\n4. The mass of the substances taking part is destroyed in the process.\nWhich of the statements given above are correct?", "opts": ["1 and 4 only", "1, 2 and 3 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 1, "exp": "The fourth statement violates the law of conservation of mass, formulated by Lavoisier, according to which mass is neither created nor destroyed in an ordinary chemical reaction. The first three are the standard criteria of a chemical change, which may also be accompanied by a change of colour, the evolution of a gas or the formation of a precipitate."}, {"num": 78, "section": "Chemistry", "chapter": "Physical and Chemical Changes, Solution", "q": "The scattering of a beam of light by the dispersed particles of a mixture, known as the Tyndall effect, is exhibited by:", "opts": ["Solutions of sugar in water", "Pure solvents", "Colloidal solutions", "True solutions"], "ans": 2, "exp": "Colloidal particles, ranging roughly from 1 to 1000 nanometres, are large enough to scatter light and so make the path of the beam visible, whereas the particles of a true solution are too small to do so. The effect explains why the beam of a cinema projector is visible in a dusty hall and why sunlight becomes visible when it enters a dark room through a small aperture."}, {"num": 79, "section": "Chemistry", "chapter": "Physical and Chemical Changes, Solution", "q": "Match the colloidal systems in List I with the examples in List II:\nList I: A. Emulsion  B. Aerosol  C. Gel  D. Foam\nList II: 1. Shaving cream  2. Butter  3. Milk  4. Fog", "opts": ["A-1, B-3, C-2, D-4", "A-3, B-2, C-4, D-1", "A-3, B-4, C-1, D-2", "A-3, B-4, C-2, D-1"], "ans": 3, "exp": "An emulsion is a liquid dispersed in a liquid, milk being fat dispersed in water. An aerosol is a liquid or solid dispersed in a gas, as in fog and smoke. A gel is a liquid dispersed in a solid, as in butter, cheese and jelly. A foam is a gas dispersed in a liquid, as in shaving cream and whipped cream."}, {"num": 80, "section": "Chemistry", "chapter": "Physical and Chemical Changes, Solution", "q": "The solubility of a gas in a liquid:", "opts": ["Is independent of both temperature and pressure", "Increases with an increase in both temperature and pressure", "Increases with an increase in temperature and decreases with an increase in pressure", "Decreases with an increase in temperature and increases with an increase in pressure"], "ans": 3, "exp": "Heating supplies kinetic energy that enables dissolved gas molecules to escape, which is why a warm aerated drink goes flat and why warm water holds less dissolved oxygen — a matter of importance for aquatic life. The direct proportionality of solubility to the partial pressure of the gas is stated by Henry's law, which explains the effervescence of a soft drink when the bottle is opened."}, {"num": 81, "section": "Chemistry", "chapter": "Physical and Chemical Changes, Solution", "q": "Assertion (A): Sublimation is a chemical change.\nReason (R): Camphor changes directly from the solid to the vapour state without any alteration in its chemical composition.\nIn the light of the above statements, select the correct answer from the codes given below:", "opts": ["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"], "ans": 3, "exp": "The assertion is false and the reason is true. Since the chemical composition is unaltered and the change is reversible, sublimation is a physical change, not a chemical one. Camphor, naphthalene, iodine, ammonium chloride and dry ice all sublime, and the property is used to separate a sublimable solid from a non-sublimable impurity such as common salt."}, {"num": 82, "section": "Chemistry", "chapter": "Inorganic Chemistry", "q": "Baking soda, used in cooking and in soda-acid fire extinguishers, is chemically:", "opts": ["Sodium hydrogen carbonate", "Sodium carbonate", "Sodium hydroxide", "Calcium carbonate"], "ans": 0, "exp": "Baking soda is sodium hydrogen carbonate, NaHCO₃, a mild non-corrosive base that releases carbon dioxide on heating and so makes cakes rise. Sodium carbonate decahydrate, Na₂CO₃·10H₂O, is washing soda; calcium carbonate is limestone or marble; and sodium hydroxide is caustic soda."}, {"num": 83, "section": "Chemistry", "chapter": "Inorganic Chemistry", "q": "Match the common names in List I with the chemical formulae in List II:\nList I: A. Washing soda  B. Bleaching powder  C. Plaster of Paris  D. Blue vitriol\nList II: 1. CuSO₄·5H₂O  2. CaOCl₂  3. CaSO₄·½H₂O  4. Na₂CO₃·10H₂O", "opts": ["A-1, B-2, C-3, D-4", "A-2, B-1, C-3, D-4", "A-2, B-4, C-3, D-1", "A-4, B-2, C-3, D-1"], "ans": 3, "exp": "Washing soda is used in the softening of hard water and in the manufacture of glass and soap. Bleaching powder, obtained by the action of chlorine on dry slaked lime, is used for disinfecting drinking water and bleaching textiles. Plaster of Paris, made by heating gypsum to about 373 K, sets to a hard mass on the addition of water and is used in surgical casts. Blue vitriol is copper sulphate pentahydrate."}, {"num": 84, "section": "Chemistry", "chapter": "Inorganic Chemistry", "q": "Carbon dioxide is used in fire extinguishers mainly because it:", "opts": ["Absorbs a large quantity of heat on decomposition", "Is heavier than air and does not support combustion", "Reacts chemically with the burning substance", "Produces a large volume of water vapour"], "ans": 1, "exp": "Being about one and a half times as dense as air, carbon dioxide forms a blanket over the burning material and cuts off the supply of oxygen, while itself being non-combustible. It is preferred for fires involving electrical equipment and inflammable liquids because, unlike water, it does not conduct electricity and leaves no residue."}, {"num": 85, "section": "Chemistry", "chapter": "Inorganic Chemistry", "q": "Consider the following statements:\n1. Aqua regia, which can dissolve gold and platinum, is a mixture of concentrated hydrochloric acid and concentrated nitric acid in the ratio 3 : 1.\n2. The acid present in the human stomach that aids digestion is hydrochloric acid.\n3. The gas commonly known as laughing gas is nitrous oxide.\n4. The gas responsible for the pungent smell of rotten eggs is sulphur dioxide.\nWhich of the statements given above are correct?", "opts": ["1, 2 and 3 only", "1, 2 and 4 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 0, "exp": "The fourth statement is incorrect: the smell of rotten eggs is that of hydrogen sulphide, H₂S, not sulphur dioxide. The other three are correct. Aqua regia, literally royal water, is a fuming yellow liquid; the hydrochloric acid of the gastric juice maintains the pH needed for pepsin to act; and nitrous oxide, N₂O, discovered by Joseph Priestley, is used as a mild anaesthetic."}, {"num": 86, "section": "Chemistry", "chapter": "Inorganic Chemistry", "q": "Which one of the following gases is used for the artificial ripening of fruits?", "opts": ["Acetylene", "Carbon monoxide", "Methane", "Ethylene"], "ans": 3, "exp": "Ethylene is a natural plant hormone that triggers ripening, and is applied commercially in controlled concentrations. Calcium carbide, which is often used illegally for the purpose, generates acetylene and carries traces of arsenic and phosphorus, and its use for ripening is prohibited under the Food Safety and Standards Regulations in India."}, {"num": 87, "section": "Chemistry", "chapter": "Inorganic Chemistry", "q": "Assertion (A): A freshly whitewashed wall acquires a shiny white finish after two or three days.\nReason (R): Calcium hydroxide applied on the wall reacts slowly with carbon dioxide of the air to form a thin layer of calcium carbonate.\nIn the light of the above statements, select the correct answer from the codes given below:", "opts": ["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"], "ans": 0, "exp": "Both are true and the reason explains the assertion. Quicklime, CaO, is slaked with water to give calcium hydroxide, which is applied to the wall. Its slow reaction with atmospheric carbon dioxide deposits calcium carbonate, the same compound as marble, which gives the surface its characteristic sheen."}, {"num": 88, "section": "Chemistry", "chapter": "Inorganic Chemistry", "q": "Which one of the following is chiefly responsible for the depletion of the ozone layer in the stratosphere?", "opts": ["Methane", "Carbon dioxide", "Chlorofluorocarbons", "Sulphur dioxide"], "ans": 2, "exp": "Chlorofluorocarbons release chlorine atoms under ultraviolet radiation, and each such atom can destroy a large number of ozone molecules catalytically. Their production is being phased out under the Montreal Protocol of 1987. Carbon dioxide and methane are greenhouse gases connected with global warming rather than with ozone depletion."}, {"num": 89, "section": "Chemistry", "chapter": "Inorganic Chemistry", "q": "Match the gases in List I with their uses in List II:\nList I: A. Nitrous oxide  B. Helium  C. Neon  D. Nitrogen\nList II: 1. Advertisement signs and discharge tubes  2. Anaesthesia in dentistry and surgery  3. Filling of food-packaging bags to prevent oxidation  4. Filling of weather balloons and airships", "opts": ["A-1, B-4, C-3, D-2", "A-2, B-3, C-1, D-4", "A-2, B-4, C-1, D-3", "A-2, B-4, C-3, D-1"], "ans": 2, "exp": "Helium is preferred to hydrogen for balloons because it is non-inflammable, and a helium–oxygen mixture is used by deep-sea divers. Neon glows reddish-orange in a discharge tube and is used in advertising signs. Nitrogen, being chemically inert at ordinary temperatures, is flushed into packets of chips and other foods to keep the fat from being oxidised."}, {"num": 90, "section": "Chemistry", "chapter": "Metals, Minerals, Ores", "q": "Bauxite is the principal ore of which metal?", "opts": ["Copper", "Aluminium", "Iron", "Zinc"], "ans": 1, "exp": "Bauxite is a hydrated oxide of aluminium from which alumina is extracted by the Bayer process and the metal obtained by the electrolytic Hall–Héroult process. In India the largest reserves lie in Odisha, followed by Andhra Pradesh, Gujarat and Jharkhand."}, {"num": 91, "section": "Chemistry", "chapter": "Metals, Minerals, Ores", "q": "Match the ores in List I with the metals in List II:\nList I: A. Haematite  B. Cinnabar  C. Galena  D. Bauxite\nList II: 1. Iron  2. Lead  3. Mercury  4. Aluminium", "opts": ["A-1, B-3, C-2, D-4", "A-1, B-3, C-4, D-2", "A-2, B-1, C-3, D-4", "A-4, B-3, C-2, D-1"], "ans": 0, "exp": "Haematite, Fe₂O₃, is the richest iron ore; magnetite and siderite are others. Cinnabar is mercuric sulphide, HgS. Galena is lead sulphide, PbS, which also yields silver as a by-product. Other ores worth remembering are calamine and zinc blende for zinc, and malachite and copper pyrites for copper."}, {"num": 92, "section": "Chemistry", "chapter": "Metals, Minerals, Ores", "q": "Consider the following statements:\n1. Aluminium is the most abundant metal in the earth's crust.\n2. Oxygen is the most abundant element in the earth's crust.\n3. Silicon is the second most abundant element in the earth's crust.\n4. Iron is more abundant than aluminium in the earth's crust.\nWhich of the statements given above are correct?", "opts": ["1, 2 and 3 only", "1, 2 and 4 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 0, "exp": "The fourth statement is incorrect, since aluminium at roughly 8 per cent exceeds iron at about 5 per cent. In order of abundance in the crust, oxygen comes first at about 46 per cent, followed by silicon at about 28 per cent, then aluminium and iron. In the earth as a whole, however, iron is the most abundant element because of the composition of the core."}, {"num": 93, "section": "Chemistry", "chapter": "Metals, Minerals, Ores", "q": "Consider the following statements about the properties of metals:\n1. Metals are generally malleable and ductile.\n2. Mercury is the only metal that is liquid at room temperature.\n3. Sodium and potassium are so soft that they can be cut with a knife.\n4. All metals are good conductors of heat, lead and mercury being among the best.\nWhich of the statements given above are correct?", "opts": ["1, 2 and 3 only", "1, 2 and 4 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 0, "exp": "The fourth statement is wrong in its second half: silver and copper are the best conductors of heat, while lead and mercury are the poorest among the metals. Gold and silver are the most malleable and ductile metals. Sodium and potassium, being highly reactive, are stored under kerosene."}, {"num": 94, "section": "Chemistry", "chapter": "Metals, Minerals, Ores", "q": "Which one of the following is the best conductor of electricity?", "opts": ["Gold", "Aluminium", "Copper", "Silver"], "ans": 3, "exp": "Silver has the highest electrical conductivity of all metals, followed by copper, gold and aluminium. Copper and aluminium are nevertheless used for wiring and transmission lines because silver is prohibitively expensive; aluminium in particular is preferred for overhead transmission because of its low density."}, {"num": 95, "section": "Chemistry", "chapter": "Metals, Minerals, Ores", "q": "Assertion (A): Aluminium articles do not corrode readily even though aluminium is a reactive metal.\nReason (R): A thin, tough and impervious layer of aluminium oxide forms on the surface and protects the metal beneath from further attack.\nIn the light of the above statements, select the correct answer from the codes given below:", "opts": ["Both A and R are true and R is the correct explanation of A", "Both A and R are true but R is not the correct explanation of A", "A is true but R is false", "A is false but R is true"], "ans": 0, "exp": "Both are true and the reason explains the assertion. The oxide film adheres firmly to the surface, unlike rust on iron, which is flaky and permits corrosion to continue into the interior. The film is deliberately thickened by the electrolytic process of anodising to improve resistance and to take a dye."}, {"num": 96, "section": "Chemistry", "chapter": "Alloys", "q": "Match the alloys in List I with their principal constituents in List II:\nList I: A. Brass  B. Bronze  C. German silver  D. Solder\nList II: 1. Copper and tin  2. Lead and tin  3. Copper, zinc and nickel  4. Copper and zinc", "opts": ["A-1, B-4, C-3, D-2", "A-3, B-4, C-1, D-2", "A-4, B-1, C-3, D-2", "A-4, B-3, C-2, D-1"], "ans": 2, "exp": "Brass is used for utensils and decorative articles, bronze for statues, medals and bells, and German silver — which contains no silver at all — for ornamental ware and resistance wire. Solder, an alloy of lead and tin, has a low melting point and is used for joining electrical wires."}, {"num": 97, "section": "Chemistry", "chapter": "Alloys", "q": "An alloy in which mercury is one of the constituents is known as:", "opts": ["A eutectic", "An alnico", "A duralumin", "An amalgam"], "ans": 3, "exp": "An amalgam is an alloy of mercury with another metal; sodium amalgam and the silver–tin amalgam formerly used in dental fillings are examples. Iron, however, does not form an amalgam, which is why mercury can be stored in iron containers. Alnico is an alloy of aluminium, nickel and cobalt used for permanent magnets."}, {"num": 98, "section": "Chemistry", "chapter": "Alloys", "q": "Consider the following statements about alloys:\n1. Stainless steel is an alloy of iron with chromium and nickel.\n2. Duralumin, used in aircraft bodies, contains aluminium, copper, magnesium and manganese.\n3. The melting point of an alloy is generally lower than that of its constituent metals.\n4. An alloy is generally a better conductor of electricity than its pure constituent metals.\nWhich of the statements given above are correct?", "opts": ["1, 2 and 3 only", "1, 2 and 4 only", "2, 3 and 4 only", "1, 2, 3 and 4"], "ans": 0, "exp": "The fourth statement is incorrect: alloying disturbs the regular arrangement of the lattice and lowers electrical conductivity, which is why alloys such as nichrome are used in heating elements. Stainless steel resists rusting because of its chromium content, and duralumin is chosen for aircraft because it combines the lightness of aluminium with strength comparable to that of steel."}, {"num": 99, "section": "Chemistry", "chapter": "Alloys", "q": "Which one of the following alloys is used for making the heating elements of electric appliances such as toasters and electric irons?", "opts": ["Bronze", "Brass", "Type metal", "Nichrome"], "ans": 3, "exp": "Nichrome, an alloy of nickel and chromium with small amounts of iron and manganese, has a high electrical resistivity and a high melting point and does not oxidise readily at red heat, which makes it ideal for heating elements. Type metal, an alloy of lead, tin and antimony, was used for printing type."}];
+
+const TOTAL_SECONDS = 45 * 60;
+let remaining = TOTAL_SECONDS;
+let timerInterval = null;
+let submitted = false;
+const answers = {}; // num -> selected index
+
+const optLetters = ['A','B','C','D'];
+
+function renderQuiz() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  let currentSection = null;
+  let currentChapter = null;
+
+  // count questions per section for header
+  const sectionCounts = {};
+  QUIZ_DATA.forEach(q => { sectionCounts[q.section] = (sectionCounts[q.section]||0) + 1; });
+
+  QUIZ_DATA.forEach(item => {
+    if (item.section !== currentSection) {
+      currentSection = item.section;
+      const h = document.createElement('div');
+      h.className = 'section-heading';
+      h.innerHTML = item.section + '<span class="count">' + sectionCounts[item.section] + ' questions</span>';
+      container.appendChild(h);
+      currentChapter = null;
+    }
+
+    const card = document.createElement('div');
+    card.className = 'q-card';
+    card.id = 'card-' + item.num;
+
+    let chapterHtml = '';
+    if (item.chapter !== currentChapter) {
+      currentChapter = item.chapter;
+    }
+    chapterHtml = '<div class="chapter-tag">' + item.chapter + '</div>';
+
+    const headerDiv = document.createElement('div');
+    headerDiv.innerHTML = chapterHtml;
+    card.appendChild(headerDiv);
+
+    const qHeader = document.createElement('div');
+    qHeader.className = 'q-header';
+    qHeader.innerHTML = '<div class="q-num">' + item.num + '</div><div class="q-text">' + escapeHtml(item.q) + '</div><div class="q-status-badge" id="badge-' + item.num + '"></div>';
+    card.appendChild(qHeader);
+
+    const optionsDiv = document.createElement('div');
+    optionsDiv.className = 'options';
+    item.opts.forEach((opt, idx) => {
+      const optDiv = document.createElement('label');
+      optDiv.className = 'option';
+      optDiv.id = 'opt-' + item.num + '-' + idx;
+      optDiv.innerHTML = '<input type="radio" name="q' + item.num + '" value="' + idx + '"><span class="opt-letter">' + optLetters[idx] + '.</span><span class="opt-text">' + escapeHtml(opt) + '</span><span class="result-icon" id="icon-' + item.num + '-' + idx + '"></span>';
+      optDiv.addEventListener('click', () => selectAnswer(item.num, idx));
+      optionsDiv.appendChild(optDiv);
+    });
+    card.appendChild(optionsDiv);
+
+    const expDiv = document.createElement('div');
+    expDiv.className = 'explanation';
+    expDiv.id = 'exp-' + item.num;
+    expDiv.innerHTML = '<strong>Explanation:</strong> ' + escapeHtml(item.exp);
+    card.appendChild(expDiv);
+
+    container.appendChild(card);
+  });
+}
+
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function selectAnswer(num, idx) {
+  if (submitted) return;
+  answers[num] = idx;
+  document.querySelectorAll('#card-' + num + ' .option').forEach(o => o.classList.remove('selected'));
+  document.getElementById('opt-' + num + '-' + idx).classList.add('selected');
+  document.querySelector('#card-' + num + ' input[value="' + idx + '"]').checked = true;
+  updateProgress();
+}
+
+function updateProgress() {
+  const answeredCount = Object.keys(answers).length;
+  document.getElementById('answered-count').textContent = answeredCount + ' / ' + QUIZ_DATA.length + ' answered';
+  document.getElementById('progress-bar').style.width = (answeredCount / QUIZ_DATA.length * 100) + '%';
+}
+
+function formatTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = sec % 60;
+  return String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+}
+
+function startTimer() {
+  const box = document.getElementById('timer-box');
+  timerInterval = setInterval(() => {
+    remaining--;
+    if (remaining <= 0) {
+      remaining = 0;
+      box.textContent = formatTime(remaining);
+      clearInterval(timerInterval);
+      submitTest(true);
+      return;
+    }
+    box.textContent = formatTime(remaining);
+    if (remaining <= 300) {
+      box.classList.add('warning');
+    }
+  }, 1000);
+}
+
+function submitTest(auto) {
+  if (submitted) return;
+  submitted = true;
+  clearInterval(timerInterval);
+  document.getElementById('submit-btn').disabled = true;
+  document.getElementById('submit-btn').textContent = 'Submitted';
+
+  let correctCount = 0, wrongCount = 0, skippedCount = 0;
+  const chapterStats = {}; // chapter -> {correct, wrong, skipped, total}
+
+  QUIZ_DATA.forEach(item => {
+    const num = item.num;
+    const userAns = answers.hasOwnProperty(num) ? answers[num] : null;
+    const correctIdx = item.ans;
+    const badge = document.getElementById('badge-' + num);
+    const card = document.getElementById('card-' + num);
+
+    // disable further interaction
+    document.querySelectorAll('#card-' + num + ' input').forEach(inp => inp.disabled = true);
+    document.querySelectorAll('#card-' + num + ' .option').forEach(o => o.style.cursor = 'default');
+
+    // mark correct answer
+    document.getElementById('opt-' + num + '-' + correctIdx).classList.add('correct-answer');
+    document.getElementById('icon-' + num + '-' + correctIdx).textContent = '\u2713';
+    document.getElementById('icon-' + num + '-' + correctIdx).classList.add('tick');
+
+    if (!chapterStats[item.chapter]) {
+      chapterStats[item.chapter] = { correct: 0, wrong: 0, skipped: 0, total: 0, section: item.section };
+    }
+    chapterStats[item.chapter].total++;
+
+    if (userAns === null) {
+      skippedCount++;
+      badge.textContent = 'SKIPPED';
+      badge.classList.add('skipped');
+      chapterStats[item.chapter].skipped++;
+    } else if (userAns === correctIdx) {
+      correctCount++;
+      badge.textContent = 'CORRECT';
+      badge.classList.add('correct');
+      chapterStats[item.chapter].correct++;
+    } else {
+      wrongCount++;
+      badge.textContent = 'WRONG';
+      badge.classList.add('wrong');
+      document.getElementById('opt-' + num + '-' + userAns).classList.add('wrong-answer');
+      document.getElementById('icon-' + num + '-' + userAns).textContent = '\u2717';
+      document.getElementById('icon-' + num + '-' + userAns).classList.add('cross');
+      chapterStats[item.chapter].wrong++;
+    }
+
+    // show explanation
+    document.getElementById('exp-' + num).style.display = 'block';
+  });
+
+  // Negative marking: +1 correct, -1/3 wrong, 0 skipped
+  const netScore = correctCount * 1 - wrongCount * (1/3);
+  const netScoreDisplay = (Math.round(netScore * 100) / 100).toString();
+  const attempted = correctCount + wrongCount;
+  const accuracy = attempted > 0 ? Math.round((correctCount / attempted) * 100) : 0;
+
+  // show score modal
+  document.getElementById('score-big').innerHTML = netScoreDisplay + '<span> / ' + QUIZ_DATA.length + '</span>';
+  document.getElementById('stat-correct').textContent = correctCount;
+  document.getElementById('stat-wrong').textContent = wrongCount;
+  document.getElementById('stat-skipped').textContent = skippedCount;
+  document.getElementById('stat-accuracy').textContent = accuracy + '%';
+
+  // Topic-wise analysis, weakest (most wrong) topics first
+  const chapterRows = document.getElementById('chapter-analysis-rows');
+  chapterRows.innerHTML = '';
+  const chapterList = Object.keys(chapterStats).map(ch => ({ name: ch, ...chapterStats[ch] }));
+  chapterList.sort((a, b) => (b.wrong - a.wrong) || (b.skipped - a.skipped));
+  chapterList.forEach(ch => {
+    const correctPct = (ch.correct / ch.total) * 100;
+    const wrongPct = (ch.wrong / ch.total) * 100;
+    const skippedPct = (ch.skipped / ch.total) * 100;
+    const row = document.createElement('div');
+    row.className = 'topic-row';
+    row.innerHTML =
+      '<div class="topic-name">' + escapeHtml(ch.name) + '</div>' +
+      '<div class="topic-bar-wrap">' +
+        '<div class="topic-bar-correct" style="width:' + correctPct + '%"></div>' +
+        '<div class="topic-bar-wrong" style="width:' + wrongPct + '%"></div>' +
+        '<div class="topic-bar-skipped" style="width:' + skippedPct + '%"></div>' +
+      '</div>' +
+      '<div class="topic-counts"><span class="c">' + ch.correct + 'c</span> <span class="w">' + ch.wrong + 'w</span> <span class="s">' + ch.skipped + 's</span></div>';
+    chapterRows.appendChild(row);
+  });
+
+  document.getElementById('score-modal-overlay').style.display = 'flex';
+}
+
+document.getElementById('submit-btn').addEventListener('click', () => {
+  if (submitted) return;
+  const answeredCount = Object.keys(answers).length;
+  if (answeredCount < QUIZ_DATA.length) {
+    const remaining_q = QUIZ_DATA.length - answeredCount;
+    const ok = confirm(remaining_q + ' question(s) are still unanswered. Submit anyway?');
+    if (!ok) return;
+  }
+  submitTest(false);
+});
+
+document.getElementById('view-answers-btn').addEventListener('click', () => {
+  document.getElementById('score-modal-overlay').style.display = 'none';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+});
+
+document.getElementById('modal-restart-btn').addEventListener('click', () => {
+  window.location.reload();
+});
+
+renderQuiz();
+updateProgress();
+startTimer();
+</script>
+
+</body>
+</html>
