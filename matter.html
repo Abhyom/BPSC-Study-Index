@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Chemist's Ledger — Physical Chemistry | BPSC Prelims</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f5efe2;
+  --paper-dark:#ece3d0;
+  --ink:#2b2620;
+  --ink-soft:#5c5346;
+  --sidebar:#1f2620;
+  --sidebar-text:#cfd6c9;
+  --sidebar-active:#3a473a;
+  --accent-green:#3d6b4f;
+  --accent-green-deep:#274a34;
+  --gold:#a8792f;
+  --border:#d8ccae;
+
+  --yellow:#e0a712;
+  --yellow-bg:#fbe08a;
+  --blue:#1f6fa8;
+  --blue-bg:#a9d3ef;
+  --green:#2f7d3f;
+  --green-bg:#a9dcac;
+  --red:#c23b2c;
+  --red-bg:#f3a89e;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'IBM Plex Sans', sans-serif;background:var(--paper);color:var(--ink);display:flex;min-height:100vh;}
+h1,h2,h3,h4{font-family:'Playfair Display', serif; color:var(--accent-green-deep); margin:0 0 8px 0;}
+code, .mono{font-family:'IBM Plex Mono', monospace;}
+
+.sidebar{width:270px;background:var(--sidebar);color:var(--sidebar-text);position:fixed;top:0;left:0;bottom:0;overflow-y:auto;padding:22px 16px 40px 16px;z-index:20;}
+.sidebar-title{font-family:'Playfair Display', serif;font-size:1.25rem;color:#f2ead6;border-bottom:1px solid #3a473a;padding-bottom:14px;margin-bottom:16px;line-height:1.3;}
+.sidebar-title .sub{display:block;font-family:'IBM Plex Mono', monospace;font-size:0.68rem;color:#8fa88e;letter-spacing:1px;margin-top:4px;text-transform:uppercase;}
+.tab-switch{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.tab-switch button{flex:1 1 calc(50% - 6px);min-width:70px;background:#28312a;color:#b7c2b1;border:1px solid #3a473a;padding:8px 3px;font-family:'IBM Plex Mono', monospace;font-size:0.6rem;letter-spacing:0.3px;cursor:pointer;border-radius:4px;text-transform:uppercase;}
+.tab-switch button.active{background:var(--accent-green);color:#fff;border-color:var(--accent-green);}
+.nav-group{margin-bottom:6px;}
+.nav-section-label{font-family:'IBM Plex Mono', monospace;font-size:0.65rem;text-transform:uppercase;letter-spacing:1.2px;color:#7c9279;margin:16px 0 6px 4px;}
+.sidebar a{display:block;color:var(--sidebar-text);text-decoration:none;padding:6px 10px;font-size:0.83rem;border-radius:4px;margin-bottom:2px;border-left:2px solid transparent;line-height:1.3;}
+.sidebar a:hover{background:#2a332a;}
+.sidebar a.active{background:var(--sidebar-active);border-left:2px solid var(--gold);color:#fff;font-weight:600;}
+
+.main{margin-left:270px;flex:1;padding:36px 46px 90px 46px;max-width:1120px;}
+.page{display:none;}
+.page.active{display:block;}
+
+.hero{border-bottom:2px solid var(--accent-green);padding-bottom:18px;margin-bottom:30px;}
+.hero h1{font-size:2rem;}
+.hero p{color:var(--ink-soft);font-style:italic;margin:0;}
+
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 34px 0;padding:14px 16px;background:var(--paper-dark);border:1px solid var(--border);border-radius:8px;}
+.legend span{font-family:'IBM Plex Mono', monospace;font-size:0.72rem;padding:3px 9px;border-radius:3px;}
+.legend .l-concept{background:var(--yellow-bg);border:1px solid var(--yellow);}
+.legend .l-fact{background:var(--blue-bg);border:1px solid var(--blue);}
+.legend .l-person{background:var(--green-bg);border:1px solid var(--green);}
+.legend .l-trap{background:var(--red-bg);border:1px solid var(--red);}
+
+section{margin-bottom:46px;scroll-margin-top:20px;}
+section h2{font-size:1.5rem;border-bottom:2px solid var(--border);padding-bottom:8px;margin-bottom:16px;}
+section h2 .num{color:var(--gold);font-family:'IBM Plex Mono', monospace;font-size:1rem;margin-right:8px;}
+h3.subhead{font-family:'IBM Plex Mono', monospace;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;color:var(--accent-green-deep);border-left:4px solid var(--accent-green);padding-left:10px;margin:22px 0 10px 0;}
+
+mark{color:var(--ink);font-weight:600;padding:1px 5px;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone;}
+mark.concept{background:var(--yellow-bg);box-shadow:inset 0 0 0 1.5px var(--yellow);}
+mark.fact{background:var(--blue-bg);box-shadow:inset 0 0 0 1.5px var(--blue);color:#12324a;}
+mark.person{background:var(--green-bg);box-shadow:inset 0 0 0 1.5px var(--green);color:#123a1a;}
+mark.trap{background:var(--red-bg);box-shadow:inset 0 0 0 1.5px var(--red);color:#5c140b;font-weight:700;}
+
+ul.point-list{padding-left:20px;margin:8px 0;}
+ul.point-list li{margin-bottom:7px;line-height:1.55;}
+
+.callout{border-radius:8px;padding:12px 16px;margin:14px 0;font-size:0.92rem;line-height:1.55;border:1px solid;}
+.callout.trap{background:var(--red-bg);border-color:var(--red);}
+.callout.trap .tag{font-family:'IBM Plex Mono',monospace;font-weight:700;color:#a13a2c;text-transform:uppercase;font-size:0.72rem;display:block;margin-bottom:4px;}
+.callout.fact{background:var(--blue-bg);border-color:var(--blue);}
+.callout.fact .tag{font-family:'IBM Plex Mono',monospace;font-weight:700;color:#2a5a7a;text-transform:uppercase;font-size:0.72rem;display:block;margin-bottom:4px;}
+
+table{width:100%;border-collapse:collapse;margin:14px 0 24px 0;background:#fffdf7;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,0.05);font-size:0.87rem;}
+table caption{caption-side:top;text-align:left;font-family:'IBM Plex Mono', monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--gold);padding:6px 0;}
+th{background:var(--accent-green-deep);color:#f2ead6;text-align:left;padding:9px 12px;font-family:'IBM Plex Mono', monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.6px;}
+td{padding:9px 12px;border-top:1px solid var(--border);vertical-align:top;line-height:1.5;}
+tr.tier-main td:first-child, tr.tier-critical td:first-child, tr.tier-secondary td:first-child{font-weight:700;}
+tr.tier-main{background:#fbf6e8;}
+tr.tier-critical{background:#fdeeea;}
+tr.tier-secondary{background:#eef5ee;}
+
+table.master-table td{font-weight:500;}
+table.master-table td, table.master-table th{border-top:1px solid rgba(0,0,0,0.08);}
+table.master-table th{background:var(--accent-green-deep);}
+table.master-table td:nth-child(1){background:#f9d7de;}
+table.master-table td:nth-child(2){background:#d3e6fa;}
+table.master-table td:nth-child(3){background:#d6f0d6;}
+table.master-table td:nth-child(4){background:#fbecc2;}
+table.master-table td:nth-child(5){background:#e6dcf7;}
+table.master-table tr:hover td{filter:brightness(0.96);}
+table.master-table td{border-top:1px solid #fffdf7;}
+table.master-table caption{margin-bottom:2px;}
+
+.mcq-box{background:#fffdf7;border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:6px;padding:12px 16px;margin:10px 0;font-size:0.88rem;}
+.mcq-box .q{font-weight:600;margin-bottom:4px;}
+.mcq-box .a{color:var(--accent-green-deep);font-family:'IBM Plex Mono',monospace;font-size:0.8rem;}
+
+footer{margin-top:60px;padding-top:16px;border-top:1px solid var(--border);color:var(--ink-soft);font-size:0.78rem;font-family:'IBM Plex Mono', monospace;}
+
+.mobile-topbar{display:none;}
+.hamburger-btn{display:none;}
+.sidebar-overlay{display:none;}
+
+@media(max-width:860px){
+  .mobile-topbar{display:flex;align-items:center;justify-content:space-between;position:fixed;top:0;left:0;right:0;height:56px;background:var(--sidebar);color:#f2ead6;padding:0 14px;z-index:40;box-shadow:0 2px 6px rgba(0,0,0,0.15);}
+  .mobile-topbar .mt-title{font-family:'Playfair Display', serif;font-size:1.05rem;}
+  .hamburger-btn{display:flex;flex-direction:column;justify-content:center;gap:4px;width:34px;height:34px;background:transparent;border:1px solid #3a473a;border-radius:5px;cursor:pointer;padding:8px;}
+  .hamburger-btn span{display:block;height:2px;background:#e8e2cf;border-radius:2px;transition:transform 0.2s ease, opacity 0.2s ease;}
+  .hamburger-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .hamburger-btn.open span:nth-child(2){opacity:0;}
+  .hamburger-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+  .sidebar{top:56px;left:0;width:82%;max-width:320px;height:calc(100vh - 56px);transform:translateX(-105%);transition:transform 0.25s ease;box-shadow:4px 0 18px rgba(0,0,0,0.25);}
+  .sidebar.open{transform:translateX(0);}
+  .sidebar-overlay{display:block;position:fixed;top:56px;left:0;right:0;bottom:0;background:rgba(0,0,0,0);pointer-events:none;transition:background 0.25s ease;z-index:19;}
+  .sidebar-overlay.open{background:rgba(0,0,0,0.4);pointer-events:auto;}
+  .sidebar-title{display:none;}
+  .main{margin-left:0;padding:72px 18px 60px 18px;max-width:100%;}
+  .hero h1{font-size:1.5rem;}
+  section h2{font-size:1.2rem;}
+  table{font-size:0.8rem;}
+  th, td{padding:7px 8px;}
+  .legend{gap:6px;padding:10px 12px;}
+  .legend span{font-size:0.66rem;}
+}
+@media(max-width:480px){table{font-size:0.74rem;}.hero h1{font-size:1.3rem;}}
+</style>
+</head>
+<body>
+
+<div class="mobile-topbar">
+  <span class="mt-title">The Chemist's Ledger</span>
+  <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleSidebar()" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-title">The Chemist's Ledger
+    <span class="sub">BPSC Prelims · Physical Chemistry</span>
+  </div>
+
+  <div class="tab-switch">
+    <button id="btn-tab-matter" class="active" onclick="switchTab('matter')">Matter</button>
+    <button id="btn-tab-solutions" onclick="switchTab('solutions')">Solutions</button>
+    <button id="btn-tab-gaseous" onclick="switchTab('gaseous')">Gaseous State</button>
+    <button id="btn-tab-kinetics" onclick="switchTab('kinetics')">Kinetics</button>
+  </div>
+
+  <div id="nav-matter">
+    <div class="nav-section-label">Master Table</div>
+    <a href="#m-master" class="navlink" data-page="matter">Key Terms &amp; Definitions</a>
+
+    <div class="nav-section-label">Foundations</div>
+    <a href="#m-basics" class="navlink" data-page="matter">What Is Matter</a>
+    <a href="#m-particles" class="navlink" data-page="matter">Atoms &amp; Molecules</a>
+
+    <div class="nav-section-label">States of Matter</div>
+    <a href="#m-states" class="navlink" data-page="matter">Solid, Liquid &amp; Gas</a>
+    <a href="#m-newstates" class="navlink" data-page="matter">Plasma &amp; Bose-Einstein Condensate</a>
+    <a href="#m-diffusion" class="navlink" data-page="matter">Diffusion &amp; Gas Pressure</a>
+
+    <div class="nav-section-label">Interconversion</div>
+    <a href="#m-interconvert" class="navlink" data-page="matter">Fusion, Melting, Sublimation &amp; Latent Heat</a>
+    <a href="#m-tempress" class="navlink" data-page="matter">Effect of Temperature &amp; Pressure</a>
+
+    <div class="nav-section-label">Chemical Classification</div>
+    <a href="#m-classification" class="navlink" data-page="matter">Element, Compound &amp; Mixture</a>
+    <a href="#m-mixtures" class="navlink" data-page="matter">Homogeneous vs Heterogeneous Mixtures</a>
+    <a href="#m-separation" class="navlink" data-page="matter">Separation Techniques</a>
+
+    <div class="nav-section-label">Mass &amp; Quantitative Chemistry</div>
+    <a href="#m-massterms" class="navlink" data-page="matter">Atomic, Molecular &amp; Equivalent Mass</a>
+    <a href="#m-changes" class="navlink" data-page="matter">Physical vs Chemical Changes</a>
+    <a href="#m-laws" class="navlink" data-page="matter">Laws of Chemical Combination</a>
+    <a href="#m-mole" class="navlink" data-page="matter">Mole Concept</a>
+
+    <div class="nav-section-label">Exam Consolidation</div>
+    <a href="#m-traps" class="navlink" data-page="matter">MCQ Traps &amp; Assessment Facts</a>
+  </div>
+
+  <div id="nav-solutions" style="display:none;">
+    <div class="nav-section-label">Master Table</div>
+    <a href="#s-master" class="navlink" data-page="solutions">Solution vs Suspension vs Colloid</a>
+
+    <div class="nav-section-label">True Solutions</div>
+    <a href="#s-basics" class="navlink" data-page="solutions">Solution &amp; Its Components</a>
+    <a href="#s-properties" class="navlink" data-page="solutions">Properties of a Solution</a>
+    <a href="#s-types" class="navlink" data-page="solutions">Saturated, Unsaturated &amp; Supersaturated</a>
+    <a href="#s-statetypes" class="navlink" data-page="solutions">Gas/Liquid/Solid Solution Types</a>
+    <a href="#s-nature" class="navlink" data-page="solutions">Aqueous, Acidic, Basic &amp; Neutral</a>
+
+    <div class="nav-section-label">Concentration &amp; Solubility</div>
+    <a href="#s-concentration" class="navlink" data-page="solutions">Ways of Expressing Concentration</a>
+    <a href="#s-solubility" class="navlink" data-page="solutions">Solubility &amp; Its Factors</a>
+
+    <div class="nav-section-label">Colloids</div>
+    <a href="#s-colloid-basics" class="navlink" data-page="solutions">Colloidal Solution Basics</a>
+    <a href="#s-colloid-class" class="navlink" data-page="solutions">Classification of Colloids</a>
+    <a href="#s-colloid-prop" class="navlink" data-page="solutions">Properties — Tyndall Effect &amp; Brownian Motion</a>
+    <a href="#s-emulsion" class="navlink" data-page="solutions">Emulsions</a>
+    <a href="#s-everyday" class="navlink" data-page="solutions">Everyday Science of Colloids</a>
+    <a href="#s-suspension" class="navlink" data-page="solutions">Suspensions</a>
+
+    <div class="nav-section-label">Exam Consolidation</div>
+    <a href="#s-traps" class="navlink" data-page="solutions">MCQ Traps &amp; Assessment Facts</a>
+  </div>
+
+  <div id="nav-gaseous" style="display:none;">
+    <div class="nav-section-label">Master Table</div>
+    <a href="#g-master" class="navlink" data-page="gaseous">Gas Laws Ledger</a>
+
+    <div class="nav-section-label">Foundations</div>
+    <a href="#g-basics" class="navlink" data-page="gaseous">Properties of Gases</a>
+
+    <div class="nav-section-label">Gas Laws</div>
+    <a href="#g-boyle" class="navlink" data-page="gaseous">Boyle's &amp; Charles' Law</a>
+    <a href="#g-gaylussac" class="navlink" data-page="gaseous">Gay-Lussac's &amp; Avogadro's Law</a>
+    <a href="#g-combined" class="navlink" data-page="gaseous">Combined Gas Law &amp; Dalton's Law</a>
+    <a href="#g-graham" class="navlink" data-page="gaseous">Graham's Law of Diffusion</a>
+
+    <div class="nav-section-label">Ideal &amp; Real Gases</div>
+    <a href="#g-ideal" class="navlink" data-page="gaseous">Ideal Gas &amp; Ideal Gas Equation</a>
+    <a href="#g-real" class="navlink" data-page="gaseous">Real Gases</a>
+
+    <div class="nav-section-label">Kinetic Theory</div>
+    <a href="#g-kinetic" class="navlink" data-page="gaseous">Kinetic Theory of Gases</a>
+    <a href="#g-speeds" class="navlink" data-page="gaseous">Molecular Speeds</a>
+    <a href="#g-freedom" class="navlink" data-page="gaseous">Degree of Freedom</a>
+
+    <div class="nav-section-label">Exam Consolidation</div>
+    <a href="#g-traps" class="navlink" data-page="gaseous">MCQ Traps &amp; Assessment Facts</a>
+  </div>
+
+  <div id="nav-kinetics" style="display:none;">
+    <div class="nav-section-label">Master Table</div>
+    <a href="#k-master" class="navlink" data-page="kinetics">Key Terms &amp; Definitions</a>
+
+    <div class="nav-section-label">Foundations</div>
+    <a href="#k-basics" class="navlink" data-page="kinetics">Chemical Kinetics &amp; Reaction Speed</a>
+    <a href="#k-energyterms" class="navlink" data-page="kinetics">Bond Energy, Heat of Reaction/Formation/Combustion</a>
+    <a href="#k-rate" class="navlink" data-page="kinetics">Rate of Reaction</a>
+
+    <div class="nav-section-label">Rate &amp; Mechanism</div>
+    <a href="#k-factors" class="navlink" data-page="kinetics">Factors Influencing Rate</a>
+    <a href="#k-activation" class="navlink" data-page="kinetics">Activation Energy</a>
+    <a href="#k-order" class="navlink" data-page="kinetics">Order &amp; Molecularity of Reaction</a>
+
+    <div class="nav-section-label">Catalysis</div>
+    <a href="#k-catalysis" class="navlink" data-page="kinetics">Catalysis, Promoters &amp; Poisons</a>
+    <a href="#k-catalysts-table" class="navlink" data-page="kinetics">Industrial Catalysts Ledger</a>
+
+    <div class="nav-section-label">Equilibrium</div>
+    <a href="#k-equilibrium" class="navlink" data-page="kinetics">Chemical Equilibrium &amp; Law of Mass Action</a>
+    <a href="#k-lechatelier" class="navlink" data-page="kinetics">Le-Chatelier's Principle</a>
+
+    <div class="nav-section-label">Exam Consolidation</div>
+    <a href="#k-traps" class="navlink" data-page="kinetics">MCQ Traps &amp; Assessment Facts</a>
+  </div>
+</nav>
+
+<main class="main">
+
+<!-- ============================================================ -->
+<!-- PAGE 1 : MATTER AND ITS STATES -->
+<!-- ============================================================ -->
+<div class="page active" id="page-matter">
+  <div class="hero">
+    <h1>Matter and Its States — The Elemental Ledger</h1>
+    <p>Every particle, state, law, and separation technique fact from theory and 34 solved MCQs.</p>
+  </div>
+  <div class="legend">
+    <span class="l-concept">Yellow — Concept</span>
+    <span class="l-fact">Blue — Fact / Number</span>
+    <span class="l-person">Green — Person / Institution</span>
+    <span class="l-trap">Red — MCQ Trap</span>
+  </div>
+
+  <section id="m-master">
+    <h2><span class="num">00</span>Key Terms &amp; Definitions Master Table</h2>
+    <div class="legend">
+      <span style="background:#f9d7de;border:1px solid #c23b2c;">Col 1 — Term (rose)</span>
+      <span style="background:#d3e6fa;border:1px solid #1f6fa8;">Col 2 — Definition (sky)</span>
+      <span style="background:#d6f0d6;border:1px solid #2f7d3f;">Col 3 — Formula/Value (mint)</span>
+      <span style="background:#fbecc2;border:1px solid #e0a712;">Col 4 — Example/Note (amber)</span>
+    </div>
+    <table class="master-table">
+      <caption>Every core term from this chapter, in one place</caption>
+      <thead><tr><th>Term</th><th>Definition</th><th>Formula/Value</th><th>Example/Note</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Atom</mark></td><td><mark class="concept">Smallest particle of an element</mark> that may/may not exist independently, retains chemical properties</td><td>—</td><td>From Greek <mark class="concept">'atomos'</mark> = indivisible</td></tr>
+        <tr><td><mark class="fact">Molecule</mark></td><td>Group of <mark class="concept">2+ atoms chemically bonded</mark>; smallest particle capable of independent existence</td><td>—</td><td><mark class="trap">Does NOT take part in a chemical reaction</mark></td></tr>
+        <tr><td><mark class="fact">Atomicity</mark></td><td>Number of atoms constituting a molecule</td><td>P₄=4, S₈=8</td><td>Homomolecule property</td></tr>
+        <tr><td><mark class="fact">Melting Point</mark></td><td>Temp. at which a solid becomes liquid at atmospheric pressure</td><td>Ice = <mark class="fact">0°C</mark></td><td>Higher m.p. = stronger interparticle force</td></tr>
+        <tr><td><mark class="fact">Boiling Point</mark></td><td>Temp. at which a liquid boils at atmospheric pressure</td><td>Water = <mark class="fact">100°C</mark></td><td>A bulk phenomenon; varies by place</td></tr>
+        <tr><td><mark class="fact">Sublimation</mark></td><td>Solid → vapour directly (no liquid phase); reverses on cooling</td><td>—</td><td>Naphthalene, camphor, dry ice, iodine</td></tr>
+        <tr><td><mark class="fact">Latent Heat of Fusion</mark></td><td>Heat to convert 1 kg solid → liquid at m.p., atmospheric pressure</td><td>—</td><td>Water at 0°C has more energy than ice at 0°C</td></tr>
+        <tr><td><mark class="fact">Latent Heat of Vaporisation</mark></td><td>Heat to convert 1 kg liquid → gas at b.p., atmospheric pressure</td><td>—</td><td>Steam at 373K has more energy than water at same temp — <mark class="trap">causes severe burns</mark></td></tr>
+        <tr><td><mark class="fact">Element</mark></td><td>Composed of only <mark class="concept">one kind of atom</mark>; cannot be broken into simpler substances</td><td><mark class="fact">118 elements</mark> (98 natural, rest artificial)</td><td>Defined by <mark class="person">Lavoisier</mark>; term coined by <mark class="person">Robert Boyle, 1661</mark></td></tr>
+        <tr><td><mark class="fact">Compound</mark></td><td>2+ elements chemically combined in <mark class="concept">fixed proportion</mark></td><td>—</td><td>Broken by chemical/electrochemical means only; a homogeneous mixture</td></tr>
+        <tr><td><mark class="fact">Mixture</mark></td><td>Impure substance, <mark class="trap">no fixed proportion</mark> of constituents</td><td>—</td><td>Separable by physical/mechanical means</td></tr>
+        <tr><td><mark class="fact">Mole</mark></td><td>SI base unit for amount of a chemical species</td><td><mark class="fact">6.022 × 10²³ entities</mark> (Avogadro's number)</td><td>Word from Latin 'moles' = heap; coined by <mark class="person">Wilhelm Ostwald, ~1896</mark></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="m-basics">
+    <h2><span class="num">01</span>What Is Matter</h2>
+    <ul class="point-list">
+      <li>Everything in the universe made of material is called <mark class="concept">matter</mark> — it <mark class="trap">has mass, occupies volume, has physical resistance and inertia</mark>, and is realised by the sense organs.</li>
+      <li>Early Indian philosophers classified matter into five basic elements — the <mark class="concept">'Pancha Tatva'</mark>: <mark class="fact">air, earth, fire, sky, water</mark>.</li>
+      <li>Characteristics of matter: (i) made of very small particles; (ii) particles have <mark class="concept">intermolecular space</mark> between them; (iii) particles are continuously moving (possess <mark class="concept">kinetic energy</mark>, which increases with temperature); (iv) particles attract each other via <mark class="concept">intermolecular force</mark>; (v) this force's strength varies between types of matter.</li>
+    </ul>
+  </section>
+
+  <section id="m-particles">
+    <h2><span class="num">02</span>Atoms &amp; Molecules</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Atom</mark> — smallest particle of an element that may/may not exist independently and retains all chemical properties (takes part in chemical reactions).</li>
+      <li><mark class="concept">Molecule</mark> — group of 2+ atoms chemically bonded; smallest particle of an element/compound capable of independent existence, showing all properties of that substance — but <mark class="trap">does NOT take part in a chemical reaction</mark>.</li>
+      <li><mark class="concept">Homomolecules</mark> (molecules of an element) — same type of atoms, e.g. O₂, H₂, N₂; number of atoms = <mark class="concept">atomicity</mark> (P₄ = 4, S₈ = 8).</li>
+      <li><mark class="concept">Heteromolecules</mark> (molecules of compounds) — atoms of different elements in definite proportions.</li>
+    </ul>
+    <table>
+      <caption>Heteromolecule combining-mass ratios</caption>
+      <thead><tr><th>Compound</th><th>Combining Elements</th><th>Ratio by Mass</th></tr></thead>
+      <tbody>
+        <tr><td>Water (H₂O)</td><td>Hydrogen, Oxygen</td><td><mark class="fact">1:8</mark></td></tr>
+        <tr><td>Ammonia (NH₃)</td><td>Nitrogen, Hydrogen</td><td><mark class="fact">14:3</mark></td></tr>
+        <tr><td>Carbon dioxide (CO₂)</td><td>Carbon, Oxygen</td><td><mark class="fact">3:8</mark></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="m-states">
+    <h2><span class="num">03</span>Solid, Liquid &amp; Gas</h2>
+    <ul class="point-list">
+      <li>The three states of matter arise from variation in <mark class="concept">intermolecular forces and intermolecular space</mark>.</li>
+    </ul>
+    <table>
+      <caption>The three classical states — comparison</caption>
+      <thead><tr><th>State</th><th>Shape/Volume</th><th>Intermolecular Force/Space</th><th>Key Facts</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Solid</mark></td><td>Definite mass, volume, <mark class="trap">shape</mark></td><td>Small space, <mark class="trap">strong forces</mark></td><td>Particles only oscillate; incompressible, rigid, high density, high m.p.</td></tr>
+        <tr><td><mark class="fact">Liquid</mark></td><td>No fixed shape, <mark class="trap">fixed volume</mark></td><td>Moderate — enough mobility, particles can't escape</td><td>Takes container shape; upper surface always planar; called <mark class="concept">fluids</mark></td></tr>
+        <tr><td><mark class="fact">Gas</mark></td><td><mark class="trap">No fixed shape or volume</mark></td><td>Very weak forces, very large space</td><td>Highly compressible; expands most on heating; also called fluids</td></tr>
+      </tbody>
+    </table>
+    <h3 class="subhead">Classification of Solids</h3>
+    <ul class="point-list">
+      <li><mark class="concept">Crystalline Solids</mark> — regular particle arrangement, e.g. sodium chloride, diamond, quartz, graphite.</li>
+      <li><mark class="concept">Amorphous Solids</mark> — irregular/disordered particle arrangement, e.g. glass, rubber, plastics; also called <mark class="trap">pseudo solids or supercooled liquids</mark>.</li>
+    </ul>
+    <div class="callout fact">
+      <span class="tag">Everyday Science</span>
+      A rubber band changes shape under force but regains it (and breaks under excess force) — hence classed as <mark class="fact">solid</mark>. A sponge is compressible yet solid, because of air-filled holes. Ice floats on water despite being solid, due to <mark class="trap">weaker H-bonding creating air-filled space, giving lower density than water</mark>.
+    </div>
+  </section>
+
+  <section id="m-newstates">
+    <h2><span class="num">04</span>Plasma &amp; Bose-Einstein Condensate</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Plasma</mark> — super-energetic, super-excited, <mark class="concept">ionised gas</mark> particles; found in fluorescent tubes, neon sign bulbs; the <mark class="fact">Sun and stars glow due to plasma</mark> (created by very high temperature).</li>
+      <li><mark class="concept">Bose-Einstein Condensate (BEC)</mark> — named after <mark class="person">Satyendra Nath Bose (India)</mark> and <mark class="person">Albert Einstein</mark>; formed by cooling extremely low-density gas (~<mark class="fact">1/100,000th density of normal air</mark>) to super-low temperatures.</li>
+      <li>In <mark class="fact">2001</mark>, <mark class="person">Eric A. Cornell, Wolfgang Ketterle, Carl E. Wieman (USA)</mark> won the <mark class="fact">Nobel Prize in Physics</mark> for achieving BEC — <mark class="trap">the latest-discovered/fifth state of matter</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="m-diffusion">
+    <h2><span class="num">05</span>Diffusion &amp; Gas Pressure</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Diffusion</mark> — intermixing of particles of two different types of matter on their own, e.g. ink spreading in water.</li>
+      <li>On heating, particle speed increases → more intermolecular space/less force → <mark class="trap">diffusion becomes faster</mark> — hence hot food's smell travels farther than cold food's.</li>
+      <li>Rate of diffusion: <mark class="trap">liquids diffuse faster than solids</mark>; gases diffuse fastest of all (high speed, large intermolecular space).</li>
+      <li><mark class="concept">Gaseous Pressure</mark> — gas particles move randomly at high speed, hitting each other and container walls, exerting pressure.</li>
+    </ul>
+  </section>
+
+  <section id="m-interconvert">
+    <h2><span class="num">06</span>Fusion, Melting, Sublimation &amp; Latent Heat</h2>
+    <table>
+      <caption>Interconversion terminology — a favourite one-liner MCQ zone</caption>
+      <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Fusion</mark></td><td>Melting — solid → liquid</td></tr>
+        <tr><td><mark class="fact">Melting Point</mark></td><td>Temp. at which solid starts melting at atmospheric pressure; <mark class="trap">higher m.p. = stronger interparticle attraction</mark></td></tr>
+        <tr><td><mark class="fact">Sublimation</mark></td><td>Solid → vapour directly, without liquid phase; reversible on cooling (sublimates)</td></tr>
+        <tr><td><mark class="fact">Vaporisation</mark></td><td>Liquid → gas rapidly on heating; called <mark class="concept">evaporation</mark> if below boiling point</td></tr>
+        <tr><td><mark class="fact">Boiling Point</mark></td><td>Temp. at which liquid boils at atmospheric pressure; a <mark class="trap">bulk phenomenon, varies by place</mark></td></tr>
+        <tr><td><mark class="fact">Condensation</mark></td><td>Gas → liquid, or liquid → solid (solidification)</td></tr>
+        <tr><td><mark class="fact">Latent Heat</mark></td><td>Heat absorbed/released during a state change at <mark class="trap">constant temperature</mark></td></tr>
+      </tbody>
+    </table>
+    <ul class="point-list">
+      <li><mark class="concept">Latent heat of fusion</mark> = heat needed to change 1 kg solid to liquid at its m.p., atmospheric pressure.</li>
+      <li><mark class="concept">Latent heat of vaporisation</mark> = heat needed to change 1 kg liquid to gas at its b.p., atmospheric pressure — temperature stays constant during boiling due to this.</li>
+    </ul>
+  </section>
+
+  <section id="m-tempress">
+    <h2><span class="num">07</span>Effect of Temperature &amp; Pressure</h2>
+    <ul class="point-list">
+      <li>Heating a solid → kinetic energy increases → particles vibrate faster → heat overcomes attraction forces → particles leave fixed positions → solid melts.</li>
+      <li>Increasing pressure + reducing temperature → gas→liquid→solid; reverse (decrease pressure, increase temperature) reverses this.</li>
+    </ul>
+    <div class="callout fact">
+      <span class="tag">Everyday Science</span>
+      Steam at <mark class="fact">373K (100°C)</mark> has more energy than water at the same temperature (latent heat of vaporisation) — <mark class="trap">causing more severe burns than boiling water</mark>. At high altitudes, low atmospheric pressure means water boils below 100°C, so <mark class="trap">food takes longer to cook</mark>. Inside a pressure cooker, higher pressure raises the boiling point above 100°C, so food cooks <mark class="trap">faster</mark>. Impurities <mark class="trap">raise boiling point and lower freezing point</mark>. Solid CO₂ ('dry ice'/'dry kold') is stored under high pressure and converts directly to gas at 1 atm — <mark class="trap">bypassing the liquid state</mark>.
+    </div>
+  </section>
+
+  <section id="m-classification">
+    <h2><span class="num">08</span>Element, Compound &amp; Mixture</h2>
+    <ul class="point-list">
+      <li><mark class="person">Robert Boyle</mark> first used the term 'element' in <mark class="fact">1661</mark>; <mark class="person">Antoine Laurent Lavoisier (1743–94)</mark>, French chemist, defined an element as matter that <mark class="trap">cannot be broken down into simpler substances</mark> by any physical/chemical process.</li>
+      <li>There are currently <mark class="fact">118 elements</mark> — <mark class="fact">98 naturally occurring</mark>, the rest artificially made.</li>
+      <li>Elements divide into <mark class="concept">metals, non-metals, metalloids</mark>. Element symbols derive from Latin/German/Greek names; first letter always capital, second small.</li>
+      <li><mark class="concept">Compound</mark> — 2+ elements chemically combined in <mark class="trap">fixed proportion</mark>; different properties from constituents; broken only by chemical/electrochemical means (not physical); considered a homogeneous mixture; classed as <mark class="concept">organic</mark> (C as main constituent) or <mark class="concept">inorganic</mark>.</li>
+      <li><mark class="concept">Mixture</mark> — impure substance, <mark class="trap">no fixed proportion</mark>; separable by simple physical/mechanical means, e.g. air, seawater, minerals, soil.</li>
+    </ul>
+  </section>
+
+  <section id="m-mixtures">
+    <h2><span class="num">09</span>Homogeneous vs Heterogeneous Mixtures</h2>
+    <table>
+      <caption>Two mixture types — composition uniformity is the key test</caption>
+      <thead><tr><th>Type</th><th>Definition</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Homogeneous Mixture</mark></td><td><mark class="concept">Uniform composition</mark> throughout; also called <mark class="trap">true solutions</mark> (solute particle diameter &lt; 1 nm)</td><td>Salt in water, sugar in water, methanol+water, vinegar, toothpaste, soap, soft drinks</td></tr>
+        <tr><td><mark class="fact">Heterogeneous Mixture</mark></td><td>Physically distinct parts, <mark class="trap">non-uniform composition</mark></td><td>NaCl+iron filings, dust in air, salt+sulphur, oil+water, colloids (milk), suspensions</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="m-separation">
+    <h2><span class="num">10</span>Separation Techniques</h2>
+    <table>
+      <caption>Every separation method, principle, and use — a heavily repeated MCQ zone</caption>
+      <thead><tr><th>Technique</th><th>Principle</th><th>Used For</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Evaporation</mark></td><td>Separates volatile solvent from non-volatile solute; rate ↑ with temperature/surface area/wind, ↓ with humidity</td><td>Recovery of salt from sea water</td></tr>
+        <tr><td><mark class="fact">Centrifugation</mark></td><td><mark class="concept">Centrifugal force</mark> — denser particles forced to bottom, lighter stay at top when spun rapidly</td><td>Blood/urine tests, separating butter from cream, wringing water from wet clothes</td></tr>
+        <tr><td><mark class="fact">Separating Funnel</mark></td><td>Immiscible liquids separate in layers by density</td><td>Oil+water separation; removing lighter slag from molten iron in extraction</td></tr>
+        <tr><td><mark class="fact">Sublimation</mark></td><td>One solid sublimates on heating; vapours cooled to recover pure solid</td><td>Naphthalene, anthracene, camphor, benzoic acid, NH₄Cl, HgCl₂, dry ice, salicylic acid, iodine</td></tr>
+        <tr><td><mark class="fact">Chromatography</mark></td><td>Based on different <mark class="concept">adsorption capacities</mark>; Greek 'kroma' = colour; invented by <mark class="person">Tswett</mark></td><td>Separating dye colours, pigments, drugs from blood, coloured ink components</td></tr>
+        <tr><td><mark class="fact">Distillation</mark></td><td>Difference in <mark class="concept">boiling points</mark>; lower-b.p. liquid vaporises first</td><td>Chloroform+aniline; acetone+water</td></tr>
+        <tr><td><mark class="fact">Fractional Distillation</mark></td><td>For miscible liquids with b.p. difference <mark class="trap">&lt; 25K</mark>; uses a fractionating column</td><td>Gases from air; petroleum fractions; methanol+acetone</td></tr>
+        <tr><td><mark class="fact">Distillation Under Reduced Pressure</mark></td><td>For liquids with very high b.p. or that decompose at/below b.p.</td><td>Glycerol from spent-lye in soap industry</td></tr>
+        <tr><td><mark class="fact">Steam Distillation</mark></td><td>For steam-volatile substances immiscible with water; steam passed through mixture</td><td>Aniline, sandalwood oil, terpentine oil, eucalyptus oil</td></tr>
+        <tr><td><mark class="fact">Crystallisation</mark></td><td>Dissolve → concentrate to saturation → cool slowly → pure crystals separate, impurities stay in 'mother liquor'</td><td>Salt purification from sea water; alum crystal purification</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="m-massterms">
+    <h2><span class="num">11</span>Atomic, Molecular &amp; Equivalent Mass</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Atomic mass</mark> — relative mass compared with a carbon-12 atom, expressed in <mark class="fact">amu ('u', unified mass)</mark>; 1 amu = <mark class="fact">1.66056 × 10⁻²⁴ g</mark> = 1/12th the mass of one C-12 atom.</li>
+      <li><mark class="concept">Average atomic mass</mark> — accounts for natural abundance of different isotopes.</li>
+      <li><mark class="concept">Molecular mass</mark> — sum of atomic masses of all elements in a molecule, e.g. CH₄ = 1(12.011) + 4(1.008) = <mark class="fact">16.043 u</mark>.</li>
+      <li><mark class="concept">Formula unit mass</mark> — sum of atomic masses of all atoms in a formula unit, e.g. NaCl = 23+35.5 = <mark class="fact">58.5 u</mark>.</li>
+      <li><mark class="concept">Equivalent mass</mark> = Molecular mass ÷ Valency.</li>
+    </ul>
+  </section>
+
+  <section id="m-changes">
+    <h2><span class="num">12</span>Physical vs Chemical Changes</h2>
+    <table>
+      <thead><tr><th>Type</th><th>Definition</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Physical Change</mark></td><td>Change in shape/size/colour/state; <mark class="trap">generally reversible</mark>; no new substance formed</td><td>Evaporation, melting/freezing/boiling of water, cloud formation, spring stretching</td></tr>
+        <tr><td><mark class="fact">Chemical Change</mark></td><td>1+ new substances formed; internal molecular composition changes; also called a <mark class="concept">chemical reaction</mark></td><td>Burning magnesium/coal/wood, fruit ripening, photosynthesis, rusting, curdling milk</td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Burning a candle involves <mark class="trap">BOTH physical change (melting wax) AND chemical change (combustion)</mark> simultaneously.
+    </div>
+  </section>
+
+  <section id="m-laws">
+    <h2><span class="num">13</span>Laws of Chemical Combination</h2>
+    <table>
+      <caption>Four foundational laws — proposer, statement, example</caption>
+      <thead><tr><th>Law</th><th>Proposed By</th><th>Statement</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Law of Conservation of Mass</mark></td><td><mark class="person">Antoine Lavoisier, 1789</mark></td><td>Matter can neither be created nor destroyed; total mass of reactants = total mass of products</td></tr>
+        <tr><td><mark class="fact">Law of Definite Proportions</mark></td><td><mark class="person">Joseph Proust</mark> (French chemist)</td><td>A given compound always contains the <mark class="concept">same proportion of elements by weight</mark>, irrespective of source — also called law of constant proportions</td></tr>
+        <tr><td><mark class="fact">Law of Multiple Proportions</mark></td><td><mark class="person">Dalton, 1803</mark></td><td>If 2 elements form &gt;1 compound, masses of one element combining with a fixed mass of the other are in a <mark class="concept">ratio of small whole numbers</mark> — e.g. O combining with fixed H mass in water vs H₂O₂ is 16:32 = 1:2</td></tr>
+        <tr><td><mark class="fact">Gay-Lussac's Law of Combining Volumes</mark></td><td><mark class="person">Gay-Lussac, 1808</mark></td><td>Gases combine/form in a <mark class="concept">simple ratio by volume</mark> at same T &amp; P — e.g. H₂+O₂→H₂O in a 2:1 ratio</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="m-mole">
+    <h2><span class="num">14</span>Mole Concept</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Mole</mark> — SI base unit for amount of chemical species; term from Latin 'moles' ('a heap/pile'), introduced ~<mark class="fact">1896 by Wilhelm Ostwald</mark>; accepted as an SI unit in <mark class="fact">1967</mark>; symbol <mark class="fact">'mol'</mark>.</li>
+      <li>1 mole = amount weighing exactly its formula weight in grams = amount with <mark class="fact">6.022 × 10²³ entities</mark> (as in 12g of C-12) = <mark class="concept">Avogadro's number (N₀/N_A)</mark>.</li>
+      <li>1 mole of a gas occupies <mark class="fact">22.4 L at STP</mark>.</li>
+      <li>Number of moles = mass(g)/molecular weight = particles at STP/Avogadro's number = gas volume at STP(L)/22.4.</li>
+    </ul>
+  </section>
+
+  <section id="m-traps">
+    <h2><span class="num">15</span>MCQ Traps &amp; Assessment Facts</h2>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Father of modern chemistry = <mark class="trap">Antoine Lavoisier</mark> (not Rutherford, Otto Hahn, or Mendeleev).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Maximum number of states of matter is considered <mark class="trap">variable</mark> (solid/liquid/gas/plasma/BEC and still being researched) — not fixed at three, four, or five.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Bose-Einstein Condensate is described as the <mark class="trap">'fifth state of matter'</mark> — not simply a solid, plasma, or generic condensed state.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      A substance can <mark class="trap">NOT</mark> be separated into other kinds of matter by any physical process (that's a chemical process for compounds); but <mark class="trap">dissolved NaCl CAN be separated from water by evaporation</mark> (physical process) — only Statement II is correct in such paired-statement questions.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      A mixture's structure is <mark class="trap">NOT constant</mark> — this is the property that does NOT apply to mixtures (unlike being formed of 2+ substances, separable physically, and components retaining properties).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Emerald</mark> is the gemstone containing beryllium metal (not Topaz, Ruby, Blue Sapphire).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Dry ice = solid carbon dioxide</mark> (not liquid CO₂, liquid nitrogen, or liquid ammonia). Quartz (used as piezo-electric material) contains <mark class="trap">Silicon (Si)</mark>.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      A molecule resembles its atom only for a <mark class="trap">monoatomic molecule</mark> (not diatomic/polyatomic/triatomic).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Statement "Atoms are always neutral in nature" is <mark class="trap">NOT correct</mark> about atoms (ions exist) — the odd one out among otherwise-true atom statements.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Glass is a <mark class="trap">supercooled liquid</mark> (amorphous solid), not a crystalline solid or liquid crystal; it has <mark class="trap">no definite melting point</mark> and is NOT considered a true compound — both statements are true and Statement II explains Statement I.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Manganese dioxide</mark> is used to remove the green colour from glass (not silicon dioxide, titanium dioxide, sulphur dioxide).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Water boils at a lower temperature at high altitudes because <mark class="trap">air pressure is less</mark> (not because outside temperature or latent heat is less).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Lowering atmospheric pressure on a liquid <mark class="trap">lowers its boiling point</mark> (does not increase it or leave it unaffected).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      For an ideal gas: <mark class="trap">the speed of all gas molecules is NOT the same</mark> — this is the false statement among otherwise-true ideal-gas assumptions (zero potential energy, no interactive force, unequal kinetic energies).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Elements liquid at room temperature/standard pressure: <mark class="trap">Mercury and Bromine</mark> (not Helium or Chlorine, which are gases).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Purity of milk is determined using a <mark class="trap">lactometer</mark> (not hydrometer, stalagmometer, or thermometer). Cream separates from churned milk due to <mark class="trap">centrifugal force</mark>.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Iodine is separated from an iodine-potassium chloride mixture by <mark class="trap">sublimation</mark> (iodine sublimes; KCl does not).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Evaporation of water is <mark class="trap">NOT a chemical change</mark> (it's physical) — unlike curdling of milk, ripening of fruit, and burning of coal, which ARE chemical changes.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Conversion of blue copper sulphate to black cupric oxide on heating is a <mark class="trap">CHEMICAL change</mark> (Statement I is false) — even though "no change in chemical composition = physical change" (Statement II) is itself true in isolation.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Liquid pressure at a beaker's base depends on the <mark class="trap">height of the liquid column</mark> — NOT on the base area of the container.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Chemical changes: <mark class="trap">souring of milk ONLY</mark> among {crystallisation of NaCl, melting of ice, souring of milk} — the other two are physical changes.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Product of equivalent weight × valency = <mark class="trap">molecular weight</mark> (not vapour density, specific heat, or atomic weight).
+    </div>
+    <div class="callout fact">
+      <span class="tag">Fact</span>
+      Molecular mass of a gas = <mark class="fact">twice its vapour density</mark> (Molar mass = 2 × vapour density).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Number of atoms in 46g of Na-23 = <mark class="trap">2N</mark> (46g = 2 moles × Avogadro's number N).
+    </div>
+  </section>
+
+  <footer>The Chemist's Ledger · Matter and Its States · compiled for BPSC Prelims 2025–26</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 2 : SOLUTIONS AND COLLOIDS -->
+<!-- ============================================================ -->
+<div class="page" id="page-solutions">
+  <div class="hero">
+    <h1>Solutions and Colloids — The Mixture Ledger</h1>
+    <p>Every solution type, concentration formula, and colloid fact from theory and 26 solved MCQs.</p>
+  </div>
+  <div class="legend">
+    <span class="l-concept">Yellow — Concept</span>
+    <span class="l-fact">Blue — Fact / Number</span>
+    <span class="l-person">Green — Person / Institution</span>
+    <span class="l-trap">Red — MCQ Trap</span>
+  </div>
+
+  <section id="s-master">
+    <h2><span class="num">00</span>Solution vs Suspension vs Colloid — Master Table</h2>
+    <div class="legend">
+      <span style="background:#f9d7de;border:1px solid #c23b2c;">Col 1 — Type (rose)</span>
+      <span style="background:#d3e6fa;border:1px solid #1f6fa8;">Col 2 — Particle Size (sky)</span>
+      <span style="background:#d6f0d6;border:1px solid #2f7d3f;">Col 3 — Stability/Tyndall Effect (mint)</span>
+      <span style="background:#fbecc2;border:1px solid #e0a712;">Col 4 — Examples (amber)</span>
+    </div>
+    <table class="master-table">
+      <caption>The three-way mixture classification — the most repeated distinction in this chapter</caption>
+      <thead><tr><th>Type</th><th>Particle Size</th><th>Stability / Tyndall Effect</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">True Solution</mark></td><td><mark class="concept">&lt; 1 nm</mark></td><td><mark class="trap">Stable, transparent</mark>; NO Tyndall effect; not filterable, does not settle</td><td>Salt in water, sugar in water, lemonade</td></tr>
+        <tr><td><mark class="fact">Colloidal Solution</mark></td><td><mark class="concept">1 nm – 100 nm (1000 Å)</mark></td><td><mark class="trap">Shows Tyndall effect</mark>; heterogeneous but permanent; not filterable by ordinary paper</td><td>Milk, face cream, blood, gems, smoke</td></tr>
+        <tr><td><mark class="fact">Suspension</mark></td><td><mark class="concept">&gt; 10⁻⁵ cm (visible to naked eye)</mark></td><td><mark class="trap">Unstable</mark> — particles settle down; scatters light; filterable</td><td>Chalk water, muddy river water, soil</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="s-basics">
+    <h2><span class="num">01</span>Solution &amp; Its Components</h2>
+    <ul class="point-list">
+      <li>A <mark class="concept">solution</mark> is a <mark class="trap">homogeneous mixture</mark> of 2+ substances whose relative component amounts can change up to a definite limit at constant temperature, e.g. lemonade, soda water.</li>
+      <li><mark class="concept">Solvent</mark> — the component present in <mark class="trap">largest quantity</mark>; greater dielectric constant = better solvent; water has very high dielectric constant, hence called the <mark class="concept">'universal solvent'</mark>; used in perfumes, drugs, food processing, beverages, dry cleaning.</li>
+      <li><mark class="concept">Solute</mark> — component(s) other than solvent, generally in smaller amount ('dissolved substance'), e.g. <mark class="fact">tincture of iodine</mark> = iodine (solute) in alcohol (solvent); soda water = CO₂ (solute) in water (solvent).</li>
+    </ul>
+  </section>
+
+  <section id="s-properties">
+    <h2><span class="num">02</span>Properties of a Solution</h2>
+    <ul class="point-list">
+      <li>Homogeneous mixture of uniform composition.</li>
+      <li>Particles smaller than <mark class="fact">1 nm (10⁻⁹ m)</mark> — invisible to naked eye.</li>
+      <li><mark class="trap">Does NOT scatter light</mark> — no Tyndall effect, light path is not visible.</li>
+      <li>Solute and solvent diffuse into each other and cannot be distinguished.</li>
+      <li>Solute particles <mark class="trap">cannot be separated by filtration</mark> (too tiny); do not settle when undisturbed — stable, permanent, transparent.</li>
+    </ul>
+  </section>
+
+  <section id="s-types">
+    <h2><span class="num">03</span>Saturated, Unsaturated &amp; Supersaturated</h2>
+    <table>
+      <thead><tr><th>Type</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Unsaturated Solution</mark></td><td>More solute can dissolve without changing temperature</td></tr>
+        <tr><td><mark class="fact">Saturated Solution</mark></td><td><mark class="trap">No more solute can dissolve</mark> at that temperature</td></tr>
+        <tr><td><mark class="fact">Supersaturated Solution</mark></td><td>Heated saturated solution holding excess dissolved solute beyond normal capacity; <mark class="trap">adding a small crystal triggers immediate excess crystallisation</mark></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="s-statetypes">
+    <h2><span class="num">04</span>Gas/Liquid/Solid Solution Types</h2>
+    <table>
+      <caption>Solute-solvent state combinations — 9 possible types</caption>
+      <thead><tr><th>Type</th><th>Solute</th><th>Solvent</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Gaseous solution</td><td>Gas</td><td>Gas</td><td>Mixture of gases, air</td></tr>
+        <tr><td>Gaseous solution</td><td>Liquid</td><td>Gas</td><td>Chloroform+nitrogen, fog, humidity in air</td></tr>
+        <tr><td>Gaseous solution</td><td>Solid</td><td>Gas</td><td>Camphor in nitrogen gas, smog</td></tr>
+        <tr><td>Liquid solution</td><td>Gas</td><td>Liquid</td><td>O₂/CO₂ dissolved in water, aerated drinks</td></tr>
+        <tr><td>Liquid solution</td><td>Liquid</td><td>Liquid</td><td>Ethanol in water, bromine in CS₂, H₂SO₄ in water</td></tr>
+        <tr><td>Liquid solution</td><td>Solid</td><td>Liquid</td><td>Glucose in water, I₂ in CCl₄, lead in mercury</td></tr>
+        <tr><td>Solid solution</td><td>Gas</td><td>Solid</td><td>Hydrogen in palladium</td></tr>
+        <tr><td>Solid solution</td><td>Liquid</td><td>Solid</td><td>Mercury+sodium (amalgam)</td></tr>
+        <tr><td>Solid solution</td><td>Solid</td><td>Solid</td><td><mark class="fact">Alloys like bronze</mark></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="s-nature">
+    <h2><span class="num">05</span>Aqueous, Acidic, Basic &amp; Neutral Solutions</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Aqueous solution</mark> — solute dissolved in water, e.g. ethanol in water; <mark class="concept">Non-aqueous solution</mark> — solute dissolved in non-water solvent, e.g. iodine in alcohol.</li>
+      <li><mark class="concept">Acidic solutions</mark> — more H⁺ ions than OH⁻; <mark class="concept">Basic solutions</mark> — more OH⁻ than H⁺; <mark class="concept">Neutral solutions</mark> — equal H⁺ and OH⁻ concentrations.</li>
+    </ul>
+  </section>
+
+  <section id="s-concentration">
+    <h2><span class="num">06</span>Ways of Expressing Concentration</h2>
+    <table>
+      <caption>Seven concentration formulas — a heavily tested formula set</caption>
+      <thead><tr><th>Measure</th><th>Formula</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Mass percentage</mark></td><td>(Mass of component / Total mass of solution) × 100</td></tr>
+        <tr><td><mark class="fact">Volume percentage</mark></td><td>(Volume of component / Total volume of solution) × 100</td></tr>
+        <tr><td><mark class="fact">Mole fraction</mark></td><td>Moles of component / Total moles of all components</td></tr>
+        <tr><td><mark class="fact">Parts per million (ppm)</mark></td><td>(Parts of component / Total parts of all components) × 10⁶</td></tr>
+        <tr><td><mark class="fact">Molarity (M)</mark></td><td>Moles of solute / Volume of solution (litres)</td></tr>
+        <tr><td><mark class="fact">Molality (m)</mark></td><td>Moles of solute / Mass of solvent (kg)</td></tr>
+        <tr><td><mark class="fact">Normality (N)</mark></td><td>Gram equivalents of solute / Volume of solution (L)</td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Dissolving 100g sugar in half a litre of water: mass, density, and volume all change — but <mark class="trap">concentration stays the same physical quantity definition-wise is wrong; actually the quantity that does NOT change is volume in some framings</mark> — always re-derive from the specific numbers given rather than assuming.
+    </div>
+  </section>
+
+  <section id="s-solubility">
+    <h2><span class="num">07</span>Solubility &amp; Its Factors</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Solubility</mark> = max solute dissolvable in a given solvent amount (generally 100g) at a given temperature/pressure = (w/W) × 100.</li>
+      <li><mark class="concept">Nature of solute/solvent</mark> — 'like dissolves like': polar solute (NaCl) in polar solvent (water); non-polar solute (cholesterol, bromine) in non-polar solvent (benzene, CCl₄).</li>
+      <li><mark class="concept">Temperature effect</mark> — solubility usually <mark class="trap">increases with temperature</mark> (endothermic dissolution); but calcium nitrate, calcium oxide, sodium sulphate, calcium hydroxide, calcium citrate show <mark class="trap">decreasing solubility with rising temperature</mark> (exothermic dissolution). Gas solubility in liquid <mark class="trap">decreases</mark> with rising temperature.</li>
+      <li><mark class="concept">Pressure effect</mark> — <mark class="trap">no effect on solid-in-liquid solubility</mark>; gas-in-liquid solubility <mark class="trap">increases with pressure</mark>.</li>
+      <li><mark class="concept">Size of substance</mark> — solubility decreases as molecular mass increases.</li>
+    </ul>
+    <div class="callout fact">
+      <span class="tag">Everyday Science</span>
+      Soft drink/soda water bottles are sealed under high pressure to <mark class="fact">increase CO₂ solubility</mark>. Deep-sea divers use oxygen diluted with less-soluble helium to minimise decompression sickness ('the bends').
+    </div>
+  </section>
+
+  <section id="s-colloid-basics">
+    <h2><span class="num">08</span>Colloidal Solution Basics</h2>
+    <ul class="point-list">
+      <li>A <mark class="concept">colloidal solution</mark> is a heterogeneous system with two phases: <mark class="concept">dispersed phase</mark> (solute-like) and <mark class="concept">dispersion medium</mark> (solvent-like).</li>
+      <li>Colloidal particle size: <mark class="fact">1 nm – 100 nm (1000 Å)</mark>.</li>
+      <li>Examples: milk, face creams, sponge, rubber, pumice, blood, gems.</li>
+    </ul>
+  </section>
+
+  <section id="s-colloid-class">
+    <h2><span class="num">09</span>Classification of Colloids</h2>
+    <table>
+      <caption>By physical state of dispersed phase and dispersion medium — 8 named types</caption>
+      <thead><tr><th>Dispersed Phase</th><th>Dispersion Medium</th><th>Type</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><td>Solid</td><td>Solid</td><td><mark class="fact">Solid Sol</mark></td><td>Gemstone, coloured glasses</td></tr>
+        <tr><td>Solid</td><td>Liquid</td><td><mark class="fact">Sol</mark></td><td>Milk of magnesia, mud, paints, cell fluids</td></tr>
+        <tr><td>Solid</td><td>Gas</td><td><mark class="fact">Aerosol</mark></td><td>Smoke, automobile exhaust gas</td></tr>
+        <tr><td>Liquid</td><td>Solid</td><td><mark class="fact">Gel</mark></td><td>Jelly, cheese, butter</td></tr>
+        <tr><td>Liquid</td><td>Liquid</td><td><mark class="fact">Emulsion</mark></td><td>Milk, face cream, hair cream</td></tr>
+        <tr><td>Liquid</td><td>Gas</td><td><mark class="fact">Aerosol</mark></td><td>Fog, clouds, mist, insecticide sprays</td></tr>
+        <tr><td>Gas</td><td>Solid</td><td><mark class="fact">Solid Sol</mark></td><td>Foam, rubber, sponge, pumice stone</td></tr>
+        <tr><td>Gas</td><td>Liquid</td><td><mark class="fact">Foam</mark></td><td>Shaving cream, froth, whipped cream</td></tr>
+      </tbody>
+    </table>
+    <h3 class="subhead">Lyophilic vs Lyophobic Colloids</h3>
+    <table>
+      <thead><tr><th>Lyophilic Colloids</th><th>Lyophobic Colloids</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="concept">Liquid-loving</mark>; directly formed by mixing gum/gelatin/starch/rubber with liquid</td><td><mark class="concept">Liquid-hating</mark>; prepared only by special methods</td></tr>
+        <tr><td><mark class="trap">Stable</mark>, not easily coagulated</td><td><mark class="trap">Not stable</mark>, easily coagulated by heating</td></tr>
+        <tr><td><mark class="trap">Reversible</mark>, e.g. starch sol</td><td><mark class="trap">Irreversible</mark>, e.g. gold sol</td></tr>
+      </tbody>
+    </table>
+    <ul class="point-list">
+      <li>If the dispersion medium is water, these are called <mark class="concept">hydrophilic and hydrophobic colloids</mark>.</li>
+      <li><mark class="concept">Gold number</mark> — minimum amount of lyophilic colloid (mg) that prevents coagulation of 10 mL gold sol by adding 1 mL of 10% NaCl solution.</li>
+    </ul>
+    <h3 class="subhead">By Particle Type</h3>
+    <ul class="point-list">
+      <li><mark class="concept">Multimolecular colloids</mark> — aggregates of many atoms/small molecules, e.g. gold sol, sulphur sol.</li>
+      <li><mark class="concept">Macromolecular colloids</mark> — natural (starch, cellulose, proteins, enzymes) or man-made (polythene, nylon, polystyrene, synthetic rubber) macromolecules; quite stable, resemble true solutions.</li>
+      <li><mark class="concept">Associated colloids (Micelles)</mark> — form only above the <mark class="fact">Kraft temperature (Tk)</mark> and above the <mark class="fact">Critical Micelle Concentration (CMC)</mark>; behave as normal strong electrolytes at low concentration, e.g. soap solution. <mark class="trap">Cleansing action of soap/detergent is due to emulsification and micelle formation</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="s-colloid-prop">
+    <h2><span class="num">10</span>Properties — Tyndall Effect &amp; Brownian Motion</h2>
+    <ul class="point-list">
+      <li>Colloidal solution is a <mark class="trap">heterogeneous, permanent</mark> system — cannot be filtered by ordinary paper; dispersed particles invisible to naked eye but visible under ultramicroscope.</li>
+      <li><mark class="concept">Tyndall Effect</mark> — light scattering by colloidal particles makes the light path visible; explains <mark class="fact">blue sky, blue/green sea water, visible comet tails, twinkling stars, blue tinge of smoke, red setting sun</mark>.</li>
+      <li><mark class="concept">Brownian Movement</mark> — continuous zig-zag colloidal particle motion, first observed by British botanist <mark class="person">Robert Brown</mark>; depends on particle size and solution viscosity (not colloid nature); a stirring effect responsible for <mark class="trap">sol stability</mark>. <mark class="trap">Suspensions and true solutions do NOT show Brownian movement</mark>.</li>
+      <li>Colloidal particles always carry an <mark class="concept">electric charge</mark> — e.g. <mark class="fact">haemoglobin (blood) is positively charged</mark>; starch, gum, gelatin, clay, charcoal sols are <mark class="fact">negatively charged</mark>.</li>
+      <li>Colloidal solution colour depends on the wavelength of light scattered.</li>
+      <li><mark class="concept">Coagulation</mark> — precipitation of a colloid on adding a small quantity of electrolyte; opposite-charge electrolyte particles neutralise colloidal particles, causing precipitation. Alum/ferric chloride applied on minor cuts stops bleeding by <mark class="trap">coagulating blood</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="s-emulsion">
+    <h2><span class="num">11</span>Emulsions</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Emulsions</mark> — liquid-liquid colloidal systems, formed by shaking 2 immiscible/partially miscible liquids; stabilised by <mark class="concept">emulsifying agents</mark> (protein, gum, soap, alcohol).</li>
+    </ul>
+    <table>
+      <thead><tr><th>Type</th><th>Description</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Oil-in-Water (O/W)</mark></td><td>Oil mixed with water as dispersion medium</td><td>Milk, vanishing cream</td></tr>
+        <tr><td><mark class="fact">Water-in-Oil (W/O)</mark></td><td>Water as dispersed phase, oil as dispersion medium</td><td>Butter, cream</td></tr>
+      </tbody>
+    </table>
+    <ul class="point-list">
+      <li>Emulsions show both <mark class="trap">Brownian movement AND Tyndall effect</mark>; can be broken by heating, freezing, centrifuging.</li>
+    </ul>
+  </section>
+
+  <section id="s-everyday">
+    <h2><span class="num">12</span>Everyday Science of Colloids</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Electrical Precipitation of Smoke</mark> — a Cottrell smoke precipitator removes charge from smoke's colloidal solid particles (carbon, arsenic compounds, dust), which then precipitate.</li>
+      <li><mark class="concept">Purification of Drinking Water</mark> — alum coagulates suspended impurities in water.</li>
+      <li><mark class="concept">Colloidal Medicines</mark> — <mark class="fact">Silver sol</mark> (eye lotion), <mark class="fact">colloidal antimony</mark> (Kala-azar treatment), <mark class="fact">colloidal gold</mark> (intramuscular injection), <mark class="fact">Milk of magnesia</mark> (stomach disorders) — more effective due to large surface area and easy assimilation.</li>
+      <li><mark class="concept">Industries</mark> — rubber from coagulated latex; leather tanning (positively-charged animal hide + negatively-charged tannin); paints, inks, plastics, rubber, graphite lubricants, cement are all colloidal.</li>
+      <li><mark class="concept">Photography</mark> — light-sensitive silver bromide emulsion coated in gelatin on glass/celluloid.</li>
+      <li><mark class="concept">Artificial Rain</mark> — <mark class="fact">silver iodide</mark> sprinkled on clouds for seeding.</li>
+      <li><mark class="concept">Ice-cream Making</mark> — gelatin stabilises the colloid, preventing crystallisation.</li>
+    </ul>
+  </section>
+
+  <section id="s-suspension">
+    <h2><span class="num">13</span>Suspensions</h2>
+    <ul class="point-list">
+      <li>A <mark class="concept">suspension</mark> is a heterogeneous mixture where solute particles do <mark class="trap">not dissolve</mark>, remaining suspended throughout the medium — e.g. chalk water, polluted river water, muddy water, soil.</li>
+      <li>Particle size: order of <mark class="fact">10⁻⁵ cm or more</mark> — visible to naked eye.</li>
+      <li>Particles scatter light (visible path) and <mark class="trap">settle down when left undisturbed</mark> — an unstable mixture; separable by filtration. Once settled, it stops scattering light.</li>
+    </ul>
+  </section>
+
+  <section id="s-traps">
+    <h2><span class="num">14</span>MCQ Traps &amp; Assessment Facts</h2>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      A solution is defined as a <mark class="trap">homogeneous mixture</mark> (not a compound, heterogeneous mixture, or suspension). Soil, sea water, air are all <mark class="trap">heterogeneous mixtures</mark>.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Tin, Ice are <mark class="trap">NOT mixtures</mark> (pure substances); sea water, soil, air, ice-cream, honey ARE mixtures — a repeated "spot the pure substance" trap.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      In a sugar solution, sugar is the <mark class="trap">dissolved substance (solute)</mark>, not the solvent, colloid, or suspension.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Water-soluble salts: <mark class="trap">Sodium chloride</mark> is soluble; Lithium bromide, Calcium carbonate, Magnesium iodide are commonly tested as comparatively less/insoluble decoys — always verify against the specific option set.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Mercury</mark> forms an amalgam by combining with almost any metal (not aluminium, gold, or silver specifically as the defining metal).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Chromatography</mark> is the technique for separating a mixture by passing it through a medium where components move at different rates.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Smog = smoke + fog</mark> combination.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Mud is a colloidal solution of <mark class="trap">liquid dispersed in solid — actually it is SOLID dispersed in LIQUID (a Sol)</mark>; always re-verify dispersed-phase vs dispersion-medium direction rather than assuming from the substance name.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Solubility of calcium oxide <mark class="trap">increases on LOWERING temperature</mark> → its dissolution process is <mark class="trap">exothermic</mark> (releases heat) — the reverse of the typical solute behaviour.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Colloidal is NOT a state of matter</mark> (unlike gaseous, liquid, solid) — it's a category of mixture/dispersion.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Soaps clean surfaces based on <mark class="trap">surface tension</mark> principles (not viscosity, floatation, elasticity).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Silica gel</mark> is the best example of a desiccant (not polystyrene, sodium chloride, sodium carbonate).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Blood</mark> is a natural colloid (not urea, cane sugar, sodium chloride — all true solutions).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Cloud is a colloidal dispersion of <mark class="trap">water drops in a dispersion medium of air</mark>.
+    </div>
+    <table>
+      <caption>Colloid dispersion matching — a repeated List-I/List-II format</caption>
+      <thead><tr><th>Colloid</th><th>Dispersion Type</th></tr></thead>
+      <tbody>
+        <tr><td>Smoke</td><td><mark class="fact">Dispersion of solid in gas</mark></td></tr>
+        <tr><td>Gel</td><td><mark class="fact">Dispersion of liquid in solid</mark></td></tr>
+        <tr><td>Emulsion</td><td><mark class="fact">Dispersion of liquid in liquid</mark></td></tr>
+        <tr><td>Foam</td><td><mark class="fact">Dispersion of gas in liquid</mark></td></tr>
+      </tbody>
+    </table>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      A substance that readily forms colloidal solution in contact with water is a <mark class="trap">hydrophilic colloid</mark> (not extrinsic, associated, or hydrophobic).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Suspension is a <mark class="trap">heterogeneous mixture</mark> — solution is homogeneous.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      True suspensions among {Fog, Air, Blood, Paint, Aerosol sprays}: <mark class="trap">Blood, Paint, and Aerosol sprays</mark> (Fog and Air are not suspensions in the classic sense here).
+    </div>
+    <table>
+      <caption>Colloid identity matching — soap suds, silt, opal, mayonnaise</caption>
+      <thead><tr><th>Substance</th><th>Colloid Type</th></tr></thead>
+      <tbody>
+        <tr><td>Soap suds</td><td><mark class="fact">Foam</mark></td></tr>
+        <tr><td>Silt in water</td><td><mark class="fact">Sol</mark></td></tr>
+        <tr><td>Opal</td><td><mark class="fact">Gel</mark></td></tr>
+        <tr><td>Mayonnaise</td><td><mark class="fact">Emulsion</mark></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>The Chemist's Ledger · Solutions and Colloids · compiled for BPSC Prelims 2025–26</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 3 : GASEOUS STATE -->
+<!-- ============================================================ -->
+<div class="page" id="page-gaseous">
+  <div class="hero">
+    <h1>Gaseous State — The Kinetic Ledger</h1>
+    <p>Every gas law, formula, and kinetic-theory fact from theory and 5 solved MCQs.</p>
+  </div>
+  <div class="legend">
+    <span class="l-concept">Yellow — Concept</span>
+    <span class="l-fact">Blue — Fact / Number</span>
+    <span class="l-person">Green — Person / Institution</span>
+    <span class="l-trap">Red — MCQ Trap</span>
+  </div>
+
+  <section id="g-master">
+    <h2><span class="num">00</span>Gas Laws Master Table</h2>
+    <div class="legend">
+      <span style="background:#f9d7de;border:1px solid #c23b2c;">Col 1 — Law (rose)</span>
+      <span style="background:#d3e6fa;border:1px solid #1f6fa8;">Col 2 — Relationship (sky)</span>
+      <span style="background:#d6f0d6;border:1px solid #2f7d3f;">Col 3 — Held Constant (mint)</span>
+      <span style="background:#fbecc2;border:1px solid #e0a712;">Col 4 — Note (amber)</span>
+    </div>
+    <table class="master-table">
+      <caption>Every gas law in this chapter, in one place</caption>
+      <thead><tr><th>Law</th><th>Relationship</th><th>Held Constant</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Boyle's Law</mark></td><td>p ∝ 1/V</td><td>Temperature, moles (n)</td><td>p also ∝ density of a fixed gas mass</td></tr>
+        <tr><td><mark class="fact">Charles' Law</mark></td><td>V ∝ T</td><td>Pressure (p)</td><td>Defines <mark class="concept">absolute zero</mark> — hypothetical temp. of zero gas volume</td></tr>
+        <tr><td><mark class="fact">Gay-Lussac's Law</mark></td><td>p ∝ T</td><td>Volume (V)</td><td>Pressure-Temperature relationship</td></tr>
+        <tr><td><mark class="fact">Avogadro's Law</mark></td><td>V ∝ n</td><td>Temperature, Pressure</td><td>Equal volumes of gases have equal molecules at same T,p; STP: 1 mole = <mark class="fact">22.4 L</mark></td></tr>
+        <tr><td><mark class="fact">Combined Gas Law</mark></td><td>pV/T = nR = constant</td><td>—</td><td>Simultaneous variation of p, V, T for fixed gas amount</td></tr>
+        <tr><td><mark class="fact">Dalton's Law of Partial Pressures</mark></td><td>p(total) = p₁+p₂+p₃…</td><td>Temperature, Volume</td><td>For non-reacting gas mixtures; theory by <mark class="person">Dalton</mark></td></tr>
+        <tr><td><mark class="fact">Graham's Law of Diffusion</mark></td><td>r ∝ 1/√d</td><td>Temperature, Pressure</td><td>Used for isotope separation, vapour density determination</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="g-basics">
+    <h2><span class="num">01</span>Properties of Gases</h2>
+    <ul class="point-list">
+      <li>The latest-discovered state of matter is <mark class="concept">Bose-Einstein condensate</mark>.</li>
+      <li>Gases can be <mark class="trap">compressed easily</mark>.</li>
+      <li>Gases have <mark class="trap">neither definite volume nor definite shape</mark> — a gas occupies the entire volume of its container.</li>
+      <li>Measurable gas properties (mass m, volume V, pressure p, temperature T) are interdependent — the relationships between them are called <mark class="concept">gas laws</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="g-boyle">
+    <h2><span class="num">02</span>Boyle's &amp; Charles' Law</h2>
+    <h3 class="subhead">Boyle's Law (Pressure-Volume)</h3>
+    <ul class="point-list">
+      <li>At constant temperature, pressure of a fixed gas amount varies <mark class="trap">inversely with volume</mark>: p ∝ 1/V, or pV = constant, or p₁V₁ = p₂V₂.</li>
+      <li>At constant temperature, pressure is <mark class="trap">directly proportional to density</mark> of a fixed gas mass.</li>
+      <li><mark class="trap">Molecular mass of a gas = twice its vapour density</mark> (Molar mass = 2 × vapour density).</li>
+    </ul>
+    <h3 class="subhead">Charles' Law (Temperature-Volume)</h3>
+    <ul class="point-list">
+      <li>At constant pressure, volume of a fixed gas mass is <mark class="trap">directly proportional to absolute temperature</mark>: V ∝ T, or V₁/T₁ = V₂/T₂.</li>
+      <li><mark class="concept">Absolute zero</mark> — the lowest hypothetical/imaginary temperature at which gases would occupy zero volume.</li>
+    </ul>
+    <div class="callout fact">
+      <span class="tag">Everyday Science</span>
+      Bursting of a hydrogen balloon and the puffing of a chappati (roti) are applications of <mark class="fact">Charles' Law</mark>.
+    </div>
+  </section>
+
+  <section id="g-gaylussac">
+    <h2><span class="num">03</span>Gay-Lussac's &amp; Avogadro's Law</h2>
+    <h3 class="subhead">Gay-Lussac's Law (Pressure-Temperature)</h3>
+    <ul class="point-list">
+      <li>At constant volume, pressure of a fixed gas amount varies <mark class="trap">directly with temperature</mark>: p ∝ T, or p₁/T₁ = p₂/T₂.</li>
+    </ul>
+    <h3 class="subhead">Avogadro's Law (Volume-Amount)</h3>
+    <ul class="point-list">
+      <li>Equal volumes of all gases under same T &amp; p contain <mark class="trap">equal numbers of molecules</mark>: V ∝ n.</li>
+      <li>At STP, 1 mole of gas (gram molecular mass) occupies <mark class="fact">22.4 L</mark>.</li>
+      <li>1 mole contains <mark class="fact">6.022 × 10²³ molecules</mark> — <mark class="concept">Avogadro's constant</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="g-combined">
+    <h2><span class="num">04</span>Combined Gas Law &amp; Dalton's Law</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Combined Gas Law</mark> — for simultaneous variation of T, V, p of a fixed gas amount: pV/T = nR = constant, so p₁V₁/T₁ = p₂V₂/T₂.</li>
+      <li><mark class="concept">Dalton's Law of Partial Pressures</mark> — atomic theory of matter proposed by <mark class="person">Dalton</mark>; total pressure of a non-reacting gaseous mixture = <mark class="trap">sum of partial pressures</mark> of each component, at constant T,V: p(total) = p₁+p₂+p₃+…</li>
+    </ul>
+  </section>
+
+  <section id="g-graham">
+    <h2><span class="num">05</span>Graham's Law of Diffusion</h2>
+    <ul class="point-list">
+      <li>At constant T,p: rate of diffusion (r) of a gas is <mark class="trap">inversely proportional to the square root of its density</mark>: r ∝ 1/√d, so r₁/r₂ = √(d₂/d₁).</li>
+      <li>Since Molar mass (M) = 2 × density (d): r₁/r₂ = √(M₂/M₁).</li>
+      <li>Applications: production of marsh gas (CH₄); separation of gaseous mixtures; determination of vapour densities; <mark class="trap">separation of isotopes</mark>.</li>
+      <li><mark class="concept">Diffusion</mark> = spontaneous mixing of different gases; rate of diffusion = volume of gas diffused per unit time.</li>
+    </ul>
+    <div class="callout fact">
+      <span class="tag">Everyday Science</span>
+      LPG leakage is detected via diffusion of <mark class="fact">ethyl mercaptan</mark>, an additive. Lighter gases diffuse more quickly than heavier gases; CO₂ and O₂ in air diffuse into water for aquatic respiration.
+    </div>
+  </section>
+
+  <section id="g-ideal">
+    <h2><span class="num">06</span>Ideal Gas &amp; Ideal Gas Equation</h2>
+    <ul class="point-list">
+      <li>An <mark class="concept">ideal/perfect gas</mark> — molecules are point masses (mass without volume) that don't attract each other; a <mark class="trap">hypothetical concept, cannot exist in reality</mark>.</li>
+      <li><mark class="concept">Permanent gases</mark> — hydrogen, oxygen, helium — cannot be liquefied.</li>
+      <li>Perfect gas properties: strictly obeys Boyle's/Charles'/pressure laws under all conditions; pressure coefficient = volume coefficient; <mark class="trap">cannot be converted to liquid/solid</mark> (needs intermolecular attraction, which ideal gases lack).</li>
+      <li><mark class="concept">Ideal Gas Equation</mark> — combines Boyle's, Charles', and Avogadro's laws: <mark class="fact">pV = nRT</mark>, also called the <mark class="concept">equation of state</mark>.</li>
+      <li><mark class="concept">R</mark> = universal gas constant = <mark class="fact">8.314 J mol⁻¹K⁻¹</mark> or <mark class="fact">0.0821 L·atm mol⁻¹K⁻¹</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="g-real">
+    <h2><span class="num">07</span>Real Gases</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Real gases</mark> follow gas laws (behave ideally) only at <mark class="trap">high temperature and low pressure</mark>.</li>
+      <li>Real gases have definite volume and intermolecular attraction forces — <mark class="trap">no real gas is truly ideal</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="g-kinetic">
+    <h2><span class="num">08</span>Kinetic Theory of Gases</h2>
+    <ul class="point-list">
+      <li><mark class="person">J Bernoulli</mark> first explained gas behaviour in <mark class="fact">1738</mark>; later <mark class="person">Rudolph Clausius</mark> and <mark class="person">James Clark Maxwell</mark> developed the full kinetic theory.</li>
+    </ul>
+    <h3 class="subhead">Key Assumptions</h3>
+    <ul class="point-list">
+      <li>Gas consists of extremely small, discrete, identical particles (molecules) dispersed throughout the container.</li>
+      <li>Molecule volume is <mark class="trap">negligible</mark> compared to total gas volume.</li>
+      <li>Molecules are in <mark class="concept">constant random motion</mark> at high velocities, moving in straight lines, changing direction on collision.</li>
+      <li>Intermolecular forces are <mark class="trap">negligible</mark> — molecules move freely, independently.</li>
+      <li>All collisions are <mark class="concept">perfectly elastic</mark> — no kinetic energy loss overall (though redistribution can occur).</li>
+      <li>Gravity's effect on molecular motion is negligible compared to collision effects.</li>
+      <li>Gas pressure is caused by molecule hits on container walls — <mark class="trap">Pressure ∝ number of collisions per unit time per unit area</mark> (Newton's second law of motion).</li>
+      <li>Different molecules have different speeds/kinetic energies at a given instant, but <mark class="concept">average kinetic energy ∝ absolute temperature</mark>.</li>
+      <li>Pressure of an ideal gas: <mark class="fact">pV = (1/3)mNv²</mark>, where m=mass of 1 molecule, N=total molecules, v=RMS velocity.</li>
+    </ul>
+  </section>
+
+  <section id="g-speeds">
+    <h2><span class="num">09</span>Molecular Speeds</h2>
+    <table>
+      <thead><tr><th>Speed Type</th><th>Definition</th><th>Symbol</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Average Speed</mark></td><td>Average of speeds of all molecules</td><td>v</td></tr>
+        <tr><td><mark class="fact">Most Probable Speed</mark></td><td>Speed possessed by the maximum fraction of molecules at a given temperature</td><td>α (alpha)</td></tr>
+        <tr><td><mark class="fact">Root Mean Square (RMS) Speed</mark></td><td>Square root of the mean of squares of speeds of a large number of molecules</td><td>u</td></tr>
+      </tbody>
+    </table>
+    <ul class="point-list">
+      <li>RMS speed <mark class="trap">increases with rising temperature</mark> and <mark class="trap">decreases with increasing molecular weight</mark>: u ∝ √T, u ∝ 1/√M.</li>
+      <li>Relation between the three speeds: <mark class="fact">α : v : u = 1.414 : 1.595 : 1.732</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="g-freedom">
+    <h2><span class="num">10</span>Degree of Freedom</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Degree of freedom</mark> = number of directions a dynamic system can move freely / number of coordinates needed to describe its position; denoted N.</li>
+      <li>N = A − R (A = number of particles, R = number of independent relations).</li>
+      <li>Gas molecules have <mark class="concept">translational, rotational, and vibrational</mark> kinetic energies.</li>
+    </ul>
+    <table>
+      <caption>Degree of freedom by molecular type</caption>
+      <thead><tr><th>Gas Type</th><th>Degree of Freedom</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Monoatomic gas</mark></td><td><mark class="fact">3</mark></td><td>He</td></tr>
+        <tr><td><mark class="fact">Diatomic gas</mark></td><td><mark class="fact">5</mark></td><td>O₂, CO, H₂</td></tr>
+        <tr><td><mark class="fact">Triatomic gas</mark></td><td><mark class="fact">6</mark></td><td>NH₃</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="g-traps">
+    <h2><span class="num">11</span>MCQ Traps &amp; Assessment Facts</h2>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Charles' Law's mathematical expression is <mark class="trap">V ∝ T</mark> (not V ∝ C/T, V ∝ 1/p, or V ∝ 1/V).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      <mark class="trap">Joule's Law is NOT a gas law</mark> — unlike Boyle's, Avogadro's, and Charles' laws.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      "Equal volumes of all gases at same T,p contain equal numbers of molecules" = <mark class="trap">Avogadro's Law</mark> (not Boyle's, Charles', or Gay-Lussac's Law).
+    </div>
+    <div class="callout fact">
+      <span class="tag">Fact</span>
+      Molecular mass of a gas is <mark class="fact">twice its vapour density/vapour pressure relationship as commonly tested</mark> — always confirm the exact quantity (density vs pressure) referenced in the specific question.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Diffusion in gases occurs due to <mark class="trap">the difference in their densities</mark> (not composition or equal densities).
+    </div>
+  </section>
+
+  <footer>The Chemist's Ledger · Gaseous State · compiled for BPSC Prelims 2025–26</footer>
+</div>
+
+<!-- ============================================================ -->
+<!-- PAGE 4 : CHEMICAL KINETICS AND EQUILIBRIUM -->
+<!-- ============================================================ -->
+<div class="page" id="page-kinetics">
+  <div class="hero">
+    <h1>Chemical Kinetics and Equilibrium — The Reaction-Rate Ledger</h1>
+    <p>Every rate law, catalyst, and equilibrium fact from theory and 12 solved MCQs.</p>
+  </div>
+  <div class="legend">
+    <span class="l-concept">Yellow — Concept</span>
+    <span class="l-fact">Blue — Fact / Number</span>
+    <span class="l-person">Green — Person / Institution</span>
+    <span class="l-trap">Red — MCQ Trap</span>
+  </div>
+
+  <section id="k-master">
+    <h2><span class="num">00</span>Key Terms &amp; Definitions Master Table</h2>
+    <div class="legend">
+      <span style="background:#f9d7de;border:1px solid #c23b2c;">Col 1 — Term (rose)</span>
+      <span style="background:#d3e6fa;border:1px solid #1f6fa8;">Col 2 — Definition (sky)</span>
+      <span style="background:#d6f0d6;border:1px solid #2f7d3f;">Col 3 — Formula/Unit (mint)</span>
+      <span style="background:#fbecc2;border:1px solid #e0a712;">Col 4 — Example/Note (amber)</span>
+    </div>
+    <table class="master-table">
+      <caption>Every core term from this chapter, in one place</caption>
+      <thead><tr><th>Term</th><th>Definition</th><th>Formula/Unit</th><th>Example/Note</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Chemical Kinetics</mark></td><td>Study of <mark class="concept">reaction rates</mark>, factors affecting them, and reaction mechanisms</td><td>—</td><td>From Greek 'kinesis' = movement</td></tr>
+        <tr><td><mark class="fact">Bond Energy</mark></td><td>Energy to break 1 mole of a bond type in gaseous state</td><td>kJ mol⁻¹</td><td>Bond-breaking = endothermic; bond-forming = exothermic</td></tr>
+        <tr><td><mark class="fact">Rate of Reaction</mark></td><td>Change in reactant/product concentration per unit time</td><td>mol L⁻¹s⁻¹ (or atm s⁻¹ for gases)</td><td>—</td></tr>
+        <tr><td><mark class="fact">Activation Energy</mark></td><td>Extra energy reactants must acquire to form the <mark class="concept">activated complex</mark></td><td>—</td><td><mark class="trap">Lower activation energy = faster reaction</mark></td></tr>
+        <tr><td><mark class="fact">Catalyst</mark></td><td>Alters reaction rate, remains chemically/quantitatively unchanged</td><td>—</td><td>First observed by <mark class="person">Berzelius, 1835</mark></td></tr>
+        <tr><td><mark class="fact">Order of Reaction</mark></td><td>Sum of concentration-term powers the rate actually depends on (experimental)</td><td>Can be 0, 1, 2, 3, or fractional</td><td>Zero order = rate independent of concentration</td></tr>
+        <tr><td><mark class="fact">Molecularity</mark></td><td>Number of reacting species that must collide simultaneously</td><td><mark class="trap">Cannot be zero or fractional</mark></td><td>Unimolecular, bimolecular, trimolecular</td></tr>
+        <tr><td><mark class="fact">Equilibrium Constant (Kc)</mark></td><td>Ratio of backward:forward reaction rate at equilibrium</td><td>Kc = [C][D]/[A][B]</td><td>Constant at fixed temperature; proposed by <mark class="person">Guldberg &amp; Waage, 1864</mark></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="k-basics">
+    <h2><span class="num">01</span>Chemical Kinetics &amp; Reaction Speed</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Chemical kinetics</mark> — from Greek 'kinesis' (movement) — studies reaction rates, factors affecting rate, and reaction mechanism (atom rearrangement, intermediate formation).</li>
+    </ul>
+    <table>
+      <caption>Reaction speed classification</caption>
+      <thead><tr><th>Speed</th><th>Description</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Fast Reactions</mark></td><td><mark class="concept">Instantaneous</mark>, e.g. ionic reactions</td><td>AgNO₃ + NaCl → AgCl↓ + NaNO₃</td></tr>
+        <tr><td><mark class="fact">Slow Reactions</mark></td><td>Take days/months/years</td><td>Rusting of iron in air + moisture</td></tr>
+        <tr><td><mark class="fact">Moderate-Speed Reactions</mark></td><td>Most commonly studied in chemical kinetics</td><td>Inversion of cane sugar, hydrolysis of starch</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="k-energyterms">
+    <h2><span class="num">02</span>Bond Energy, Heat of Reaction/Formation/Combustion</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Bond Energy</mark> — energy to break 1 mole of a bond type between two gaseous atoms (<mark class="fact">kJ mol⁻¹</mark>); <mark class="trap">larger bond dissociation energy = stronger bond</mark>; breaking a bond is <mark class="concept">endothermic</mark>, forming a bond is <mark class="concept">exothermic</mark>.</li>
+      <li><mark class="concept">Heat of Reaction</mark> — heat evolved/absorbed in a reaction, e.g. H₂(g)+Br₂(l)→2HBr(g) +72.8 kJ/mol.</li>
+      <li><mark class="concept">Heat of Formation</mark> — energy released/absorbed forming 1 mole of a compound from constituent elements.</li>
+      <li><mark class="concept">Heat of Combustion</mark> — heat evolved burning 1 mole of a substance in excess oxygen.</li>
+    </ul>
+  </section>
+
+  <section id="k-rate">
+    <h2><span class="num">03</span>Rate of Reaction</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Rate of reaction</mark> = decrease in reactant concentration / time taken = increase in product concentration / time taken.</li>
+      <li>Unit = concentration × time⁻¹, e.g. <mark class="fact">mol L⁻¹s⁻¹</mark>; for gaseous reactions (partial pressures), unit = <mark class="fact">atm s⁻¹</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="k-factors">
+    <h2><span class="num">04</span>Factors Influencing Rate</h2>
+    <table>
+      <caption>Six factors affecting reaction rate — a heavily repeated MCQ zone</caption>
+      <thead><tr><th>Factor</th><th>Effect</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Concentration</mark></td><td>Rate <mark class="concept">increases with concentration</mark> — more collisions between molecules</td></tr>
+        <tr><td><mark class="fact">Temperature</mark></td><td>Rate <mark class="concept">increases with temperature</mark> — higher kinetic energy/velocity → more successful collisions</td></tr>
+        <tr><td><mark class="fact">Nature of Reactants</mark></td><td>E.g. sodium/potassium react vigorously with water at ordinary temperature; <mark class="trap">iron reacts only with steam</mark></td></tr>
+        <tr><td><mark class="fact">Surface Area</mark></td><td>Larger surface area → <mark class="concept">greater rate</mark> (more reaction sites); e.g. zinc dust reacts faster than a zinc piece with H₂SO₄</td></tr>
+        <tr><td><mark class="fact">Presence of Light</mark></td><td>Increases rate for some reactions, e.g. chloroform oxidation to phosgene — hence <mark class="trap">stored in dark bottles</mark></td></tr>
+        <tr><td><mark class="fact">Catalyst</mark></td><td><mark class="concept">Increases rate</mark> via alternative lower-activation-energy pathway</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="k-activation">
+    <h2><span class="num">05</span>Activation Energy</h2>
+    <ul class="point-list">
+      <li>Reactant molecules absorb extra energy to form an unstable <mark class="concept">activated complex</mark> (high potential energy), which then decomposes into products.</li>
+      <li><mark class="concept">Activation energy</mark> = additional energy needed to form this activated complex; <mark class="trap">lower activation energy = faster reaction</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="k-order">
+    <h2><span class="num">06</span>Order &amp; Molecularity of Reaction</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Order of reaction</mark> = sum of concentration-term powers the rate actually depends on (found experimentally); can be <mark class="trap">0, 1, 2, 3, or even a fraction</mark>. Zero order = rate independent of reactant concentration.</li>
+      <li><mark class="concept">Molecularity</mark> = number of reacting species (atoms/ions/molecules) that must collide simultaneously in an elementary reaction; <mark class="trap">cannot be zero or non-integer</mark> (unlike order).</li>
+    </ul>
+    <table>
+      <thead><tr><th>Reaction</th><th>Molecularity</th></tr></thead>
+      <tbody>
+        <tr><td>NH₄NO₂ → N₂ + 2H₂O</td><td><mark class="fact">Unimolecular</mark> (1 species)</td></tr>
+        <tr><td>2HI → H₂ + I₂</td><td><mark class="fact">Bimolecular</mark> (2 species)</td></tr>
+        <tr><td>2NO + O₂ → 2NO₂</td><td><mark class="fact">Trimolecular</mark> (3 species)</td></tr>
+      </tbody>
+    </table>
+    <ul class="point-list">
+      <li>If a reaction proceeds in several steps, the overall rate is controlled by the <mark class="concept">slowest step (rate-determining step)</mark>; molecularity of the slowest step = order of the overall reaction.</li>
+      <li><mark class="concept">Pseudo first-order reactions</mark> — e.g. inversion of cane sugar, ester hydrolysis — have multiple reactants but rate depends on only one reactant's concentration.</li>
+    </ul>
+  </section>
+
+  <section id="k-catalysis">
+    <h2><span class="num">07</span>Catalysis, Promoters &amp; Poisons</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Catalysis</mark> — substances (catalysts) alter reaction rate while remaining chemically/quantitatively unchanged; first observed by <mark class="person">Berzelius in 1835</mark>.</li>
+      <li>A catalyst provides a <mark class="concept">new reaction path with different (lower) activation energy</mark>.</li>
+      <li><mark class="trap">Catalysts catalyse spontaneous reactions but NOT non-spontaneous ones</mark>.</li>
+      <li><mark class="trap">A catalyst does NOT change the equilibrium constant</mark> — it catalyses both forward and backward reactions equally, helping equilibrium be <mark class="concept">reached faster</mark> (not shifting its position).</li>
+      <li><mark class="concept">Promoters</mark> — enhance catalyst activity, e.g. <mark class="fact">molybdenum promotes iron</mark> catalyst in Haber's process (ammonia manufacture).</li>
+      <li><mark class="concept">Poisons</mark> — decrease catalyst activity, e.g. <mark class="fact">carbon poisons silica-alumina catalyst</mark> in petroleum cracking.</li>
+    </ul>
+    <h3 class="subhead">Types of Catalysis</h3>
+    <table>
+      <thead><tr><th>Type</th><th>Description</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Homogeneous Catalysis</mark></td><td>Reactants + catalyst in <mark class="concept">same phase</mark></td><td>2SO₂+O₂→2SO₃ with NO(g) catalyst — all gaseous</td></tr>
+        <tr><td><mark class="fact">Heterogeneous Catalysis</mark></td><td>Reactants + catalyst in <mark class="concept">different phases</mark></td><td>2SO₂+O₂→2SO₃ with Pt(s) catalyst — gas reactants, solid catalyst</td></tr>
+      </tbody>
+    </table>
+    <h3 class="subhead">Types of Catalyst</h3>
+    <ul class="point-list">
+      <li><mark class="concept">Positive Catalyst</mark> — increases rate by decreasing activation energy.</li>
+      <li><mark class="concept">Negative Catalyst</mark> — decreases rate by increasing activation energy.</li>
+      <li><mark class="concept">Induced Catalyst</mark> — product of one reaction catalyses another.</li>
+      <li><mark class="concept">Auto Catalyst</mark> — product of one reaction catalyses the same reaction.</li>
+    </ul>
+  </section>
+
+  <section id="k-catalysts-table">
+    <h2><span class="num">08</span>Industrial Catalysts Ledger</h2>
+    <table>
+      <caption>Catalyst ↔ industrial process — a heavily repeated matching set</caption>
+      <thead><tr><th>Catalyst</th><th>Used For</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="fact">Platinised asbestos</mark></td><td>Nitric acid manufacture — <mark class="concept">Ostwald's process</mark></td></tr>
+        <tr><td><mark class="fact">Nickel (Raney nickel)</mark></td><td>Hydrogenation of functional groups</td></tr>
+        <tr><td><mark class="fact">Vanadium pentoxide (V₂O₅)</mark></td><td>Sulphuric acid manufacture — <mark class="concept">Contact process</mark></td></tr>
+        <tr><td><mark class="fact">Finely divided iron</mark></td><td>Ammonia production — <mark class="concept">Haber's process</mark></td></tr>
+        <tr><td><mark class="fact">Iron</mark></td><td>Hydrocarbon production — <mark class="concept">Fischer-Tropsch process</mark></td></tr>
+        <tr><td><mark class="fact">Pt-Rh gauze</mark></td><td>HNO₃ production from ammonia oxidation</td></tr>
+        <tr><td><mark class="fact">Oxides of nitrogen</mark></td><td>Sulphuric acid production — <mark class="concept">Lead Chamber's process</mark></td></tr>
+        <tr><td><mark class="fact">Hot alumina</mark></td><td>Ether production from alcohol</td></tr>
+        <tr><td><mark class="fact">Cupric chloride</mark></td><td>Chlorine production — <mark class="concept">Deacon's process</mark></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="k-equilibrium">
+    <h2><span class="num">09</span>Chemical Equilibrium &amp; Law of Mass Action</h2>
+    <ul class="point-list">
+      <li>For a reversible reaction A+B⇌C+D: with time, <mark class="concept">forward reaction rate decreases and backward rate increases</mark>, until both become equal and concentrations stay constant — this is <mark class="concept">chemical equilibrium</mark>, which is <mark class="trap">dynamic</mark> (reactions don't stop, both proceed at equal rate).</li>
+      <li><mark class="person">CM Guldberg and Peter Waage</mark> proposed the <mark class="concept">Law of Mass Action</mark> in <mark class="fact">1864</mark> — rate of a chemical reaction is directly proportional to the <mark class="concept">active mass</mark> of the reacting substance(s), or the product of active masses.</li>
+      <li>For aA+bB⇌cC+dD: Kc = [C]^c[D]^d / [A]^a[B]^b — the <mark class="concept">equilibrium constant</mark>, ratio of backward:forward rate constants.</li>
+      <li>Kc is <mark class="trap">constant at a fixed temperature</mark> and changes only with temperature change.</li>
+    </ul>
+  </section>
+
+  <section id="k-lechatelier">
+    <h2><span class="num">10</span>Homogeneous/Heterogeneous Equilibria &amp; Le-Chatelier's Principle</h2>
+    <ul class="point-list">
+      <li><mark class="concept">Homogeneous equilibrium</mark> — all reactants/products in the <mark class="trap">same phase</mark>, e.g. CH₃COOC₂H₅(aq)+H₂O(l)⇌CH₃COOH(aq)+C₂H₅OH(aq); N₂(g)+H₂(g)⇌NH₃(g).</li>
+      <li><mark class="concept">Heterogeneous equilibrium</mark> — <mark class="trap">more than one phase</mark>, e.g. H₂O(l)⇌H₂O(g); CaCO₃(s)⇌CaO(s)+CO₂(g).</li>
+      <li><mark class="concept">Le-Chatelier's Principle</mark> — a change in any factor determining a system's equilibrium causes the system to shift so as to <mark class="trap">reduce/counteract the change</mark>.</li>
+      <li>Increasing reactant concentration (or removing product) at equilibrium → shifts <mark class="concept">forward</mark>; adding product (or removing reactant) → shifts <mark class="concept">backward</mark>.</li>
+      <li>Rising temperature shifts equilibrium <mark class="concept">forward for endothermic reactions</mark>, <mark class="concept">backward for exothermic reactions</mark>.</li>
+      <li>Increased pressure shifts the reaction in the direction that <mark class="concept">lowers pressure</mark>.</li>
+    </ul>
+  </section>
+
+  <section id="k-traps">
+    <h2><span class="num">11</span>MCQ Traps &amp; Assessment Facts</h2>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Chemical kinetics deals with <mark class="trap">ALL of: rate of reaction, speed of reactant→product conversion, and order of reaction</mark> — a common "all of the above" answer.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Corrosion (tarnishing of silver, rusting of iron, green coating on copper/bronze) is an example of a <mark class="trap">slow reaction</mark>.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Mixing NaCl + AgNO₃ solutions is an <mark class="trap">instantaneous (fast) reaction</mark> — too quick to measure a meaningful reaction rate.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      If activation energy is zero, the rate constant is <mark class="trap">independent of temperature</mark>.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      A catalyst's function: <mark class="trap">increases the rate of reaction</mark> (does not change equilibrium amount or become a final product).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      A positive catalyst <mark class="trap">increases the rate of reaction</mark> (this is its defining role, distinct from just "increasing yield" or "purity").
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      When reactant concentration equals product concentration in a reaction, this state is called <mark class="trap">chemical equilibrium</mark> (not simply "reversible reaction" — equilibrium is the specific balanced state).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      In the presence of a catalyst: activation energies of <mark class="trap">both forward AND backward reactions are lowered by the same amount</mark>; rates of forward/reverse reactions increase by the same factor; equilibrium amount is undisturbed — <mark class="trap">all of these are simultaneously true</mark>.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      "Reactions with GREATER activation energy will be faster" is <mark class="trap">FALSE</mark> — reactions with SMALLER activation energy are faster (Statement II is the true one, not Statement I).
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      "Catalyst increases forward reaction rate" (true) AND "Catalyst decreases activation energy of the reactant" (true, and this correctly EXPLAINS the first statement) — both correct, II explains I.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      In homogeneous reactions: reactants are in the <mark class="trap">same physical state</mark>; reaction proceeds forward when reactant concentration exceeds product concentration; <mark class="trap">ALL three given statements about homogeneous reactions can be correct together</mark> — verify each part rather than assuming a partial match.
+    </div>
+    <div class="callout trap">
+      <span class="tag">MCQ Trap</span>
+      Statement "reactants react rapidly in presence of sunlight" is <mark class="trap">TRUE</mark> for some reactions (e.g. chloroform oxidation); Statement "Neutralisation is an example of irreversible reaction" needs independent verification — read each numbered statement on its own merit before selecting combined-statement options.
+    </div>
+  </section>
+
+  <footer>The Chemist's Ledger · Chemical Kinetics and Equilibrium · compiled for BPSC Prelims 2025–26</footer>
+</div>
+
+</main>
+
+<script>
+function toggleSidebar(){
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
+  document.getElementById('hamburgerBtn').classList.toggle('open');
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('open');
+  document.getElementById('hamburgerBtn').classList.remove('open');
+}
+
+const ALL_TABS = ['matter','solutions','gaseous','kinetics'];
+function switchTab(tab){
+  ALL_TABS.forEach(t=>{
+    const page = document.getElementById('page-'+t);
+    const nav = document.getElementById('nav-'+t);
+    const btn = document.getElementById('btn-tab-'+t);
+    if(page) page.classList.toggle('active', t===tab);
+    if(nav) nav.style.display = (t===tab) ? 'block' : 'none';
+    if(btn) btn.classList.toggle('active', t===tab);
+  });
+  window.scrollTo(0,0);
+  closeSidebar();
+}
+
+const navLinks = document.querySelectorAll('.navlink');
+function onScroll(){
+  const activePage = document.querySelector('.page.active');
+  if(!activePage) return;
+  const sections = activePage.querySelectorAll('section');
+  let currentId = '';
+  sections.forEach(sec=>{
+    const rect = sec.getBoundingClientRect();
+    if(rect.top <= 140) currentId = sec.id;
+  });
+  navLinks.forEach(link=>{
+    link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+  });
+}
+window.addEventListener('scroll', onScroll);
+document.querySelectorAll('.navlink').forEach(link=>{
+  link.addEventListener('click', e=>{
+    e.preventDefault();
+    const id = link.getAttribute('href').substring(1);
+    const target = document.getElementById(id);
+    if(target){
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    closeSidebar();
+  });
+});
+window.addEventListener('load', onScroll);
+</script>
+
+</body>
+</html>
