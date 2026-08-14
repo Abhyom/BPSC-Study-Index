@@ -1,0 +1,2965 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>The Forester's Ledger — ISFR 2023 (India &amp; Bihar)</title>
+		<style>
+			:root {
+				--ink: #2b2114;
+				--paper: #f6ecd4;
+				--paper-2: #efe1bd;
+				--sidebar: #171c2b;
+				--sidebar-2: #232a3f;
+				--sidebar-text: #cfd6e8;
+				--accent: #8a3b26;
+				--yellow: #e0a712;
+				--yellow-bg: #fbe08a;
+				--blue: #1f6fa8;
+				--blue-bg: #a9d3ef;
+				--green: #2f7d3f;
+				--green-bg: #a9dcac;
+				--red: #c23b2c;
+				--red-bg: #f3a89e;
+				--purple: #6a3f9c;
+				--purple-bg: #d3bdef;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				-webkit-text-size-adjust: 100%;
+			}
+			body {
+				margin: 0;
+				font-family: "Georgia", "Cambria", serif;
+				color: var(--ink);
+				background: var(--sidebar);
+				font-size: 16px;
+				line-height: 1.7;
+			}
+			mark {
+				color: var(--ink);
+				font-weight: 700;
+				padding: 3px 7px;
+				border-radius: 4px;
+				box-decoration-break: clone;
+				-webkit-box-decoration-break: clone;
+				line-height: 2;
+				display: inline;
+				unicode-bidi: isolate;
+			}
+			mark.concept {
+				background: var(--yellow-bg);
+				box-shadow: inset 0 0 0 1.5px var(--yellow);
+			}
+			mark.fact {
+				background: var(--blue-bg);
+				box-shadow: inset 0 0 0 1.5px var(--blue);
+				color: #12324a;
+			}
+			mark.person {
+				background: var(--green-bg);
+				box-shadow: inset 0 0 0 1.5px var(--green);
+				color: #123a1a;
+			}
+			mark.trap {
+				background: var(--red-bg);
+				box-shadow: inset 0 0 0 1.5px var(--red);
+				color: #4a0f08;
+			}
+			mark.rule {
+				background: var(--purple-bg);
+				box-shadow: inset 0 0 0 1.5px var(--purple);
+				color: #2a1740;
+			}
+			p,
+			li,
+			td,
+			.card p,
+			.boxsub,
+			.arrowbox,
+			.branchnode,
+			.flowstep .ftext p {
+				line-height: 2.05;
+			}
+
+			.app {
+				display: flex;
+				min-height: 100vh;
+			}
+			.sidebar {
+				width: 270px;
+				background: linear-gradient(
+					180deg,
+					var(--sidebar),
+					var(--sidebar-2)
+				);
+				color: var(--sidebar-text);
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				overflow-y: auto;
+				padding: 22px 16px 40px;
+				z-index: 50;
+				transition: transform 0.25s ease;
+			}
+			.sidebar h1 {
+				font-size: 17px;
+				color: #f4e6bd;
+				letter-spacing: 0.5px;
+				margin: 0 0 4px;
+				border-bottom: 2px solid #4b567a;
+				padding-bottom: 12px;
+			}
+			.sidebar .sub {
+				font-size: 11px;
+				color: #8a93b3;
+				margin-bottom: 18px;
+			}
+			.tabbtn {
+				display: block;
+				width: 100%;
+				text-align: left;
+				background: none;
+				border: none;
+				color: var(--sidebar-text);
+				font-family: inherit;
+				font-size: 14.5px;
+				padding: 11px 12px;
+				border-radius: 8px;
+				cursor: pointer;
+				margin-bottom: 6px;
+				border-left: 3px solid transparent;
+				transition: 0.15s;
+			}
+			.tabbtn:hover {
+				background: #2c3552;
+			}
+			.tabbtn.active {
+				background: #31406b;
+				color: #ffe9a8;
+				border-left: 3px solid var(--yellow);
+				font-weight: 700;
+			}
+			.navgroup {
+				margin-top: 16px;
+			}
+			.navgroup .navtitle {
+				font-size: 10.5px;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				color: #7480a3;
+				margin: 16px 4px 8px;
+			}
+			.navlink {
+				display: block;
+				font-size: 12.5px;
+				color: #aab4d1;
+				padding: 6px 10px;
+				border-radius: 6px;
+				text-decoration: none;
+				margin-bottom: 2px;
+			}
+			.navlink:hover {
+				background: #2c3552;
+				color: #fff;
+			}
+			.hamburger {
+				display: none;
+				position: fixed;
+				top: 14px;
+				left: 14px;
+				z-index: 60;
+				background: var(--sidebar);
+				color: #f4e6bd;
+				border: none;
+				font-size: 20px;
+				padding: 8px 12px;
+				border-radius: 8px;
+				cursor: pointer;
+			}
+
+			.content {
+				margin-left: 270px;
+				flex: 1;
+				background: radial-gradient(
+					ellipse at top,
+					#fbf2d9,
+					var(--paper)
+				);
+				min-height: 100vh;
+				padding: 34px 42px 80px;
+			}
+			.panel {
+				display: none;
+			}
+			.panel.active {
+				display: block;
+				animation: fade 0.3s ease;
+			}
+			@keyframes fade {
+				from {
+					opacity: 0;
+					transform: translateY(6px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.pagehead {
+				border-bottom: 3px double var(--accent);
+				padding-bottom: 12px;
+				margin-bottom: 26px;
+			}
+			.pagehead h2 {
+				font-size: 26px;
+				margin: 0;
+				color: #3a2a15;
+			}
+			.pagehead p {
+				margin: 6px 0 0;
+				color: #6b5a3f;
+				font-size: 13.5px;
+			}
+
+			section.block {
+				margin-bottom: 34px;
+			}
+			h3.secttl {
+				font-size: 18px;
+				background: var(--sidebar);
+				color: #f4e6bd;
+				display: inline-block;
+				padding: 6px 18px;
+				border-radius: 4px 14px 4px 14px;
+				margin-bottom: 16px;
+				box-shadow: 2px 2px 0 var(--accent);
+			}
+			h4.subttl {
+				font-size: 14.5px;
+				color: var(--accent);
+				border-bottom: 1.5px solid var(--accent);
+				display: inline-block;
+				padding-bottom: 2px;
+				margin: 18px 0 10px;
+			}
+
+			.cardgrid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+				gap: 14px;
+				margin-bottom: 14px;
+			}
+			.card {
+				background: #fffaf0;
+				border: 1.5px solid #d8c69a;
+				border-radius: 10px;
+				padding: 16px 18px;
+				box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.05);
+			}
+			.card h5 {
+				margin: 0 0 10px;
+				font-size: 16px;
+				color: var(--accent);
+			}
+			.card p {
+				margin: 8px 0;
+				font-size: 15px;
+			}
+			.card.g-blue {
+				border-left: 5px solid var(--blue);
+			}
+			.card.g-green {
+				border-left: 5px solid var(--green);
+			}
+			.card.g-yellow {
+				border-left: 5px solid var(--yellow);
+			}
+			.card.g-red {
+				border-left: 5px solid var(--red);
+			}
+			.card.g-purple {
+				border-left: 5px solid var(--purple);
+			}
+
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-bottom: 18px;
+				font-size: 14.5px;
+				background: #fffdf6;
+			}
+			th,
+			td {
+				border: 1px solid #cbb989;
+				padding: 11px 12px;
+				text-align: left;
+				vertical-align: top;
+				line-height: 1.7;
+			}
+			th {
+				background: var(--sidebar);
+				color: #f4e6bd;
+				font-size: 13.5px;
+			}
+			.tbl-pastel td:nth-child(1) {
+				background: #eaf3fb;
+			}
+			.tbl-pastel td:nth-child(2) {
+				background: #fbf3e0;
+			}
+			.tbl-pastel td:nth-child(3) {
+				background: #eaf7ec;
+			}
+			.tbl-pastel td:nth-child(4) {
+				background: #fbe9e6;
+			}
+			.tbl-pastel td:nth-child(5) {
+				background: #f1e7fa;
+			}
+			tr:nth-child(even) td {
+				filter: brightness(0.98);
+			}
+
+			.trapbox {
+				background: #fdeceb;
+				border: 2px dashed var(--red);
+				border-radius: 8px;
+				padding: 20px 18px 16px;
+				margin: 20px 0 24px;
+				position: relative;
+			}
+			.trapbox::before {
+				content: "⚠ MCQ TRAP";
+				position: absolute;
+				top: -13px;
+				left: 14px;
+				background: var(--red);
+				color: #fff;
+				font-size: 11.5px;
+				padding: 3px 12px;
+				border-radius: 10px;
+				letter-spacing: 0.5px;
+			}
+			.trapbox p {
+				margin: 8px 0;
+				font-size: 15px;
+			}
+			.trapbox ul {
+				margin: 8px 0 0;
+				padding-left: 20px;
+				font-size: 15px;
+			}
+			.trapbox li {
+				margin-bottom: 6px;
+			}
+
+			.notebox {
+				background: #eaf3fb;
+				border: 2px solid var(--blue);
+				border-radius: 8px;
+				padding: 20px 18px 16px;
+				margin: 20px 0 24px;
+				position: relative;
+			}
+			.notebox::before {
+				content: "📌 NOTE";
+				position: absolute;
+				top: -13px;
+				left: 14px;
+				background: var(--blue);
+				color: #fff;
+				font-size: 11.5px;
+				padding: 3px 12px;
+				border-radius: 10px;
+			}
+			.notebox p {
+				margin: 8px 0;
+				font-size: 15px;
+			}
+
+			.ambigbox {
+				background: #f5eefc;
+				border: 2px solid var(--purple);
+				border-radius: 8px;
+				padding: 20px 18px 16px;
+				margin: 20px 0 24px;
+				position: relative;
+			}
+			.ambigbox::before {
+				content: "❓ SOURCE AMBIGUITY";
+				position: absolute;
+				top: -13px;
+				left: 14px;
+				background: var(--purple);
+				color: #fff;
+				font-size: 11.5px;
+				padding: 3px 12px;
+				border-radius: 10px;
+			}
+			.ambigbox p {
+				margin: 8px 0;
+				font-size: 15px;
+			}
+
+			.formulagrid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+				gap: 14px;
+				margin-bottom: 16px;
+			}
+			.fblock {
+				border-radius: 10px;
+				padding: 14px;
+				color: #fff;
+				box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.15);
+			}
+			.fblock h5 {
+				margin: 0 0 4px;
+				font-size: 13.5px;
+				opacity: 0.9;
+			}
+			.fblock .short {
+				font-size: 19px;
+				font-weight: 800;
+				margin: 6px 0;
+			}
+			.fblock .full {
+				font-size: 12.5px;
+				opacity: 0.95;
+				line-height: 1.4;
+			}
+			.fblock.rd {
+				background: linear-gradient(135deg, #1f6fa8, #123a5c);
+			}
+			.fblock.fd {
+				background: linear-gradient(135deg, #c23b2c, #7a2016);
+			}
+			.fblock.pd {
+				background: linear-gradient(135deg, #2f7d3f, #164821);
+			}
+			.fblock.erd {
+				background: linear-gradient(135deg, #6a3f9c, #3d2261);
+			}
+
+			.tree {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				margin: 24px 0;
+			}
+			.tree .root {
+				background: var(--sidebar);
+				color: #f4e6bd;
+				padding: 12px 24px;
+				border-radius: 8px;
+				font-weight: 700;
+				font-size: 15.5px;
+				margin-bottom: 10px;
+			}
+			.tree .branches {
+				display: flex;
+				gap: 16px;
+				flex-wrap: wrap;
+				justify-content: center;
+				position: relative;
+				padding-top: 26px;
+				row-gap: 30px;
+			}
+			.tree .branches::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 10%;
+				right: 10%;
+				height: 2px;
+				background: #8a6b34;
+			}
+			.branchnode {
+				background: #fffaf0;
+				border: 1.5px solid #8a6b34;
+				border-radius: 8px;
+				padding: 12px 16px;
+				font-size: 14px;
+				max-width: 210px;
+				position: relative;
+				text-align: center;
+				line-height: 1.6;
+			}
+			.branchnode::before {
+				content: "";
+				position: absolute;
+				top: -26px;
+				left: 50%;
+				width: 2px;
+				height: 26px;
+				background: #8a6b34;
+			}
+			.branchnode b {
+				display: block;
+				font-size: 14.5px;
+				margin-bottom: 5px;
+				color: var(--accent);
+			}
+
+			.flow {
+				display: flex;
+				flex-direction: column;
+				gap: 0;
+			}
+			.flowstep {
+				display: flex;
+				align-items: flex-start;
+				gap: 14px;
+				padding: 14px 0;
+				border-left: 3px solid var(--accent);
+				margin-left: 18px;
+				padding-left: 22px;
+				position: relative;
+			}
+			.flowstep::before {
+				content: attr(data-n);
+				position: absolute;
+				left: -19px;
+				top: 14px;
+				background: var(--accent);
+				color: #fff;
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 14px;
+				font-weight: 700;
+			}
+			.flowstep .ftext b {
+				color: var(--accent);
+				font-size: 15.5px;
+				line-height: 1.6;
+			}
+			.flowstep .ftext p {
+				margin: 6px 0 0;
+				font-size: 14.5px;
+			}
+
+			.hierlist {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.hierlist li {
+				background: #fffaf0;
+				border: 1px solid #d8c69a;
+				border-radius: 8px;
+				padding: 13px 16px;
+				margin-bottom: 10px;
+				font-size: 15px;
+				position: relative;
+				padding-left: 44px;
+				line-height: 1.6;
+			}
+			.hierlist li::before {
+				content: attr(data-rank);
+				position: absolute;
+				left: 10px;
+				top: 50%;
+				transform: translateY(-50%);
+				background: var(--yellow);
+				color: #3a2a00;
+				font-weight: 800;
+				font-size: 13px;
+				width: 24px;
+				height: 24px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.mcqcat {
+				margin: 26px 0 14px;
+			}
+			.mcq {
+				background: #fffaf0;
+				border: 1.5px solid #d8c69a;
+				border-radius: 10px;
+				padding: 16px 18px;
+				margin-bottom: 16px;
+				box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.05);
+			}
+			.mcq .qtext {
+				font-size: 15.5px;
+				font-weight: 700;
+				margin: 0 0 10px;
+				line-height: 1.7;
+				color: #2b2114;
+			}
+			.mcq .options {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 8px 14px;
+				font-size: 14.5px;
+				margin-bottom: 10px;
+				line-height: 1.6;
+			}
+			.mcq .options.interactive {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+			}
+			.mcq .optbtn {
+				display: block;
+				width: 100%;
+				text-align: left;
+				font-family: inherit;
+				font-size: 14.5px;
+				line-height: 1.6;
+				color: var(--ink);
+				background: #fffdf6;
+				border: 1.5px solid #d8c69a;
+				border-radius: 8px;
+				padding: 9px 12px;
+				cursor: pointer;
+				transition: 0.15s;
+			}
+			.mcq .optbtn:hover:not(:disabled) {
+				background: #fbf0d6;
+				border-color: var(--accent);
+			}
+			.mcq .optbtn:disabled {
+				cursor: default;
+			}
+			.mcq .optbtn.opt-correct {
+				background: #dff3e0;
+				border-color: var(--green);
+				color: #123a1a;
+				font-weight: 700;
+			}
+			.mcq .optbtn.opt-incorrect {
+				background: #fbe1de;
+				border-color: var(--red);
+				color: #4a0f08;
+				font-weight: 700;
+			}
+			.mcq .pickmsg {
+				display: inline-block;
+				margin: 2px 0 8px;
+				font-size: 13px;
+				font-weight: 700;
+				padding: 4px 12px;
+				border-radius: 12px;
+			}
+			.mcq .pickmsg.right {
+				background: #dff3e0;
+				color: #164821;
+			}
+			.mcq .pickmsg.wrong {
+				background: #fbe1de;
+				color: #4a0f08;
+			}
+			.mcq details {
+				margin-top: 8px;
+			}
+			.mcq summary {
+				cursor: pointer;
+				font-size: 13.5px;
+				color: #fff;
+				background: var(--accent);
+				display: inline-block;
+				padding: 6px 14px;
+				border-radius: 14px;
+				font-weight: 700;
+				list-style: none;
+			}
+			.mcq summary::-webkit-details-marker {
+				display: none;
+			}
+			.mcq details[open] summary {
+				background: var(--sidebar);
+			}
+			.mcq .ans {
+				margin-top: 10px;
+				padding: 10px 14px;
+				background: #eafbea;
+				border-left: 4px solid var(--green);
+				border-radius: 6px;
+				font-size: 14.5px;
+				line-height: 1.7;
+			}
+
+			@media (max-width: 900px) {
+				.sidebar {
+					transform: translateX(-100%);
+					width: 82%;
+					max-width: 300px;
+				}
+				.sidebar.open {
+					transform: translateX(0);
+				}
+				.hamburger {
+					display: block;
+				}
+				.content {
+					margin-left: 0;
+					padding: 70px 14px 60px;
+				}
+				.cardgrid {
+					grid-template-columns: 1fr;
+					gap: 16px;
+				}
+				.formulagrid {
+					grid-template-columns: 1fr;
+					gap: 16px;
+				}
+				.tree .branches {
+					gap: 22px;
+					row-gap: 34px;
+				}
+				.branchnode {
+					margin-top: 4px;
+				}
+				mark {
+					line-height: 2.1;
+					display: inline-block;
+					margin: 2px 0;
+				}
+				p,
+				li,
+				td,
+				.card p {
+					line-height: 2.15;
+				}
+				table {
+					font-size: 13.5px;
+				}
+				th,
+				td {
+					padding: 9px 8px;
+				}
+				.mcq .options {
+					grid-template-columns: 1fr;
+				}
+				h3.secttl {
+					font-size: 16px;
+					padding: 6px 14px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<button
+			class="hamburger"
+			onclick="
+				document.querySelector('.sidebar').classList.toggle('open')
+			"
+		>
+			☰
+		</button>
+		<div class="app">
+			<nav class="sidebar">
+				<h1>🌲 THE FORESTER'S LEDGER</h1>
+				<div class="sub">
+					BPSC Prelims · Environment &amp; Geography Dossier ·
+					ISFR-2023
+				</div>
+				<button class="tabbtn active" onclick="showTab('t1', this)">
+					I. ISFR 2023 — India &amp; Bihar
+				</button>
+				<button class="tabbtn" onclick="showTab('t2', this)">
+					II. MCQ Practice Set (Advanced)
+				</button>
+
+				<div class="navgroup" id="nav1">
+					<div class="navtitle">Tab I Sections</div>
+					<a class="navlink" href="#s1">About the Report</a>
+					<a class="navlink" href="#s2">Forest Policy Benchmark</a>
+					<a class="navlink" href="#s3"
+						>Forest &amp; Tree Cover — India</a
+					>
+					<a class="navlink" href="#s4">States/UTs — Cover Leaders</a>
+					<a class="navlink" href="#s5"
+						>VDF / MDF / OF — Top States</a
+					>
+					<a class="navlink" href="#s6">Other National Points</a>
+					<a class="navlink" href="#s7">Mangrove Vegetation Zone</a>
+					<a class="navlink" href="#s8">Ramsar Sites in India</a>
+					<a class="navlink" href="#s9"
+						>Tiger Reserves &amp; Census 2022</a
+					>
+					<a class="navlink" href="#s10">Leopard Status 2022</a>
+					<a class="navlink" href="#s11">Snow Leopard Survey</a>
+					<a class="navlink" href="#s12"
+						>Bihar — Forest Cover Basics</a
+					>
+					<a class="navlink" href="#s13">Bihar — District Rankings</a>
+					<a class="navlink" href="#s14"
+						>Bihar — Forest Types &amp; Legal Classes</a
+					>
+				</div>
+				<div class="navgroup" id="nav2" style="display: none">
+					<div class="navtitle">Tab II Sections</div>
+					<a class="navlink" href="#m1"
+						>Section A — India (National)</a
+					>
+					<a class="navlink" href="#m2">Section B — Bihar</a>
+				</div>
+			</nav>
+
+			<main class="content">
+				<!-- ================= TAB 1 ================= -->
+				<div class="panel active" id="t1">
+					<div class="pagehead">
+						<h2>18th India State of Forest Report — ISFR 2023</h2>
+						<p>
+							🟨 Concept &nbsp; 🟦 Fact/Number &nbsp; 🟩
+							Person/Institution &nbsp; 🟥 MCQ Trap &nbsp; 🟪
+							Rule/Formula
+						</p>
+					</div>
+
+					<section class="block" id="s1">
+						<h3 class="secttl">1. About the Report</h3>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>Publishing Body</h5>
+								<p>
+									<mark class="person"
+										>Forest Survey of India (FSI)</mark
+									>, headquartered at
+									<mark class="fact">Dehradun</mark>,
+									functioning under the
+									<mark class="person"
+										>Ministry of Environment, Forest and
+										Climate Change</mark
+									>.
+								</p>
+							</div>
+							<div class="card g-yellow">
+								<h5>Frequency &amp; History</h5>
+								<p>
+									Published every
+									<mark class="fact">two years</mark>. First
+									published in <mark class="fact">1987</mark>.
+									ISFR-2023 is the
+									<mark class="trap">18th report</mark> in the
+									series.
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>Release</h5>
+								<p>
+									Released on
+									<mark class="fact">21 December 2024</mark>
+									by
+									<mark class="person"
+										>Shri Bhupendra Yadav</mark
+									>, Union Minister of Environment, Forest and
+									Climate Change, from
+									<mark class="fact">Dehradun</mark>.
+								</p>
+							</div>
+							<div class="card g-purple">
+								<h5>Data Source</h5>
+								<p>
+									Based on remote-sensing data from satellite
+									<mark class="person">Resourcesat-2</mark>.
+								</p>
+							</div>
+						</div>
+						<div class="trapbox">
+							<p>
+								ISFR-2023 was
+								<mark class="trap"
+									>released in December 2024</mark
+								>, not 2023 — the report is named after the
+								reference/assessment year, released with a lag.
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s2">
+						<h3 class="secttl">
+							2. National Forest Policy Benchmark
+						</h3>
+						<div class="notebox">
+							<p>
+								Under the
+								<mark class="concept"
+									>National Forest Policy, 1988</mark
+								>, <mark class="fact">33%</mark> of the
+								country's total land area is meant to be under
+								forest cover —
+								<mark class="fact">1/3rd for plains</mark> and a
+								higher share prescribed for hilly/mountainous
+								regions in the policy's spirit.
+							</p>
+						</div>
+						<div class="cardgrid">
+							<div class="card g-red">
+								<h5>Actual vs Target</h5>
+								<p>
+									India's actual forest area:
+									<mark class="fact">21.76%</mark> of total
+									land area —
+									<mark class="trap"
+										>short of the 33% target</mark
+									>.
+								</p>
+							</div>
+							<div class="card g-blue">
+								<h5>States/UTs Meeting Target</h5>
+								<p>
+									Only
+									<mark class="fact">19 States/UTs</mark>
+									currently have more than 33% forest area.
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="s3">
+						<h3 class="secttl">
+							3. Forest &amp; Tree Cover in India
+						</h3>
+						<table class="tbl-pastel">
+							<tr>
+								<th>Class</th>
+								<th>Area (2023)</th>
+								<th>% of Geographical Area</th>
+								<th>Growth vs 2021</th>
+							</tr>
+							<tr>
+								<td>Forest Cover</td>
+								<td><mark class="fact">7,15,343 km²</mark></td>
+								<td><mark class="fact">21.76%</mark></td>
+								<td><mark class="fact">+156 km²</mark></td>
+							</tr>
+							<tr>
+								<td>Tree Cover</td>
+								<td><mark class="fact">1,12,014 km²</mark></td>
+								<td><mark class="fact">3.41%</mark></td>
+								<td><mark class="fact">+1,289 km²</mark></td>
+							</tr>
+							<tr>
+								<td>Total (Forest + Tree)</td>
+								<td><mark class="fact">8,27,357 km²</mark></td>
+								<td><mark class="concept">25.17%</mark></td>
+								<td><mark class="fact">+1,445 km²</mark></td>
+							</tr>
+						</table>
+						<div class="trapbox">
+							<p>
+								<mark class="trap"
+									>Tree cover ≠ Forest cover.</mark
+								>
+								Tree cover refers to patches of trees
+								<mark class="concept"
+									>smaller than 1 hectare</mark
+								>
+								(outside recorded forest, e.g. avenue
+								plantations, orchards, agroforestry) — it is
+								measured separately and added on top of forest
+								cover to get "Total Green Cover."
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s4">
+						<h3 class="secttl">
+							4. States &amp; UTs — Forest Cover Leaders
+						</h3>
+						<table class="tbl-pastel">
+							<tr>
+								<th>Category</th>
+								<th>#1</th>
+								<th>#2</th>
+								<th>#3</th>
+							</tr>
+							<tr>
+								<td>Highest % forest cover (State)</td>
+								<td>
+									<mark class="person">Mizoram</mark> —
+									<mark class="fact">85.34%</mark>
+								</td>
+								<td>Arunachal Pradesh — 78.67%</td>
+								<td>—</td>
+							</tr>
+							<tr>
+								<td>Highest % forest cover (UT)</td>
+								<td>
+									<mark class="person">Lakshadweep</mark> —
+									<mark class="fact">91.33%</mark>
+								</td>
+								<td>—</td>
+								<td>—</td>
+							</tr>
+							<tr>
+								<td>Highest forest cover BY AREA (State)</td>
+								<td>
+									<mark class="person">Madhya Pradesh</mark> —
+									<mark class="fact">77,073 km²</mark>
+								</td>
+								<td>Arunachal Pradesh — 65,882 km²</td>
+								<td>Chhattisgarh — 55,812 km²</td>
+							</tr>
+							<tr>
+								<td>Least forest cover BY AREA (State)</td>
+								<td>
+									<mark class="person">Haryana</mark> —
+									<mark class="fact">1,614 km²</mark>
+								</td>
+								<td>Punjab — 1,846 km²</td>
+								<td>Goa — 2,266 km²</td>
+							</tr>
+						</table>
+						<div class="trapbox">
+							<p>
+								Do not confuse "highest by
+								<mark class="trap">percentage</mark>" (Mizoram,
+								a small north-eastern state) with "highest by
+								<mark class="trap">area</mark>" (Madhya Pradesh,
+								a large state). This is the single most-tested
+								trap in ISFR MCQs.
+							</p>
+						</div>
+						<h4 class="subttl">
+							Combined Forest + Tree Cover — Top 3 States
+						</h4>
+						<div class="notebox">
+							<p>
+								<mark class="fact">Madhya Pradesh</mark> →
+								<mark class="fact">Arunachal Pradesh</mark> →
+								<mark class="fact">Chhattisgarh</mark> (in that
+								order) have the highest combined forest and tree
+								cover.
+							</p>
+						</div>
+						<h4 class="subttl">Change in Forest Cover (2021–23)</h4>
+						<table class="tbl-pastel">
+							<tr>
+								<th>Category</th>
+								<th>#1</th>
+								<th>#2</th>
+								<th>#3</th>
+							</tr>
+							<tr>
+								<td>Maximum increase</td>
+								<td>
+									Mizoram — <mark class="fact">+242 km²</mark>
+								</td>
+								<td>Gujarat — +180 km²</td>
+								<td>Odisha — +152 km²</td>
+							</tr>
+							<tr>
+								<td>Highest loss</td>
+								<td>
+									<mark class="trap">Madhya Pradesh</mark> —
+									<mark class="fact">−371.5 km²</mark>
+								</td>
+								<td>Andhra Pradesh — −139 km²</td>
+								<td>Telangana — −100 km²</td>
+							</tr>
+						</table>
+						<div class="trapbox">
+							<p>
+								<mark class="trap">Madhya Pradesh</mark> appears
+								in BOTH lists at the national level: it has the
+								<mark class="trap"
+									>largest forest cover by area</mark
+								>
+								AND the
+								<mark class="trap"
+									>highest loss of forest cover</mark
+								>
+								since 2021 — a classic "largest ≠ safest" trap.
+							</p>
+						</div>
+						<h4 class="subttl">
+							Highest Increase in BOTH Forest + Tree Cover
+						</h4>
+						<div class="notebox">
+							<p>
+								<mark class="fact">Chhattisgarh</mark> →
+								<mark class="fact">Uttar Pradesh</mark> →
+								<mark class="fact">Odisha</mark> (in that
+								order).
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s5">
+						<h3 class="secttl">
+							5. Dense &amp; Open Forest Categories — Top States
+						</h3>
+						<table class="tbl-pastel">
+							<tr>
+								<th>Category</th>
+								<th>Canopy Density</th>
+								<th>Top State</th>
+							</tr>
+							<tr>
+								<td>Very Dense Forest (VDF)</td>
+								<td><mark class="concept">&gt;70%</mark></td>
+								<td>
+									<mark class="person"
+										>Arunachal Pradesh</mark
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>Moderately Dense Forest (MDF)</td>
+								<td><mark class="concept">40–70%</mark></td>
+								<td>
+									<mark class="person">Madhya Pradesh</mark>
+								</td>
+							</tr>
+							<tr>
+								<td>Open Forest (OF)</td>
+								<td><mark class="concept">10–40%</mark></td>
+								<td>
+									<mark class="person">Madhya Pradesh</mark>
+								</td>
+							</tr>
+						</table>
+						<div class="trapbox">
+							<p>
+								<mark class="trap">Madhya Pradesh</mark> tops
+								BOTH Moderately Dense Forest AND Open Forest —
+								but <mark class="trap">Arunachal Pradesh</mark>,
+								not MP, tops Very Dense Forest.
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s6">
+						<h3 class="secttl">6. Other National-Level Points</h3>
+						<div class="cardgrid">
+							<div class="card g-yellow">
+								<h5>Shrub Cover</h5>
+								<p>
+									<mark class="fact">43,623 sq. km</mark> —
+									<mark class="fact">1.33%</mark> of total
+									area.
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>Bamboo Cover</h5>
+								<p>
+									Total:
+									<mark class="fact">1,54,670 sq. km</mark>.
+									Highest:
+									<mark class="person">Madhya Pradesh</mark> —
+									<mark class="fact">20,421 km²</mark>.
+								</p>
+							</div>
+							<div class="card g-blue">
+								<h5>Forest Carbon Stock</h5>
+								<p>
+									<mark class="fact"
+										>7,285.5 million tonnes</mark
+									>, up
+									<mark class="fact"
+										>+81.5 million tonnes</mark
+									>
+									vs 2021. Highest:
+									<mark class="trap">Arunachal Pradesh</mark>
+									(not MP — a common trap, since MP tops
+									area/MDF/OF).
+								</p>
+							</div>
+							<div class="card g-purple">
+								<h5>India's World Ranking</h5>
+								<p>
+									India ranks
+									<mark class="fact">10th</mark> in the world
+									in forest cover;
+									<mark class="person">Russia</mark> ranks
+									1st.
+								</p>
+							</div>
+							<div class="card g-red">
+								<h5>Western Ghats ESA (WGESA)</h5>
+								<p>
+									Forest cover across all WGESA districts:
+									<mark class="fact">44,044 sq. km</mark>.
+								</p>
+							</div>
+							<div class="card g-blue">
+								<h5>Hilly Districts</h5>
+								<p>
+									Forest area in hilly districts of India:
+									<mark class="fact">2,83,713 sq. km</mark>.
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="s7">
+						<h3 class="secttl">
+							7. Mangrove Vegetation Zone (ISFR-2023)
+						</h3>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>Total Mangrove/Marsh Cover</h5>
+								<p>
+									<mark class="fact">4,991.68 sq. km</mark> —
+									<mark class="fact">0.15%</mark> of India's
+									geographical area.
+								</p>
+							</div>
+							<div class="card g-yellow">
+								<h5>Spread</h5>
+								<p>
+									<mark class="fact">12 States/UTs</mark> have
+									mangrove/marsh area.
+								</p>
+							</div>
+							<div class="card g-red">
+								<h5>Change vs 2021</h5>
+								<p>
+									Mangrove area
+									<mark class="trap"
+										>decreased by 7.43 sq. km</mark
+									>
+									compared to the 2021 report.
+								</p>
+							</div>
+						</div>
+						<h4 class="subttl">Top Mangrove Areas by State/UT</h4>
+						<table>
+							<tr>
+								<th>Rank</th>
+								<th>State/UT</th>
+								<th>Area</th>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td><mark class="person">West Bengal</mark></td>
+								<td><mark class="fact">2,119 km²</mark></td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Gujarat</td>
+								<td>1,164 km²</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Andaman &amp; Nicobar</td>
+								<td>608 km²</td>
+							</tr>
+						</table>
+						<h4 class="subttl">
+							Highest Mangrove Growth (2021→2023)
+						</h4>
+						<table>
+							<tr>
+								<th>Rank</th>
+								<th>State</th>
+								<th>Growth</th>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>
+									<mark class="person">Andhra Pradesh</mark>
+								</td>
+								<td><mark class="fact">+13.01 km²</mark></td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Maharashtra</td>
+								<td>+12.39 km²</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Karnataka</td>
+								<td>+2.54 km²</td>
+							</tr>
+						</table>
+						<div class="trapbox">
+							<p>
+								West Bengal has the
+								<mark class="trap">largest mangrove area</mark>
+								but does <mark class="trap">not</mark> feature
+								among the top-3 states for mangrove
+								<mark class="trap">growth</mark> — growth
+								leaders are Andhra Pradesh, Maharashtra, and
+								Karnataka instead.
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s8">
+						<h3 class="secttl">8. Ramsar Sites in India</h3>
+						<div class="flow">
+							<div class="flowstep" data-n="1">
+								<div class="ftext">
+									<b
+										><mark class="fact">1971</mark> — Ramsar
+										Convention</b
+									>
+									<p>
+										A convention on wetland conservation was
+										held in
+										<mark class="person">Ramsar, Iran</mark
+										>.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="2">
+								<div class="ftext">
+									<b
+										><mark class="fact">1975</mark> —
+										Agreements Effective</b
+									>
+									<p>
+										The convention's agreements came into
+										force.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="3">
+								<div class="ftext">
+									<b
+										><mark class="fact">1982</mark> — India
+										Joins</b
+									>
+									<p>
+										India became a signatory to the Ramsar
+										Convention.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>Global Count</h5>
+								<p>
+									More than
+									<mark class="fact">2,500 Ramsar sites</mark>
+									worldwide.
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>India's Count (as of 20 Dec 2025)</h5>
+								<p>
+									<mark class="fact">96 wetlands</mark>,
+									covering
+									<mark class="fact">13,60,805 hectares</mark
+									>.
+								</p>
+							</div>
+							<div class="card g-yellow">
+								<h5>India's Global/Asian Rank</h5>
+								<p>
+									<mark class="trap">Highest in Asia</mark>
+									(96 sites); ranks
+									<mark class="trap">3rd globally</mark> (not
+									1st — a frequent trap).
+								</p>
+							</div>
+							<div class="card g-purple">
+								<h5>Top State</h5>
+								<p>
+									<mark class="person">Tamil Nadu</mark> —
+									<mark class="fact">20</mark> sites
+									(highest); Uttar Pradesh — 10 (2nd).
+								</p>
+							</div>
+						</div>
+						<table class="tbl-pastel">
+							<tr>
+								<th>Superlative</th>
+								<th>Site</th>
+							</tr>
+							<tr>
+								<td>
+									First site added to global Ramsar list
+									(1974)
+								</td>
+								<td>
+									<mark class="person"
+										>Cobourg Peninsula, Australia</mark
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>India's first Ramsar site</td>
+								<td>
+									<mark class="person">Chilika Lake</mark>
+									(Odisha)
+								</td>
+							</tr>
+							<tr>
+								<td>India's largest wetland site</td>
+								<td>
+									<mark class="person">Sundarban Wetland</mark
+									>, West Bengal — 2,549.44 km² (96.76% of
+									site area is wetland)
+								</td>
+							</tr>
+							<tr>
+								<td>India's smallest wetland site</td>
+								<td>
+									<mark class="person">Renuka Wetland</mark>,
+									Himachal Pradesh
+								</td>
+							</tr>
+							<tr>
+								<td>India's first artificial wetland site</td>
+								<td>
+									<mark class="person">Harike Barrage</mark>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Highest number of wetlands within a single
+									reserve
+								</td>
+								<td>
+									<mark class="person"
+										>Kanha Tiger Reserve</mark
+									>
+									— 461 wetlands, mostly &lt;2.25 hectares
+								</td>
+							</tr>
+						</table>
+						<div class="notebox">
+							<p>
+								Total wetlands in
+								<mark class="person">Bihar</mark> have increased
+								to <mark class="fact">6</mark>.
+							</p>
+						</div>
+						<h4 class="subttl">
+							Wetlands Added Under Ramsar Convention (2024–25)
+						</h4>
+						<table>
+							<tr>
+								<th>Wetland</th>
+								<th>Year</th>
+								<th>State</th>
+							</tr>
+							<tr>
+								<td>Siliserh Lake (Alwar)</td>
+								<td>2025</td>
+								<td>Rajasthan</td>
+							</tr>
+							<tr>
+								<td>Kopra Reservoir (Bilaspur)</td>
+								<td>2025</td>
+								<td>Chhattisgarh</td>
+							</tr>
+							<tr>
+								<td>
+									<mark class="trap"
+										>Gogabil Lake (Katihar)</mark
+									>
+								</td>
+								<td>2025</td>
+								<td><mark class="person">Bihar</mark></td>
+							</tr>
+							<tr>
+								<td>
+									<mark class="trap"
+										>Gokul Jalashay (Buxar)</mark
+									>
+								</td>
+								<td>2025</td>
+								<td><mark class="person">Bihar</mark></td>
+							</tr>
+							<tr>
+								<td>
+									<mark class="trap"
+										>Udaipur Jheel (West Champaran)</mark
+									>
+								</td>
+								<td>2025</td>
+								<td><mark class="person">Bihar</mark></td>
+							</tr>
+							<tr>
+								<td>Khichan Wetland Site (91st overall)</td>
+								<td>2025</td>
+								<td>Rajasthan</td>
+							</tr>
+							<tr>
+								<td>Menar Wetland Complex</td>
+								<td>2025</td>
+								<td>Rajasthan</td>
+							</tr>
+							<tr>
+								<td>Udhwa Lake</td>
+								<td>2025</td>
+								<td>Jharkhand</td>
+							</tr>
+							<tr>
+								<td>Khecheopalri Wetland</td>
+								<td>2025</td>
+								<td>Sikkim</td>
+							</tr>
+							<tr>
+								<td>Therthangal Bird Sanctuary</td>
+								<td>2025</td>
+								<td>Tamil Nadu</td>
+							</tr>
+							<tr>
+								<td>Sakkarkottai Bird Sanctuary</td>
+								<td>2025</td>
+								<td>Tamil Nadu</td>
+							</tr>
+							<tr>
+								<td>Nanjarayan Bird Sanctuary</td>
+								<td>2024</td>
+								<td>Tamil Nadu</td>
+							</tr>
+							<tr>
+								<td>Kazhuveli Bird Sanctuary</td>
+								<td>2024</td>
+								<td>Tamil Nadu</td>
+							</tr>
+							<tr>
+								<td>Tawa Reservoir</td>
+								<td>2024</td>
+								<td>Madhya Pradesh</td>
+							</tr>
+							<tr>
+								<td>
+									<mark class="trap"
+										>Nagi Bird Sanctuary</mark
+									>
+								</td>
+								<td>2024</td>
+								<td>
+									<mark class="person">Jamui, Bihar</mark>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<mark class="trap"
+										>Nakti Bird Sanctuary</mark
+									>
+								</td>
+								<td>2024</td>
+								<td>
+									<mark class="person">Jamui, Bihar</mark>
+								</td>
+							</tr>
+							<tr>
+								<td>Magadi Kere Conservation Reserve</td>
+								<td>2024</td>
+								<td>Karnataka</td>
+							</tr>
+							<tr>
+								<td>Ankasamudra Bird Conservation Reserve</td>
+								<td>2024</td>
+								<td>Karnataka</td>
+							</tr>
+							<tr>
+								<td>
+									Aghanashini Estuary Conservation Reserve
+								</td>
+								<td>2024</td>
+								<td>Karnataka</td>
+							</tr>
+							<tr>
+								<td>Karaivetti Bird Sanctuary</td>
+								<td>2024</td>
+								<td>Tamil Nadu</td>
+							</tr>
+							<tr>
+								<td>Longwood Shola Reserve Forest</td>
+								<td>2024</td>
+								<td>Tamil Nadu</td>
+							</tr>
+						</table>
+						<div class="trapbox">
+							<p>
+								Bihar's
+								<mark class="trap">6 Ramsar wetlands</mark> are:
+								Kanwar (Kabar) Lake, Gogabil Lake (Katihar),
+								Gokul Jalashay (Buxar), Udaipur Jheel (West
+								Champaran), Nagi Bird Sanctuary (Jamui), Nakti
+								Bird Sanctuary (Jamui). Do not confuse the
+								<mark class="trap">bird sanctuaries</mark>
+								(Nagi/Nakti, added 2024) with the
+								<mark class="trap">lakes</mark>
+								(Gogabil/Gokul/Udaipur, added 2025).
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s9">
+						<h3 class="secttl">
+							9. Tiger Reserves &amp; Tiger Census 2022
+						</h3>
+						<h4 class="subttl">Latest Tiger Reserves</h4>
+						<table>
+							<tr>
+								<th>Tiger Reserve</th>
+								<th>Date</th>
+								<th>State</th>
+							</tr>
+							<tr>
+								<td>
+									<mark class="trap"
+										>Madhav Tiger Reserve (58th)</mark
+									>
+								</td>
+								<td>2025</td>
+								<td>Madhya Pradesh</td>
+							</tr>
+							<tr>
+								<td>Ratapani Wildlife Sanctuary (57th)</td>
+								<td>Dec 2024</td>
+								<td>Madhya Pradesh</td>
+							</tr>
+							<tr>
+								<td>Guru Ghasidas–Tamor Pingla TR (56th)</td>
+								<td>2024</td>
+								<td>Chhattisgarh</td>
+							</tr>
+						</table>
+						<div class="notebox">
+							<p>
+								India has a total of
+								<mark class="fact">58 tiger reserves</mark> at
+								present.
+							</p>
+						</div>
+						<h4 class="subttl">Tiger Census Report 2022</h4>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>Released By</h5>
+								<p>
+									<mark class="person"
+										>Wildlife Institute of India (WII)</mark
+									>, on
+									<mark class="fact"
+										>International Tiger Day</mark
+									>, <mark class="fact">29 July 2023</mark>.
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>Total Tigers</h5>
+								<p>
+									<mark class="fact">3,682</mark> (2022) vs
+									<mark class="fact">2,967</mark> (2018) —
+									growth of <mark class="fact">24.1%</mark>.
+								</p>
+							</div>
+							<div class="card g-yellow">
+								<h5>World Share</h5>
+								<p>
+									<mark class="fact">75%</mark> of the world's
+									tigers are found in India alone.
+								</p>
+							</div>
+							<div class="card g-red">
+								<h5>Decline Recorded In</h5>
+								<p>
+									<mark class="trap"
+										>Arunachal Pradesh, Odisha, Jharkhand,
+										Chhattisgarh, Telangana</mark
+									>. Also,
+									<mark class="fact">22 tiger reserves</mark>
+									have fewer than 10 tigers each.
+								</p>
+							</div>
+						</div>
+						<div class="notebox">
+							<p>
+								<mark class="person"
+									>Jim Corbett Tiger Reserve</mark
+								>
+								(Uttarakhand) has the highest number of tigers —
+								<mark class="fact">260</mark>.
+							</p>
+						</div>
+						<h4 class="subttl">
+							State-wise Tiger Numbers (2018 vs 2022)
+						</h4>
+						<table class="tbl-pastel">
+							<tr>
+								<th>State</th>
+								<th>2018</th>
+								<th>2022</th>
+							</tr>
+							<tr>
+								<td>
+									<mark class="trap">Madhya Pradesh</mark>
+								</td>
+								<td>526</td>
+								<td><mark class="fact">785</mark></td>
+							</tr>
+							<tr>
+								<td>Karnataka</td>
+								<td>524</td>
+								<td>563</td>
+							</tr>
+							<tr>
+								<td>Uttarakhand</td>
+								<td>442</td>
+								<td>560</td>
+							</tr>
+							<tr>
+								<td>Uttar Pradesh</td>
+								<td>173</td>
+								<td>222</td>
+							</tr>
+							<tr>
+								<td>Bihar</td>
+								<td>31</td>
+								<td>54</td>
+							</tr>
+						</table>
+						<div class="trapbox">
+							<p>
+								Madhya Pradesh recorded the highest tiger
+								numbers in BOTH 2018 and 2022 — earning it the
+								informal title
+								<mark class="trap">"Tiger State of India"</mark
+								>. This is a separate superlative from "highest
+								forest cover" and "highest MDF/OF" — MP happens
+								to top all three, a favourite combination for
+								linking-type MCQs.
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s10">
+						<h3 class="secttl">10. Leopard Status 2022</h3>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>Release</h5>
+								<p>
+									'Status of Leopards in India 2022' released
+									in
+									<mark class="fact">February 2024</mark>, New
+									Delhi, by the
+									<mark class="person"
+										>Ministry of Environment, Forest and
+										Climate Change</mark
+									>.
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>Population Trend</h5>
+								<p>
+									<mark class="fact">12,852</mark> (2018) →
+									<mark class="fact">13,874</mark> (2022).
+								</p>
+							</div>
+							<div class="card g-yellow">
+								<h5>Highest Population (site)</h5>
+								<p>
+									<mark class="person"
+										>Nagarjunsagar-Srisailam Tiger
+										Reserve</mark
+									>, Andhra Pradesh.
+								</p>
+							</div>
+							<div class="card g-red">
+								<h5>Highest Density (Tiger Reserve)</h5>
+								<p>
+									<mark class="person"
+										>Sariska Tiger Reserve</mark
+									>.
+								</p>
+							</div>
+						</div>
+						<h4 class="subttl">
+							State-wise Leopard Population (2022)
+						</h4>
+						<table class="tbl-pastel">
+							<tr>
+								<th>State (Rank)</th>
+								<th>Population</th>
+							</tr>
+							<tr>
+								<td>Madhya Pradesh (1st)</td>
+								<td><mark class="fact">3,907</mark></td>
+							</tr>
+							<tr>
+								<td>Maharashtra (2nd)</td>
+								<td>1,985</td>
+							</tr>
+							<tr>
+								<td>Karnataka (3rd)</td>
+								<td>1,879</td>
+							</tr>
+							<tr>
+								<td>Uttar Pradesh</td>
+								<td>321</td>
+							</tr>
+							<tr>
+								<td>Bihar</td>
+								<td>86</td>
+							</tr>
+							<tr>
+								<td>Jharkhand</td>
+								<td>51</td>
+							</tr>
+						</table>
+						<div class="trapbox">
+							<p>
+								Madhya Pradesh ranks 1st in leopards too — but
+								the tiger reserve with the
+								<mark class="trap"
+									>highest leopard density</mark
+								>
+								is Sariska (Rajasthan), NOT any MP reserve.
+								Density (per unit area) and total state
+								population are different metrics.
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s11">
+						<h3 class="secttl">11. First Survey of Snow Leopard</h3>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>Conducted By</h5>
+								<p>
+									Jointly by
+									<mark class="person"
+										>Wildlife Institute of India (WII)</mark
+									>
+									and the
+									<mark class="person"
+										>National Conservation Foundation
+										(NCF)</mark
+									>. Started in
+									<mark class="fact">2019</mark>.
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>Total Population</h5>
+								<p>
+									<mark class="fact">718</mark> snow leopards,
+									spread across
+									<mark class="fact">6 States/UTs</mark>.
+								</p>
+							</div>
+						</div>
+						<table class="tbl-pastel">
+							<tr>
+								<th>State/UT</th>
+								<th>Population</th>
+							</tr>
+							<tr>
+								<td><mark class="person">Ladakh</mark></td>
+								<td><mark class="fact">477</mark></td>
+							</tr>
+							<tr>
+								<td>Uttarakhand</td>
+								<td>124</td>
+							</tr>
+							<tr>
+								<td>Himachal Pradesh</td>
+								<td>51</td>
+							</tr>
+							<tr>
+								<td>Arunachal Pradesh</td>
+								<td>36</td>
+							</tr>
+							<tr>
+								<td>Sikkim</td>
+								<td>21</td>
+							</tr>
+							<tr>
+								<td>Jammu &amp; Kashmir</td>
+								<td>Remainder of 718 (~9)</td>
+							</tr>
+						</table>
+						<div class="trapbox">
+							<p>
+								<mark class="trap"
+									>Ladakh, not Jammu &amp; Kashmir</mark
+								>, has by far the highest snow leopard
+								population — a distinction sharpened since
+								Ladakh became a separate UT in 2019.
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s12">
+						<h3 class="secttl">12. Bihar — Forest Cover Basics</h3>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>Total Forest Cover</h5>
+								<p><mark class="fact">7,532.45 sq. km</mark></p>
+							</div>
+							<div class="card g-yellow">
+								<h5>% of State Area</h5>
+								<p><mark class="fact">8.0%</mark></p>
+							</div>
+							<div class="card g-green">
+								<h5>Growth Since 2021</h5>
+								<p><mark class="fact">+129.19 sq. km</mark></p>
+							</div>
+						</div>
+						<div class="notebox">
+							<p>
+								Bihar's forest cover of
+								<mark class="fact">8.0%</mark> is
+								<mark class="trap"
+									>well below the national average of
+									21.76%</mark
+								>
+								and far below the 33% National Forest Policy
+								target — Bihar is among the least-forested major
+								states.
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s13">
+						<h3 class="secttl">
+							13. Bihar — District-wise Rankings
+						</h3>
+						<h4 class="subttl">By Area</h4>
+						<table class="tbl-pastel">
+							<tr>
+								<th>Highest (Area)</th>
+								<th>Area</th>
+								<th>Lowest (Area)</th>
+								<th>Area</th>
+							</tr>
+							<tr>
+								<td>
+									<mark class="person">Kaimur (Bhabua)</mark>
+								</td>
+								<td><mark class="fact">1,025.68 km²</mark></td>
+								<td><mark class="person">Sheikhpura</mark></td>
+								<td><mark class="fact">0.82 km²</mark></td>
+							</tr>
+							<tr>
+								<td>West Champaran</td>
+								<td>908.23 km²</td>
+								<td>Arwal</td>
+								<td>4.02 km²</td>
+							</tr>
+							<tr>
+								<td>Jamui</td>
+								<td>670.84 km²</td>
+								<td>Buxar</td>
+								<td>6.01 km²</td>
+							</tr>
+						</table>
+						<h4 class="subttl">By Percentage</h4>
+						<table class="tbl-pastel">
+							<tr>
+								<th>Highest (%)</th>
+								<th>%</th>
+								<th>Lowest (%)</th>
+								<th>%</th>
+							</tr>
+							<tr>
+								<td>
+									<mark class="person">Kaimur (Bhabua)</mark>
+								</td>
+								<td><mark class="fact">30.51%</mark></td>
+								<td><mark class="person">Sheikhpura</mark></td>
+								<td><mark class="fact">0.12%</mark></td>
+							</tr>
+							<tr>
+								<td>Jamui</td>
+								<td>21.65%</td>
+								<td>Buxar</td>
+								<td>0.35%</td>
+							</tr>
+							<tr>
+								<td>Munger</td>
+								<td>21.57%</td>
+								<td>Siwan</td>
+								<td>0.42%</td>
+							</tr>
+						</table>
+						<div class="trapbox">
+							<p>
+								<mark class="trap">Sheikhpura and Buxar</mark>
+								appear at the lowest end in BOTH the area-wise
+								and percentage-wise rankings — a double trap for
+								"least forested Bihar district" questions.
+							</p>
+						</div>
+						<h4 class="subttl">
+							Change in Forest Cover Since 2021
+						</h4>
+						<table class="tbl-pastel">
+							<tr>
+								<th>Highest Increase</th>
+								<th>Change</th>
+								<th>Highest Decrease</th>
+								<th>Change</th>
+							</tr>
+							<tr>
+								<td><mark class="person">Bhagalpur</mark></td>
+								<td><mark class="fact">+33.82 km²</mark></td>
+								<td>
+									<mark class="trap">Kaimur (Bhabua)</mark>
+								</td>
+								<td><mark class="fact">−35.35 km²</mark></td>
+							</tr>
+							<tr>
+								<td>Madhubani</td>
+								<td>+25.71 km²</td>
+								<td>Nawada</td>
+								<td>−9.76 km²</td>
+							</tr>
+							<tr>
+								<td>East Champaran</td>
+								<td>+19.44 km²</td>
+								<td>Kishanganj</td>
+								<td>−7.56 km²</td>
+							</tr>
+						</table>
+						<div class="trapbox">
+							<p>
+								<mark class="trap">Kaimur (Bhabua)</mark> —
+								Bihar's district with the LARGEST forest cover
+								area AND highest % — also recorded the
+								district's
+								<mark class="trap">steepest decline</mark> since
+								the 2021 report. "Largest ≠ safest" applies
+								within Bihar too, mirroring the Madhya Pradesh
+								pattern at the national level.
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="s14">
+						<h3 class="secttl">
+							14. Bihar — Forest Types &amp; Legal Classes
+						</h3>
+						<div class="cardgrid">
+							<div class="card g-yellow">
+								<h5>Shrub Area</h5>
+								<p>
+									<mark class="fact">260.80 sq. km</mark> —
+									<mark class="fact">0.28%</mark> of state
+									area.
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>Valmiki Nagar Tiger Reserve</h5>
+								<p>
+									Forest cover:
+									<mark class="fact">796.12 km²</mark> =
+									<mark class="fact">85.71%</mark> of total TR
+									area (<mark class="fact">928.80 km²</mark>).
+								</p>
+							</div>
+						</div>
+						<h4 class="subttl">Forest Types (2023)</h4>
+						<table class="tbl-pastel">
+							<tr>
+								<th>Type</th>
+								<th>Area</th>
+								<th>% of State Area</th>
+							</tr>
+							<tr>
+								<td>Very Dense Forest (&gt;70% canopy)</td>
+								<td><mark class="fact">387 km²</mark></td>
+								<td>0.41%</td>
+							</tr>
+							<tr>
+								<td>Moderately Dense Forest (40–70%)</td>
+								<td><mark class="fact">3,284 km²</mark></td>
+								<td>3.49%</td>
+							</tr>
+							<tr>
+								<td>Open Forest (10–40%)</td>
+								<td><mark class="fact">3,861 km²</mark></td>
+								<td>4.10%</td>
+							</tr>
+							<tr>
+								<td><b>Total Forest</b></td>
+								<td>
+									<b><mark class="fact">7,532 km²</mark></b>
+								</td>
+								<td><b>8.0%</b></td>
+							</tr>
+						</table>
+						<h4 class="subttl">Top Districts by Forest Type</h4>
+						<table>
+							<tr>
+								<th>Class</th>
+								<th>Top District</th>
+								<th>Area</th>
+							</tr>
+							<tr>
+								<td>Very dense forest</td>
+								<td>
+									<mark class="person">West Champaran</mark>
+								</td>
+								<td>303.78 km²</td>
+							</tr>
+							<tr>
+								<td>Moderately dense forest</td>
+								<td>
+									<mark class="person">West Champaran</mark>
+								</td>
+								<td>527.25 km²</td>
+							</tr>
+							<tr>
+								<td>Open forest</td>
+								<td>
+									<mark class="trap">Kaimur (Bhabua)</mark>
+								</td>
+								<td>499.68 km²</td>
+							</tr>
+						</table>
+						<div class="trapbox">
+							<p>
+								<mark class="trap">West Champaran</mark> leads
+								in BOTH very dense and moderately dense forest
+								categories;
+								<mark class="trap">Kaimur (Bhabua)</mark> leads
+								only in open forest — not the same district as
+								the VDF/MDF leader.
+							</p>
+						</div>
+						<h4 class="subttl">
+							Recorded Forest Areas (Legal/Social Classification)
+						</h4>
+						<table>
+							<tr>
+								<th>Class</th>
+								<th>Area (2023)</th>
+							</tr>
+							<tr>
+								<td>Reserved forests</td>
+								<td><mark class="fact">693 km²</mark></td>
+							</tr>
+							<tr>
+								<td>Protected forests</td>
+								<td><mark class="fact">6,183 km²</mark></td>
+							</tr>
+							<tr>
+								<td>Unclassified forest</td>
+								<td><mark class="fact">566 km²</mark></td>
+							</tr>
+							<tr>
+								<td><b>Total recorded forest area</b></td>
+								<td>
+									<b><mark class="fact">7,442 km²</mark></b>
+								</td>
+							</tr>
+						</table>
+						<div class="ambigbox">
+							<p>
+								<b
+									>Contradiction flagged, not silently
+									resolved:</b
+								>
+								Bihar's total actual forest cover is
+								<mark class="fact">7,532.45 km²</mark> (Sec.
+								12), but the sum of legally
+								<mark class="concept"
+									>"recorded" forest area</mark
+								>
+								(Reserved + Protected + Unclassified) is
+								<mark class="fact">7,442 km²</mark> — a gap of
+								roughly 90 km². This is not an error: "forest
+								cover" (satellite-assessed green cover, any land
+								≥10% canopy density over 1 hectare, regardless
+								of legal/ownership status) and "recorded forest
+								area" (land legally notified as forest under
+								statute) are two different FSI concepts and need
+								not match. Keep them separate in MCQs.
+							</p>
+						</div>
+					</section>
+				</div>
+
+				<!-- ================= TAB 2 : MCQ ================= -->
+				<div class="panel" id="t2">
+					<div class="pagehead">
+						<h2>
+							MCQ Practice Set — Advanced (UPSC / State PCS Level)
+						</h2>
+						<p>
+							Statement-based, matching, and "how many correct"
+							questions built to test discrimination between
+							closely-related facts — not straightforward recall.
+							Tap "Show Answer" to reveal.
+						</p>
+					</div>
+
+					<section class="block" id="m1">
+						<h3 class="secttl">
+							Section A — India (National ISFR-2023 &amp; Allied
+							Reports)
+						</h3>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q1. Consider the following statements regarding
+								the 18th India State of Forest Report
+								(ISFR-2023):<br />1. It was released in December
+								2023 by the Ministry of Environment, Forest and
+								Climate Change.<br />2. The report uses
+								remote-sensing data from the Resourcesat-2
+								satellite.<br />3. India's forest cover as
+								assessed in this report exceeds the 33% target
+								prescribed under the National Forest Policy,
+								1988.<br />How many of the statements given
+								above are correct?
+							</p>
+							<div class="options">
+								(a) Only one &nbsp; (b) Only two<br />(c) All
+								three &nbsp; (d) None
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) Only one.</b> Only statement 2 is
+									correct. ISFR-2023 was released in
+									<b>December 2024</b>, not 2023 (Statement 1
+									is false). India's forest cover stands at
+									21.76%, well short of the 33% policy target
+									(Statement 3 is false).
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q2. With reference to forest and tree cover in
+								India as per ISFR-2023, which one of the
+								following sequences correctly represents the
+								descending order of area?
+							</p>
+							<div class="options">
+								(a) Forest cover &gt; Total green cover &gt;
+								Tree cover &nbsp; (b) Total green cover &gt;
+								Forest cover &gt; Tree cover<br />(c) Tree cover
+								&gt; Forest cover &gt; Total green cover &nbsp;
+								(d) Total green cover &gt; Tree cover &gt;
+								Forest cover
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b).</b> Total green cover (8,27,357 km²)
+									&gt; Forest cover (7,15,343 km²) &gt; Tree
+									cover (1,12,014 km²), since Total green
+									cover is the sum of the other two.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q3. Which of the following state/UT pairs is
+								CORRECTLY matched with its ISFR-2023
+								superlative?
+							</p>
+							<div class="options">
+								(a) Mizoram — highest forest cover by area among
+								states &nbsp; (b) Madhya Pradesh — highest
+								percentage of forest cover among states<br />(c)
+								Lakshadweep — highest percentage of forest cover
+								among UTs &nbsp; (d) Arunachal Pradesh — highest
+								forest cover by area among states
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c).</b> Mizoram tops states by
+									percentage (85.34%), not area; Madhya
+									Pradesh tops states by area (77,073 km²),
+									not percentage; Arunachal Pradesh is 2nd by
+									area, not 1st (MP is 1st). Lakshadweep
+									correctly tops UTs by percentage (91.33%).
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q4. Consider the following statements about
+								Madhya Pradesh in the context of ISFR-2023:<br />1.
+								It has the largest forest cover by area among
+								Indian states.<br />2. It also recorded the
+								highest loss of forest cover among states
+								between 2021 and 2023.<br />3. It tops the
+								country in area under Very Dense Forest
+								(VDF).<br />Which of the statements given above
+								is/are correct?
+							</p>
+							<div class="options">
+								(a) 1 and 2 only &nbsp; (b) 2 and 3 only<br />(c)
+								1 and 3 only &nbsp; (d) 1, 2 and 3
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) 1 and 2 only.</b> Statement 3 is
+									incorrect — Arunachal Pradesh, not Madhya
+									Pradesh, tops Very Dense Forest cover; MP
+									instead tops Moderately Dense and Open
+									Forest categories.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q5. Match List-I (Category) with List-II
+								(Leading State) as per ISFR-2023, and select the
+								correct answer:<br /><b>List-I</b> — A. Very
+								Dense Forest &nbsp; B. Moderately Dense Forest
+								&nbsp; C. Open Forest &nbsp; D. Forest Carbon
+								Stock<br /><b>List-II</b> — 1. Arunachal Pradesh
+								&nbsp; 2. Madhya Pradesh &nbsp; 3. Madhya
+								Pradesh &nbsp; 4. Arunachal Pradesh
+							</p>
+							<div class="options">
+								(a) A-1, B-2, C-3, D-4 &nbsp; (b) A-2, B-1, C-3,
+								D-4<br />(c) A-1, B-3, C-2, D-4 &nbsp; (d) A-4,
+								B-2, C-3, D-1
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) A-1, B-2, C-3, D-4.</b> VDF and
+									Carbon Stock are topped by Arunachal
+									Pradesh; MDF and Open Forest are topped by
+									Madhya Pradesh.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q6. As per ISFR-2023, which of the following
+								states featured among the top three in BOTH
+								"highest increase in forest cover" and "highest
+								increase in combined forest and tree cover"
+								(2021–2023)?
+							</p>
+							<div class="options">
+								(a) Mizoram &nbsp; (b) Gujarat<br />(c) Odisha
+								&nbsp; (d) Chhattisgarh
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Odisha.</b> Top-3 for forest cover
+									increase: Mizoram, Gujarat, Odisha. Top-3
+									for combined forest+tree cover increase:
+									Chhattisgarh, Uttar Pradesh, Odisha. Odisha
+									is common to both lists.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q7. Consider the following statements regarding
+								mangrove cover in India as per ISFR-2023:<br />1.
+								West Bengal has the largest mangrove area among
+								states.<br />2. West Bengal also recorded the
+								highest growth in mangrove cover between 2021
+								and 2023.<br />3. Total mangrove cover in the
+								country has declined compared to the 2021
+								assessment.<br />Which of the statements given
+								above is/are correct?
+							</p>
+							<div class="options">
+								(a) 1 and 3 only &nbsp; (b) 2 and 3 only<br />(c)
+								1 and 2 only &nbsp; (d) 1, 2 and 3
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) 1 and 3 only.</b> Statement 2 is
+									false — the highest mangrove growth was
+									recorded by Andhra Pradesh, not West Bengal;
+									overall national mangrove cover fell by 7.43
+									sq. km versus 2021.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q8. With reference to Ramsar sites in India,
+								consider the following statements:<br />1. India
+								has the highest number of Ramsar sites in
+								Asia.<br />2. India also ranks first globally in
+								the number of Ramsar sites.<br />3. Tamil Nadu
+								has the highest number of Ramsar sites among
+								Indian states.<br />Which of the statements
+								given above is/are correct?
+							</p>
+							<div class="options">
+								(a) 1 and 3 only &nbsp; (b) 2 and 3 only<br />(c)
+								1 only &nbsp; (d) 1, 2 and 3
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) 1 and 3 only.</b> India ranks 3rd
+									globally (not 1st) despite topping Asia,
+									since Statement 2 is incorrect.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q9. Which of the following is the correct
+								chronological order of the following events
+								related to wetland conservation?<br />1. India
+								joins the Ramsar Convention.<br />2. The Ramsar
+								Convention's agreements come into force.<br />3.
+								The Ramsar Convention on wetlands is held in
+								Iran.<br />4. Chilika Lake becomes India's first
+								Ramsar site.
+							</p>
+							<div class="options">
+								(a) 3-2-1-4 &nbsp; (b) 3-1-2-4<br />(c) 1-3-2-4
+								&nbsp; (d) 3-2-4-1
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) 3-2-1-4.</b> Convention held (1971) →
+									agreements effective (1975) → India joins
+									(1982) → Chilika Lake designated as India's
+									first Ramsar site (1981, formally recognised
+									after India's accession process).
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q10. Consider the following pairs of wetland
+								superlatives and their sites:<br />1. India's
+								largest wetland site — Sundarban Wetland<br />2.
+								India's smallest wetland site — Renuka
+								Wetland<br />3. India's first artificial wetland
+								site — Harike Barrage<br />4. Site with highest
+								count of individual wetlands — Chilika Lake<br />How
+								many pairs given above are correctly matched?
+							</p>
+							<div class="options">
+								(a) Only one &nbsp; (b) Only two<br />(c) Only
+								three &nbsp; (d) All four
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Only three.</b> Pairs 1, 2 and 3 are
+									correct. Pair 4 is incorrect — Kanha Tiger
+									Reserve (461 wetlands), not Chilika Lake,
+									holds the highest count of individual
+									wetlands.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q11. With reference to the Tiger Census Report
+								2022, which of the following statements is/are
+								correct?<br />1. It was released by the Wildlife
+								Institute of India on the occasion of
+								International Tiger Day.<br />2. Tiger
+								population growth between 2018 and 2022 was
+								recorded across every major tiger-bearing state,
+								without exception.<br />3. Jim Corbett Tiger
+								Reserve recorded the highest number of tigers
+								among all reserves.
+							</p>
+							<div class="options">
+								(a) 1 and 3 only &nbsp; (b) 2 and 3 only<br />(c)
+								1 only &nbsp; (d) 1, 2 and 3
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) 1 and 3 only.</b> Statement 2 is
+									false — decline was recorded in Arunachal
+									Pradesh, Odisha, Jharkhand, Chhattisgarh and
+									Telangana.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q12. Consider the following statements:<br />1.
+								Madhya Pradesh recorded the highest number of
+								tigers among states in both the 2018 and 2022
+								census cycles.<br />2. Madhya Pradesh also
+								recorded the highest leopard population among
+								states in 2022.<br />3. Sariska Tiger Reserve
+								has the highest recorded density of leopards
+								among tiger reserves.<br />Which of the
+								statements given above is/are correct?
+							</p>
+							<div class="options">
+								(a) 1 and 2 only &nbsp; (b) 2 and 3 only<br />(c)
+								1 and 3 only &nbsp; (d) 1, 2 and 3
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(d) 1, 2 and 3.</b> All three are correct
+									— Madhya Pradesh's dominance across tiger
+									AND leopard population totals is genuine,
+									while Sariska's leopard-density leadership
+									is a separate, reserve-level metric that
+									does not belong to MP.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q13. As per the "Status of Leopards in India
+								2022" report, the tiger reserve/site with the
+								highest total leopard POPULATION and the tiger
+								reserve with the highest leopard DENSITY are
+								located, respectively, in which states?
+							</p>
+							<div class="options">
+								(a) Rajasthan and Andhra Pradesh &nbsp; (b)
+								Andhra Pradesh and Rajasthan<br />(c) Madhya
+								Pradesh and Rajasthan &nbsp; (d) Madhya Pradesh
+								and Andhra Pradesh
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b).</b> Highest population:
+									Nagarjunsagar-Srisailam (Andhra Pradesh).
+									Highest density: Sariska Tiger Reserve
+									(Rajasthan).
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q14. Consider the following statements regarding
+								the First Survey of Snow Leopard in India:<br />1.
+								It was conducted solely by the Wildlife
+								Institute of India.<br />2. The survey commenced
+								in 2019.<br />3. Jammu and Kashmir recorded the
+								highest snow leopard population among all
+								surveyed States/UTs.<br />Which of the
+								statements given above is/are correct?
+							</p>
+							<div class="options">
+								(a) 2 only &nbsp; (b) 2 and 3 only<br />(c) 1
+								and 2 only &nbsp; (d) 1, 2 and 3
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) 2 only.</b> Statement 1 is false — it
+									was a joint survey with the National
+									Conservation Foundation. Statement 3 is
+									false — Ladakh (477), not Jammu &amp;
+									Kashmir, has the highest snow leopard
+									population.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q15. Which one of the following is NOT among the
+								criteria/facts associated with the 16th cycle of
+								tiger reserve additions (56th–58th reserves) as
+								per recent notifications?
+							</p>
+							<div class="options">
+								(a) Guru Ghasidas–Tamor Pingla Tiger Reserve is
+								in Chhattisgarh &nbsp; (b) Ratapani Wildlife
+								Sanctuary became the 57th tiger reserve<br />(c)
+								Madhav Tiger Reserve, the 58th, is located in
+								Madhya Pradesh &nbsp; (d) All three of the
+								latest tiger reserves (56th–58th) are located in
+								different states from one another
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b
+										>(d) is incorrect (i.e., the false
+										statement, hence the answer).</b
+									>
+									Two of the three latest reserves — Ratapani
+									(57th) and Madhav (58th) — are both in
+									Madhya Pradesh; only Guru Ghasidas–Tamor
+									Pingla (56th) is in a different state
+									(Chhattisgarh).
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="m2">
+						<h3 class="secttl">
+							Section B — Bihar (ISFR-2023, Bihar Chapter)
+						</h3>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q16. Consider the following statements regarding
+								Bihar's forest cover as per ISFR-2023:<br />1.
+								Bihar's forest cover stands at 8.0% of its
+								geographical area, against a national average of
+								21.76%.<br />2. Bihar's forest cover declined
+								compared to the 2021 report.<br />Which of the
+								statements given above is/are correct?
+							</p>
+							<div class="options">
+								(a) 1 only &nbsp; (b) 2 only<br />(c) Both 1 and
+								2 &nbsp; (d) Neither 1 nor 2
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) 1 only.</b> Bihar's forest cover
+									INCREASED by 129.19 sq. km compared to 2021,
+									not declined.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q17. Which Bihar district holds the distinction
+								of having BOTH the largest forest cover by area
+								AND the steepest decline in forest cover since
+								the 2021 report?
+							</p>
+							<div class="options">
+								(a) West Champaran &nbsp; (b) Jamui<br />(c)
+								Kaimur (Bhabua) &nbsp; (d) Munger
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Kaimur (Bhabua).</b> A district-level
+									echo of the national-level Madhya Pradesh
+									pattern — "largest cover" does not imply
+									"safest trend."
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q18. Match List-I (Bihar district) with List-II
+								(superlative) correctly:<br /><b>List-I</b> — A.
+								Sheikhpura &nbsp; B. Bhagalpur &nbsp; C. West
+								Champaran &nbsp; D. Kaimur (Bhabua)<br /><b
+									>List-II</b
+								>
+								— 1. Highest increase in forest cover since 2021
+								&nbsp; 2. Lowest forest cover, both by area and
+								percentage &nbsp; 3. Top district in Very Dense
+								and Moderately Dense Forest &nbsp; 4. Top
+								district in Open Forest
+							</p>
+							<div class="options">
+								(a) A-2, B-1, C-3, D-4 &nbsp; (b) A-1, B-2, C-4,
+								D-3<br />(c) A-2, B-3, C-1, D-4 &nbsp; (d) A-4,
+								B-1, C-2, D-3
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) A-2, B-1, C-3, D-4.</b>
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q19. Consider the following statements about the
+								recorded/legal forest classification in Bihar
+								(2023):<br />1. Protected forests constitute the
+								largest share of Bihar's recorded forest
+								area.<br />2. The total recorded forest area of
+								Bihar (Reserved + Protected + Unclassified)
+								exactly equals its total satellite-assessed
+								forest cover figure.<br />Which of the
+								statements given above is/are correct?
+							</p>
+							<div class="options">
+								(a) 1 only &nbsp; (b) 2 only<br />(c) Both 1 and
+								2 &nbsp; (d) Neither 1 nor 2
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) 1 only.</b> Protected forests (6,183
+									km²) dominate Bihar's recorded forest area.
+									Statement 2 is false: recorded forest area
+									totals 7,442 km², while satellite-assessed
+									forest cover is 7,532.45 km² — legally
+									"recorded" status and satellite-measured
+									"cover" are distinct FSI concepts that need
+									not match exactly.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q20. With reference to the Valmiki Nagar Tiger
+								Reserve in Bihar, its forest cover as a
+								proportion of its total notified tiger reserve
+								area is approximately:
+							</p>
+							<div class="options">
+								(a) 65% &nbsp; (b) 75%<br />(c) 85.71% &nbsp;
+								(d) 95%
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) 85.71%</b> (796.12 km² forest cover
+									out of 928.80 km² total reserve area).
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q21. Consider the following statements regarding
+								Bihar's forest-type composition (2023):<br />1.
+								Open Forest constitutes the largest share of
+								Bihar's total forest cover, larger than either
+								Very Dense or Moderately Dense Forest.<br />2.
+								Very Dense Forest constitutes less than 1% of
+								Bihar's total geographical area.<br />Which of
+								the statements given above is/are correct?
+							</p>
+							<div class="options">
+								(a) 1 only &nbsp; (b) 2 only<br />(c) Both 1 and
+								2 &nbsp; (d) Neither 1 nor 2
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Both.</b> Open Forest (3,861 km²)
+									exceeds MDF (3,284 km²) and VDF (387 km²);
+									VDF is just 0.41% of the state's area —
+									under 1%.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q22. Bihar's total number of Ramsar-designated
+								wetlands, following the 2024–25 additions,
+								stands at:
+							</p>
+							<div class="options">
+								(a) 3 &nbsp; (b) 4<br />(c) 6 &nbsp; (d) 9
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) 6.</b> Kanwar Lake, Gogabil Lake,
+									Gokul Jalashay, Udaipur Jheel, Nagi Bird
+									Sanctuary, and Nakti Bird Sanctuary.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q23. Consider the following pairs of Bihar's
+								newly designated Ramsar wetlands and the year of
+								their addition:<br />1. Nagi Bird Sanctuary
+								(Jamui) — 2024<br />2. Gogabil Lake (Katihar) —
+								2024<br />3. Gokul Jalashay (Buxar) — 2025<br />4.
+								Nakti Bird Sanctuary (Jamui) — 2025<br />How
+								many of the above pairs are correctly matched?
+							</p>
+							<div class="options">
+								(a) Only one &nbsp; (b) Only two<br />(c) Only
+								three &nbsp; (d) All four
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) Only two.</b> Pairs 1 and 3 are
+									correct. Gogabil Lake was added in 2025 (not
+									2024) — pair 2 is wrong. Nakti Bird
+									Sanctuary was added in 2024 (not 2025),
+									together with Nagi — pair 4 is wrong.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q24. Which of the following statements about
+								district-wise change in Bihar's forest cover
+								(2021–2023) is correct?
+							</p>
+							<div class="options">
+								(a) Nawada recorded a larger decline than Kaimur
+								(Bhabua) &nbsp; (b) Bhagalpur recorded the
+								highest increase, ahead of Madhubani and East
+								Champaran<br />(c) Kishanganj recorded the
+								highest increase in the state &nbsp; (d) Munger
+								recorded a decline larger than Kaimur's
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b).</b> Bhagalpur (+33.82 km²) led the
+									increase, ahead of Madhubani (+25.71 km²)
+									and East Champaran (+19.44 km²). Kaimur's
+									decline (−35.35 km²) was the steepest, far
+									larger than Nawada's (−9.76 km²) or
+									Kishanganj's (−7.56 km²), which was on the
+									decrease list, not increase.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<p class="qtext">
+								Q25. Assertion (A): Bihar's forest cover
+								percentage (8.0%) is far below the National
+								Forest Policy 1988 target of 33%.<br />Reason
+								(R): Bihar lies mostly in the Indo-Gangetic
+								plains, which are intensively cultivated and
+								historically carry low natural forest cover
+								compared to hilly and north-eastern states.
+							</p>
+							<div class="options">
+								(a) Both A and R are true, and R is the correct
+								explanation of A &nbsp; (b) Both A and R are
+								true, but R is NOT the correct explanation of
+								A<br />(c) A is true, but R is false &nbsp; (d)
+								A is false, but R is true
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a).</b> Both the statement and the
+									plains-agriculture-driven reasoning are
+									accurate and causally linked, consistent
+									with Bihar's district data (Kaimur, West
+									Champaran and Jamui — the hilly/forested
+									fringe districts — dominate Bihar's forest
+									cover rankings, while plains districts like
+									Sheikhpura and Buxar have negligible cover).
+								</div>
+							</details>
+						</div>
+					</section>
+				</div>
+			</main>
+		</div>
+
+		<script>
+			function showTab(id, btn) {
+				document
+					.querySelectorAll(".panel")
+					.forEach((p) => p.classList.remove("active"));
+				document.getElementById(id).classList.add("active");
+				document
+					.querySelectorAll(".tabbtn")
+					.forEach((b) => b.classList.remove("active"));
+				btn.classList.add("active");
+				document.getElementById("nav1").style.display =
+					id === "t1" ? "block" : "none";
+				document.getElementById("nav2").style.display =
+					id === "t2" ? "block" : "none";
+				document.querySelector(".sidebar").classList.remove("open");
+				window.scrollTo(0, 0);
+			}
+
+			function makeMcqInteractive(mcq) {
+				const optionsDiv = mcq.querySelector(".options");
+				const details = mcq.querySelector("details");
+				const ansDiv = mcq.querySelector(".ans");
+				if (!optionsDiv || !details || !ansDiv) return;
+
+				const raw = optionsDiv.innerHTML;
+				const regex = /\(([a-d])\)\s*([\s\S]*?)(?=\([a-d]\)|$)/g;
+				const opts = [];
+				let m;
+				while ((m = regex.exec(raw)) !== null) {
+					let text = m[2]
+						.replace(/<br\s*\/?>/gi, "")
+						.replace(/&nbsp;/gi, "")
+						.trim();
+					if (text) opts.push({ letter: m[1], text: text });
+				}
+				if (opts.length < 2) return;
+
+				const ansMatch = ansDiv.innerHTML.match(/\(([a-d])\)/i);
+				const correctLetter = ansMatch
+					? ansMatch[1].toLowerCase()
+					: null;
+				if (!correctLetter) return;
+
+				optionsDiv.classList.add("interactive");
+				optionsDiv.innerHTML = "";
+				const msg = document.createElement("div");
+				msg.className = "pickmsg";
+				msg.style.display = "none";
+				msg.style.gridColumn = "1 / -1";
+
+				opts.forEach((opt) => {
+					const btn = document.createElement("button");
+					btn.type = "button";
+					btn.className = "optbtn";
+					btn.dataset.letter = opt.letter;
+					btn.innerHTML = "(" + opt.letter + ") " + opt.text;
+					btn.addEventListener("click", function () {
+						if (optionsDiv.classList.contains("answered")) return;
+						optionsDiv.classList.add("answered");
+						const chosen = btn.dataset.letter;
+						optionsDiv.querySelectorAll(".optbtn").forEach((b) => {
+							b.disabled = true;
+							if (b.dataset.letter === correctLetter) {
+								b.classList.add("opt-correct");
+							} else if (b.dataset.letter === chosen) {
+								b.classList.add("opt-incorrect");
+							}
+						});
+						msg.style.display = "inline-block";
+						if (chosen === correctLetter) {
+							msg.textContent = "✔ Correct!";
+							msg.className = "pickmsg right";
+						} else {
+							msg.textContent =
+								"✘ Incorrect — correct answer is (" +
+								correctLetter +
+								")";
+							msg.className = "pickmsg wrong";
+						}
+						details.open = true;
+					});
+					optionsDiv.appendChild(btn);
+				});
+				optionsDiv.appendChild(msg);
+			}
+
+			document.querySelectorAll(".mcq").forEach(makeMcqInteractive);
+		</script>
+	</body>
+</html>
