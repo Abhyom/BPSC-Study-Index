@@ -1,0 +1,895 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Alchemist's Almanac — Non-Metals &amp; Fuels</title>
+<style>
+:root{
+  --ink:#2b2114; --paper:#f6ecd4; --paper-2:#efe1bd;
+  --sidebar:#171c2b; --sidebar-2:#232a3f; --sidebar-text:#cfd6e8;
+  --accent:#8a3b26;
+  --yellow:#e0a712; --yellow-bg:#fbe08a;
+  --blue:#1f6fa8; --blue-bg:#a9d3ef;
+  --green:#2f7d3f; --green-bg:#a9dcac;
+  --red:#c23b2c; --red-bg:#f3a89e;
+  --purple:#6a3f9c; --purple-bg:#d3bdef;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"Georgia","Cambria",serif;color:var(--ink);background:var(--sidebar);font-size:16px;line-height:1.7}
+mark{color:var(--ink);font-weight:700;padding:2px 6px;border-radius:4px;box-decoration-break:clone;-webkit-box-decoration-break:clone;line-height:1.9;display:inline;unicode-bidi:isolate}
+mark.concept{background:var(--yellow-bg);box-shadow:inset 0 0 0 1.5px var(--yellow)}
+mark.fact{background:var(--blue-bg);box-shadow:inset 0 0 0 1.5px var(--blue);color:#12324a}
+mark.person{background:var(--green-bg);box-shadow:inset 0 0 0 1.5px var(--green);color:#123a1a}
+mark.trap{background:var(--red-bg);box-shadow:inset 0 0 0 1.5px var(--red);color:#4a0f08}
+mark.rule{background:var(--purple-bg);box-shadow:inset 0 0 0 1.5px var(--purple);color:#2a1740}
+p,li,td,.card p,.boxsub,.arrowbox,.branchnode,.flowstep .ftext p{line-height:2.05}
+td mark, th mark{line-height:1.75}
+.app{display:flex;min-height:100vh}
+.sidebar{width:270px;background:linear-gradient(180deg,var(--sidebar),var(--sidebar-2));color:var(--sidebar-text);position:fixed;top:0;left:0;bottom:0;overflow-y:auto;padding:22px 16px 40px;z-index:50;transition:transform .25s ease}
+.sidebar h1{font-size:16px;color:#f4e6bd;letter-spacing:.5px;margin:0 0 4px;border-bottom:2px solid #4b567a;padding-bottom:12px}
+.sidebar .sub{font-size:11px;color:#8a93b3;margin-bottom:18px}
+.tabbtn{display:block;width:100%;text-align:left;background:none;border:none;color:var(--sidebar-text);font-family:inherit;font-size:14.5px;padding:11px 12px;border-radius:8px;cursor:pointer;margin-bottom:6px;border-left:3px solid transparent;transition:.15s}
+.tabbtn:hover{background:#2c3552}
+.tabbtn.active{background:#31406b;color:#ffe9a8;border-left:3px solid var(--yellow);font-weight:700}
+.navgroup{margin-top:16px}
+.navgroup .navtitle{font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:#7480a3;margin:16px 4px 8px}
+.navlink{display:block;font-size:12.5px;color:#aab4d1;padding:6px 10px;border-radius:6px;text-decoration:none;margin-bottom:2px}
+.navlink:hover{background:#2c3552;color:#fff}
+.hamburger{display:none;position:fixed;top:14px;left:14px;z-index:60;background:var(--sidebar);color:#f4e6bd;border:none;font-size:20px;padding:8px 12px;border-radius:8px;cursor:pointer}
+.content{margin-left:270px;flex:1;background:radial-gradient(ellipse at top,#fbf2d9,var(--paper));min-height:100vh;padding:34px 42px 80px}
+.panel{display:none}
+.panel.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.pagehead{border-bottom:3px double var(--accent);padding-bottom:12px;margin-bottom:26px}
+.pagehead h2{font-size:25px;margin:0;color:#3a2a15}
+.pagehead p{margin:6px 0 0;color:#6b5a3f;font-size:13.5px}
+section.block{margin-bottom:34px}
+h3.secttl{font-size:18px;background:var(--sidebar);color:#f4e6bd;display:inline-block;padding:6px 18px;border-radius:4px 14px 4px 14px;margin-bottom:16px;box-shadow:2px 2px 0 var(--accent)}
+h4.subttl{font-size:14.5px;color:var(--accent);border-bottom:1.5px solid var(--accent);display:inline-block;padding-bottom:2px;margin:18px 0 10px}
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:14px}
+.card{background:#fffaf0;border:1.5px solid #d8c69a;border-radius:10px;padding:14px 16px;box-shadow:2px 3px 0 rgba(0,0,0,.05)}
+.card h5{margin:0 0 8px;font-size:15px;color:var(--accent)}
+.card p{margin:6px 0;font-size:14.5px}
+.card.g-blue{border-left:5px solid var(--blue)} .card.g-green{border-left:5px solid var(--green)}
+.card.g-yellow{border-left:5px solid var(--yellow)} .card.g-red{border-left:5px solid var(--red)}
+.card.g-purple{border-left:5px solid var(--purple)}
+table{width:100%;border-collapse:collapse;margin-bottom:18px;font-size:14px;background:#fffdf6}
+th,td{border:1px solid #cbb989;padding:9px 11px;text-align:left;vertical-align:top;line-height:1.65}
+th{background:var(--sidebar);color:#f4e6bd;font-size:13px}
+.tbl-pastel td:nth-child(1){background:#eaf3fb}
+.tbl-pastel td:nth-child(2){background:#fbf3e0}
+.tbl-pastel td:nth-child(3){background:#eaf7ec}
+.tbl-pastel td:nth-child(4){background:#fbe9e6}
+tr:nth-child(even) td{filter:brightness(.98)}
+.trapbox{background:#fdeceb;border:2px dashed var(--red);border-radius:8px;padding:20px 18px 16px;margin:20px 0 24px;position:relative}
+.trapbox::before{content:"⚠ MCQ TRAP";position:absolute;top:-13px;left:14px;background:var(--red);color:#fff;font-size:11px;padding:3px 12px;border-radius:10px;letter-spacing:.5px}
+.trapbox p{margin:8px 0;font-size:14.5px}
+.trapbox ul{margin:8px 0 0;padding-left:20px;font-size:14.5px}
+.trapbox li{margin-bottom:6px}
+.notebox{background:#eaf3fb;border:2px solid var(--blue);border-radius:8px;padding:20px 18px 16px;margin:20px 0 24px;position:relative}
+.notebox::before{content:"📌 FACTS";position:absolute;top:-13px;left:14px;background:var(--blue);color:#fff;font-size:11px;padding:3px 12px;border-radius:10px}
+.notebox p{margin:8px 0;font-size:14.5px}
+.notebox ul{margin:6px 0 0;padding-left:20px;font-size:14.5px}
+.notebox li{margin-bottom:7px}
+.greenbox{background:#eafbea;border:2px solid var(--green);border-radius:8px;padding:20px 18px 16px;margin:20px 0 24px;position:relative}
+.greenbox::before{content:"🧪 PROPERTIES / USES";position:absolute;top:-13px;left:14px;background:var(--green);color:#fff;font-size:11px;padding:3px 12px;border-radius:10px}
+.greenbox p,.greenbox li{font-size:14.5px}
+.greenbox ul{margin:6px 0 0;padding-left:20px}
+.mcqbox{background:#fdf3e0;border:2px solid var(--yellow);border-radius:8px;padding:20px 18px 16px;margin:20px 0 24px;position:relative}
+.mcqbox::before{content:"📝 MCQ ONE-LINERS";position:absolute;top:-13px;left:14px;background:var(--yellow);color:#2b2114;font-size:11px;padding:3px 12px;border-radius:10px}
+.mcqbox p{margin:8px 0;font-size:14.5px}
+.mcqbox ul{margin:6px 0 0;padding-left:20px;font-size:14.5px}
+.mcqbox li{margin-bottom:7px}
+.formulagrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:16px}
+.fblock{border-radius:10px;padding:14px;color:#fff;box-shadow:2px 3px 0 rgba(0,0,0,.15)}
+.fblock h5{margin:0 0 4px;font-size:13px;opacity:.9}
+.fblock .short{font-size:17px;font-weight:800;margin:6px 0}
+.fblock .full{font-size:12.5px;opacity:.95;line-height:1.4}
+.fblock.rd{background:linear-gradient(135deg,#1f6fa8,#123a5c)}
+.fblock.fd{background:linear-gradient(135deg,#c23b2c,#7a2016)}
+.fblock.pd{background:linear-gradient(135deg,#2f7d3f,#164821)}
+.fblock.erd{background:linear-gradient(135deg,#6a3f9c,#3d2261)}
+.flow{display:flex;flex-direction:column;gap:0}
+.flowstep{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-left:3px solid var(--accent);margin-left:18px;padding-left:22px;position:relative}
+.flowstep::before{content:attr(data-n);position:absolute;left:-19px;top:14px;background:var(--accent);color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+.flowstep .ftext b{color:var(--accent);font-size:15px;line-height:1.6}
+.flowstep .ftext p{margin:6px 0 0;font-size:14px}
+@media (max-width:900px){
+  .sidebar{transform:translateX(-100%);width:82%;max-width:300px}
+  .sidebar.open{transform:translateX(0)}
+  .hamburger{display:block}
+  .content{margin-left:0;padding:70px 14px 60px}
+  .cardgrid{grid-template-columns:1fr;gap:16px}
+  .formulagrid{grid-template-columns:1fr;gap:16px}
+  mark{line-height:2.05;display:inline-block;margin:2px 0}
+  p,li,td,.card p{line-height:2.1}
+  table{font-size:13px}
+  th,td{padding:8px 7px}
+  h3.secttl{font-size:16px;padding:6px 14px}
+}
+</style>
+</head>
+<body>
+<button class="hamburger" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
+<div class="app">
+<nav class="sidebar">
+  <h1>⚗️ THE ALCHEMIST'S ALMANAC</h1>
+  <div class="sub">BPSC Prelims · General Science Dossier</div>
+  <button class="tabbtn active" onclick="showTab('t1', this)">I. Non-Metals &amp; Compounds</button>
+  <button class="tabbtn" onclick="showTab('t2', this)">II. Fuels, Combustion &amp; Flames</button>
+
+  <div class="navgroup" id="nav1">
+    <div class="navtitle">Tab I Sections</div>
+    <a class="navlink" href="#g1">General Properties of Non-metals</a>
+    <a class="navlink" href="#nm-c">Carbon (C) &amp; Allotropes</a>
+    <a class="navlink" href="#nm-cox">Oxides of Carbon</a>
+    <a class="navlink" href="#nm-si">Silicon (Si)</a>
+    <a class="navlink" href="#nm-n">Nitrogen (N₂) &amp; Compounds</a>
+    <a class="navlink" href="#nm-p">Phosphorus (P) &amp; Allotropes</a>
+    <a class="navlink" href="#nm-o">Oxygen (O₂) &amp; Ozone (O₃)</a>
+    <a class="navlink" href="#nm-s">Sulphur (S) &amp; Compounds</a>
+    <a class="navlink" href="#nm-hal">Halogens (F, Cl, Br, I)</a>
+    <a class="navlink" href="#nm-noble">Noble / Inert Gases</a>
+    <a class="navlink" href="#nm-metalloid">Metalloids</a>
+    <a class="navlink" href="#nm-mcq">MCQ Facts &amp; Traps</a>
+  </div>
+  <div class="navgroup" id="nav2" style="display:none">
+    <div class="navtitle">Tab II Sections</div>
+    <a class="navlink" href="#f1">Fuels: Basics &amp; Calorific Value</a>
+    <a class="navlink" href="#f2">Fossil Fuels &amp; Coal</a>
+    <a class="navlink" href="#f3">Petroleum &amp; Fractional Distillation</a>
+    <a class="navlink" href="#f4">Gaseous &amp; Solid Fuel Compositions</a>
+    <a class="navlink" href="#f5">Petrol, Diesel, LNG &amp; Crude Grades</a>
+    <a class="navlink" href="#f6">Cracking &amp; Fuel Advancements</a>
+    <a class="navlink" href="#f7">Combustion</a>
+    <a class="navlink" href="#f8">Propellants (Rocket Fuels)</a>
+    <a class="navlink" href="#f9">Flame &amp; Fire Extinguishers</a>
+    <a class="navlink" href="#f-mcq">MCQ Facts &amp; Traps</a>
+  </div>
+</nav>
+
+<main class="content">
+<!-- ============ TAB 1: NON-METALS ============ -->
+<div class="panel active" id="t1">
+  <div class="pagehead">
+    <h2>Non-Metals &amp; Their Compounds</h2>
+    <p>🟨 Concept &nbsp; 🟦 Fact/Number &nbsp; 🟩 Person/Place/Named Process &nbsp; 🟥 MCQ Trap &nbsp; 🟪 Rule/Reaction</p>
+  </div>
+
+  <section class="block" id="g1">
+    <h3 class="secttl">0. General Properties of Non-metals</h3>
+    <div class="notebox">
+      <p>Elements with a tendency to <mark class="concept">accept electrons and form anions</mark> are called non-metals. In the modern periodic table there are <mark class="fact">22 non-metals</mark>, placed towards the <mark class="concept">right side</mark>.</p>
+    </div>
+    <h4 class="subttl">Physical Properties</h4>
+    <ul>
+      <li>Non-metals are either <mark class="concept">solids or gases</mark>, <mark class="trap">except bromine which is liquid</mark>; <mark class="fact">10 exist as solids and 11 as gases</mark>.</li>
+      <li>Display a variety of <mark class="concept">colours</mark>.</li>
+      <li><mark class="concept">Poor conductors</mark> of heat and electricity, <mark class="trap">except graphite</mark>.</li>
+      <li><mark class="concept">Not lustrous, sonorous or malleable</mark>, <mark class="trap">however iodine is lustrous</mark>.</li>
+      <li><mark class="concept">Low melting/boiling points and densities</mark>, <mark class="trap">except diamond and graphite</mark> (much higher m.p./b.p.).</li>
+    </ul>
+    <h4 class="subttl">Chemical Properties</h4>
+    <ul>
+      <li><mark class="concept">Electronegative</mark> in nature — form anions by gaining electrons.</li>
+      <li>Combine with oxygen to form <mark class="concept">oxides</mark>, e.g. <mark class="rule">S + O₂ → SO₂</mark> (sulphur dioxide); SO₂ + H₂O → sulphurous acid (turns blue litmus red).</li>
+      <li><mark class="fact">Acidic oxides</mark>: CO₂, SO₂, SO₃, NO₂, P₂O₅. <mark class="fact">Neutral oxides</mark>: CO, NO, N₂O, H₂O.</li>
+      <li>Generally do <mark class="trap">not react with water</mark> though may be reactive in air — e.g. <mark class="concept">phosphorus is stored in water</mark> as it catches fire on exposure to air.</li>
+      <li>Reactions of non-metals with <mark class="concept">bases are complex</mark>.</li>
+    </ul>
+  </section>
+
+  <!-- CARBON -->
+  <section class="block" id="nm-c">
+    <h3 class="secttl">1. Carbon (C) and Its Allotropes</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">6 / 12</mark></p></div>
+      <div class="card g-green"><h5>Group / Period / Block</h5><p><mark class="concept">Group-14 (IVA), 2nd period, p-block</mark></p></div>
+      <div class="card g-yellow"><h5>Abundance</h5><p><mark class="fact">17th most abundant element</mark> by mass in earth's crust</p></div>
+      <div class="card g-purple"><h5>Config.</h5><p><mark class="fact">1s²2s²2p²</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Occurs free as <mark class="concept">coal, graphite, diamond</mark>; combined as metal carbonates, proteins, carbohydrates, hydrocarbons, CO₂ (<mark class="fact">0.03% in air</mark>).</li>
+        <li>Isotopes: <mark class="fact">¹²C, ¹³C, ¹⁴C</mark> (¹⁴C is radioactive, <mark class="fact">half-life 5770 years</mark>, emits β-rays); ¹²C is the <mark class="concept">international standard of atomic weight (amu)</mark>. Two further radioactive isotopes ¹⁵C, ¹⁶C also discovered.</li>
+        <li><mark class="concept">Tetravalent</mark> non-metal, unaffected by water; forms multiple bonds with itself and other small atoms (C=C, C≡C, C=O, C=S, C≡N).</li>
+        <li><mark class="concept">Catenation</mark>: carbon atoms self-link via covalent bonds into chains/rings — this property allows carbon to form <mark class="fact">more than 5 lakh compounds</mark> vs <mark class="trap">only ~50,000 for all other elements combined</mark> — <mark class="fact">carbon forms the maximum number of compounds of any element</mark>.</li>
+        <li><mark class="concept">Allotropy</mark>: existence of same element in 2+ forms with similar chemical but different physical properties. Carbon's <mark class="concept">crystalline allotropes</mark>: diamond, graphite, fullerene. <mark class="concept">Amorphous forms</mark>: carbon black/coke, wood charcoal, coal.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Diamond</h4>
+    <div class="notebox">
+      <ul>
+        <li>Occurs naturally as <mark class="concept">kimberlite stone</mark>; purity measured in <mark class="fact">carat (1 carat = 200 mg)</mark>. Famous stones: <mark class="person">Cullinan (3032 carat), Hope (445 carat), Kohinoor (186 carat), Pitt (136.2 carat)</mark>.</li>
+        <li>Each C atom bonded to <mark class="fact">4 others in tetrahedral fashion</mark> — rigid 3-D covalent lattice → <mark class="concept">hardest natural substance on earth</mark>.</li>
+        <li>Colourless, transparent; density <mark class="fact">3.67</mark>, refractive index <mark class="fact">2.44</mark>; <mark class="trap">inert but highly poisonous</mark>.</li>
+        <li><mark class="trap">Bad conductor of electricity</mark> (no free electrons) but <mark class="fact">CAN conduct heat</mark>.</li>
+        <li>Pure diamond <mark class="concept">transparent to X-rays</mark>; impure diamond is not — X-rays used to distinguish pure vs artificial diamonds.</li>
+        <li>Heating with K₂Cr₂O₇ + conc. H₂SO₄ at 200°C, or in air at 700–900°C → gives <mark class="fact">CO₂ gas</mark>.</li>
+        <li>Uses: <mark class="concept">abrasive</mark> (rock drills, glass cutters, gem cutters), dyes, <mark class="fact">tungsten filaments</mark> for bulbs; sparkle due to <mark class="concept">total internal reflection</mark>.</li>
+        <li>Impurities impart colour; black diamond = <mark class="person">carbonado / Boor</mark> (commercial name).</li>
+        <li><mark class="person">Moissan</mark> prepared the <mark class="fact">first artificial diamond in 1893</mark>.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Graphite</h4>
+    <div class="notebox">
+      <ul>
+        <li>Each C atom bonded to <mark class="fact">3 others in the same plane</mark> → hexagonal array; the <mark class="concept">4th (free) electron</mark> moves through the lattice → graphite is a <mark class="concept">good conductor of electricity</mark>.</li>
+        <li><mark class="concept">2-D sheet-like layered structure</mark> → soft, smooth, slippery — used for marking (lead pencil), also called <mark class="fact">black lead</mark> (though pencil "lead" contains <mark class="trap">0% actual lead</mark>).</li>
+        <li><mark class="trap">Inert to most chemicals</mark> (acids, alkalies, dil. HNO₃) but gives CO₂ when heated alone or with K₂Cr₂O₇ + conc. H₂SO₄.</li>
+        <li>Under very high pressure + catalyst → converts to <mark class="fact">diamond</mark>; <mark class="trap">the reverse (diamond→graphite) is NOT possible under any circumstances</mark>.</li>
+        <li>Uses: electrodes (good conductor), <mark class="concept">dry lubricant</mark> (prevents rusting/friction at high temperature), refractory crucibles, lead pencils, <mark class="fact">moderator in nuclear reactors</mark>.</li>
+        <li><mark class="fact">Graphite is thermodynamically the most stable allotrope of carbon</mark>.</li>
+        <li>Graphite fibres embedded in plastic (composites) used in <mark class="concept">tennis rackets, fishing rods, aircraft</mark>. Artificial graphite obtained by <mark class="person">Acheson process</mark>.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Graphene &amp; Fullerene</h4>
+    <div class="notebox">
+      <ul>
+        <li><mark class="concept">Graphene</mark>: one-atom-thick planar sheet of carbon in a honeycomb lattice; term coined by <mark class="person">Hanns-Peter Boehm (1962)</mark>; <mark class="fact">two-dimensional</mark>, good conductivity, very strong — used in conducting material for touchscreens/LCD/LED. <mark class="fact">Graphene is made up of carbon only</mark> and is considered the <mark class="fact">strongest known material</mark>.</li>
+        <li><mark class="concept">Fullerene</mark>: only <mark class="fact">pure form of carbon</mark> (per allotrope classification); made by heating graphite in an electric arc in inert gas (He/Ar); cage-like molecules. <mark class="fact">C₆₀ (Buckminsterfullerene)</mark> is soccer-ball shaped, named after architect <mark class="person">Buckminster Fuller</mark>. Fullerenes discovered by <mark class="person">H.W. Kroto, E. Smalley, R.F. Curl</mark>.</li>
+        <li>Fullerene uses: microscopic ball bearings, lightweight batteries, new lubricants/plastics/drugs.</li>
+        <li><mark class="trap">"Fullerene = fluorine-containing polymer" is an INCORRECT pairing</mark> — fullerene is pure carbon, not a fluorine compound (that description fits Teflon).</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Amorphous Carbon: Lamp Black, Charcoal, Coal, Coke</h4>
+    <table class="tbl-pastel">
+      <tr><th>Form</th><th>Nature / Purity</th><th>Preparation</th><th>Uses</th></tr>
+      <tr><td><mark class="person">Lamp Black (Carbon Black)</mark></td><td><mark class="fact">Purest form of carbon</mark> (~95% C)</td><td>Burning hydrocarbons in <mark class="concept">limited supply of air</mark></td><td>Black pigment in ink, shoe polish, filler in tyres, eye soot</td></tr>
+      <tr><td><mark class="person">Wood Charcoal</mark></td><td>Impure, porous, huge surface area</td><td>Heating wood <mark class="concept">absent of air</mark> at high temperature</td><td>Activated charcoal absorbs poisonous gases (gas masks in mines), water filters, AC odour control, reductant, germicidal, explosives</td></tr>
+      <tr><td><mark class="person">Bone / Sugar / Blood Charcoal</mark></td><td>Impure</td><td>Destructive distillation of bone / sugar / blood</td><td>Bone charcoal bleaches organic substances</td></tr>
+      <tr><td><mark class="person">Coal</mark></td><td>~90% found in <mark class="fact">Northern Hemisphere</mark></td><td>Carbonisation of vegetable matter</td><td>Fuel, coal gas, synthetic petrol production</td></tr>
+      <tr><td><mark class="person">Coke</mark></td><td>Contains <mark class="fact">80–85% carbon</mark></td><td>Heating coal absent of air (destructive distillation)</td><td>Fuel, reducing agent in metallurgy, electrodes</td></tr>
+    </table>
+    <h4 class="subttl">Grades of Coal (by % Carbon)</h4>
+    <table class="tbl-pastel">
+      <tr><th>Grade</th><th>% Carbon</th><th>Note</th></tr>
+      <tr><td><mark class="fact">Peat</mark></td><td><mark class="fact">50–60%</mark></td><td>Lowest quality, first extraction phase</td></tr>
+      <tr><td><mark class="fact">Lignite / Brown Coal</mark></td><td><mark class="fact">60–70%</mark></td><td>—</td></tr>
+      <tr><td><mark class="fact">Bituminous</mark></td><td><mark class="fact">78–86%</mark></td><td><mark class="concept">General/domestic variety</mark>, soft</td></tr>
+      <tr><td><mark class="fact">Anthracite</mark></td><td><mark class="fact">94–98%</mark></td><td><mark class="concept">Best/highest quality</mark>, obtained in last extraction phase, <mark class="fact">produces no smoke on burning</mark></td></tr>
+    </table>
+    <div class="trapbox">
+      <ul>
+        <li>Order of carbon content in iron varieties (general chemistry): <mark class="trap">pig iron (~4%, highest) &gt; cast iron &gt; steel &gt; wrought iron (lowest, purest)</mark> — some exam keys reverse this, so read the specific option list carefully.</li>
+        <li><mark class="trap">Lamp black = Carbon black = purest form of carbon</mark>, NOT charcoal, coke, or fullerene — a repeatedly tested distinction (fullerene is the purest *crystalline* allotrope; lamp black is the purest form overall per this text).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- OXIDES OF CARBON -->
+  <section class="block" id="nm-cox">
+    <h3 class="secttl">2. Oxides of Carbon</h3>
+    <h4 class="subttl">Carbon Monoxide (CO)</h4>
+    <div class="notebox">
+      <ul>
+        <li>Formed by <mark class="rule">2C + O₂ → 2CO</mark> (direct oxidation in limited O₂ supply); chief pollutant from <mark class="concept">motor vehicle smoke</mark>; also formed in <mark class="concept">incomplete combustion</mark> of fuel.</li>
+        <li>Present in <mark class="fact">water gas (CO+H₂)</mark> and <mark class="fact">producer gas (CO+N₂)</mark> — both industrial fuels.</li>
+        <li><mark class="concept">Colourless, odourless, tasteless</mark>, almost water-insoluble; weight <mark class="trap">equal to air</mark>.</li>
+        <li>Burns with <mark class="fact">blue flame</mark>; reacts with Cl₂ in sunlight to form poisonous <mark class="fact">phosgene (carbonyl chloride)</mark>.</li>
+        <li><mark class="trap">Highly poisonous</mark> — forms a stable complex with haemoglobin <mark class="fact">~200× more readily than oxygen</mark>, cutting oxygen-carrying capacity of blood → death.</li>
+        <li><mark class="rule">Bond order of C≡O (carbon monoxide) = 3</mark> (triple bond).</li>
+        <li>Uses: reducing agent in metallurgy, metal carbonyls, <mark class="person">Mond process</mark> (Ni purification), phosgene/methanol/sodium formate manufacture.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Carbon Dioxide (CO₂)</h4>
+    <div class="notebox">
+      <ul>
+        <li>From complete combustion of carbon/fuels, heating limestone, respiration, fermentation.</li>
+        <li><mark class="fact">0.03% by volume</mark> in atmosphere; removed via <mark class="concept">photosynthesis</mark>.</li>
+        <li><mark class="concept">Colourless, odourless, acidic, non-poisonous</mark>; a <mark class="trap">greenhouse gas</mark> responsible for global warming — and, per exam key, responsible for the <mark class="fact">expansion of ocean water (thermal expansion)</mark>.</li>
+        <li>Aqueous solution = <mark class="fact">carbonic acid (H₂CO₃)</mark>.</li>
+        <li>Turns limewater <mark class="concept">milky</mark> (CaCO₃ formed); <mark class="trap">excess CO₂ removes the milkiness</mark> (soluble Ca(HCO₃)₂ formed) — same trap applies to SO₂.</li>
+        <li>Uses: <mark class="fact">dry ice (solid CO₂ / drikold)</mark> as refrigerant; carbonated soft drinks; <mark class="concept">fire extinguisher</mark> (heavier than air, non-inflammable, cuts off air supply); urea &amp; hard-steel manufacture.</li>
+        <li>Everyday science: <mark class="trap">avoid sleeping under a tree at night</mark> — photosynthesis stops, plants respire and release CO₂.</li>
+      </ul>
+    </div>
+    <div class="formulagrid">
+      <div class="fblock rd"><h5>WATER GAS</h5><div class="short">CO + H₂</div><div class="full">A mixture of carbon monoxide and hydrogen — a classic MCQ definition.</div></div>
+      <div class="fblock fd"><h5>Incomplete Combustion</h5><div class="short">CH₄+O₂→CO+H₂O</div><div class="full">Insufficient O₂ supply yields poisonous carbon monoxide instead of CO₂.</div></div>
+    </div>
+  </section>
+
+  <!-- SILICON -->
+  <section class="block" id="nm-si">
+    <h3 class="secttl">3. Silicon (Si)</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">14 / 28</mark></p></div>
+      <div class="card g-green"><h5>Group / Period / Block</h5><p><mark class="concept">Group-14 (IVA), 3rd period, p-block</mark></p></div>
+      <div class="card g-yellow"><h5>Abundance</h5><p><mark class="fact">2nd most abundant element</mark> in earth's crust (~26%), after oxygen</p></div>
+      <div class="card g-purple"><h5>Nature</h5><p>Non-metallic, <mark class="concept">exhibits allotropy</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Occurs as <mark class="fact">silica (sand)</mark> and silicates.</li>
+        <li>Uses: ceramics, glass, cement; <mark class="concept">ultrapure Si</mark> used as a <mark class="fact">semiconductor</mark>, transistors, computer chips; polymer silicones; silica gel (drying agent); acid-resistant steel; <mark class="fact">granite's two main constituents are silica and aluminium</mark>.</li>
+      </ul>
+    </div>
+    <table class="tbl-pastel">
+      <tr><th>Compound</th><th>Also Known As</th><th>Notes</th></tr>
+      <tr><td><mark class="fact">Silicon Carbide</mark></td><td><mark class="concept">Carborundum</mark></td><td>Artificial diamond substitute</td></tr>
+      <tr><td><mark class="fact">Silica (SiO₂)</mark></td><td>Crystalline quartz</td><td>Glass and cement manufacture</td></tr>
+      <tr><td><mark class="fact">Silicones</mark></td><td>—</td><td><mark class="concept">Polymers of dialkyldichlorosilane</mark>; sealants, greases, electrical insulators, fabric waterproofing, surgical/cosmetic implants</td></tr>
+      <tr><td><mark class="fact">Silanes</mark></td><td>—</td><td>Hydrides of silicon</td></tr>
+    </table>
+    <div class="trapbox">
+      <ul>
+        <li><mark class="trap">"Silicon is a polymer of silicon tetrachloride/silane/tetraalkylsilane" — all wrong; the correct pairing is silicone = polymer of dialkyldichlorosilane.</mark></li>
+        <li>Silicon is sometimes classed as a <mark class="concept">metalloid</mark> (borderline metal/non-metal properties).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- NITROGEN -->
+  <section class="block" id="nm-n">
+    <h3 class="secttl">4. Nitrogen (N₂) and Its Compounds</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">7 / 14</mark></p></div>
+      <div class="card g-green"><h5>Discovered by</h5><p><mark class="person">D. Rutherford (1772)</mark></p></div>
+      <div class="card g-yellow"><h5>Group / Period / Block</h5><p><mark class="concept">Group-15 (VA), 2nd period, p-block</mark></p></div>
+      <div class="card g-purple"><h5>Config.</h5><p><mark class="fact">1s²2s²2p³</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li><mark class="fact">78% by volume</mark> of the atmosphere — <mark class="fact">the highest-volume gas in the lower atmosphere</mark>.</li>
+        <li>In earth's crust: <mark class="fact">chile saltpetre (NaNO₃)</mark> and <mark class="fact">Indian saltpetre (KNO₃)</mark>; in living things as proteins; main component of <mark class="fact">urea (46% N)</mark>. Isotopes: ¹³N, ¹⁴N, ¹⁵N.</li>
+        <li>Industrial prep: <mark class="concept">liquefaction &amp; fractional distillation of air</mark>. Lab prep: aqueous ammonium chloride + sodium nitrite.</li>
+        <li><mark class="concept">Colourless, odourless, tasteless, diatomic, non-polar, non-toxic</mark>; <mark class="trap">inert at room temperature</mark>; reacts with O₂/H₂ at high temperature (oxides/hydrides) and with metals like Mg, Li → nitrides (Mg₃N₂, Li₃N).</li>
+        <li>Uses: ammonia &amp; industrial nitrogen chemicals (calcium cyanamide); inert atmosphere in iron/steel industry; <mark class="fact">liquid N₂</mark> as refrigerant (biological material, food, bull sperm, cryosurgery); electric bulbs, high-temperature thermometers.</li>
+      </ul>
+    </div>
+    <div class="notebox">
+      <ul>
+        <li><mark class="concept">Nitrogen fixation</mark>: conversion of atmospheric N₂ into usable nitrates/nitrites — naturally by <mark class="fact">lightning</mark> and <mark class="fact">nitrogen-fixing bacteria (Rhizobium)</mark>; artificially via fertilizers.</li>
+        <li><mark class="concept">Denitrification</mark>: conversion of nitrogenous compounds back into gaseous N₂ by denitrifying bacteria.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Ammonia (NH₃)</h4>
+    <div class="notebox">
+      <ul>
+        <li>First isolated by <mark class="person">J. Priestley (1774)</mark> from heating ammonium chloride + calcium carbonate; called <mark class="fact">alkaline air</mark>; identified later by <mark class="person">Berthelot (1785)</mark>.</li>
+        <li>Manufactured on large scale by <mark class="person">Haber's process</mark> from N₂ + H₂; catalyst <mark class="fact">Fe</mark> (or Fe₂O₃ today), promoter <mark class="fact">Mo</mark> (or Al₂O₃ + K₂O today).</li>
+        <li><mark class="concept">Tetrahedral electron geometry but pyramidal molecular shape</mark> due to a lone pair; <mark class="concept">colourless, pungent, highly water-soluble</mark> gas.</li>
+        <li>Concentrated aqueous solution = <mark class="fact">liquor ammonia</mark>; ammonium carbonate = <mark class="fact">smelling salt</mark>; complex of NH₄Cl + conc. chlorostannic acid = <mark class="fact">pink salt</mark>.</li>
+        <li>Used to make nitrogenous fertilizers and nitric acid; liquid ammonia used as a <mark class="concept">refrigerant</mark>.</li>
+        <li>Everyday science: <mark class="fact">bad smell near toilets/urine</mark> due to ammonia from urea decomposition; liquid ammonia bottles cooled before opening (high vapour pressure).</li>
+        <li><mark class="fact">Airbags</mark> use <mark class="person">sodium azide (NaN₃)</mark>, not ammonia, for inflation on impact.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Oxides &amp; Oxoacids of Nitrogen</h4>
+    <div class="notebox">
+      <ul>
+        <li>Oxides: N₂O (nitrous oxide), NO (nitric oxide) — both <mark class="fact">neutral</mark>; N₂O₃, NO₂, N₂O₄, N₂O₅ — all <mark class="fact">acidic</mark>.</li>
+        <li><mark class="fact">N₂O = "laughing gas"</mark> — inhalation causes excessive laughter; used as an <mark class="concept">anaesthetic</mark> in surgery/dental work; excess inhalation can be fatal.</li>
+        <li>Oxoacids: hyponitrous acid, nitrous acid (HNO₂), <mark class="fact">nitric acid (HNO₃) — the most important</mark>.</li>
+        <li><mark class="fact">Nitric acid</mark> prepared industrially by <mark class="person">Ostwald's process</mark> (catalytic oxidation of NH₃); also by <mark class="person">Birkeland-Eyde</mark> and <mark class="person">Retort processes</mark>.</li>
+        <li>Strong oxidising agent, attacks most metals <mark class="trap">except gold and platinum</mark>; <mark class="trap">Fe, Al, Cr do NOT dissolve in conc. HNO₃</mark> — form a passive oxide film. Called <mark class="fact">aqua fortis</mark> ("strong water") since it attacks nearly all metals.</li>
+        <li>Used to prepare explosives: <mark class="fact">nitroglycerin (dynamite), TNT, TNP (picric acid)</mark>.</li>
+        <li><mark class="trap">Nitrous acid (HNO₂) is very unstable</mark>; its salts = nitrites; acts as both oxidising and reducing agent; used with CS₂ in flash photography.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Ammonium Chloride (NH₄Cl)</h4>
+    <div class="notebox">
+      <p>Also called <mark class="fact">sal ammoniac / nausadar</mark>; white crystalline powder used in <mark class="concept">dry cells</mark>, as a cleaner before metal welding, lab reagent, drug manufacture, and electroplating. <mark class="fact">Ammonium ion (NH₄⁺) is a cation.</mark></p>
+    </div>
+  </section>
+
+  <!-- PHOSPHORUS -->
+  <section class="block" id="nm-p">
+    <h3 class="secttl">5. Phosphorus (P) and Its Allotropes</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">15 / 31</mark></p></div>
+      <div class="card g-green"><h5>Group / Period / Block</h5><p><mark class="concept">Group-15 (VA), 3rd period, p-block</mark></p></div>
+      <div class="card g-yellow"><h5>In Human Body</h5><p>Avg adult contains <mark class="fact">~0.7 kg</mark> phosphorus</p></div>
+      <div class="card g-purple"><h5>Bones</h5><p><mark class="fact">58% calcium phosphate</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Occurs as stable phosphates — minerals: <mark class="fact">phosphorite [Ca₃(PO₄)₂]</mark>, <mark class="fact">chlorophite</mark>, <mark class="fact">Redonda phosphate [AlPO₄]</mark>; extracted mainly from phosphorite (modern electrothermal process) or bone ash (old process).</li>
+        <li>Isotopes: ³¹P, ³²P, ³³P. <mark class="trap">Phosphorus does NOT occur as a free element in nature</mark> — always found combined.</li>
+        <li>Uses: synthesis of <mark class="concept">DNA &amp; RNA</mark>; phosphor bronze alloy; essential for <mark class="concept">photosynthesis</mark> and leaf colour (deficiency → dry, colourless leaves); aluminium phosphide used as a <mark class="fact">foodgrain preservative</mark>; <mark class="fact">vast majority of phosphorus compounds are consumed as fertilizers</mark>; used in <mark class="fact">safety matches</mark>.</li>
+        <li><mark class="trap">"Phossy jaw"</mark> — a disease (jaw bone decay) affecting workers handling phosphorus.</li>
+      </ul>
+    </div>
+    <table class="tbl-pastel">
+      <tr><th>Allotrope</th><th>Structure / Colour</th><th>Key Facts</th></tr>
+      <tr><td><mark class="fact">White / Yellow Phosphorus</mark></td><td>Tetrahedral P₄, translucent waxy solid</td><td>Highly reactive, <mark class="trap">ignition temp. only 30°C</mark> → self-ignites, kept in water; garlic smell, poisonous; glows in dark (<mark class="concept">chemiluminescence / phosphorescence</mark>); turns yellow in light; dissolves in CS₂, insoluble in water; pyramidal shape (lone pair); used in firecrackers, fire/smoke bombs</td></tr>
+      <tr><td><mark class="fact">Red Phosphorus</mark></td><td>Polymeric, P₂ linear units</td><td>Obtained by heating white P at <mark class="fact">573 K</mark> in inert atmosphere; <mark class="concept">odourless, non-poisonous</mark>, insoluble in water &amp; CS₂; much less reactive, <mark class="trap">does not glow in dark</mark>, high ignition temp (<mark class="fact">260°C</mark>); used in <mark class="concept">safety matchboxes</mark> (with red P + powdered glass on the box side; matchstick head has antimony trisulphide + potassium chlorate)</td></tr>
+      <tr><td><mark class="fact">Black Phosphorus</mark></td><td>α- and β-forms</td><td>From white P heated at ~200°C under very high pressure; α-form sublimes in air; β-form good conductor of electricity, doesn't burn below 673 K, inert like red P</td></tr>
+      <tr><td><mark class="fact">Scarlet Phosphorus</mark></td><td>Red crystalline solid</td><td>From 10% white-P-in-PBr₃ heated ~10 hrs; non-poisonous, more reactive than red P but still doesn't self-ignite at room temp</td></tr>
+      <tr><td><mark class="fact">Violet (Hittorf's) Phosphorus</mark></td><td>Violet colour</td><td>Discovered by <mark class="person">Hittorf</mark>; from white P heated in closed tube at 803 K; non-inflammable, bad conductor</td></tr>
+    </table>
+    <div class="trapbox">
+      <p><mark class="trap">"Blue phosphorus" is NOT a real allotrope</mark> — the genuine set is White/Yellow, Red, Black, Scarlet, Violet.</p>
+    </div>
+    <h4 class="subttl">Oxides, Oxoacids &amp; Phosphine</h4>
+    <div class="notebox">
+      <ul>
+        <li><mark class="fact">Phosphorus trioxide (P₄O₆)</mark> — dimer, formed when white P burns in limited air.</li>
+        <li><mark class="fact">Phosphorus pentoxide (P₄O₁₀)</mark> — acid anhydride of phosphoric acid, sublimes on heating, reacts vigorously with water → orthophosphoric acid; regular tetrahedral structure; strong <mark class="concept">dehydrating agent</mark> (H₂SO₄→SO₃, HNO₃→N₂O₅, cellulose→carbon).</li>
+        <li>Basicity: <mark class="fact">orthophosphoric acid = 3, orthophosphorus acid = 2, hypophosphorus acid = 1</mark>.</li>
+        <li><mark class="fact">Orthophosphoric acid</mark> is used as a <mark class="concept">souring/acidulant agent in soft drinks</mark>.</li>
+        <li><mark class="fact">Phosphine (PH₃)</mark>: prepared by hydrolysis of calcium phosphide with water/dil. HCl, or lab-heating white P with conc. NaOH under CO₂; <mark class="trap">colourless, rotten-fish smell, highly poisonous</mark>; burns in air with dazzling light; explodes on contact with oxidisers like chlorine; weakly basic.</li>
+        <li><mark class="fact">Hypophosphite compounds</mark> used in body-strength-promoting drugs; main bone component = <mark class="fact">hydroxyapatite</mark> + amorphous calcium phosphate.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- OXYGEN & OZONE -->
+  <section class="block" id="nm-o">
+    <h3 class="secttl">6. Oxygen (O₂) and Ozone (O₃)</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">8 / 16</mark></p></div>
+      <div class="card g-green"><h5>Discovered by</h5><p><mark class="person">Scheele (1772)</mark>; named by <mark class="person">A.L. Lavoisier (1777)</mark></p></div>
+      <div class="card g-yellow"><h5>Group / Period / Block</h5><p><mark class="concept">Group-16 (VIA), 2nd period, p-block</mark></p></div>
+      <div class="card g-purple"><h5>Abundance</h5><p><mark class="fact">Most abundant element on earth</mark> — 46.6% of crust by mass; <mark class="fact">most abundant element in the human body</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Dry air: <mark class="fact">20.946% O₂ by volume</mark>; main atmospheric source = <mark class="concept">photosynthesis</mark>.</li>
+        <li>Lab prep: heating (375°C) <mark class="fact">KClO₃</mark> with catalyst <mark class="fact">MnO₂</mark> — <mark class="trap">note: MnO₂ decomposition alone is NOT itself a standard oxygen-preparation method (it's the catalyst, not the direct source in this reaction)</mark>. Industrial: fractional distillation of air.</li>
+        <li>Isotopes: ¹⁶O, ¹⁷O, ¹⁸O.</li>
+        <li><mark class="concept">Colourless, odourless</mark>; converts to deep blue liquid on cooling; slightly heavier than air.</li>
+        <li><mark class="trap">Does not burn itself but is a supporter of combustion</mark>; <mark class="fact">paramagnetic in nature</mark>; reacts with nearly all metals <mark class="trap">except Au, Pt</mark> and non-metals.</li>
+        <li>Uses: oxyacetylene welding, steel manufacture, hospital/high-altitude/mountaineering oxygen cylinders (diluted with helium), <mark class="fact">liquid oxygen as rocket oxidiser</mark>.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Ozone (O₃)</h4>
+    <div class="notebox">
+      <ul>
+        <li>Allotrope of oxygen; <mark class="concept">triatomic</mark>; formed at <mark class="fact">~20 km altitude</mark> from atmospheric O₂ in sunlight.</li>
+        <li><mark class="concept">Ozone layer</mark> protects earth from UV radiation; destroyed by <mark class="trap">NO from supersonic jet exhausts</mark> and <mark class="trap">CFCs</mark>.</li>
+        <li>Acts as both oxidising and reducing agent; combines with unsaturated compounds (ethene, ethyne) to give ozonides; on exposure to silver, gives extremely bright silver-black.</li>
+        <li>Uses: germicide, disinfectant, water sterilisation, bleaching (oils, ivory, flour, starch), artificial silk manufacture.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SULPHUR -->
+  <section class="block" id="nm-s">
+    <h3 class="secttl">7. Sulphur (S) and Its Compounds</h3>
+    <div class="cardgrid">
+      <div class="card g-blue"><h5>Atomic No. / Mass</h5><p><mark class="fact">16 / 32</mark></p></div>
+      <div class="card g-green"><h5>Group / Period / Block</h5><p><mark class="concept">Group-16 (VIA), 3rd period, p-block</mark></p></div>
+      <div class="card g-yellow"><h5>Crustal %</h5><p><mark class="fact">0.03–0.1%</mark></p></div>
+      <div class="card g-purple"><h5>Extraction</h5><p><mark class="person">Frasch process</mark> / <mark class="person">Sicilian process</mark></p></div>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Found in eggs, proteins, garlic, onion, mustard, hair, wool; <mark class="fact">elemental sulphur occurs near hot springs/volcanoes</mark> (Italy, Sicily, Japan) — i.e. <mark class="fact">sulphur DOES occur as a free element in nature</mark>. Also occurs combined as FeS, HgS, PbS, ZnS.</li>
+        <li>Isotopes: ³²S–³⁶S; <mark class="fact">³⁵S is radioactive</mark>. At elevated temperature, S₂ is the dominant, <mark class="fact">paramagnetic</mark> species (like O₂).</li>
+        <li>Uses: production of SO₂, H₂SO₄, CS₂; medicines, ointments, bleaching agents; dye/colour industry; germicide, fungicide/pesticide; <mark class="concept">vulcanisation of rubber</mark>; found in vitamins biotin &amp; thiamine; <mark class="fact">gunpowder = sulphur + charcoal + potassium nitrate</mark>.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Allotropes of Sulphur</h4>
+    <table class="tbl-pastel">
+      <tr><th>Form</th><th>Details</th></tr>
+      <tr><td><mark class="fact">Rhombic (α, octahedral) Sulphur</mark></td><td><mark class="concept">Most stable at room temperature</mark>; yellow, brittle; ring of 8 S atoms (puckered ring); insoluble in water, soluble in CS₂; bad conductor; with iron filings → FeS</td></tr>
+      <tr><td><mark class="fact">Monoclinic (β) Sulphur</mark></td><td>Stable above <mark class="fact">369 K (transition temperature)</mark>, transforms to α-sulphur below it</td></tr>
+      <tr><td>Non-crystalline forms</td><td>Plastic sulphur, white sulphur, milky sulphur (used in medicines)</td></tr>
+    </table>
+    <div class="notebox">
+      <p><mark class="fact">Flower of sulphur</mark> = powder from sublimation of sulphur. Boiling sulphur then cooling in cold water → <mark class="fact">plastic sulphur</mark>. Pungent odour of sulphur is due to <mark class="fact">sulphurous compounds</mark>.</p>
+    </div>
+    <h4 class="subttl">Oxides &amp; Oxoacids of Sulphur</h4>
+    <div class="notebox">
+      <ul>
+        <li><mark class="fact">Sulphur dioxide (SO₂)</mark>: main gas of <mark class="concept">volcanic eruption</mark>; colourless, pungent, suffocating, toxic, heavier than air; angular structure; anhydride of sulphurous acid; also turns limewater milky (calcium sulphite), excess SO₂ removes milkiness (calcium bisulphite) — same trap as CO₂.</li>
+        <li>Uses of SO₂: refrigerant (liquefiable), antichlor, disinfectant, preservative, <mark class="trap">temporary bleaching agent</mark> for wool/silk (bleaching is via its <mark class="concept">reducing property</mark> — contrast with chlorine's permanent oxidative bleaching); petroleum/sugar refining; H₂SO₄ manufacture.</li>
+        <li><mark class="fact">Sulphur trioxide (SO₃)</mark>: acidic oxide, anhydride of sulphuric acid; dissolves in water → H₂SO₄ + heat; used in H₂SO₄/oleum manufacture, drying agent for gases.</li>
+        <li>Oxoacids: sulphurous acid (H₂SO₃), sulphuric acid (H₂SO₄), peroxodisulphuric acid (H₂S₂O₈), pyrosulphuric acid/oleum (H₂S₂O₇).</li>
+        <li><mark class="fact">Sulphurous acid (H₂SO₃)</mark>: strong dibasic acid, forms sulphites &amp; bisulphites; acts as both oxidising and reducing agent.</li>
+        <li><mark class="fact">Sulphuric acid (H₂SO₄)</mark> = <mark class="concept">"oil of vitriol" / "king of chemicals"</mark>; made by <mark class="person">Lead Chamber process</mark> (catalysed by nitrogen oxides) or <mark class="person">Contact process</mark> (catalysed by Pt, platinised asbestos, V₂O₅, ferric oxide) — both convert SO₂→SO₃. Colourless, dense, oily; dissolves in water with heat evolution; pure H₂SO₄ decomposed at anode gives <mark class="fact">Marshall's acid (H₂S₂O₈)</mark>.</li>
+        <li>H₂SO₄ uses: oil refining, wastewater treatment, mineral extraction; explosives (picric acid, TNT, nitroglycerine, guncotton), drugs, disinfectants, paints, fertilizers, detergents; oxidising/dehydrating agent; alums, ethers, metal sulphates; storage batteries.</li>
+        <li><mark class="trap">Sugar + conc. H₂SO₄ → chars black</mark> (dehydration of sugar).</li>
+        <li><mark class="fact">Pyrosulphuric acid (oleum, H₂S₂O₇)</mark> = fuming sulphuric acid — SO₃ dissolved in conc. H₂SO₄; hydrolyses back to H₂SO₄.</li>
+        <li><mark class="fact">Hydrogen sulphide (H₂S)</mark>: released in small amounts during volcanic eruptions; colourless, toxic, rotten-egg smell; fatal in large doses; antidote = <mark class="fact">dilute chlorine solution</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- HALOGENS -->
+  <section class="block" id="nm-hal">
+    <h3 class="secttl">8. Halogens: Fluorine, Chlorine, Bromine, Iodine</h3>
+    <div class="notebox">
+      <p>Group-17 (VIIA) members — <mark class="concept">F, Cl, Br, I, At</mark> (Greek <i>halo</i>=salt, <i>genes</i>=born → "salt producers"); <mark class="fact">astatine is radioactive</mark>. General outer config <mark class="fact">ns²np⁵</mark>; highly reactive, always found combined; all are <mark class="concept">coloured</mark> (absorb visible light).</p>
+    </div>
+    <table class="tbl-pastel">
+      <tr><th>Element</th><th>At. No. / Mass</th><th>Key Facts</th></tr>
+      <tr><td><mark class="person">Fluorine (F)</mark></td><td><mark class="fact">9 / 19</mark></td><td>Isolated by <mark class="person">Moissan (1886)</mark>; pale yellow gas; <mark class="fact">most reactive halogen</mark> &amp; <mark class="fact">most electronegative element</mark>; oxidises water to O₂; forms OF₂ &amp; O₂F₂ with oxygen; reacts with most metals and non-metals <mark class="trap">except nitrogen</mark>; O₂F₂ oxidises plutonium to PuF₆ (used to remove Pu from spent nuclear fuel)</td></tr>
+      <tr><td><mark class="person">Chlorine (Cl)</mark></td><td><mark class="fact">17 / 35.45</mark></td><td>Also called <mark class="fact">oxymuriatic acid</mark>; discovered by <mark class="person">Scheele (1774)</mark>; made by <mark class="person">Deacon's process</mark> or electrolysis of brine (<mark class="person">Nelson cell</mark>); greenish-yellow, pungent, <mark class="fact">~2.5× heavier than air</mark>; oxidising/bleaching action via <mark class="concept">nascent oxygen</mark>, needs moisture, so bleaching is <mark class="fact">permanent</mark> (contrast SO₂'s temporary bleaching); + lime → <mark class="fact">bleaching powder (CaOCl₂)</mark>, whose <mark class="fact">active ingredient is calcium hypochlorite</mark></td></tr>
+      <tr><td><mark class="person">Bromine (Br)</mark></td><td><mark class="fact">35 / 79.9</mark></td><td>First prepared by <mark class="person">Ballard (1826)</mark>; reddish-brown liquid; ~<mark class="fact">0.068% in seawater</mark>; extracted from <mark class="fact">carnallite</mark>; in India found at <mark class="person">Rann of Kutch</mark> brine; colours starch paper yellow; oxidising/bleaching agent (nascent O)</td></tr>
+      <tr><td><mark class="person">Iodine (I)</mark></td><td><mark class="fact">53 / 126.9</mark></td><td>Discovered from seaweed ashes by <mark class="person">Courtois (1811)</mark>; non-metallic shining/lustrous solid with metallic lustre, dark colour, violet vapours; in body as <mark class="fact">thyroxin</mark> (thyroid hormone) — deficiency causes <mark class="fact">goitre</mark></td></tr>
+    </table>
+    <div class="notebox">
+      <ul>
+        <li>Uses — Chlorine: bleaching wood pulp/cotton/textiles, gold/platinum extraction, dyes/drugs/CCl₄/CHCl₃/DDT/refrigerants, drinking-water sterilisation, poison gases (phosgene, tear gas, mustard gas). <mark class="fact">Chlorine gas is used in preparing bleaching powder.</mark></li>
+        <li>Uses — Bromine: AgBr in photography, KBr in sleeping drugs/pain relievers, toxic/tear gases.</li>
+        <li>Uses — Iodine: lab reagent, disinfectant, antiseptic/analgesic medicine, goitre treatment, egg production, photographic films (salts).</li>
+        <li><mark class="fact">Starch–iodine test</mark>: iodine solution on a cut potato surface turns the surface <mark class="fact">from brown/colourless to blue-black</mark> (starch detection).</li>
+        <li><mark class="fact">HClO₄ is the strongest oxoacid of chlorine</mark>; ClO₂ used as a bleaching agent for paper pulp/textiles and water treatment; mixture of ClO₂+Cl₂ = <mark class="fact">euchlorine</mark>.</li>
+        <li><mark class="fact">Iodex</mark> ointment does NOT actually contain iodine — contains dichlorophenol.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- NOBLE GASES -->
+  <section class="block" id="nm-noble">
+    <h3 class="secttl">9. Inert / Noble Gases</h3>
+    <div class="notebox">
+      <p>Group-18 (zero) — <mark class="concept">He, Ne, Ar, Kr, Xe, Rn</mark>; called noble (not fully inert) since some (e.g. <mark class="trap">Xe</mark>) form compounds with O and F, e.g. via <mark class="concept">clathrate/cage compounds</mark>. All are <mark class="fact">monoatomic</mark>. <mark class="trap">All except radon occur in the atmosphere</mark> — obtained as by-products of air liquefaction + fractional distillation; radon is a decay product of Ra-226.</p>
+    </div>
+    <table class="tbl-pastel">
+      <tr><th>Gas</th><th>At. No./Mass</th><th>Discovered by</th><th>Key Uses/Facts</th></tr>
+      <tr><td><mark class="person">Helium (He)</mark></td><td><mark class="fact">2 / 4</mark></td><td><mark class="person">Lockyer &amp; Janssen</mark></td><td><mark class="fact">2nd largest element in the universe</mark>; from natural gas, radioactive minerals (pitchblende, monazite, cleveite); weather balloons, aircraft tyres, gas-cooled nuclear reactors, liquid He for cryogenics; <mark class="fact">He+O₂ mixture used by deep-sea divers</mark> (He less soluble in blood) &amp; asthma patients; superconducting magnets (NMR, MRI)</td></tr>
+      <tr><td><mark class="person">Neon (Ne)</mark></td><td><mark class="fact">10 / 20</mark></td><td><mark class="person">Ramsay &amp; Travers</mark></td><td>From volatile part of liquid argon; discharge tubes, advertisement/fluorescent bulbs, greenhouse lamps, aerodrome pilot-indication lamps (shine even in fog)</td></tr>
+      <tr><td><mark class="person">Argon (Ar)</mark></td><td><mark class="fact">18 / 40</mark></td><td><mark class="person">Rayleigh &amp; Ramsay (1892)</mark></td><td>Inert atmosphere in high-temp metallurgy/arc welding; electric bulb filling</td></tr>
+      <tr><td><mark class="person">Krypton (Kr)</mark></td><td><mark class="fact">36 / 84</mark></td><td><mark class="person">Ramsay &amp; Travers (1898)</mark></td><td>Yellow/green spectral lines; airport runway/approach lights</td></tr>
+      <tr><td><mark class="person">Xenon (Xe)</mark></td><td><mark class="fact">54 / 131</mark></td><td><mark class="person">Ramsay &amp; Travers</mark></td><td><mark class="fact">First inert-gas compound XePtF₆ made by Neil Bartlett (1962)</mark>; Xe–Kr used in high-intensity photographic flash tubes</td></tr>
+      <tr><td><mark class="person">Radon (Rn)</mark></td><td>—</td><td><mark class="person">Dorn</mark></td><td>Used in cancer <mark class="concept">radiotherapy</mark></td></tr>
+    </table>
+  </section>
+
+  <!-- METALLOIDS -->
+  <section class="block" id="nm-metalloid">
+    <h3 class="secttl">10. Metalloids</h3>
+    <div class="notebox">
+      <p><mark class="fact">7 metalloids</mark> — possess properties of both metals and non-metals, placed between them in the periodic table: <mark class="concept">Boron, Silicon, Germanium, Arsenic, Antimony, Tellurium, Polonium (B, Si, Ge, As, Sb, Te, Po)</mark>.</p>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li><mark class="fact">Boron</mark>: obtained by cosmic ray spallation; used as control rods in nuclear reactors, bulletproof jackets, semiconductor devices. <mark class="fact">Borax</mark> = flux, borax bead test, water softening, antiseptic, glass/pottery.</li>
+        <li><mark class="fact">Orthoboric acid</mark> = antiseptic/eye lotion ("boric lotion"), food preservative, makes carrom-board powder slippery.</li>
+        <li><mark class="fact">Boron carbide ("Norbide")</mark> = one of the hardest known artificial substances.</li>
+        <li><mark class="fact">Triborine triammine (B₃N₃H₆)</mark> = "inorganic benzene" / borazole / borazine.</li>
+        <li><mark class="fact">Germanium &amp; gallium arsenide</mark> used as semiconductors, solar cells, photodiodes, transistors, computer chips.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MCQ FACTS -->
+  <section class="block" id="nm-mcq">
+    <h3 class="secttl">11. Consolidated MCQ Facts &amp; Traps</h3>
+    <div class="mcqbox">
+      <ul>
+        <li>Match: <mark class="fact">Diamond→Carbon, Marble→Calcium, Sand→Silicon, Ruby→Aluminium</mark> (rubies/sapphires = corundum/Al₂O₃ with trace impurities).</li>
+        <li>Chronological order of first lab synthesis: <mark class="fact">Kevlar → Fullerene → Graphene → Black gold</mark>.</li>
+        <li>Percentage of lead in a "lead pencil" = <mark class="fact">0%</mark> (it's graphite).</li>
+        <li><mark class="trap">Statements on diamond vs graphite</mark>: diamond is hard, graphite is soft; diamond is a bad conductor, graphite is a good conductor — both correct.</li>
+        <li>Diamond uses correctly matched: jewellery (light reflection), cutting glass/marble/hard materials, drilling rocks — <mark class="trap">but diamond is NOT a good conductor of electricity</mark> (that statement is false).</li>
+        <li><mark class="trap">"Graphite is hard" is a trap</mark> — graphite is actually soft &amp; slippery; it is fullerenes, not graphite, that are correctly described as cage-like molecules among the classic option sets.</li>
+        <li>Metals below hydrogen in the electrochemical series generally do not react with <mark class="fact">conc. HNO₃</mark>, since HNO₃ is a strong oxidising agent (exam-context statement — note noble metals like Au/Pt truly resist it, while Cu/Ag do react with HNO₃ in practice).</li>
+        <li>Methods of preparing oxygen include electrolysis of water, fractional distillation of liquid air, and decomposition of KMnO₄ — <mark class="trap">decomposition of manganese dioxide alone is NOT a standard oxygen-preparation method</mark> (MnO₂ is the catalyst for KClO₃ decomposition).</li>
+        <li>Oxygen belongs to <mark class="fact">paramagnetic materials</mark> (in terms of magnetic properties).</li>
+        <li>Burning of a magnesium ribbon to form MgO (with heat &amp; light) is an example of <mark class="fact">combustion / a chemical reaction</mark>.</li>
+        <li><mark class="trap">SO₂ bleaches by its reducing property (temporary)</mark>; contrast with chlorine's oxidative (permanent) bleaching — exam keys sometimes label SO₂ bleaching loosely as "oxidation," so read the specific option set carefully.</li>
+        <li>Statements on oxygen — all TRUE: promotes rapid combustion; toxic at elevated partial pressures; rockets use liquid oxygen as oxidiser; colourless &amp; odourless.</li>
+        <li>Statements on sulphur — sulphur is used to produce sulphuric acid, and is used as a fungicide/pesticide (both true); it is also found combined as sulphides in meteorites and does occur as a free element near volcanic regions.</li>
+        <li>Ammonium ion (NH₄⁺) is a <mark class="fact">cation</mark>; iodide, fluoride, chloride are anions.</li>
+        <li><mark class="trap">Ammonium sulphide is NOT used as a fertilizer</mark> — ammonium nitrate, ammonium phosphate, and ammonium sulphate ARE.</li>
+        <li>N₂O (nitrous oxide) is used as an <mark class="fact">anaesthetic</mark>.</li>
+        <li>Statement analysis on phosphorus: it does <mark class="trap">NOT</mark> occur as a free element on earth; most phosphorus compounds go into fertilizers; phosphorus is used in safety matches — the latter two are correct.</li>
+        <li>Liquid HF is corrosive, etches glass, and causes painful skin wounds because it reacts with silica and dehydrates tissue.</li>
+        <li>Deep-sea divers use an <mark class="fact">oxygen + helium</mark> mixture for respiration.</li>
+        <li>Argon, xenon, and nitrogen are all present in the atmosphere; fluorine is not found free/naturally in the same context.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<!-- ============ TAB 2: FUELS ============ -->
+<div class="panel" id="t2">
+  <div class="pagehead">
+    <h2>Fuels, Combustion &amp; Flames</h2>
+    <p>🟨 Concept &nbsp; 🟦 Fact/Number &nbsp; 🟩 Person/Place/Named Process &nbsp; 🟥 MCQ Trap &nbsp; 🟪 Rule/Reaction</p>
+  </div>
+
+  <section class="block" id="f1">
+    <h3 class="secttl">1. Fuels: Basics &amp; Calorific Value</h3>
+    <div class="notebox">
+      <p>Materials used as a source of <mark class="concept">heat energy</mark> for domestic/industrial purposes — mainly wood, charcoal, petrol, kerosene, LPG, coal gas. Almost all fuels contain <mark class="concept">carbon</mark>, responsible for heat generation on burning in air.</p>
+    </div>
+    <h4 class="subttl">Characteristics of a Good Fuel</h4>
+    <ul>
+      <li>Readily available and <mark class="concept">cheap</mark>.</li>
+      <li>Burns <mark class="concept">easily in air at a moderate rate</mark>.</li>
+      <li>Produces a <mark class="concept">large amount of heat</mark>.</li>
+      <li>Leaves behind <mark class="trap">no undesirable substances</mark>.</li>
+      <li>Does <mark class="trap">not have volatile substances</mark>.</li>
+      <li>Easily <mark class="concept">storable and transportable</mark>.</li>
+      <li><mark class="concept">High and specific calorific value</mark>.</li>
+    </ul>
+    <div class="trapbox">
+      <p><mark class="trap">There is probably no fuel that could be considered an "ideal fuel."</mark> Gaseous fuels are the most suitable/preferable over solid or liquid fuels.</p>
+    </div>
+    <h4 class="subttl">Types of Fuels by Physical State</h4>
+    <table class="tbl-pastel">
+      <tr><th>Type</th><th>Examples</th></tr>
+      <tr><td><mark class="concept">Solid</mark></td><td>Coal, coke, wood, cow dung cakes</td></tr>
+      <tr><td><mark class="concept">Liquid</mark></td><td>Petrol, kerosene, diesel, fuel oil</td></tr>
+      <tr><td><mark class="concept">Gaseous</mark></td><td>LPG, CNG, biogas, coal gas, producer gas, hydrogen gas, oil gas, water gas</td></tr>
+    </table>
+    <h4 class="subttl">Calorific Value</h4>
+    <div class="notebox">
+      <p>Defined as the <mark class="concept">heat obtained when 1 g of fuel is burned in excess of oxygen</mark>, expressed in <mark class="fact">kcal/g or kJ/g</mark>.</p>
+    </div>
+    <table class="tbl-pastel">
+      <tr><th>Fuel</th><th>Calorific Value (kJ/g)</th><th>Fuel</th><th>Calorific Value (kJ/g)</th></tr>
+      <tr><td>Wood</td><td><mark class="fact">17</mark></td><td>Coke/coal/charcoal</td><td><mark class="fact">25–32</mark></td></tr>
+      <tr><td>Cow dung</td><td><mark class="fact">6–8</mark></td><td>Kerosene oil/gasoline</td><td><mark class="fact">48</mark></td></tr>
+      <tr><td>Ethanol</td><td><mark class="fact">30</mark></td><td>Petrol</td><td><mark class="fact">50</mark></td></tr>
+      <tr><td>Methane</td><td><mark class="fact">55</mark></td><td>Diesel</td><td><mark class="fact">45</mark></td></tr>
+      <tr><td>Hydrogen</td><td><mark class="fact">150 (maximum)</mark></td><td>Bio gas</td><td><mark class="fact">35–40</mark></td></tr>
+      <tr><td>Natural gas</td><td><mark class="fact">35–50</mark></td><td>LPG</td><td><mark class="fact">50</mark></td></tr>
+    </table>
+    <div class="trapbox">
+      <ul>
+        <li><mark class="trap">Calorific value of water gas &gt; producer gas</mark> (producer gas has the LOWEST calorific value among common fuels).</li>
+        <li><mark class="trap">Hydrogen has the maximum calorific value but is NOT commonly used as a fuel</mark> — inflammable nature + storage difficulty (though some sophisticated light vehicles do run on it).</li>
+        <li><mark class="fact">Fats have a higher calorific value than proteins and carbohydrates.</mark></li>
+        <li><mark class="fact">Kerosene's calorific value (~48 kJ/g) is closest to petrol's (~50 kJ/g)</mark> among common comparisons.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="f2">
+    <h3 class="secttl">2. Fossil Fuels &amp; Coal</h3>
+    <div class="notebox">
+      <p>Fuels generated from residues of living organisms buried for millions of years = <mark class="concept">fossil fuels</mark>: <mark class="fact">coal, petroleum, natural gas</mark>. Present in limited quantity → <mark class="trap">non-renewable natural resources</mark>.</p>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Coal formed from buried vegetation via <mark class="concept">carbonisation</mark> (flooding → burial → absence of air + high temp/pressure over millions of years).</li>
+        <li>Contains <mark class="fact">60–90% carbon</mark>, plus small quantities of nitrogen/sulphur compounds.</li>
+        <li>Grades (repeated from Tab I): <mark class="fact">Peat (50–60%C)</mark> → <mark class="fact">Lignite/brown coal (60–70%C)</mark> → <mark class="fact">Bituminous (78–86%C, most common, soft, domestic use)</mark> → <mark class="fact">Anthracite (94–98%C, best, high heat, no smoke)</mark>.</li>
+        <li>Processed by <mark class="concept">destructive distillation</mark> into <mark class="fact">coke, coal gas, coal tar</mark>; also used directly as fuel in boilers, engines, furnaces.</li>
+        <li><mark class="fact">Coal tar</mark>: black, thick liquid, mixture of ~200 substances — used for synthetic dyes, drugs, explosives, paints, naphthalene balls.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="f3">
+    <h3 class="secttl">3. Petroleum &amp; Fractional Distillation</h3>
+    <div class="notebox">
+      <p><mark class="concept">Petroleum</mark> = dark oily liquid, also called <mark class="fact">"black gold" / crude oil / rock oil</mark>; unpleasant odour; mixture of several hydrocarbons + sulphur, very high calorific value; formed from marine organisms buried under sand/clay over millions of years (absence of air + high temp/pressure).</p>
+    </div>
+    <h4 class="subttl">Fractional Distillation Products</h4>
+    <table class="tbl-pastel">
+      <tr><th>Fraction</th><th>Boiling Range</th><th>Uses</th></tr>
+      <tr><td>Uncondensed gases</td><td>Room temperature</td><td>Fuel gases, refrigerants, carbon black &amp; hydrogen production</td></tr>
+      <tr><td>Petroleum ether</td><td><mark class="fact">30–70°C</mark></td><td>Solvent</td></tr>
+      <tr><td><mark class="fact">Petrol / Gasoline</mark></td><td><mark class="fact">70–120°C</mark></td><td>Motor fuel, dry cleaning</td></tr>
+      <tr><td>Benzene derivatives</td><td><mark class="fact">120–150°C</mark></td><td>Solvent, dry cleaning</td></tr>
+      <tr><td><mark class="fact">Kerosene</mark></td><td><mark class="fact">150–250°C</mark></td><td>Fuel, illuminant, oil gas</td></tr>
+      <tr><td>Gas oil / Diesel oil</td><td><mark class="fact">250–350°C</mark></td><td>Diesel engine fuel; can be cracked to gasoline</td></tr>
+      <tr><td>Lubricating oil</td><td><mark class="fact">350–450°C</mark></td><td>Lubrication</td></tr>
+      <tr><td>Paraffin wax</td><td>&gt;500°C</td><td>Candles, boot polish, wax paper</td></tr>
+      <tr><td>Vaseline</td><td>&gt;500°C</td><td>Ointments, lubricating paints, road surfacing</td></tr>
+    </table>
+    <div class="trapbox">
+      <p>Crude petroleum undergoes <mark class="fact">fractional distillation</mark> (not simple distillation, sublimation, or evaporation) to yield various hydrocarbons.</p>
+    </div>
+  </section>
+
+  <section class="block" id="f4">
+    <h3 class="secttl">4. Gaseous &amp; Solid Fuel Compositions</h3>
+    <table class="tbl-pastel">
+      <tr><th>Fuel</th><th>Composition</th><th>Uses / Facts</th></tr>
+      <tr><td><mark class="fact">Coke</mark></td><td><mark class="fact">80–85% carbon</mark></td><td>By destructive distillation of coal (absence of air, high temp); extraction of metals (reducing agent), fuel</td></tr>
+      <tr><td><mark class="fact">Coal Gas</mark></td><td><mark class="fact">55% H₂, 30% CH₄, 4% CO, 3% unsaturated hydrocarbons, 8% non-volatile impurities</mark></td><td>Used in industries near coal plants, metallurgical reduction, <mark class="concept">Bunsen burner</mark>; H₂/CO/CH₄ provide heat, unsaturated hydrocarbon is the light emitter; used for street lighting first in <mark class="person">London (1810)</mark> and <mark class="person">New York (1820)</mark></td></tr>
+      <tr><td><mark class="fact">Water Gas</mark></td><td><mark class="fact">CO + H₂</mark> (N₂ &amp; water vapour as impurities)</td><td>Made by passing steam over superheated coke; industrial H₂, ammonia, methyl alcohol production; mixed with coal gas = good fuel</td></tr>
+      <tr><td><mark class="fact">Producer Gas</mark></td><td><mark class="fact">N₂ : CO in 2:1 ratio</mark></td><td>Glass manufacture, metallurgy; <mark class="trap">lowest calorific value among common fuels</mark></td></tr>
+      <tr><td><mark class="fact">Oil Gas</mark></td><td>Saturated + unsaturated hydrocarbons (methane, ethylene, acetylene)</td><td>From fractional distillation of kerosene/petroleum; lab burners</td></tr>
+      <tr><td><mark class="fact">Natural Gas</mark></td><td><mark class="fact">83% methane + 16% ethane</mark></td><td>Found at petroleum extraction sites; considered a "best fuel" due to inflammability; artificial fertilizer production</td></tr>
+      <tr><td><mark class="fact">LPG</mark></td><td><mark class="fact">Butane + iso-butane + some propane</mark></td><td>From oil wells; colourless/odourless — <mark class="fact">ethyl mercaptan (thioethanol)</mark> added for leak detection (stench); domestic cylinders (Bharat Gas, Indane etc.)</td></tr>
+      <tr><td><mark class="fact">Biogas / Gobar Gas</mark></td><td><mark class="fact">~75% methane</mark> + H₂, H₂S, CO₂</td><td>From anaerobic decomposition (<mark class="concept">fermentation</mark>) of cow dung, sewage, vegetable waste; burns smoothly, no smoke; spent slurry used as manure (rich in N &amp; P)</td></tr>
+      <tr><td><mark class="fact">CNG</mark></td><td>Mainly methane + some ethane</td><td>Vehicle fuel; produces less CO, NOₓ etc. vs petrol/diesel — cleaner fuel</td></tr>
+    </table>
+    <div class="trapbox">
+      <ul>
+        <li>Match: <mark class="fact">CNG→methane/ethane; Coal gas→hydrogen/methane/CO; LPG→butane/propane; Water gas→CO/hydrogen</mark>.</li>
+        <li><mark class="trap">LPG's main constituents are butane and propane, NOT methane</mark> — a very common trap. Methane, unlike LPG, can be supplied directly via pipelines for burning in homes/factories.</li>
+        <li><mark class="fact">CNG is cleaner because it produces small amounts of SOₓ/NOₓ, makes the environment less polluted, and emits fewer greenhouse gases.</mark></li>
+        <li>Biogas is formed through <mark class="fact">fermentation</mark> (anaerobic decomposition), not oxidation, aerobic respiration, or reduction.</li>
+        <li><mark class="trap">Methane + air mixture is the cause of most explosions in coal mines</mark> (firedamp), not H₂+O₂ or O₂+acetylene.</li>
+        <li>Open coal stoves ("sigrees") need fanning to sustain burning due to a <mark class="fact">lack of oxygen in the immediate surroundings</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="f5">
+    <h3 class="secttl">5. Petrol, Diesel, LNG &amp; Crude Grades</h3>
+    <h4 class="subttl">Petrol</h4>
+    <div class="notebox">
+      <ul>
+        <li>Used in light automobiles (scooters, cars); quality measured by <mark class="concept">octane number</mark> — % by volume of iso-octane in an iso-octane/n-heptane mix with equivalent anti-knock quality.</li>
+        <li><mark class="concept">Knocking</mark> = metallic sound from pre-ignition of fuel in the cylinder, damages the engine.</li>
+        <li><mark class="fact">Tetraethyl lead (TEL)</mark> or BTX (benzene-toluene-xylene) mixed with petrol as an anti-knock compound — <mark class="fact">0.15 mL TEL with ethyl bromide per litre</mark> is typical; high-octane fuel is rich in lead content.</li>
+        <li><mark class="fact">Ethylene dibromide</mark> is added along with TEL to serve as a lead scavenger — it helps eliminate lead oxide deposits from the engine.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">Diesel &amp; Biodiesel</h4>
+    <div class="notebox">
+      <ul>
+        <li>Used in heavy vehicles (trucks, tractors, submarines) — high power, lower cost; quality measured by <mark class="concept">cetane number</mark>.</li>
+        <li><mark class="fact">Higher cetane number, lower octane number fuel is ideal for diesel engines</mark> (opposite requirement to petrol engines).</li>
+        <li><mark class="fact">Biodiesel</mark>: from vegetable oils/animal fats/recycled grease via <mark class="concept">trans-esterification</mark>; safe, biodegradable, fewer pollutants than petro-diesel but currently costlier; pure form = <mark class="fact">B100</mark>, usually used as a diesel additive.</li>
+        <li><mark class="fact">Green diesel</mark> = best quality (lowest pollutants); <mark class="fact">Ultra-low-sulphur / "city" diesel</mark> = purest form.</li>
+      </ul>
+    </div>
+    <h4 class="subttl">LNG &amp; Brent Crude</h4>
+    <div class="notebox">
+      <ul>
+        <li><mark class="fact">LNG</mark> = natural gas (mainly methane) liquefied at <mark class="fact">~25 kPa, –162°C</mark>; odourless, colourless, non-toxic, non-corrosive.</li>
+        <li>Energy density <mark class="fact">2.4× CNG</mark> and <mark class="fact">60% of diesel</mark> — cost-efficient for transport; transported via <mark class="concept">cryogenic sea vessels/road tankers</mark>.</li>
+        <li><mark class="fact">Dahej</mark> is India's <mark class="fact">first LNG regasification project</mark> (promoted by BPCL, GAIL, IOCL, ONGC) — <mark class="trap">not Hassan</mark>, a common trap.</li>
+        <li><mark class="fact">Natural Gas Liquids (NGL)</mark> — separated from LPG — include ethane, propane, butane, natural gasoline.</li>
+        <li><mark class="fact">Brent Crude</mark>: light crude oil, ~0.37% sulphur, called <mark class="concept">"sweet crude"</mark>; specific gravity 0.835; suited for petrol/middle distillates; sourced from North-West Europe.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="f6">
+    <h3 class="secttl">6. Cracking &amp; Fuel Advancements</h3>
+    <div class="notebox">
+      <p><mark class="concept">Cracking</mark>: process converting high-boiling hydrocarbons into a mixture of low-boiling hydrocarbons — used to improve petrol yield/quality. E.g. Dodecane (C₁₂H₂₆) --973K, Pt/Pd/Ni--&gt; Heptane (C₇H₁₆) + Pentene (C₅H₁₀) + other products.</p>
+    </div>
+    <div class="greenbox">
+      <ul>
+        <li>Microbes used to extract <mark class="fact">ethanol from glycerol</mark>, cleaning wastewater simultaneously — reincorporates ethanol/water into fuel-making.</li>
+        <li>New solid material (<mark class="fact">lithium boron</mark> crystal phase) developed to store hydrogen compactly, releasing it easily on heating with minimal by-products.</li>
+        <li><mark class="fact">E-20 fuel</mark> (20% ethanol blend) reduces tailpipe hydrocarbon &amp; CO emissions vs traditional gasoline/E-10, with no measurable drivability/maintenance impact.</li>
+        <li><mark class="fact">E-85 fuel</mark> (85% ethanol) used in Indianapolis 500 race cars (previously 100% ethanol); reduces pollutants: <mark class="fact">sulphur emissions 80% lower, CO 40% lower, particulate matter 20% lower, VOCs 15% lower, NOₓ 10% lower</mark> vs conventional fuel.</li>
+        <li><mark class="fact">Gasohol</mark> = petrol (10%) + alcohol (90%) mixture — minimises CO₂ and SO₂ pollutants.</li>
+        <li><mark class="person">Solar Jet project</mark> (launched June 2011, EU-funded): uses concentrated sunlight to convert CO₂ + water into syngas (H₂+CO), converted to kerosene via <mark class="person">Fischer-Tropsch technology</mark> — first proof-of-concept for solar kerosene.</li>
+      </ul>
+    </div>
+    <div class="trapbox">
+      <p>Ethanol as a viable biofuel is obtained from <mark class="fact">sugarcane</mark> (not potato, rice, or wheat, per the standard exam answer).</p>
+    </div>
+  </section>
+
+  <section class="block" id="f7">
+    <h3 class="secttl">7. Combustion</h3>
+    <div class="notebox">
+      <p><mark class="concept">Combustion</mark>: a chemical process (oxidation) in which a substance reacts with oxygen to release energy as heat/light; the substance is called a <mark class="concept">fuel</mark>. E.g. burning of magnesium ribbon → MgO + heat + light.</p>
+    </div>
+    <h4 class="subttl">Combustible vs Non-Combustible</h4>
+    <ul>
+      <li><mark class="fact">Combustible substances</mark> burn in presence of air/oxygen — e.g. wood, paper, kerosene, charcoal, sulphur, magnesium.</li>
+      <li><mark class="fact">Non-combustible (incombustible) substances</mark> cannot burn in air — e.g. stone, sand/soil, bricks.</li>
+    </ul>
+    <h4 class="subttl">Conditions Required for Combustion</h4>
+    <ul>
+      <li><mark class="concept">Air (oxygen)</mark> — supporter of combustion.</li>
+      <li><mark class="concept">Ignition temperature</mark> — lowest temperature at which a substance catches fire; inflammable substances (LPG, petrol, alcohol) have <mark class="fact">very low ignition temperature</mark>.</li>
+      <li><mark class="concept">Fuel</mark> itself.</li>
+      <li><mark class="trap">"A candle" is NOT itself a necessary condition for combustion</mark> — fuel, air, and ignition temperature are the actual three conditions.</li>
+    </ul>
+    <h4 class="subttl">Types of Combustion</h4>
+    <table class="tbl-pastel">
+      <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+      <tr><td><mark class="fact">Rapid Combustion</mark></td><td>Fuel burns rapidly in a very small time interval, producing heat + light</td><td>Matchstick burning, firecracker explosion</td></tr>
+      <tr><td><mark class="fact">Slow Combustion</mark></td><td>Slow rate, no light produced, heat doesn't raise temperature much</td><td>Inhalation/respiration (sucking oxygen)</td></tr>
+      <tr><td><mark class="fact">Spontaneous Combustion</mark></td><td>Occurs at room temperature without external heat (auto-combustion); ignition temp lower than room temp</td><td>White phosphorus, coal dust in mines, forest fires</td></tr>
+      <tr><td><mark class="fact">Incomplete Combustion</mark></td><td>Occurs in insufficient O₂ supply; forms monoxides</td><td><mark class="rule">CH₄ + O₂ (insufficient) → CO + H₂O</mark></td></tr>
+    </table>
+    <div class="trapbox">
+      <ul>
+        <li>A cracker's ignition producing sudden heat, light, sound, and gas release is termed an <mark class="fact">explosion</mark>.</li>
+        <li><mark class="trap">Never sleep in a room with burning/smouldering coal fire</mark> — produces CO, which hinders oxygen supply in the body → can cause death.</li>
+        <li><mark class="fact">Charcoal does not vaporise, so it does not produce a flame</mark> (only glows/smoulders).</li>
+        <li>Combustion of a candle is an <mark class="fact">exothermic reaction</mark>.</li>
+        <li>Non-combustible substances cannot burn in oxygen; combustible substances CAN undergo combustion — both statements are simply definitional and TRUE.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block" id="f8">
+    <h3 class="secttl">8. Propellants (Rocket Fuels)</h3>
+    <div class="notebox">
+      <p><mark class="concept">Propellants</mark>: combustible substances with very high calorific value that undergo rapid combustion on ignition, releasing large energy + gases. Combustion increases internal pressure/temperature; gases (CO, steam etc.) depart from the rear orifice at high velocity as a <mark class="concept">jet</mark> — momentum lost by the jet is gained by the rocket, propelling it forward.</p>
+    </div>
+    <table class="tbl-pastel">
+      <tr><th>Type</th><th>Sub-type</th><th>Composition / Example</th></tr>
+      <tr><td rowspan="2"><mark class="fact">Solid Propellants</mark> (fuel + oxidiser together)</td><td>Composite</td><td>Polyurethane/polybutadiene (fuel) + ammonium perchlorate (oxidiser)</td></tr>
+      <tr><td>Double Base</td><td>Nitrocellulose + nitroglycerine (gunpowder)</td></tr>
+      <tr><td rowspan="2"><mark class="fact">Liquid Propellants</mark> (oxidiser in separate chamber)</td><td>Monoliquid</td><td>Single compound e.g. nitromethane, methyl nitrite (contains both oxidiser &amp; fuel)</td></tr>
+      <tr><td>Biliquid</td><td>Oxidiser (liquid O₂) + fuel (kerosene, liquid H₂, liquid paraffin, liquid ammonia, alcohol)</td></tr>
+      <tr><td><mark class="fact">Hybrid Propellants</mark></td><td>—</td><td>Solid fuel (e.g. acrylic rubber) + liquid oxidiser (e.g. N₂O₄)</td></tr>
+    </table>
+  </section>
+
+  <section class="block" id="f9">
+    <h3 class="secttl">9. Flame &amp; Fire Extinguishers</h3>
+    <div class="notebox">
+      <p>Substances that <mark class="concept">vaporise during burning give flames</mark> — e.g. kerosene oil, molten wax. <mark class="trap">Charcoal does not vaporise → no flame</mark>, only glows.</p>
+    </div>
+    <h4 class="subttl">Three Zones of a Flame</h4>
+    <table class="tbl-pastel">
+      <tr><th>Zone</th><th>Colour</th><th>Cause / Note</th></tr>
+      <tr><td><mark class="fact">Innermost Region</mark></td><td>Black</td><td>Unburnt carbon particles; <mark class="fact">lowest temperature</mark></td></tr>
+      <tr><td><mark class="fact">Middle Region</mark></td><td>Yellow, luminous</td><td>Partial combustion of fuel</td></tr>
+      <tr><td><mark class="fact">Outermost Region</mark></td><td>Blue, non-luminous</td><td>Complete combustion; <mark class="fact">hottest zone</mark>; used by goldsmiths to melt gold/silver</td></tr>
+    </table>
+    <div class="trapbox">
+      <p>A glass plate held in a candle flame for 10–12 s develops a <mark class="fact">circular black ring</mark> — due to <mark class="fact">deposition of unburnt carbon particles</mark> (not CO₂ evolution).</p>
+    </div>
+    <h4 class="subttl">Fire Extinguishers</h4>
+    <div class="notebox">
+      <ul>
+        <li><mark class="fact">Water</mark> is the most common extinguisher — cools the fuel below ignition temperature AND cuts off air supply.</li>
+        <li><mark class="trap">Water CANNOT be used for electric fires (conducts electricity) or oil fires (oil is lighter, floats above water and keeps burning in contact with air)</mark> — use <mark class="fact">CO₂</mark> instead; petroleum fires use <mark class="fact">foam-type extinguishers</mark>.</li>
+        <li><mark class="fact">CO₂ gas</mark> is heavier than air and non-inflammable — makes it an effective fire extinguisher by cutting the air/fuel contact.</li>
+        <li>When a person's clothes catch fire, cover them with a <mark class="concept">blanket</mark> to cut off the air supply.</li>
+        <li>Fire can be controlled by removing fuel, air, or both, or by lowering the fuel's temperature.</li>
+        <li><mark class="fact">Chloroform</mark>: anaesthetic in nature, produces phosgene gas (toxic) — <mark class="trap">it is not itself classified as a fire extinguisher or purely a liquid fuel in this context</mark>.</li>
+      </ul>
+    </div>
+    <div class="notebox">
+      <ul>
+        <li>Dry grass catches fire more easily than green grass in summer heat due to its <mark class="fact">lower ignition temperature</mark>.</li>
+        <li>Diesel, coal, and kerosene have high carbon % and form oxides of carbon (CO, CO₂) on burning; <mark class="fact">hydrogen produces only water on combustion → called a "pollution-free" fuel</mark>.</li>
+        <li>Kerosene oil does not catch fire at room temperature on its own because its <mark class="fact">ignition temperature is not reached</mark> at that temperature; heating it reaches the ignition point and it catches fire.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MCQ FACTS -->
+  <section class="block" id="f-mcq">
+    <h3 class="secttl">10. Consolidated MCQ Facts &amp; Traps</h3>
+    <div class="mcqbox">
+      <ul>
+        <li><mark class="fact">Hydrogen causes minimum environmental pollution among fuels</mark> (produces only water) — repeatedly tested.</li>
+        <li>Water is unsuitable for petrol fires because <mark class="fact">water, being heavier, sinks below the petrol</mark>, which remains in contact with air and keeps burning.</li>
+        <li>Kerosene's calorific value is closest among options to petrol's.</li>
+        <li>Stench from an LPG cylinder leak is due to <mark class="fact">ethyl mercaptan</mark> (not methane/propane/butane themselves — LPG is naturally odourless).</li>
+        <li>LPG = mixture of <mark class="fact">butane and propane</mark>.</li>
+        <li>Anthracite coal produces <mark class="fact">no smoke</mark> on burning (highest grade).</li>
+        <li>Match: <mark class="fact">CNG→methane/ethane; Coal gas→hydrogen/methane/CO; LPG→butane/propane; Water gas→CO/hydrogen</mark>.</li>
+        <li>Inflammable substances (petrol, alcohol, LPG) share the property of <mark class="fact">low ignition temperature</mark>.</li>
+        <li><mark class="fact">Statement I true, Statement II false</mark> pattern appears for the chloroform question — chloroform is anaesthetic and produces phosgene, but is not itself a "fire extinguisher" or plain "liquid fuel" as commonly mis-paired.</li>
+        <li>LNG statements: liquefied under extremely cold temperature (and pressure) for storage/transport — <mark class="fact">TRUE</mark>; <mark class="trap">first LNG terminal in India was at Dahej, NOT Hassan</mark> — statement FALSE; NGL (from LPG) includes ethane, propane, butane, natural gasoline — <mark class="fact">TRUE</mark>.</li>
+        <li><mark class="trap">Main constituent of LPG is NOT methane</mark> (it's butane/propane) — a frequently repeated trap; methane, unlike LPG, CAN be piped directly for domestic/industrial burning.</li>
+        <li>The black ring on a glass plate held over a candle flame = <mark class="fact">unburnt carbon deposition</mark>.</li>
+        <li>A "candle" alone is <mark class="trap">not a necessary condition for combustion</mark> — fuel, air, and ignition temperature are.</li>
+        <li>Combustion of a candle = <mark class="fact">exothermic reaction</mark>.</li>
+        <li>Both are true: non-combustible substances can't burn in oxygen; combustible substances CAN combust.</li>
+        <li>Ignition of a firecracker is an example of an <mark class="fact">explosion</mark> — sudden combustion releasing heat, light, and sound.</li>
+        <li>Combustible substances: carbon, sulphur, magnesium — defined as those that burn in the presence of oxygen.</li>
+        <li><mark class="fact">CO₂ gas</mark> is used in fire extinguishers.</li>
+        <li>Water acts as a fire extinguisher both by <mark class="fact">cooling the fuel below its ignition point</mark> and by <mark class="fact">cutting off the air supply</mark>.</li>
+        <li>Kerosene doesn't self-ignite at room temperature since its <mark class="fact">ignition temperature is not reached</mark> without external heating.</li>
+        <li>Kerosene and molten wax vaporise during burning and thus produce flames — general rule: substances that vaporise on burning give flames.</li>
+        <li>Ethanol as a viable biofuel is obtained from <mark class="fact">sugarcane</mark>.</li>
+        <li>Quality of petrol = <mark class="fact">octane number</mark>; quality of diesel = <mark class="fact">cetane number</mark>.</li>
+        <li><mark class="fact">Lead tetraethyl (TEL)</mark> is the classic anti-knock compound used in car engines.</li>
+        <li>Fuel ideal for diesel engines = <mark class="fact">high cetane number, low octane number</mark>.</li>
+        <li>CNG is a cleaner fuel on all three counts: low SOₓ/NOₓ, less pollution, fewer greenhouse gas emissions.</li>
+        <li>Biogas is formed through <mark class="fact">fermentation</mark> (anaerobic decomposition).</li>
+        <li>Open coal-stove "sigrees" need fanning due to <mark class="fact">insufficient oxygen</mark> around them.</li>
+        <li><mark class="fact">Methane + air</mark> mixture is responsible for most mine explosions (firedamp).</li>
+        <li>Addition of <mark class="fact">ethylene dibromide</mark> to petrol serves as a substitute/scavenger role alongside tetraethyl lead.</li>
+      </ul>
+    </div>
+  </section>
+</div>
+</main>
+</div>
+
+<script>
+function showTab(id, btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tabbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('nav1').style.display = id==='t1' ? 'block':'none';
+  document.getElementById('nav2').style.display = id==='t2' ? 'block':'none';
+  document.querySelector('.sidebar').classList.remove('open');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
