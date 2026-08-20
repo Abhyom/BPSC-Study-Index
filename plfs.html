@@ -57,7 +57,6 @@ body{
 
 /* ===== Layout shell ===== */
 .shell{display:grid; grid-template-columns: 300px 1fr; min-height:100vh;}
-@media (max-width: 1020px){ .shell{grid-template-columns:1fr;} .sidebar{position:relative; width:100%; height:auto;} }
 
 .sidebar{
   position:sticky; top:0; height:100vh; overflow-y:auto;
@@ -246,12 +245,102 @@ footer{border-top:1px solid var(--line-soft); padding:48px 72px; color:var(--ink
 ::-webkit-scrollbar-thumb:hover{background:var(--ink-mute);}
 
 .tag-new{display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; color:var(--stamp-red); border:1px solid rgba(204,87,96,0.5); background:rgba(204,87,96,0.1); padding:4px 10px; border-radius:6px; margin-left:12px; vertical-align:middle; text-transform:uppercase;}
+
+/* ===== Mobile topbar + hamburger + off-canvas nav ===== */
+.mobile-topbar{display:none;}
+.nav-backdrop{display:none;}
+.sidebar-close{display:none;}
+
+@media (max-width: 1020px){
+  .shell{display:block;}
+
+  .mobile-topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    position:sticky; top:0; z-index:40;
+    padding:14px 18px;
+    background:rgba(13,17,23,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .mt-brand{display:flex; align-items:center; gap:10px;}
+  .mt-seal{
+    width:34px; height:34px; border-radius:50%; border:2px solid var(--gold-dim);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-weight:700; font-size:13px; color:var(--gold);
+    flex:0 0 auto;
+  }
+  .mt-title{font-family:'Fraunces', serif; font-weight:700; font-size:16.5px; color:var(--ink);}
+
+  .hamburger{
+    width:42px; height:42px; border-radius:9px;
+    background:var(--bg-panel-2); border:1px solid var(--line);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px;
+    cursor:pointer; flex:0 0 auto;
+  }
+  .hamburger span{width:19px; height:2px; background:var(--ink-dim); border-radius:2px;}
+
+  .sidebar{
+    position:fixed !important; top:0; left:0; height:100vh !important; width:82vw; max-width:340px;
+    z-index:60;
+    transform:translateX(-105%);
+    transition:transform .28s ease;
+    box-shadow:24px 0 60px rgba(0,0,0,0.5);
+    overflow-y:auto;
+  }
+  body.nav-open .sidebar{transform:translateX(0);}
+
+  .sidebar-close{
+    display:flex; align-items:center; justify-content:center;
+    width:36px; height:36px; border-radius:9px;
+    background:var(--bg-panel-2); border:1px solid var(--line);
+    color:var(--ink-dim); font-size:15px; cursor:pointer;
+    position:absolute; top:20px; right:20px;
+  }
+
+  .nav-backdrop{
+    display:block; position:fixed; inset:0; z-index:50;
+    background:rgba(0,0,0,0.55); backdrop-filter:blur(2px);
+    opacity:0; pointer-events:none; transition:opacity .25s ease;
+  }
+  body.nav-open .nav-backdrop{opacity:1; pointer-events:auto;}
+  body.nav-open{overflow:hidden;}
+
+  main{padding:36px 20px 90px;}
+  .hero{margin-bottom:56px;}
+  h1.hero-title{font-size:clamp(30px,8vw,42px);}
+  .hero p.lede{font-size:16px;}
+  .factstrip{grid-template-columns:repeat(2,1fr); margin-top:30px;}
+  section{margin-bottom:60px;}
+  .sec-head h2{font-size:24px;}
+  .card{padding:24px 22px;}
+  .callout{padding:22px 22px;}
+  .stmt-head{padding:20px 20px;}
+  .stmt-list{padding:0 20px 10px;}
+  .stmt-verdict{padding:16px 20px 22px;}
+  .mcq-q{padding:18px 20px;}
+  .mcq-opts{padding:6px 20px 8px;}
+  .mcq-answer{padding:14px 20px 20px;}
+  footer{padding:32px 20px; flex-direction:column;}
+}
 </style>
 </head>
 <body>
+
+<div class="mobile-topbar">
+  <div class="mt-brand">
+    <span class="mt-seal">PL</span>
+    <span class="mt-title">PLFS Study File</span>
+  </div>
+  <button class="hamburger" id="hamburgerBtn" onclick="toggleNav()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+<div class="nav-backdrop" id="navBackdrop" onclick="closeNav()"></div>
+
 <div class="shell">
 
-<aside class="sidebar">
+<aside class="sidebar" id="sidebar">
+  <button class="sidebar-close" onclick="closeNav()" aria-label="Close menu">✕</button>
   <div class="seal">PL</div>
   <div class="brand-tag">Prelims Dossier</div>
   <div class="brand-title">PLFS Study File</div>
@@ -522,9 +611,14 @@ footer{border-top:1px solid var(--line-soft); padding:48px 72px; color:var(--ink
 </footer>
 
 <script>
+// Mobile nav toggle
+function toggleNav(){ document.body.classList.toggle('nav-open'); }
+function closeNav(){ document.body.classList.remove('nav-open'); }
+
 // Scrollspy
 const links = document.querySelectorAll('nav.toc a');
 const sections = [...links].map(l => document.querySelector(l.getAttribute('href')));
+links.forEach(l => l.addEventListener('click', closeNav));
 function onScroll(){
   let idx = 0;
   const y = window.scrollY + 120;
