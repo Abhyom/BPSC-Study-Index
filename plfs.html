@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLFS Dossier — BPSC Prelims Study Aid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;
+  --bg-panel:#141b24;
+  --bg-panel-2:#182029;
+  --bg-raised:#1c2530;
+  --line:#2a3542;
+  --line-soft:#1f2833;
+  --ink:#edeae3;
+  --ink-dim:#adb6c0;
+  --ink-mute:#78838f;
+  --gold:#e8ac4c;
+  --gold-dim:#a9822f;
+  --teal:#5cc4b1;
+  --rose:#ff7d9c;
+  --sky:#6cbaff;
+  --lilac:#bb96ff;
+  --stamp-red:#cc5760;
+
+  --hy-bg: rgba(255,214,10,0.22);
+  --hy-ink:#ffe27a;
+  --hg-bg: rgba(80,220,140,0.19);
+  --hg-ink:#96f2c0;
+  --hp-bg: rgba(255,111,145,0.20);
+  --hp-ink:#ffa9c1;
+  --hb-bg: rgba(95,179,255,0.20);
+  --hb-ink:#9dd0ff;
+  --ho-bg: rgba(255,159,91,0.22);
+  --ho-ink:#ffc494;
+  --hl-bg: rgba(177,138,255,0.20);
+  --hl-ink:#d4beff;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:
+    radial-gradient(1200px 700px at 85% -10%, rgba(232,172,76,0.07), transparent 60%),
+    radial-gradient(900px 600px at -10% 10%, rgba(92,196,177,0.06), transparent 55%),
+    var(--bg);
+  color:var(--ink);
+  font-family:'Source Sans 3', sans-serif;
+  line-height:1.85;
+  font-size:17px;
+  min-height:100vh;
+  letter-spacing:0.005em;
+}
+
+/* ===== Layout shell ===== */
+.shell{display:grid; grid-template-columns: 300px 1fr; min-height:100vh;}
+@media (max-width: 1020px){ .shell{grid-template-columns:1fr;} .sidebar{position:relative; width:100%; height:auto;} }
+
+.sidebar{
+  position:sticky; top:0; height:100vh; overflow-y:auto;
+  background:linear-gradient(180deg, var(--bg-panel), var(--bg));
+  border-right:1px solid var(--line-soft);
+  padding:44px 26px 60px;
+}
+.seal{
+  width:68px; height:68px; border-radius:50%;
+  border:2px solid var(--gold-dim);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Fraunces', serif; font-weight:700; font-size:24px;
+  color:var(--gold);
+  background:radial-gradient(circle at 35% 30%, rgba(232,172,76,0.2), transparent 70%);
+  margin-bottom:20px;
+}
+.brand-tag{
+  font-family:'JetBrains Mono', monospace; font-size:11.5px; letter-spacing:.16em;
+  color:var(--stamp-red); text-transform:uppercase; border:1px solid rgba(204,87,96,0.5);
+  display:inline-block; padding:5px 10px; border-radius:4px; margin-bottom:12px;
+  background:rgba(204,87,96,0.08);
+}
+.brand-title{
+  font-family:'Fraunces', serif; font-weight:700; font-size:27px; line-height:1.3;
+  color:var(--ink); margin-bottom:10px;
+}
+.brand-sub{font-size:14px; color:var(--ink-mute); margin-bottom:36px; line-height:1.6;}
+
+nav.toc{display:flex; flex-direction:column; gap:6px;}
+nav.toc a{
+  display:flex; align-items:baseline; gap:12px;
+  padding:12px 14px; border-radius:8px; color:var(--ink-dim); text-decoration:none;
+  font-size:15px; border-left:2px solid transparent; transition:.15s;
+}
+nav.toc a .num{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--ink-mute);}
+nav.toc a:hover{background:var(--bg-raised); color:var(--ink); border-left-color:var(--gold-dim);}
+nav.toc a.active{background:var(--bg-raised); color:var(--gold); border-left-color:var(--gold);}
+
+.legend{
+  margin-top:40px; padding:22px 20px; border:1px solid var(--line-soft); border-radius:14px;
+  background:var(--bg-panel-2);
+}
+.legend h4{font-size:12px; text-transform:uppercase; letter-spacing:.12em; color:var(--ink-mute); margin-bottom:16px; font-weight:600;}
+.legend-row{display:flex; align-items:center; gap:11px; font-size:13.5px; color:var(--ink-dim); margin-bottom:12px;}
+.legend-row:last-child{margin-bottom:0;}
+.swatch{width:16px; height:16px; border-radius:4px; flex:0 0 auto;}
+
+/* ===== Main content ===== */
+main{padding:64px 72px 140px; max-width:1040px;}
+@media (max-width:700px){ main{padding:40px 22px 100px;} }
+
+.hero{margin-bottom:88px; position:relative;}
+.hero .eyebrow{
+  font-family:'JetBrains Mono', monospace; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--teal); margin-bottom:22px; display:flex; align-items:center; gap:12px;
+}
+.hero .eyebrow::before{content:''; width:30px; height:1px; background:var(--teal);}
+h1.hero-title{
+  font-family:'Fraunces', serif; font-weight:900; font-size:clamp(38px,5.5vw,60px);
+  line-height:1.15; letter-spacing:-0.01em; margin-bottom:26px;
+}
+.hero p.lede{color:var(--ink-dim); font-size:18px; max-width:680px; margin-top:22px; line-height:1.8;}
+
+.factstrip{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line-soft); border:1px solid var(--line-soft); border-radius:16px; overflow:hidden; margin-top:44px;}
+@media (max-width:700px){.factstrip{grid-template-columns:repeat(2,1fr);}}
+.factcell{background:var(--bg-panel); padding:26px 22px;}
+.factcell .fv{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:26px; color:var(--gold);}
+.factcell .fl{font-size:12.5px; color:var(--ink-mute); margin-top:8px; line-height:1.5;}
+
+section{margin-bottom:96px; scroll-margin-top:32px;}
+.sec-head{display:flex; align-items:baseline; gap:18px; margin-bottom:34px; border-bottom:1px solid var(--line-soft); padding-bottom:22px;}
+.sec-head .idx{font-family:'JetBrains Mono',monospace; color:var(--gold-dim); font-size:16px;}
+.sec-head h2{font-family:'Fraunces',serif; font-weight:700; font-size:32px;}
+
+p{margin-bottom:20px; color:var(--ink); font-size:17px; line-height:1.85;}
+p.lead-note{color:var(--ink-dim); font-size:15.5px; margin-top:-10px; margin-bottom:28px;}
+.card{background:var(--bg-panel); border:1px solid var(--line-soft); border-radius:16px; padding:34px 38px; margin-bottom:26px;}
+.card h3{font-family:'Fraunces',serif; font-size:20px; margin-bottom:18px; color:var(--ink); line-height:1.4;}
+.card p:last-child{margin-bottom:0;}
+
+/* Highlighter marks */
+mark{padding:4px 9px; border-radius:6px; font-weight:600; box-decoration-break:clone; -webkit-box-decoration-break:clone; line-height:1.9;}
+mark.y{background:var(--hy-bg); color:var(--hy-ink);}
+mark.g{background:var(--hg-bg); color:var(--hg-ink);}
+mark.p{background:var(--hp-bg); color:var(--hp-ink);}
+mark.b{background:var(--hb-bg); color:var(--hb-ink);}
+mark.o{background:var(--ho-bg); color:var(--ho-ink);}
+mark.l{background:var(--hl-bg); color:var(--hl-ink);}
+
+/* Timeline */
+.timeline{position:relative; margin-left:14px; padding-left:38px; border-left:2px solid var(--line);}
+.tl-item{position:relative; margin-bottom:36px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-item::before{content:''; position:absolute; left:-45px; top:6px; width:13px; height:13px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 5px rgba(232,172,76,0.15);}
+.tl-year{font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--gold); font-size:14.5px;}
+.tl-body{margin-top:8px; font-size:16.5px; color:var(--ink); line-height:1.8;}
+
+/* Stat bars */
+.statgrid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-bottom:26px;}
+@media (max-width:700px){.statgrid{grid-template-columns:1fr;}}
+.statcard{background:var(--bg-panel); border:1px solid var(--line-soft); border-radius:16px; padding:30px 32px;}
+.statcard .big{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:38px; color:var(--teal);}
+.statcard .lab{font-size:13.5px; color:var(--ink-mute); margin-top:8px; line-height:1.6;}
+.bar-row{display:flex; align-items:center; gap:16px; margin-top:20px;}
+.bar-row .bl{width:100px; font-size:13.5px; color:var(--ink-dim); flex:0 0 auto;}
+.bar-track{flex:1; height:12px; background:var(--line-soft); border-radius:6px; overflow:hidden;}
+.bar-fill{height:100%; border-radius:6px;}
+.bar-row .bv{width:56px; text-align:right; font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--ink);}
+
+/* callouts */
+.callout{border-radius:16px; padding:30px 34px; margin-bottom:26px; border:1px solid;}
+.callout.trend{background:rgba(232,172,76,0.07); border-color:rgba(232,172,76,0.35);}
+.callout.trap{background:rgba(204,87,96,0.08); border-color:rgba(204,87,96,0.4);}
+.callout.tip{background:rgba(92,196,177,0.08); border-color:rgba(92,196,177,0.35);}
+.callout .ctitle{font-family:'JetBrains Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.12em; font-weight:700; margin-bottom:16px; display:flex; align-items:center; gap:10px;}
+.callout.trend .ctitle{color:var(--gold);}
+.callout.trap .ctitle{color:#ff9aa2;}
+.callout.tip .ctitle{color:var(--teal);}
+.callout p{margin-bottom:14px; font-size:16.5px; line-height:1.85;}
+.callout p:last-child{margin-bottom:0;}
+
+.pillrow{display:flex; flex-wrap:wrap; gap:12px; margin:20px 0 6px;}
+.pill{font-family:'JetBrains Mono',monospace; font-size:12.5px; padding:8px 16px; border-radius:24px; border:1px solid var(--line); color:var(--ink-dim); background:var(--bg-panel-2);}
+
+.notes-quick{background:var(--bg-panel-2); border-left:3px solid var(--lilac); border-radius:0 12px 12px 0; padding:26px 30px; margin-bottom:26px; font-family:'JetBrains Mono', monospace; font-size:14.5px; color:var(--ink-dim); line-height:2.3;}
+
+/* Old vs new comparison */
+.compare{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+@media (max-width:700px){.compare{grid-template-columns:1fr;}}
+.compare .colcard{border-radius:16px; padding:30px 32px; border:1px solid var(--line-soft);}
+.compare .old{background:var(--bg-panel);}
+.compare .new{background:linear-gradient(180deg, rgba(232,172,76,0.08), var(--bg-panel));}
+.compare .colcard h4{font-family:'JetBrains Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:.1em; margin-bottom:20px; color:var(--ink-mute);}
+.compare .new h4{color:var(--gold);}
+.compare dl{display:grid; grid-template-columns:auto 1fr; gap:14px 16px; font-size:15px;}
+.compare dt{color:var(--ink-mute);}
+.compare dd{color:var(--ink);}
+
+/* Statement-based analytical block */
+.stmt-block{background:var(--bg-panel); border:1px solid var(--line-soft); border-radius:16px; margin-bottom:22px; overflow:hidden;}
+.stmt-head{padding:26px 32px; cursor:pointer; display:flex; justify-content:space-between; gap:20px; align-items:flex-start;}
+.stmt-head:hover{background:var(--bg-raised);}
+.stmt-head .snum{font-family:'JetBrains Mono',monospace; color:var(--gold-dim); font-size:14px; flex:0 0 auto; margin-top:3px;}
+.stmt-head .stitle{flex:1; font-size:16.5px; color:var(--ink); line-height:1.8;}
+.stmt-head .chev{color:var(--ink-mute); transition:.2s; flex:0 0 auto; margin-top:4px; font-size:18px;}
+.stmt-block.open .chev{transform:rotate(90deg);}
+.stmt-body{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+.stmt-block.open .stmt-body{max-height:900px;}
+.stmt-list{padding:0 32px 12px; display:flex; flex-direction:column; gap:12px;}
+.stmt-item{padding:16px 20px; border-radius:10px; background:var(--bg-panel-2); font-size:15.5px; border:1px solid var(--line-soft); display:flex; gap:14px; line-height:1.7;}
+.stmt-item .k{font-family:'JetBrains Mono',monospace; color:var(--ink-mute); flex:0 0 auto;}
+.stmt-item.right{background:rgba(80,220,140,0.09); border-color:rgba(80,220,140,0.4);}
+.stmt-item.wrong{background:rgba(204,87,96,0.07); border-color:rgba(204,87,96,0.3);}
+.stmt-verdict{padding:18px 32px 28px; font-size:14.5px; color:var(--ink-dim); border-top:1px dashed var(--line-soft); margin-top:8px; line-height:1.9;}
+.stmt-verdict b{color:var(--teal);}
+.answer-tag{font-family:'JetBrains Mono',monospace; font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:.08em; padding:5px 12px; border-radius:20px;}
+.answer-tag.right{background:rgba(80,220,140,0.15); color:var(--hg-ink);}
+.answer-tag.wrong{background:rgba(204,87,96,0.15); color:#ff9aa2;}
+
+/* MCQ */
+.mcq{background:var(--bg-panel); border:1px solid var(--line-soft); border-radius:16px; margin-bottom:16px; overflow:hidden;}
+.mcq-q{padding:24px 30px; cursor:pointer; display:flex; justify-content:space-between; gap:18px; align-items:flex-start;}
+.mcq-q:hover{background:var(--bg-raised);}
+.mcq-q .qnum{font-family:'JetBrains Mono',monospace; color:var(--gold-dim); font-size:14.5px; flex:0 0 auto; margin-top:2px;}
+.mcq-q .qtext{flex:1; font-size:16.5px; color:var(--ink); line-height:1.75;}
+.mcq-q .chev{color:var(--ink-mute); transition:.2s; flex:0 0 auto; margin-top:2px; font-size:18px;}
+.mcq.open .chev{transform:rotate(90deg);}
+.mcq-body{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+.mcq.open .mcq-body{max-height:400px;}
+.mcq-opts{padding:6px 30px 8px; display:grid; gap:12px;}
+.opt{padding:14px 18px; border-radius:10px; background:var(--bg-panel-2); font-size:15.5px; border:1px solid var(--line-soft); display:flex; gap:12px; line-height:1.6;}
+.opt .k{font-family:'JetBrains Mono',monospace; color:var(--ink-mute);}
+.opt.correct{background:rgba(80,220,140,0.12); border-color:rgba(80,220,140,0.4); color:var(--hg-ink);}
+.mcq-answer{padding:18px 30px 26px; font-size:13.5px; color:var(--ink-mute); font-family:'JetBrains Mono',monospace; border-top:1px dashed var(--line-soft); margin-top:8px; line-height:1.8;}
+
+.quiz-controls{display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; flex-wrap:wrap; gap:14px;}
+.btn{font-family:'JetBrains Mono',monospace; font-size:13px; padding:12px 22px; border-radius:10px; border:1px solid var(--line); background:var(--bg-panel-2); color:var(--ink-dim); cursor:pointer; transition:.15s;}
+.btn:hover{border-color:var(--gold-dim); color:var(--gold);}
+
+footer{border-top:1px solid var(--line-soft); padding:48px 72px; color:var(--ink-mute); font-size:13.5px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; line-height:1.8;}
+@media (max-width:700px){footer{padding:32px 22px;}}
+
+::-webkit-scrollbar{width:11px; height:11px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--line); border-radius:6px;}
+::-webkit-scrollbar-thumb:hover{background:var(--ink-mute);}
+
+.tag-new{display:inline-block; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.1em; color:var(--stamp-red); border:1px solid rgba(204,87,96,0.5); background:rgba(204,87,96,0.1); padding:4px 10px; border-radius:6px; margin-left:12px; vertical-align:middle; text-transform:uppercase;}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<aside class="sidebar">
+  <div class="seal">PL</div>
+  <div class="brand-tag">Prelims Dossier</div>
+  <div class="brand-title">PLFS Study File</div>
+  <div class="brand-sub">Periodic Labour Force Survey — a BPSC-focused revision aid, colour-coded for fast skimming.</div>
+
+  <nav class="toc" id="toc">
+    <a href="#s1"><span class="num">01</span> What is PLFS</a>
+    <a href="#s2"><span class="num">02</span> Why It Was Needed</a>
+    <a href="#s3"><span class="num">03</span> Milestones Timeline</a>
+    <a href="#s4"><span class="num">04</span> Old vs Revamped Design</a>
+    <a href="#s5"><span class="num">05</span> Annual Report 2025</a>
+    <a href="#s6"><span class="num">06</span> Quarterly Bulletin</a>
+    <a href="#s7"><span class="num">07</span> BPSC Exam Trends</a>
+    <a href="#s8"><span class="num">08</span> Statement-Based Practice <span class="tag-new">new</span></a>
+    <a href="#s9"><span class="num">09</span> 30-Question Drill</a>
+  </nav>
+
+  <div class="legend">
+    <h4>Marker Legend</h4>
+    <div class="legend-row"><span class="swatch" style="background:var(--hy-bg); box-shadow:inset 0 0 0 1px var(--hy-ink);"></span> Bodies / Agencies</div>
+    <div class="legend-row"><span class="swatch" style="background:var(--hg-bg); box-shadow:inset 0 0 0 1px var(--hg-ink);"></span> Stats &amp; Figures</div>
+    <div class="legend-row"><span class="swatch" style="background:var(--hp-bg); box-shadow:inset 0 0 0 1px var(--hp-ink);"></span> Dates &amp; Years</div>
+    <div class="legend-row"><span class="swatch" style="background:var(--hb-bg); box-shadow:inset 0 0 0 1px var(--hb-ink);"></span> Definitions / Terms</div>
+    <div class="legend-row"><span class="swatch" style="background:var(--ho-bg); box-shadow:inset 0 0 0 1px var(--ho-ink);"></span> Exam-trap Flags</div>
+    <div class="legend-row"><span class="swatch" style="background:var(--hl-bg); box-shadow:inset 0 0 0 1px var(--hl-ink);"></span> Persons / Committees</div>
+  </div>
+</aside>
+
+<main>
+
+  <div class="hero">
+    <div class="eyebrow">BPSC BHAI &nbsp;·&nbsp; MoSPI / NSO Source File</div>
+    <h1 class="hero-title">Periodic Labour Force Survey</h1>
+    <p class="lede">Everything from the base document — reorganised, colour-coded, and cross-checked against how <mark class="g">BPSC</mark> and allied state-PSC prelims actually frame economy questions. Skim the highlights, work through the statement-based practice, then finish with the 30-question drill.</p>
+
+    <div class="factstrip">
+      <div class="factcell"><div class="fv">2017</div><div class="fl">Launch year</div></div>
+      <div class="factcell"><div class="fv">NSO / MoSPI</div><div class="fl">Conducting body</div></div>
+      <div class="factcell"><div class="fv">3.1%</div><div class="fl">UR, Annual Report 2025</div></div>
+      <div class="factcell"><div class="fv">2.72L</div><div class="fl">Sample households, 2025 design</div></div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <section id="s1">
+    <div class="sec-head"><span class="idx">01</span><h2>What is PLFS</h2></div>
+    <p>PLFS is <mark class="y">India's official nationwide labour market survey</mark>, conducted by the <mark class="y">National Statistical Office (NSO)</mark> under the <mark class="y">Ministry of Statistics and Programme Implementation (MoSPI)</mark>, to provide periodic estimates of <mark class="b">employment</mark>, <mark class="b">unemployment</mark>, <mark class="b">labour force participation</mark>, and other labour market indicators.</p>
+
+    <div class="statgrid">
+      <div class="card"><h3>Key Facts</h3>
+        <p>Launched <mark class="p">2017</mark> · Conducted by <mark class="y">NSO</mark> · Ministry: <mark class="y">MoSPI</mark></p>
+        <p>Replaced the <mark class="b">NSS Employment–Unemployment Survey (EUS)</mark></p>
+        <p>Reports: <mark class="g">Annual</mark> (rural + urban) &amp; <mark class="g">Quarterly</mark> (urban-only, pre-2025)</p>
+      </div>
+      <div class="card"><h3>Purpose</h3>
+        <p>Estimate <mark class="b">employment</mark>, <mark class="b">unemployment</mark>, <mark class="b">LFPR</mark>, <mark class="b">WPR</mark>, <mark class="b">UR</mark>; analyse by gender, age, education, industry, occupation.</p>
+      </div>
+    </div>
+
+    <div class="callout trap">
+      <div class="ctitle">Exam Trap</div>
+      <p>PLFS did <b>not</b> invent labour statistics in India — it <mark class="o">replaced the quinquennial EUS</mark>. BPSC option-writers love swapping "launched" with "replaced" or naming the wrong predecessor survey (Census, ASI, Economic Survey are common distractor options — see MCQ 4).</p>
+    </div>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section id="s2">
+    <div class="sec-head"><span class="idx">02</span><h2>Why PLFS Was Needed</h2></div>
+
+    <div class="card">
+      <h3>Pre-2017 Background</h3>
+      <p>Before 2017, employment data came from the <mark class="y">NSSO's</mark> <mark class="b">quinquennial</mark> Employment &amp; Unemployment Surveys (EUS) — comprehensive figures arrived only <mark class="o">once every five years</mark>, far too infrequent for a fast-changing economy.</p>
+      <p>The <mark class="l">Task Force on Improving Employment Data (2017)</mark>, chaired by NITI Aayog Vice-Chairman <mark class="l">Arvind Panagariya</mark>, recommended an annual household survey with quarterly urban estimates — the direct blueprint for PLFS.</p>
+    </div>
+
+    <div class="callout trap">
+      <div class="ctitle">High-Value Exam Trap — Two Different Committees</div>
+      <p>Aspirants routinely confuse two separate bodies. The <mark class="l">Panagariya Task Force (2017)</mark> designed the annual + quarterly <b>survey architecture</b> that became PLFS. But the underlying <b>concept</b> of a periodic labour survey was first recommended earlier by the <mark class="l">Amitabh Kundu Committee (2009–10)</mark>, appointed by the National Statistical Commission, which proposed a quarterly urban / annual rural design and led to <mark class="g">pilot studies in Himachal Pradesh, Odisha and Gujarat (2011–13)</mark>. Both names are fair game — questions may ask "who conceived PLFS" (Kundu) versus "who designed the 2017 rollout" (Panagariya).</p>
+    </div>
+
+    <div class="card">
+      <h3>Quick Notes</h3>
+      <div class="notes-quick">
+        <mark class="y">NSSO</mark> = Data collection agency<br>
+        <mark class="y">CSO</mark> = Data analysis + GDP compilation<br>
+        Both originally under <mark class="y">MoSPI</mark><br>
+        <mark class="p">2000</mark>: <mark class="l">Rangarajan Committee</mark> recommends merger of NSSO + CSO<br>
+        <mark class="p">2005</mark>: Government accepts the recommendation<br>
+        <mark class="p">2019</mark>: Merger actually implemented → <mark class="y">NSO</mark> formed
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Know Your Terms</h3>
+      <p><mark class="b">LFPR</mark> (Labour Force Participation Rate): % of persons in the labour force (working, seeking, or available for work) in the population.</p>
+      <p><mark class="b">WPR</mark> (Worker Population Ratio): % of employed persons in the population.</p>
+      <p><mark class="b">UR</mark> (Unemployment Rate): % of unemployed persons <i>among the labour force</i> — <mark class="o">not</mark> the total population.</p>
+      <p><mark class="b">NEET</mark>: Youth Not in Employment, Education or Training — a job-quality indicator now reported in PLFS.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section id="s3">
+    <div class="sec-head"><span class="idx">03</span><h2>Milestones — A Timeline</h2></div>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-year">May 2019</div><div class="tl-body">1st Annual Report released, covering <mark class="p">July 2017 – June 2018</mark></div></div>
+      <div class="tl-item"><div class="tl-year">Jan 2025</div><div class="tl-body"><mark class="o">Complete revamp</mark>: bigger sample, district-level strata, monthly bulletins, rural+urban quarterly bulletins, shift to calendar-year reporting</div></div>
+      <div class="tl-item"><div class="tl-year">Apr 2025</div><div class="tl-body">First-ever <mark class="g">Monthly Bulletin</mark> released (for April 2025)</div></div>
+      <div class="tl-item"><div class="tl-year">Aug 2025</div><div class="tl-body">First <mark class="g">rural+urban Quarterly Bulletin</mark> released (Apr–Jun 2025)</div></div>
+      <div class="tl-item"><div class="tl-year">Mar 2026</div><div class="tl-body">PLFS <mark class="g">Annual Report 2025</mark> — first calendar-year (Jan–Dec 2025) report, released <mark class="p">27 March 2026</mark></div></div>
+    </div>
+    <div class="callout tip" style="margin-top:26px;">
+      <div class="ctitle">Revision Tip</div>
+      <p>Memorise this timeline as a strict chain: <mark class="g">Launch (2017) → 1st Report (2019) → Revamp (Jan 2025) → 1st Monthly (Apr 2025) → 1st Combined Quarterly (Aug 2025) → 1st Calendar-Year Annual (Mar 2026)</mark>. BPSC often tests "which came first" ordering rather than isolated dates.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section id="s4">
+    <div class="sec-head"><span class="idx">04</span><h2>Old Design vs Revamped Design</h2></div>
+    <div class="compare">
+      <div class="colcard old">
+        <h4>Up to Dec 2024</h4>
+        <dl>
+          <dt>Survey year</dt><dd><mark class="b">July–June</mark> (agricultural year)</dd>
+          <dt>FSUs</dt><dd><mark class="g">12,800</mark> (7,016 rural + 5,784 urban)</dd>
+          <dt>HH / FSU</dt><dd><mark class="g">8</mark></dd>
+          <dt>Sample HH</dt><dd><mark class="g">~1.02 lakh</mark></dd>
+        </dl>
+      </div>
+      <div class="colcard new">
+        <h4>From Jan 2025</h4>
+        <dl>
+          <dt>Survey year</dt><dd><mark class="b">January–December</mark> (calendar year)</dd>
+          <dt>FSUs</dt><dd><mark class="g">22,692</mark> (12,504 rural + 10,188 urban)</dd>
+          <dt>HH / FSU</dt><dd><mark class="g">12</mark></dd>
+          <dt>Sample HH</dt><dd><mark class="g">~2.72 lakh</mark> (2.65× larger)</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="callout trap" style="margin-top:26px;">
+      <div class="ctitle">Exam Trap</div>
+      <p>The switch from <mark class="o">July–June to January–December</mark> reporting is one of the most exam-friendly single facts in this whole topic — expect a direct one-liner MCQ on it (see Q30).</p>
+    </div>
+  </section>
+
+  <!-- SECTION 5 -->
+  <section id="s5">
+    <div class="sec-head"><span class="idx">05</span><h2>Annual Report 2025 — Key Findings</h2></div>
+    <p class="lead-note">15+ years data = overall labour market health; 15–29 years data = youth employment, first-time job seekers, skill gaps, demographic dividend.</p>
+
+    <div class="card"><h3>1. Labour Force Participation Rate (LFPR)</h3>
+      <div class="statcard" style="margin-bottom:20px;">
+        <div class="big">44.9%</div><div class="lab">LFPR, all ages, usual status (ps+ss), India</div>
+        <div class="bar-row"><div class="bl">Rural Male</div><div class="bar-track"><div class="bar-fill" style="width:58.8%; background:var(--sky)"></div></div><div class="bv">58.8%</div></div>
+        <div class="bar-row"><div class="bl">Urban Male</div><div class="bar-track"><div class="bar-fill" style="width:59.7%; background:var(--sky)"></div></div><div class="bv">59.7%</div></div>
+        <div class="bar-row"><div class="bl">Rural Female</div><div class="bar-track"><div class="bar-fill" style="width:34.6%; background:var(--rose)"></div></div><div class="bv">34.6%</div></div>
+        <div class="bar-row"><div class="bl">Urban Female</div><div class="bar-track"><div class="bar-fill" style="width:22.2%; background:var(--rose)"></div></div><div class="bv">22.2%</div></div>
+      </div>
+      <p><mark class="g">15–29 yrs</mark>: LFPR <mark class="g">46.0%</mark> overall (Rural <mark class="g">47.3%</mark> / Urban <mark class="g">43.1%</mark>) &nbsp;|&nbsp; <mark class="g">15+ yrs</mark>: LFPR <mark class="g">59.3%</mark> overall (Rural <mark class="g">62.8%</mark> / Urban <mark class="g">52.2%</mark>)</p>
+      <p>Among males, <mark class="g">69.8%</mark> cited "wanting to continue studies" as the main reason for staying out of the labour force; among females, <mark class="g">44.4%</mark> cited child care / home-making responsibilities.</p>
+    </div>
+
+    <div class="card"><h3>2. Worker Population Ratio (WPR)</h3>
+      <div class="statcard" style="margin-bottom:20px;">
+        <div class="big">43.5%</div><div class="lab">WPR, all ages, usual status (ps+ss), India</div>
+        <div class="bar-row"><div class="bl">Rural Male</div><div class="bar-track"><div class="bar-fill" style="width:57.2%; background:var(--sky)"></div></div><div class="bv">57.2%</div></div>
+        <div class="bar-row"><div class="bl">Urban Male</div><div class="bar-track"><div class="bar-fill" style="width:57.2%; background:var(--sky)"></div></div><div class="bv">57.2%</div></div>
+        <div class="bar-row"><div class="bl">Rural Female</div><div class="bar-track"><div class="bar-fill" style="width:33.8%; background:var(--rose)"></div></div><div class="bv">33.8%</div></div>
+        <div class="bar-row"><div class="bl">Urban Female</div><div class="bar-track"><div class="bar-fill" style="width:20.7%; background:var(--rose)"></div></div><div class="bv">20.7%</div></div>
+      </div>
+      <p><mark class="g">15–29 yrs</mark>: WPR <mark class="g">41.4%</mark> (Rural <mark class="g">43.4%</mark> / Urban <mark class="g">37.2%</mark>) &nbsp;|&nbsp; <mark class="g">15+ yrs</mark>: WPR <mark class="g">57.4%</mark> (Rural <mark class="g">61.2%</mark> / Urban <mark class="g">49.7%</mark>)</p>
+    </div>
+
+    <div class="card"><h3>3. Unemployment Rate (UR)</h3>
+      <div class="statcard" style="margin-bottom:20px;">
+        <div class="big">3.1%</div><div class="lab">UR, all ages, usual status (ps+ss), India</div>
+        <div class="bar-row"><div class="bl">Rural Male</div><div class="bar-track"><div class="bar-fill" style="width:26%; background:var(--sky)"></div></div><div class="bv">2.6%</div></div>
+        <div class="bar-row"><div class="bl">Urban Male</div><div class="bar-track"><div class="bar-fill" style="width:42%; background:var(--sky)"></div></div><div class="bv">4.2%</div></div>
+        <div class="bar-row"><div class="bl">Rural Female</div><div class="bar-track"><div class="bar-fill" style="width:21%; background:var(--rose)"></div></div><div class="bv">2.1%</div></div>
+        <div class="bar-row"><div class="bl">Urban Female</div><div class="bar-track"><div class="bar-fill" style="width:64%; background:var(--rose)"></div></div><div class="bv">6.4%</div></div>
+      </div>
+      <p>Educated persons (secondary+, 15+): UR <mark class="g">6.5%</mark> overall (Rural <mark class="g">6.0%</mark> / Urban <mark class="g">7.2%</mark>) — <mark class="o">educated unemployment is more than double the headline rate</mark>.</p>
+      <p>Youth (15–29): UR <mark class="g">9.9%</mark> overall. Highest sub-group: <mark class="o">Urban Female youth at 18.9%</mark> — the single worst-off cell in the whole report.</p>
+    </div>
+
+    <div class="callout trend">
+      <div class="ctitle">Trend Signals</div>
+      <p>Shift towards <mark class="b">formal / regular wage-salaried employment</mark>; <mark class="b">self-employment</mark> remains the single largest source but its share dipped slightly; <mark class="b">casual labour</mark> stayed broadly stable.</p>
+      <p><mark class="b">Agriculture</mark> still holds the largest sectoral share of jobs though it eased marginally; <mark class="b">construction's</mark> share dipped a touch while most other sectors held steady or rose.</p>
+      <p>Regular wage earnings grew <mark class="g">5.8%</mark> for men vs <mark class="g">7.2%</mark> for women — <mark class="o">faster wage growth for women</mark>. Average years of formal education (15+): <mark class="g">10.0 yrs</mark> overall (Male <mark class="g">10.2</mark> / Female <mark class="g">9.9</mark>; Urban consistently higher than Rural). <mark class="b">NEET</mark>: <mark class="g">24.9%</mark> (15–59) and <mark class="g">21.0%</mark> (15–24).</p>
+    </div>
+  </section>
+
+  <!-- SECTION 6 -->
+  <section id="s6">
+    <div class="sec-head"><span class="idx">06</span><h2>Quarterly Bulletins</h2></div>
+    <p>Since the <mark class="p">January 2025</mark> revamp, PLFS releases <mark class="b">rural + urban</mark> Quarterly Bulletins in <mark class="b">Current Weekly Status (CWS)</mark>, tracking the labour market every three months across the four quarters of 2025–26: <mark class="p">Jul–Sep 2025</mark>, <mark class="p">Oct–Dec 2025</mark>, and <mark class="p">Jan–Mar 2026</mark>.</p>
+    <div class="callout tip">
+      <div class="ctitle">Definition Check</div>
+      <p><mark class="b">Usual Status (ps+ss)</mark> looks back over the <mark class="g">last 365 days</mark> — captures long-run, stable trends. <mark class="b">Current Weekly Status (CWS)</mark> looks back over the <mark class="g">last 7 days</mark> — captures short-term/seasonal volatility. <b>Annual reports</b> use Usual Status headline figures; <b>Quarterly bulletins</b> use CWS. This pairing (report-type ↔ reference-period) is a favourite MCQ pattern.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 7 : NEW BPSC TRENDS -->
+  <section id="s7">
+    <div class="sec-head"><span class="idx">07</span><h2>BPSC Exam Trends on PLFS <span class="tag-new">researched addition</span></h2></div>
+    <p class="lead-note">Compiled from BPSC's own question-pattern behaviour and how UPSC/state-PSC prelims have historically tested PLFS — used here as a proxy since BPSC's economy section closely mirrors the UPSC prelims style.</p>
+
+    <div class="card">
+      <h3>Where PLFS sits in the syllabus</h3>
+      <p>PLFS falls under the <mark class="b">Indian Economy</mark> section of <mark class="y">BPSC Prelims General Studies</mark> (the paper is <mark class="g">150 objective questions</mark> with negative marking). Economy questions in BPSC routinely blend <mark class="o">static institutional facts</mark> (who conducts a survey, under which ministry) with <mark class="o">current-affairs data points</mark> (latest LFPR/UR figures) — exactly the two layers this document covers.</p>
+    </div>
+
+    <div class="card">
+      <h3>The four recurring BPSC question-types on data-body topics</h3>
+      <div class="pillrow">
+        <span class="pill">① Agency identification</span>
+        <span class="pill">② Indicator ↔ definition matching</span>
+        <span class="pill">③ Year-on-year data comparison</span>
+        <span class="pill">④ Committee / chairperson recall</span>
+      </div>
+      <p style="margin-top:20px;">Type ① and ④ are pure recall ("who conducts", "who chaired") and are the <mark class="g">highest-frequency, lowest-difficulty</mark> question style for statistical-survey topics across BPSC and sister exams. Types ② and ③ need you to actually distinguish LFPR/WPR/UR from each other and track which figure moved between report years — exactly what the stat cards in Section 5 are built for.</p>
+    </div>
+
+    <div class="callout trap">
+      <div class="ctitle">Historical Fact Worth Knowing</div>
+      <p>PLFS's very first report (<mark class="p">2017–18</mark>, released <mark class="p">2019</mark>) recorded India's unemployment rate at <mark class="o">6.1%</mark> — a <mark class="o">45-year high</mark> at the time — which became a major political controversy after the data reportedly leaked ahead of the 2019 general election. This single episode is a recurring "context" fact used to frame current-affairs questions on PLFS credibility and data governance.</p>
+    </div>
+
+    <div class="callout trend">
+      <div class="ctitle">What examiners are likely to lean on next cycle</div>
+      <p>1. The <mark class="b">calendar-year shift (Jan 2025 revamp)</mark> is brand-new and highly "quotable" — expect it to be tested directly for a few cycles, the way earlier exams milked the 2019 NSO formation.</p>
+      <p>2. <mark class="b">NEET</mark> and <mark class="b">youth unemployment (15–29)</mark> figures are increasingly used in both prelims MCQs and mains essay/GS answers on jobless growth and the demographic dividend — treat these as dual-use data.</p>
+      <p>3. The <mark class="b">Kundu Committee vs Panagariya Task Force</mark> distinction (Section 2) is the kind of "two similar-sounding facts" trap BPSC option-setters are fond of — always double-check which one is being asked about before answering.</p>
+    </div>
+
+    <div class="card">
+      <h3>General BPSC prelims prep signal</h3>
+      <p>Across recent BPSC cycles, aspirants and coaching trackers consistently flag <mark class="y">Polity</mark>, <mark class="y">History</mark> (with strong Bihar-specific weightage), <mark class="y">Geography</mark>, <mark class="y">Economy</mark>, <mark class="y">Science</mark>, and <mark class="y">Current Affairs</mark> as the recurring subject buckets — and note that <mark class="o">many questions repeat directly or in modified form</mark> across years, which is exactly why a compact, colour-coded, fact-dense revision sheet like this one pays off disproportionately versus re-reading the raw report.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 8: STATEMENT-BASED PRACTICE -->
+  <section id="s8">
+    <div class="sec-head"><span class="idx">08</span><h2>Statement-Based Practice <span class="tag-new">new</span></h2></div>
+    <p class="lead-note">The single most common BPSC/UPSC prelims format on data-heavy topics is not a plain factual question — it's "Which of the following statement(s) is/are correct?" built from two or three claims, where you must judge each against the actual data. Below are analytical statements built directly from the trends in this report. Tap each block to reveal the verdict and reasoning.</p>
+    <div id="stmtList"></div>
+  </section>
+
+  <!-- SECTION 9: MCQ -->
+  <section id="s9">
+    <div class="sec-head"><span class="idx">09</span><h2>Test Yourself — 30 MCQs</h2></div>
+    <p class="lead-note">Tap a question to reveal options and the correct answer, straight from the source document's answer key.</p>
+    <div class="quiz-controls">
+      <div class="pill" id="scoreTag">Answered 0 / 30</div>
+      <button class="btn" onclick="expandAll()">Expand all</button>
+    </div>
+    <div id="mcqList"></div>
+  </section>
+
+  </main>
+</div>
+
+<footer>
+  <div>Source: MoSPI / NSO — PLFS Annual Report 2025 &amp; Quarterly Bulletins (2025–26) · BPSC exam-pattern notes compiled from public coaching &amp; PYQ trend analyses.</div>
+  <div>BPSC Bhai · Study Dossier</div>
+</footer>
+
+<script>
+// Scrollspy
+const links = document.querySelectorAll('nav.toc a');
+const sections = [...links].map(l => document.querySelector(l.getAttribute('href')));
+function onScroll(){
+  let idx = 0;
+  const y = window.scrollY + 120;
+  sections.forEach((s,i)=>{ if(s && s.offsetTop <= y) idx = i; });
+  links.forEach(l=>l.classList.remove('active'));
+  if(links[idx]) links[idx].classList.add('active');
+}
+window.addEventListener('scroll', onScroll); onScroll();
+
+// ===== Statement-based analytical practice =====
+// Each entry: title, [statement text list], [true/false per statement], verdict explanation
+const statements = [
+  {
+    title: "Consider the following statements regarding formalisation of India's labour market in 2025:",
+    items: [
+      "1. The share of workers in regular wage/salaried employment increased compared to 2024.",
+      "2. The share of self-employed workers increased compared to 2024.",
+      "3. Casual labour showed a major structural increase in 2025."
+    ],
+    correctness: [true, false, false],
+    verdict: "Only Statement 1 is correct. The report shows a shift towards regular wage/salaried jobs, while self-employment's share slightly declined and casual labour stayed largely stable with no major structural change. A likely exam framing: 'Has India's labour market moved towards formal employment in 2025?' — Answer: Yes, based on the rise in regular wage/salaried share alongside the dip in self-employment."
+  },
+  {
+    title: "Consider the following statements on gender-wise wage growth in regular wage/salaried employment (2025):",
+    items: [
+      "1. Average earnings for male workers grew faster than for female workers.",
+      "2. Female workers' average earnings grew at approximately 7.2%, faster than male workers' 5.8%."
+    ],
+    correctness: [false, true],
+    verdict: "Only Statement 2 is correct. Female wage growth (~7.2%) outpaced male wage growth (~5.8%) in 2025 — a easy-to-flip trap since intuition might suggest the reverse given the persistent LFPR/WPR gender gap in participation."
+  },
+  {
+    title: "Consider the following statements on sectoral employment shifts (2024 vs 2025):",
+    items: [
+      "1. Agriculture's share of total employment increased in 2025.",
+      "2. Construction's share of employment decreased marginally in 2025.",
+      "3. Most sectors other than agriculture and construction remained stable or increased."
+    ],
+    correctness: [false, true, true],
+    verdict: "Statements 2 and 3 are correct; Statement 1 is incorrect. Agriculture still holds the single largest employment share but that share eased slightly rather than rising — a classic 'largest share' vs 'growing share' distinction examiners exploit."
+  },
+  {
+    title: "Consider the following statements on gender differences in reasons for staying out of the labour force:",
+    items: [
+      "1. The majority of males cited 'wanting to continue studies' as their main reason for not being in the labour force.",
+      "2. The majority of females cited the same reason as males for staying out of the labour force.",
+      "3. Child care and home-making responsibilities were the leading reason cited by females."
+    ],
+    correctness: [true, false, true],
+    verdict: "Statements 1 and 3 are correct; Statement 2 is incorrect. Males (69.8%) and females (44.4%) cite different primary reasons — study continuation for men versus care responsibilities for women. This gendered contrast is a natural 'match the reason to the group' prelims trap."
+  },
+  {
+    title: "Consider the following statements on the Unemployment Rate (UR) across social/demographic groups (Annual Report 2025):",
+    items: [
+      "1. Educated persons (secondary and above) have a lower unemployment rate than the national average.",
+      "2. Urban female youth (15–29) recorded the highest unemployment rate among all groups reported.",
+      "3. Rural unemployment rates are consistently lower than urban unemployment rates across genders."
+    ],
+    correctness: [false, true, true],
+    verdict: "Statements 2 and 3 are correct; Statement 1 is incorrect. Educated persons actually show a higher UR (6.5%) than the national headline (3.1%) — reflecting that unemployment is disproportionately concentrated among the more educated, a well-known structural feature of the Indian labour market worth remembering as a standalone fact."
+  },
+  {
+    title: "Consider the following statements on the January 2025 PLFS revamp:",
+    items: [
+      "1. The survey reference period shifted from a calendar year to an agricultural year (July–June).",
+      "2. The total sample size of households increased by more than two-and-a-half times.",
+      "3. Monthly bulletins were introduced for the first time as part of this revamp."
+    ],
+    correctness: [false, true, true],
+    verdict: "Statements 2 and 3 are correct; Statement 1 is incorrect (reversed) — the shift was actually from the agricultural year (July–June) to the calendar year (January–December), the opposite of what Statement 1 claims. Reversed-direction statements like this are a very common prelims trick."
+  },
+  {
+    title: "Consider the following statements on youth (15–29) labour indicators, 2025:",
+    items: [
+      "1. Youth LFPR is higher in rural areas than in urban areas.",
+      "2. Youth unemployment rate is higher among females than males in both rural and urban areas.",
+      "3. Youth WPR is higher than the youth LFPR."
+    ],
+    correctness: [true, true, false],
+    verdict: "Statements 1 and 2 are correct; Statement 3 is incorrect. WPR (employed share) is always less than or equal to LFPR (labour force share) by definition, since WPR is a subset of LFPR-eligible persons — any statement claiming WPR exceeds LFPR is definitionally false and can be eliminated without even checking the report's numbers."
+  }
+];
+
+const stmtList = document.getElementById('stmtList');
+statements.forEach((s, i) => {
+  const allCorrectCount = s.correctness.filter(Boolean).length;
+  const div = document.createElement('div');
+  div.className = 'stmt-block';
+  div.innerHTML = `
+    <div class="stmt-head" onclick="toggleStmt(${i})">
+      <span class="snum">S${i+1}</span>
+      <div class="stitle">${s.title}</div>
+      <span class="chev">›</span>
+    </div>
+    <div class="stmt-body">
+      <div class="stmt-list">
+        ${s.items.map((t,j)=>`<div class="stmt-item ${s.correctness[j]?'right':'wrong'}"><span class="k">${s.correctness[j]?'✓':'✗'}</span><span>${t}</span></div>`).join('')}
+      </div>
+      <div class="stmt-verdict"><b>Verdict:</b> ${allCorrectCount} of ${s.items.length} statement(s) correct. ${s.verdict}</div>
+    </div>`;
+  div.id = 'stmt-'+i;
+  stmtList.appendChild(div);
+});
+function toggleStmt(i){
+  document.getElementById('stmt-'+i).classList.toggle('open');
+}
+
+// MCQ data: [question, [optA,optB,optC,optD], correctIndex]
+const mcqs = [
+["PLFS was launched in which year?",["2011","2014","2017","2019"],2],
+["Which organisation conducts PLFS?",["CSO","NSO","RBI","Labour Bureau"],1],
+["Under which ministry does PLFS operate?",["Ministry of Labour and Employment","MoSPI","NITI Aayog","Ministry of Rural Development"],1],
+["PLFS replaced which earlier survey?",["Census of India","Annual Survey of Industries","NSS Employment–Unemployment Survey (EUS)","Economic Survey"],2],
+["Who chaired the Task Force on Improving Employment Data (2017)?",["Raghuram Rajan","Arvind Panagariya","Manmohan Singh","C. Rangarajan"],1],
+["Which committee recommended the merger of NSSO and CSO?",["Rangarajan Committee","Panagariya Task Force","Pronab Sen Committee","Abhijit Sen Committee"],0],
+["In which year was NSO (merging NSSO and CSO) actually formed?",["2005","2000","2017","2019"],3],
+["What does LFPR stand for?",["Labour Force Participation Rate","Labour Force Productivity Rate","Labour Force Population Ratio","Labour Force Placement Rate"],0],
+["How is the Unemployment Rate (UR) calculated?",["Unemployed as % of total population","Unemployed as % of the labour force","Unemployed as % of employed persons","Unemployed youth as % of total youth"],1],
+["What does NEET stand for in PLFS?",["Not in Education, Employment or Training","New Employment and Enrollment Tracker","National Employment and Education Trends","Not Eligible for Employment and Training"],0],
+["As per Annual Report 2025, what is the overall LFPR (all ages, ps+ss)?",["34.6%","44.9%","59.3%","62.8%"],1],
+["Which group has the highest LFPR (all ages, 2025)?",["Rural Female","Urban Female","Rural Male","Urban Male"],3],
+["Which group has the lowest LFPR (all ages, 2025)?",["Rural Female","Urban Female","Rural Male","Urban Male"],1],
+["What is the WPR (all ages, ps+ss) as per Annual Report 2025?",["3.1%","43.5%","44.9%","57.4%"],1],
+["What is the all-India Unemployment Rate (all ages, ps+ss) in Annual Report 2025?",["3.1%","6.5%","9.9%","4.9%"],0],
+["Which group faces the highest unemployment rate as per Annual Report 2025?",["Rural Male (all ages)","Urban Female (youth 15–29)","Rural Female (all ages)","Urban Male (all ages)"],1],
+["What is the UR among educated persons (secondary+, 15+) at all-India level?",["3.1%","6.5%","9.9%","2.1%"],1],
+["What was the main reason cited by males for not being in the labour force?",["Household duties","Wanting to continue studies","Illness","Retirement"],1],
+["What was the main reason cited by females for not being in the labour force?",["Wanting to continue studies","Child care / home-making","Lack of jobs","Disability"],1],
+["Which category employs the largest share of workers (2025)?",["Casual labour","Regular wage/salaried","Self-employed","Unpaid family work"],2],
+["Between 2024 and 2025, how did the share of self-employed female workers change?",["Increased","Decreased","Remained exactly the same","Data not available"],1],
+["Which industry accounts for the largest share of workers in India (2025)?",["Manufacturing","Construction","Agriculture","Trade, Hotel & Restaurant"],2],
+["Between 2024 and 2025, the share of employment in agriculture:",["Increased","Decreased","Remained unchanged","Doubled"],1],
+["In regular wage/salaried employment, whose average earnings grew faster in 2025?",["Male workers (5.8%)","Female workers (7.2%)","Both grew equally","Earnings declined for both"],1],
+["What is the average number of years in formal education (all-India, 15+) in 2025?",["9.2 years","10.0 years","10.9 years","11.2 years"],1],
+["Which group has the highest average years of formal education (2025)?",["Rural Male","Rural Female","Urban Male","Urban Female"],2],
+["What is the NEET percentage for the 15–59 age group (usual status)?",["21.0%","24.9%","44.4%","9.9%"],1],
+["How many Annual Reports did PLFS release for the July–June cycle, 2017-18 to 2023-24?",["Five","Six","Seven","Eight"],2],
+["When was the first-ever Monthly Bulletin of PLFS released?",["January 2025","April 2025","August 2025","March 2026"],1],
+["What major structural change did the PLFS revamp (Jan 2025) introduce?",["Removal of the urban sample","Shift to calendar-year reporting with a bigger sample and monthly bulletins","Discontinuation of Annual Reports","Merger with the Census"],1]
+];
+
+const list = document.getElementById('mcqList');
+let answered = new Set();
+
+mcqs.forEach((m, i) => {
+  const [q, opts, correct] = m;
+  const div = document.createElement('div');
+  div.className = 'mcq';
+  div.innerHTML = `
+    <div class="mcq-q" onclick="toggleMcq(${i})">
+      <span class="qnum">Q${i+1}</span>
+      <div class="qtext">${q}</div>
+      <span class="chev">›</span>
+    </div>
+    <div class="mcq-body">
+      <div class="mcq-opts">
+        ${opts.map((o,j)=>`<div class="opt ${j===correct?'correct':''}"><span class="k">${String.fromCharCode(65+j)}.</span> ${o}</div>`).join('')}
+      </div>
+      <div class="mcq-answer">Correct answer: ${String.fromCharCode(65+correct)}. ${opts[correct]}</div>
+    </div>`;
+  div.id = 'mcq-'+i;
+  list.appendChild(div);
+});
+
+function toggleMcq(i){
+  const el = document.getElementById('mcq-'+i);
+  el.classList.toggle('open');
+  if(el.classList.contains('open') && !answered.has(i)){
+    answered.add(i);
+    document.getElementById('scoreTag').textContent = `Answered ${answered.size} / 30`;
+  }
+}
+function expandAll(){
+  document.querySelectorAll('.mcq').forEach((el,i)=>{ el.classList.add('open'); answered.add(i); });
+  document.getElementById('scoreTag').textContent = `Answered ${answered.size} / 30`;
+}
+</script>
+</body>
+</html>
