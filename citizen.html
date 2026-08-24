@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>The Citizenship Ledger — Constitutional &amp; Statutory Provisions</title>
+<style>
+  :root{
+    --ink:#1c1a15;
+    --ink-soft:#4a453c;
+    --parchment:#faf5e8;
+    --parchment-deep:#f2ead6;
+    --rule:#d8cba9;
+    --navy:#14181f;
+    --gold:#c9a227;
+
+    --yellow-bg:#ffe988;
+    --yellow-bd:#a87e00;
+    --blue-bg:#a9d9ff;
+    --blue-bd:#155f95;
+    --green-bg:#a9e9b8;
+    --green-bd:#1c6b34;
+    --red-bg:#ffb3ac;
+    --red-bd:#9c1d15;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Georgia,"Noto Serif",serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- HEADER ---------- */
+  header.masthead{
+    background:
+      radial-gradient(1200px 300px at 10% -20%, #2a3140 0%, transparent 60%),
+      linear-gradient(180deg,#181c24,var(--navy) 70%);
+    color:#f4efe0;
+    padding:38px 20px 30px;
+    border-bottom:6px solid var(--gold);
+    text-align:center;
+  }
+  header.masthead::before{
+    content:"§ 5 — 11  ·  ACT OF 1955";
+    display:block;
+    letter-spacing:.22em;
+    font-size:.68rem;
+    text-transform:uppercase;
+    color:#c9a227;
+    font-family:"Courier New",monospace;
+    margin-bottom:14px;
+  }
+  header.masthead h1{margin:0;font-size:2.05rem;font-weight:700;letter-spacing:.01em;}
+  header.masthead h1 .amp{color:var(--gold);font-style:italic;}
+  header.masthead p.sub{margin:10px auto 0;max-width:560px;color:#c7c2b3;font-size:.92rem;font-style:italic;}
+
+  .legend{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:22px auto 0;max-width:640px;}
+  .legend span{
+    font-family:"Courier New",monospace;font-size:.7rem;letter-spacing:.03em;
+    padding:5px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.18);
+    color:#eee7d3;display:inline-flex;align-items:center;gap:6px;
+  }
+  .legend i{width:10px;height:10px;border-radius:3px;display:inline-block;}
+  .legend .lc{background:var(--yellow-bg);}
+  .legend .ld{background:var(--blue-bg);}
+  .legend .le{background:var(--green-bg);}
+  .legend .lf{background:var(--red-bg);}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:840px;margin:0 auto;padding:34px 18px 90px;}
+
+  .section{
+    background:var(--parchment-deep);
+    border:1px solid var(--rule);
+    border-radius:14px;
+    padding:26px 22px 30px;
+    margin-bottom:34px;
+    box-shadow:0 1px 0 #fff inset, 0 10px 24px -18px rgba(0,0,0,.4);
+  }
+
+  .section-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
+  .section-num{
+    font-family:"Courier New",monospace;font-size:1.6rem;font-weight:700;color:var(--gold);
+    background:var(--navy);min-width:44px;height:44px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .section h2{margin:0;font-size:1.32rem;letter-spacing:.01em;color:var(--ink);}
+  .section .tagline{margin:2px 0 20px 56px;font-style:italic;color:var(--ink-soft);font-size:.95rem;}
+
+  hr.rule{border:none;border-top:1px dashed var(--rule);margin:26px 0;}
+
+  h3.article-head{
+    font-size:1.06rem;margin:28px 0 12px;padding-left:12px;
+    border-left:4px solid var(--gold);color:var(--ink);
+  }
+  h3.article-head:first-of-type{margin-top:4px;}
+
+  h4.sub-head{font-size:1rem;margin:24px 0 8px;color:var(--ink);letter-spacing:.01em;}
+
+  ul, ol{padding-left:1.35em;margin:8px 0 14px;}
+  li{margin:7px 0;}
+  li ul, li ol{margin:8px 0 8px;}
+  p{margin:8px 0;}
+  strong{color:var(--ink);}
+
+  /* ---------- WHO / CONDITION BADGE BLOCKS ---------- */
+  .clause{
+    background:#fff;
+    border:1px solid var(--rule);
+    border-radius:10px;
+    padding:14px 16px 16px;
+    margin:12px 0 18px;
+  }
+  .clause-row{display:flex;gap:12px;align-items:flex-start;margin:6px 0;}
+  .clause-row:first-child{margin-top:0;}
+  .badge{
+    flex-shrink:0;
+    background:var(--navy);
+    color:#f5efe0;
+    font-family:"Courier New",monospace;
+    font-size:.7rem;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    padding:5px 10px;
+    border-radius:5px;
+    line-height:1.4;
+    margin-top:2px;
+  }
+  .badge.who{background:#1a1a1a;}
+  .badge.cond{background:var(--red-bd);}
+  .clause-text{flex:1;min-width:0;}
+  .clause-text ol, .clause-text ul{margin:6px 0 2px;}
+
+  /* ---------- HIGHLIGHT MARKERS ---------- */
+  mark{
+    padding:2px 9px;
+    border-radius:6px;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .hl-concept{background:var(--yellow-bg); border-bottom:2px solid var(--yellow-bd);}
+  .hl-fact{background:var(--blue-bg); border-bottom:2px solid var(--blue-bd);}
+  .hl-entity{background:var(--green-bg); border-bottom:2px solid var(--green-bd);}
+  .hl-trap{background:var(--red-bg); border-bottom:2px solid var(--red-bd); color:#4a0c07;}
+
+  /* ---------- TRAP / CALLOUT BOX ---------- */
+  .trap-box{
+    margin:16px 0;background:#fff2f2;border:2px solid var(--red-bd);
+    border-radius:10px;padding:16px 16px 14px;position:relative;
+  }
+  .trap-box .trap-label{
+    position:absolute;top:-12px;left:14px;background:var(--red-bd);color:#fff;
+    font-family:"Courier New",monospace;font-size:.68rem;letter-spacing:.08em;
+    padding:3px 10px;border-radius:20px;text-transform:uppercase;
+  }
+  .trap-box p{margin:6px 0 0;}
+
+  /* ---------- TIMELINE / METHOD CARD ---------- */
+  .path-card{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:14px 16px;margin:10px 0;}
+  .path-card .path-title{font-weight:700;display:block;margin-bottom:4px;}
+
+  /* ---------- TABLE ---------- */
+  .table-wrap{overflow-x:auto;margin:18px 0 10px;border-radius:10px;border:2px solid #000;}
+  table.bw{border-collapse:collapse;width:100%;min-width:640px;background:#fff;font-size:.93rem;}
+  table.bw caption{
+    text-align:left;font-family:"Courier New",monospace;font-size:.72rem;letter-spacing:.08em;
+    text-transform:uppercase;color:#fff;background:#000;padding:8px 14px;
+  }
+  table.bw th{background:#000;color:#fff;text-align:left;padding:12px 14px;font-weight:700;font-size:.9rem;border:1px solid #000;}
+  table.bw td{padding:11px 14px;border:1px solid #000;vertical-align:top;color:#111;}
+  table.bw tr:nth-child(odd) td{background:#ffffff;}
+  table.bw tr:nth-child(even) td{background:#e9e9e9;}
+  table.bw td:first-child{font-weight:700;background:#f4f4f4 !important;}
+  table.bw tr:nth-child(even) td:first-child{background:#dcdcdc !important;}
+  .table-foot-note{font-size:.82rem;font-style:italic;color:var(--ink-soft);margin-top:8px;}
+
+  footer{text-align:center;color:var(--ink-soft);font-size:.78rem;padding:20px;font-family:"Courier New",monospace;letter-spacing:.05em;}
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width:560px){
+    header.masthead h1{font-size:1.5rem;}
+    header.masthead{padding:28px 14px 24px;}
+    main{padding:22px 10px 70px;}
+    .section{padding:18px 14px 22px;border-radius:10px;}
+    .section-num{min-width:36px;height:36px;font-size:1.2rem;border-radius:8px;}
+    .section .tagline{margin-left:0;margin-top:6px;}
+    .section h2{font-size:1.12rem;}
+    mark{padding:2px 6px;}
+    .clause-row{flex-direction:column;gap:5px;}
+    .badge{align-self:flex-start;}
+    table.bw{font-size:.82rem;}
+    table.bw th, table.bw td{padding:8px 8px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <h1>The Citizenship <span class="amp">Ledger</span></h1>
+  <p class="sub">Constitutional and statutory provisions for Indian citizenship are built on simple core rules once you break down the target groups, key cutoff dates, and requirements.</p>
+  <div class="legend">
+    <span><i class="lc"></i> Concepts</span>
+    <span><i class="ld"></i> Facts / Dates / Numbers</span>
+    <span><i class="le"></i> Persons / Institutions</span>
+    <span><i class="lf"></i> MCQ Traps</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= SECTION 1 ================= -->
+  <section class="section" id="s1">
+    <div class="section-eyebrow">
+      <span class="section-num">1</span>
+      <h2>Constitutional Provisions <span style="font-weight:400;">(Articles 5 to 11)</span></h2>
+    </div>
+    <p class="tagline">These articles decided who became a citizen on <mark class="hl-fact">January 26, 1950</mark>.</p>
+
+    <h3 class="article-head"><mark class="hl-entity">Article 5</mark> (Citizenship by Domicile)</h3>
+    <div class="clause">
+      <div class="clause-row">
+        <span class="badge who">Who</span>
+        <div class="clause-text">People <mark class="hl-concept">residing permanently</mark> in India on <mark class="hl-fact">Jan 26, 1950</mark>.</div>
+      </div>
+      <div class="clause-row">
+        <span class="badge cond">Condition</span>
+        <div class="clause-text">Must meet any 1 of these three:
+          <ol>
+            <li><mark class="hl-concept">Born in India</mark>, <strong>OR</strong></li>
+            <li><mark class="hl-concept">Either parent was born in India</mark>, <strong>OR</strong></li>
+            <li><mark class="hl-concept">Resided in India</mark> for at least <mark class="hl-fact">5 years</mark> right before <mark class="hl-fact">Jan 26, 1950</mark>.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="article-head"><mark class="hl-entity">Article 6</mark> (Migrated from Pakistan to India)</h3>
+    <div class="clause">
+      <div class="clause-row">
+        <span class="badge who">Who</span>
+        <div class="clause-text">People who <mark class="hl-concept">moved from Pakistan to India</mark> during <mark class="hl-fact">Partition</mark>.</div>
+      </div>
+      <div class="clause-row">
+        <span class="badge cond">Condition</span>
+        <div class="clause-text">Person/Parent/Grandparent <mark class="hl-concept">born in undivided India</mark> <strong>AND</strong> met one of these based on the <mark class="hl-fact">July 19, 1948</mark> cutoff (the day permit rules started):
+          <ul>
+            <li><strong>Before July 19, 1948:</strong> <mark class="hl-concept">Became a citizen automatically</mark> upon living in India.</li>
+            <li><strong>On or After July 19, 1948:</strong> Must live in India for <mark class="hl-fact">6 months</mark> and <mark class="hl-concept">formally register</mark> with an officer.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="article-head"><mark class="hl-entity">Article 7</mark> (Migrated to Pakistan, then Returned)</h3>
+    <div class="clause">
+      <div class="clause-row">
+        <span class="badge who">Who</span>
+        <div class="clause-text">People who left India for Pakistan after <mark class="hl-fact">March 1, 1947</mark>, but came back to India for <mark class="hl-concept">permanent resettlement</mark>.</div>
+      </div>
+      <div class="clause-row">
+        <span class="badge cond">Condition</span>
+        <div class="clause-text">Treated like post-July 19, 1948 migrants — must <mark class="hl-concept">live in India for</mark> <mark class="hl-fact">6 months</mark> before applying for <mark class="hl-concept">registration</mark>.</div>
+      </div>
+    </div>
+
+    <h3 class="article-head"><mark class="hl-entity">Article 8</mark> (Persons of Indian Origin Living Abroad)</h3>
+    <div class="clause">
+      <div class="clause-row">
+        <span class="badge who">Who</span>
+        <div class="clause-text">People <mark class="hl-concept">born in undivided India</mark> (or parents/grandparents born there) who were living in foreign countries (e.g., <mark class="hl-entity">UK</mark>, <mark class="hl-entity">USA</mark>).</div>
+      </div>
+      <div class="clause-row">
+        <span class="badge cond">Condition</span>
+        <div class="clause-text">Simply <mark class="hl-concept">register as an Indian citizen</mark> at the <mark class="hl-entity">Indian diplomatic consulate</mark> in that country.</div>
+      </div>
+    </div>
+
+    <h3 class="article-head"><mark class="hl-entity">Articles 9, 10 &amp; 11</mark> (Foundational Rules)</h3>
+    <ul>
+      <li><strong><mark class="hl-entity">Article 9</mark>:</strong> Banned <mark class="hl-trap">dual citizenship</mark> (voluntary foreign citizenship = <mark class="hl-trap">automatic loss</mark> of Indian status).</li>
+      <li><strong><mark class="hl-entity">Article 10</mark>:</strong> Citizenship continues until <mark class="hl-entity">Parliament</mark> makes a law changing it.</li>
+      <li><strong><mark class="hl-entity">Article 11</mark>:</strong> Gives <mark class="hl-entity">Parliament</mark> absolute authority to regulate citizenship (which led to the <mark class="hl-concept">Citizenship Act of 1955</mark>).</li>
+    </ul>
+  </section>
+
+  <!-- ================= SECTION 2 ================= -->
+  <section class="section" id="s2">
+    <div class="section-eyebrow">
+      <span class="section-num">2</span>
+      <h2>Acquisition of Citizenship <span style="font-weight:400;">(Citizenship Act, 1955)</span></h2>
+    </div>
+    <p class="tagline">How to get citizenship <strong>after</strong> January 26, 1950.</p>
+
+    <h4 class="sub-head">A. By Birth (in India)</h4>
+    <ul>
+      <li><mark class="hl-fact">Jan 26, 1950 – July 1, 1987:</mark> Born in India = <mark class="hl-concept">Automatic citizen</mark> (regardless of parents' nationality).</li>
+      <li><mark class="hl-fact">July 1, 1987 – Dec 3, 2004:</mark> Born in India = Citizen ONLY IF <mark class="hl-concept">at least 1 parent is an Indian citizen</mark>.</li>
+      <li><mark class="hl-fact">Dec 3, 2004 Onwards:</mark> Born in India = Citizen ONLY IF <mark class="hl-concept">both parents are citizens</mark> <strong>OR</strong> <mark class="hl-concept">1 parent is a citizen and the other is not an illegal migrant</mark>.</li>
+    </ul>
+    <div class="trap-box">
+      <span class="trap-label">Exception</span>
+      <p>Children of <mark class="hl-trap">foreign diplomats</mark> stationed in India or <mark class="hl-trap">enemy aliens</mark> do <strong>not</strong> get citizenship by birth.</p>
+    </div>
+
+    <h4 class="sub-head">B. By Descent (Born outside India)</h4>
+    <ul>
+      <li><mark class="hl-fact">Jan 26, 1950 – Dec 10, 1992:</mark> <mark class="hl-concept">Father must be an Indian citizen</mark> at the time of birth.</li>
+      <li><mark class="hl-fact">Dec 10, 1992 – Dec 3, 2004:</mark> <mark class="hl-concept">Either parent</mark> (mother or father) is an Indian citizen.</li>
+      <li><mark class="hl-fact">Dec 3, 2004 Onwards:</mark> Birth <mark class="hl-concept">must be registered</mark> at an Indian consulate within <mark class="hl-fact">1 year</mark> (with a declaration that the minor holds no foreign passport).</li>
+    </ul>
+
+    <h4 class="sub-head">C. By Registration (For PIOs &amp; Spouses)</h4>
+    <p>Must not be an <mark class="hl-trap">illegal migrant</mark>. Requires applying after fulfilling continuous stay requirements:</p>
+    <ul>
+      <li><mark class="hl-fact">7 Years Residence:</mark> For <mark class="hl-entity">Persons of Indian Origin (PIO)</mark> or non-citizens married to an Indian citizen.</li>
+      <li><mark class="hl-fact">5 Years OCI Status:</mark> Cardholders who have lived in India for <mark class="hl-fact">12 continuous months</mark> before applying.</li>
+    </ul>
+
+    <h4 class="sub-head">D. By Naturalisation (For Foreigners)</h4>
+    <p>For non-citizens seeking citizenship who fulfill these criteria:</p>
+    <ul>
+      <li>Not a citizen of a country that <mark class="hl-trap">bans Indians from naturalising</mark>.</li>
+      <li>Agrees to <mark class="hl-concept">renounce original citizenship</mark>.</li>
+      <li>Resided in India (or worked for the Indian Govt) for <mark class="hl-fact">12 months continuous</mark> before applying, plus <mark class="hl-fact">11 years out of the previous 14 years</mark>.</li>
+      <li><mark class="hl-concept">Good character</mark> + fluent in an <mark class="hl-entity">8th Schedule</mark> language.</li>
+    </ul>
+
+    <h4 class="sub-head">E. By Incorporation of Territory</h4>
+    <p>When a foreign region becomes part of India (e.g., <mark class="hl-entity">Pondicherry</mark>, <mark class="hl-entity">Goa</mark>), the <mark class="hl-entity">Central Government</mark> specifies which inhabitants automatically become Indian citizens.</p>
+
+    <h4 class="sub-head">F. Special Provisions: Assam Accord (Section 6A)</h4>
+    <p>Designed to handle migrants entering <mark class="hl-entity">Assam</mark> from <mark class="hl-entity">Bangladesh</mark>:</p>
+    <ul>
+      <li><mark class="hl-fact">Entered before Jan 1, 1966:</mark> <mark class="hl-concept">Full citizens</mark>.</li>
+      <li><mark class="hl-fact">Entered Jan 1, 1966 – March 25, 1971:</mark> Must register; granted citizen rights, but <mark class="hl-trap">voting rights suspended for 10 years</mark>.</li>
+      <li><mark class="hl-fact">Entered after March 25, 1971:</mark> Identified as <mark class="hl-trap">illegal migrants / foreigners</mark>.</li>
+    </ul>
+  </section>
+
+  <!-- ================= SECTION 3 ================= -->
+  <section class="section" id="s3">
+    <div class="section-eyebrow">
+      <span class="section-num">3</span>
+      <h2>Loss of Citizenship <span style="font-weight:400;">(3 Methods)</span></h2>
+    </div>
+
+    <div class="path-card">
+      <span class="path-title"><mark class="hl-concept">Renunciation</mark> (Voluntary)</span>
+      <p>You voluntarily sign a form giving up citizenship.</p>
+      <p><em>Effect on Children:</em> Minor kids also lose citizenship, but can <mark class="hl-concept">reclaim it within</mark> <mark class="hl-fact">1 year of turning 18</mark>.</p>
+    </div>
+
+    <div class="path-card">
+      <span class="path-title"><mark class="hl-concept">Termination</mark> (Automatic)</span>
+      <p>You voluntarily take a <mark class="hl-trap">foreign passport</mark> → Indian citizenship <mark class="hl-trap">ends instantly</mark> (enforcing single citizenship).</p>
+    </div>
+
+    <div class="path-card">
+      <span class="path-title"><mark class="hl-concept">Deprivation</mark> (Compulsory Cancellation by Govt)</span>
+      <p>Penalty applied to naturalised/registered citizens for:</p>
+      <ol>
+        <li>Obtaining citizenship by <mark class="hl-trap">fraud</mark>.</li>
+        <li><mark class="hl-trap">Disloyalty</mark> to the Constitution.</li>
+        <li><mark class="hl-trap">Assisting an enemy nation</mark> during war.</li>
+        <li><mark class="hl-fact">2+ years</mark> of imprisonment abroad within <mark class="hl-fact">5 years</mark> of citizenship.</li>
+        <li>Continuous residency abroad for <mark class="hl-fact">7 years</mark> without notifying the government.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 4 ================= -->
+  <section class="section" id="s4">
+    <div class="section-eyebrow">
+      <span class="section-num">4</span>
+      <h2>NRI vs. PIO vs. OCI Cardholder</h2>
+    </div>
+
+    <div class="table-wrap">
+      <table class="bw">
+        <caption>Comparative status chart</caption>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Non-Resident Indian (NRI)</th>
+            <th>Person of Indian Origin (PIO)*</th>
+            <th>OCI Cardholder (OCIC)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Passport &amp; Citizenship</td>
+            <td><mark class="hl-fact">Indian Passport</mark> (Indian Citizen)</td>
+            <td>Foreign Passport (Foreign Citizen)</td>
+            <td>Foreign Passport (Foreign Citizen)</td>
+          </tr>
+          <tr>
+            <td>Visa Requirement</td>
+            <td>None (It is their home country)</td>
+            <td>Visa required for visits</td>
+            <td><mark class="hl-concept">Lifelong, multi-entry visa-free entry</mark></td>
+          </tr>
+          <tr>
+            <td>Voting &amp; Govt Jobs</td>
+            <td><mark class="hl-concept">Full Voting Rights</mark> &amp; eligible for public office</td>
+            <td>No voting rights; no govt jobs</td>
+            <td>No voting rights; no public office/govt jobs</td>
+          </tr>
+          <tr>
+            <td>Property Rights</td>
+            <td>Can buy all land (including agricultural)</td>
+            <td>Restricted</td>
+            <td>All properties <mark class="hl-trap">EXCEPT agricultural or plantation land</mark></td>
+          </tr>
+          <tr>
+            <td>FRRO Registration</td>
+            <td>Not applicable</td>
+            <td>Required for long stays</td>
+            <td><mark class="hl-concept">Exempt</mark> from registering with FRRO for any stay</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-foot-note">*The PIO card scheme was officially merged into the OCI Cardholder scheme in 2015.</p>
+
+    <hr class="rule">
+
+    <h4 class="sub-head">Background &amp; Evolution of OCI</h4>
+    <ul>
+      <li><strong><mark class="hl-entity">L.M. Singhvi Committee</mark> (<mark class="hl-fact">Sept 2000</mark>):</strong> A High-Level Committee on the Indian Diaspora, chaired by <mark class="hl-entity">Dr. L.M. Singhvi</mark>, recommended amending the Citizenship Act, 1955 to grant dual citizenship to Persons of Indian Origin (PIOs).</li>
+      <li><strong>Scheme Rollout (<mark class="hl-fact">Dec 2, 2005</mark>):</strong> Following the <mark class="hl-entity">Citizenship (Amendment) Act, 2005</mark>, the OCI scheme was launched for PIOs of all countries, except those from <mark class="hl-trap">Pakistan</mark> and <mark class="hl-trap">Bangladesh</mark>.</li>
+      <li><strong>Legal Nature (No Dual Citizenship):</strong> OCI is <strong>not</strong> true dual citizenship. <mark class="hl-entity">Article 9</mark> of the Constitution strictly prohibits dual nationality. OCI is merely a statutory status providing specific economic, educational, and travel privileges.</li>
+      <li><strong><mark class="hl-entity">CAA 2015</mark> Amendment:</strong> Officially renamed the category to <mark class="hl-concept">"Overseas Citizen of India Cardholder" (OCIC)</mark> and formally merged the former PIO Card scheme into the OCI Card scheme.</li>
+    </ul>
+
+    <hr class="rule">
+
+    <h4 class="sub-head">Eligibility to Register as an OCI Cardholder</h4>
+    <p>Under <mark class="hl-entity">Section 7A</mark> of the Citizenship Act, 1955, any foreign citizen (except an illegal migrant) is eligible to register as an OCI Cardholder if they fulfill any one of the following criteria:</p>
+    <ul>
+      <li><strong>Historical Connection:</strong> Was an Indian citizen on or after <mark class="hl-fact">January 26, 1950</mark>.</li>
+      <li><strong>Eligibility at Independence:</strong> Was eligible to become an Indian citizen on <mark class="hl-fact">January 26, 1950</mark>.</li>
+      <li><strong>Territorial Accession:</strong> Belonged to a territory that became part of India after <mark class="hl-fact">August 15, 1947</mark> (e.g., <mark class="hl-entity">Goa</mark>, <mark class="hl-entity">Pondicherry</mark>, <mark class="hl-entity">Sikkim</mark>).</li>
+      <li><strong>Lineage:</strong> Is a <mark class="hl-concept">child, grandchild, or great-grandchild</mark> of a person who meets any of the three criteria above.</li>
+      <li><strong>Minor Children:</strong> A minor child whose both parents are Indian citizens, or whose one parent is an Indian citizen.</li>
+      <li><strong>Foreign Spouse:</strong> A foreign-origin spouse of an Indian citizen or of an OCI Cardholder, provided the marriage has been registered and has continuously subsisted for <mark class="hl-fact">at least 2 years</mark> prior to the application.</li>
+    </ul>
+
+    <div class="trap-box">
+      <span class="trap-label">Absolute Exclusion — Exam Trap for BPSC</span>
+      <p>No person who has ever been a citizen of <mark class="hl-trap">Pakistan</mark> or <mark class="hl-trap">Bangladesh</mark> (or any other country specified by the Central Government) is eligible to register as an OCI Cardholder, regardless of their lineage or marriage.</p>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>THE CITIZENSHIP LEDGER · ARTICLES 5–11 · CITIZENSHIP ACT 1955 · BPSC PRELIMS REVISION</footer>
+
+</body>
+</html>
