@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Constitutional Bodies Dossier — UPSC/SPSC, Election Commission, Finance Commission, CAG &amp; More</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6efe0;
+    --paper-deep:#efe4cc;
+    --ink:#2b241a;
+    --ink-soft:#5c5240;
+    --navy:#161a24;
+    --navy-deep:#0d1017;
+    --navy-line:#2a3142;
+    --gold:#c8a862;
+    --maroon:#7a2e2e;
+    --rule:#d8c9a3;
+
+    --y-bg:#fbe98f;
+    --y-bd:#c9a227;
+    --b-bg:#c3ddf5;
+    --b-bd:#3b6ea5;
+    --g-bg:#c8e8c9;
+    --g-bd:#3e8148;
+    --r-bg:#f6c6c2;
+    --r-bd:#a5342b;
+    --u-bg:#d8e6f7;
+    --u-bd:#2e5f8a;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", sans-serif;
+    line-height:1.65;
+  }
+  #sidebar{
+    position:fixed; top:0; left:0; bottom:0; width:290px;
+    background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);
+    color:#e8e2d0;
+    overflow-y:auto;
+    padding:26px 0 40px;
+    border-right:3px solid var(--gold);
+    z-index:50;
+  }
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:var(--navy-line); border-radius:4px;}
+  .brand{
+    padding:0 22px 18px;
+    border-bottom:1px solid var(--navy-line);
+    margin-bottom:14px;
+  }
+  .brand .kicker{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:10.5px; letter-spacing:2.5px; color:var(--gold);
+    text-transform:uppercase;
+  }
+  .brand h1{
+    font-family:"Playfair Display", serif;
+    font-size:21px; margin:6px 0 4px; color:#f4efe0; line-height:1.25;
+  }
+  .brand .sub{font-size:11.5px; color:#9aa0b0;}
+  nav ul{list-style:none; margin:0; padding:0 10px;}
+  nav .grp-title{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:10px; letter-spacing:1.8px; text-transform:uppercase;
+    color:#7c8296; padding:16px 12px 6px;
+  }
+  nav a{
+    display:block; padding:8px 12px; margin:1px 0;
+    color:#c9cddb; text-decoration:none; font-size:13px;
+    border-radius:6px; border-left:3px solid transparent;
+    transition:all .15s ease;
+  }
+  nav a:hover{background:rgba(200,168,98,.12); color:#fff;}
+  nav a.active{
+    background:rgba(200,168,98,.18);
+    border-left:3px solid var(--gold);
+    color:#fff; font-weight:600;
+  }
+  #main{ margin-left:290px; padding:44px 52px 120px; max-width:960px; }
+  .masthead{
+    text-align:center; padding-bottom:26px; margin-bottom:34px;
+    border-bottom:4px double var(--maroon);
+  }
+  .masthead .eyebrow{
+    font-family:"IBM Plex Mono",monospace; letter-spacing:3px; font-size:11px;
+    color:var(--maroon); text-transform:uppercase;
+  }
+  .masthead h1{
+    font-family:"Playfair Display", serif; font-weight:800; font-size:38px;
+    margin:10px 0 8px; color:var(--ink);
+  }
+  .masthead .desc{color:var(--ink-soft); font-size:14.5px; max-width:680px; margin:0 auto;}
+
+  .legend{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+    margin:22px auto 0; padding:14px 18px; max-width:760px;
+    background:var(--paper-deep); border:1px solid var(--rule); border-radius:10px;
+  }
+  .legend span{font-size:12px; font-family:"IBM Plex Mono",monospace; display:flex; align-items:center; gap:6px;}
+  .legend i{width:13px; height:13px; border-radius:3px; display:inline-block; border:1px solid rgba(0,0,0,.25);}
+
+  section.topic{ margin-bottom:56px; scroll-margin-top:24px; }
+  section.topic h2{
+    font-family:"Playfair Display", serif; font-size:26px; font-weight:700;
+    color:var(--navy); margin:0 0 4px;
+    padding-bottom:10px; border-bottom:2px solid var(--gold);
+    display:flex; align-items:baseline; gap:10px;
+  }
+  section.topic h2 .num{
+    font-family:"IBM Plex Mono",monospace; font-size:14px; color:var(--maroon); font-weight:600;
+  }
+  h3.sub{
+    font-family:"Playfair Display", serif; font-size:18px; font-weight:600;
+    color:var(--maroon); margin:24px 0 10px;
+  }
+  p{margin:0 0 13px; font-size:15px;}
+  .lede{font-style:italic; color:var(--ink-soft); font-size:13.5px; margin-top:-2px; margin-bottom:18px;}
+
+  mark{ padding:1.5px 4px; border-radius:3px; font-weight:500; color:var(--ink); box-decoration-break:clone; }
+  mark.y{background:var(--y-bg); box-shadow:inset 0 -1.5px 0 var(--y-bd);}
+  mark.b{background:var(--b-bg); box-shadow:inset 0 -1.5px 0 var(--b-bd);}
+  mark.g{background:var(--g-bg); box-shadow:inset 0 -1.5px 0 var(--g-bd);}
+  mark.r{background:var(--r-bg); box-shadow:inset 0 -1.5px 0 var(--r-bd); font-weight:600;}
+
+  .card{
+    background:#fffdf7; border:1px solid var(--rule); border-radius:10px;
+    padding:16px 20px; margin:16px 0; box-shadow:0 1px 3px rgba(0,0,0,.05);
+  }
+  .card h4{
+    margin:0 0 8px; font-family:"IBM Plex Mono",monospace; font-size:12px;
+    letter-spacing:1.2px; text-transform:uppercase; color:var(--navy);
+  }
+  .card ul{margin:0; padding-left:20px;}
+  .card li{margin-bottom:8px; font-size:14.5px;}
+  .card li::marker{color:var(--maroon);}
+
+  .trap{
+    background:#fdf0ee; border:1px solid var(--r-bd); border-left:5px solid var(--r-bd);
+    border-radius:8px; padding:14px 18px; margin:18px 0; font-size:13.8px;
+  }
+  .trap h4{
+    margin:0 0 6px; color:var(--r-bd); font-family:"IBM Plex Mono",monospace;
+    font-size:11.5px; letter-spacing:1.2px; text-transform:uppercase;
+    display:flex; align-items:center; gap:6px;
+  }
+
+  .current{
+    background:#eef5fc; border:1px solid var(--u-bd); border-left:5px solid var(--u-bd);
+    border-radius:8px; padding:14px 18px; margin:18px 0; font-size:13.8px;
+  }
+  .current h4{
+    margin:0 0 8px; color:var(--u-bd); font-family:"IBM Plex Mono",monospace;
+    font-size:11.5px; letter-spacing:1.2px; text-transform:uppercase;
+    display:flex; align-items:center; gap:6px;
+  }
+  .current ul{margin:0; padding-left:20px;}
+  .current li{margin-bottom:6px;}
+
+  table.tbl{ width:100%; border-collapse:collapse; margin:14px 0 20px; font-size:13.8px; background:#fffdf7;}
+  table.tbl caption{ text-align:left; font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-soft); margin-bottom:6px; letter-spacing:.5px;}
+  table.tbl th{ background:var(--navy); color:#f0ead8; text-align:left; padding:8px 12px; font-weight:600; font-size:12.5px;}
+  table.tbl td{ padding:7px 12px; border-bottom:1px solid var(--rule); }
+  table.tbl tr:nth-child(even) td{ background:#f8f2e2; }
+
+  .divider{ text-align:center; color:var(--gold); font-size:18px; letter-spacing:12px; margin:10px 0 26px; }
+
+  footer{
+    margin-left:290px; padding:26px 52px 60px; color:var(--ink-soft);
+    font-size:12px; font-family:"IBM Plex Mono",monospace; border-top:1px solid var(--rule);
+  }
+  @media (max-width:880px){
+    #sidebar{display:none;}
+    #main, footer{margin-left:0; padding:30px 20px 90px;}
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="kicker">BPSC Prelims · The Ledger Series</div>
+    <h1>Constitutional Bodies</h1>
+    <div class="sub">UPSC/SPSC · Election Commission · Finance Commission · CAG · AG · NCSC/NCST/NCBC</div>
+  </div>
+  <nav>
+    <ul id="navlist">
+      <li class="grp-title">Contents</li>
+      <li><a href="#upsc">1 · UPSC</a></li>
+      <li><a href="#spsc">2 · SPSC &amp; Joint SPSC</a></li>
+      <li><a href="#eci">3 · Election Commission of India</a></li>
+      <li><a href="#elections-misc">4 · Elections, Suffrage &amp; Delimitation</a></li>
+      <li><a href="#parties">5 · Political Parties &amp; Anti-Defection</a></li>
+      <li><a href="#finance-comm">6 · Finance Commission</a></li>
+      <li><a href="#gst">7 · GST Council</a></li>
+      <li><a href="#cag">8 · Comptroller &amp; Auditor General</a></li>
+      <li><a href="#ag">9 · Attorney &amp; Advocate General</a></li>
+      <li><a href="#ncsc">10 · NCSC, NCST &amp; NCBC</a></li>
+      <li><a href="#linguistic">11 · Special Officer for Linguistic Minorities</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<main id="main">
+  <div class="masthead">
+    <div class="eyebrow">Indian Polity &amp; Governance series companion · MCQ-explanation ledger</div>
+    <h1>Constitutional Bodies of India</h1>
+    <div class="desc">Companion volume to the Non-Constitutional Bodies dossier. Merges the UPSC/SPSC/Election Commission/Finance Commission facts held back from the Lokpal-chapter source with everything in the dedicated Constitutional Bodies source — arranged topic-wise, point-wise, color-coded. Single-question "not correctly matched" traps are excluded; genuine source contradictions are flagged. Current officeholders sit in blue "Current (2026)" boxes.</div>
+    <div class="legend">
+      <span><i style="background:var(--y-bg);border-color:var(--y-bd)"></i>Concept / definition</span>
+      <span><i style="background:var(--b-bg);border-color:var(--b-bd)"></i>Fact / date / place</span>
+      <span><i style="background:var(--g-bg);border-color:var(--g-bd)"></i>Person / institution</span>
+      <span><i style="background:var(--r-bg);border-color:var(--r-bd)"></i>Source trap / conflict</span>
+      <span><i style="background:var(--u-bg);border-color:var(--u-bd)"></i>Current (2026) update</span>
+    </div>
+  </div>
+
+  <!-- ============ 1. UPSC ============ -->
+  <section class="topic" id="upsc">
+    <h2><span class="num">01</span> Union Public Service Commission (UPSC)</h2>
+
+    <h3 class="sub">Constitutional Basis &amp; Composition</h3>
+    <div class="card">
+      <ul>
+        <li>Governed by <mark class="y">Articles 315–323</mark> in <mark class="b">Part XIV</mark> of the Constitution.</li>
+        <li><mark class="b">Article 315</mark> provides that there shall be a Public Service Commission for the Union and one for each State — and, if two or more States agree, one <mark class="y">Joint Commission</mark> for that group of States.</li>
+        <li>The UPSC is a <mark class="y">Constitutional body</mark> — one of the four bodies (with the Election Commission, Finance Commission, and CAG) the source repeatedly contrasts against extra-constitutional/statutory bodies such as the Planning Commission or NITI Aayog.</li>
+        <li>Consists of a <mark class="y">Chairman</mark> and other members, all appointed by the <mark class="g">President</mark>.</li>
+        <li>Term: <mark class="b">6 years or until age 65</mark>, whichever is earlier.</li>
+        <li>No qualification is prescribed by the Constitution itself, except that <mark class="b">50%</mark> of members must have held field/government experience for at least <mark class="b">10 years</mark>.</li>
+        <li>UPSC has <mark class="y">nothing to do with</mark> any State Public Service Commission — it neither supervises SPSCs nor issues them annual guidelines.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Removal &amp; Post-Tenure Restrictions</h3>
+    <div class="card">
+      <ul>
+        <li>Removal is by the <mark class="g">President</mark>, under <mark class="b">Article 319</mark>, on grounds of insolvency, holding an office of profit, infirmity of mind/body, or misbehaviour.</li>
+        <li>Where removal is sought on grounds of misbehaviour, the matter is referred by the President to the <mark class="g">Supreme Court</mark> for inquiry (under Article 145 procedure), and the <mark class="y">Supreme Court's advice on removal is binding</mark> on the President.</li>
+        <li>A member (other than the Chairman) is <mark class="y">not eligible</mark> for further government employment, except that a member <em>can</em> be appointed Chairman of the UPSC or of an SPSC, and a UPSC Chairman can be appointed to any other government office — but only <mark class="b">once</mark>.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Role &amp; Functions</h3>
+    <div class="card">
+      <ul>
+        <li>Functions include: on the <mark class="y">method of recruitment</mark> to civil services; on <mark class="y">principles for appointments</mark> to civil services; on <mark class="y">principles for promotions and transfers</mark> from one service to another; and on <mark class="y">disciplinary matters</mark> affecting a person serving the Union/State in a civil capacity, including memorials or petitions relating to such matters (Article 320(3)(c)). <mark class="y">Transfers of civil servants are not a UPSC function.</mark></li>
+        <li>Article 320 lays out these functions of the Public Service Commissions (Union and State).</li>
+        <li>Article 321 allows Parliament (for the Union) or a State Legislature (for that State) to extend, by law, the functions of the UPSC or an SPSC to the services of the Union/State and to local authorities or other statutory/public bodies.</li>
+        <li>The UPSC derives its functions and powers cumulatively from: the <mark class="y">Constitution</mark>, <mark class="y">Parliamentary laws</mark>, <mark class="y">executive rules and orders</mark>, and established <mark class="y">conventions</mark> — not from the Constitution alone.</li>
+        <li>Under <mark class="b">Article 323</mark>, the UPSC presents an <mark class="y">annual report on its own performance</mark> to the <mark class="g">President</mark> (SPSCs report similarly to their Governor).</li>
+        <li>Under <mark class="b">Article 322</mark>, the expenses of the UPSC (and of a State/Joint Commission) are charged on the <mark class="y">Consolidated Fund of India</mark> (or of the State, for SPSCs).</li>
+        <li>Under <mark class="b">Article 315(4)</mark>, the UPSC may, at a State Governor's request and with the <mark class="g">President's</mark> approval, agree to serve all or any of that State's needs (i.e., function as that State's SPSC).</li>
+        <li>The UPSC was first established under the <mark class="y">Government of India Act, 1919</mark>, which set up the first Public Service Commission on <mark class="b">1 October 1926</mark> (Chairman + 4 members); it was later named the <mark class="y">Federal Public Service Commission</mark> under the Government of India Act, 1935.</li>
+        <li>First woman Chairman of the UPSC: <mark class="g">Roze Millian Bethew</mark> (served 1992–1996).</li>
+      </ul>
+    </div>
+
+    <div class="current">
+      <h4>⟳ Current (2026)</h4>
+      <ul>
+        <li>Chairperson of the UPSC: <mark class="g">Ajay Kumar</mark>, IAS, in office since <mark class="b">15 May 2025</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 2. SPSC ============ -->
+  <section class="topic" id="spsc">
+    <h2><span class="num">02</span> State Public Service Commission (SPSC) &amp; Joint SPSC</h2>
+    <div class="card">
+      <ul>
+        <li>Also governed by <mark class="y">Articles 315–323</mark> in Part XIV of the Constitution — the <mark class="y">same set of Articles</mark> that governs the UPSC.</li>
+        <li>Consists of a Chairman and other members, appointed by the <mark class="g">Governor</mark> of the State.</li>
+        <li>Term: <mark class="b">6 years or until age 62</mark>, whichever is earlier (note: this age ceiling is lower than the UPSC's 65).</li>
+        <li>Same qualification norm as UPSC: no prescribed qualification, except that <mark class="b">50%</mark> of members must have field experience of <mark class="b">10 years</mark>.</li>
+        <li>Removal follows the <mark class="y">same grounds</mark> as for UPSC members, but is carried out only by the <mark class="g">President</mark> (not the Governor).</li>
+        <li>An SPSC member/Chairman enjoys the same post-tenure employment restriction as UPSC — barred from further government employment except a <mark class="y">one-time</mark> appointment as Chairman of the UPSC or of an SPSC; no second term is otherwise available.</li>
+        <li>SPSC's role mirrors the UPSC's, but confined to the State.</li>
+        <li>A <mark class="y">Joint Public Service Commission</mark> for two or more States can be established by <mark class="g">Parliament</mark>, by law, if the concerned States pass a resolution to that effect in their legislatures.</li>
+        <li>The Chairman of a Joint Public Service Commission is appointed by the <mark class="g">President</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 3. ECI ============ -->
+  <section class="topic" id="eci">
+    <h2><span class="num">03</span> Election Commission of India (ECI)</h2>
+
+    <h3 class="sub">Constitutional Basis &amp; Composition</h3>
+    <div class="card">
+      <ul>
+        <li><mark class="y">Articles 324 to 329</mark> in <mark class="b">Part XV</mark> of the Constitution deal with elections.</li>
+        <li><mark class="b">Article 324</mark> establishes the Election Commission as a <mark class="y">permanent and independent, all-India constitutional body</mark>, vested with superintendence, direction and control of preparing electoral rolls for, and conducting, elections to <mark class="y">Parliament, every State Legislature, and the offices of President and Vice-President</mark>.</li>
+        <li>Composition: a <mark class="y">Chief Election Commissioner (CEC)</mark> and other Election Commissioners, the number decided by the President from time to time [Art. 324(2)]; all are appointed by the <mark class="g">President</mark>.</li>
+        <li>Until <mark class="b">15 October 1989</mark> there was only a CEC; on <mark class="b">16 October 1989</mark> two additional Election Commissioners were appointed for the first time, but those posts lapsed by <mark class="b">1 January 1990</mark>. On <mark class="b">1 October 1993</mark>, two additional Election Commissioners were appointed again, and the Commission has been a <mark class="b">three-member body</mark> ever since.</li>
+        <li>The CEC and the two Election Commissioners have <mark class="y">equal powers</mark> and receive <mark class="y">equal salary/allowances/perquisites</mark>, equivalent to a <mark class="g">Judge of the Supreme Court</mark>.</li>
+        <li>Tenure: <mark class="b">6 years or until age 65</mark>, whichever is earlier, from the date of assuming office.</li>
+        <li>Conditions of service of Election Commissioners are determined by the <mark class="g">President</mark>.</li>
+        <li>An Election Commissioner may resign at any time by writing to the <mark class="g">President</mark> (addressed to him, not to the CEC).</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Removal</h3>
+    <div class="card">
+      <ul>
+        <li>The <mark class="y">CEC</mark> can be removed only in the same manner and on the same grounds as a <mark class="g">Judge of the Supreme Court</mark> [Article 324(5)].</li>
+        <li>Any <mark class="y">other Election Commissioner</mark> or a Regional Commissioner can be removed by the <mark class="g">President</mark> only on the <mark class="y">recommendation of the CEC</mark>.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Functions &amp; Jurisdiction</h3>
+    <div class="card">
+      <ul>
+        <li>Superintends, directs and controls preparation of electoral rolls and conduct of elections to Parliament, State Legislatures, and the offices of President and Vice-President.</li>
+        <li>Notifications for elections to the <mark class="g">Lok Sabha and Rajya Sabha</mark> are issued by the <mark class="g">President</mark>; for <mark class="g">State Legislative Assemblies/Councils</mark>, by the <mark class="g">Governor</mark> — the notification itself follows the ECI's recommendation on timing.</li>
+        <li>ECI does <mark class="y">not</mark> conduct elections to local bodies (Panchayats/Municipalities) — these are conducted by the respective <mark class="y">State Election Commissions</mark> under Articles 243K and 243ZA.</li>
+        <li>ECI also does <mark class="y">not</mark> conduct elections for the Speaker/Deputy Speaker of the Lok Sabha or the Deputy Chairman of the Rajya Sabha — these are internal elections by House members.</li>
+        <li>Under <mark class="b">Article 103</mark> (for MPs) and <mark class="b">Article 192</mark> (for MLAs), the ECI has <mark class="y">advisory jurisdiction</mark> on post-election disqualification questions for sitting members — the <mark class="g">President</mark> (or Governor) decides, but must first obtain and act according to the ECI's opinion.</li>
+        <li>The ECI resolves disputes relating to <mark class="y">splits/mergers of recognised political parties</mark>.</li>
+        <li>The ECI decides the schedule for both general elections and by-elections (not the Home Ministry).</li>
+        <li>The <mark class="y">Model Code of Conduct</mark> — guidelines for parties/candidates on speeches, polling booths, processions, manifestos, general conduct — was formulated by the ECI (not enacted by Parliament); it takes effect immediately on the ECI's announcement of the election schedule.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Delimitation Commission</h3>
+    <div class="card">
+      <ul>
+        <li>Established by the Government of India (under an Act of Parliament) to redraw Assembly/Lok Sabha constituency boundaries based on the latest census, and to determine SC/ST seat reservations.</li>
+        <li>Constituted in <mark class="b">1952, 1963, 1973 and 2002</mark> (under the respective Delimitation Acts), and again in <mark class="b">March 2020</mark> for delimitation of the UT of Jammu &amp; Kashmir (chaired by <mark class="g">Justice Ranjana Prakash Desai</mark>); the four north-eastern states originally included in the 2020 exercise were removed from its purview in March 2021.</li>
+        <li>Delimitation Commission orders <mark class="y">cannot be challenged in a court of law</mark>, and when laid before the Lok Sabha/State Assembly, <mark class="y">no modifications can be made</mark> to them.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Suffrage, Voting &amp; Reforms</h3>
+    <div class="card">
+      <ul>
+        <li><mark class="b">Article 326</mark> provides for elections to the Lok Sabha and State Assemblies to be based on <mark class="y">adult suffrage</mark>.</li>
+        <li>The right to vote and to be elected in India is a <mark class="y">legal (statutory) right</mark>, not a fundamental or constitutional right — confirmed by the Supreme Court (e.g., <em>Kuldip Nayar v. Union of India</em>).</li>
+        <li>The <mark class="y">61st Constitutional Amendment Act, 1988</mark> reduced the voting age from <mark class="b">21 to 18 years</mark>, amending Article 326; it came into force <mark class="b">28 March 1989</mark>, and was first exercised in the November 1989 Lok Sabha general elections.</li>
+        <li>In <mark class="b">March 2024</mark>, Rule 27A of the Conduct of Elections Rules, 1961 was amended (after ECI consultation) to raise the eligibility age for <mark class="y">postal ballot voting from home</mark> for senior citizens from 80 to <mark class="b">85 years</mark>; this facility, along with persons with 40%+ certified disability, was first used nationally in the 2024 Lok Sabha elections.</li>
+        <li>Election reform chronology (earliest to latest): <mark class="y">EVM</mark> (experimental use recorded 1982) → <mark class="y">Electors Photo Identity Card (EPIC)</mark> (scheme started 1993) → <mark class="y">VVPAT</mark> (first used 4 September 2013, Noksen by-election, Nagaland) → <mark class="y">NOTA</mark> (added per Supreme Court direction dated 27 September 2013).</li>
+        <li>The version of VVPAT machines currently used for voting in India is <mark class="b">M3</mark> — third-generation EVMs, with a capacity for 384 candidates and features like tamper detection and self-diagnostics.</li>
+        <li>National Voters' Day is celebrated on <mark class="b">25 January</mark> every year (started 2011), marking the ECI's foundation day.</li>
+        <li>Under Section 8(3) of the <mark class="y">Representation of the People Act, 1951</mark>, a person convicted of an offence and sentenced to at least 2 years' imprisonment is disqualified from the date of conviction, and remains disqualified for a further 6 years after release; this disqualification framework was made by <mark class="g">Parliament</mark>.</li>
+        <li>Under Section 33 of the Representation of the People Act 1951, a candidate cannot contest from more than <mark class="b">two</mark> Parliamentary (or Assembly) constituencies in the same general election.</li>
+        <li>The <mark class="y">Representation of the People (Amendment) Act, 1996</mark>, based on the <mark class="g">Dinesh Goswami Committee</mark>'s recommendations, provided that no election is now countermanded on the death of a contesting candidate, and increased the security deposit for Lok Sabha candidates.</li>
+        <li>The <mark class="g">Dinesh Goswami Committee</mark> (Goswami was Law Minister in the V.P. Singh government, 1989) was concerned with <mark class="y">electoral reforms</mark>, and recommended government funding of parliamentary elections.</li>
+        <li>A candidate who fails to secure more than <mark class="b">one-sixth</mark> of the valid votes polled in a constituency loses their security deposit.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 4. Elections misc ============ -->
+  <section class="topic" id="elections-misc">
+    <h2><span class="num">04</span> Elections, Representation &amp; Simultaneous Polls</h2>
+    <div class="card">
+      <ul>
+        <li>India uses both direct election (adult suffrage, for Lok Sabha and State Assemblies) and indirect election by proportional representation via single transferable vote (for President, Vice-President, Rajya Sabha, and Legislative Councils).</li>
+        <li>Proportional representation, as an electoral mechanism, is understood to aid <mark class="y">representation of minorities</mark> by giving due weight to groups based on ethnicity, gender, interests and ideologies; it becomes less significant in a country with an established two-party system.</li>
+        <li>The <mark class="y">High-Level Committee on Simultaneous Elections</mark> ("One Nation, One Election") was established on <mark class="b">2 September 2023</mark>, chaired by former President <mark class="g">Ram Nath Kovind</mark>, with members including Amit Shah, N.K. Singh, Dr. Subhash C. Kashyap, Harish Salve, and Sanjay Kothari, and Dr. Niten Chandra as Secretary.</li>
+        <li>Realising "One Nation, One Election" would require amendments to Articles <mark class="b">83, 85, 172, 174 and 356</mark> of the Constitution.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 5. POLITICAL PARTIES ============ -->
+  <section class="topic" id="parties">
+    <h2><span class="num">05</span> Political Parties &amp; Anti-Defection Law</h2>
+    <div class="card">
+      <ul>
+        <li>The <mark class="y">Representation of the People Act, 1951</mark> provides for registration of political parties; registration is carried out by the <mark class="g">Election Commission of India</mark>, under the <mark class="y">Election Symbols (Reservation and Allotment) Order, 1968</mark>, which also governs recognition as a National or State party.</li>
+        <li>Political parties were given <mark class="y">Constitutional status</mark> for the first time by the <mark class="y">52nd Constitutional Amendment Act, 1985</mark> (in force from <mark class="b">1 March 1985</mark>), which also added the <mark class="y">Tenth Schedule (Anti-Defection Law)</mark> to the Constitution.</li>
+        <li>The <mark class="y">Anti-Defection Law</mark> was passed by Parliament on <mark class="b">15 February 1985</mark>; it amended Articles 101, 102, 190 and 191 and added the Tenth Schedule, laying down the process for disqualifying members on grounds of defection.</li>
+        <li>Anti-defection covers: en-bloc defection in a party; smaller defections in a single spell; and party members voting/abstaining to support or topple a government. It does <mark class="y">not</mark> cover larger defections in a party occurring across various separate spells.</li>
+        <li>A merger of political parties is recognised when <mark class="b">not less than two-thirds</mark> of the members of the legislature party have agreed to the merger.</li>
+        <li>Questions on disqualification under the Tenth Schedule are decided by the <mark class="g">Speaker of the Lok Sabha</mark> or the <mark class="g">Chairman of the Rajya Sabha</mark>, not the President; the term "political party" is explicitly used in the Tenth Schedule.</li>
+        <li>A nominated legislator who joins a political party <mark class="y">after six months</mark> of being appointed to the House can be disqualified under the anti-defection law; the law prescribes <mark class="y">no fixed time-frame</mark> within which the presiding officer must decide a defection case.</li>
+        <li>A member who, on being elected as Chairman/Vice-Chairman/Speaker/Deputy Speaker of a House, voluntarily gives up their original party membership, is exempted from disqualification on defection grounds — both while holding that office and, if they rejoin the same party after ceasing to hold it.</li>
+        <li>The <mark class="g">Jammu and Kashmir</mark> Legislative Assembly enacted an Anti-Defection Law as early as <mark class="b">1979</mark>, predating the 52nd Amendment.</li>
+        <li>Currently <mark class="b">6</mark> political parties are recognised as National-level parties by the ECI: <mark class="g">Indian National Congress, Bharatiya Janata Party, Bahujan Samaj Party, Communist Party of India (Marxist), Aam Aadmi Party, and National People's Party</mark>.</li>
+        <li>The <mark class="y">Electoral Bond Scheme</mark> was notified by the Government of India on <mark class="b">2 January 2018</mark>, to bring transparency to political funding; only political parties registered under Section 29A of the RPA, 1951 and securing at least the prescribed vote share in the last general election were eligible; bonds were valid for <mark class="b">15 calendar days</mark> from issue, and were credited to the eligible party's account on the same day of deposit. <mark class="g">State Bank of India</mark> was authorised to issue/encash the bonds through 11 branches.</li>
+        <li>The Indian National Congress was founded in <mark class="b">1885</mark>; its first president was <mark class="g">W.C. Banerjee</mark>. The word "National" in its name reflected both its all-India character and a reaction against British rule.</li>
+        <li>The Bharatiya Janata Party was founded in <mark class="b">1980</mark>; its first president was <mark class="g">Atal Bihari Vajpayee</mark>.</li>
+        <li>The Independent Labour Party was founded by <mark class="g">Dr. B.R. Ambedkar</mark> in <mark class="b">1936</mark>; Ambedkar also founded the Scheduled Castes Federation (1942) and the Depressed Classes Federation (1930).</li>
+        <li>The Communist Party of India was founded in <mark class="b">1925</mark>; it split, with CPI(M) forming in <mark class="b">1964</mark>.</li>
+        <li>Political scientist <mark class="g">Rajni Kothari</mark> described India's early post-independence party system as a <mark class="y">"one-party dominant system."</mark></li>
+        <li>Inner-party democracy refers to <mark class="y">periodical internal elections</mark> within a party to elect its office bearers.</li>
+        <li>A <mark class="y">pressure group</mark> (e.g., a trade union) does not contest elections but seeks to influence government policy/legislation.</li>
+        <li>The <mark class="y">"Kamaraj Plan"</mark> (1963), prepared by then-INC President <mark class="g">K. Kamaraj</mark>, aimed at making the Indian National Congress more vibrant.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 6. FINANCE COMMISSION ============ -->
+  <section class="topic" id="finance-comm">
+    <h2><span class="num">06</span> Finance Commission</h2>
+
+    <h3 class="sub">Constitutional Basis, Composition &amp; Nature</h3>
+    <div class="card">
+      <ul>
+        <li><mark class="b">Article 280</mark> provides for a Finance Commission, constituted by the <mark class="g">President</mark> every fifth year, or at an earlier time the President considers necessary.</li>
+        <li>Described as the <mark class="y">"balancing wheel" of fiscal federalism</mark>; it is a <mark class="y">quasi-judicial body</mark>, and a <mark class="y">Constitutional (statutory-within-Constitution) body</mark>.</li>
+        <li>Consists of a <mark class="y">Chairman and four other members</mark>, all appointed by the President, each for a specified/specialised period.</li>
+        <li>Qualifications of members are determined by <mark class="g">Parliament</mark> by law (Article 280(2)) — <em>not</em> by the President: Chairman must have experience in public affairs; the four other members must respectively be (i) a High Court judge or qualified to be one, (ii) a person with specialised knowledge of government finance/accounts, (iii) a person with wide experience in financial matters and administration, and (iv) a person with special knowledge of economics. It is <mark class="y">not mandatory</mark> that at least one member actually be a sitting/former High Court or Supreme Court judge.</li>
+        <li>The Chairman of the Commission <mark class="y">is eligible for reappointment</mark> (Section 6, Finance Commission (Miscellaneous Provisions) Act, 1951); members generally are eligible for reappointment as well.</li>
+        <li>Recommendations of the Finance Commission are only <mark class="y">advisory in nature</mark>, not binding on the government.</li>
+        <li>First Finance Commission: constituted by presidential order dated <mark class="b">22 November 1951</mark>, under the chairmanship of <mark class="g">K.C. Neogy</mark>, and set up on <mark class="b">6 April 1952</mark>.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Functions</h3>
+    <div class="card">
+      <ul>
+        <li>Recommends: (1) distribution of the net proceeds of taxes between the Union and the States, and the inter-State allocation of States' respective shares; (2) principles governing grants-in-aid to States out of the Consolidated Fund of India (under Article 275); (3) measures to augment a State's Consolidated Fund to supplement resources of Panchayats and Municipalities, based on the recommendations of that State's own Finance Commission; and (4) any other matter referred by the President in the interest of sound finance.</li>
+        <li>It does <mark class="y">not</mark> control withdrawal from the Consolidated Fund of India (a Parliament function), and does <mark class="y">not</mark> supervise whether the Union/State governments levy taxes per budgetary provisions (a Finance Ministry function).</li>
+        <li>Under <mark class="b">Article 281</mark>, the <mark class="g">President</mark> causes every Finance Commission recommendation to be laid before each House of Parliament (and the Central Government presents the report along with action taken).</li>
+        <li>Under <mark class="b">Article 279</mark>, the Finance Commission ascertains and certifies the net proceeds of any tax, and that certification is <mark class="y">final</mark>.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">State Finance Commission</h3>
+    <div class="card">
+      <ul>
+        <li>Under <mark class="b">Article 243-I</mark>, the <mark class="g">Governor</mark> of a State constitutes a State Finance Commission, within one year of the 73rd Constitutional Amendment Act's (1992) commencement and thereafter every fifth year, to review Panchayats' financial position and make recommendations to the Governor.</li>
+        <li>The <mark class="y">State Finance Commission is itself a Constitutional body</mark> (unlike, e.g., the erstwhile Planning Commission).</li>
+        <li>Under Article 280(3)(bb) and (c), the <mark class="g">Union</mark> Finance Commission's own recommendations for Panchayats and Municipalities are made <mark class="y">on the basis of</mark> the recommendations of the concerned State's Finance Commission.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Chairmen — Historical &amp; Current</h3>
+    <div class="card">
+      <ul>
+        <li>12th Finance Commission (2005–2010): <mark class="g">Dr. C. Rangarajan</mark>.</li>
+        <li>13th Finance Commission (report 2010): <mark class="g">Vijay Kelkar</mark>.</li>
+        <li>14th Finance Commission (2015–2020): <mark class="g">Y.V. Reddy</mark>; recommended raising states' share of net tax proceeds from 32% to <mark class="b">42%</mark>.</li>
+        <li>15th Finance Commission: constituted <mark class="b">27 November 2017</mark> under <mark class="g">N.K. Singh</mark>; submitted two reports — one for FY 2020-21, and a final report covering 2021-26.</li>
+      </ul>
+    </div>
+
+    <div class="current">
+      <h4>⟳ Current (2026)</h4>
+      <ul>
+        <li>16th Finance Commission: constituted <mark class="b">31 December 2023</mark> under <mark class="g">Dr. Arvind Panagariya</mark> (former first Vice-Chairman of NITI Aayog); members included Annie George Mathew, Dr. Manoj Panda, T. Rabi Sankar, and Dr. Soumya Kanti Ghosh.</li>
+        <li>The 16th Finance Commission submitted its report to the President on <mark class="b">17 November 2025</mark>, for the award period <mark class="b">1 April 2026 – 31 March 2031</mark>; the report was tabled in Parliament (alongside the Union Budget) on <mark class="b">1 February 2026</mark>, recommending states retain a <mark class="b">41%</mark> share of central taxes — unchanged from the 15th Finance Commission.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 7. GST COUNCIL ============ -->
+  <section class="topic" id="gst">
+    <h2><span class="num">07</span> GST Council</h2>
+    <div class="card">
+      <ul>
+        <li><mark class="b">Article 279A</mark>, added by the <mark class="y">101st Constitution Amendment Act, 2016</mark>, established the GST Council to make recommendations to the Union and State Governments on GST-related issues.</li>
+        <li>Chaired by the <mark class="g">Union Finance Minister</mark>; other members are the Union Minister of State for Revenue/Finance, and the Ministers in-charge of Finance or Taxation of all the States.</li>
+        <li>Considered a <mark class="y">federal body</mark> where both the Centre and the States get due representation.</li>
+        <li>Every GST Council decision requires a majority of <mark class="y">not less than three-fourths</mark> of the weighted votes of members present and voting, with the <mark class="y">Centre's vote weighted at one-third</mark> and the <mark class="y">States' combined vote at two-thirds</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 8. CAG ============ -->
+  <section class="topic" id="cag">
+    <h2><span class="num">08</span> Comptroller &amp; Auditor General (CAG)</h2>
+
+    <h3 class="sub">Constitutional Basis &amp; Appointment</h3>
+    <div class="card">
+      <ul>
+        <li>Under <mark class="b">Article 148</mark>, there shall be a Comptroller and Auditor-General of India, head of the Indian Audit and Accounts Department, described as <mark class="y">"guardian of the public purse"</mark> at both the Centre and State levels.</li>
+        <li>Appointed by the <mark class="g">President</mark>, by warrant under hand and seal, for <mark class="b">6 years or until age 65</mark>, whichever is earlier.</li>
+        <li>Removable only in the same manner and on the same grounds as a <mark class="g">Judge of the Supreme Court</mark> — i.e., by presidential order after an address by each House of Parliament, supported by a majority of the total membership and a two-thirds majority of members present and voting, on grounds of proved misbehaviour or incapacity.</li>
+        <li><mark class="y">Not eligible for reappointment</mark>, and not eligible for any further office under the Government of India or any State after ceasing to hold office [Article 148(4)].</li>
+        <li>No Minister represents the CAG in Parliament.</li>
+        <li>Salary and other conditions of service are determined by Parliament by law; until so determined, they follow the <mark class="y">Second Schedule</mark> of the Constitution — the CAG's salary is equal to that of a Supreme Court judge.</li>
+        <li>Administrative expenses of the CAG's office are charged to the <mark class="y">Consolidated Fund of India</mark> [Article 148(6)].</li>
+        <li>Power to grant or refuse leave to the CAG vests in the <mark class="g">President</mark>.</li>
+        <li>The CAG may resign at any time by addressing a resignation letter to the <mark class="g">President</mark>.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Duties &amp; Functions</h3>
+    <div class="card">
+      <ul>
+        <li><mark class="b">Article 149</mark> prescribes CAG's duties/powers, to be set by <mark class="g">Parliament</mark>, under the <mark class="y">CAG (Duties, Powers and Conditions of Service) Act, 1971</mark>.</li>
+        <li>Audits all expenditure and receipts related to the <mark class="y">Consolidated Fund, Contingency Fund, and Public Account</mark>, of both the Union and each State.</li>
+        <li>Also audits accounts of stores and stock kept in any Union/State office or department.</li>
+        <li>Submits <mark class="y">three</mark> audit reports to the President: on <mark class="y">appropriation accounts</mark>, <mark class="y">finance accounts</mark>, and <mark class="y">public undertakings</mark>.</li>
+        <li>Reports relating to the accounts of the <mark class="y">Union</mark> are submitted to the <mark class="g">President</mark>, who causes them to be laid before both Houses of Parliament [Article 151(1)]; reports relating to a <mark class="y">State's</mark> accounts go to that State's <mark class="g">Governor</mark>, for tabling in the State Legislature [Article 151(2)].</li>
+        <li>The <mark class="g">Public Accounts Committee</mark> of Parliament debates CAG reports extensively; the CAG is described as the PAC's <mark class="y">"friend, philosopher and guide"</mark> and attends its sittings.</li>
+        <li>Under Article 279, CAG's function of certifying net tax proceeds is separate from — and also referenced alongside — the Finance Commission's use of that certification.</li>
+        <li><mark class="g">Dr. B.R. Ambedkar</mark> described the CAG as <mark class="y">"probably the most important officer under the Constitution of India."</mark></li>
+        <li>The <mark class="y">CAG's (Duties, Powers and Conditions of Service) Act, 1971</mark> came into effect in 1971, and was <mark class="y">amended in 1976</mark> to separate accounting from auditing — after this amendment, CAG's task is confined to auditing government accounts (though at the State level, both accounting and auditing continue to be performed by the CAG).</li>
+        <li>CAG also serves as <mark class="y">External Auditor for the International Atomic Energy Agency (IAEA)</mark> and audits the <mark class="y">Food and Agriculture Organization (FAO)</mark>.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Officeholders</h3>
+    <div class="card">
+      <ul>
+        <li><mark class="g">Girish Chandra Murmu</mark> was India's 14th CAG (8 August 2020 – 20 November 2024), succeeding Rajiv Mehrishi.</li>
+      </ul>
+    </div>
+
+    <div class="current">
+      <h4>⟳ Current (2026)</h4>
+      <ul>
+        <li>15th and current CAG of India: <mark class="g">K. Sanjay Murthy</mark>, IAS (1989 batch), sworn in <mark class="b">21 November 2024</mark>, succeeding Girish Chandra Murmu.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 9. AG ============ -->
+  <section class="topic" id="ag">
+    <h2><span class="num">09</span> Attorney General &amp; Advocate General</h2>
+
+    <h3 class="sub">Attorney General of India (AGI)</h3>
+    <div class="card">
+      <ul>
+        <li>Provided for under <mark class="b">Article 76</mark>; the <mark class="y">highest law officer</mark> in the country and part of the Union Executive.</li>
+        <li>Appointed by the <mark class="g">President</mark>, on the advice of the government, from among persons qualified to be appointed a <mark class="g">Judge of the Supreme Court</mark> (i.e., a citizen of India who has been a High Court judge for 5 years, or a High Court advocate for 10 years, or, in the President's opinion, an eminent jurist).</li>
+        <li>Term of office is <mark class="y">not fixed</mark>; the AGI <mark class="y">holds office during the pleasure of the President</mark> and may be removed by the President at any time.</li>
+        <li>Duty: to advise the <mark class="g">Government of India</mark> on legal matters and perform other legal duties referred/assigned by the President [Article 76(2)].</li>
+        <li>Has the <mark class="y">right of audience in all courts</mark> in the territory of India in performance of duties [Article 76(3)].</li>
+        <li>Has the right to speak and take part in the proceedings of <mark class="y">both Houses of Parliament</mark> (or a joint sitting) and to be a member of a parliamentary committee, but is <mark class="y">not entitled to vote</mark> [Article 88]; enjoys the privileges/immunities available to an MP.</li>
+        <li>Receives remuneration as determined by the <mark class="g">President</mark> [Article 76(4)].</li>
+        <li>The AGI is <mark class="y">not a full-time government counsel</mark> and is not debarred from private legal practice (subject to restrictions such as not advising/appearing against the Government of India, or defending criminal accused without government permission).</li>
+        <li>Appears on behalf of the government in all Supreme Court cases; is one of the very few non-members who may participate in Parliament's proceedings without being a member (along with, in a narrower sense, the Vice-President, as ex-officio Rajya Sabha chairman).</li>
+        <li>The <mark class="y">Solicitor General of India</mark> is the country's second law officer, subordinate to the AGI, assisting the Attorney General and himself assisted by several Additional Solicitors General.</li>
+      </ul>
+    </div>
+
+    <div class="current">
+      <h4>⟳ Current (2026)</h4>
+      <ul>
+        <li>Attorney General of India: <mark class="g">R. Venkataramani</mark>, appointed <mark class="b">1 October 2022</mark>, succeeding K.K. Venugopal; his term has been extended to <mark class="b">30 September 2027</mark>.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Advocate General for a State</h3>
+    <div class="card">
+      <ul>
+        <li>Provided for under <mark class="b">Article 165</mark>; the <mark class="g">Governor</mark> of each State appoints a person qualified to be a <mark class="g">High Court Judge</mark> as Advocate-General for that State.</li>
+        <li>Duty: to advise the <mark class="y">State Government</mark> on legal matters and perform other legal-character duties assigned by the Governor [Article 165(2)]; is the <mark class="y">first legal adviser</mark> to the State Government.</li>
+        <li>Holds office during the <mark class="y">pleasure of the Governor</mark> [Article 165(3)], and receives remuneration as the Governor determines.</li>
+        <li>Has the right to speak in the State Legislature, but <mark class="y">not the right to vote</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 10. NCSC/NCST/NCBC ============ -->
+  <section class="topic" id="ncsc">
+    <h2><span class="num">10</span> National Commissions for SC, ST &amp; Backward Classes</h2>
+
+    <h3 class="sub">National Commission for Scheduled Castes (NCSC)</h3>
+    <div class="card">
+      <ul>
+        <li>Provided for under <mark class="b">Article 338</mark> in <mark class="b">Part XVI</mark> of the Constitution; the current form was introduced by the <mark class="y">Constitution (89th Amendment) Act, 2003</mark>, operative from <mark class="b">2004</mark>.</li>
+        <li>Consists of a <mark class="y">Chairperson, Vice-Chairperson, and three other members</mark>, appointed by the President by warrant under hand and seal.</li>
+        <li>Term of office: <mark class="b">3 years</mark>.</li>
+        <li>Functions: to investigate, monitor, inquire, advise, and participate in the planning process concerning safeguards for Scheduled Castes; presents its report <mark class="y">annually</mark> to the President; has the <mark class="y">powers of a civil court</mark>.</li>
+        <li>Purpose: to provide Scheduled Castes safeguards against exploitation and to promote their social, economic, educational and cultural development.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">National Commission for Scheduled Tribes (NCST)</h3>
+    <div class="card">
+      <ul>
+        <li>Introduced via a new <mark class="b">Article 338A</mark>, also by the <mark class="y">Constitution (89th Amendment) Act, 2003</mark>.</li>
+        <li>Composition: a Chairperson, a Vice-Chairperson, and <mark class="b">three full-time members</mark>, including <mark class="y">one lady member</mark>.</li>
+        <li>Term of office of all four: <mark class="b">3 years</mark> from date of assuming charge.</li>
+        <li>The <mark class="y">Chairperson</mark> holds the rank of a <mark class="g">Union Cabinet Minister</mark>; the <mark class="y">Vice-Chairperson</mark> holds the rank of a <mark class="g">Minister of State</mark>; other members hold the rank of a <mark class="g">Secretary to the Government of India</mark>.</li>
+        <li>Functions (Article 338A, Clause 5): to investigate, monitor, inquire, advise, and participate in the planning process; presents its report annually to the President; has the powers of a civil court.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">National Commission for Backward Classes (NCBC)</h3>
+    <div class="card">
+      <ul>
+        <li>Given <mark class="y">constitutional status</mark> under <mark class="b">Article 338B</mark>, by the <mark class="y">102nd Constitution Amendment Act, 2018</mark>.</li>
+        <li>Consists of <mark class="b">five members</mark>: a Chairperson, Vice-Chairperson, and three other Members, appointed by the President by warrant under hand and seal.</li>
+        <li>Term of office: <mark class="b">3 years</mark>.</li>
+        <li>Conditions of service and tenure of the Chairperson, Vice-Chairperson and other Members are determined by the <mark class="g">President</mark>.</li>
+        <li>Functions mirror the NCSC/NCST: investigate, monitor, inquire, advise, participate in planning; report annually to the President; powers of a civil court.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 11. LINGUISTIC MINORITIES ============ -->
+  <section class="topic" id="linguistic">
+    <h2><span class="num">11</span> Special Officer for Linguistic Minorities</h2>
+    <div class="card">
+      <ul>
+        <li>The <mark class="y">Seventh Constitutional Amendment Act, 1956</mark> inserted a new <mark class="b">Article 350-B</mark> in <mark class="b">Part XVII</mark> of the Constitution.</li>
+        <li>Establishes a <mark class="y">Special Officer for Linguistic Minorities</mark>, appointed by the <mark class="g">President</mark>, for the <mark class="y">Union level (all-India)</mark> — not one such officer per State.</li>
+        <li>This officer is officially designated the <mark class="y">Commissioner for Linguistic Minorities in India</mark>.</li>
+        <li>Duty: to investigate all matters relating to constitutional safeguards for linguistic minorities, and to report to the President at such intervals as the President may direct.</li>
+        <li>The President places all such reports before each House of Parliament, and sends them to the concerned State governments.</li>
+        <li>The Constitution does <mark class="y">not specify</mark> qualifications, tenure, or removal procedure for this office.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="divider">❦</div>
+</main>
+
+<footer>Constitutional Bodies Dossier — companion to the Non-Constitutional Bodies Dossier — compiled for BPSC Prelims 2025–26 · merges UPSC/SPSC/Election Commission/Finance Commission facts from the Lokpal-chapter source with the dedicated Constitutional Bodies source · current officeholders cross-checked against the web on 30 August 2026.</footer>
+
+<script>
+  const links = document.querySelectorAll('#navlist a');
+  const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href')));
+  function onScroll(){
+    let idx = 0;
+    const y = window.scrollY + 120;
+    sections.forEach((sec,i)=>{ if(sec && sec.offsetTop <= y) idx = i; });
+    links.forEach(l=>l.classList.remove('active'));
+    if(links[idx]) links[idx].classList.add('active');
+  }
+  document.addEventListener('scroll', onScroll);
+  onScroll();
+</script>
+</body>
+</html>
