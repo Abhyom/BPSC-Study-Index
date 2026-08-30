@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panchayati Raj Ledger — Complete Fact Compendium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6efe0;
+    --paper-deep:#efe4cc;
+    --ink:#2b241a;
+    --ink-soft:#5c5240;
+    --navy:#161a24;
+    --navy-deep:#0d1017;
+    --navy-line:#2a3142;
+    --gold:#c8a862;
+    --maroon:#7a2e2e;
+    --rule:#d8c9a3;
+
+    --y-bg:#fbe98f;
+    --y-bd:#c9a227;
+    --b-bg:#c3ddf5;
+    --b-bd:#3b6ea5;
+    --g-bg:#c8e8c9;
+    --g-bd:#3e8148;
+    --r-bg:#f6c6c2;
+    --r-bd:#a5342b;
+    --p-bg:#e3d3f2;
+    --p-bd:#6d3fa0;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", sans-serif;
+    line-height:1.85;
+    font-size:17px;
+  }
+  /* ============ MENU BUTTON (mobile) ============ */
+  #menuBtn{
+    display:none;position:fixed;top:14px;left:14px;z-index:200;
+    background:var(--navy);color:var(--gold);border:2px solid var(--gold);
+    border-radius:8px;padding:9px 14px;font-family:"IBM Plex Mono",monospace;
+    font-size:13px;letter-spacing:1px;cursor:pointer;
+  }
+  #overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:60;}
+  #overlay.show{display:block;}
+
+  /* ============ SIDEBAR ============ */
+  #sidebar{
+    position:fixed; top:0; left:0; bottom:0; width:290px;
+    background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);
+    color:#e8e2d0;
+    overflow-y:auto;
+    padding:26px 0 40px;
+    border-right:3px solid var(--gold);
+    z-index:70;
+    transition:transform .25s ease;
+  }
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:var(--navy-line); border-radius:4px;}
+  .brand{
+    padding:0 22px 18px;
+    border-bottom:1px solid var(--navy-line);
+    margin-bottom:14px;
+  }
+  .brand .kicker{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:11px; letter-spacing:2.5px; color:var(--gold);
+    text-transform:uppercase;
+  }
+  .brand h1{
+    font-family:"Playfair Display", serif;
+    font-size:24px; margin:6px 0 4px; color:#f4efe0; line-height:1.3;
+  }
+  .brand .sub{font-size:12.5px; color:#9aa0b0;}
+  nav ul{list-style:none; margin:0; padding:0 10px;}
+  nav .grp-title{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:10.5px; letter-spacing:1.8px; text-transform:uppercase;
+    color:#7c8296; padding:16px 12px 6px;
+  }
+  nav a{
+    display:block; padding:9px 12px; margin:1px 0;
+    color:#c9cddb; text-decoration:none; font-size:14.5px;
+    border-radius:6px; border-left:3px solid transparent;
+    transition:all .15s ease;
+  }
+  nav a:hover{background:rgba(200,168,98,.12); color:#fff;}
+  nav a.active{
+    background:rgba(200,168,98,.18);
+    border-left:3px solid var(--gold);
+    color:#fff; font-weight:600;
+  }
+  /* ============ MAIN ============ */
+  #main{ margin-left:290px; padding:48px 56px 120px; max-width:980px; }
+  .masthead{
+    text-align:center; padding-bottom:28px; margin-bottom:36px;
+    border-bottom:4px double var(--maroon);
+  }
+  .masthead .eyebrow{
+    font-family:"IBM Plex Mono",monospace; letter-spacing:3px; font-size:12px;
+    color:var(--maroon); text-transform:uppercase;
+  }
+  .masthead h1{
+    font-family:"Playfair Display", serif; font-weight:800; font-size:44px;
+    margin:12px 0 10px; color:var(--ink);
+  }
+  .masthead .desc{color:var(--ink-soft); font-size:15.5px; max-width:680px; margin:0 auto; line-height:1.75;}
+
+  /* legend */
+  .legend{
+    display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
+    margin:24px auto 0; padding:16px 20px; max-width:760px;
+    background:var(--paper-deep); border:1px solid var(--rule); border-radius:10px;
+  }
+  .legend span{font-size:13px; font-family:"IBM Plex Mono",monospace; display:flex; align-items:center; gap:7px;}
+  .legend i{width:14px; height:14px; border-radius:3px; display:inline-block; border:1px solid rgba(0,0,0,.25);}
+
+  section.topic{ margin-bottom:60px; scroll-margin-top:24px; }
+  section.topic h2{
+    font-family:"Playfair Display", serif; font-size:30px; font-weight:700;
+    color:var(--navy); margin:0 0 6px;
+    padding-bottom:12px; border-bottom:2px solid var(--gold);
+    display:flex; align-items:baseline; gap:12px;
+  }
+  section.topic h2 .num{
+    font-family:"IBM Plex Mono",monospace; font-size:15px; color:var(--maroon); font-weight:600;
+  }
+  h3.sub{
+    font-family:"Playfair Display", serif; font-size:21px; font-weight:600;
+    color:var(--maroon); margin:30px 0 12px;
+  }
+  p{margin:0 0 14px; font-size:16.5px;}
+  .lede{font-style:italic; color:var(--ink-soft); font-size:14.5px; margin-top:-4px; margin-bottom:20px;}
+
+  mark{ padding:2px 5px; border-radius:3px; font-weight:500; color:var(--ink); box-decoration-break:clone; }
+  mark.y{background:var(--y-bg); box-shadow:inset 0 -1.5px 0 var(--y-bd);}
+  mark.b{background:var(--b-bg); box-shadow:inset 0 -1.5px 0 var(--b-bd);}
+  mark.g{background:var(--g-bg); box-shadow:inset 0 -1.5px 0 var(--g-bd);}
+  mark.r{background:var(--r-bg); box-shadow:inset 0 -1.5px 0 var(--r-bd); font-weight:600;}
+  mark.p{background:var(--p-bg); box-shadow:inset 0 -1.5px 0 var(--p-bd);}
+
+  .card{
+    background:#fffdf7; border:1px solid var(--rule); border-radius:10px;
+    padding:18px 22px; margin:18px 0; box-shadow:0 1px 3px rgba(0,0,0,.05);
+  }
+  .card h4{
+    margin:0 0 10px; font-family:"IBM Plex Mono",monospace; font-size:13px;
+    letter-spacing:1.2px; text-transform:uppercase; color:var(--navy);
+  }
+  .card ul{margin:0; padding-left:22px;}
+  .card li{margin-bottom:9px; font-size:15.5px; line-height:1.75;}
+
+  .trap{
+    background:#fdf0ee; border:1px solid var(--r-bd); border-left:5px solid var(--r-bd);
+    border-radius:8px; padding:16px 20px; margin:20px 0; font-size:15px; line-height:1.75;
+  }
+  .trap h4{
+    margin:0 0 8px; color:var(--r-bd); font-family:"IBM Plex Mono",monospace;
+    font-size:12.5px; letter-spacing:1.2px; text-transform:uppercase;
+    display:flex; align-items:center; gap:6px;
+  }
+  .rule-box{
+    background:#f6f0fb; border:1px solid var(--p-bd); border-left:5px solid var(--p-bd);
+    border-radius:8px; padding:16px 20px; margin:20px 0; font-size:15px; line-height:1.75;
+  }
+  .rule-box h4{
+    margin:0 0 8px; color:var(--p-bd); font-family:"IBM Plex Mono",monospace;
+    font-size:12.5px; letter-spacing:1.2px; text-transform:uppercase;
+  }
+
+  table.tbl{ width:100%; border-collapse:collapse; margin:16px 0 22px; font-size:15px; background:#fffdf7;}
+  table.tbl caption{ text-align:left; font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--ink-soft); margin-bottom:8px; letter-spacing:.5px;}
+  table.tbl th{ background:var(--navy); color:#f0ead8; text-align:left; padding:10px 14px; font-weight:600; font-size:13.5px;}
+  table.tbl td{ padding:9px 14px; border-bottom:1px solid var(--rule); }
+  table.tbl tr:nth-child(even) td{ background:#f8f2e2; }
+
+  .timeline{border-left:3px solid var(--gold); margin:20px 0 20px 6px; padding-left:22px;}
+  .timeline .item{position:relative; margin-bottom:16px; font-size:15.5px; line-height:1.75;}
+  .timeline .item::before{
+    content:""; position:absolute; left:-27.5px; top:6px; width:10px; height:10px;
+    border-radius:50%; background:var(--maroon); border:2px solid var(--paper);
+  }
+  .timeline .item b{color:var(--navy);}
+
+  .divider{ text-align:center; color:var(--gold); font-size:20px; letter-spacing:14px; margin:12px 0 30px; }
+
+  footer{
+    margin-left:290px; padding:28px 56px 60px; color:var(--ink-soft);
+    font-size:13px; font-family:"IBM Plex Mono",monospace; border-top:1px solid var(--rule);
+  }
+  @media (max-width:880px){
+    #menuBtn{display:block;}
+    #sidebar{transform:translateX(-100%); width:85vw; max-width:310px;}
+    #sidebar.open{transform:translateX(0);}
+    #main, footer{margin-left:0; padding:76px 20px 90px;}
+    section.topic h2{font-size:23px;}
+    .masthead h1{font-size:28px;}
+    body{font-size:16px;}
+    table.tbl{font-size:13.5px;}
+    table.tbl th, table.tbl td{padding:7px 9px;}
+  }
+</style>
+</head>
+<body>
+
+<button id="menuBtn" onclick="document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show');">☰ Contents</button>
+<div id="overlay" onclick="document.getElementById('sidebar').classList.remove('open');this.classList.remove('show');"></div>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="kicker">BPSC Prelims · The Ledger Series</div>
+    <h1>Panchayati Raj Ledger</h1>
+    <div class="sub">Complete Fact Compendium · 222 MCQs</div>
+  </div>
+  <nav>
+    <ul id="navlist">
+      <li class="grp-title">Contents</li>
+      <li><a href="#t1">1 · Historical Roots &amp; Nomenclature</a></li>
+      <li><a href="#t2">2 · Constitutional Basis &amp; 73rd Amendment</a></li>
+      <li><a href="#t3">3 · Three-Tier Structure</a></li>
+      <li><a href="#t4">4 · Gram Sabha</a></li>
+      <li><a href="#t5">5 · Composition, Qualification &amp; Reservation</a></li>
+      <li><a href="#t6">6 · Duration, Dissolution &amp; Elections</a></li>
+      <li><a href="#t7">7 · Powers, Functions &amp; 11th Schedule</a></li>
+      <li><a href="#t8">8 · Finance — SFC &amp; Accounts</a></li>
+      <li><a href="#t9">9 · State Election Commission</a></li>
+      <li><a href="#t10">10 · Committees on Panchayati Raj</a></li>
+      <li><a href="#t11">11 · PESA Act, 1996</a></li>
+      <li><a href="#t12">12 · States Without / Special Areas</a></li>
+      <li><a href="#t13">13 · State-Specific Provisions</a></li>
+      <li><a href="#t14">14 · 74th Amendment — Municipalities</a></li>
+      <li><a href="#t15">15 · District &amp; Metropolitan Planning</a></li>
+      <li><a href="#t16">16 · Rural Employment Schemes</a></li>
+      <li><a href="#t17">17 · Article-Wise Quick Reference</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<main id="main">
+  <div class="masthead">
+    <div class="eyebrow">Indian Polity &amp; Governance series</div>
+    <h1>Panchayati Raj: The Complete Ledger</h1>
+    <div class="desc">Every fact, direct and implied, from all 222 questions and their explanations — merged into one topic-wise ledger, point by point. Contradictions in the source are flagged, not silently resolved.</div>
+    <div class="legend">
+      <span><i style="background:var(--y-bg);border-color:var(--y-bd)"></i>Concept / Definition</span>
+      <span><i style="background:var(--b-bg);border-color:var(--b-bd)"></i>Fact / Date / Place</span>
+      <span><i style="background:var(--g-bg);border-color:var(--g-bd)"></i>Person / Institution</span>
+      <span><i style="background:var(--r-bg);border-color:var(--r-bd)"></i>MCQ Trap / Conflict</span>
+      <span><i style="background:var(--p-bg);border-color:var(--p-bd)"></i>Rule / Provision</span>
+    </div>
+  </div>
+
+  <!-- ============ 1. HISTORICAL ROOTS ============ -->
+  <section class="topic" id="t1">
+    <h2><span class="num">01</span> Historical Roots &amp; Nomenclature</h2>
+    <div class="card">
+      <ul>
+        <li>In <mark class="b">1830</mark>, <mark class="g">Sir Charles Metcalfe</mark>, then <mark class="b">acting Governor General of India</mark>, described the <mark class="y">village community as "a little republic,"</mark> nearly self-sufficient and almost independent of foreign relations — the earliest articulation of India's self-reliant rural system.</li>
+        <li><mark class="g">Lord Ripon</mark>, appointed <mark class="b">Viceroy of India in 1880</mark>, is regarded as the <mark class="y">"Father of Local Self-Government in India"</mark>; he laid the foundation of representative institutions and municipal bodies in the country.</li>
+        <li><mark class="g">Mahatma Gandhi</mark> suggested the <mark class="y">nomenclature "Panchayati Raj"</mark> for rural local governments, envisioning each village as a <mark class="y">self-sufficient "little republic"</mark> enjoying maximum freedom in local affairs.</li>
+        <li>The Panchayati Raj System is associated with the theme of <mark class="y">"Grass-Root Democracy"</mark> — decentralization within a democratic setup.</li>
+        <li><mark class="g">Balwant Rai Mehta</mark> described the system as one of <mark class="y">"Democratic Decentralization."</mark></li>
+        <li>Local self-government is best explained as an exercise in <mark class="y">democratic decentralisation</mark> — not federalism, administrative delegation, or direct democracy.</li>
+        <li>The principal aim of Panchayati Raj is the <mark class="y">decentralization of power to villagers</mark>, enabling <mark class="y">people's participation in developmental administration</mark> — not primarily political accountability or financial mobilisation.</li>
+        <li>Attributes of Local Government: <mark class="p">statutory status, participation of local community, power to raise finances by taxation</mark> — <mark class="r">central control is NOT an attribute</mark> of local government.</li>
+        <li>Characteristics of decentralization: <mark class="y">autonomy, people's participation, empowering local communities</mark> — <mark class="r">instilling non-confidence among local communities is NOT a characteristic</mark>.</li>
+        <li>Full functioning of Panchayati Raj requires the cooperation of the <mark class="y">local public</mark> above all.</li>
+        <li>Panchayati Raj in India represents <mark class="y">decentralisation of power, participation of people, and community development</mark> — all together.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 2. CONSTITUTIONAL BASIS ============ -->
+  <section class="topic" id="t2">
+    <h2><span class="num">02</span> Constitutional Basis &amp; the 73rd Amendment</h2>
+    <div class="card">
+      <ul>
+        <li><mark class="p">Article 40</mark> (Directive Principles of State Policy) directs the State to <mark class="y">organise Village Panchayats</mark> and endow them with powers/authority to function as <mark class="y">units of self-governance</mark>.</li>
+        <li>Panchayati Raj as a unit of self-government is formulated under the <mark class="p">73rd Amendment (1992)</mark>, which gave it <mark class="y">Constitutional status</mark>.</li>
+        <li>The <mark class="b">third tier</mark> was added to the Indian federal system in <mark class="b">1993</mark> (73rd Amendment in force <mark class="b">24 April 1993</mark>, though passed by Parliament in 1992).</li>
+        <li>The <mark class="b">64th Constitutional Amendment Bill</mark> (introduced <mark class="b">July 1989</mark>) was the <mark class="y">first attempt after Independence</mark> to confer constitutional status on Panchayati Raj Institutions — the legislative ancestor of the 73rd Amendment.</li>
+        <li>The 73rd Amendment Act, 1992 inserted <mark class="p">Part IX ("The Panchayats")</mark> and the <mark class="p">11th Schedule</mark> into the Constitution, covering <mark class="b">Articles 243 to 243-O</mark>.</li>
+        <li>The 73rd and 74th Amendments were passed in <mark class="b">1992</mark> during the prime-ministership of <mark class="g">P.V. Narasimha Rao</mark>.</li>
+        <li>The 73rd Amendment gave <mark class="y">practical shape to Article 40</mark> of the Constitution.</li>
+        <li><mark class="g">Madhya Pradesh</mark> was the <mark class="b">first State to implement the 73rd Amendment in true spirit</mark>.</li>
+        <li><mark class="y">National Panchayati Raj Day</mark> is celebrated every year on <mark class="b">24 April</mark> (first celebrated in <mark class="b">2010</mark>).</li>
+        <li>The main national event for <mark class="b">National Panchayati Raj Day 2025</mark> (32nd anniversary) was held at <mark class="g">Lohna Uttar Gram Panchayat, Madhubani district, Bihar</mark>.</li>
+        <li>New provisions of the 73rd Amendment (1992): <mark class="p">collective responsibilities in agriculture, rural development, primary education, social forestry</mark>; <mark class="p">mandatory elections for vacant posts</mark>; <mark class="p">statutory one-third representation for women</mark> — <mark class="r">regular remuneration to panchayat members was NOT one of these provisions</mark>.</li>
+        <li>The 73rd Amendment made <mark class="p">Panchayat elections mandatory</mark>, placing them on a footing as serious as Lok Sabha and Vidhan Sabha elections (via Article 243K / State Election Commission).</li>
+        <li>Despite the 73rd/74th Amendments, <mark class="r">local government continues to be a State subject under the Seventh Schedule</mark> — separate constitutional provisions for local governance nonetheless exist under Article 40, Part IX, and Part IX-A.</li>
+      </ul>
+    </div>
+    <div class="trap">
+      <h4>⚠ Trap — "copied from Australia"</h4>
+      One source question states that the three-tier governance system introduced by the 73rd/74th Amendments was <mark class="r">"copied from the Constitution of Australia"</mark> and marks this as correct. This is inconsistent with the mainstream account (the system traces to the Balwant Rai Mehta Committee, 1957, and indigenous experiments in Rajasthan/Andhra Pradesh) — flagged here as a contradiction in the source rather than resolved silently.
+    </div>
+  </section>
+
+  <!-- ============ 3. THREE-TIER STRUCTURE ============ -->
+  <section class="topic" id="t3">
+    <h2><span class="num">03</span> Three-Tier Structure</h2>
+    <div class="card">
+      <ul>
+        <li>The Panchayati Raj set-up is a <mark class="y">three-tier structure</mark>: <mark class="g">village level (Gram Panchayat)</mark>, <mark class="g">intermediate/block level (Panchayat Samiti)</mark>, and <mark class="g">district level (Zila Parishad)</mark> — governed by <mark class="p">Article 243B</mark>.</li>
+        <li>A <mark class="p">Panchayat at the intermediate level may NOT be constituted</mark> in a State having a population <mark class="b">not exceeding 20 lakh</mark> — Article 243B(2). This makes the intermediate tier optional, not mandatory, for such States.</li>
+        <li>The 73rd Amendment covers <mark class="p">Gram Panchayat, Kshetra/Block Panchayat (Panchayat Samiti), and Zila Parishad</mark> — <mark class="r">Nagar Panchayat is NOT covered</mark> by the 73rd Amendment (it falls under the 74th Amendment/Municipalities).</li>
+        <li><mark class="y">Panchayat Samiti (Block level)</mark>: members are <mark class="p">directly elected by the public</mark>; it functions as an <mark class="y">administrative authority</mark>, linking Gram Panchayats and Zila Parishad, handling both co-ordination and execution of plans.</li>
+        <li><mark class="y">Zila Parishad (District level)</mark> functions as a <mark class="y">supervisory and co-ordinating authority</mark>; it is <mark class="r">NOT composed entirely of directly elected members</mark> — it also includes ex-officio heads of district departments, chairpersons of all Panchayat Samitis in the district, MPs, MLAs, MLCs from the district, and representatives of SC/ST/women/co-operative societies.</li>
+        <li>Territory of a <mark class="y">Kshetra Panchayat (intermediate level)</mark> is determined by the <mark class="g">State Government</mark> (Article 243C(2): each Panchayat area divided into territorial constituencies so the population-to-seat ratio is uniform).</li>
+        <li>Main characteristics of the Panchayati Raj System: <mark class="y">three tiers of government</mark>; aims at <mark class="y">social and economic justice to villages</mark>; some MPs sit as representatives in the Zila Parishad.</li>
+        <li><mark class="g">Balwant Rai Mehta Committee (1957)</mark> recommended the original three-tier structure: <mark class="g">Gram Panchayat</mark> (village), <mark class="g">Panchayat Samiti</mark> (block), <mark class="g">Zila Parishad</mark> (district) — <mark class="r">"Nyaya Panchayat" is NOT one of these three tiers</mark> (it was proposed later, by the Ashok Mehta Committee, as a separate judicial-type entity).</li>
+      </ul>
+    </div>
+    <table class="tbl">
+      <caption>State-wise names for local bodies (per source, c.1999 status &amp; current usage)</caption>
+      <tr><th>State</th><th>Local body name / status</th></tr>
+      <tr><td>Assam</td><td>Zila Parishad constituted at sub-divisional level</td></tr>
+      <tr><td>Andhra Pradesh</td><td>Mandal Praja Parishad</td></tr>
+      <tr><td>Meghalaya</td><td>Janajati Parishad</td></tr>
+      <tr><td>Mizoram</td><td>Absence of Gram Panchayats</td></tr>
+      <tr><td>Madhya Pradesh</td><td>Panchayat Samiti called "Janpad Panchayat"</td></tr>
+      <tr><td>Uttar Pradesh</td><td>Panchayat Samiti called "Kshetra Panchayat"</td></tr>
+      <tr><td>Gujarat</td><td>Panchayat Samiti called "Taluka Parishad"</td></tr>
+      <tr><td>West Bengal</td><td>Panchayat Samiti called "Anchalik Parishad"</td></tr>
+    </table>
+  </section>
+
+  <!-- ============ 4. GRAM SABHA ============ -->
+  <section class="topic" id="t4">
+    <h2><span class="num">04</span> Gram Sabha</h2>
+    <div class="card">
+      <ul>
+        <li><mark class="y">"Gram Sabha"</mark> is defined under <mark class="p">Article 243(b)</mark> as a body of <mark class="y">persons registered in the electoral rolls</mark> relating to a village within a Panchayat area at village level — <mark class="r">NOT simply "all persons living in the village"</mark> (only registered electors qualify).</li>
+        <li>The Gram Sabha exercises <mark class="p">such powers/functions at village level as the State Legislature may, by law, provide</mark> (Article 243A) — <mark class="r">its powers are NOT determined by the Central Government</mark>.</li>
+        <li>The Gram Sabha functions at village level analogous to how the <mark class="y">State Legislature functions at the State level</mark>; it is a <mark class="y">permanent body</mark> and the largest/foundational institution of the Panchayati Raj system.</li>
+        <li>All other PRI bodies (Gram Panchayat, Panchayat Samiti, Zila Parishad) are constituted of <mark class="y">elected representatives</mark>, whereas the Gram Sabha itself is the <mark class="y">sabha of the electorate</mark> directly.</li>
+        <li>A <mark class="y">decision taken by the Gram Sabha cannot be annulled by any other body</mark> — only the Gram Sabha itself can annul its own decision.</li>
+        <li>A <mark class="y">Gram Panchayat can cover more than one village</mark>; Gram Sabha meetings are held <mark class="y">in each village (by rotation)</mark>, while Gram Panchayat meetings are held at the <mark class="y">Gram Panchayat headquarters</mark>.</li>
+        <li>Under the <mark class="g">Chhattisgarh Panchayati Raj Act, 1993</mark> (amended 2004): Gram Sabha must meet <mark class="p">once every three months</mark>; <mark class="p">quorum = 1/10th of total members, of whom 1/3rd must be women</mark>; the <mark class="g">Sarpanch and Panchs are responsible for quorum</mark>; resolutions on the <mark class="p">annual working plan, beneficiary selection, budget, audit report, and administrative report can only pass with quorum present</mark> (not in an adjourned meeting lacking quorum); if quorum is absent in <mark class="b">five subsequent meetings</mark>, removal proceedings against the Sarpanch begin.</li>
+        <li>In <mark class="g">Madhya Pradesh</mark>, if both Sarpanch and Up-Sarpanch are absent, the Gram Sabha meeting is presided over by a <mark class="g">Panch elected by members present</mark> (M.P. Panchayati Raj Avam Gram Swaraj Adhiniyam, 1993).</li>
+        <li>Under <mark class="p">PESA rules</mark>, in Scheduled Areas the Gram Sabha is presided over by a <mark class="g">Scheduled Tribe member selected by consensus for one year</mark>; without consensus, the <mark class="g">oldest ST woman present</mark> becomes Chairperson.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 5. COMPOSITION/RESERVATION ============ -->
+  <section class="topic" id="t5">
+    <h2><span class="num">05</span> Composition, Qualification &amp; Reservation</h2>
+    <h3 class="sub">Composition</h3>
+    <div class="card">
+      <ul>
+        <li>The <mark class="g">Legislature of a State</mark> — not the Governor, Parliament, or President — is authorised to make provisions regarding the <mark class="p">composition of Panchayats</mark>, under <mark class="p">Article 243-C(1)</mark>.</li>
+        <li>Each State must constitute Panchayats at the <mark class="y">village, intermediate, and district levels</mark> (Article 243B(1)).</li>
+      </ul>
+    </div>
+    <h3 class="sub">Reservation of Seats</h3>
+    <div class="card">
+      <ul>
+        <li><mark class="p">Article 243D</mark> provides for reservation of seats for SCs and STs in Panchayats.</li>
+        <li>Article 243D(2): <mark class="p">not less than one-third of SC/ST-reserved seats shall be reserved for SC/ST women</mark> — <mark class="r">NOT 50 percent and NOT one-fourth</mark>.</li>
+        <li>Article 243D(3): <mark class="p">not less than one-third of total seats filled by direct election shall be reserved for women</mark> (inclusive of SC/ST women's seats); such seats may be <mark class="p">allotted by rotation</mark> to different constituencies.</li>
+        <li><mark class="g">Article 243D</mark> guarantees the one-third representation of women in Panchayats.</li>
+        <li><mark class="r">Article 334 (Lok Sabha/Assembly reservation) has no bearing on Panchayat reservation</mark> — women's reservation in Panchayats does NOT cease per the period specified in Article 334.</li>
+        <li>Reservation of seats for women, at the time of these provisions, was specific to <mark class="y">Panchayati Raj Institutions</mark> — <mark class="r">NOT the result of any prior public demand by rural women</mark> (a top-down constitutional provision).</li>
+        <li>The <mark class="g">Constitution (106th Amendment) Act, 2023</mark> ("Nari Shakti Vandan Adhiniyam") separately provides <mark class="p">one-third reservation for women in the Lok Sabha, State Assemblies, and Delhi Assembly</mark> (including SC/ST-reserved seats), effective <mark class="b">after the first delimitation following the first census post-commencement</mark>.</li>
+        <li>The <mark class="g">Uttar Pradesh Panchayat Laws (Amendment) Act, 1994</mark> (in force <mark class="b">22 April 1994</mark>) provides <mark class="p">one-third reservation for women</mark> in UP's PRIs.</li>
+        <li><mark class="r">SC reservation in Panchayat elections does NOT apply to Arunachal Pradesh</mark> (no SC population per Census 2011).</li>
+        <li>By c.2010–2011, <mark class="g">Bihar, Madhya Pradesh, and Himachal Pradesh</mark> had <mark class="p">50 percent women's reservation</mark> in Panchayats; this list later expanded to include <mark class="g">Andhra Pradesh, Kerala, Chhattisgarh, Jharkhand, Maharashtra, Odisha, Rajasthan, Tripura, Uttarakhand, Assam, Gujarat, Karnataka, Sikkim, Tamil Nadu, Telangana, West Bengal, and Punjab</mark>.</li>
+      </ul>
+    </div>
+    <div class="trap">
+      <h4>⚠ Trap — common distractors</h4>
+      "30% seats reserved for women" and "disqualification for having more than two children" are frequently offered as distractors — <mark class="r">neither was actually provided for by the 73rd Amendment</mark>. The correct figure is one-third (not 30%), and no two-child disqualification clause exists.
+    </div>
+    <h3 class="sub">Qualification / Minimum Age</h3>
+    <div class="card">
+      <ul>
+        <li><mark class="p">Article 243-F(1)</mark>: minimum age to contest/be a member of a Panchayat (all three levels) is <mark class="b">21 years</mark> — <mark class="r">NOT 18, 25, or 30 years</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 6. DURATION/ELECTIONS ============ -->
+  <section class="topic" id="t6">
+    <h2><span class="num">06</span> Duration, Dissolution &amp; Elections</h2>
+    <div class="card">
+      <ul>
+        <li><mark class="p">Article 243E</mark>: every Panchayat, unless sooner dissolved, <mark class="y">continues for five years from the date appointed for its first meeting</mark> — not from election notification, result declaration, or oath of office.</li>
+        <li>If dissolved before completing its term, <mark class="p">elections must be completed within six months of dissolution</mark> — <mark class="r">NOT one month, three months, or one year</mark> (exception: if remaining term is under 6 months, re-election isn't necessary).</li>
+        <li>A Panchayat reconstituted after premature dissolution <mark class="p">continues only for the remainder of the original period</mark> — it does NOT receive a fresh full five-year term.</li>
+        <li>Panchayat elections are, by design, held every <mark class="b">five years</mark> (subject to the six-month re-election rule on dissolution).</li>
+        <li>The <mark class="g">State Government</mark> decides to conduct Panchayat elections (a State List subject); the <mark class="g">State Election Commission</mark> (Article 243K) holds constitutional control over the actual conduct of elections and preparation of electoral rolls.</li>
+        <li>Under the <mark class="g">Chhattisgarh Panchayat Nirvachan Niyam, 1995</mark> (Sec 46): if a candidate dies before polling and <mark class="p">more than one candidate remains, polling is NOT postponed</mark>; if <mark class="p">only one candidate remains, polling IS postponed</mark>.</li>
+        <li>A Panchayat election has <mark class="y">one District Election Officer</mark> and <mark class="y">one or more Returning Officers</mark>; the <mark class="g">SEC appoints the Returning Officer</mark> (or the District Election Officer may, with SEC consent); a <mark class="g">Naib Tehsildar may serve as Returning Officer</mark> for the Janpad or Gram Panchayat.</li>
+        <li>Panchayati Raj is a <mark class="p">State List</mark> subject (Seventh Schedule, 5th entry).</li>
+      </ul>
+    </div>
+    <div class="rule-box">
+      <h4>Rule — worked dissolution example</h4>
+      If a Gram Panchayat elected 20 Jan 2014 held its first meeting on 10 Feb 2014, and was dissolved on 20 Feb 2016, the new Panchayat (elected 15 May 2016, first meeting 25 May 2016) inherits only the <mark class="p">remainder of the ORIGINAL five-year term</mark> — it runs until <mark class="b">10 February 2019</mark>, five years from the original first-meeting date, not its own.
+    </div>
+  </section>
+
+  <!-- ============ 7. POWERS/11TH SCHEDULE ============ -->
+  <section class="topic" id="t7">
+    <h2><span class="num">07</span> Powers, Functions &amp; the 11th Schedule</h2>
+    <div class="card">
+      <ul>
+        <li><mark class="p">Article 243G</mark> empowers the State Legislature to devolve powers to Panchayats for: <mark class="y">(a) preparation of plans for economic development and social justice</mark>, and <mark class="y">(b) implementation of schemes for economic development and social justice</mark>, including 11th Schedule matters.</li>
+        <li>The <mark class="p">11th Schedule</mark> (added by the 73rd Amendment) lists <mark class="b">29 subjects/functions</mark> devolved to Panchayats — including <mark class="y">Libraries, Fuel and Fodder, and Technical Training</mark> — <mark class="r">"Rural Sports" is NOT part of it</mark>.</li>
+        <li>Functions assigned by the 73rd Amendment are listed in the <mark class="p">Eleventh Schedule</mark> — <mark class="r">not the 10th, 12th, or 13th Schedule</mark> (12th is for Municipalities, under the 74th Amendment).</li>
+        <li>The 73rd Amendment provided for: <mark class="p">regular elections (Art. 243K)</mark>, <mark class="p">reservation for women at all levels (Art. 243D)</mark>, <mark class="p">mandatory fund transfer per SFC recommendation (Art. 243I)</mark>, and <mark class="p">mandatory transfer of powers on 11th Schedule subjects</mark> — all four together.</li>
+        <li>Functions that ARE the concern of Local Self-Government: <mark class="y">Public Health, Sanitation, Public Utility Services, Roads and Bridges, Developmental Schemes</mark> — <mark class="r">"Maintenance of Public Order" is NOT one</mark> (belongs to the police/state administration).</li>
+        <li><mark class="r">Judicial Review is NOT a power of Panchayati Raj Institutions</mark> — it belongs to the Judiciary.</li>
+        <li>PRI powers include <mark class="y">implementation of land reforms and poverty-alleviation programmes</mark>.</li>
+        <li>Under the <mark class="g">Chhattisgarh Panchayati Raj Act, 1993</mark>, <mark class="g">Zila Panchayats</mark> hold powers to: <mark class="p">plan minor water bodies; control institutions in all social sectors; control tribal sub-plans; and exercise other functions conferred by the State Government</mark>.</li>
+        <li>On <mark class="g">Nyaya Panchayats</mark>: under the <mark class="g">Bihar Panchayati Raj Act, 1947 &amp; 1993</mark>, village courts could impose imprisonment; the <mark class="b">Patna High Court (1996)</mark> declared this illegal; under the current <mark class="g">Bihar Panchayati Raj Act, 2006</mark>, <mark class="r">no village court may sentence any imprisonment</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 8. FINANCE ============ -->
+  <section class="topic" id="t8">
+    <h2><span class="num">08</span> Finance — State Finance Commission &amp; Accounts</h2>
+    <div class="card">
+      <ul>
+        <li><mark class="p">Article 243-I</mark>: the <mark class="g">Governor</mark> must constitute a <mark class="g">State Finance Commission</mark> within one year of the 73rd Amendment's commencement, and thereafter <mark class="b">every five years</mark>, to review Panchayats' finances and recommend distribution principles for tax/duty/toll/fee proceeds.</li>
+        <li>The <mark class="g">State Finance Commission</mark> is responsible for the <mark class="y">distribution of revenue between the State Government and Local Governments</mark> — not the Chief Minister or Governor personally.</li>
+        <li><mark class="p">Article 243J</mark> allows the <mark class="g">State Legislature</mark> — not Parliament, District Collector, or the Finance Commission — to make provisions on <mark class="p">maintenance and audit of Panchayat accounts</mark>.</li>
+        <li>The <mark class="g">Union Finance Commission</mark> (Article 280) also recommends measures to <mark class="p">augment the State's Consolidated Fund</mark> to supplement Panchayat/Municipality resources, <mark class="y">based on State Finance Commission recommendations</mark> — <mark class="r">it is incorrect to say the Union Finance Commission has NO role at all</mark>.</li>
+        <li><mark class="g">State Finance Commission (243I)</mark>, <mark class="g">State Election Commission (243K)</mark>, and <mark class="g">District Panchayat (243B)</mark> are all <mark class="y">Constitutional authorities</mark> — a <mark class="g">State Electoral Officer/Chief Electoral Officer is NOT</mark>.</li>
+        <li>The <mark class="g">Madhya Pradesh SEC</mark> was constituted <mark class="b">1 February 1994</mark> under Articles 243K and 243ZA.</li>
+        <li>The <mark class="g">Rajasthan SEC</mark> was constituted <mark class="b">July 1994</mark> under Article 243K — a <mark class="y">single-member body</mark> whose Secretary also serves as Chief Electoral Officer.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 9. SEC ============ -->
+  <section class="topic" id="t9">
+    <h2><span class="num">09</span> State Election Commission</h2>
+    <div class="card">
+      <ul>
+        <li><mark class="p">Article 243K</mark> vests the <mark class="g">State Election Commission (SEC)</mark> with superintendence, direction, and control over <mark class="y">electoral rolls</mark> and the <mark class="y">conduct of all Panchayat elections</mark>.</li>
+        <li><mark class="p">Article 243ZA</mark> gives the SEC identical powers over <mark class="y">Municipal</mark> elections.</li>
+        <li>The <mark class="g">State Election Commissioner is appointed by the Governor</mark> — <mark class="r">not by the President of India or the Chief Election Commissioner of India</mark>.</li>
+        <li>The <mark class="g">SEC is a Constitutional authority in its own right</mark>; <mark class="r">the Election Commission of India has NO role</mark> in overseeing local-body elections — SEC and ECI are entirely separate bodies.</li>
+        <li>SEC functions: prepares electoral rolls for Panchayat/Municipality elections; conducts those elections; may conduct elections to other bodies on the Governor's direction — <mark class="r">it does NOT act "as assigned by the Election Commission of India"</mark> (functionally independent of the ECI).</li>
+        <li>All Panchayat elections are conducted by the <mark class="g">State Election Commission</mark> — not the ECI, the State Legislature, or any "Panchayati Raj Commission."</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 10. COMMITTEES ============ -->
+  <section class="topic" id="t10">
+    <h2><span class="num">10</span> Committees on Panchayati Raj</h2>
+    <table class="tbl">
+      <caption>Chronological ledger of committees</caption>
+      <tr><th>Committee</th><th>Year</th><th>Key Recommendation</th></tr>
+      <tr><td class="g">K. Santhanam Committee</td><td>1962</td><td>Study team on Panchayati Raj finance &amp; resources; recommended limited revenue powers and Panchayati Raj Finance Corporations.</td></tr>
+      <tr><td class="g">Balwant Rai Mehta Committee</td><td>1957 (report Nov 1957)</td><td>Set up by NDC to review CDP (1952) &amp; NES (1953); recommended the original three-tier Panchayati Raj system; its Chairman is called the "Architect of Panchayati Raj."</td></tr>
+      <tr><td class="g">M.L. Dantwala Working Group</td><td>1977</td><td>Recommended planning at the block level (a separate Dantwala Committee, for RBI on Regional Rural Banks, recommended RRBs be integrated into rural credit, reported 1978).</td></tr>
+      <tr><td class="g">Ashok Mehta Committee</td><td>1977 (report 1978)</td><td>Recommended a two-tier system (Zila Parishad + Mandal Panchayat, pop. 15,000–20,000); the district (not block) as first point of decentralisation; creation of Nyaya Panchayats headed by a qualified judge.</td></tr>
+      <tr><td class="g">C.H. Hanumantha Rao Committee</td><td>1983</td><td>Decentralisation of functions, powers and finance; district planning bodies/cells.</td></tr>
+      <tr><td class="g">G.V.K. Rao Committee</td><td>1985</td><td>Set up by the Planning Commission; strengthening PRIs, regular elections, district as the basic unit for planning.</td></tr>
+      <tr><td class="g">L.M. Singhvi Committee</td><td>1986</td><td>Recommended Constitutional recognition/protection for local self-government; more finances to village Panchayats; non-involvement of political parties in Panchayat elections.</td></tr>
+      <tr><td class="g">P.K. Thungan Committee</td><td>1988</td><td>Panchayati Raj reforms preceding constitutional status.</td></tr>
+      <tr><td class="g">V.R. Rao</td><td>—</td><td>Rationalisation of Panchayat Statistics.</td></tr>
+      <tr><td class="g">S.D. Mishra</td><td>—</td><td>Working Group on Panchayats and Co-operative matters.</td></tr>
+    </table>
+    <div class="card">
+      <ul>
+        <li><mark class="r">NOT related to Panchayati Raj</mark>: V.K.R.V. Rao Committee (UN Commission for Economic Development/National Income), Dinesh Goswami Committee (1990, Electoral Reforms).</li>
+        <li><mark class="g">G.V.K. Rao Committee</mark> is correctly paired with <mark class="y">"Administrative Arrangement for Rural Development and Poverty Alleviation Programmes"</mark> — <mark class="r">NOT with "Planning at the Block Level"</mark> (that belongs to the Dantwala working group).</li>
+        <li><mark class="g">Dantwala Committee (RBI, RRBs)</mark> is correctly paired with <mark class="y">"Rural Credit."</mark></li>
+        <li>Chronological order: <mark class="b">Balwant Rai Mehta (1957) → Ashok Mehta (1977–78) → G.V.K. Rao (1985) → L.M. Singhvi (1986)</mark>.</li>
+        <li>The <mark class="g">Panchayati Raj System was first inaugurated by Pt. Jawaharlal Nehru</mark> on <mark class="b">2 October 1959</mark> at <mark class="g">Nagaur, Rajasthan</mark> — <mark class="g">Rajasthan</mark> was the first State to adopt it; <mark class="g">Andhra Pradesh</mark> was second.</li>
+        <li>The <mark class="g">Community Development Programme (CDP)</mark> launched in <mark class="b">1952</mark> as the first major post-Independence rural development programme; the <mark class="g">National Extension Service (NES)</mark> was formulated <mark class="b">April 1953</mark> and inaugurated <mark class="b">October 1953</mark>, after CDP proved impossible to implement nationwide due to fund shortage. The Balwant Rai Mehta Committee (1957) reviewed both.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 11. PESA ============ -->
+  <section class="topic" id="t11">
+    <h2><span class="num">11</span> PESA Act, 1996</h2>
+    <div class="card">
+      <ul>
+        <li>The <mark class="g">Panchayats (Extension to the Scheduled Areas) Act</mark> was passed by Parliament in <mark class="b">1996</mark>, on the recommendations of the <mark class="g">Bhuria Committee</mark>.</li>
+        <li>PESA applies to <mark class="b">ten States</mark> with Fifth Schedule Areas: <mark class="g">Andhra Pradesh, Chhattisgarh, Gujarat, Himachal Pradesh, Jharkhand, Madhya Pradesh, Maharashtra, Odisha, Rajasthan, Telangana</mark>.</li>
+        <li>Objectives: <mark class="y">self-governance</mark>, <mark class="y">recognising traditional rights</mark>, and <mark class="y">freeing tribal peoples from exploitation</mark> — <mark class="r">creating autonomous regions is NOT an objective</mark>.</li>
+        <li>In PESA areas, the <mark class="p">Gram Sabha can stop land transfer</mark> in Scheduled Areas and holds <mark class="p">ownership of minor forest produce</mark> — <mark class="r">its recommendation is NOT mandatorily required for every mineral's mining lease</mark> (consent applies specifically to minor minerals).</li>
+        <li>PESA is <mark class="r">NOT enforceable</mark> outside the ten notified Fifth Schedule States (e.g., not in Assam–Meghalaya–Tamil Nadu).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 12. STATES WITHOUT ============ -->
+  <section class="topic" id="t12">
+    <h2><span class="num">12</span> States Without Panchayati Raj / Special Areas</h2>
+    <div class="card">
+      <ul>
+        <li>Per <mark class="p">Article 243M(2)</mark>, Panchayat provisions <mark class="r">do NOT apply to the hill areas of Nagaland, Meghalaya, and Mizoram</mark>, or to Manipur, where <mark class="g">District Councils</mark> exist instead.</li>
+        <li>At present there is <mark class="y">no Panchayati Raj Institution</mark> in <mark class="g">Mizoram, Nagaland, and Meghalaya</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 13. STATE-SPECIFIC ============ -->
+  <section class="topic" id="t13">
+    <h2><span class="num">13</span> State-Specific Provisions</h2>
+    <h3 class="sub">Chhattisgarh</h3>
+    <div class="card">
+      <ul>
+        <li><mark class="g">Chhattisgarh Panchayati Raj Act, 1993</mark>: each Gram Panchayat divided into <mark class="b">10–20 wards</mark>, each electing one Panch (all elected, none nominated); Gram Panchayat = elected Panchs + elected Sarpanch.</li>
+        <li>Section 127: the <mark class="g">Governor</mark> may, by notification, change Block headquarters or alter Block/Zila Panchayat limits.</li>
+        <li>Section 39(3): if a Sarpanch/President is suspended, members elect a temporary officiating Sarpanch/President.</li>
+        <li><mark class="g">Chhattisgarh Municipalities Act, 1961</mark>, Sec 79(2): disputes between Panchayat and Cantonment Board decided by <mark class="g">State Government, subject to Central Government concurrence</mark>.</li>
+        <li>Same Act, Sec 34: Municipal Council <mark class="g">President</mark> candidate must be ≥<mark class="b">25 years</mark>; <mark class="g">Councillor</mark> candidate must be ≥<mark class="b">21 years</mark>; <mark class="r">cannot contest two wards simultaneously</mark>; if elected to both offices, must resign one within <mark class="b">7 days</mark>.</li>
+        <li>Same Act, Sec 47: recalling a Municipal President needs a <mark class="p">3/4-elected-Councillor signed proposal</mark>, then a <mark class="p">secret-ballot recall vote needing a majority of over half of total voters casting a vote</mark>; cannot be initiated within 2 years of election; may be initiated <mark class="p">only once per full term</mark>.</li>
+        <li>A councillor acting as a legal practitioner against the Municipal Council is <mark class="p">removed from office by the Collector</mark>.</li>
+        <li>A woman Sarpanch <mark class="r">cannot legally nominate her husband</mark> to attend Gram/Janpad Panchayat meetings — though an ex-officio MP/MLA/MLC member CAN legally nominate a representative.</li>
+      </ul>
+    </div>
+    <h3 class="sub">Madhya Pradesh</h3>
+    <div class="card">
+      <ul>
+        <li>MP Zila Panchayat Standing Committees: <mark class="y">General Administration, Agriculture, and Education</mark> (optionally also Communication/Works and Co-operation/Industries).</li>
+        <li>MP State Election Commission constituted <mark class="b">1 February 1994</mark>.</li>
+      </ul>
+    </div>
+    <h3 class="sub">Uttar Pradesh</h3>
+    <div class="card">
+      <ul>
+        <li><mark class="g">UP Kshetra Panchayats and Zila Panchayat Act, 1961</mark>, Sec 19: <mark class="g">Zila Panchayat Chairman is elected by its own elected members from amongst themselves</mark> (not directly by voters); Sec 19-A reserves the office for SC/ST/Backward Classes.</li>
+        <li>The <mark class="g">Chairman of a UP Municipality</mark> is elected by all voters on the electoral list of the municipal area, including ward electors — <mark class="r">NOT by all adults, and NOT solely by elected municipal members</mark>.</li>
+        <li>UP's District Plan includes <mark class="g">Nagar Panchayat, Gram Panchayat, and Kshetra Panchayat</mark> — all three.</li>
+      </ul>
+    </div>
+    <h3 class="sub">Rajasthan</h3>
+    <div class="card">
+      <ul>
+        <li><mark class="g">Rajasthan Panchayati Raj Act, 1994</mark>, Sec 89, amended to replace <mark class="y">"Gram Vikas Adhikari"</mark> with <mark class="y">"Gram Sevak."</mark></li>
+        <li>Rajasthan's SEC constituted <mark class="b">July 1994</mark> — a single-member body whose Secretary also serves as Chief Electoral Officer.</li>
+        <li><mark class="g">Rajasthan Municipal Act, 2009</mark>: State Government may nominate max <mark class="b">8 persons</mark> to a Municipal Council (max 6 to a Board, max 12 to a Corporation).</li>
+        <li>Mayor election security deposit: <mark class="b">Rs 30,000</mark> (general), <mark class="b">Rs 15,000</mark> (women/SC/ST/OBC).</li>
+        <li>Rajasthan's District Planning Committee: <mark class="b">20 elected + 5 ex-officio members</mark> (Sec 121 of the 1994 Act); <mark class="g">chairperson is the Zila Pramukh</mark> (Zila Parishad head) — this figure varies by state (34 in Bihar).</li>
+        <li>Rajasthan was the <mark class="g">first State</mark> to establish the Panchayati Raj system, on <mark class="b">2 October 1959</mark> in <mark class="g">Nagaur district</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 14. 74TH AMENDMENT ============ -->
+  <section class="topic" id="t14">
+    <h2><span class="num">14</span> 74th Amendment — Municipalities</h2>
+    <div class="card">
+      <ul>
+        <li>The <mark class="p">74th Amendment Act, 1992</mark> gave constitutional status to <mark class="y">urban local self-government (Municipalities)</mark> — <mark class="r">NOT to Panchayats</mark>, which the 73rd Amendment addressed instead.</li>
+        <li>It inserted <mark class="p">Part IX-A ("The Municipalities")</mark>, comprising <mark class="b">Articles 243P–243ZG</mark>, and added the <mark class="p">12th Schedule</mark> listing <mark class="b">18 functional items</mark>.</li>
+        <li>It came into force on <mark class="b">1 June 1993</mark>.</li>
+        <li>Article 243Q envisages <mark class="b">THREE types of Municipalities</mark> — <mark class="g">Nagar Panchayat</mark> (transitional area), <mark class="g">Municipal Council</mark> (smaller urban area), and <mark class="g">Municipal Corporation</mark> (larger urban area) — <mark class="r">NOT two types</mark>.</li>
+        <li>The 74th Amendment is <mark class="p">applicable in ALL States</mark> — not just specified States.</li>
+        <li>Municipalities have a <mark class="p">fixed five-year term</mark> from the first meeting (Article 243U) — <mark class="r">counted from the first meeting, NOT the election-result date</mark>; if dissolved early, a reconstituted Corporation continues only for the remainder of the original period.</li>
+        <li>Article 243T(3): <mark class="p">at least one-third of directly-elected seats reserved for women</mark> in every Municipality (inclusive of SC/ST women); many States raise this up to 50%.</li>
+        <li>Article 243T(1) provides <mark class="p">reservation of seats for Scheduled Tribes</mark> in Municipalities.</li>
+        <li>Minimum age to be a Municipality member is <mark class="b">21 years</mark> (Article 243V) — <mark class="r">NOT 25 years</mark>.</li>
+        <li>Territorial area of a Municipality is <mark class="p">notified by the Governor</mark> (Article 243P(d)).</li>
+        <li>Under <mark class="p">Article 243S</mark>, <mark class="y">Ward Committees</mark> are constituted for wards with population <mark class="b">3 lakh or more</mark>; ward councillors are elected; <mark class="b">two persons are nominated by the Mayor</mark> from ward residents; term is <mark class="b">five years</mark>.</li>
+        <li>Municipal Corporations are formed for big cities with a definite area and population, because <mark class="y">urban administration in big cities is very complex</mark> (Article 243Q).</li>
+        <li>Census urban-area criteria: Municipality/Corporation/Cantonment/Notified Town Area Committee, OR all of: <mark class="b">min. population 5,000</mark>, <mark class="b">at least 75% of male workforce in non-agricultural pursuits</mark> (<mark class="r">NOT 60%</mark>), and <mark class="b">density ≥400/sq km</mark>.</li>
+        <li>Mayor's tenure is generally <mark class="b">5 years</mark> (Article 243U) — but <mark class="g">Delhi and Bengaluru: 1 year</mark>; <mark class="g">Mumbai: 2.5 years</mark>.</li>
+        <li>Example matches: <mark class="g">Ghaziabad</mark> has a <mark class="y">Municipal Corporation (Nagar Nigam)</mark>, not a Nagarpalika Parishad; <mark class="g">Lucknow</mark> has a Municipal Corporation plus a <mark class="y">Cantonment Board</mark>; <mark class="g">Kakori</mark> is a <mark class="y">Nagar Panchayat</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 15. DPC/MPC ============ -->
+  <section class="topic" id="t15">
+    <h2><span class="num">15</span> District &amp; Metropolitan Planning Committees</h2>
+    <div class="card">
+      <ul>
+        <li>The <mark class="p">District Planning Committee (DPC)</mark> is constituted under <mark class="p">Article 243ZD</mark>, added by the <mark class="y">74th Amendment</mark> (though it consolidates plans of BOTH Panchayats and Municipalities in the district).</li>
+        <li>The DPC <mark class="y">consolidates plans from Panchayats and Municipalities</mark> and prepares a <mark class="y">draft development plan for the district as a whole</mark>.</li>
+        <li>DPC membership varies by State: <mark class="b">20 elected + 5 ex-officio</mark> in Rajasthan; <mark class="b">34</mark> in Bihar; <mark class="b">20</mark> in Chhattisgarh.</li>
+        <li>In <mark class="g">Rajasthan</mark>, the <mark class="g">DPC chairperson is the Zila Pramukh</mark> (Sec 121, Rajasthan Panchayati Raj Act, 1994).</li>
+        <li>The <mark class="p">Metropolitan Planning Committee (MPC)</mark> is constituted under <mark class="p">Article 243ZE</mark> for every metropolitan area, and <mark class="y">prepares a draft development plan for it</mark> — <mark class="r">it does NOT have sole responsibility for implementing government-sponsored schemes</mark> (limited to sending draft plans to the State Government).</li>
+        <li>73rd and 74th Amendments together created: <mark class="g">State Election Commission (243K)</mark>, <mark class="g">State Finance Commission (243I)</mark>, <mark class="g">SEC for Municipalities (243ZA)</mark>, <mark class="g">State Finance Commission for Municipalities (243Y)</mark>, and <mark class="g">District Planning Committee (243ZD)</mark> — <mark class="r">a "State Property Tax Valuation Board" was NOT created</mark>.</li>
+        <li>The 73rd Amendment specifically provides for <mark class="p">conducting Panchayat elections via SECs</mark> and <mark class="p">establishing State Finance Commissions</mark> — <mark class="r">constituting District Planning Committees is a 74th Amendment provision (Art. 243ZD), NOT a 73rd Amendment provision</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 16. RURAL EMPLOYMENT ============ -->
+  <section class="topic" id="t16">
+    <h2><span class="num">16</span> Rural Employment Schemes</h2>
+    <div class="card">
+      <ul>
+        <li>The <mark class="g">National Rural Employment Guarantee Act (NREGA)</mark> was passed in <mark class="b">August 2005</mark>, in force from <mark class="b">2 February 2006</mark>; renamed <mark class="g">MNREGA</mark> on <mark class="b">2 October 2009</mark>.</li>
+        <li>First launched/piloted in <mark class="g">Anantapur district, Andhra Pradesh</mark>.</li>
+        <li>MNREGA guarantees <mark class="p">at least 100 days of employment</mark> per year to <mark class="y">adult members of ANY household</mark> — <mark class="r">not restricted to SC/ST, BPL, or backward-community households only</mark>.</li>
+        <li>The <mark class="g">Gram Panchayat</mark> (after considering the Gram Sabha's recommendation) is responsible for <mark class="p">planning, execution, and implementation</mark> of MNREGA works — <mark class="r">not the Gram Sabha itself, the State Government, or the DRDA directly</mark>.</li>
+        <li>The <mark class="g">Viksit Bharat – Guarantee for Rozgar and Ajeevika Mission (Gramin), "VB-GRAMG Act, 2025"</mark>, received Presidential assent on <mark class="b">20 December 2025</mark>, and <mark class="y">replaces MGNREGA</mark> under a new statutory framework aligned with <mark class="y">Viksit Bharat 2047</mark>; it <mark class="p">raises the employment guarantee to 125 days per rural household annually</mark> and strengthens income security (effective date to be notified).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 17. ARTICLE REFERENCE ============ -->
+  <section class="topic" id="t17">
+    <h2><span class="num">17</span> Article-Wise Quick Reference (Part IX &amp; IX-A)</h2>
+    <table class="tbl">
+      <tr><th>Article</th><th>Subject</th></tr>
+      <tr><td class="p">243(a)</td><td>Definition of "District"</td></tr>
+      <tr><td class="p">243(b)</td><td>Definition of "Gram Sabha"</td></tr>
+      <tr><td class="p">243(c)</td><td>Definition of "Intermediate level"</td></tr>
+      <tr><td class="p">243A</td><td>Gram Sabha (powers/functions at village level)</td></tr>
+      <tr><td class="p">243B</td><td>Constitution of Panchayats (three-tier; intermediate level optional if population ≤ 20 lakh)</td></tr>
+      <tr><td class="p">243C</td><td>Composition of Panchayats</td></tr>
+      <tr><td class="p">243D</td><td>Reservation of seats (SC/ST, women)</td></tr>
+      <tr><td class="p">243E</td><td>Duration of Panchayats (5 years); re-election within 6 months of dissolution</td></tr>
+      <tr><td class="p">243F</td><td>Disqualifications for membership (minimum age 21)</td></tr>
+      <tr><td class="p">243G</td><td>Powers, authority, responsibilities; 11th Schedule (29 subjects)</td></tr>
+      <tr><td class="p">243I</td><td>State Finance Commission (every 5 years, by the Governor)</td></tr>
+      <tr><td class="p">243J</td><td>Audit of accounts of Panchayats</td></tr>
+      <tr><td class="p">243K</td><td>Elections to Panchayats — State Election Commission</td></tr>
+      <tr><td class="p">243M</td><td>Exemption of hill areas (Nagaland, Meghalaya, Mizoram) and Manipur (District Councils)</td></tr>
+      <tr><td class="p">Part IX (243–243O)</td><td>"The Panchayats" — 73rd Amendment, 1992 (in force 24 April 1993)</td></tr>
+      <tr><td class="p">Part IX-A (243P–243ZG)</td><td>"The Municipalities" — 74th Amendment, 1992 (in force 1 June 1993)</td></tr>
+      <tr><td class="p">243P(d)</td><td>Territorial area of a Municipality notified by the Governor</td></tr>
+      <tr><td class="p">243Q</td><td>Types of Municipalities (Nagar Panchayat, Municipal Council, Municipal Corporation)</td></tr>
+      <tr><td class="p">243S</td><td>Ward Committees (population ≥ 3 lakh)</td></tr>
+      <tr><td class="p">243T</td><td>Reservation of seats in Municipalities (ST — 243T(1); women — 243T(3))</td></tr>
+      <tr><td class="p">243U</td><td>Duration of Municipalities (5 years)</td></tr>
+      <tr><td class="p">243V</td><td>Disqualification for Municipality membership (minimum age 21)</td></tr>
+      <tr><td class="p">243Y</td><td>State Finance Commission for Municipalities</td></tr>
+      <tr><td class="p">243ZA</td><td>Elections to Municipalities — State Election Commission</td></tr>
+      <tr><td class="p">243ZD</td><td>District Planning Committee</td></tr>
+      <tr><td class="p">243ZE</td><td>Metropolitan Planning Committee</td></tr>
+      <tr><td class="p">11th Schedule</td><td>29 subjects devolved to Panchayats (73rd Amendment)</td></tr>
+      <tr><td class="p">12th Schedule</td><td>18 functional items devolved to Municipalities (74th Amendment)</td></tr>
+      <tr><td class="p">Article 40</td><td>DPSP directing States to organise Village Panchayats</td></tr>
+      <tr><td class="p">Article 280</td><td>Union Finance Commission</td></tr>
+      <tr><td class="p">Article 334</td><td>Reservation in Lok Sabha/Assemblies (NOT Panchayats)</td></tr>
+    </table>
+  </section>
+
+  <div class="divider">❦</div>
+</main>
+
+<footer>Panchayati Raj Ledger — compiled for BPSC Prelims 2025–26 · every theory line and MCQ-explanation fact from the source has been retained above.</footer>
+
+<script>
+  const links = document.querySelectorAll('#navlist a');
+  const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href')));
+  function onScroll(){
+    let idx = 0;
+    const y = window.scrollY + 120;
+    sections.forEach((sec,i)=>{ if(sec && sec.offsetTop <= y) idx = i; });
+    links.forEach(l=>l.classList.remove('active'));
+    if(links[idx]) links[idx].classList.add('active');
+  }
+  document.addEventListener('scroll', onScroll);
+  onScroll();
+  links.forEach(a=>a.addEventListener('click', ()=>{
+    if(window.innerWidth<=880){
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('overlay').classList.remove('show');
+    }
+  }));
+</script>
+</body>
+</html>

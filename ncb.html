@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Non-Constitutional Bodies Dossier — NITI Aayog, Lokpal, NHRC, CBI, CVC &amp; More</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6efe0;
+    --paper-deep:#efe4cc;
+    --ink:#2b241a;
+    --ink-soft:#5c5240;
+    --navy:#161a24;
+    --navy-deep:#0d1017;
+    --navy-line:#2a3142;
+    --gold:#c8a862;
+    --maroon:#7a2e2e;
+    --rule:#d8c9a3;
+
+    --y-bg:#fbe98f;
+    --y-bd:#c9a227;
+    --b-bg:#c3ddf5;
+    --b-bd:#3b6ea5;
+    --g-bg:#c8e8c9;
+    --g-bd:#3e8148;
+    --r-bg:#f6c6c2;
+    --r-bd:#a5342b;
+    --u-bg:#d8e6f7;
+    --u-bd:#2e5f8a;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"IBM Plex Sans", sans-serif;
+    line-height:1.65;
+  }
+  #sidebar{
+    position:fixed; top:0; left:0; bottom:0; width:290px;
+    background:linear-gradient(180deg,var(--navy) 0%,var(--navy-deep) 100%);
+    color:#e8e2d0;
+    overflow-y:auto;
+    padding:26px 0 40px;
+    border-right:3px solid var(--gold);
+    z-index:50;
+  }
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:var(--navy-line); border-radius:4px;}
+  .brand{
+    padding:0 22px 18px;
+    border-bottom:1px solid var(--navy-line);
+    margin-bottom:14px;
+  }
+  .brand .kicker{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:10.5px; letter-spacing:2.5px; color:var(--gold);
+    text-transform:uppercase;
+  }
+  .brand h1{
+    font-family:"Playfair Display", serif;
+    font-size:21px; margin:6px 0 4px; color:#f4efe0; line-height:1.25;
+  }
+  .brand .sub{font-size:11.5px; color:#9aa0b0;}
+  nav ul{list-style:none; margin:0; padding:0 10px;}
+  nav .grp-title{
+    font-family:"IBM Plex Mono",monospace;
+    font-size:10px; letter-spacing:1.8px; text-transform:uppercase;
+    color:#7c8296; padding:16px 12px 6px;
+  }
+  nav a{
+    display:block; padding:8px 12px; margin:1px 0;
+    color:#c9cddb; text-decoration:none; font-size:13px;
+    border-radius:6px; border-left:3px solid transparent;
+    transition:all .15s ease;
+  }
+  nav a:hover{background:rgba(200,168,98,.12); color:#fff;}
+  nav a.active{
+    background:rgba(200,168,98,.18);
+    border-left:3px solid var(--gold);
+    color:#fff; font-weight:600;
+  }
+  #main{ margin-left:290px; padding:44px 52px 120px; max-width:960px; }
+  .masthead{
+    text-align:center; padding-bottom:26px; margin-bottom:34px;
+    border-bottom:4px double var(--maroon);
+  }
+  .masthead .eyebrow{
+    font-family:"IBM Plex Mono",monospace; letter-spacing:3px; font-size:11px;
+    color:var(--maroon); text-transform:uppercase;
+  }
+  .masthead h1{
+    font-family:"Playfair Display", serif; font-weight:800; font-size:38px;
+    margin:10px 0 8px; color:var(--ink);
+  }
+  .masthead .desc{color:var(--ink-soft); font-size:14.5px; max-width:680px; margin:0 auto;}
+
+  .legend{
+    display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+    margin:22px auto 0; padding:14px 18px; max-width:760px;
+    background:var(--paper-deep); border:1px solid var(--rule); border-radius:10px;
+  }
+  .legend span{font-size:12px; font-family:"IBM Plex Mono",monospace; display:flex; align-items:center; gap:6px;}
+  .legend i{width:13px; height:13px; border-radius:3px; display:inline-block; border:1px solid rgba(0,0,0,.25);}
+
+  section.topic{ margin-bottom:56px; scroll-margin-top:24px; }
+  section.topic h2{
+    font-family:"Playfair Display", serif; font-size:26px; font-weight:700;
+    color:var(--navy); margin:0 0 4px;
+    padding-bottom:10px; border-bottom:2px solid var(--gold);
+    display:flex; align-items:baseline; gap:10px;
+  }
+  section.topic h2 .num{
+    font-family:"IBM Plex Mono",monospace; font-size:14px; color:var(--maroon); font-weight:600;
+  }
+  h3.sub{
+    font-family:"Playfair Display", serif; font-size:18px; font-weight:600;
+    color:var(--maroon); margin:24px 0 10px;
+  }
+  p{margin:0 0 13px; font-size:15px;}
+  .lede{font-style:italic; color:var(--ink-soft); font-size:13.5px; margin-top:-2px; margin-bottom:18px;}
+
+  mark{ padding:1.5px 4px; border-radius:3px; font-weight:500; color:var(--ink); box-decoration-break:clone; }
+  mark.y{background:var(--y-bg); box-shadow:inset 0 -1.5px 0 var(--y-bd);}
+  mark.b{background:var(--b-bg); box-shadow:inset 0 -1.5px 0 var(--b-bd);}
+  mark.g{background:var(--g-bg); box-shadow:inset 0 -1.5px 0 var(--g-bd);}
+  mark.r{background:var(--r-bg); box-shadow:inset 0 -1.5px 0 var(--r-bd); font-weight:600;}
+
+  .card{
+    background:#fffdf7; border:1px solid var(--rule); border-radius:10px;
+    padding:16px 20px; margin:16px 0; box-shadow:0 1px 3px rgba(0,0,0,.05);
+  }
+  .card h4{
+    margin:0 0 8px; font-family:"IBM Plex Mono",monospace; font-size:12px;
+    letter-spacing:1.2px; text-transform:uppercase; color:var(--navy);
+  }
+  .card ul{margin:0; padding-left:20px;}
+  .card li{margin-bottom:8px; font-size:14.5px;}
+  .card li::marker{color:var(--maroon);}
+
+  .trap{
+    background:#fdf0ee; border:1px solid var(--r-bd); border-left:5px solid var(--r-bd);
+    border-radius:8px; padding:14px 18px; margin:18px 0; font-size:13.8px;
+  }
+  .trap h4{
+    margin:0 0 6px; color:var(--r-bd); font-family:"IBM Plex Mono",monospace;
+    font-size:11.5px; letter-spacing:1.2px; text-transform:uppercase;
+    display:flex; align-items:center; gap:6px;
+  }
+
+  .current{
+    background:#eef5fc; border:1px solid var(--u-bd); border-left:5px solid var(--u-bd);
+    border-radius:8px; padding:14px 18px; margin:18px 0; font-size:13.8px;
+  }
+  .current h4{
+    margin:0 0 8px; color:var(--u-bd); font-family:"IBM Plex Mono",monospace;
+    font-size:11.5px; letter-spacing:1.2px; text-transform:uppercase;
+    display:flex; align-items:center; gap:6px;
+  }
+  .current ul{margin:0; padding-left:20px;}
+  .current li{margin-bottom:6px;}
+
+  table.tbl{ width:100%; border-collapse:collapse; margin:14px 0 20px; font-size:13.8px; background:#fffdf7;}
+  table.tbl caption{ text-align:left; font-family:"IBM Plex Mono",monospace; font-size:11px; color:var(--ink-soft); margin-bottom:6px; letter-spacing:.5px;}
+  table.tbl th{ background:var(--navy); color:#f0ead8; text-align:left; padding:8px 12px; font-weight:600; font-size:12.5px;}
+  table.tbl td{ padding:7px 12px; border-bottom:1px solid var(--rule); }
+  table.tbl tr:nth-child(even) td{ background:#f8f2e2; }
+
+  .divider{ text-align:center; color:var(--gold); font-size:18px; letter-spacing:12px; margin:10px 0 26px; }
+
+  footer{
+    margin-left:290px; padding:26px 52px 60px; color:var(--ink-soft);
+    font-size:12px; font-family:"IBM Plex Mono",monospace; border-top:1px solid var(--rule);
+  }
+  @media (max-width:880px){
+    #sidebar{display:none;}
+    #main, footer{margin-left:0; padding:30px 20px 90px;}
+  }
+</style>
+</head>
+<body>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="kicker">BPSC Prelims · The Ledger Series</div>
+    <h1>Non-Constitutional Bodies</h1>
+    <div class="sub">NITI Aayog · Lokpal · NHRC · CBI · CVC · NDMA · NIA · Committees</div>
+  </div>
+  <nav>
+    <ul id="navlist">
+      <li class="grp-title">Contents</li>
+      <li><a href="#niti">1 · NITI Aayog</a></li>
+      <li><a href="#planning">2 · Planning Commission</a></li>
+      <li><a href="#ndc">3 · National Development Council</a></li>
+      <li><a href="#lokpal">4 · Lokpal</a></li>
+      <li><a href="#lokayukta">5 · Lokayukta</a></li>
+      <li><a href="#nhrc">6 · NHRC &amp; SHRC</a></li>
+      <li><a href="#cic">7 · CIC &amp; SIC</a></li>
+      <li><a href="#cbi">8 · CBI</a></li>
+      <li><a href="#cvc">9 · CVC</a></li>
+      <li><a href="#ndma">10 · NDMA / SDMA / DDMA</a></li>
+      <li><a href="#nia">11 · NIA</a></li>
+      <li><a href="#committees">12 · Committees &amp; Commissions</a></li>
+      <li><a href="#minority">13 · Minority, Women &amp; Backward Class Bodies</a></li>
+      <li><a href="#boundary">14 · Boundary Markers</a></li>
+    </ul>
+  </nav>
+</aside>
+
+<main id="main">
+  <div class="masthead">
+    <div class="eyebrow">Indian Polity &amp; Governance series companion · MCQ-explanation ledger</div>
+    <h1>Non-Constitutional Bodies of India</h1>
+    <div class="desc">Every fact — stated and implied — buried inside the source's question explanations, merged topic-wise into one ledger. Single-question "not correctly matched" traps are excluded; genuine source contradictions are flagged, not silently resolved. Current officeholders are refreshed separately in blue "Current (2026)" boxes.</div>
+    <div class="legend">
+      <span><i style="background:var(--y-bg);border-color:var(--y-bd)"></i>Concept / definition</span>
+      <span><i style="background:var(--b-bg);border-color:var(--b-bd)"></i>Fact / date / place</span>
+      <span><i style="background:var(--g-bg);border-color:var(--g-bd)"></i>Person / institution</span>
+      <span><i style="background:var(--r-bg);border-color:var(--r-bd)"></i>Source trap / conflict</span>
+      <span><i style="background:var(--u-bg);border-color:var(--u-bd)"></i>Current (2026) update</span>
+    </div>
+  </div>
+
+  <!-- ============ 1. NITI AAYOG ============ -->
+  <section class="topic" id="niti">
+    <h2><span class="num">01</span> NITI Aayog</h2>
+    <p class="lede">National Institution for Transforming India — successor think tank to the Planning Commission.</p>
+
+    <div class="card">
+      <h4>Establishment &amp; nature</h4>
+      <ul>
+        <li><mark class="y">NITI</mark> stands for <mark class="y">National Institution for Transforming India</mark>; established on <mark class="b">1st January, 2015</mark> under a <mark class="y">Cabinet resolution</mark> — an <mark class="y">extra-constitutional, non-statutory body</mark>, not created by an Act of Parliament.</li>
+        <li>Replaced the <mark class="g">Planning Commission</mark>. Prime Minister <mark class="g">Narendra Modi</mark> announced the intent to abolish the Planning Commission from the <mark class="b">Red Fort on 15 August 2014</mark>; NITI Aayog itself came into existence on <mark class="b">1 January 2015</mark>.</li>
+        <li>Functions to foster <mark class="y">Cooperative Federalism</mark> and follows a <mark class="y">"Bottom-Up" approach</mark> to planning.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Structure</h3>
+    <div class="card">
+      <ul>
+        <li><mark class="y">Chairperson</mark> — the <mark class="g">Prime Minister</mark> (ex-officio); acts as a government <mark class="y">think tank</mark>, providing directional/strategic policy inputs.</li>
+        <li><mark class="y">Governing Council</mark> — headed by the PM; comprises <mark class="b">Chief Ministers of all States/UTs</mark> and <mark class="b">Lieutenant Governors/Administrators of UTs without a legislature</mark>. <mark class="b">Governors of States are not members</mark> of the Governing Council.</li>
+        <li><mark class="y">Regional Councils</mark> — can be constituted for issues affecting more than one state in a region, in the PM's opinion; headed by the PM or his nominee, and include the relevant CMs and LGs/Administrators.</li>
+        <li><mark class="y">Vice-Chairperson</mark> — in charge of day-to-day activities; appointed by the PM; holds the <mark class="b">rank of a Cabinet Minister</mark>.</li>
+        <li><mark class="b">Four full-time members</mark> holding the rank of <mark class="b">Minister of State</mark> at the Union level.</li>
+        <li><mark class="b">Two part-time members</mark> — academics from leading universities/research organisations, appointed on a rotational basis.</li>
+        <li>Up to <mark class="b">four Union Cabinet Ministers</mark> nominated by the PM as <mark class="y">ex-officio members</mark>.</li>
+        <li><mark class="y">Chief Executive Officer (CEO)</mark> — rank of <mark class="b">Secretary to the Government of India</mark>; appointed by the PM for a fixed tenure; serves as <mark class="y">Member-Secretary</mark> to the Aayog.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Functions</h3>
+    <div class="card">
+      <ul>
+        <li>Design of policy and programme framework.</li>
+        <li>Fostering cooperative federalism.</li>
+        <li>Monitoring and evaluation.</li>
+        <li>Acting as a think-tank, and knowledge/innovation hub.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Officeholders (historical)</h3>
+    <div class="card">
+      <ul>
+        <li>First Vice-Chairman: <mark class="g">Arvind Panagariya</mark> (<mark class="b">January 2015 – August 2017</mark>).</li>
+        <li>Subsequent Vice-Chairmen have included <mark class="g">Rajiv Kumar</mark> and <mark class="g">Suman Bery</mark> (<mark class="b">1 May 2022 – 30 April 2026</mark>).</li>
+        <li>Past CEOs have included <mark class="g">Amitabh Kant</mark> and <mark class="g">B.V.R. Subrahmanyam</mark> (CEO from May 2022, later moved to Finance Secretary).</li>
+      </ul>
+    </div>
+
+    <div class="current">
+      <h4>⟳ Current (2026)</h4>
+      <ul>
+        <li>Vice-Chairperson: <mark class="g">Ashok Kumar Lahiri</mark> (economist; former Chief Economic Adviser and 15th Finance Commission member), appointment notified <mark class="b">24 April 2026</mark>, assumed office <mark class="b">8 May 2026</mark>, succeeding Suman Bery.</li>
+        <li>CEO: <mark class="g">Nidhi Chhibber</mark> (1988-batch IAS, Madhya Pradesh cadre), holding additional charge since an order dated <mark class="b">26 February 2026</mark>, succeeding B.V.R. Subrahmanyam.</li>
+        <li>Full-time Members notified alongside the Vice-Chairperson (24 April 2026): <mark class="g">Rajiv Gauba</mark>, <mark class="g">K.V. Raju</mark>, <mark class="g">Gobardhan Das</mark>, <mark class="g">M. Srinivas</mark>, and <mark class="g">Abhay Karandikar</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 2. PLANNING COMMISSION ============ -->
+  <section class="topic" id="planning">
+    <h2><span class="num">02</span> Planning Commission</h2>
+    <div class="card">
+      <ul>
+        <li>Established on <mark class="b">15 March 1950</mark> by an <mark class="y">executive resolution</mark> of the Union Cabinet — <mark class="y">neither a constitutional nor a statutory body</mark>.</li>
+        <li>Set up on the recommendation of an advisory planning board chaired by <mark class="g">K.C. Neogy</mark>.</li>
+        <li>The <mark class="g">Prime Minister</mark> was its ex-officio Chairman; <mark class="g">Jawaharlal Nehru</mark> was the first Chairman.</li>
+        <li>First Deputy Chairman: <mark class="g">Gulzarilal Nanda</mark>; the Deputy Chairman's rank was equivalent to a <mark class="b">Cabinet Minister</mark>.</li>
+        <li>Other Deputy Chairmen included <mark class="g">Manmohan Singh</mark> (1985–1987), <mark class="g">Pranab Mukherjee</mark> (1991–1996), and <mark class="g">Montek Singh Ahluwalia</mark> (2004–2014).</li>
+        <li>Main function: assess the country's resources and prepare <mark class="y">five-year plans</mark> for the central government for balanced resource utilisation; also gave suggestions on states' annual plans, with roughly <mark class="b">70 percent</mark> of Centre-to-State grants historically routed on its recommendation.</li>
+        <li>Described as the <mark class="y">"Economic Cabinet"</mark> for both the Union and the States, owing to its extra-constitutional discretionary powers and the comprehensive scope of matters referred to it.</li>
+        <li><mark class="g">M.V. Mathur</mark> (a member of the Third Finance Commission, formed 1960) suggested a <mark class="y">merger of the Finance Commission and Planning Commission</mark>.</li>
+        <li>Replaced by <mark class="g">NITI Aayog</mark> on <mark class="b">1 January 2015</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 3. NDC ============ -->
+  <section class="topic" id="ndc">
+    <h2><span class="num">03</span> National Development Council (NDC)</h2>
+    <div class="card">
+      <ul>
+        <li>Constituted on <mark class="b">6th August, 1952</mark> by a <mark class="y">government (executive) resolution</mark> — <mark class="y">non-constitutional and non-statutory</mark>.</li>
+        <li>Acts as a <mark class="y">bridge between the Centre and the States</mark>; also functions as coordinator between the Planning Commission (now NITI Aayog) and State Governments.</li>
+        <li>Headed by the <mark class="g">Prime Minister</mark>; members include <mark class="b">Union Cabinet Ministers</mark>, <mark class="b">Chief Ministers of all States</mark>, <mark class="b">Chief Ministers/Administrators of Union Territories</mark>, and members of the Planning Commission (now NITI Aayog).</li>
+        <li>Functions: prescribes guidelines for formulating the National Plan (including resource assessment); considers the National Plan as formulated by the Planning Commission; considers important social/economic policy questions affecting national development; reviews Plan implementation and recommends measures to achieve Plan targets; and finally <mark class="y">approves the five-year plans</mark>.</li>
+        <li>The <mark class="g">Secretary of the Planning Commission</mark> (now NITI Aayog) also serves as the <mark class="y">ex-officio Secretary of the NDC</mark>.</li>
+        <li>The NDC should meet <mark class="b">at least twice a year</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 4. LOKPAL ============ -->
+  <section class="topic" id="lokpal">
+    <h2><span class="num">04</span> Lokpal</h2>
+
+    <h3 class="sub">Origins &amp; Legislative History</h3>
+    <div class="card">
+      <ul>
+        <li>The earliest democratic institution created anywhere for redressal of citizens' grievances is the Scandinavian <mark class="y">institution of Ombudsman</mark>, first created in <mark class="b">Sweden in 1809</mark>. The Indian model of the Ombudsman is the <mark class="y">Lokpal</mark>.</li>
+        <li>The <mark class="g">First Administrative Reforms Commission (1966–1970)</mark>, in its interim report dated <mark class="b">20th October, 1966</mark>, under the chairmanship of <mark class="g">Morarji Desai</mark> (set up <mark class="b">5 January 1966</mark>), recommended setting up a <mark class="y">Lokpal</mark> at the Centre and <mark class="y">Lokayuktas</mark> at the State level, and also recommended a <mark class="y">Local Body Ombudsman</mark>. <mark class="g">K. Hanumanthaiah</mark> became its Chairman in 1967; the Commission's term ended in 1970.</li>
+        <li>The first Lokpal Bill was introduced in <mark class="b">1968</mark> in the 4th Lok Sabha; it was passed by the Lok Sabha on <mark class="b">20 August 1969</mark> but lapsed when the Lok Sabha was dissolved before Rajya Sabha passage.</li>
+        <li>The <mark class="b">Lokpal Bill, 2011</mark> was introduced in the Lok Sabha on <mark class="b">4 August 2011</mark> by the then Minister of Parliamentary Affairs, <mark class="g">V. Narayanaswami</mark>; it was referred to the Parliamentary Standing Committee and was termed <mark class="y">"weak"</mark> by civil society members.</li>
+        <li>Civil society representatives on the panel drafting the Lokpal Bill: <mark class="g">Anna Hazare, Arvind Kejriwal, Shanti Bhushan, N. Santosh Hegde, and Prashant Bhushan</mark>.</li>
+        <li>The Lokpal institution was established for the first time in India by <mark class="y">The Lokpal and Lokayuktas Act, 2013</mark>, which came into force on <mark class="b">16 January 2014</mark>.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Composition &amp; Selection</h3>
+    <div class="card">
+      <ul>
+        <li>Under the 2013 Act, the Lokpal comprises <mark class="y">1 Chairperson and not more than eight members</mark>; at least <mark class="b">50%</mark> of members must be judicial members, and at least <mark class="b">50%</mark> must be from among SCs, STs, OBCs, minorities, and women.</li>
+        <li>Selection Committee (Section 4(1)): <mark class="g">Prime Minister</mark> (Chairperson), <mark class="g">Speaker of the Lok Sabha</mark>, <mark class="g">Leader of Opposition in the Lok Sabha</mark>, the <mark class="g">Chief Justice of India</mark> (or an SC judge nominated by him), and <mark class="g">one eminent jurist</mark> nominated by the President on the other four members' recommendation. The <mark class="g">Chairman of the Rajya Sabha</mark> has <mark class="y">no seat</mark> on this committee.</li>
+        <li>The <mark class="g">President</mark> appoints the Chairperson and members on this Selection Committee's recommendation.</li>
+        <li>Salaries/allowances/service conditions: same as the <mark class="g">Chief Justice of India</mark> for the Chairperson; same as a <mark class="g">Supreme Court judge</mark> for other members.</li>
+        <li>Minimum age for Chairperson or a Member: <mark class="b">45 years</mark> on the date of assuming office.</li>
+        <li>A Chairperson or Member cannot simultaneously be an MP or a member of any State/UT legislature.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Jurisdiction &amp; Procedure</h3>
+    <div class="card">
+      <ul>
+        <li>Jurisdiction covers a wide range of public servants — from the <mark class="g">Prime Minister</mark>, ministers and MPs, to Groups A, B, C and D central government employees — and even the Lokpal's <mark class="y">own members</mark>.</li>
+        <li>Applies to Indian public servants <mark class="y">both within and outside India</mark> (Section 1(3)).</li>
+        <li>The Act does <mark class="y">not exempt</mark> a sitting Prime Minister from Lokpal jurisdiction, but a Lokpal inquiry against the PM is barred where the allegation concerns <mark class="y">international relations, external/internal security, public order, atomic energy, or space</mark>; a complaint against the PM proceeds only if the full Lokpal bench considers initiation and <mark class="b">at least two-thirds</mark> of members approve.</li>
+        <li>On receiving a complaint, the Lokpal orders a <mark class="y">preliminary inquiry</mark> (to be completed within <mark class="b">90 days</mark>) or investigation by any agency; thereafter it may order investigation, departmental proceedings, other action, or closure.</li>
+        <li>The Lokpal <mark class="y">cannot take Suo Moto</mark> action against a public servant.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">Officeholders</h3>
+    <div class="card">
+      <ul>
+        <li>India's first Lokpal: <mark class="g">Justice Pinaki Chandra Ghose</mark> (retired SC judge), appointed <mark class="b">19 March 2019</mark>, oath administered <mark class="b">23 March 2019</mark>; retired on superannuation <mark class="b">27 May 2022</mark>.</li>
+        <li>Following Justice Ghose, <mark class="g">Justice Pradip Kumar Mohanty</mark> held <mark class="y">additional charge</mark> as Chairperson (28 May 2022 – 26 February 2024).</li>
+      </ul>
+    </div>
+
+    <div class="current">
+      <h4>⟳ Current (2026)</h4>
+      <ul>
+        <li>Chairperson of Lokpal: <mark class="g">Justice Ajay Manikrao Khanwilkar</mark> (retired Supreme Court judge), appointed <mark class="b">27 February 2024</mark>, oath administered <mark class="b">10 March 2024</mark>.</li>
+        <li>As of 2024, the Lokpal reached its full sanctioned strength of nine members (Chairperson plus eight), including judicial members <mark class="g">Justice L. Narayana Swamy</mark>, <mark class="g">Justice Sanjay Yadav</mark>, and non-judicial members such as <mark class="g">Sushil Chandra</mark> (former Chief Election Commissioner).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 5. LOKAYUKTA ============ -->
+  <section class="topic" id="lokayukta">
+    <h2><span class="num">05</span> Lokayukta</h2>
+    <div class="card">
+      <ul>
+        <li><mark class="y">Lokayuktas</mark> are the state-level equivalents of the central Lokpal, dealing with corruption complaints against certain public functionaries.</li>
+        <li>Under the 2013 Act, every State was required to establish a Lokayukta (by state law) within <mark class="b">one year</mark> of the Act's commencement, if not already established.</li>
+        <li>Term of a Lokayukta: <mark class="b">5 years or until age 65</mark>, whichever is earlier; <mark class="y">not eligible for reappointment</mark> for a second term.</li>
+        <li>Lokayukta recommendations are only <mark class="y">advisory</mark>, not binding on the state government.</li>
+        <li><mark class="g">Maharashtra</mark> was the <mark class="y">first state to establish</mark> the institution of Lokayukta — through the <mark class="b">Lokayukta and Upa-Lokayuktas Act, 1971</mark>, which came into effect on <mark class="b">25 October 1972</mark>.</li>
+        <li><mark class="g">Odisha</mark> was the <mark class="y">first state to pass</mark> a Lokayukta Act (in <mark class="b">1970</mark>), though it came into force only in <mark class="b">1983</mark>; Odisha was also the <mark class="y">first state to abolish</mark> its Lokayukta (in <mark class="b">1993</mark>).</li>
+        <li><mark class="g">Uttarakhand</mark> was the first state to pass a Lokayukta <em>Bill</em> in 2011, on <mark class="b">1 November 2011</mark>.</li>
+        <li>Sequence of state Lokayukta establishment noted in the source: Maharashtra (1972), Bihar (1973), Uttar Pradesh (1975), Madhya Pradesh (1982), Andhra Pradesh (1983), Karnataka (1984), Assam (1986).</li>
+        <li>Under the <mark class="y">Uttar Pradesh Lokayukta Act, 1975</mark>, the Lokayukta submits its report to the <mark class="g">Governor</mark>, who presents it in both Houses of the State Legislature. The UP Lokayukta tenure was amended from 8 years to <mark class="b">5 years or age 70</mark> (whichever earlier), effective <mark class="b">26 February 2024</mark>.</li>
+        <li>Under Section 7 of the <mark class="y">Rajasthan Lokayukta and Deputy Lokayukta Act, 1973</mark>, the Lokayukta may investigate: unreasonable harm/suffering caused by a public servant; abuse of official position for illegal benefit; and corruption or lack of transparency by a public servant. Section 8 of the same Act separately prescribes matters <em>not</em> subject to investigation.</li>
+        <li>In <mark class="b">2014</mark>, a high-level committee under <mark class="g">Advocate General Narpat Mal Lodha</mark> was constituted by the Rajasthan government to review provisions of the existing Lokayukta Act.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 6. NHRC & SHRC ============ -->
+  <section class="topic" id="nhrc">
+    <h2><span class="num">06</span> National &amp; State Human Rights Commissions</h2>
+
+    <h3 class="sub">NHRC — Establishment &amp; Composition</h3>
+    <div class="card">
+      <ul>
+        <li>The NHRC is a <mark class="y">statutory (non-constitutional) body</mark>, established on <mark class="b">12 October 1993</mark> under the <mark class="y">Protection of Human Rights Act (PHRA), 1993</mark>.</li>
+        <li>The President promulgated the <mark class="y">Protection of Human Rights Ordinance, 1993</mark> under <mark class="b">Article 123</mark> of the Constitution on <mark class="b">28 September 1993</mark>; the Act itself came into force the same date.</li>
+        <li>The NHRC is described as an embodiment of India's concern for promotion/protection of human rights; its functions are mainly <mark class="y">recommendatory</mark> in nature, though it has the powers of a <mark class="y">civil court</mark> (summoning, requiring documents) and can act <mark class="y">suo-moto</mark>.</li>
+        <li>Members and authorised officers of the Commission (and State Commissions) are deemed <mark class="y">Public Servants</mark> under Section 21 of the IPC.</li>
+        <li>For complaints against members of the <mark class="g">armed forces</mark>, the Commission's role is limited to seeking a report from the Central Government and making recommendations — it does not enquire itself.</li>
+        <li>A Special Public Prosecutor for a Human Rights Court must be an advocate in practice for <mark class="b">not less than 7 years</mark> (Section 31).</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">NHRC — Appointment, Tenure &amp; Removal</h3>
+    <div class="card">
+      <ul>
+        <li>Chairperson and members appointed by the <mark class="g">President</mark> on the recommendation of a <mark class="b">6-member committee</mark>: <mark class="g">Prime Minister</mark> (head), <mark class="g">Speaker of the Lok Sabha</mark>, <mark class="g">Deputy Chairman of the Rajya Sabha</mark>, <mark class="g">Leaders of Opposition</mark> in both Houses, and the <mark class="g">Union Home Minister</mark>.</li>
+        <li>Chairperson must be a former <mark class="g">Chief Justice of India</mark> or a (retired or sitting, per the 2019 amendment) <mark class="g">Judge of the Supreme Court</mark>.</li>
+        <li>Under the <mark class="y">Protection of Human Rights (Amendment) Act, 2019</mark>: term of office of the chairman/members reduced to <mark class="b">3 years or age 70</mark>, whichever is earlier; provision made for <mark class="b">three</mark> members knowledgeable/experienced in human rights, of whom at least one must be a <mark class="g">woman</mark>.</li>
+        <li>Chairperson/members are <mark class="y">not eligible for further employment</mark> under the Central or State Government after their tenure.</li>
+        <li>Removal is by the <mark class="g">President</mark> — either after a Supreme Court inquiry on grounds of proven incapacity/misbehaviour, or on grounds of insolvency, unsoundness of mind/body infirmity, criminal conviction, or engaging in outside paid employment.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">NHRC — Officeholders</h3>
+    <div class="card">
+      <ul>
+        <li>First Chairman (President) of the NHRC: <mark class="g">Justice Ranganath Misra</mark> (<mark class="b">12 October 1993 – 24 November 1996</mark>).</li>
+        <li>Later chairpersons have included <mark class="g">Justice H.L. Dattu</mark> (29 Feb 2016 – 2 Dec 2020) and <mark class="g">Justice Arun Kumar Mishra</mark> (2 June 2021 – 1 June 2024).</li>
+      </ul>
+    </div>
+
+    <div class="current">
+      <h4>⟳ Current (2026)</h4>
+      <ul>
+        <li>Chairperson of the NHRC: <mark class="g">Justice V. Ramasubramanian</mark> (former Supreme Court judge), took charge <mark class="b">30 December 2024</mark>, succeeding Justice Arun Kumar Mishra.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">State Human Rights Commission (SHRC)</h3>
+    <div class="card">
+      <ul>
+        <li>The same Protection of Human Rights Act, 1993 provides for creation of a <mark class="y">State Human Rights Commission</mark> at the state level; it can inquire into human rights violations on subjects in the <mark class="b">State List and Concurrent List</mark> (Seventh Schedule).</li>
+        <li>Chairperson and members are appointed by the <mark class="g">Governor</mark>, on the recommendation of a committee headed by the <mark class="g">Chief Minister</mark>, with the <mark class="g">Speaker of the Legislative Assembly</mark>, the state's <mark class="g">Home Minister</mark>, and the <mark class="g">Leader of Opposition in the Assembly</mark> as members (plus, where a Legislative Council exists, its Chairman and Leader of Opposition).</li>
+        <li>A sitting High Court judge or sitting District Judge can be appointed as an SHRC member only after consultation with the <mark class="g">Chief Justice of the concerned High Court</mark>.</li>
+        <li>Post-2019 amendment, a <mark class="g">Chief Justice of the High Court or a Judge of the High Court</mark> is eligible for appointment as SHRC Chairperson.</li>
+        <li>If a vacancy occurs in the Chairperson's office, the <mark class="g">Governor</mark> may authorise a member to act as Chairperson.</li>
+        <li>The SHRC submits its annual report to the <mark class="y">State Government</mark>, which lays it before the State Legislature along with a memorandum of action taken.</li>
+        <li>As of the source, <mark class="b">25 states</mark> had constituted their State Human Rights Commissions.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 7. CIC & SIC ============ -->
+  <section class="topic" id="cic">
+    <h2><span class="num">07</span> Central &amp; State Information Commissions</h2>
+    <div class="card">
+      <ul>
+        <li>The <mark class="y">Central Information Commission</mark> was established by the Central Government in <mark class="b">2005</mark> by an official Gazette notification, under the <mark class="y">Right to Information Act, 2005</mark> — it is <mark class="y">not a constitutional body</mark>.</li>
+        <li>Composition: a <mark class="y">Chief Information Commissioner</mark> and <mark class="b">not more than ten</mark> Information Commissioners.</li>
+        <li>Appointment: by the <mark class="g">President</mark>, on the recommendation of a committee of the <mark class="g">Prime Minister</mark> (Chairperson), the <mark class="g">Leader of Opposition in the Lok Sabha</mark>, and a <mark class="g">Union Cabinet Minister</mark> nominated by the PM.</li>
+        <li>Original tenure under the RTI Act, 2005: up to <mark class="b">5 years or age 65</mark>, whichever earlier. The <mark class="y">RTI (Amendment) Act, 2019</mark> instead left the Chief/other Information Commissioners' tenure to be <mark class="y">determined by the Central Government</mark>; they are <mark class="y">not eligible for reappointment</mark>.</li>
+        <li>Duties: receive and inquire into complaints on RTI information requests; can order an inquiry on <mark class="y">suo-moto</mark> grounds; has the powers of a <mark class="y">civil court</mark> for summoning/documents.</li>
+        <li>Removal: by the President, on grounds of bankruptcy, unsound mind, bodily/mental infirmity, criminal conviction, engagement in paid employment, or (via Supreme Court inquiry) proved misbehaviour/incapacity.</li>
+      </ul>
+    </div>
+
+    <h3 class="sub">State Information Commission (SIC)</h3>
+    <div class="card">
+      <ul>
+        <li>An independent statutory committee under the RTI Act with jurisdiction over state government bodies, PSUs and authorities.</li>
+        <li>Composition: Chief Information Commissioner + up to <mark class="b">10</mark> Information Commissioners, all appointed by the <mark class="g">Governor</mark> on recommendation of the <mark class="g">Chief Minister</mark>, a nominated Cabinet Minister, and the <mark class="g">Leader of Opposition in the Legislative Assembly</mark>.</li>
+        <li>Membership qualification: eminence in public life with experience in law, science &amp; technology, governance, social service, management, journalism, mass media, or administration; must not be an MP/MLA, affiliated with a political party, or hold a business/profession/office of profit.</li>
+        <li>Tenure: till age <mark class="b">65</mark> or <mark class="b">5 years</mark>. An Information Commissioner may be elevated to State Chief Information Commissioner but for a combined maximum tenure of <mark class="b">5 years</mark>.</li>
+        <li>Removal: by the <mark class="g">Governor</mark> on grounds of bankruptcy, unsound mind, bodily/mental infirmity, criminal conviction, or paid employment.</li>
+      </ul>
+    </div>
+
+    <div class="current">
+      <h4>⟳ Current (2026)</h4>
+      <ul>
+        <li>Chief Information Commissioner of India: <mark class="g">Raj Kumar Goyal</mark> (former Law Secretary of India), assumed office <mark class="b">15 December 2025</mark>, succeeding Heeralal Samariya.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 8. CBI ============ -->
+  <section class="topic" id="cbi">
+    <h2><span class="num">08</span> Central Bureau of Investigation (CBI)</h2>
+    <div class="card">
+      <ul>
+        <li>Set up in <mark class="b">1963</mark> by a resolution of the <mark class="y">Ministry of Home Affairs</mark> — <mark class="y">not a statutory body</mark>; it derives its powers from the <mark class="y">Delhi Special Police Establishment Act, 1946</mark>.</li>
+        <li>Establishment recommended by the <mark class="g">K. Santhanam Committee</mark> (Committee on Prevention of Corruption).</li>
+        <li>Headed by a <mark class="y">Director</mark>, assisted by a <mark class="y">Special Director</mark>; Director's tenure is <mark class="b">2 years</mark> under the CVC Act, 2003, renewable by one-year extensions.</li>
+        <li>Director appointed by the Government of India on recommendation of a 3-member committee: the <mark class="g">Prime Minister</mark>, the <mark class="g">Leader of Opposition in the Lok Sabha</mark>, and the <mark class="g">Chief Justice of India</mark>.</li>
+        <li>Functions under the aegis of the <mark class="y">Department of Personnel</mark>, Ministry of Personnel, Public Grievances &amp; Pensions (PMO).</li>
+        <li>Role: prevent corruption and maintain administrative integrity; works under the supervision of the <mark class="g">CVC</mark> for matters under the <mark class="y">Prevention of Corruption Act, 1988</mark>.</li>
+        <li>Also investigates offences connected with infringement of economic/fiscal laws — customs and central excise, export-import control, income tax, foreign exchange regulations — typically at the request of, or in consultation with, the concerned department.</li>
+        <li>Can begin a probe at a state government's request if the Union government agrees, or if directed by the Supreme Court or a High Court; can take up a case <mark class="y">suo-moto only in Union Territories</mark>.</li>
+        <li>Founder and first Director: <mark class="g">D.P. Kohli</mark> (1 April 1963 – 31 May 1968).</li>
+      </ul>
+    </div>
+
+    <div class="current">
+      <h4>⟳ Current (2026)</h4>
+      <ul>
+        <li>Director, CBI: <mark class="g">Praveen Sood</mark>, IPS (1986-batch, Karnataka cadre), in office since <mark class="b">25 May 2023</mark>; his term was extended by one year to <mark class="b">24 May 2026</mark> after the selection committee (PM, CJI, Leader of Opposition) could not reach consensus on a successor in May 2025. Verify current status separately if the exact date matters, as his extended term has since lapsed.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 9. CVC ============ -->
+  <section class="topic" id="cvc">
+    <h2><span class="num">09</span> Central Vigilance Commission (CVC)</h2>
+    <div class="card">
+      <ul>
+        <li>Established in <mark class="b">1964</mark> by an <mark class="y">executive resolution</mark>, on the recommendation of the <mark class="g">Santhanam Committee</mark> (Committee on Prevention of Corruption, 1962–64); given <mark class="y">statutory status</mark> only later, via the <mark class="b">CVC Act, 2003</mark>.</li>
+        <li>Designated as the agency to receive and act on complaints/disclosures of corruption or misuse of office from a <mark class="y">whistleblower</mark>.</li>
+        <li>Apex composition: <mark class="y">Central Vigilance Commissioner</mark> + not more than <mark class="b">two</mark> Vigilance Commissioners, appointed by the <mark class="g">President</mark> under warrant, for a term of <mark class="b">4 years or age 65</mark> (whichever earlier), on the recommendation of a 3-member committee of the <mark class="g">PM</mark>, the <mark class="g">Minister of Home Affairs</mark>, and the <mark class="g">Leader of Opposition</mark>.</li>
+        <li>Members are <mark class="y">not eligible for further employment</mark> after tenure; salary/allowances similar to the UPSC.</li>
+        <li>Removal: on Supreme Court recommendation, after inquiry, on grounds of proven incapacity/misbehaviour.</li>
+        <li>Bodies/persons who can approach the CVC: the <mark class="g">Central government</mark>, the <mark class="g">Lokpal</mark>, and <mark class="g">whistleblowers</mark>.</li>
+        <li>The CVC is <mark class="y">not itself an investigating agency</mark> — it gets investigations done through the <mark class="g">CBI</mark> or through <mark class="y">Chief Vigilance Officers (CVOs)</mark> in government offices.</li>
+        <li>Empowered to inquire into offences alleged under the <mark class="y">Prevention of Corruption Act, 1988</mark> for certain categories of public servants.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 10. NDMA/SDMA/DDMA ============ -->
+  <section class="topic" id="ndma">
+    <h2><span class="num">10</span> National Disaster Management Authority &amp; Tiers</h2>
+    <div class="card">
+      <ul>
+        <li>Established under the <mark class="y">Disaster Management Act, 2005</mark>, which also established the SDMA and DDMA.</li>
+        <li><mark class="y">NDMA</mark>: <mark class="g">Prime Minister</mark> is ex-officio Chairperson; not more than <mark class="b">9 members</mark> nominated by the Chairperson; Vice-Chairperson has the rank of <mark class="b">Cabinet Minister</mark>, other members the rank of <mark class="b">Minister of State</mark>. It is the apex disaster-management body and works under the <mark class="y">Ministry of Home Affairs</mark>.</li>
+        <li>NDMA's role: lay down policies, plans and guidelines for disaster management, and ensure timely/effective response to disasters.</li>
+        <li><mark class="y">SDMA</mark>: <mark class="g">Chief Minister</mark> is ex-officio Chairperson; not more than <mark class="b">9 members</mark>; the Chief of the State Executive Committee is an ex-officio member. A State Executive Committee assists the SDMA and coordinates action per SDMA guidelines, replicating the NEC's powers/functions at state level.</li>
+        <li><mark class="y">DDMA</mark>: <mark class="g">District Magistrate/Deputy Commissioner</mark> is Chairperson, the <mark class="g">Chairman of Zilla Parishad</mark> is co-chairperson; not more than <mark class="b">7 members</mark>. Elected members of local authorities are ex-officio members (in tribal areas, the chief executive of the District Autonomous Council is a member); a maximum of <mark class="b">2</mark> district-level officers are appointed by the State.</li>
+        <li>DDMA acts as the district-level planning, coordinating and implementing body for disaster management, coordinating with the upper two tiers on prevention, mitigation and preparedness.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 11. NIA ============ -->
+  <section class="topic" id="nia">
+    <h2><span class="num">11</span> National Investigation Agency (NIA)</h2>
+    <div class="card">
+      <ul>
+        <li>Established in <mark class="b">2009</mark> under the <mark class="y">NIA Act, 2008</mark>.</li>
+        <li>A central agency to investigate and prosecute offences affecting the <mark class="y">sovereignty, security and integrity of India</mark>; acts as the <mark class="y">Central Counter-Terrorism Law Enforcement Agency</mark> without needing special permission from the states.</li>
+        <li>A State Government may request the Centre to hand over investigation of a case registered for a scheduled offence; the Centre may also order the NIA <mark class="y">suo-moto</mark> to take over investigation of any scheduled offence anywhere in India.</li>
+        <li>Investigates/prosecutes offences under the <mark class="y">Atomic Energy Act, 1962</mark> and the <mark class="y">Unlawful Activities (Prevention) Act, 1967</mark>.</li>
+        <li>Currently has <mark class="b">nine branches</mark> besides specialised units.</li>
+        <li>The <mark class="y">NIA (Amendment) Bill, 2019</mark> expanded NIA's investigative jurisdiction to: <mark class="y">human trafficking</mark>; offences related to <mark class="y">counterfeit currency/banknotes</mark>; <mark class="y">manufacture/sale of prohibited arms</mark>; <mark class="y">cyber-terrorism</mark>; and offences under the <mark class="y">Explosive Substances Act, 1908</mark>.</li>
+        <li><mark class="y">Special NIA Courts</mark> try cases under Sections 11 and 22 of the NIA Act 2008; jurisdictional questions are decided by the Central Government; presiding judges are appointed by the Central Government on recommendation of the Chief Justice of the concerned High Court.</li>
+        <li>The <mark class="g">Supreme Court</mark> can transfer cases between special courts across states in the interest of justice.</li>
+        <li>NIA Special Courts hold all the powers of a <mark class="y">Court of Sessions</mark> under the CrPC, 1973; appeals from their judgments (other than interlocutory orders) lie to the <mark class="y">High Court</mark>, on both facts and law.</li>
+        <li>State Governments are also empowered to appoint one or more additional special courts in their states.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 12. COMMITTEES ============ -->
+  <section class="topic" id="committees">
+    <h2><span class="num">12</span> Committees &amp; Non-Statutory Commissions</h2>
+    <div class="card">
+      <h4>Corruption, Political Nexus &amp; Administrative Reform</h4>
+      <ul>
+        <li><mark class="y">Vohra Committee</mark> — set up in <mark class="b">1993</mark> to study the problem of criminalisation of politics and the nexus among criminals, politicians and bureaucrats.</li>
+        <li><mark class="y">Rajamannar Committee</mark> — recommended <mark class="y">ending the Indian Administrative Services (IAS) and Indian Police Services (IPS)</mark>.</li>
+        <li><mark class="y">Santhanam Committee</mark> (Committee on Prevention of Corruption, 1962–64) — chaired by <mark class="g">K. Santhanam</mark> (with four other MPs and two senior officers); recommended establishing the <mark class="g">CVC</mark>.</li>
+        <li><mark class="y">P.C. Hota Committee on Civil Services Reforms</mark> — constituted in <mark class="b">February 2004</mark>; submitted its report within six months.</li>
+        <li>A committee under <mark class="g">Professor Sukhadeo Thorat</mark> was constituted by the <mark class="g">UPSC</mark> in <mark class="b">July 2000</mark> to review the Civil Services Examination.</li>
+        <li><mark class="y">Bakshi Tek Chand Committee</mark> (1948) — set up to enquire into the patent system and recommend reforms.</li>
+        <li><mark class="y">Kelkar Committee</mark> — studied and evaluated the public-private partnership (PPP) model in India.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h4>Constitution-Review &amp; Rights-related Committees</h4>
+      <ul>
+        <li><mark class="y">Swarn Singh Committee</mark> ("Constitutional Amendment Committee", <mark class="b">1976</mark>), under <mark class="g">Sardar Swaran Singh</mark> — considered the priority of Directive Principles of State Policy over Fundamental Rights, and separately considered (and found inappropriate) a presidential system of governance for India; its recommendations fed into the <mark class="y">42nd Constitutional Amendment</mark>.</li>
+        <li><mark class="y">National Commission to Review the Working of the Constitution</mark> — set up by the NDA government on <mark class="b">22 February 2000</mark> under <mark class="g">Justice M.N. Venkatachaliah</mark>; its report is <mark class="y">recommendatory</mark> in nature and was <mark class="y">not approved by Parliament</mark>; it reviewed 50 years of constitutional implementation and submitted its final report on <mark class="b">31 March 2002</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h4>Education &amp; Social-Backwardness Commissions</h4>
+      <ul>
+        <li><mark class="y">Secondary Education Commission ("Mudaliar Commission")</mark>, 1952–53 — chaired by <mark class="g">Dr. A. Laxman Swami Mudaliar</mark> (Vice-Chancellor, Madras University); aimed to improve secondary education quality, emphasising science, agriculture and technical education aligned with national development needs.</li>
+        <li><mark class="y">Mandal Commission</mark> — constituted in <mark class="b">1979</mark> under the Janata Party government (PM <mark class="g">Morarji Desai</mark>), chaired by <mark class="g">Bindeshwari Prasad (B.P.) Mandal</mark>; tasked with identifying and recommending steps for advancement of socially/educationally backward classes; submitted its report in <mark class="b">1980</mark>.</li>
+        <li>The <mark class="b">1990</mark> report of the National Commission for Scheduled Castes and Scheduled Tribes identified the main causes of atrocities against SCs/STs as: <mark class="y">land alienation/disputes, bonded labour, and indebtedness/non-payment of minimum wages</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 13. MINORITY/WOMEN/BACKWARD ============ -->
+  <section class="topic" id="minority">
+    <h2><span class="num">13</span> Minority, Women &amp; Backward-Class Bodies</h2>
+    <div class="card">
+      <ul>
+        <li>The <mark class="y">National Commission for Minorities</mark> became a <mark class="y">statutory body</mark> with the <mark class="y">National Commission for Minorities Act, 1992</mark> (in force from <mark class="b">17 May 1993</mark>); the first statutory Commission itself was set up on <mark class="b">17 May 1993</mark>, via a Gazette notification issued <mark class="b">23 October 1993</mark> by the Ministry of Welfare.</li>
+        <li>Communities originally notified as minorities: <mark class="g">Muslims, Christians, Sikhs, Buddhists and Zoroastrians (Parsis)</mark>; <mark class="g">Jains</mark> were added as a sixth notified minority community via notification dated <mark class="b">27 January 2014</mark>.</li>
+        <li>The term <mark class="y">"Minority"</mark> is <mark class="y">not defined</mark> in the Constitution of India, even though the Constitution recognises and protects religious and linguistic minorities.</li>
+        <li>Functions of the <mark class="y">National Commission for Women</mark> are specified in <mark class="b">Section 10</mark> of the <mark class="y">National Commission for Women Act, 1990</mark> (enforced <mark class="b">30 August 1990</mark>).</li>
+      </ul>
+    </div>
+
+    <div class="current">
+      <h4>⟳ Current (2026)</h4>
+      <ul>
+        <li>Chairperson, National Commission for Backward Classes: <mark class="g">Sadhvi Niranjan Jyoti</mark>, assumed office <mark class="b">18 March 2026</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 14. BOUNDARY MARKERS ============ -->
+  <section class="topic" id="boundary">
+    <h2><span class="num">14</span> Boundary Markers — What Counts as "Non-Constitutional"</h2>
+    <p class="lede">The source repeatedly uses a small set of <em>constitutional</em> bodies purely as the contrast answer in "which of these is/is not a constitutional body" questions. They mark the boundary of this ledger's scope rather than being facts about non-constitutional bodies themselves.</p>
+    <div class="trap">
+      <h4>⚠ Contrast set used throughout the source</h4>
+      The source consistently uses <mark class="g">Union Public Service Commission (Art. 315)</mark>, <mark class="g">State Public Service Commission (Art. 315)</mark>, <mark class="g">Finance Commission (Art. 280)</mark>, and <mark class="g">Election Commission (Art. 324)</mark> as the constitutional bodies against which NITI Aayog, the erstwhile Planning Commission, the NDC, and the NHRC are repeatedly contrasted as non-constitutional/extra-constitutional. These four are intentionally excluded from the topic sections above, in line with this dossier's "Non-Constitutional Bodies" scope.
+    </div>
+  </section>
+
+  <div class="divider">❦</div>
+</main>
+
+<footer>Non-Constitutional Bodies Dossier — compiled for BPSC Prelims 2025–26 · every theory line and MCQ-explanation fact concerning non-constitutional/extra-constitutional/statutory bodies from the source has been retained above · current officeholders cross-checked against the web on 30 August 2026.</footer>
+
+<script>
+  const links = document.querySelectorAll('#navlist a');
+  const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href')));
+  function onScroll(){
+    let idx = 0;
+    const y = window.scrollY + 120;
+    sections.forEach((sec,i)=>{ if(sec && sec.offsetTop <= y) idx = i; });
+    links.forEach(l=>l.classList.remove('active'));
+    if(links[idx]) links[idx].classList.add('active');
+  }
+  document.addEventListener('scroll', onScroll);
+  onScroll();
+</script>
+</body>
+</html>
