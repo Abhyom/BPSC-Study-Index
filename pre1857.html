@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>British Early Conquest in India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1E33;
+    --ink-2:#122A45;
+    --paper:#FBF7EC;
+    --paper-2:#F3ECDA;
+    --gold:#C9A227;
+    --gold-2:#E8C766;
+    --teal:#2E6171;
+    --text:#1C2B3A;
+    --muted:#5B6B7A;
+    --hl-y:#F1B400;
+    --hl-b:#1F6FB2;
+    --hl-g:#1E8449;
+    --hl-r:#B03A2E;
+    --trap-bg:#FDEDEC;
+    --trap-bd:#C0392B;
+    --tbl-head-blue:#1A5276;
+    --tbl-head-red:#7B241C;
+    --tbl-head-green:#145A32;
+    --tbl-head-purple:#5B2C6F;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17.5px;
+    display:flex;
+    min-height:100vh;
+  }
+  ::selection{background:var(--gold-2); color:var(--ink);}
+
+  #sidebar{
+    width:290px;
+    flex-shrink:0;
+    background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:#DCE6EE;
+    position:fixed;
+    top:0; left:0; bottom:0;
+    overflow-y:auto;
+    padding:28px 0 40px;
+    border-right:1px solid rgba(201,162,39,.25);
+    z-index:50;
+  }
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:rgba(201,162,39,.4); border-radius:3px;}
+
+  .brand{padding:0 24px 22px; border-bottom:1px solid rgba(201,162,39,.25); margin-bottom:14px;}
+  .brand .stamp{
+    width:46px;height:46px;border-radius:50%; border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif; font-weight:800; color:var(--gold-2);
+    font-size:13px; letter-spacing:.5px; margin-bottom:10px;
+  }
+  .brand h1{font-family:'Playfair Display', serif; font-size:20px; line-height:1.3; margin:0 0 4px; font-weight:700; color:#F4EFE1;}
+  .brand p{margin:0; font-size:12px; letter-spacing:.09em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono', monospace;}
+
+  nav.toc{padding:6px 10px;}
+  nav.toc a{
+    display:flex; align-items:baseline; gap:10px; padding:10px 14px; margin:1px 0;
+    border-radius:6px; color:#B7C6D3; text-decoration:none; font-size:14px; font-weight:500;
+    border-left:3px solid transparent; transition:background .15s, color .15s, border-color .15s;
+  }
+  nav.toc a .num{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--gold); flex-shrink:0; width:20px;}
+  nav.toc a:hover{background:rgba(201,162,39,.10); color:#F4EFE1;}
+  nav.toc a.active{background:rgba(201,162,39,.16); color:#F8F1DD; border-left-color:var(--gold); font-weight:600;}
+
+  .legend-box{margin:20px 16px 0; padding:14px 14px 16px; background:rgba(255,255,255,.04); border:1px solid rgba(201,162,39,.22); border-radius:8px;}
+  .legend-box h3{margin:0 0 10px; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  .legend-row{display:flex; align-items:center; gap:8px; margin-bottom:7px; font-size:12.5px; color:#CBD6DF;}
+  .legend-swatch{width:14px;height:14px;border-radius:3px; flex-shrink:0;}
+
+  #main{margin-left:290px; flex:1; padding:0; background:var(--ink);}
+  .cover{
+    padding:74px 64px 56px;
+    background:radial-gradient(circle at 85% 20%, rgba(201,162,39,.10), transparent 45%), linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:#EFE9D8; border-bottom:4px double rgba(201,162,39,.4);
+  }
+  .cover .eyebrow{font-family:'IBM Plex Mono',monospace; letter-spacing:.18em; text-transform:uppercase; font-size:12.5px; color:var(--gold-2); margin-bottom:16px;}
+  .cover h1{font-family:'Playfair Display', serif; font-weight:800; font-size:clamp(32px,4.2vw,50px); line-height:1.12; margin:0 0 16px; max-width:820px;}
+  .cover p.sub{font-size:17px; color:#C9D2DB; max-width:660px; line-height:1.7; margin:0 0 22px;}
+  .cover .tags{display:flex; gap:10px; flex-wrap:wrap;}
+  .cover .tag{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--gold-2); border:1px solid rgba(201,162,39,.45); padding:5px 12px; border-radius:20px; background:rgba(201,162,39,.06);}
+
+  .chapters{background:var(--paper); padding:10px 0 90px;}
+  .chapter{max-width:920px; margin:0 auto; padding:56px 48px 8px; border-bottom:1px solid rgba(28,43,58,.10); scroll-margin-top:14px;}
+  .chapter:last-child{border-bottom:none;}
+
+  .chapter-head{display:flex; align-items:center; gap:18px; margin-bottom:6px;}
+  .chapter-head .seal{
+    width:52px; height:52px; border-radius:50%; background:var(--ink); color:var(--gold-2);
+    display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:700; font-size:19px;
+    border:2px solid var(--gold); flex-shrink:0;
+  }
+  .chapter-head h2{font-family:'Playfair Display', serif; font-size:clamp(23px,2.8vw,30px); margin:0; color:var(--ink); font-weight:700; line-height:1.25;}
+  .chapter-sub{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin:6px 0 26px 70px;}
+
+  .event{margin:0 0 28px; padding-left:18px; border-left:3px solid var(--teal);}
+  .event.upcoming{border-left:3px solid var(--gold);}
+  .event h3{font-family:'Playfair Display', serif; font-size:19px; margin:0 0 6px; color:var(--ink); display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .datebox{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--teal); font-weight:600; margin-bottom:10px; display:block;}
+  .event p{margin:0 0 12px; line-height:1.85; font-size:16.5px;}
+  .event ul{margin:8px 0 12px; padding-left:22px;}
+  .event li{margin-bottom:11px; line-height:1.8; font-size:16.5px;}
+  .event ul ul{margin-top:6px;}
+
+  mark{
+    padding:.15em .42em; border-radius:4px; font-weight:700; color:#fff;
+    box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  }
+  .y{background:var(--hl-y); color:#1C1200;}
+  .b{background:var(--hl-b);}
+  .g{background:var(--hl-g);}
+  .r{background:var(--hl-r);}
+
+  .trap{background:var(--trap-bg); border:1px solid rgba(192,57,43,.35); border-left:5px solid var(--trap-bd); padding:14px 18px; border-radius:6px; margin:16px 0 20px; font-size:16px; line-height:1.8;}
+  .trap .lbl{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--trap-bd); font-weight:700; display:block; margin-bottom:6px;}
+  .trap ul{margin:6px 0 0; padding-left:20px;}
+  .trap li{margin-bottom:8px;}
+
+  table{width:100%; border-collapse:collapse; margin:16px 0 26px; font-size:15.5px;}
+  caption{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--muted); margin-bottom:7px; text-transform:uppercase; letter-spacing:.06em;}
+  th,td{padding:11px 13px; text-align:left; border-bottom:1px solid rgba(28,43,58,.10); vertical-align:top; line-height:1.6;}
+  thead.blue th{background:var(--tbl-head-blue); color:#F4EFE1; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.red th{background:var(--tbl-head-red); color:#F4EFE1; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.green th{background:var(--tbl-head-green); color:#F4EFE1; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.purple th{background:var(--tbl-head-purple); color:#F4EFE1; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.03em;}
+  tbody tr:nth-child(even){background:var(--paper-2);}
+
+  .factbox{background:var(--paper-2); border:1px solid rgba(28,43,58,.12); border-radius:8px; padding:18px 20px; margin:18px 0 24px;}
+  .factbox .lbl{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--teal); font-weight:700; display:block; margin-bottom:10px;}
+  .factbox dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:8px 18px;}
+  .factbox dt{font-weight:700; font-size:15px; color:var(--ink); white-space:nowrap;}
+  .factbox dd{margin:0; font-size:15.5px; line-height:1.7;}
+
+  .country-block{margin:26px 0 6px; padding-top:20px; border-top:1px dashed rgba(28,43,58,.2);}
+  .country-block h4{font-family:'Playfair Display', serif; font-size:18px; margin:0 0 14px; color:var(--teal); display:flex; align-items:center; gap:8px;}
+  .country-block h4::before{content:"✦"; color:var(--gold); font-size:14px;}
+
+  .part-divider{max-width:920px; margin:0 auto; padding:40px 48px 0;}
+  .part-divider .plabel{font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); background:var(--ink); display:inline-block; padding:8px 18px; border-radius:20px;}
+  .part-divider .ptitle{font-family:'Playfair Display',serif; font-weight:700; font-size:27px; color:var(--ink); margin:14px 0 2px;}
+  .part-divider .pdesc{color:var(--muted); font-size:15px; margin:0 0 6px;}
+  @media (max-width:880px){ .part-divider{padding:30px 22px 0;} }
+
+  .cat-badge{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; letter-spacing:.04em; padding:4px 10px; border-radius:4px; color:#fff; margin-right:8px;}
+  .cat-a{background:#1A5276;} .cat-b{background:#6C3483;} .cat-c{background:#8E5A1B;} .cat-d{background:#117864;} .cat-e{background:#2E6171;} .cat-f{background:#7B241C;} .cat-g{background:#4A235A;}
+
+  .city-head{font-family:'IBM Plex Mono',monospace; font-size:12.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--gold); background:var(--ink); display:inline-block; padding:7px 15px; border-radius:5px; margin:26px 0 15px;}
+  .city-head:first-of-type{margin-top:8px;}
+
+  .note{font-size:14px; color:var(--muted); font-style:italic; margin:8px 0 16px;}
+
+  .footer{max-width:920px; margin:0 auto; padding:40px 48px 70px; color:var(--muted); font-size:13px; font-family:'IBM Plex Mono',monospace; text-align:center;}
+
+  @media (max-width: 880px){
+    #sidebar{position:fixed; left:0; top:0; bottom:0; width:260px; transform:translateX(-100%); transition:transform .25s ease;}
+    #sidebar.open{transform:translateX(0);}
+    #main{margin-left:0;}
+    .chapter{padding:44px 22px 8px;}
+    .cover{padding:58px 22px 42px;}
+    .chapter-sub{margin-left:0; margin-top:2px;}
+    .chapter-head{gap:12px;}
+    body{font-size:16.5px;}
+  }
+  #menu-btn{
+    display:none; position:fixed; top:16px; left:16px; z-index:60;
+    width:44px;height:44px;border-radius:50%; background:var(--ink);
+    border:2px solid var(--gold); color:var(--gold-2); font-size:18px;
+    align-items:center; justify-content:center; cursor:pointer;
+  }
+  @media (max-width: 880px){ #menu-btn{display:flex;} }
+</style>
+</head>
+<body>
+
+<button id="menu-btn" aria-label="Toggle chapter index">☰</button>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="stamp">EU</div>
+    <h1>British Early Conquest in India</h1>
+    <p>Modern India · BPSC Dossier</p>
+  </div>
+  <nav class="toc" id="toc"></nav>
+  <div class="legend-box">
+    <h3>Marker Key</h3>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-y)"></span> Core concept / policy</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-b)"></span> Hard fact / date / number</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-g)"></span> Person / place / institution</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-r)"></span> MCQ trap / confusion</div>
+  </div>
+</aside>
+
+<div id="main">
+
+  <section class="cover">
+    <div class="eyebrow">Case File · Modern India — Advent of Europeans to Consolidation of British Power</div>
+    <h1>How five European flags over Indian ports narrowed to one crown.</h1>
+    <p class="sub">Theory (NCERT/standard textbook) fused with every fact buried inside 63+ PYQ explanations — sorted topic-wise, tabulated wherever the data allows, and colour-marked so nothing slips past you on exam day.</p>
+    <div class="tags">
+      <span class="tag">Portuguese → French</span>
+      <span class="tag">Plassey → Punjab</span>
+      <span class="tag">Theory + PYQ merged</span>
+    </div>
+  </section>
+
+  <div class="chapters">
+
+  <!-- ============ CHAPTER 1 ============ -->
+  <section class="chapter" id="ch1" data-title="Background: India–Europe Trade Links">
+    <div class="chapter-head"><div class="seal">1</div><h2>Historical Trade Links &amp; the Sequence of Arrival</h2></div>
+    <div class="chapter-sub">Why Europe came, and in what order</div>
+
+    <div class="event">
+      <ul>
+        <li>Centuries of trade already existed between <mark class="g">India</mark> and <mark class="g">Europe</mark> — evidenced in the <mark class="y">Sangam age</mark>, when <mark class="b">Roman gold and goods</mark> reached India.</li>
+        <li>Two broad trade-route families: the <mark class="g">Silk Route</mark> (via the <mark class="g">Amu Darya River, Caspian Sea, Black Sea</mark>) and sea routes via the <mark class="g">Arabian Sea</mark> and <mark class="g">Mediterranean</mark>.</li>
+        <li><mark class="g">Italian merchants</mark> used their geographical position over the Mediterranean to dominate this trade before the sea route was found.</li>
+        <li>The search for a direct sea route was itself driven by the desire to bypass these Italian/Arab middlemen.</li>
+      </ul>
+    </div>
+
+    <table>
+      <caption>Chronological Order of European Arrival in India</caption>
+      <thead class="blue"><tr><th>Order</th><th>Power</th><th>Arrival</th><th>Departure</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><mark class="g">Portuguese</mark></td><td><mark class="b">1498 A.D.</mark></td><td><mark class="b">1961</mark> (de jure transfer Aug 1962)</td><td>First to arrive, <mark class="r">last to leave</mark> — longest stay of any European power</td></tr>
+        <tr><td>2</td><td><mark class="g">Dutch</mark></td><td><mark class="b">1602/1605</mark></td><td><mark class="b">1825</mark></td><td>First joint-stock company for India trade (per Dutch parliament resolution, 1602)</td></tr>
+        <tr><td>3</td><td><mark class="g">English</mark></td><td>Company <mark class="b">1600</mark>; first factory <mark class="b">1611/1613</mark></td><td><mark class="b">1947</mark></td><td>Eventually the paramount power</td></tr>
+        <tr><td>4</td><td><mark class="g">Danish</mark></td><td><mark class="b">1616/1620</mark></td><td><mark class="b">1845</mark> (sold to British)</td><td>Missionary-focused, never political</td></tr>
+        <tr><td>5</td><td><mark class="g">French</mark></td><td><mark class="b">1664/1668</mark></td><td><mark class="b">1954</mark></td><td><mark class="r">Last</mark> European trading power to arrive</td></tr>
+      </tbody>
+    </table>
+
+    <div class="trap">
+      <span class="lbl">PYQ traps on "first/last"</span>
+      <ul>
+        <li>Among all European powers, the <mark class="g">Portuguese</mark> were the <mark class="r">first</mark> to establish maritime/sea trading centres in India.</li>
+        <li>The <mark class="r">French</mark> were the last Europeans to come to pre-independence India <mark class="y">as traders</mark> (1667/1668), even though the Danes departed earlier (1845) than the French (1954) — arrival order and departure order are different questions.</li>
+        <li>The first joint-stock company to trade with India (among the given PYQ options) was the <mark class="g">Dutch</mark> East India Company (Dutch parliament resolution, 1602); the English Company (1600) predates it but wasn't in the option set.</li>
+      </ul>
+    </div>
+
+    <div class="factbox">
+      <span class="lbl">Fact Box · The Columbian Exchange (context, not India-specific)</span>
+      <dl>
+        <dt>Definition</dt><dd>Extensive transfer of <mark class="y">plants, animals, culture, populations, technology, diseases and ideas</mark> between the Americas, West Africa and the Old World, 15th–16th centuries, following <mark class="g">Columbus's 1492 voyage</mark>.</dd>
+        <dt>Impact</dt><dd>Introduction of invasive species and communicable diseases to the Americas.</dd>
+        <dt>Related voyagers</dt><dd><mark class="g">Vasco da Gama</mark> — Portugal (sea route to India); <mark class="g">Columbus</mark> — Italian, financed by Spain (discovered America); <mark class="g">Tasman</mark> — Holland (Van Diemen's Land/Tasmania, New Zealand); <mark class="g">Willem Janszoon</mark> — first European to reach Australia; <mark class="g">Captain Cook</mark> — British, surveyed Australia's east coast (~1770, 164 yrs after Janszoon).</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 2 ============ -->
+  <section class="chapter" id="ch2" data-title="Europeans in India — Details at a Glance">
+    <div class="chapter-head"><div class="seal">2</div><h2>Europeans in India — Company Comparison</h2></div>
+    <div class="chapter-sub">Master table for every trading company</div>
+
+    <table>
+      <caption>Company-wise comparison</caption>
+      <thead class="blue"><tr><th>Detail</th><th>Portuguese</th><th>Dutch</th><th>English</th><th>Danish</th><th>French</th></tr></thead>
+      <tbody>
+        <tr><td><b>Established</b></td><td><mark class="b">1498</mark></td><td><mark class="b">1602</mark></td><td><mark class="b">1600</mark></td><td><mark class="b">1616</mark></td><td><mark class="b">1664</mark></td></tr>
+        <tr><td><b>HQ / Capital</b></td><td>Goa</td><td>Pulicat (later Nagapattinam)</td><td>Calcutta (later Delhi under Crown Rule)</td><td>Tranquebar</td><td>Pondicherry (Puducherry)</td></tr>
+        <tr><td><b>First Factory</b></td><td>Calicut, <mark class="b">1500</mark></td><td>Masulipatnam, <mark class="b">1605</mark></td><td>Permanent at Surat <mark class="b">1613</mark>; temporary at Masulipatnam <mark class="b">1611</mark></td><td>Tranquebar near Tanjore, <mark class="b">1620</mark></td><td>Surat, <mark class="b">1668</mark></td></tr>
+        <tr><td><b>Key Trading Centres</b></td><td>Calicut(1500), Cannanore(1501), Cochin(1503), Goa(1510), Bassein(1534), Diu(1535)</td><td>Pulicat(1609), Surat(1616), Chinsurah(1653), Cochin(1663)</td><td>Masulipatnam(1611), Surat(1612), Madras(1639), Hugli(1651), Bombay(1668), Calcutta(1690)</td><td>Tranquebar(1620), Serampore(1755)</td><td>Mahe(1721), Yanam(1723), Karaikal(1739), Pondicherry(1674), Chandernagore(1673)</td></tr>
+        <tr><td><b>Year of Departure</b></td><td><mark class="b">1961</mark></td><td><mark class="b">1825</mark></td><td><mark class="b">1858</mark> Crown Rule begins; British left <mark class="b">1947</mark></td><td><mark class="b">1845</mark> (sold to British)</td><td><mark class="b">1954</mark></td></tr>
+      </tbody>
+    </table>
+
+    <div class="trap">
+      <span class="lbl">PYQ fine print</span>
+      <ul>
+        <li>Sequence of arrival to remember: <mark class="y">Portuguese → Dutch → English → Danes → French</mark> (asked repeatedly across multiple PCS exams).</li>
+        <li><mark class="g">Bihar</mark> was the source of the best-quality <mark class="y">shora (saltpetre)</mark> and <mark class="y">opium</mark> obtained by Europeans, and remained famous for opium production through British rule.</li>
+        <li>The <mark class="y">triangular trade</mark> between India–China–England (18th–19th century) was chiefly founded on <mark class="r">opium</mark> — silk and black pepper were also traded but opium was the "chief economic foundation" (asked in 70th BPSC).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 3 ============ -->
+  <section class="chapter" id="ch3" data-title="Portuguese in India">
+    <div class="chapter-head"><div class="seal">3</div><h2>The Portuguese in India</h2></div>
+    <div class="chapter-sub">First in, last out</div>
+
+    <div class="event">
+      <h3>Papal Sanction &amp; the Sea Route</h3>
+      <ul>
+        <li><mark class="b">1454</mark>: <mark class="g">Pope Nicholas V</mark> granted <mark class="g">Prince Henry of Portugal</mark> the right to explore the East, including India.</li>
+        <li><mark class="y">Treaty of Tordesillas (1494)</mark>: Portugal and Spain divided the non-Christian world by an imaginary Atlantic line; Portugal got everything east of it, including India.</li>
+        <li><mark class="g">Bartholomeu Dias</mark> rounded the <mark class="g">Cape of Good Hope</mark> in <mark class="b">1487</mark>.</li>
+        <li><mark class="g">Vasco da Gama</mark> reached <mark class="g">Calicut</mark> on <mark class="b">20 May 1498</mark>, guided (per historical evidence, not the Arab-navigator theory) by a <mark class="g">Gujarati sailor/pilot</mark> — sometimes named <mark class="g">Abdul Majid</mark>. Welcomed by the <mark class="g">Zamorin</mark> (hereditary title of the rulers of Calicut).</li>
+        <li>Da Gama's cargo returned with <mark class="b">60× profit</mark> over expedition cost, in the <mark class="y">black pepper</mark> trade — enough to lure other merchants to India.</li>
+        <li>He stayed roughly <mark class="b">3 months</mark> on his first visit and revisited India in <mark class="b">1501</mark> and <mark class="b">1524</mark> (some sources say 1502 &amp; 1524); he <mark class="r">died in Cochin, 1524</mark>, during his third visit.</li>
+        <li>Portugal introduced <mark class="g">papaya, pineapple, and guava</mark> to India in the 16th–17th centuries.</li>
+      </ul>
+      <div class="trap">
+        <span class="lbl">Trap — Da Gama's helper</span>
+        Two competing claims exist: an <mark class="r">Arab navigator Ahmad Ibn Majid</mark> (older theory) vs. the <mark class="g">Gujarati sailor</mark> (per authentic historical evidence) who actually guided da Gama to Calicut. Exam answer key favours the Gujarati sailor.
+      </div>
+    </div>
+
+    <table>
+      <caption>Key Portuguese Governors / Viceroys — Chronology of Achievements</caption>
+      <thead class="green"><tr><th>Figure</th><th>Tenure/Year</th><th>Key Achievement</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="g">Vasco da Gama</mark></td><td>1498, 1501, 1524</td><td>Opened sea route; factory at <mark class="g">Cannanore</mark> (1501); died Cochin 1524.</td></tr>
+        <tr><td><mark class="g">Pedro Alvarez Cabral</mark></td><td>1500</td><td>Set up factory at <mark class="g">Calicut</mark>; after it was attacked, retaliated by seizing Arab ships; later negotiated treaties with Cochin &amp; Cannanore.</td></tr>
+        <tr><td><mark class="g">Francisco de Almeida</mark></td><td>1505–1509</td><td><mark class="r">First Portuguese Viceroy</mark> in India (1505); introduced the <mark class="y">Blue Water Policy</mark> (fortification/dominance of the Indian Ocean via the <mark class="y">Cartaz</mark> licensing system, not primarily for security but for Portuguese trade control — "sole trade power in Arabian Sea &amp; Indian Ocean"); fleet defeated near <mark class="r">Diu, 1507</mark> (son died); crushed Egyptian/Gujarat forces in <mark class="b">1508</mark>; also built forts at <mark class="g">Cannanore</mark> and <mark class="g">Anjediva</mark> (1505). Battle of Diu (1509) saw Portuguese defeat combined Mamluk-Egypt, Gujarat-Sultanate &amp; Zamorin forces.</td></tr>
+        <tr><td><mark class="g">Afonso de Albuquerque</mark></td><td>1509–1515</td><td><mark class="r">Real founder of Portuguese power in the East</mark>; captured <mark class="g">Goa</mark> from the <mark class="g">Sultan of Bijapur (Adil Shahi)</mark> in <mark class="b">1510</mark> — first Indian territory under European control since Alexander the Great; captured <mark class="g">Malacca</mark> (1511) and <mark class="g">Hormuz</mark> (1515); built the <mark class="r">first Portuguese/European fort in India</mark> at <mark class="g">Cochin, 1503</mark> ("Emmanuel Fort") during his first visit; introduced tobacco &amp; cashew, encouraged intermarriage, abolished sati; instituted a permit system for shipping.</td></tr>
+        <tr><td><mark class="g">Nuno da Cunha</mark></td><td>1529–1538</td><td>Moved Portuguese capital from <mark class="g">Cochin to Goa</mark> (1530); 1534 — <mark class="g">Bahadur Shah of Gujarat</mark> ceded <mark class="g">Bassein</mark>, promised <mark class="g">Diu</mark>, for Portuguese support against Humayun; relations soured after Humayun's withdrawal — Bahadur Shah killed by Portuguese in <mark class="b">1537</mark>; expanded into Bengal via <mark class="g">Hooghly</mark>.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="event">
+      <h3>Administration &amp; Religious Policy</h3>
+      <ul>
+        <li>Controlled <mark class="g">Goa, Mumbai, Daman &amp; Diu</mark>, southern trading posts, and military posts at <mark class="g">San Thome (Chennai)</mark> and <mark class="g">Nagapattinam</mark>.</li>
+        <li>16th century: <mark class="g">Hooghly (West Bengal)</mark> became a crucial base — used by the Portuguese for <mark class="r">piracy in the Bay of Bengal</mark> (asked in I.A.S. 1995 and 65th BPSC).</li>
+        <li><mark class="g">Krishnadevaraya</mark> permitted the Portuguese to build a fort at <mark class="g">Bhatkal</mark>.</li>
+        <li>Religious policy: promoted Christianity, persecuted Muslims; initially tolerant of Hindus, later forced conversions; sent Jesuits to Akbar's court (1580) — failed to convert him.</li>
+        <li><mark class="b">1535</mark>: <mark class="g">Ghiyasuddin Mahmud Shah</mark>, ruler of Bengal, promised the Portuguese forts at <mark class="g">Chittagong</mark> and <mark class="g">Satgaon</mark> in return for help against <mark class="g">Sher Shah Suri's</mark> invasion.</li>
+        <li>Portuguese Bengal settlements: <mark class="g">Hooghly</mark> (1579, with Akbar's permission) and <mark class="g">Bandel</mark> (1599, with the "Bandel Church"/Basilica of Holy Rosary). By the 16th century <mark class="g">Satgaon</mark> declined and was replaced by Hooghly.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Relations with the Mughals &amp; Decline</h3>
+      <ul>
+        <li>Good relations under <mark class="g">Akbar</mark> and <mark class="g">Jahangir</mark>; deteriorated after English entry (1608).</li>
+        <li>Portuguese piracy angered the Mughals; under <mark class="g">Shah Jahan</mark>, Portuguese lost favour — <mark class="g">Hooghly</mark> captured after a Mughal siege in <mark class="b">1632</mark>, led by Bengal Subedar <mark class="g">Qasim Khan</mark>, who imprisoned thousands of Portuguese residents.</li>
+        <li><mark class="r">1961</mark>: Indian annexation of Goa; last Portuguese Governor-General of Goa was <mark class="g">Manuel António Vassalo e Silva</mark> (1958–61). At India's independence (1947), the Governor-General of Goa was <mark class="g">José Ferreira Bossa</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 4 ============ -->
+  <section class="chapter" id="ch4" data-title="Dutch in India">
+    <div class="chapter-head"><div class="seal">4</div><h2>The Dutch in India</h2></div>
+
+    <div class="event">
+      <ul>
+        <li><mark class="g">Cornelis de Houtman</mark> reached Sumatra/Bantam in <mark class="b">1596</mark>.</li>
+        <li><mark class="y">Dutch East India Company (VOC)</mark> established <mark class="b">1602</mark> by Dutch States General resolution, with powers to trade, acquire land, and wage war; capital <mark class="b">6,500,000 Guilders</mark>; eastern HQ at <mark class="g">Batavia (Jakarta)</mark>.</li>
+        <li>First factory: <mark class="g">Masulipatnam, 1605</mark>; first Bengal factory at <mark class="g">Pipali</mark> (1627), later shifted to <mark class="g">Balasore</mark> (~1676) after Hooghly floods (1600) wrecked earlier establishments; proper Bengal trade base established at <mark class="g">Chinsurah, 1653/1656–57</mark> (fort there named <mark class="y">Gustavus Fort</mark>).</li>
+        <li>Main trade goods: indigo, textiles, silk, saltpetre, opium, black pepper.</li>
+        <li><mark class="g">William Fort</mark> built at <mark class="g">Kochi, 1663</mark> after defeating the Portuguese; Kochi included in British settlements under the <mark class="g">Anglo-Dutch Treaty of 1814</mark>.</li>
+      </ul>
+      <div class="trap">
+        <span class="lbl">Trap — "Fort William" at Kochi</span>
+        A later Dutch fort at Chettiar (Thrissur district), built 1714 with the Cochin king's permission and recaptured after Zamorin's capture, was also renamed <mark class="r">"Fort William."</mark> An I.A.S. 2005 question on this had <mark class="r">no fully correct option</mark> — don't confuse this Dutch "Fort William" with Calcutta's British Fort William.
+      </div>
+    </div>
+
+    <table>
+      <caption>Dutch factories — establishment years (PYQ-tested)</caption>
+      <thead class="blue"><tr><th>Place</th><th>Year</th></tr></thead>
+      <tbody>
+        <tr><td>Masulipatnam</td><td><mark class="b">1605</mark></td></tr>
+        <tr><td>Pulicat</td><td><mark class="b">1609</mark></td></tr>
+        <tr><td>Surat</td><td><mark class="b">1616</mark></td></tr>
+        <tr><td>Bimlipatam</td><td><mark class="b">1641</mark></td></tr>
+        <tr><td>Karaikal</td><td><mark class="b">1645</mark></td></tr>
+        <tr><td>Chinsurah</td><td><mark class="b">1653</mark></td></tr>
+        <tr><td>Cochin</td><td><mark class="b">1663</mark></td></tr>
+      </tbody>
+    </table>
+
+    <div class="event">
+      <h3>Decline</h3>
+      <ul>
+        <li><mark class="r">Amboyna Massacre (1623)</mark>: ten English merchants beheaded on Amboyna (Indonesia) on orders of the Dutch governor — intensified Anglo-Dutch rivalry.</li>
+        <li><mark class="b">1667</mark> compromise: British exited Indonesia; Dutch shifted focus there.</li>
+        <li>Defeated by the British in the <mark class="g">Battle of Hooghly (1759)</mark> — also called the <mark class="g">Battle of Chinsurah/Biderra</mark>, fought <mark class="b">25 Nov 1759</mark> during the Seven Years' War — marked the start of Dutch decline in India.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 5 ============ -->
+  <section class="chapter" id="ch5" data-title="Danish in India">
+    <div class="chapter-head"><div class="seal">5</div><h2>The Danes in India</h2></div>
+    <div class="event">
+      <ul>
+        <li><mark class="y">Danish East India Company</mark> established <mark class="b">1616</mark>.</li>
+        <li>First factory: <mark class="g">Tranquebar</mark> (near Tanjore), <mark class="b">1620</mark>.</li>
+        <li><mark class="g">Serampore</mark> (near Calcutta) became their most significant settlement — a major centre for the Danes (distinct from Dutch Chinsurah and Portuguese Bandel/Hooghly).</li>
+        <li>Focused on <mark class="y">missionary activities</mark> rather than commerce or politics — hence the earliest, quietest exit (sold to British, 1845).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 6 ============ -->
+  <section class="chapter" id="ch6" data-title="English East India Company">
+    <div class="chapter-head"><div class="seal">6</div><h2>The English in India</h2></div>
+    <div class="chapter-sub">From Levant monopoly to Bengal Diwani</div>
+
+    <div class="event">
+      <h3>Founding &amp; Early Ventures</h3>
+      <ul>
+        <li><mark class="y">Levant Company (1592)</mark> was granted the monopoly to trade with the Ottoman Empire and its eastern reaches (incl. India) in silk, spices, etc. — technically the <mark class="r">first British company chartered for eastern trade</mark>, predating the East India Company.</li>
+        <li><mark class="b">31 December 1600</mark>: <mark class="g">Queen Elizabeth I</mark> issued a royal charter to the <mark class="y">"Governor and Company of Merchants of London Trading into the East Indies"</mark> — exclusive 15-year monopoly on English trade east of the Cape of Good Hope.</li>
+        <li>Emperor of India when the Company was formed (1600): <mark class="g">Akbar</mark> (1556–1605). <mark class="r">Trap:</mark> when the Company's ships actually arrived and began trading, the reigning emperor was <mark class="g">Jahangir</mark> (1605–1627).</li>
+        <li><mark class="b">1580</mark>: Francis Drake's voyage around the world; <mark class="b">1588</mark>: English victory over the Spanish Armada — both fostered British maritime enterprise.</li>
+      </ul>
+    </div>
+
+    <table>
+      <caption>Early English factories &amp; milestones</caption>
+      <thead class="blue"><tr><th>Year</th><th>Event</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="b">1608</mark></td><td><mark class="g">Captain William Hawkins</mark> sailed from Hector, reached Surat.</td></tr>
+        <tr><td><mark class="b">1609</mark></td><td>Hawkins reached <mark class="g">Jahangir's</mark> court at Agra (April 1609) seeking permission for a Surat factory; carried a letter from <mark class="g">King James I</mark>; well-versed in <mark class="g">Turkish</mark>, impressing Jahangir, who gave him the title <mark class="y">"English Khan"</mark> and a mansab of <mark class="b">400</mark>.</td></tr>
+        <tr><td><mark class="b">1611</mark></td><td>Trading began at <mark class="g">Masulipatnam</mark> — first <mark class="r">temporary</mark> factory (during Jahangir's reign); permission for trade obtained from the Mughal Governor via Captain Middleton at Swally, near Surat.</td></tr>
+        <tr><td><mark class="b">1612</mark></td><td>Captain <mark class="g">Thomas Best</mark> defeated the Portuguese in the naval <mark class="y">Battle of Swally</mark>, near Surat — dissolved Portuguese monopoly there.</td></tr>
+        <tr><td><mark class="b">1613</mark></td><td>Permanent English factory established at <mark class="g">Surat</mark> — the Company's first <mark class="r">permanent</mark> factory in India; Masulipatnam factory (1616) followed after 1611 trading.</td></tr>
+        <tr><td><mark class="b">1615</mark></td><td><mark class="g">Sir Thomas Roe</mark>, ambassador of James I, arrived; failed to secure a commercial treaty but obtained privileges for factories at <mark class="g">Agra, Ahmedabad, Broach</mark> by 1619.</td></tr>
+        <tr><td><mark class="b">1628</mark></td><td>Factory at <mark class="g">Armagaon</mark>.</td></tr>
+        <tr><td><mark class="b">1633</mark></td><td>Factories at <mark class="g">Hariharpur &amp; Balasore</mark> (Odisha) — expansion to eastern India.</td></tr>
+        <tr><td><mark class="b">1639</mark></td><td><mark class="g">Fort St. George, Madras</mark> — permitted by the ruler of Chandragiri; replaced Masulipatnam as English HQ in South India; site leased from a representative of the <mark class="g">Vijayanagara Empire</mark>.</td></tr>
+        <tr><td><mark class="b">1651</mark></td><td>Factory at <mark class="g">Hooghly</mark> (Bengal), plus Kasimbazar &amp; Patna — <mark class="g">Shah Shuja</mark> permitted trade for annual payment.</td></tr>
+        <tr><td><mark class="b">1668</mark></td><td><mark class="g">Bombay</mark> acquired — given as dowry to King <mark class="g">Charles II</mark> on his marriage to Portuguese princess <mark class="g">Catherine of Braganza</mark> (1662, "Marriage Treaty"); leased to the Company for <mark class="b">£10/year</mark>.</td></tr>
+        <tr><td><mark class="b">1690/1691</mark></td><td><mark class="g">Job Charnock</mark> negotiated a treaty for a factory at <mark class="g">Sutanuti</mark> — founding what became Calcutta (he chose Sutanuti over Hooghly, being head of the Qasim Bazar factory).</td></tr>
+        <tr><td><mark class="b">1698</mark></td><td>Acquired zamindari of <mark class="g">Sutanuti, Gobindapur, Kalikata (Kalighat)</mark> for <mark class="b">Rs 1,200</mark>; <mark class="g">Fort William</mark> established <mark class="b">1700</mark>, seat of the eastern presidency, first president <mark class="g">Sir Charles Eyre</mark>.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="trap">
+      <span class="lbl">PYQ traps — English early ventures</span>
+      <ul>
+        <li>Western Presidency was initially at <mark class="g">Surat</mark>, later shifted to <mark class="g">Bombay</mark>.</li>
+        <li>India's <mark class="r">first Municipal Corporation</mark> was set up at <mark class="g">Madras</mark> on <mark class="b">29 September 1688</mark> ("Madras Nagar Nigam") — <mark class="r">not</mark> Calcutta/Bombay.</li>
+        <li>English officer who defeated the Portuguese at Swally: <mark class="g">Thomas Best</mark> (not Hawkins, Roe, or Child).</li>
+        <li><mark class="g">John Child</mark>, British official, cordoned Mughal ports at Bombay (1688) and tried to capture Hajj pilgrims → <mark class="g">Aurangzeb</mark> ordered his siege/expulsion; Child died (1690) before the order was executed.</li>
+        <li>The first factory of the East India Company (per one exam's option set) is dated to <mark class="g">Surat</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Key Areas of British Control (Farmans &amp; Grants)</h3>
+      <ul>
+        <li><mark class="y">Golden Farman (1632)</mark>: issued by the Sultan of Golconda — free trade in Golconda ports for 500 pagodas/year.</li>
+        <li><mark class="y">Farrukhsiyar's Farmans (1715/1717)</mark>: secured by <mark class="g">John Surman</mark> from Mughal emperor <mark class="g">Farrukhsiyar</mark> — trading privileges in Bengal, Gujarat, Hyderabad; exemption from extra customs duties in Bengal (Rs 3,000/yr); authority to issue <mark class="y">dastaks</mark> (passes) for goods; duty exemption in Hyderabad; duty exemption in Surat for Rs 10,000; Bombay-minted coins recognised across the Mughal Empire.</li>
+        <li>Staple exports from Bengal, mid-18th century: <mark class="g">cotton, silk, saltpetre, opium</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Company Developments &amp; Merger</h3>
+      <ul>
+        <li><mark class="b">1615</mark>: authority to issue commissions to captains. <mark class="b">1686</mark>: authority to appoint Admirals, mint coins.</li>
+        <li><mark class="b">1698–1702</mark>: financial trouble — unable to provide £2 million to the British government; a rival "parallel company" emerged (Jan 1701–Apr 1702), sending <mark class="g">Sir William Norris</mark> as ambassador to Aurangzeb.</li>
+        <li><mark class="b">1702–1709</mark>: both companies operated together; <mark class="b">1709</mark>: old company surrendered its charter to Queen Anne → the <mark class="y">United Company of Merchants of England Trading to the East Indies</mark> — dominant from <mark class="b">1708–1873</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 7 ============ -->
+  <section class="chapter" id="ch7" data-title="French East India Company">
+    <div class="chapter-head"><div class="seal">7</div><h2>The French in India</h2></div>
+    <div class="event">
+      <ul>
+        <li><mark class="y">French East India Company</mark> ("Compagnie Française pour le Commerce des Indes Orientales") established <mark class="b">1664</mark> by <mark class="g">Colbert</mark> (Finance Minister), during the reign of <mark class="g">Louis XIV</mark> — received a 50-year monopoly on Indian/Pacific Ocean trade; state was the largest shareholder.</li>
+        <li>Fresh expedition under <mark class="g">François Caron</mark> (1667) set up the <mark class="r">first French factory in India at Surat, 1668</mark>.</li>
+        <li><mark class="g">Marcara</mark> (a Persian who accompanied Caron) founded a French factory at <mark class="g">Masulipatnam, 1669</mark>, with permission from the Sultan of Golconda.</li>
+        <li><mark class="g">Chandernagore</mark> (near Calcutta) granted to the French <mark class="b">1673</mark> by <mark class="g">Shaista Khan</mark>, Mughal subahdar of Bengal.</li>
+        <li><mark class="g">Pondicherry</mark> acquired <mark class="b">1674</mark> from <mark class="g">Sher Khan Lodi</mark> of Bijapur — became the French nerve-centre under <mark class="g">François Martin</mark>. Note: The <mark class="r">Portuguese</mark> were actually the very first European power to briefly occupy Pondicherry, then the <mark class="r">Dutch</mark> second (from 1693, they even captured it), before French dominance from 1673/1674; British occupied it in 1793 but returned it to France in 1814 (Treaty of Paris); the English <mark class="r">never permanently held</mark> Pondicherry.</li>
+        <li>Other French centres: Mahe, Karaikal, Balasore.</li>
+        <li>Dutch captured Pondicherry (1693) — returned to France under the <mark class="g">Treaty of Ryswick</mark>.</li>
+        <li>Company reorganised (1720–1742) under Governors <mark class="g">Lenoir</mark> and <mark class="g">Dumas</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 8 ============ -->
+  <section class="chapter" id="ch8" data-title="The Carnatic Wars">
+    <div class="chapter-head"><div class="seal">8</div><h2>The Carnatic Wars (1740–1763): Anglo-French Struggle</h2></div>
+
+    <table>
+      <caption>Three Carnatic Wars at a glance</caption>
+      <thead class="red"><tr><th>War</th><th>Years</th><th>Key events</th><th>Treaty / Result</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>First Carnatic War</b></td>
+          <td><mark class="b">1740/1746–48</mark></td>
+          <td>Extension of the <mark class="g">Austrian War of Succession</mark> (Europe, 1740). Immediate cause: <mark class="g">Commodore Barnett/Bernett</mark> seized French ships. French under <mark class="g">Dupleix</mark> captured Madras (<mark class="y">Siege of Madras, 1746</mark>). Nawab of Carnatic <mark class="g">Anwar-ud-din</mark> sent ~10,000 troops under <mark class="g">Mahfooz Khan</mark> to besiege the French, but the French (Captain <mark class="g">Paradise/La Bourdonnais</mark>) decisively defeated the Nawab's army at the <mark class="y">Battle of St. Thome</mark> (Adyar river). British recaptured Madras (1748) under Admiral <mark class="g">Boscawen</mark> and <mark class="g">Robert Clive</mark>.</td>
+          <td><mark class="y">Treaty of Aix-la-Chapelle (18 Oct 1748)</mark> — ended the Austrian war in Europe and, with it, the First Carnatic War; Madras restored to the British.</td>
+        </tr>
+        <tr>
+          <td><b>Second Carnatic War</b></td>
+          <td><mark class="b">1749–1754</mark></td>
+          <td>Declining Mughal authority + succession wars in Carnatic/Hyderabad. <mark class="y">Battle of Ambur (Aug 1749)</mark>: combined forces of <mark class="g">Muzaffar Jung, Chanda Sahib &amp; the French</mark> defeated and killed <mark class="g">Anwar-ud-din</mark>; Muzaffar Jung became Subedar of Deccan; Dupleix appointed Governor of Mughal territories south of the Krishna; Nizam surrendered districts in Northern Circars to the French; a French army under <mark class="g">Bussy</mark> stationed at Hyderabad. Later British counterattacks under <mark class="g">Robert Clive</mark> reversed French gains.</td>
+          <td><mark class="y">Treaty of Pondicherry (1754)</mark> — affirmed <mark class="g">Muhammad Ali Khan Wallajah</mark> as Nawab; French withdrawal.</td>
+        </tr>
+        <tr>
+          <td><b>Third Carnatic War</b></td>
+          <td><mark class="b">1757/1758–1763</mark></td>
+          <td>Extension of the global <mark class="g">Seven Years' War</mark>. <mark class="y">Siege of Madras (1758)</mark>: captured by French under <mark class="g">Count de Lally</mark>. British recaptured Madras (1759) under <mark class="g">Sir Eyre Coote</mark>. <mark class="r">Battle of Wandiwash (Jan 1760)</mark>: decisive British victory (Coote) over French (Lally) — broke French power in the Deccan permanently.</td>
+          <td><mark class="y">Treaty of Paris (1763)</mark> — French ceded key territories (incl. Pondicherry after a long siege) but were allowed Indian settlements for <mark class="r">commercial-only</mark> purposes.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="trap">
+      <span class="lbl">Chronology &amp; matching traps</span>
+      <ul>
+        <li>Order of 18th-century battles: <mark class="y">Battle of Ambur (1749) → Battle of Plassey (1757) → Battle of Wandiwash (1760) → Battle of Buxar (1764)</mark>.</li>
+        <li>First Carnatic War = <mark class="g">inconclusive on the ground</mark> but formally ended by Treaty of Aix-la-Chapelle; Second Carnatic War is also often called "inconclusive"; Third Carnatic War ended decisively via Treaty of Paris.</li>
+        <li><mark class="g">Dupleix</mark> is credited as the first European to systematically involve European troops in the internal quarrels of Indian princes to acquire territory — the tactic that later guided Clive and the English.</li>
+        <li>French Commander defeated at Wandiwash: <mark class="g">Count de Lally</mark> (not Dupleix, who had already been recalled to France by then).</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Factors Behind English Success over the French</h3>
+      <ul>
+        <li><mark class="y">Company governance</mark>: English company had elected directors; the French company was state-owned.</li>
+        <li><mark class="y">Naval dominance</mark>: the Royal Navy was the largest/most advanced, defeating both Portuguese and French navies. According to <mark class="g">Voltaire</mark>, French naval strength was so reduced during the Austrian Succession war that it had barely any battleships left for the Seven Years' War.</li>
+        <li><mark class="y">Industrial Revolution</mark> technology boosted English productivity.</li>
+        <li><mark class="y">Military discipline</mark> and strong leadership.</li>
+        <li><mark class="y">Political stability</mark> in Britain vs. turmoil/revolution in France.</li>
+        <li><mark class="y">Acceptance of rule</mark>: British placed less emphasis on spreading Christianity than the Portuguese/French.</li>
+        <li><mark class="y">Debt-market utilisation</mark>: the <mark class="g">Bank of England</mark> let Britain finance wars effectively; France went bankrupt.</li>
+        <li>Getting huge wealth &amp; manpower from the <mark class="g">Conquest of Bengal</mark> further tilted the balance decisively in Britain's favour.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Part II</span>
+    <div class="ptitle">India on the Eve of Conquest</div>
+    <p class="pdesc">Mughal collapse, regional states, and the society the British would inherit.</p>
+  </div>
+
+  <!-- ============ CHAPTER 9 ============ -->
+  <section class="chapter" id="ch9" data-title="Decline of the Mughal Empire">
+    <div class="chapter-head"><div class="seal">9</div><h2>India on the Eve of British Conquest — Mughal Decline</h2></div>
+
+    <div class="event">
+      <p>The Mughal Empire began declining in the 18th century, especially during <mark class="g">Aurangzeb's</mark> reign (1658–1707); his overextension and forced conversions strained resources and alienated allies. By <mark class="g">Muhammad Shah's</mark> time (1719–48), regional states like Hyderabad, Bengal, Awadh, Punjab emerged as leaders sought autonomy.</p>
+    </div>
+
+    <table>
+      <caption>Later Mughal Rulers (1707–1857) — one line each</caption>
+      <thead class="purple"><tr><th>Ruler</th><th>Reign</th><th>Key fact</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="g">Bahadur Shah I</mark></td><td>1707–1712</td><td>"Shah-i-Bekhabar"; pacific policy toward Marathas, Rajputs, Jats.</td></tr>
+        <tr><td><mark class="g">Jahandar Shah</mark></td><td>1712–1713</td><td>Backed by PM <mark class="g">Zulfikar Khan</mark>; started the <mark class="y">Izara system</mark> (revenue farming).</td></tr>
+        <tr><td><mark class="g">Farrukhsiyar</mark></td><td>1713–1719</td><td>Killed Jahandar Shah with <mark class="g">Sayyid Brothers'</mark> help; abolished Jizya &amp; pilgrimage tax; granted trading privileges to the British (fuelled their rise); <mark class="r">first Mughal emperor killed by nobles</mark> (Sayyid Brothers, aided by Peshwa <mark class="g">Balaji Vishwanath</mark>).</td></tr>
+        <tr><td><mark class="g">Rafi-ud-Darajat</mark></td><td>1719</td><td><mark class="r">Shortest reign</mark> of any Mughal emperor.</td></tr>
+        <tr><td><mark class="g">Rafi-ud-Daula</mark> ("Shah Jahan II")</td><td>1719</td><td>Installed by Sayyid Brothers.</td></tr>
+        <tr><td><mark class="g">Muhammad Shah "Rangeela"</mark></td><td>1719–1748</td><td>Assassinated Sayyid Brothers with help of <mark class="g">Nizam-ul-Mulk</mark> (who then founded independent Hyderabad); defeated &amp; imprisoned by <mark class="g">Nadir Shah</mark> at Battle of Karnal (1739); promoted Urdu as court language.</td></tr>
+        <tr><td><mark class="g">Ahmad Shah Bahadur</mark></td><td>1748–1754</td><td>Left state affairs to "Queen Mother" <mark class="g">Udham Bai</mark>.</td></tr>
+        <tr><td><mark class="g">Alamgir II</mark></td><td>1754–1759</td><td>Faced Abdali invasions; <mark class="g">Battle of Plassey</mark> fell within his reign.</td></tr>
+        <tr><td><mark class="g">Shah Alam II</mark></td><td>1759–1806</td><td>Witnessed <mark class="g">3rd Panipat (1761)</mark> and <mark class="g">Buxar (1764)</mark>; signed <mark class="y">Treaty of Allahabad (1765)</mark> granting Diwani of Bengal, Bihar, Orissa to the English; became an English pensioner.</td></tr>
+        <tr><td><mark class="g">Akbar Shah II</mark></td><td>1806–1837</td><td>Gave title of "Raja" to <mark class="g">Rammohan Roy</mark>; East India Company stopped recognising the Mughal emperor in <mark class="b">1835</mark>.</td></tr>
+        <tr><td><mark class="g">Bahadur Shah II (Zafar)</mark></td><td>1837–1857</td><td>Declared "Emperor of India" during the <mark class="g">Revolt of 1857</mark>; exiled to Rangoon, died 1862. Mughal Empire legally ended <mark class="b">1 Nov 1858</mark> with <mark class="g">Queen Victoria's</mark> declaration.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="event">
+      <h3>External Shocks</h3>
+      <ul>
+        <li><mark class="r">Nadir Shah's invasion (1738–39)</mark>: defeated the Mughal army at <mark class="y">Battle of Karnal</mark>, captured Muhammad Shah, looted Delhi (Peacock Throne, Kohinoor diamond).</li>
+        <li><mark class="r">Ahmad Shah Abdali's invasions</mark>: captured Delhi (1757), appointed an Afghan caretaker; defeated the Marathas at the <mark class="y">Third Battle of Panipat (1761)</mark> — a major setback for both Mughals and Marathas.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Causes of Mughal Decline (summary points)</h3>
+      <ul>
+        <li>Aurangzeb's overextension &amp; alienation of allies; weak, incapable successors.</li>
+        <li>Nobility's shift from military duty to luxury; court factionalism.</li>
+        <li>Flawed succession system → repeated power struggles.</li>
+        <li>Rise of the Maratha Peshwas challenged central authority; military loyalty drifted to regional commanders.</li>
+        <li>Economic hardship from raids, mismanagement, jagirdari competition among nobles.</li>
+        <li>Divisive policies sparked uprisings; foreign invasions (Nadir Shah, Abdali) damaged prestige; growing European presence exposed India's stagnation in trade and warfare.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 10 ============ -->
+  <section class="chapter" id="ch10" data-title="Rise of Regional States">
+    <div class="chapter-head"><div class="seal">10</div><h2>Rise of Regional States</h2></div>
+    <div class="chapter-sub">Successor states, independent kingdoms, and new states</div>
+
+    <table>
+      <caption>Categorisation of Regional States</caption>
+      <thead class="green"><tr><th>Category</th><th>Meaning</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><td><b>Successor States</b></td><td>Former Mughal provinces whose governors became near-independent, hereditary rulers without contesting Mughal supremacy.</td><td>Awadh, Bengal, Hyderabad</td></tr>
+        <tr><td><b>Independent Kingdoms</b></td><td>Arose mainly due to weakening Mughal grip over provinces.</td><td>Mysore, Rajput territories</td></tr>
+        <tr><td><b>New States</b></td><td>Established by factions that actively rebelled against Mughal rule.</td><td>Maratha, Sikh, Jat territories</td></tr>
+      </tbody>
+    </table>
+
+    <div class="country-block" style="border-top:none; padding-top:0; margin-top:0;">
+      <h4>Hyderabad</h4>
+      <p>Founder: <mark class="g">Kilich Khan (Nizam-ul-Mulk)</mark>, former Mughal Wazir. Won the <mark class="y">Battle of Shaker-Kheda (1724)</mark> against the Mughal Viceroy, assumed control, became <mark class="g">Asaf Jah</mark>. Despite <mark class="g">Baji Rao I's</mark> defeat of him in 1737, he retained autonomy. Under him Hyderabad became one of the wealthiest states in the British Raj. After his death (1748), internal conflict + French intervention favoured <mark class="g">Muzaffar Jung</mark>; stability restored under <mark class="g">Nizam Ali Khan (1762)</mark>. The <mark class="r">Nizam allied with the British</mark> and did <mark class="r">not</mark> rebel against British control (64th BPSC) — granted the <mark class="g">Northern Circars</mark> for protection against Haidar Ali.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Awadh</h4>
+      <p>Founder: <mark class="g">Saadat Khan (Burhan-ul-Mulk)</mark>, established autonomy in 1722, rising from Faujdar of Biyana. <mark class="g">Safdar Jung</mark> succeeded (1739); defeat at the <mark class="g">Battle of Buxar (1764)</mark> marked Awadh's decline. Notable Hindu officials at the Nawab's court: <mark class="g">Raja Tikait Rai</mark> (Artha Mantri/Diwan of Nawab Aasafudaullah), <mark class="g">Raja Jhaulal</mark>; <mark class="g">Raja Naval Rai</mark> appointed "Bakshi" &amp; Deputy Governor of Bengal by Nawab Safdar Jung.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Bengal</h4>
+      <p>Founder: <mark class="g">Murshid Quli Khan</mark>, former Diwan under Aurangzeb — the <mark class="r">last Governor/Subedar of Bengal independently appointed by a Mughal emperor</mark> (Farrukh Siyar, 1717); became independent Nawab after 1717, shifted capital to <mark class="g">Murshidabad</mark> (from Dhaka/Maksudabad); introduced <mark class="y">Mal Jasmani</mark> revenue reform &amp; the <mark class="y">Izara system</mark> in land settlement. Succeeded by son-in-law <mark class="g">Shujauddin</mark> (also Mughal-ratified, hence sometimes called "last Subedar" too), then <mark class="g">Alivardi Khan (1740)</mark>, who stopped tribute to the Mughal Emperor by 1756 and famously compared Europeans to honeybees: <mark class="y">"if left undisturbed they give honey; disturbed, they bite till death."</mark> <mark class="g">Siraj-ud-Daula</mark> inherited a politically unstable Bengal in 1756; his reign ended after the <mark class="g">Battle of Plassey (1757)</mark>.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>Mysore &amp; Kerala</h4>
+      <p><b>Mysore</b>: under the <mark class="g">Wodeyar dynasty</mark> (formed after the Battle of Talikota, 1565); <mark class="g">Haidar Ali</mark> became de-facto ruler by 1761 with French-modernised military; captured Dod Ballapur, Sera, Bednur, Hoskote (1761–63); countered Maratha invasions after Madhavrao's death (1772). Later, <mark class="g">Tipu Sultan</mark> fiercely resisted British encroachment. <b>Kerala</b>: <mark class="g">Martanda Varma</mark> expanded Travancore and reformed the military.</p>
+    </div>
+
+    <div class="country-block">
+      <h4>The Sikhs</h4>
+      <ul>
+        <li><mark class="g">Guru Tegh Bahadur</mark> executed by Aurangzeb for resisting forced conversions, defending Kashmiri Pandits.</li>
+        <li><mark class="g">Guru Gobind Singh</mark> established the <mark class="y">Khalsa (1699)</mark>, transforming Sikhs into a militant force.</li>
+        <li><mark class="g">Banda Bahadur</mark> led Sikh revolts post-Gobind Singh, ended the Zamindari system, captured &amp; executed <mark class="b">1710</mark>. After his defeat (1716), Sikhs split into <mark class="y">Bandai</mark> (liberal) and <mark class="y">Tat Khalsa</mark> (orthodox) factions, unified by <mark class="g">Bhai Mani Singh</mark> in 1721.</li>
+        <li><mark class="b">1748</mark>: <mark class="g">Kapur Singh Faizullapuria</mark> formed the <mark class="y">Dal Khalsa</mark>, dividing Sikhs into <mark class="y">Taruna Dal</mark> (youth) and <mark class="y">Budha Dal</mark> (veterans).</li>
+        <li><mark class="g">Ranjit Singh</mark> founded the Sikh Empire — see Chapter 16.</li>
+      </ul>
+    </div>
+
+    <div class="country-block">
+      <h4>The Marathas</h4>
+      <ul>
+        <li>Originally soldiers for Deccan Sultanates; imposed <mark class="y">Chauth (25%)</mark> and <mark class="y">Sardeshmukhi (10%)</mark> taxes on Mughal lands.</li>
+        <li>Founder: <mark class="g">Shivaji</mark>; son <mark class="g">Sambhaji</mark> continued resistance vs. Aurangzeb; <mark class="g">Shahu</mark> secured Maratha influence after release from Mughal captivity; <mark class="g">Balaji Vishwanath</mark> (as Peshwa) consolidated territories; <mark class="g">Baji Rao I</mark> expanded reach up to Agra, and formed the confederacy delegating power to the <mark class="g">Gaekwads of Baroda, Bhonsles of Nagpur, Holkars of Indore, Sindhias of Gwalior, Peshwas of Poona</mark>.</li>
+        <li>Decline began with the <mark class="g">Third Battle of Panipat (1761)</mark> and the death of Peshwa <mark class="g">Madhavrao I (1772)</mark>, despite occasional cooperation vs. the British (1775–1782).</li>
+      </ul>
+    </div>
+
+    <div class="country-block">
+      <h4>Rohilkhand, Farrukhabad, Rajputs &amp; Jats</h4>
+      <ul>
+        <li><b>Rohilkhand</b>: The Rohillas, led by <mark class="g">Daud</mark> and son <mark class="g">Ali Mohammad Khan</mark>, established Rohilkhand from Bareilly post-Nadir Shah's invasion.</li>
+        <li><b>Farrukhabad</b>: Founded by <mark class="g">Mohammad Khan Bangash</mark>, an Afghan chieftain, near Delhi.</li>
+        <li><b>Rajputs</b>: seized the Mughal-decline opportunity to reclaim territories early 18th century; notable leaders — <mark class="g">Ajit Singh</mark> (secured Ajmer &amp; Gujarat), <mark class="g">Jay Singh II</mark> (Agra governor, expanded influence in Surat) — but internal conflicts left them vulnerable to Maratha incursions.</li>
+        <li><b>Jats</b>: primarily agricultural settlers who rebelled against Aurangzeb's policies, causing significant uprisings.</li>
+      </ul>
+    </div>
+
+    <div class="factbox">
+      <span class="lbl">One-off ruler note</span>
+      <dl>
+        <dt><mark class="g">Begum Samru</mark></dt><dd>1750–1836; built a famous church at <mark class="g">Sardhana</mark> near Meerut; husband <mark class="g">Walter Reinhardt Sombre</mark> (European mercenary) was granted the Sardhana Jagir by Shah Alam II for defeating <mark class="g">Zabita Khan</mark>; she ruled Sardhana after his death.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 11 ============ -->
+  <section class="chapter" id="ch11" data-title="Art, Education, Trade & Navy on the Eve of Conquest">
+    <div class="chapter-head"><div class="seal">11</div><h2>Art, Education, Trade &amp; Navy — Society on the Eve of Conquest</h2></div>
+
+    <div class="event">
+      <h3>Art, Architecture &amp; Literature</h3>
+      <ul>
+        <li><mark class="y">Bara Imambara</mark>: built by <mark class="g">Asaf-ud-Daula</mark> in Lucknow (1784).</li>
+        <li><mark class="y">Jaipur</mark>: founded by <mark class="g">Sawai Jai Singh (II)</mark>, who established five astronomical observatories (Jaipur, Delhi, Mathura, Ujjain, Varanasi) and created the <mark class="y">Zij-i Muhammad Shahi</mark> timetables; also had <mark class="g">Euclid's "Elements of Geometry"</mark> translated into Sanskrit.</li>
+        <li><mark class="y">Padmanabhapuram Palace</mark>: notable architectural gem in Kerala.</li>
+        <li><mark class="y">Urdu poetry</mark> flourished in the 18th century — <mark class="g">Mir, Sauda, Nazir, Mirza Ghalib</mark>.</li>
+        <li><mark class="y">Malayalam literature</mark>: supported by Travancore rulers — poet <mark class="g">Kunchan Nambiar</mark>.</li>
+        <li><mark class="y">Sittar poetry (Tamil)</mark>: critiques of temple rule and caste by <mark class="g">Tayumanavar</mark>.</li>
+        <li><mark class="y">Punjabi epic</mark>: <mark class="g">Warris Shah</mark> authored <i>Heer Ranjha</i>.</li>
+        <li><mark class="y">Sindhi literature</mark>: <mark class="g">Shah Abdul Latif</mark> wrote <i>Risalo</i>.</li>
+        <li>Widow remarriage was discouraged; efforts by <mark class="g">Raja Sawai Jai Singh</mark> and <mark class="g">Prashuram Bhau</mark> to promote it failed.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Education</h3>
+      <ul>
+        <li>Traditional education focused on literature, law, religion, logic — <mark class="r">missing science &amp; technology</mark>.</li>
+        <li>Elementary: <mark class="g">Maktabs</mark> (Muslim) and <mark class="g">Pathshalas</mark> (Hindu) — maths, reading, writing.</li>
+        <li>Higher education: <mark class="g">Chatuspathis</mark> and <mark class="g">Tols</mark> in Bihar/Bengal (Sanskrit, Persian); <mark class="g">Madrasahs</mark> taught Arabic and Quranic studies.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Trade, Industry, Navy &amp; Shipbuilding</h3>
+      <ul>
+        <li>India was largely <mark class="y">self-reliant</mark>, exporting more than it imported, balancing trade with gold and silver.</li>
+        <li>Imports: pearls, silk, wool, tea, spices, drugs, gold. Exports: cotton textiles, silk, opium, spices, precious stones.</li>
+        <li>Textile hubs: <mark class="g">Dacca, Surat, Patna, Kashmir</mark> (woollen products).</li>
+        <li>Shipbuilding prominent in <mark class="g">Maharashtra, Andhra, Bengal, Kerala</mark> (Calicut, Quilon); <mark class="g">Shivaji's Navy</mark> countered the Portuguese; European ships were often built in India for trade.</li>
+        <li>Assessment of land revenue by soil/crop quality actually dates to <mark class="g">Sher Shah Suri &amp; Akbar</mark>, well before the British; mobile cannons were introduced in the <mark class="g">Mughal era</mark>; tobacco/red chillies were introduced by the <mark class="r">Portuguese</mark> — none of these three were "introduced by the English" (a common false-attribution trap).</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Part III</span>
+    <div class="ptitle">British Conquest, Region by Region</div>
+    <p class="pdesc">Bengal → Mysore → the Marathas → Sindh → Punjab.</p>
+  </div>
+
+  <!-- ============ CHAPTER 12 ============ -->
+  <section class="chapter" id="ch12" data-title="British Conquest of Bengal">
+    <div class="chapter-head"><div class="seal">12</div><h2>British Conquest of Bengal</h2></div>
+
+    <div class="event">
+      <h3>Bengal Before the Conquest</h3>
+      <ul>
+        <li>Bengal was a wealthy Mughal province, exporting <mark class="y">saltpetre, rice, indigo, textiles</mark> to Europe.</li>
+        <li>Since the <mark class="b">1630s</mark>, the English East India Company sourced ~<mark class="b">60%</mark> of its Asian imports from Bengal.</li>
+        <li>Calcutta's population grew from <mark class="b">15,000 (1706)</mark> to ~<mark class="b">1,00,000 (1750)</mark>.</li>
+        <li><mark class="g">Alivardi Khan</mark> defeated the Marathas, allowed the British to fortify <mark class="g">Fort William</mark>, but grew wary of European influence.</li>
+        <li><mark class="g">Siraj-ud-Daula</mark> faced internal dissent from commanders (<mark class="g">Shaukat Jang</mark>, <mark class="g">Mir Jafar</mark>); court figures <mark class="g">Jagat Seth</mark> and <mark class="g">Omichand</mark> opposed him.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Battle of Plassey (1757)</h3>
+      <ul>
+        <li>Prelude: British misuse of trade privileges damaged the Nawab's finances; the alleged <mark class="r">Black Hole Tragedy (20 June 1756)</mark> — per survivor <mark class="g">J.Z. Holwell</mark>, 146 English prisoners held in an 18×14'10" cell, 123 died of suffocation, 23 survived; contemporary Muslim historian <mark class="g">Ghulam Hussain</mark> (author of <i>Siyar-ul-Mutakherin</i>) does <mark class="r">not mention</mark> this incident — a genuine historiographical dispute.</li>
+        <li>Siraj captured Calcutta ("Alinagar") in <mark class="b">June 1756</mark>, alarmed by British fortification of Fort William.</li>
+        <li><mark class="g">Robert Clive</mark> forged alliances with Siraj's internal rivals (esp. <mark class="g">Mir Jafar</mark>).</li>
+        <li>Battle fought <mark class="b">23 June 1757</mark> on the banks of the <mark class="g">Bhagirathi river</mark>, Nadia district (present-day <mark class="g">Palasi</mark>), West Bengal. Despite being outnumbered, the British won decisively — a part of the Nawab's army under three "traitors" <mark class="g">Mir Jafar, Yar Latif Khan, Rai Durlabh</mark> did not fight.</li>
+        <li>Siraj was executed; <mark class="g">Mir Jafar</mark> installed as new Nawab in exchange for support — ceded <mark class="g">24 Parganas</mark> to the British and gifted <mark class="b">£2,34,000</mark> personally to Clive.</li>
+        <li>Regarded as the <mark class="r">first decisive military success</mark> of the English East India Company in India, and the <mark class="y">founding battle</mark> of British political dominion over Bengal, Bihar, Orissa — though actual British supremacy is credited to <mark class="r">Buxar</mark>, not Plassey (Plassey won by treachery; Buxar by military skill, per Sir James Stephen).</li>
+        <li><mark class="g">Robert Clive</mark> — called the <mark class="y">"Heaven-Born General"</mark> by William Pitt; Governor of Bengal twice (1758–60, 1765–67); "father/founder of the English Empire in India."</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>From Mir Jafar to Mir Qasim</h3>
+      <ul>
+        <li>Mir Jafar grew frustrated with British interference → involved in the <mark class="g">Battle of Biderra (1759)</mark>, which ended in British victory.</li>
+        <li><mark class="y">Treaty of 1760</mark>: Mir Jafar's son-in-law <mark class="g">Mir Qasim</mark> installed as ally, deepening British control.</li>
+        <li><mark class="g">Mir Qasim</mark> (1760–63), regarded as the ablest successor of Alivardi Khan (proven as Faujdar of Poornia &amp; Rangpur): shifted capital from <mark class="g">Murshidabad to Munger</mark> to escape British/Calcutta interference; modernised his army on European lines; set up matchlock-gun manufacturing at Munger; reformed state finances, fined corrupt officers, introduced new taxes.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Battle of Buxar (1764) &amp; the Treaty of Allahabad (1765)</h3>
+      <ul>
+        <li>Mir Qasim resisted British dominance (misused dastaks), allied with <mark class="g">Shah Alam II</mark> (Mughal emperor) and <mark class="g">Shuja-ud-Daula</mark> (Nawab of Awadh).</li>
+        <li><mark class="b">22/23 October 1764</mark>: British forces under <mark class="g">Major Hector Munro</mark> decisively defeated this combined force. Governor of Bengal during this time: <mark class="g">Henry Vansittart</mark>; Nawab of Bengal during the actual battle: <mark class="g">Mir Jafar</mark> (reinstated).</li>
+        <li>Regarded by many historians (e.g. <mark class="g">Sir James Stephen</mark>) as <mark class="r">more decisive than Plassey</mark> for establishing British supremacy in India — "Plassey made the English controllers of Bengal; Buxar made them contenders for supremacy over the whole country," opening the road to Delhi.</li>
+        <li><mark class="y">Treaty of Allahabad (August 1765)</mark> — two-part settlement:<ul>
+          <li><b>Shuja-ud-Daula</b> agreed to: surrender <mark class="g">Allahabad &amp; Kara</mark> to Shah Alam II; pay <mark class="b">Rs 50 lakh</mark> war indemnity; give <mark class="g">Balwant Singh</mark> (Zamindar of Banaras) full possession of his estate.</li>
+          <li><b>Shah Alam II</b> agreed to: reside at Allahabad under Company protection; issue a Farman (<mark class="b">12 August 1765</mark>) granting the <mark class="r">Diwani of Bengal, Bihar &amp; Orissa</mark> to the Company in lieu of Rs 26 lakh/year; a provision of Rs 53 lakh to the Company for Nizamat functions (defence, police, justice).</li>
+        </ul></li>
+        <li>Deputy Diwans appointed by Clive: <mark class="g">Mohammad Raza Khan</mark> (Bengal) and <mark class="g">Raja Shitab Roy</mark> (Bihar) — Diwani/Nizamat business conducted by Indians but authorised by the British.</li>
+        <li>Successors of Shah Alam II — <mark class="g">Akbar II (1806–37)</mark> and <mark class="g">Bahadur Shah II (1837–57)</mark> — were mere Company pensioners.</li>
+        <li>After acquiring Bengal's Diwani (1765), the British reached <mark class="g">Sylhet</mark> (1765); post-Burma War, <mark class="g">David Scott</mark> tried linking Assam to Sylhet via Jaintia/Garo hill roads — faced resistance from the <mark class="r">Khasi tribe</mark> under <mark class="g">Tirot Sing</mark> — the first hill-tribe contact after the 1765 Diwani grant.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Dual Government (1765–1772)</h3>
+      <p>After Buxar, the Company held revenue rights (<mark class="y">Diwani</mark>) and law enforcement (<mark class="y">Nizamat</mark>), while the Nawab kept only ceremonial authority. This <mark class="r">Dual Government</mark> failed to maintain order or manage Bengal's economy and was abolished by <mark class="g">Warren Hastings in 1772</mark> (66th BPSC). Historian <mark class="g">K.M. Panikkar</mark> said that from 1757–1773 the Company made Bengal a <mark class="y">"State of Robbers."</mark></p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 13 ============ -->
+  <section class="chapter" id="ch13" data-title="Conquest of Mysore">
+    <div class="chapter-head"><div class="seal">13</div><h2>Conquest of Mysore</h2></div>
+
+    <div class="event">
+      <p>Wodeyar dynasty formed after the <mark class="g">Battle of Talikota (1565)</mark>; <mark class="g">Haidar Ali</mark> became de facto ruler by 1761, modernising the military with French support. He set up a modern armoury at <mark class="g">Dindigul</mark> in 1755 (sent there by the Mysore king to control rebellious Palayams; became de-facto ruler of Dindigul and later of Mysore). After <mark class="g">Peshwa Madhavrao's death (1772)</mark>, Haidar successfully countered Maratha invasions.</p>
+    </div>
+
+    <table>
+      <caption>The Four Anglo-Mysore Wars</caption>
+      <thead class="red"><tr><th>War</th><th>Years</th><th>Key Battles / Events</th><th>Result / Treaty</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>First</b></td><td><mark class="b">1767–69</mark></td>
+          <td>Nizam of Hyderabad allied with the British, did <mark class="r">not</mark> rebel (64th BPSC). Haidar Ali disputed with the Nawab of Arcot &amp; the Marathas; the British, Marathas, Nizam allied against him — Haidar neutralised the Marathas and allied with the Nizam to attack the Nawab. Lasted 1.5 years inconclusively; Haidar surprised the British at Madras.</td>
+          <td><mark class="y">Treaty of Madras (4 April 1769)</mark>: prisoner exchange, mutual restitution of conquests, English to assist Haidar if attacked. <mark class="r">Haidar Ali/Mysore emerged victorious</mark> — England's first lost war in India. Governor of Bengal then: <mark class="g">Harry Verelst</mark>.</td>
+        </tr>
+        <tr>
+          <td><b>Second</b></td><td><mark class="b">1780–84</mark></td>
+          <td>Haidar accused the British of breaching the Treaty of Madras (1771 Maratha attack); French gave better military support; Haidar viewed British seizure of Mahe as an affront. Allied with Marathas &amp; Nizam, launched Carnatic offensive; captured Arcot; defeated British Col. <mark class="g">Baillie</mark> at the <mark class="y">Battle of Pollilur (10 Sept 1780, also called Perambakam)</mark>. British Governor-General: <mark class="g">Warren Hastings</mark>. British (Sir <mark class="g">Eyre Coote</mark>) alienated Haidar's allies; Haidar won initially at <mark class="y">Porto Novo (Nov/July 1781)</mark> but was ultimately checked; <mark class="g">Haidar Ali died of cancer, 7 Dec 1782</mark>; son <mark class="g">Tipu Sultan</mark> continued the fight.</td>
+          <td><mark class="y">Treaty of Mangalore (March 1784)</mark> — restored captured territories on both sides (status quo ante).</td>
+        </tr>
+        <tr>
+          <td><b>Third</b></td><td><mark class="b">1790–92</mark></td>
+          <td>Tension between Tipu and Travancore over territorial acquisitions → war (April 1790); British allied with Travancore. Initial British defeat (1790), regrouped under <mark class="g">Lord Cornwallis</mark>, captured Bangalore (1791); Tipu defeated at the <mark class="y">Siege of Seringapatam</mark>.</td>
+          <td><mark class="y">Treaty of Srirangapatna (March 1792)</mark> — Cornwallis for the British, with Nizam &amp; Maratha representatives also party. Tipu ceded <mark class="r">nearly half his territory</mark> (divided among British, Nizam, Marathas — British got Baramahal, Dindigul, Malabar); paid <mark class="b">Rs 330 lakh</mark> war indemnity; his two sons held hostage until payment.</td>
+        </tr>
+        <tr>
+          <td><b>Fourth</b></td><td><mark class="b">1799</mark></td>
+          <td>Tipu sought to reclaim power after the Wodeyar ruler's death, proclaiming himself Sultan; British (<mark class="g">Lord Wellesley</mark>) alarmed by Tipu's ties with France. War began <mark class="b">17 April 1799</mark>; culminated in the <mark class="y">Siege of Seringapatam (4 May 1799)</mark>. British commanders: <mark class="g">Arthur Wellesley</mark> (brother of the Governor-General), <mark class="g">Stuart</mark>, <mark class="g">General Harris</mark>.</td>
+          <td><mark class="r">Tipu Sultan killed in battle</mark> defending Seringapatam; family imprisoned at Vellore. Lord Wellesley conferred the title <mark class="y">Marquess</mark> by the Irish House of Lords. New Mysore state handed to the old Wodeyar (Hindu) dynasty under minor ruler <mark class="g">Krishnaraja III</mark>, who accepted the <mark class="y">Subsidiary Alliance</mark>.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="trap">
+      <span class="lbl">Post-Tipu Mysore &amp; matching traps</span>
+      <ul>
+        <li><mark class="b">1831</mark>: <mark class="g">William Bentinck</mark> alleged misgovernance and took direct control of Mysore. <mark class="b">1881</mark>: <mark class="g">Lord Ripon</mark> restored the kingdom to its (Wodeyar) ruler.</li>
+        <li>Correct matching: First Anglo-Mysore War → <mark class="r">British lost</mark>; Second → <mark class="r">Haidar Ali defeated the British</mark> (initially); Third → Tipu ceded territory but did not lose his throne; Fourth → Tipu defeated and killed.</li>
+        <li>British general who defeated Haidar Ali at Porto Novo: <mark class="g">Sir Eyre Coote</mark> (not Munro, Popham, or Goddard).</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Tipu Sultan's Administration &amp; Legacy</h3>
+      <ul>
+        <li>Made <mark class="g">Srirangapatna</mark> his capital; became a member of the <mark class="y">Jacobin Club</mark> (French Revolutionary body) and planted the "tree of liberty" as a Mysore–France friendship symbol.</li>
+        <li>Sent ambassadors/established embassies (on <mark class="r">modern lines</mark>) with <mark class="g">Iran, Istanbul (Ottoman), Afghanistan, France</mark> — seeking help against the British; considered the first Indian ruler to do so on modern lines.</li>
+        <li>Governance: Western methods, dual leadership in provinces, a panchayat system.</li>
+        <li>Economic: reformed land revenue, controlled trade, set up commercial monopolies.</li>
+        <li>Military: disciplined army, a Board of Admiralty, planned (but never matched British) navy.</li>
+        <li>Provided funds for construction of the idol of Goddess Sharda at the <mark class="g">Shringeri temple</mark>.</li>
+        <li>Innovator in <mark class="y">rocket technology</mark> and sericulture; promoted religious tolerance.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 14 ============ -->
+  <section class="chapter" id="ch14" data-title="The Anglo-Maratha Struggle">
+    <div class="chapter-head"><div class="seal">14</div><h2>The Anglo-Maratha Struggle for Supremacy</h2></div>
+
+    <table>
+      <caption>Three Anglo-Maratha Wars</caption>
+      <thead class="red"><tr><th>War</th><th>Years</th><th>Key events</th><th>Treaty / Result</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>First</b></td><td><mark class="b">1775–82</mark></td>
+          <td>After Madhav Rao's death (1772), <mark class="g">Narayan Rao</mark> became Peshwa but was assassinated by uncle <mark class="g">Raghunath Rao</mark> (no legal claim). Narayan Rao's widow <mark class="g">Gangabai</mark> bore <mark class="g">Sawai Madhavrao</mark>, the rightful heir; a 12-chief council (<mark class="y">Barabhai</mark>), led by <mark class="g">Nana Phadnavis</mark>, sought to install the infant. Raghunath Rao sought British help → <mark class="y">Treaty of Surat (1775)</mark>, ceding <mark class="g">Salsette &amp; Bassein</mark> for military support. Calcutta Council condemned this → <mark class="y">Treaty of Purandar (1776)</mark>, excluding Raghunath Rao. Nana Phadnavis then violated Purandar by granting the French a port. Course of war: British clashed near Pune; <mark class="g">Mahadji Scindia</mark> used scorched-earth tactics; Marathas forced the British to retreat to Wadgaon → <mark class="y">Treaty of Wadgaon (1779)</mark> (Bombay Presidency to return seized territory) — <mark class="g">Warren Hastings</mark> rejected this treaty, sent Colonel <mark class="g">Goddard</mark>, who captured Ahmedabad &amp; Bassein; British won the <mark class="y">Battle of Sipri (Feb 1781)</mark> over Scindia.</td>
+          <td><mark class="y">Treaty of Salbai (May 1782)</mark> — approved by Hastings &amp; Phadnavis; 20 years' peace; British retained Salsette, returned post-Purandhar territories, upheld trade privileges, and the Peshwa was barred from aiding other European powers; guaranteed by <mark class="g">Mahadji Scindia</mark>.</td>
+        </tr>
+        <tr>
+          <td><b>Second</b></td><td><mark class="b">1803–05</mark></td>
+          <td>Arose after Peshwa Madhavrao Narayan's suicide (1795) → <mark class="g">Bajirao II's</mark> ascension amid discord. <mark class="g">Nana Phadnavis</mark> (chief minister) died 1800, opening the door to British intervention. Conflict triggered by Bajirao II's assassination of <mark class="g">Vithuji</mark> (brother of <mark class="g">Jaswantrao Holkar</mark>); Holkar retaliated, defeated Bajirao II &amp; Scindia at <mark class="y">Hadapsar</mark>; Bajirao II fled to Bassein.</td>
+          <td><mark class="y">Treaty of Bassein (31 Dec 1802)</mark> — Bajirao II accepted: stationing 6,000 native infantry; ceding territory worth Rs 26 lakh; surrendering Surat; renouncing chauth over the Nizam's territories; subjecting his relations to British control — reduced to vassalage. Fallout: Bhonsle &amp; Scindia resisted but were defeated → <mark class="y">Treaty of Deogaon (1803)</mark> after Bhonsle's defeat; <mark class="y">Treaty of Surji-Anjangaon (1803)</mark> after Scindia's defeat; <mark class="y">Treaty of Rajpurghat (1806)</mark> after Holkar's defeat.</td>
+        </tr>
+        <tr>
+          <td><b>Third</b></td><td><mark class="b">1817–19</mark></td>
+          <td>Causes: <mark class="g">Lord Hastings'</mark> imperialistic ambitions; British desire to eliminate the <mark class="y">Pindaris</mark> (Maratha-linked mercenary plunderers); Maratha resentment over the "total surrender" implied by the Treaty of Bassein; the <mark class="y">Charter Act of 1813</mark> ended the Company's trade monopoly, increasing pressure for new markets. Conflict ignited when the Peshwa attacked the British Residency at Poona. <mark class="g">Tulsi Bai</mark> took charge of Holkar's forces after Jaswantrao Holkar's death but struggled with poor advisors.</td>
+          <td>By June 1818 the Peshwa was defeated → dissolution of the <mark class="r">Maratha Confederation</mark> and the Peshwaship abolished; Bajirao II became a British pensioner at Bithur; <mark class="g">Pratap Singh</mark> (a descendant of Shivaji) made ruler of Satara. Battles: Peshwa defeated at <mark class="g">Khirki</mark>, Bhonsle at <mark class="g">Sitabuldi</mark>, Holkar at <mark class="g">Mahidpur</mark> → <mark class="y">Treaty of Poona (June 1817)</mark> with the Peshwa; <mark class="y">Treaty of Gwalior (Nov 1817)</mark> with Scindia; <mark class="y">Treaty of Mandsaur (Jan 1818)</mark> with Holkar.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="trap">
+      <span class="lbl">Confederacy &amp; matching</span>
+      <ul>
+        <li>Confederacy families delegated authority by <mark class="g">Baji Rao I</mark>: <mark class="g">Gaekwads (Baroda), Bhonsles (Nagpur), Holkars (Indore), Sindhias (Gwalior), Peshwas (Poona)</mark>.</li>
+        <li>The Marathas are singled out (U.P.P.C.S. 1993) as the power that <mark class="y">opposed the British most vigorously</mark> in India, being suppressed only after three full wars.</li>
+        <li>British defeat at <mark class="y">Wadgaon</mark> and subsequent rejection of that treaty by Hastings is a favourite "who-rejected-what" trap.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 15 ============ -->
+  <section class="chapter" id="ch15" data-title="Conquest of Sindh">
+    <div class="chapter-head"><div class="seal">15</div><h2>Conquest of Sindh</h2></div>
+    <div class="event">
+      <ul>
+        <li><mark class="b">1783</mark>: <mark class="g">Mir Fath Ali Khan</mark> of the <mark class="y">Talpura Baloch</mark> tribe took control of Sindh, expelling the <mark class="g">Kallora dynasty</mark>; region later divided among the <mark class="g">Char Yar Amirs</mark>.</li>
+        <li><mark class="b">1799</mark>: <mark class="g">Lord Wellesley</mark> aimed to neutralise French influence in Sindh, but Fath Ali Khan expelled the British agent (1800).</li>
+        <li><mark class="b">1807</mark>: <mark class="y">Treaty of "Eternal Friendship"</mark> — peaceful relations, free passage for British traders/travellers.</li>
+        <li><mark class="b">1832</mark>: <mark class="y">Treaty of 1832</mark> — allowed British trade while respecting the Amirs' control over tariffs.</li>
+        <li><mark class="b">1836</mark>: <mark class="g">Lord Auckland</mark> prioritised Sindh to block Russian expansion and strengthen British Afghan influence.</li>
+        <li><mark class="b">1838</mark> treaty (Auckland): permitted English intervention in Amir–Sikh disputes and stationed a British resident free to travel with an English escort — Sindh became a <mark class="r">British protectorate, 1838</mark>.</li>
+        <li><mark class="b">1838</mark>: <mark class="y">Tripartite Treaty</mark> — British, <mark class="g">Ranjit Singh</mark>, and <mark class="g">Shah Shuja</mark> — compromised Sindh's sovereignty in British favour.</li>
+        <li><mark class="b">1839</mark>: <mark class="y">Subsidiary Alliance</mark> imposed on the Amirs — British military presence, control over foreign relations.</li>
+        <li>After the <mark class="g">First Anglo-Afghan War (1839–42)</mark>, Amirs' resistance triggered British intervention.</li>
+        <li><mark class="b">1843</mark>: <mark class="g">Charles Napier</mark> annexed Sindh (67th BPSC Re-exam) under Governor-General <mark class="g">Ellenborough</mark> — Amirs ousted, Sindh integrated into the British Empire.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 16 ============ -->
+  <section class="chapter" id="ch16" data-title="Conquest of Punjab">
+    <div class="chapter-head"><div class="seal">16</div><h2>British Conquest of Punjab</h2></div>
+
+    <div class="event">
+      <h3>Ranjit Singh's Rise</h3>
+      <ul>
+        <li>Born <mark class="b">13 November 1780</mark> at <mark class="g">Gujranwala</mark>, to <mark class="g">Maha Singh</mark>, chief of the <mark class="y">Sukerchakia Misl</mark>; father died when Ranjit Singh was 12; a regency council (mother, mother-in-law, Diwan <mark class="g">Lakhpat Rai</mark>) ran affairs 1792–97; he assumed direct power in 1797.</li>
+        <li><mark class="b">1798</mark>: <mark class="g">Zaman Shah</mark> invaded Punjab; while retreating, his cannons fell into the <mark class="g">Jhelum River</mark>; Ranjit Singh returned them, and in gratitude Zaman Shah gave him the title <mark class="y">Raja</mark> and made him Subedar of Lahore.</li>
+        <li><mark class="b">1799</mark>: took control of/made Lahore his <mark class="g">capital</mark>. <mark class="b">1802</mark>: captured <mark class="g">Amritsar</mark> from the Bhangi Misl, uniting the political capital (Lahore) and religious capital (Amritsar).</li>
+        <li>Later annexed <mark class="g">Multan (1818), Kashmir (1819), Peshawar &amp; the North-West Frontier/Khyber-Pakhtunkhwa (1834)</mark>; his kingdom also came to include <mark class="g">Srinagar</mark>.</li>
+        <li>Set up the <mark class="y">Adalat-i-Ala</mark> (highest appellate court) at <mark class="g">Lahore</mark>; also set up modern cannon-manufacturing foundries at <mark class="g">Lahore/Amritsar</mark>.</li>
+        <li>Famous saying: <mark class="y">"God wants me to see all religions as one, so He took the light of my other eye."</mark></li>
+        <li><mark class="g">Shah Shuja</mark> (grandson of Ahmad Shah Abdali) gifted the <mark class="y">Kohinoor diamond</mark> to Ranjit Singh (Shah Shuja had lost his throne to Shah Mahmud/Fateh Khan/Dost Muhammad and sought Ranjit Singh's help).</li>
+      </ul>
+    </div>
+
+    <div class="factbox">
+      <span class="lbl">Fact Box · Treaty of Amritsar, 1809</span>
+      <dl>
+        <dt>Date</dt><dd><mark class="b">25 April 1809</mark></dd>
+        <dt>Signed on behalf of Britain by</dt><dd><mark class="g">Charles Metcalfe</mark>, under Governor-General <mark class="g">Lord Minto I</mark></dd>
+        <dt>Terms</dt><dd>Ranjit Singh recognised the <mark class="y">Sutlej river</mark> as the boundary and accepted British suzerainty over vassals across it; the English recognised him as sole sovereign on his own side.</dd>
+        <dt>Effect</dt><dd>Limited southward expansion but left him free (per historian Cunningham) to expand westward, which he did (Multan, Kashmir, Peshawar).</dd>
+      </dl>
+    </div>
+
+    <div class="event">
+      <h3>Succession Chaos After Ranjit Singh (d. 1839)</h3>
+      <ul>
+        <li>Successor: <mark class="g">Kharak Singh</mark> (an opium addict); two rival factions emerged — the <mark class="y">Dogra Brothers</mark> (<mark class="g">Dhyan Singh, Gulab Singh, Suchet Singh</mark>) vs. the <mark class="y">Sandhawalia Sardars</mark> (<mark class="g">Atar Singh, Lahna Singh</mark>, nephew <mark class="g">Ajeet Singh</mark>) — driving growing chaos.</li>
+        <li><mark class="g">Maharaja Duleep Singh</mark> — <mark class="r">last ruler of the Sikh Empire</mark>, reigned <mark class="b">1843–49</mark>; converted to Christianity, travelled to Russia, later (1886) re-accepted Sikhism; died in Paris, <mark class="b">22/23 October 1893</mark>; funeral/cremation in <mark class="g">England</mark> (not Nasik).</li>
+      </ul>
+    </div>
+
+    <table>
+      <caption>Two Anglo-Sikh Wars</caption>
+      <thead class="red"><tr><th>War</th><th>Years</th><th>Causes</th><th>Course &amp; Treaty</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>First</b></td><td><mark class="b">1845–46</mark></td>
+          <td>Sikh army crossed the <mark class="g">Sutlej</mark> (Dec 1845); power struggles after Ranjit Singh's death; British military actions in Afghanistan (1842), Gwalior &amp; Sindh (1841); rising British troop concentration near Sikh borders.</td>
+          <td>British won at <mark class="g">Mudki, Ferozeshah, Sobraon</mark>; Lahore fell without resistance (1846). <mark class="y">Treaty of Lahore (1846)</mark>: war indemnity of over <mark class="b">1 crore rupees</mark>; annexed <mark class="g">Jalandhar Doab</mark>; reduced Sikh army; British Resident stationed at Lahore; <mark class="g">Daleep Singh</mark> recognised as ruler under regent <mark class="g">Rani Jindan</mark>; <mark class="g">Kashmir</mark> sold to <mark class="g">Gulab Singh</mark> to cover the indemnity. Sikhs, unhappy over Kashmir, rebelled → <mark class="y">Treaty of Bhairowal (Dec 1846)</mark>: Rani Jindan removed as regent, a council of regency (8 Sikh sardars) set up under English Resident <mark class="g">Henry Lawrence</mark>.</td>
+        </tr>
+        <tr>
+          <td><b>Second</b></td><td><mark class="b">1848–49</mark></td>
+          <td>Resentment over the Lahore/Bhairowal treaties and the First War's humiliating terms; dissatisfaction over treatment of Rani Jindan; the <mark class="g">Multan rebellion</mark> under <mark class="g">Mulraj</mark>, who killed two British officers.</td>
+          <td>British under <mark class="g">Lord Dalhousie</mark> defeated the Sikhs at <mark class="g">Ramnagar, Chillianwala (13 Jan 1849 — commanders: Lord Gough for the British, Sher Singh for the Sikhs; battle ended <mark class="r">undecided</mark>), and Gujarat</mark>; Sikh surrender at Rawalpindi. <mark class="r">Punjab formally annexed, 29 March 1849</mark>, by Dalhousie's proclamation — all of Duleep Singh's territories became part of the British Empire; a <mark class="y">Board of Three</mark> (Sir <mark class="g">Henry Lawrence</mark> as President, <mark class="g">John Lawrence</mark> &amp; <mark class="g">Charles Grenville Mansel</mark> as members) governed Punjab. <mark class="g">John Lawrence</mark> became the first <mark class="g">Chief Commissioner of Punjab, 1853</mark>. Duleep Singh sent to Britain on pension (1854); pension fixed between <mark class="b">£40,000–£50,000/year</mark> for him, family, and state employees.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="trap">
+      <span class="lbl">PYQ traps — Punjab annexation</span>
+      <ul>
+        <li>Under the Treaty of Lahore (1846): the Maharaja ceded all territory <mark class="y">beyond the Sutlej forever</mark>, and gave up rights over all forts between the <mark class="y">Sutlej and Beas rivers</mark> — but the clause about the English army never passing through Sikh territory again is <mark class="r">false</mark> (only 2 of 3 given statements are correct in that PYQ).</li>
+        <li>H.M. Elliot and Robert Montgomery were <mark class="r">not</mark> members of the "Board of Three" that governed Punjab post-annexation — only Henry Lawrence, John Lawrence, and Charles Mansel were.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 17 ============ -->
+  <section class="chapter" id="ch17" data-title="Relations with Neighbouring Countries">
+    <div class="chapter-head"><div class="seal">17</div><h2>British India's Relations with Neighbouring Countries</h2></div>
+    <div class="chapter-sub">Bhutan, Nepal, Burma, Tibet, Afghanistan</div>
+
+    <div class="country-block" style="border-top:none; padding-top:0; margin-top:0;">
+      <h4>Bhutan</h4>
+      <ul>
+        <li><mark class="b">1826</mark>: after British annexation of Assam, Bhutanese raids into Bengal/Assam caused tension.</li>
+        <li><mark class="b">1863–64</mark>: <mark class="g">Lord Elgin's</mark> mission treated harshly by Bhutan → cession of passes to Bhutan; <mark class="b">1865</mark>: British annexed these passes in retaliation, granted Bhutan an annual subsidy.</li>
+        <li><mark class="y">Duar Conflict (Anglo-Bhutanese War)</mark> ended in Bhutan's defeat → <mark class="y">Treaty of Sinchula (1865)</mark>: Bhutan ceded Assam &amp; Bengal Duars plus <mark class="g">Dewangiri</mark> (80,000 sq km) for a <mark class="b">50,000-rupee</mark> annual payment.</li>
+      </ul>
+    </div>
+
+    <div class="country-block">
+      <h4>Nepal</h4>
+      <ul>
+        <li><mark class="b">1801</mark>: British annexation of <mark class="g">Gorakhpur</mark> created overlapping borders with Nepal.</li>
+        <li><mark class="b">1813–23</mark>: Nepal's capture of <mark class="g">Butwal &amp; Sheoraj</mark> during Lord Hastings' tenure sparked the <mark class="y">Anglo-Nepalese War (1814–1816)</mark>; key battles at <mark class="g">Nalapani, Jaithak, Malaon</mark>; Gorkha commander <mark class="g">Amar Singh Thapa</mark> died at Malaon → Nepal's defeat.</li>
+        <li><mark class="y">Treaty of Sagauli (1816)</mark>: Nepal ceded <mark class="g">Garhwal, Kumaon, Terai</mark>; accepted a British Resident; gave up claims over <mark class="g">Sikkim</mark>; granted British control over Nepal's foreign relations and commercial ties.</li>
+      </ul>
+    </div>
+
+    <div class="country-block">
+      <h4>Burma</h4>
+      <ul>
+        <li>British expansion driven by Burma's resources, markets, and countering French Southeast-Asia ambitions.</li>
+        <li><b>First Anglo-Burmese War (1824–26)</b>: caused by Burma's occupation of Arakan &amp; Manipur, threats to Assam. <mark class="y">Treaty of Yandabo (1826)</mark>: Burma paid <mark class="b">1 crore rupees</mark> compensation, ceded <mark class="g">Arakan &amp; Tenasserim</mark>, gave up claims over Assam/Cachar/Jaintia, recognised Manipur's independence, accepted a British Resident at Ava.</li>
+        <li><b>Second Anglo-Burmese War (1852–53)</b>: British occupied Pegu, secured Lower Burma.</li>
+        <li><b>Third Anglo-Burmese War (1885)</b>: after King <mark class="g">Thibaw's</mark> antagonism &amp; foreign alliances, the British annexed Upper Burma — full control.</li>
+        <li>Burma separated from British India in <mark class="b">1937</mark>; achieved independence <mark class="b">4 January 1948</mark> under nationalist leader <mark class="g">U Aung San</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="country-block">
+      <h4>Tibet</h4>
+      <ul>
+        <li>Tibet (nominal Chinese sovereignty, governed by Buddhist lamas): British attempts at relations had failed; Russian influence was growing.</li>
+        <li><mark class="y">British Expedition to Tibet (1903–04)</mark>: alarmed by Russian influence, <mark class="g">Lord Curzon</mark> sent Colonel <mark class="g">Younghusband</mark> with a Gurkha contingent to force negotiations.</li>
+        <li><mark class="y">Treaty of Lhasa (1904)</mark>: Tibet to pay an indemnity of <mark class="b">75 lakh rupees over 75 years</mark> (later reduced to <mark class="b">25 lakh</mark>); cede the <mark class="g">Chumbi Valley</mark> as security and respect the Sikkim frontier; open trade markets at <mark class="g">Yatung, Gyantse, Gartok</mark>; prevent foreign infrastructure. British forces withdrew from Chumbi Valley in <mark class="b">1908</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="country-block">
+      <h4>Afghanistan</h4>
+      <ul>
+        <li><mark class="y">Forward Policy (1836)</mark>: Lord Auckland's policy to protect British India's borders from Russian invasion → <b>First Anglo-Afghan War (1839–42)</b>: British installed Shah Shuja as Amir but faced resistance, costly retreat (1842), restoration of Dost Mohammed.</li>
+        <li><mark class="y">Policy of Masterly Inactivity (1864–69)</mark>: <mark class="g">John Lawrence</mark> avoided intervening in Afghan succession disputes.</li>
+        <li><b>Second Anglo-Afghan War (1878–80)</b>: Amir <mark class="g">Sher Ali's</mark> refusal to accept a British envoy led to invasion → <mark class="y">Treaty of Gandamak (1879)</mark>: Afghanistan's foreign relations made subject to British control.</li>
+        <li><mark class="y">Durand Line (1893)</mark>: established the boundary between British India and Afghanistan — caused unrest.</li>
+        <li><b>Third Anglo-Afghan War (1919)</b>: Afghanistan declared war, but the <mark class="y">Treaty of 1921</mark> granted it full control over foreign affairs — end of British influence there.</li>
+        <li>Context: 19th-century Russian influence in Persia and threats to British interests led Britain to try to keep Afghanistan a <mark class="y">neutral buffer state</mark> between British India and Russia.</li>
+      </ul>
+    </div>
+  </section>
+
+  </div><!-- /chapters -->
+
+  <div class="footer">Compiled from theory notes and PYQ (Ghatnachakra-style) explanations · marker-coded per canonical study format · cross-verify years before the exam</div>
+
+</div><!-- /main -->
+
+<script>
+  const chapters = document.querySelectorAll('.chapter');
+  const toc = document.getElementById('toc');
+  chapters.forEach((ch, i) => {
+    const a = document.createElement('a');
+    a.href = '#' + ch.id;
+    a.innerHTML = '<span class="num">' + String(i+1).padStart(2,'0') + '</span><span>' + ch.dataset.title + '</span>';
+    a.dataset.target = ch.id;
+    toc.appendChild(a);
+  });
+
+  const links = toc.querySelectorAll('a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = toc.querySelector('a[data-target="' + entry.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px', threshold: 0 });
+  chapters.forEach(ch => observer.observe(ch));
+
+  const menuBtn = document.getElementById('menu-btn');
+  const sidebar = document.getElementById('sidebar');
+  menuBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+  links.forEach(l => l.addEventListener('click', () => sidebar.classList.remove('open')));
+</script>
+
+</body>
+</html>
