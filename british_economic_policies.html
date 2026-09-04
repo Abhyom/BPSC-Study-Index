@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>British Economic Policies in India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1E33;
+    --ink-2:#122A45;
+    --paper:#FBF7EC;
+    --paper-2:#F3ECDA;
+    --gold:#C9A227;
+    --gold-2:#E8C766;
+    --teal:#2E6171;
+    --text:#1C2B3A;
+    --muted:#5B6B7A;
+    --hl-y:#F1B400;
+    --hl-b:#1F6FB2;
+    --hl-g:#1E8449;
+    --hl-r:#B03A2E;
+    --trap-bg:#FDEDEC;
+    --trap-bd:#C0392B;
+    --tbl-head-blue:#1A5276;
+    --tbl-head-red:#7B241C;
+    --tbl-head-green:#145A32;
+    --tbl-head-purple:#5B2C6F;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17.5px;
+    display:flex;
+    min-height:100vh;
+  }
+  ::selection{background:var(--gold-2); color:var(--ink);}
+
+  #sidebar{
+    width:290px;
+    flex-shrink:0;
+    background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:#DCE6EE;
+    position:fixed;
+    top:0; left:0; bottom:0;
+    overflow-y:auto;
+    padding:28px 0 40px;
+    border-right:1px solid rgba(201,162,39,.25);
+    z-index:50;
+  }
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:rgba(201,162,39,.4); border-radius:3px;}
+
+  .brand{padding:0 24px 22px; border-bottom:1px solid rgba(201,162,39,.25); margin-bottom:14px;}
+  .brand .stamp{
+    width:46px;height:46px;border-radius:50%; border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif; font-weight:800; color:var(--gold-2);
+    font-size:13px; letter-spacing:.5px; margin-bottom:10px;
+  }
+  .brand h1{font-family:'Playfair Display', serif; font-size:20px; line-height:1.3; margin:0 0 4px; font-weight:700; color:#F4EFE1;}
+  .brand p{margin:0; font-size:12px; letter-spacing:.09em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono', monospace;}
+
+  nav.toc{padding:6px 10px;}
+  nav.toc a{
+    display:flex; align-items:baseline; gap:10px; padding:10px 14px; margin:1px 0;
+    border-radius:6px; color:#B7C6D3; text-decoration:none; font-size:14px; font-weight:500;
+    border-left:3px solid transparent; transition:background .15s, color .15s, border-color .15s;
+  }
+  nav.toc a .num{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--gold); flex-shrink:0; width:20px;}
+  nav.toc a:hover{background:rgba(201,162,39,.10); color:#F4EFE1;}
+  nav.toc a.active{background:rgba(201,162,39,.16); color:#F8F1DD; border-left-color:var(--gold); font-weight:600;}
+
+  .legend-box{margin:20px 16px 0; padding:14px 14px 16px; background:rgba(255,255,255,.04); border:1px solid rgba(201,162,39,.22); border-radius:8px;}
+  .legend-box h3{margin:0 0 10px; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  .legend-row{display:flex; align-items:center; gap:8px; margin-bottom:7px; font-size:12.5px; color:#CBD6DF;}
+  .legend-swatch{width:14px;height:14px;border-radius:3px; flex-shrink:0;}
+
+  #main{margin-left:290px; flex:1; padding:0; background:var(--ink);}
+  .cover{
+    padding:74px 64px 56px;
+    background:radial-gradient(circle at 85% 20%, rgba(201,162,39,.10), transparent 45%), linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:#EFE9D8; border-bottom:4px double rgba(201,162,39,.4);
+  }
+  .cover .eyebrow{font-family:'IBM Plex Mono',monospace; letter-spacing:.18em; text-transform:uppercase; font-size:12.5px; color:var(--gold-2); margin-bottom:16px;}
+  .cover h1{font-family:'Playfair Display', serif; font-weight:800; font-size:clamp(32px,4.2vw,50px); line-height:1.12; margin:0 0 16px; max-width:820px;}
+  .cover p.sub{font-size:17px; color:#C9D2DB; max-width:660px; line-height:1.7; margin:0 0 22px;}
+  .cover .tags{display:flex; gap:10px; flex-wrap:wrap;}
+  .cover .tag{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--gold-2); border:1px solid rgba(201,162,39,.45); padding:5px 12px; border-radius:20px; background:rgba(201,162,39,.06);}
+
+  .chapters{background:var(--paper); padding:10px 0 90px;}
+  .chapter{max-width:920px; margin:0 auto; padding:56px 48px 8px; border-bottom:1px solid rgba(28,43,58,.10); scroll-margin-top:14px;}
+  .chapter:last-child{border-bottom:none;}
+
+  .chapter-head{display:flex; align-items:center; gap:18px; margin-bottom:6px;}
+  .chapter-head .seal{
+    width:52px; height:52px; border-radius:50%; background:var(--ink); color:var(--gold-2);
+    display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:700; font-size:19px;
+    border:2px solid var(--gold); flex-shrink:0;
+  }
+  .chapter-head h2{font-family:'Playfair Display', serif; font-size:clamp(23px,2.8vw,30px); margin:0; color:var(--ink); font-weight:700; line-height:1.25;}
+  .chapter-sub{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin:6px 0 26px 70px;}
+
+  .event{margin:0 0 28px; padding-left:18px; border-left:3px solid var(--teal);}
+  .event.upcoming{border-left:3px solid var(--gold);}
+  .event h3{font-family:'Playfair Display', serif; font-size:19px; margin:0 0 6px; color:var(--ink); display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .datebox{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--teal); font-weight:600; margin-bottom:10px; display:block;}
+  .event p{margin:0 0 12px; line-height:1.85; font-size:16.5px;}
+  .event ul{margin:8px 0 12px; padding-left:22px;}
+  .event li{margin-bottom:11px; line-height:1.8; font-size:16.5px;}
+  .event ul ul{margin-top:6px;}
+
+  mark{
+    padding:.15em .42em; border-radius:4px; font-weight:700; color:#fff;
+    box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  }
+  .y{background:var(--hl-y); color:#1C1200;}
+  .b{background:var(--hl-b);}
+  .g{background:var(--hl-g);}
+  .r{background:var(--hl-r);}
+
+  .trap{background:var(--trap-bg); border:1px solid rgba(192,57,43,.35); border-left:5px solid var(--trap-bd); padding:14px 18px; border-radius:6px; margin:16px 0 20px; font-size:16px; line-height:1.8;}
+  .trap .lbl{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--trap-bd); font-weight:700; display:block; margin-bottom:6px;}
+  .trap ul{margin:6px 0 0; padding-left:20px;}
+  .trap li{margin-bottom:8px;}
+
+  table{width:100%; border-collapse:collapse; margin:16px 0 26px; font-size:15.5px;}
+  caption{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--muted); margin-bottom:7px; text-transform:uppercase; letter-spacing:.06em;}
+  th,td{padding:11px 13px; text-align:left; border-bottom:1px solid rgba(28,43,58,.10); vertical-align:top; line-height:1.6;}
+  thead.blue th{background:var(--tbl-head-blue); color:#F4EFE1; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.red th{background:var(--tbl-head-red); color:#F4EFE1; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.green th{background:var(--tbl-head-green); color:#F4EFE1; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.purple th{background:var(--tbl-head-purple); color:#F4EFE1; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.03em;}
+  tbody tr:nth-child(even){background:var(--paper-2);}
+
+  .factbox{background:var(--paper-2); border:1px solid rgba(28,43,58,.12); border-radius:8px; padding:18px 20px; margin:18px 0 24px;}
+  .factbox .lbl{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--teal); font-weight:700; display:block; margin-bottom:10px;}
+  .factbox dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:8px 18px;}
+  .factbox dt{font-weight:700; font-size:15px; color:var(--ink); white-space:nowrap;}
+  .factbox dd{margin:0; font-size:15.5px; line-height:1.7;}
+
+  .country-block{margin:26px 0 6px; padding-top:20px; border-top:1px dashed rgba(28,43,58,.2);}
+  .country-block h4{font-family:'Playfair Display', serif; font-size:18px; margin:0 0 14px; color:var(--teal); display:flex; align-items:center; gap:8px;}
+  .country-block h4::before{content:"✦"; color:var(--gold); font-size:14px;}
+
+  .part-divider{max-width:920px; margin:0 auto; padding:40px 48px 0;}
+  .part-divider .plabel{font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); background:var(--ink); display:inline-block; padding:8px 18px; border-radius:20px;}
+  .part-divider .ptitle{font-family:'Playfair Display',serif; font-weight:700; font-size:27px; color:var(--ink); margin:14px 0 2px;}
+  .part-divider .pdesc{color:var(--muted); font-size:15px; margin:0 0 6px;}
+  @media (max-width:880px){ .part-divider{padding:30px 22px 0;} }
+
+  .city-head{font-family:'IBM Plex Mono',monospace; font-size:12.5px; text-transform:uppercase; letter-spacing:.09em; color:var(--gold); background:var(--ink); display:inline-block; padding:7px 15px; border-radius:5px; margin:26px 0 15px;}
+  .city-head:first-of-type{margin-top:8px;}
+
+  .note{font-size:14px; color:var(--muted); font-style:italic; margin:8px 0 16px;}
+
+  .footer{max-width:920px; margin:0 auto; padding:40px 48px 70px; color:var(--muted); font-size:13px; font-family:'IBM Plex Mono',monospace; text-align:center;}
+
+  @media (max-width: 880px){
+    #sidebar{position:fixed; left:0; top:0; bottom:0; width:260px; transform:translateX(-100%); transition:transform .25s ease;}
+    #sidebar.open{transform:translateX(0);}
+    #main{margin-left:0;}
+    .chapter{padding:44px 22px 8px;}
+    .cover{padding:58px 22px 42px;}
+    .chapter-sub{margin-left:0; margin-top:2px;}
+    .chapter-head{gap:12px;}
+    body{font-size:16.5px;}
+  }
+  #menu-btn{
+    display:none; position:fixed; top:16px; left:16px; z-index:60;
+    width:44px;height:44px;border-radius:50%; background:var(--ink);
+    border:2px solid var(--gold); color:var(--gold-2); font-size:18px;
+    align-items:center; justify-content:center; cursor:pointer;
+  }
+  @media (max-width: 880px){ #menu-btn{display:flex;} }
+</style>
+</head>
+<body>
+
+<button id="menu-btn" aria-label="Toggle chapter index">☰</button>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="stamp">₹£</div>
+    <h1>British Economic Policies in India</h1>
+    <p>Modern India · BPSC Dossier</p>
+  </div>
+  <nav class="toc" id="toc"></nav>
+  <div class="legend-box">
+    <h3>Marker Key</h3>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-y)"></span> Core concept / policy</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-b)"></span> Hard fact / date / number</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-g)"></span> Person / place / institution</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-r)"></span> MCQ trap / confusion</div>
+  </div>
+</aside>
+
+<div id="main">
+
+  <section class="cover">
+    <div class="eyebrow">Case File · Modern India — British Policies &amp; their Economic Impacts</div>
+    <h1>From merchant plunder to finance capital: how India paid for Britain's industrial revolution.</h1>
+    <p class="sub">Theory (NCERT/standard textbook) fused with every fact buried inside PYQ explanations on drain of wealth, land revenue systems, and colonial industrial policy — sorted topic-wise, tabulated wherever the data allows, and colour-marked so nothing slips past you.</p>
+    <div class="tags">
+      <span class="tag">Dutt's 3 Stages</span>
+      <span class="tag">Zamindari → Ryotwari</span>
+      <span class="tag">Theory + PYQ merged</span>
+    </div>
+  </section>
+
+  <div class="chapters">
+
+  <!-- ============ CHAPTER 1 ============ -->
+  <section class="chapter" id="ch1" data-title="Three Phases of Economic Exploitation">
+    <div class="chapter-head"><div class="seal">1</div><h2>Phases of Economic Exploitation in Colonial India</h2></div>
+    <div class="chapter-sub">Rajani Palme Dutt's Marxist periodisation</div>
+
+    <table>
+      <caption>Dutt's Three Stages of Colonial Exploitation</caption>
+      <thead class="blue"><tr><th>Stage</th><th>Period</th><th>Objectives</th><th>Methods / Features</th><th>Impact</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>1 · Merchant Capital</b></td>
+          <td><mark class="b">1757–1813</mark></td>
+          <td>Monopoly over trade, control of revenues, elimination of rivals.</td>
+          <td>Buying low &amp; selling high; political dominance in key regions.</td>
+          <td>Minimal societal change, traditional structures largely intact; <mark class="b">2–3%</mark> of Britain's national income funded its industrial revolution.</td>
+        </tr>
+        <tr>
+          <td><b>2 · Colonialism of Free Trade</b></td>
+          <td><mark class="b">1813–1860s</mark></td>
+          <td>Open British markets for goods; India as raw-material source and capital-investment destination (plantations, industries).</td>
+          <td><mark class="y">Permanent Settlement, Ryotwari system</mark>, administrative expansion; modern education to create a cheap clerical workforce; rising taxation on peasants.</td>
+          <td>Deep structural integration of India into British capitalist economy.</td>
+        </tr>
+        <tr>
+          <td><b>3 · Finance Capital</b></td>
+          <td><mark class="b">1860s–1947</mark></td>
+          <td>Consolidate control to keep rivals out; investment disguised as "trusteeship."</td>
+          <td>Ideological shift — abandoned even token self-governance promises; justified rule via geography, race, culture — the <mark class="y">"White Man's Burden."</mark></td>
+          <td>Entrenched finance-capital dominance until independence.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="trap">
+      <span class="lbl">Attributed quotes — PYQ traps</span>
+      <ul>
+        <li><mark class="g">Rajani Palme Dutt</mark> on the Indian National Congress: <mark class="y">"They both fought and collaborated with Imperialism"</mark> (64th BPSC).</li>
+        <li>The line <mark class="y">"So always with the assent and often to the dictates of the Chamber of Commerce, the government of India is carried on and this is the White Man's Burden"</mark> is attributed to <mark class="g">Sachchidananda Sinha</mark> (64th BPSC) — <mark class="r">not</mark> a British official.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 2 ============ -->
+  <section class="chapter" id="ch2" data-title="Overall Economic Impact">
+    <div class="chapter-head"><div class="seal">2</div><h2>Economic Impact of British Colonial Policies</h2></div>
+    <div class="chapter-sub">Deindustrialization to the rise of new social classes</div>
+
+    <div class="event">
+      <ul>
+        <li><mark class="y">Deindustrialization</mark>: decline of textile industries; India shifted from exporter to importer of cloth. Tariffs up to <mark class="b">80%</mark> post the <mark class="g">Charter Act of 1813</mark> restricted Indian exports, collapsing local crafts.</li>
+        <li><mark class="y">Drain of Wealth</mark>: <mark class="b">2–3%</mark> of Britain's national income was financed by exploiting Indian resources (industrial revolution funding).</li>
+        <li><mark class="y">Industrial Stagnation</mark>: British policy restricted local shipbuilding and steel industries; late/foreign-owned industrialisation.</li>
+        <li><mark class="y">Impoverishment of Peasantry</mark>: <mark class="g">Permanent Settlement (1793)</mark> imposed high rents → debt cycles with moneylenders; zamindars exploited peasants.</li>
+        <li><mark class="y">Commercial Agriculture</mark>: shift to cash crops (cotton, jute) in the late 19th century caused agrarian distress, high debt, and price volatility.</li>
+        <li><mark class="y">Land Ownership Shift</mark>: rise of absentee landlords and intermediaries as traditional zamindars declined.</li>
+        <li><mark class="y">Disintegration of the Village Economy</mark>: traditional governance undermined — the <mark class="g">Patel</mark> reduced to a mere revenue collector; private property turned land into a commodity.</li>
+        <li><mark class="y">New Social Classes</mark>: rise of landlords, moneylenders, traders; emergence of a <mark class="g">rural proletariat</mark> (poor peasants, sub-tenants, labourers).</li>
+        <li><mark class="y">Global Market Link</mark>: India supplied raw cotton and jute to British industry, integrating into the world market.</li>
+        <li><mark class="y">Capitalist Foundations</mark>: British policy did facilitate capitalist development, commercialisation of agriculture, and transport improvements — but all oriented to foreign interest.</li>
+        <li>Net result: <mark class="r">stunted industrial growth</mark>, widespread poverty and unrest — feeding directly into the independence movement.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 3 ============ -->
+  <section class="chapter" id="ch3" data-title="Concept of Economic Drain">
+    <div class="chapter-head"><div class="seal">3</div><h2>The Concept of Economic Drain</h2></div>
+
+    <div class="event">
+      <ul>
+        <li><mark class="y">Definition</mark>: the continuous, one-way outflow of wealth from India to England without adequate economic/commercial/material return — described by national leaders as an indirect tribute of imperialism.</li>
+        <li>Rooted in <mark class="y">mercantilist principles</mark>: an unfavourable trade balance causes gold and silver to leave a country. <mark class="r">Before Plassey (1757)</mark>, the Company actually <mark class="g">imported bullion</mark> into India to balance its trade deficit — the drain had not yet begun.</li>
+        <li><b>Post-Plassey shift</b>: after 1757 the Company built monopolistic control and the outflow began, via — (a) profits from oppressive land-revenue policy, (b) monopolistic trade practices, (c) exactions by Company officials.</li>
+        <li><mark class="y">"Investment" model</mark>: this surplus was labelled "investment" — used to buy exportable Indian goods with no return flow to the Indian economy.</li>
+        <li><mark class="g">Charter Act of 1813</mark>: separated the Company's territorial and commercial revenues → the drain now took the form of <mark class="y">"unrequited" exports</mark>; ended the Company's trade monopoly in India <mark class="r">except</mark> for tea trade and trade with China; asserted British Crown sovereignty over Company-held Indian territories.</li>
+        <li><mark class="y">Trade balance</mark>: until <mark class="g">WWII</mark>, India generally maintained a <mark class="r">favourable</mark> balance of trade — but a portion of the national product was still drained for political reasons, limiting local consumption and capital formation. (I.A.S. 2017: Assertion "India had a favourable balance of trade" + Reason "drain took the form of unrequited exports" — <mark class="g">both true, R correctly explains A</mark>.)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 4 ============ -->
+  <section class="chapter" id="ch4" data-title="Constituents of Economic Drain">
+    <div class="chapter-head"><div class="seal">4</div><h2>Constituents of Economic Drain</h2></div>
+
+    <table>
+      <caption>Three constituents of the Drain</caption>
+      <thead class="blue"><tr><th>Constituent</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td><b>Home Charges</b></td><td>Expenses incurred in England by the <mark class="g">Secretary of State for India</mark> on India's behalf — primarily serving British interests.</td></tr>
+        <tr><td><b>Interest on Foreign Capital Investments</b></td><td>Interest/profits on private foreign capital — another major outflow from India's national income.</td></tr>
+        <tr><td><b>Civil &amp; Military Costs</b></td><td>Funds for salaries/pensions of British personnel in India, including pensions/furloughs of British officers, payments to the British War Office, etc.</td></tr>
+        <tr><td><b>Foreign Banking, Insurance &amp; Shipping</b></td><td>Significant outflows paid for services rendered by foreign (British) firms.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="factbox">
+      <span class="lbl">Fact Box · Home Charges — the numbers</span>
+      <dl>
+        <dt>Pre-Revolt (before 1857)</dt><dd><mark class="b">10–13%</mark> of India's average revenues.</dd>
+        <dt>Post-Revolt (1897–1901)</dt><dd>Rose to <mark class="b">24%</mark>, reaching <mark class="b">£17.36 million</mark> in 1901–02, and <mark class="b">40%</mark> by 1921–22.</dd>
+        <dt>Dividends</dt><dd><mark class="b">£630,000/year</mark> to East India Company shareholders, until <mark class="b">1874</mark>.</dd>
+        <dt>Public Debt Interest</dt><dd>Debt rose from <mark class="b">£70 million to £224 million</mark> by (per source) 1900, benefiting British interests.</dd>
+        <dt>Supplies from England</dt><dd><mark class="b">10–12%</mark> of home charges, 1861–1920.</dd>
+        <dt>Interwar annual payments</dt><dd><mark class="b">Rs 30–60 crore/year</mark>, hindering indigenous industrial development.</dd>
+      </dl>
+    </div>
+
+    <div class="trap">
+      <span class="lbl">What actually counted as Home Charges (I.A.S. 2011)</span>
+      <p>Correct components: purchase of military stores; India Office establishment expenditure; interest on debts; interest on railway capital investment; non-effective army charges; pensions/gratuities of retired Company civil servants in England.</p>
+      <p><mark class="r">Funds used for waging wars OUTSIDE India</mark> were <mark class="r">NOT</mark> part of Home Charges — a repeated trap. So of the three options (India Office funds; salaries/pensions of British personnel in India; funds for wars outside India) only the <mark class="g">first two</mark> are correct.</p>
+    </div>
+
+    <div class="factbox">
+      <span class="lbl">Fact Box · Imperial Preference</span>
+      <dl>
+        <dt>What it means</dt><dd>Empire-wide preferential tariff arrangement — <mark class="r">special privileges/concessions for British imports into India</mark> (I.A.S. 1999 — the correct definition, not racial discrimination or subordination of interests, which were distractor options).</dd>
+        <dt>Mechanism</dt><dd>Britain pledged near-free entry for colonial goods while imposing tariffs on foreign (non-Empire) imports → nominal/no duty on British imports into India, but heavy duty on Indian exports into Britain.</dd>
+        <dt>Adopted formally</dt><dd><mark class="g">Ottawa Imperial Conference, 1932</mark>; <mark class="r">not renewed in 1936</mark> due to its unfavourable impact on India.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 5 ============ -->
+  <section class="chapter" id="ch5" data-title="Drain of Wealth Theory — Critics">
+    <div class="chapter-head"><div class="seal">5</div><h2>The Drain of Wealth Theory &amp; its Critics</h2></div>
+
+    <div class="event">
+      <h3>Dadabhai Naoroji — the pioneer</h3>
+      <ul>
+        <li>Lived <mark class="b">1825–1917</mark>; regarded as the "Grand Old Man of India"; the <mark class="r">first and most prominent</mark> propounder of the Drain of Wealth theory (64th BPSC).</li>
+        <li>With <mark class="g">W.C. Bonnerjee</mark>, established the <mark class="y">London Indian Society (1865)</mark> to expose Indian economic exploitation.</li>
+        <li><mark class="r">First Indian elected to the British House of Commons</mark> — <mark class="b">1892</mark>, on a <mark class="g">Liberal Party</mark> ticket.</li>
+        <li>Key writings: <i>England's Duties to India</i> (paper), <i>The Wants and Means of India</i>, <i>On the Commerce of India</i>, and — his most famous — <i><mark class="y">Poverty and Un-British Rule in India</mark></i>, published <mark class="b">1901</mark> (64th BPSC; 70th BPSC Re-exam).</li>
+        <li>Described the drain of wealth as the <mark class="y">"evil of all evils"</mark> and the leading cause of Indian poverty.</li>
+        <li>Correct definition of his "Drain Theory" (I.A.S. 1993): that a part of India's national wealth/annual product was exported to Britain <mark class="r">for which India received no material returns</mark> — not simply that resources were used in Britain's interest, or that British goods flooded India.</li>
+        <li>Factors he identified as causing the "external drain": external rule/administration costs, Britain's civil-administration and army expenses being charged to India, and India bearing the cost of empire-building both inside and outside India.</li>
+        <li>His most effective contribution to the national movement (I.A.S. 2012): <mark class="r">exposing British economic exploitation of India</mark> — not religious/social reform, which he did not focus on.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Other Economic Critics</h3>
+      <ul>
+        <li><mark class="g">Justice Mahadev Govind Ranade</mark>, <mark class="g">Romesh Chandra Dutt</mark> (author, <i>The Economic History of India</i> — argued <mark class="y">half of India's net revenues were outflowing every year</mark>), <mark class="g">Gopal Krishna Gokhale</mark>, <mark class="g">G. Subramania Iyer</mark>, <mark class="g">G.V. Joshi</mark>, and <mark class="g">Prithwishchandra Ray</mark> were all identified (I.A.S. 2015) as economic critics of colonialism.</li>
+        <li><mark class="g">G.V. Joshi</mark> remarked: <mark class="y">"Expenditure on railways should be seen as an Indian subsidy to British Industries."</mark></li>
+        <li>Critique of railways: development was <mark class="r">not coordinated</mark> with India's industrial needs — produced a commercial, not an industrial, revolution; railways let foreign goods outsell Indian products.</li>
+        <li>Critique of one-way free trade &amp; tariff policy: ruined Indian handicrafts via unequal competition; tariff policy was shaped by British capitalist interests; taxation burdened the poor while sparing British capitalists/bureaucrats (e.g. reduced land revenue, abolished salt tax, but imposed income tax and excise duties mainly hitting middle-class consumer goods).</li>
+        <li><mark class="r">Indian National Congress accepted</mark> the Drain Theory at its <mark class="b">1896 Calcutta session</mark>, declaring the ongoing drain as the real cause of frequent famines and poverty.</li>
+        <li><mark class="g">Karl Marx</mark> called British economic policy in India <mark class="y">"disgusting"</mark> — noting the dejection and impoverishment of Indian cultivators under British rule (Uttarakhand mains).</li>
+      </ul>
+    </div>
+
+    <div class="trap">
+      <span class="lbl">Who did NOT believe in the Drain Theory</span>
+      <p><mark class="r">Sir Syed Ahmad Khan</mark> was loyal to British rule and believed Muslim community development was possible only under British government — hence he did <mark class="r">not</mark> subscribe to Naoroji's Drain Theory (I.A.S. 1996: among Tilak, R.C. Dutt, M.G. Ranade, Syed Ahmad Khan — only Khan rejected it).</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 6 ============ -->
+  <section class="chapter" id="ch6" data-title="Colonial Economic Keywords">
+    <div class="chapter-head"><div class="seal">6</div><h2>Important Keywords in Colonial Economic Policy</h2></div>
+
+    <table>
+      <caption>Terms tested repeatedly in PYQs</caption>
+      <thead class="green"><tr><th>Term</th><th>Origin</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="y">Aurang</mark></td><td>Persian</td><td>A warehouse where goods were collected before sale (in-charge of a treasury is <mark class="r">not</mark> correct — a common wrong-pairing trap, I.A.S. 2020).</td></tr>
+        <tr><td><mark class="y">Bania / Banian</mark></td><td>Sanskrit "vanij" = merchant</td><td>Acted as an Indian intermediary/commercial agent for European (East India Company) merchants in Bengal.</td></tr>
+        <tr><td><mark class="y">Mirasdar / Mirasidar</mark></td><td>Urdu/South Indian</td><td>Hereditary landowners recognised as sole proprietors under the Ryotwari settlement — village elites (often high-caste in South India) asserting ownership over village land, made <mark class="r">designated revenue payers</mark> to the state, stripped of tenant rights, unable to sell land.</td></tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>Regional names for the Jajmani-type patron system</caption>
+      <thead class="purple"><tr><th>Term</th><th>Region</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="g">Jajmani</mark></td><td>North India</td></tr>
+        <tr><td><mark class="g">Bara Balute</mark></td><td>Maharashtra</td></tr>
+        <tr><td><mark class="g">Mirasi</mark></td><td>Tamil Nadu</td></tr>
+        <tr><td><mark class="g">Adade</mark></td><td>Karnataka</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Part II</span>
+    <div class="ptitle">Land Revenue Policies</div>
+    <p class="pdesc">Zamindari, Mahalwari, Ryotwari — the three tenures that reshaped rural India.</p>
+  </div>
+
+  <!-- ============ CHAPTER 7 ============ -->
+  <section class="chapter" id="ch7" data-title="Land Revenue: Background & Tenure Types">
+    <div class="chapter-head"><div class="seal">7</div><h2>Land Revenue Policies — Background</h2></div>
+
+    <div class="event">
+      <h3>Pre-British Agrarian Structure</h3>
+      <ul>
+        <li><mark class="y">Village communities</mark>: self-governing units; no concept of absolute individual land ownership.</li>
+        <li><mark class="y">Cultivator rights</mark>: tenure secured by sharing produce with overlords.</li>
+        <li><mark class="y">Role of the Patil</mark>: managed revenue, land allocation, and irrigation together with the Panchayat.</li>
+      </ul>
+      <h3>British Economic Motives</h3>
+      <ul>
+        <li>Maximising gains — treated India as a revenue-generating estate.</li>
+        <li>Over-reliance on land revenue, neglecting the traditional village system.</li>
+        <li>Consequences: agricultural decline, abandoned lands, famines, and eventual policy re-evaluation.</li>
+      </ul>
+    </div>
+
+    <table>
+      <caption>The three main land tenure systems (all-India coverage)</caption>
+      <thead class="blue"><tr><th>System</th><th>% of British India</th><th>Region</th><th>Pioneer / Introducer</th></tr></thead>
+      <tbody>
+        <tr><td><b>Zamindari (Permanent Settlement)</b></td><td><mark class="b">~19%</mark></td><td>Bengal, Bihar, Odisha, Varanasi (U.P.)</td><td><mark class="g">Lord Cornwallis</mark>, 1793 (proposed earlier by <mark class="g">Philip Francis</mark>, 1776)</td></tr>
+        <tr><td><b>Mahalwari</b></td><td><mark class="b">~30%</mark></td><td>United/North-Western Provinces, Central Provinces, Punjab</td><td><mark class="g">Holt Mackenzie</mark>, 1819/1822</td></tr>
+        <tr><td><b>Ryotwari</b></td><td><mark class="b">~51%</mark></td><td>Madras, parts of Bombay, Assam, Coorg</td><td><mark class="g">Thomas Munro &amp; Alexander Read</mark>, 1792/1820</td></tr>
+      </tbody>
+    </table>
+
+    <div class="trap">
+      <span class="lbl">Matching trap</span>
+      Permanent Settlement &amp; Ryotwari were introduced respectively in <mark class="g">Bengal and Madras</mark> (Jharkhand PCS 2021). The <mark class="y">Taluqdari system</mark> was chiefly prevalent in <mark class="g">Awadh (Oudh)</mark> — <mark class="r">not</mark> Bombay, a mismatch tested in a 2025 U.P. R.O./A.R.O. re-exam question.
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 8 ============ -->
+  <section class="chapter" id="ch8" data-title="The Zamindari / Permanent Settlement">
+    <div class="chapter-head"><div class="seal">8</div><h2>The Zamindari System &amp; the Permanent Settlement</h2></div>
+
+    <div class="event">
+      <h3>Warren Hastings' Revenue Experiment (1769–70) — the Izaredari/Ijaradari system</h3>
+      <ul>
+        <li>After acquiring <mark class="g">Diwani Rights (1765)</mark>, the British recognised agriculture's centrality and began experimenting with revenue systems.</li>
+        <li><mark class="y">Izaredari/Ijaradari system</mark>: revenue-farming — contractors bid to collect land revenue for <mark class="b">5 years</mark>, later reduced to <mark class="b">1 year (1777)</mark>.</li>
+        <li>Key issues: contractors focused purely on profit, disregarding peasant welfare; bids often <mark class="r">exceeded actual productive capacity</mark>, causing financial distress; traditional zamindars were discouraged from bidding → removals and rampant corruption.</li>
+        <li>These flaws prompted reform under <mark class="g">Lord Cornwallis</mark>, who eventually replaced it with the Permanent Settlement.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>The Permanent Settlement (1793)</h3>
+      <ul>
+        <li>Proposed by <mark class="g">Philip Francis</mark> in 1776; actually introduced by <mark class="g">Lord Cornwallis</mark> in <mark class="b">1793</mark>, in <mark class="g">Bengal, Bihar, Orissa, and parts of Madras/Varanasi (U.P.)</mark> (70th BPSC Re-exam).</li>
+        <li>Also known by the names <mark class="y">Istimrari, Malgujari (Maalguzari), and Bishwedari</mark>.</li>
+        <li>Covered ~<mark class="b">19%</mark> of British India.</li>
+        <li>Zamindars were given <mark class="r">proprietary/ownership rights</mark> over land in exchange for a fixed, permanent annual revenue payable to the government — the state's demand for revenue was fixed <mark class="y">once and for all</mark>, with an agreement that the tax rate would never rise.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Key Features</h3>
+      <ul>
+        <li><mark class="y">Fixed revenue</mark>: permanently set, never to be revised upward.</li>
+        <li><mark class="y">Zamindari rights</mark>: zamindars could sell, mortgage, or transfer land; retained <mark class="b">1/10 to 1/11</mark> of collected revenue, remitting <mark class="b">10/11</mark> to the Company.</li>
+        <li>The government believed zamindars, secured in hereditary ownership, would remain loyal to British rule.</li>
+        <li><mark class="y">Sunset Clause (1794)</mark>: if a zamindar failed to pay the fixed tax by sunset on the due date, his estate could be auctioned and he could be <mark class="r">removed from zamindari</mark> — all his rights depended on this single payment condition.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Shortcomings</h3>
+      <ul>
+        <li><mark class="r">High revenue rate</mark> — up to <mark class="b">89%</mark> in Bengal — causing severe financial stress on zamindars.</li>
+        <li><mark class="y">Sub-infeudation</mark>: division of estates, absentee landlordism, growing chain of intermediaries between farmers and landlords → <mark class="r">increased litigation</mark> (I.A.S. 2011: neither "stronger zamindar position vis-à-vis ryot," nor "Company as overlord," nor "more efficient judiciary" is the correct reason — litigation rose mainly from the intermediary/sub-infeudation chain).</li>
+        <li><mark class="y">Peasant exploitation</mark>: tenants faced high rents, loss of occupancy rights, and harassment; many zamindars did <mark class="r">not issue pattas</mark> to farmers, because there was simply <mark class="r">no official check</mark> on zamindars under the 1793 settlement (I.A.S. 2001) — they only had to remit 10/11th of collections.</li>
+        <li><mark class="y">Neglect of agriculture</mark>: zamindars focused on revenue collection, not agricultural improvement.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Later Modifications &amp; Scholarly Critique</h3>
+      <ul>
+        <li><mark class="y">Bengal (Tenancy) Rent Acts, 1859 &amp; 1885</mark>: granted some occupancy rights to tenants, but did not fully fix the zamindar–peasant imbalance. The <mark class="r">Bengal Tenancy Act, 1885</mark> specifically gave tenants' rights on land in Bengal &amp; Bihar (56th–59th BPSC).</li>
+        <li>In <mark class="g">Bihar</mark> specifically, the Permanent Settlement "constitutionalised" (fixed) land revenue for the Company — it did <mark class="r">not</mark> strip zamindars of ownership, nor abolish zamindari (48th–52nd BPSC).</li>
+        <li>Historian <mark class="g">Daniel Thorner</mark> criticised the system, arguing "absolute ownership" was a myth, and the punishing revenue demand caused frequent auctions of zamindari estates.</li>
+      </ul>
+    </div>
+
+    <div class="trap">
+      <span class="lbl">PYQ traps — bad-harvest exemption</span>
+      Under the Permanent Settlement, if a zamindar failed to pay revenue by the fixed date, his zamindari was taken over/auctioned <mark class="g">(true)</mark>. But under the <mark class="r">Ryotwari</mark> settlement, peasants were <mark class="r">NOT exempted</mark> from revenue payment even in bad harvests or natural calamities (I.A.S. 2024) — at most occasional remissions/rent reductions were given, never a blanket exemption.
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 9 ============ -->
+  <section class="chapter" id="ch9" data-title="The Mahalwari System">
+    <div class="chapter-head"><div class="seal">9</div><h2>The Mahalwari System (1819–1822)</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>Recommended by <mark class="g">Holt Mackenzie</mark> (then Territorial Secretary, Board of Revenue) in <mark class="b">1819</mark>; formalised under <mark class="y">Regulation VII of 1822</mark> — aimed to settle land revenue in Northern India (Bengal Presidency at the time) (68th BPSC).</li>
+        <li>Faced complex-survey challenges, high revenue demands, harsh extraction, worsened by the <mark class="y">Agricultural Depression of 1828</mark>.</li>
+        <li><b>Primary unit</b>: the <mark class="y">mahal</mark> (village or group of villages) — land collectively owned by the village community.</li>
+        <li><b>Collection responsibility</b>: the <mark class="g">village headman</mark> was responsible for revenue collection and payment; the whole village was jointly liable.</li>
+        <li><b>State revenue share</b>: initially <mark class="b">66%</mark> of rental value, later reduced to <mark class="b">50%</mark>.</li>
+        <li>Introduced average rents for different soil types, with periodic (<mark class="r">non-permanent</mark>) assessments.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Shortcomings &amp; Refinements</h3>
+      <ul>
+        <li>Record-keeping of all rights proved impractical; assessments were often manipulated → high taxes, breakdown of village community, cultivator dispossession → contributed to unrest in the <mark class="g">Revolt of 1857</mark>.</li>
+        <li><mark class="y">Regulation of 1822</mark> had set revenue at <mark class="r">80% for zamindars and 95% for common tenancy</mark> — ultimately failed due to unsustainably high demands.</li>
+        <li><mark class="g">Merttins Bird</mark>: <mark class="y">Regulation IX of 1833</mark> simplified procedures, established average rents by soil class; fixed state demand at <mark class="b">66%</mark> for a <mark class="b">30-year settlement</mark>, concluded under <mark class="g">James Thomson</mark> (Lt. Governor, 1843–53).</li>
+        <li><mark class="y">Saharanpur Rules (1855)</mark>: issued under <mark class="g">Lord Dalhousie</mark>, limiting the state's demand to <mark class="b">50%</mark> — but field officers often evaded these rules, and the resulting hardship contributed to discontent during the <mark class="g">Revolt of 1857–58</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 10 ============ -->
+  <section class="chapter" id="ch10" data-title="The Ryotwari System">
+    <div class="chapter-head"><div class="seal">10</div><h2>The Ryotwari System</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>Introduced <mark class="b">1792</mark> by <mark class="g">Thomas Munro</mark> and <mark class="g">Captain Alexander Read</mark> in the <mark class="y">Baramahal region</mark>, Madras Presidency (67th BPSC) — Alexander Read is credited as the <mark class="r">first</mark> to actually implement it there, assisted/continued by Munro.</li>
+        <li>Officially formalised <mark class="b">1820</mark>, when <mark class="g">Thomas Munro</mark> became Governor of Madras (1820–27) and extended it across the province (except permanently-settled areas).</li>
+        <li>Aimed to maximise revenue collection <mark class="r">directly from farmers (ryots)</mark>, cutting out intermediaries — influenced by utilitarian ideas and <mark class="g">David Ricardo's theory of rent</mark>.</li>
+        <li>Initial tax: <mark class="y">one-third of gross produce</mark> (Baramahal state demand was fixed on the basis of <mark class="b">50%</mark> of estimated produce per Alexander Read's original scheme).</li>
+        <li>Thomas Munro himself remarked: <mark class="y">"The Ryotwari is a system which has always prevailed in India"</mark> (Jharkhand PCS 2023).</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Key Features (I.A.S. 2012 — all three statements below are correct)</h3>
+      <ul>
+        <li>Rent was paid <mark class="r">directly by peasants to the Government</mark> — no zamindar/landlord intermediary.</li>
+        <li>The Government issued <mark class="y">Pattas</mark> (title deeds) directly to the Ryots.</li>
+        <li>Lands were <mark class="y">surveyed and assessed</mark> before being taxed.</li>
+        <li>Ryots held ownership <mark class="r">and</mark> occupancy rights, with no upper limit on land held, and the ability to sublet, transfer, or sell.</li>
+        <li>Direct tax: ranged <mark class="b">45–55%</mark> of estimated production (theory book) — a punishing rate equated by critics to full economic rent.</li>
+        <li><mark class="r">Non-permanent settlement</mark>: periodic revisions of revenue assessment could abruptly change tax obligations.</li>
+        <li><mark class="r">Confiscation policy</mark>: non-payment could lead to land confiscation; <mark class="r">no relaxation or exemption</mark> even during bad harvest or natural calamity (confirmed as the correct fact by I.A.S. 2024 — see Ch.8 trap box).</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Challenges, Coercion &amp; Reform</h3>
+      <ul>
+        <li>Arbitrary fines based on prior payment history; coercive collection methods, even torture, driving peasants into moneylender debt cycles.</li>
+        <li><mark class="y">Madras Torture Commission Report (1855)</mark>: documented systemic corruption, bribery and coercion among revenue officials.</li>
+        <li><mark class="y">Scientific Surveys (1855)</mark>: reduced tax burden on ryots to improve agricultural conditions.</li>
+        <li><mark class="y">Reformed Settlement (1864)</mark>: fixed revenue at <mark class="b">50% of net produce for 30 years</mark>, fostering some agricultural prosperity — despite famines in <mark class="b">1865–66</mark> and <mark class="b">1876–78</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Geographic Expansion</h3>
+      <ul>
+        <li>Expanded into the <mark class="g">Bombay Presidency</mark> after the conquest of Peshwa territory (<mark class="b">1818</mark>), with state demand initially fixed at <mark class="b">55%</mark> based on faulty surveys.</li>
+        <li>Improved by <mark class="g">Wingate and Goldsmith</mark> (by 1836), extending it to <mark class="g">Berar, East Bengal, parts of Assam, and Coorg</mark>.</li>
+        <li><b>Madras</b>: Baramahal's 50% demand caused hardship; the Madras famine (1867–78) exposed the system's failures.</li>
+        <li><b>Bombay</b>: eliminated landlords, creating a direct state–ryot relationship; <mark class="g">Elphinstone and Chaplin</mark> recommended reforms, recognising village communities' importance; <mark class="g">Wingate's Survey (1835–47)</mark> based assessments on geology, but guesswork led to penalties and unrest; the <mark class="y">Agrarian Riots (1875)</mark> led to the <mark class="y">Deccan Agriculturists' Relief Act (1879)</mark> — which still failed to resolve excessive state demands.</li>
+      </ul>
+    </div>
+
+    <div class="trap">
+      <span class="lbl">"Who introduced Ryotwari" — matching trap</span>
+      <mark class="r">Lord Cornwallis was NOT involved</mark> in Ryotwari — he is exclusively linked to the Permanent Settlement. Correct pairing (I.A.S. 2017): only <mark class="g">Alexander Read and Thomas Munro</mark> (not Cornwallis) are associated with the Ryotwari Settlement.
+    </div>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Part III</span>
+    <div class="ptitle">Colonial Industrial Policy</div>
+    <p class="pdesc">From deliberate deindustrialization to grudging wartime protection.</p>
+  </div>
+
+  <!-- ============ CHAPTER 11 ============ -->
+  <section class="chapter" id="ch11" data-title="Colonial Policy on Industry">
+    <div class="chapter-head"><div class="seal">11</div><h2>Colonial Policy on Industry</h2></div>
+
+    <div class="event">
+      <h3>Deindustrialization &amp; Its Timeline</h3>
+      <ul>
+        <li>British policy consciously aimed to prevent Indian industrialisation, keeping India an <mark class="r">agricultural base</mark> for Britain — though imperial administrative/military needs did drive roads, railways, and communications infrastructure that later aided modern industry.</li>
+        <li>Deindustrialization <mark class="r">started in 1813</mark> (Charter Act ending Company trade monopoly, except tea/China trade), and was <mark class="r">aggravated</mark> by the <mark class="y">Saint Helena Act / Government of India Act, 1833</mark>, which ended the Company's role as a trading body altogether (it became a purely administrative body) and stripped its China-trade monopoly too (U.P.P.C.S. Mains 2017 — both parts of the statement are correct).</li>
+        <li>Traditional cottage/handicraft industries declined; by the <mark class="b">1830s</mark>, cheap British textiles flooded Indian markets, while Indian textiles faced heavy import duties in Britain — British textiles simultaneously captured European, American, and African markets.</li>
+        <li>Machine-made British textiles were both cheaper and higher-quality than Indian handcrafted goods (I.A.S. 2020: correct explanation of the Industrial Revolution's impact on India in the first half of the 19th century — <mark class="r">not</mark> "machines were introduced in Indian textile industry", "railway lines were laid," or "heavy duties on British imports" — those are all incorrect for this period).</li>
+        <li>India became a source of raw materials and a captive market for British manufactures — an "economic colony."</li>
+        <li>Handicrafts also lost patronage from declining kings, chieftains, and zamindars.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Early Industrial Foundations</h3>
+      <ul>
+        <li><mark class="r">First railway line, 1853</mark>: <mark class="g">Bombay to Thane</mark>.</li>
+        <li><mark class="r">First cotton mill, 1854</mark>: the <mark class="y">Bombay Spinning and Weaving Company</mark>, by <mark class="g">Cowasjee Nanabhoy Davar</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Growth of Indian Capitalist Enterprise</h3>
+      <ul>
+        <li>Textile sector (especially Bombay) saw early entrepreneurship from <mark class="g">Parsis</mark> and <mark class="g">Gujaratis</mark> despite facing British import competition, discriminatory tariffs, limited credit access (European-dominated banks), favourable freight rates for British goods, and dependence on imported equipment.</li>
+        <li>Resilience: the <mark class="g">Swadeshi Movement</mark> spurred Indian industrialists toward cost-reduction and promotion of Indian-made goods.</li>
+        <li><mark class="y">Tata Iron and Steel Company (TISCO)</mark>: promoted by <mark class="g">Jamshedji Tata</mark>, incorporated <mark class="b">1907</mark>, began production at <mark class="g">Jamshedpur, 1911–12</mark> — a milestone in large-scale Indian steel industry.</li>
+        <li>By the late 19th century, jute, coal, and plantation industries (indigo, tea, coffee) expanded — but mostly under continued British control/investment.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Impact of World War I</h3>
+      <ul>
+        <li>Boosted Indian industries by curbing foreign imports and raising government demand for war supplies; falling raw-material prices benefited manufacturers while stagnant wages kept costs low.</li>
+        <li>Politically triggered demands for self-sufficiency and industry protection.</li>
+        <li>British response: the <mark class="y">Industrial Commission (1916)</mark> explored opportunities for Indian capital; the <mark class="y">Indian Munitions Board (1917)</mark> advocated domestic military-goods production.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 12 ============ -->
+  <section class="chapter" id="ch12" data-title="Interwar Protection & WWII Industry">
+    <div class="chapter-head"><div class="seal">12</div><h2>Interwar Protection (1918–39) &amp; WWII-era Industry (1939–47)</h2></div>
+
+    <div class="event">
+      <h3>Protection During the Interwar Period</h3>
+      <ul>
+        <li><mark class="y">Stores Purchase Committee (1919)</mark>: guaranteed minimum government orders to support local industries and boost domestic production.</li>
+        <li><mark class="y">Montagu-Chelmsford Reforms</mark>: introduced fiscal autonomy for India, reducing the Secretary of State's interference in fiscal matters agreed between the Government of India and its Legislature.</li>
+        <li><mark class="y">Fiscal Commission (1921–1923)</mark>, under <mark class="g">Sir Ibrahim Rahimtoola</mark>, assessed &amp; recommended fiscal protection for nascent industries — introduced the <mark class="y">"Triple Formula"</mark>:
+          <ul>
+            <li>Industry must have natural advantages (raw materials, labour, market).</li>
+            <li>Industry needs protection to develop at an optimal pace.</li>
+            <li>Industry must eventually be able to compete globally without protection.</li>
+          </ul>
+        </li>
+        <li><mark class="y">Tariff Board</mark>: recommended by the Fiscal Commission, to evaluate applications for fiscal protection — decided which industries got safeguarded.</li>
+        <li>Despite an overvalued rupee, the <mark class="g">Great Depression (1929–30)</mark>, and the Imperial Preference System, Indian industry made significant progress <mark class="b">1923–1939</mark> under these protective measures.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Industrial Development, State Policy &amp; the Indian Capitalist Class (1939–1947)</h3>
+      <ul>
+        <li>WWII caused scarcity for the general population but generated <mark class="r">super profits</mark> for Indian businessmen as industrial imports halted; traders profited via speculation, hoarding, and black-marketing.</li>
+        <li>Limited scope for new ventures (war restrictions), but existing enterprises expanded, forming new Joint Stock Companies, banks, life-insurance firms.</li>
+        <li>Increased Indian–foreign capitalist partnerships; diversification into banking and speculation.</li>
+        <li>The <mark class="g">Tariff Board</mark> applied more liberal guidelines — industries had to show sound business principles and independent-development potential to qualify for protection.</li>
+        <li>The Indian capitalist class grew stronger through nationalist-movement backing — by independence it had become a major socio-economic force capable of shaping political decisions.</li>
+      </ul>
+    </div>
+
+    <div class="factbox">
+      <span class="lbl">Fact Box · Miscellaneous economic-policy data points</span>
+      <dl>
+        <dt>Central revenue on military</dt><dd><mark class="b">40%</mark> of British India's central revenue went to military expenditure.</dd>
+        <dt>Punjab Land Alienation Act</dt><dd><mark class="b">1900</mark> — stopped land transfer from farmers (agriculturists) to non-farmers (non-agriculturist moneylenders/traders).</dd>
+        <dt>First tea company in Assam</dt><dd>The <mark class="g">Assam Company</mark>, formed in England, <mark class="b">1839</mark>, capital Rs 5 lakh, HQ at <mark class="g">Nazira, Assam</mark> — India's oldest still-functioning tea company.</dd>
+        <dt>Pioneer of South Indian irrigation</dt><dd><mark class="g">Sir Arthur Cotton</mark>, a British irrigation engineer.</dd>
+        <dt>Staple Bengal exports, mid-18th century</dt><dd><mark class="y">Cotton, silk, saltpetre, opium</mark> (I.A.S. 2018) — the Company's key Bengal purchases for European resale, alongside sugar.</dd>
+        <dt>Why little independent industrial development</dt><dd>Chiefly the <mark class="r">preference of India's rich to invest in land</mark> rather than industry (I.A.S. 1999) — not absence of heavy industry, scarcity of foreign capital, or scarcity of natural resources.</dd>
+        <dt>19th-century economic result of British rule</dt><dd><mark class="r">Commercialisation of Indian agriculture</mark> (I.A.S. 2018) — farmers forced into cash crops (e.g. indigo) as raw material for British factories; urban population and domestic industry actually <mark class="r">declined</mark>, so "growth of Indian-owned factories/rapid urban growth/rise in handicraft exports" are all incorrect distractors.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Part IV</span>
+    <div class="ptitle">Committees &amp; Commissions Before Independence</div>
+    <p class="pdesc">Every field-wise commission the British set up — chairman, objective, and the Governor-General/Viceroy under whom it worked.</p>
+  </div>
+
+  <!-- ============ CHAPTER 13 ============ -->
+  <section class="chapter" id="ch13" data-title="Committees & Commissions — Agriculture, Education, Governance">
+    <div class="chapter-head"><div class="seal">13</div><h2>Committees &amp; Commissions — I</h2></div>
+    <div class="chapter-sub">Agriculture &amp; Irrigation · Education · Governance</div>
+
+    <table>
+      <caption>Agriculture &amp; Irrigation</caption>
+      <thead class="green"><tr><th>Committee / Year</th><th>Chairman</th><th>Objective</th><th>Governor-General / Viceroy</th></tr></thead>
+      <tbody>
+        <tr><td>Madras Agricultural Committee, 1890</td><td>—</td><td>Examine whether to abandon efforts to "teach" the ryot until more was known of his practices/conditions.</td><td><mark class="g">Lord Lansdowne</mark></td></tr>
+        <tr><td>Scott-Moncrieff Commission, 1901</td><td><mark class="g">Sir Colin Scott Moncrieff</mark></td><td>Plan expenditure on irrigation.</td><td><mark class="g">Lord Curzon</mark></td></tr>
+        <tr><td>Maclagan Committee, 1914–15</td><td><mark class="g">Maclagan</mark></td><td>Advise on cooperative finance.</td><td><mark class="g">Lord Hardinge II</mark></td></tr>
+        <tr><td>Linlithgow Commission, 1928</td><td><mark class="g">Linlithgow</mark></td><td>Study agricultural problems.</td><td><mark class="g">Lord Irwin</mark></td></tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>Education</caption>
+      <thead class="blue"><tr><th>Committee / Year</th><th>Chairman</th><th>Objective</th><th>Governor-General / Viceroy</th></tr></thead>
+      <tbody>
+        <tr><td>Hunter Commission, 1882</td><td><mark class="g">William Hunter</mark></td><td>Study developments in education.</td><td><mark class="g">Lord Ripon</mark></td></tr>
+        <tr><td>University Commission, 1902</td><td><mark class="g">Thomas Raleigh</mark></td><td>Study universities &amp; introduce reforms.</td><td><mark class="g">Lord Curzon</mark> (66th BPSC Re-exam)</td></tr>
+        <tr><td>Calcutta University Commission, 1917</td><td><mark class="g">Michael Sadler</mark></td><td>Study university conditions.</td><td><mark class="g">Lord Chelmsford</mark></td></tr>
+        <tr><td>Hartog Committee, 1929</td><td><mark class="g">Philip Hartog</mark></td><td>Review education standards — part of a broader review of the reforms following the 1919 Montagu-Chelmsford Reforms.</td><td><mark class="g">Lord Irwin</mark></td></tr>
+        <tr><td>Sargent Plan, 1944</td><td><mark class="g">John Sargent</mark></td><td>Raise Indian education standards to match Britain's.</td><td><mark class="g">Lord Wavell</mark></td></tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>Governance</caption>
+      <thead class="purple"><tr><th>Committee / Year</th><th>Chairman</th><th>Objective</th><th>Governor-General / Viceroy</th></tr></thead>
+      <tbody>
+        <tr><td>Hunter Committee / Disorders Inquiry Committee, 1919</td><td><mark class="g">William Hunter</mark></td><td>Investigate the Punjab disturbances (Jallianwala Bagh).</td><td><mark class="g">Lord Chelmsford</mark></td></tr>
+        <tr><td>Muddiman Committee, 1924</td><td><mark class="g">Sir Alexander Muddiman</mark></td><td>Examine working of diarchy under the Montagu-Chelmsford reforms.</td><td><mark class="g">Lord Reading</mark></td></tr>
+        <tr><td>Butler Commission, 1927</td><td><mark class="g">Sir Harcourt Butler</mark></td><td>Examine relationship between Indian princely states and the British Crown.</td><td><mark class="g">Lord Irwin</mark></td></tr>
+        <tr><td>Simon Commission, 1928</td><td><mark class="g">Sir John Simon</mark></td><td>Investigate governance progress, suggest new reforms.</td><td><mark class="g">Lord Irwin</mark></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ CHAPTER 14 ============ -->
+  <section class="chapter" id="ch14" data-title="Committees & Commissions — Economic, Famine, Law">
+    <div class="chapter-head"><div class="seal">14</div><h2>Committees &amp; Commissions — II</h2></div>
+    <div class="chapter-sub">Economic · Famine · Law</div>
+
+    <table>
+      <caption>Economic Commissions/Committees</caption>
+      <thead class="green"><tr><th>Committee / Year</th><th>Chairman</th><th>Objective</th><th>Governor-General / Viceroy</th></tr></thead>
+      <tbody>
+        <tr><td>Whitley Commission, 1929</td><td><mark class="g">J.H. Whitley</mark></td><td>Study conditions of industrial &amp; plantation labour.</td><td><mark class="g">Lord Irwin</mark></td></tr>
+        <tr><td>Sapru Commission (Unemployment), 1935</td><td><mark class="g">Tej Bahadur Sapru</mark></td><td>Address unemployment in the United Provinces.</td><td><mark class="g">Lord Linlithgow</mark></td></tr>
+        <tr><td>National Planning Committee, 1938</td><td><mark class="g">Jawaharlal Nehru</mark></td><td>Prepare an economic plan.</td><td>Congress committee (not government-appointed)</td></tr>
+        <tr><td>Chatfield Commission (Army), 1939</td><td><mark class="g">Lord Chatfield</mark></td><td>Assess army needs &amp; reforms.</td><td><mark class="g">Lord Linlithgow</mark></td></tr>
+        <tr><td>Floud Commission (Tenancy), 1940</td><td><mark class="g">Francis Floud</mark></td><td>Investigate tenancy issues in Bengal.</td><td><mark class="g">Lord Linlithgow</mark></td></tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>Famine Commissions — a dedicated lineage</caption>
+      <thead class="red"><tr><th>Committee / Year</th><th>Chairman</th><th>Objective</th><th>Governor-General / Viceroy</th></tr></thead>
+      <tbody>
+        <tr><td>Campbell Commission, 1866</td><td><mark class="g">Sir George Campbell</mark></td><td>Investigate causes of the <mark class="g">Odisha famine</mark>; blamed government machinery for the tragedy, suggested relief measures.</td><td><mark class="g">Lord Lawrence</mark></td></tr>
+        <tr><td>Strachey Commission, 1880</td><td><mark class="g">Richard Strachey</mark></td><td>Recommended a <mark class="y">Famine Code</mark>, irrigation development, suspension of land revenue during famines, agricultural/peasantry data collection, and a Famine Fund.</td><td><mark class="g">Lord Lytton</mark></td></tr>
+        <tr><td>Lyall Commission, 1897</td><td><mark class="g">James Lyall</mark></td><td>Recommend irrigation-facility development.</td><td><mark class="g">Lord Elgin</mark></td></tr>
+        <tr><td>MacDonnell Commission, 1900</td><td><mark class="g">Anthony MacDonnell</mark></td><td>Recommended year-round famine-control machinery based on lessons from recent famines.</td><td><mark class="g">Lord Curzon</mark></td></tr>
+        <tr><td>Famine Inquiry Commission, 1943–44</td><td><mark class="g">John Woodhead</mark></td><td>Investigate the <mark class="r">Bengal Famine of 1943</mark>.</td><td><mark class="g">Lord Wavell</mark></td></tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>Law Commissions</caption>
+      <thead class="purple"><tr><th>Commission / Year</th><th>Chairman</th><th>Objective</th><th>Governor-General / Viceroy</th></tr></thead>
+      <tbody>
+        <tr><td>First Law Commission, 1834</td><td><mark class="g">Lord Macaulay</mark></td><td>Recommend codification: <mark class="y">Penal Code, Criminal Procedure Code</mark>, etc.</td><td><mark class="g">Lord William Bentinck</mark></td></tr>
+        <tr><td>Second Law Commission, 1853</td><td><mark class="g">Sir John Romilly</mark></td><td>Recommend the <mark class="y">Indian Code of Civil Procedure, Indian Contract Act</mark>, etc.</td><td><mark class="g">Lord Dalhousie</mark></td></tr>
+        <tr><td>Third Law Commission, 1861</td><td><mark class="g">Sir John Romilly</mark></td><td>Recommend the <mark class="y">Indian Evidence Act, Transfer of Property Act</mark>, etc.</td><td><mark class="g">Lord Canning</mark></td></tr>
+        <tr><td>Fourth Law Commission, 1879</td><td><mark class="g">Dr. Whitley Stokes</mark></td><td>Codes on Negotiable Instruments, Trusts Law, Transfer of Property, Easements, Criminal &amp; Civil Procedure.</td><td><mark class="g">Lord Lytton</mark></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ CHAPTER 15 ============ -->
+  <section class="chapter" id="ch15" data-title="Committees & Commissions — Currency, Civil Service, Other">
+    <div class="chapter-head"><div class="seal">15</div><h2>Committees &amp; Commissions — III</h2></div>
+    <div class="chapter-sub">Currency · Civil Service · Other bodies</div>
+
+    <table>
+      <caption>Currency</caption>
+      <thead class="green"><tr><th>Committee / Year</th><th>Chairman</th><th>Objective</th><th>Governor-General / Viceroy</th></tr></thead>
+      <tbody>
+        <tr><td>Herschell Committee, 1893</td><td><mark class="g">Herschell</mark></td><td>Suggestions on currency.</td><td><mark class="g">Lord Lansdowne</mark></td></tr>
+        <tr><td>Henry Fowler Commission, 1898</td><td><mark class="g">H. Fowler</mark></td><td>Suggestions on currency.</td><td><mark class="g">Lord Elgin</mark></td></tr>
+        <tr><td>Royal Commission on Indian Currency, 1913</td><td><mark class="g">Sir Austin Chamberlain</mark> (70th BPSC)</td><td>Proposed an <mark class="y">exchange standard</mark> — gold coins (sovereigns) not necessary for the system to function.</td><td><mark class="g">Lord Hardinge II</mark></td></tr>
+        <tr><td>Babington Smith Commission, 1919</td><td><mark class="g">Babington Smith</mark></td><td>Investigate state of Indian currency, suggest reforms.</td><td><mark class="g">Lord Chelmsford</mark></td></tr>
+        <tr><td>Hilton Young Commission, 1926</td><td><mark class="g">Edward Hilton Young</mark></td><td>Review currency policy.</td><td><mark class="g">Lord Reading</mark></td></tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>Civil Service</caption>
+      <thead class="blue"><tr><th>Commission / Year</th><th>Chairman</th><th>Objective</th><th>Governor-General / Viceroy</th></tr></thead>
+      <tbody>
+        <tr><td>Aitchison Commission, 1886</td><td><mark class="g">Charles Aitchison</mark></td><td>Involve more Indians in the Civil Service.</td><td><mark class="g">Lord Dufferin</mark></td></tr>
+        <tr><td>Fraser Commission, 1902</td><td><mark class="g">Fraser</mark></td><td>Investigate the working of the police.</td><td><mark class="g">Lord Curzon</mark></td></tr>
+        <tr><td>Royal Commission on Civil Service, 1912</td><td><mark class="g">Lord Islington</mark></td><td>Recommended giving <mark class="b">25%</mark> of high posts to Indians.</td><td><mark class="g">Lord Hardinge</mark></td></tr>
+        <tr><td>Lee Commission, 1924</td><td><mark class="g">Lord Lee</mark></td><td>Remove defects in the Civil Service.</td><td><mark class="g">Lord Reading</mark></td></tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>Other notable committees</caption>
+      <thead class="red"><tr><th>Committee / Year</th><th>Chairman / Key figures</th><th>Objective</th><th>Governor-General / Viceroy</th></tr></thead>
+      <tbody>
+        <tr><td>Shore Committee, 1914</td><td><mark class="g">Hussain Rahim, Sohan Lal Pathak, Balwant Singh</mark></td><td>Fought for the rights of the <mark class="y">Komagata Maru</mark> passengers (1914 incident).</td><td>—</td></tr>
+        <tr><td>Lottery Committee, 1817</td><td>—</td><td>Assisted the government with town planning in Calcutta.</td><td><mark class="g">Lord Hastings</mark></td></tr>
+        <tr><td>Opium Commission, 1893</td><td>—</td><td>Investigate opium's health effects.</td><td><mark class="g">Lord Lansdowne</mark></td></tr>
+        <tr><td>Rowlatt Committee, 1917</td><td><mark class="g">Sydney Rowlatt</mark></td><td>"Sedition Committee" — authorised arrest for up to <mark class="b">2 years without trial</mark> of anyone suspected of terrorism in British India.</td><td><mark class="g">Lord Chelmsford</mark></td></tr>
+        <tr><td>Southborough Committee (Indian Franchise Committee), 1918–19</td><td><mark class="g">Francis Hopwood</mark></td><td>Decide the franchise (voting-rights) question.</td><td><mark class="g">Lord Chelmsford</mark></td></tr>
+        <tr><td>Feetham Function Committee, 1918–19</td><td><mark class="g">Richard Feetham</mark></td><td>Proposed division of subjects between Centre and Provinces, incl. Reserved/Transferred categories.</td><td><mark class="g">Lord Chelmsford</mark></td></tr>
+        <tr><td>Indian Jail Reforms Committee, 1919</td><td><mark class="g">Sir Alexander Cardew</mark></td><td>Improve conditions of prisoners.</td><td><mark class="g">Lord Chelmsford</mark></td></tr>
+        <tr><td>Sandhurst Committee, 1926</td><td><mark class="g">Andrew Skeen</mark></td><td>Suggest Indianization of the Indian Army.</td><td><mark class="g">Lord Reading</mark></td></tr>
+        <tr><td>Indian Franchise / Lothian Committee, 1932</td><td><mark class="g">Lothian</mark></td><td>Basis for the <mark class="r">Communal Award (1932)</mark> — separate electorates, reserved minority seats; depressed classes given <mark class="b">78</mark> reserved seats.</td><td><mark class="g">Lord Willingdon</mark></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  </div><!-- /chapters -->
+
+  <div class="footer">Compiled from theory notes and PYQ (Ghatnachakra-style) explanations · marker-coded per canonical study format · cross-verify years before the exam</div>
+
+</div><!-- /main -->
+
+<script>
+  const chapters = document.querySelectorAll('.chapter');
+  const toc = document.getElementById('toc');
+  chapters.forEach((ch, i) => {
+    const a = document.createElement('a');
+    a.href = '#' + ch.id;
+    a.innerHTML = '<span class="num">' + String(i+1).padStart(2,'0') + '</span><span>' + ch.dataset.title + '</span>';
+    a.dataset.target = ch.id;
+    toc.appendChild(a);
+  });
+
+  const links = toc.querySelectorAll('a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = toc.querySelector('a[data-target="' + entry.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px', threshold: 0 });
+  chapters.forEach(ch => observer.observe(ch));
+
+  const menuBtn = document.getElementById('menu-btn');
+  const sidebar = document.getElementById('sidebar');
+  menuBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+  links.forEach(l => l.addEventListener('click', () => sidebar.classList.remove('open')));
+</script>
+
+</body>
+</html>
