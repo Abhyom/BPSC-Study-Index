@@ -1,0 +1,4232 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Indian Independence Movement: 1905-1917</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--ink: #0b1e33;
+				--ink-2: #122a45;
+				--paper: #fbf7ec;
+				--paper-2: #f3ecda;
+				--gold: #c9a227;
+				--gold-2: #e8c766;
+				--teal: #2e6171;
+				--text: #1c2b3a;
+				--muted: #5b6b7a;
+				--hl-y: #f1b400;
+				--hl-b: #1f6fb2;
+				--hl-g: #1e8449;
+				--hl-r: #b03a2e;
+				--trap-bg: #fdedec;
+				--trap-bd: #c0392b;
+				--ctx-bg: #eaf2f6;
+				--ctx-bd: #2e6171;
+				--tbl-head-blue: #1a5276;
+				--tbl-head-red: #7b241c;
+				--tbl-head-green: #145a32;
+				--tbl-head-purple: #5b2c6f;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+			body {
+				margin: 0;
+				background: var(--ink);
+				color: var(--text);
+				font-family: "Source Sans 3", sans-serif;
+				font-size: 17.5px;
+				display: flex;
+				min-height: 100vh;
+			}
+			::selection {
+				background: var(--gold-2);
+				color: var(--ink);
+			}
+
+			#sidebar {
+				width: 290px;
+				flex-shrink: 0;
+				background: linear-gradient(
+					180deg,
+					var(--ink) 0%,
+					var(--ink-2) 100%
+				);
+				color: #dce6ee;
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				overflow-y: auto;
+				padding: 28px 0 40px;
+				border-right: 1px solid rgba(201, 162, 39, 0.25);
+				z-index: 50;
+			}
+			#sidebar::-webkit-scrollbar {
+				width: 6px;
+			}
+			#sidebar::-webkit-scrollbar-thumb {
+				background: rgba(201, 162, 39, 0.4);
+				border-radius: 3px;
+			}
+
+			.brand {
+				padding: 0 24px 22px;
+				border-bottom: 1px solid rgba(201, 162, 39, 0.25);
+				margin-bottom: 14px;
+			}
+			.brand .stamp {
+				width: 46px;
+				height: 46px;
+				border-radius: 50%;
+				border: 2px solid var(--gold);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: "Playfair Display", serif;
+				font-weight: 800;
+				color: var(--gold-2);
+				font-size: 13px;
+				letter-spacing: 0.5px;
+				margin-bottom: 10px;
+			}
+			.brand h1 {
+				font-family: "Playfair Display", serif;
+				font-size: 19px;
+				line-height: 1.3;
+				margin: 0 0 4px;
+				font-weight: 700;
+				color: #f4efe1;
+			}
+			.brand p {
+				margin: 0;
+				font-size: 12px;
+				letter-spacing: 0.09em;
+				text-transform: uppercase;
+				color: var(--gold-2);
+				font-family: "IBM Plex Mono", monospace;
+			}
+
+			nav.toc {
+				padding: 6px 10px;
+			}
+			nav.toc a {
+				display: flex;
+				align-items: baseline;
+				gap: 10px;
+				padding: 10px 14px;
+				margin: 1px 0;
+				border-radius: 6px;
+				color: #b7c6d3;
+				text-decoration: none;
+				font-size: 13.6px;
+				font-weight: 500;
+				border-left: 3px solid transparent;
+				transition:
+					background 0.15s,
+					color 0.15s,
+					border-color 0.15s;
+			}
+			nav.toc a .num {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11px;
+				color: var(--gold);
+				flex-shrink: 0;
+				width: 20px;
+			}
+			nav.toc a:hover {
+				background: rgba(201, 162, 39, 0.1);
+				color: #f4efe1;
+			}
+			nav.toc a.active {
+				background: rgba(201, 162, 39, 0.16);
+				color: #f8f1dd;
+				border-left-color: var(--gold);
+				font-weight: 600;
+			}
+
+			.legend-box {
+				margin: 20px 16px 0;
+				padding: 14px 14px 16px;
+				background: rgba(255, 255, 255, 0.04);
+				border: 1px solid rgba(201, 162, 39, 0.22);
+				border-radius: 8px;
+			}
+			.legend-box h3 {
+				margin: 0 0 10px;
+				font-size: 10.5px;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: var(--gold-2);
+				font-family: "IBM Plex Mono", monospace;
+				font-weight: 500;
+			}
+			.legend-row {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				margin-bottom: 7px;
+				font-size: 12.5px;
+				color: #cbd6df;
+			}
+			.legend-swatch {
+				width: 14px;
+				height: 14px;
+				border-radius: 3px;
+				flex-shrink: 0;
+			}
+
+			#main {
+				margin-left: 290px;
+				flex: 1;
+				padding: 0;
+				background: var(--ink);
+			}
+			.cover {
+				padding: 74px 64px 56px;
+				background:
+					radial-gradient(
+						circle at 85% 20%,
+						rgba(201, 162, 39, 0.1),
+						transparent 45%
+					),
+					linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+				color: #efe9d8;
+				border-bottom: 4px double rgba(201, 162, 39, 0.4);
+			}
+			.cover .eyebrow {
+				font-family: "IBM Plex Mono", monospace;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				font-size: 12.5px;
+				color: var(--gold-2);
+				margin-bottom: 16px;
+			}
+			.cover h1 {
+				font-family: "Playfair Display", serif;
+				font-weight: 800;
+				font-size: clamp(32px, 4.2vw, 50px);
+				line-height: 1.12;
+				margin: 0 0 16px;
+				max-width: 820px;
+			}
+			.cover p.sub {
+				font-size: 17px;
+				color: #c9d2db;
+				max-width: 660px;
+				line-height: 1.7;
+				margin: 0 0 22px;
+			}
+			.cover .tags {
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+			}
+			.cover .tag {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 12px;
+				color: var(--gold-2);
+				border: 1px solid rgba(201, 162, 39, 0.45);
+				padding: 5px 12px;
+				border-radius: 20px;
+				background: rgba(201, 162, 39, 0.06);
+			}
+
+			.chapters {
+				background: var(--paper);
+				padding: 10px 0 90px;
+			}
+			.chapter {
+				max-width: 940px;
+				margin: 0 auto;
+				padding: 56px 48px 8px;
+				border-bottom: 1px solid rgba(28, 43, 58, 0.1);
+				scroll-margin-top: 14px;
+			}
+			.chapter:last-child {
+				border-bottom: none;
+			}
+
+			.chapter-head {
+				display: flex;
+				align-items: center;
+				gap: 18px;
+				margin-bottom: 6px;
+			}
+			.chapter-head .seal {
+				width: 52px;
+				height: 52px;
+				border-radius: 50%;
+				background: var(--ink);
+				color: var(--gold-2);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: "Playfair Display", serif;
+				font-weight: 700;
+				font-size: 19px;
+				border: 2px solid var(--gold);
+				flex-shrink: 0;
+			}
+			.chapter-head h2 {
+				font-family: "Playfair Display", serif;
+				font-size: clamp(23px, 2.8vw, 30px);
+				margin: 0;
+				color: var(--ink);
+				font-weight: 700;
+				line-height: 1.25;
+			}
+			.chapter-sub {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 12px;
+				color: var(--muted);
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				margin: 6px 0 26px 70px;
+			}
+
+			.event {
+				margin: 0 0 28px;
+				padding-left: 18px;
+				border-left: 3px solid var(--teal);
+			}
+			.event.upcoming {
+				border-left: 3px solid var(--gold);
+			}
+			.event h3 {
+				font-family: "Playfair Display", serif;
+				font-size: 19px;
+				margin: 0 0 6px;
+				color: var(--ink);
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				flex-wrap: wrap;
+			}
+			.datebox {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 13px;
+				color: var(--teal);
+				font-weight: 600;
+				margin-bottom: 10px;
+				display: block;
+			}
+			.event p {
+				margin: 0 0 12px;
+				line-height: 1.85;
+				font-size: 16.5px;
+			}
+			.event ul {
+				margin: 8px 0 12px;
+				padding-left: 22px;
+			}
+			.event li {
+				margin-bottom: 11px;
+				line-height: 1.8;
+				font-size: 16.5px;
+			}
+			.event ul ul {
+				margin-top: 6px;
+			}
+
+			mark {
+				padding: 0.15em 0.42em;
+				border-radius: 4px;
+				font-weight: 700;
+				color: #fff;
+				box-decoration-break: clone;
+				-webkit-box-decoration-break: clone;
+			}
+			.y {
+				background: var(--hl-y);
+				color: #1c1200;
+			}
+			.b {
+				background: var(--hl-b);
+			}
+			.g {
+				background: var(--hl-g);
+			}
+			.r {
+				background: var(--hl-r);
+			}
+
+			.trap {
+				background: var(--trap-bg);
+				border: 1px solid rgba(192, 57, 43, 0.35);
+				border-left: 5px solid var(--trap-bd);
+				padding: 14px 18px;
+				border-radius: 6px;
+				margin: 16px 0 20px;
+				font-size: 16px;
+				line-height: 1.8;
+			}
+			.trap .lbl {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--trap-bd);
+				font-weight: 700;
+				display: block;
+				margin-bottom: 6px;
+			}
+			.trap ul {
+				margin: 6px 0 0;
+				padding-left: 20px;
+			}
+			.trap li {
+				margin-bottom: 8px;
+			}
+
+			.ctx {
+				background: var(--ctx-bg);
+				border: 1px solid rgba(46, 97, 113, 0.35);
+				border-left: 5px solid var(--ctx-bd);
+				padding: 14px 18px;
+				border-radius: 6px;
+				margin: 16px 0 20px;
+				font-size: 16px;
+				line-height: 1.8;
+			}
+			.ctx .lbl {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--ctx-bd);
+				font-weight: 700;
+				display: block;
+				margin-bottom: 6px;
+			}
+			.ctx ul {
+				margin: 6px 0 0;
+				padding-left: 20px;
+			}
+			.ctx li {
+				margin-bottom: 8px;
+			}
+
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin: 16px 0 26px;
+				font-size: 15.5px;
+			}
+			caption {
+				text-align: left;
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11.5px;
+				color: var(--muted);
+				margin-bottom: 7px;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+			}
+			th,
+			td {
+				padding: 11px 13px;
+				text-align: left;
+				border-bottom: 1px solid rgba(28, 43, 58, 0.1);
+				vertical-align: top;
+				line-height: 1.6;
+			}
+			thead.blue th {
+				background: var(--tbl-head-blue);
+				color: #f4efe1;
+				font-weight: 600;
+				font-size: 13px;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+			}
+			thead.red th {
+				background: var(--tbl-head-red);
+				color: #f4efe1;
+				font-weight: 600;
+				font-size: 13px;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+			}
+			thead.green th {
+				background: var(--tbl-head-green);
+				color: #f4efe1;
+				font-weight: 600;
+				font-size: 13px;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+			}
+			thead.purple th {
+				background: var(--tbl-head-purple);
+				color: #f4efe1;
+				font-weight: 600;
+				font-size: 13px;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+			}
+			tbody tr:nth-child(even) {
+				background: var(--paper-2);
+			}
+
+			.factbox {
+				background: var(--paper-2);
+				border: 1px solid rgba(28, 43, 58, 0.12);
+				border-radius: 8px;
+				padding: 18px 20px;
+				margin: 18px 0 24px;
+			}
+			.factbox .lbl {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--teal);
+				font-weight: 700;
+				display: block;
+				margin-bottom: 10px;
+			}
+			.factbox dl {
+				margin: 0;
+				display: grid;
+				grid-template-columns: auto 1fr;
+				gap: 8px 18px;
+			}
+			.factbox dt {
+				font-weight: 700;
+				font-size: 15px;
+				color: var(--ink);
+				white-space: nowrap;
+			}
+			.factbox dd {
+				margin: 0;
+				font-size: 15.5px;
+				line-height: 1.7;
+			}
+
+			.country-block {
+				margin: 26px 0 6px;
+				padding-top: 20px;
+				border-top: 1px dashed rgba(28, 43, 58, 0.2);
+			}
+			.country-block h4 {
+				font-family: "Playfair Display", serif;
+				font-size: 18px;
+				margin: 0 0 14px;
+				color: var(--teal);
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+			.country-block h4::before {
+				content: "✦";
+				color: var(--gold);
+				font-size: 14px;
+			}
+
+			.part-divider {
+				max-width: 940px;
+				margin: 0 auto;
+				padding: 40px 48px 0;
+			}
+			.part-divider .plabel {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 12.5px;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				color: var(--gold);
+				background: var(--ink);
+				display: inline-block;
+				padding: 8px 18px;
+				border-radius: 20px;
+			}
+			.part-divider .ptitle {
+				font-family: "Playfair Display", serif;
+				font-weight: 700;
+				font-size: 27px;
+				color: var(--ink);
+				margin: 14px 0 2px;
+			}
+			.part-divider .pdesc {
+				color: var(--muted);
+				font-size: 15px;
+				margin: 0 0 6px;
+			}
+			@media (max-width: 880px) {
+				.part-divider {
+					padding: 30px 22px 0;
+				}
+			}
+
+			.note {
+				font-size: 14px;
+				color: var(--muted);
+				font-style: italic;
+				margin: 8px 0 16px;
+			}
+
+			.footer {
+				max-width: 940px;
+				margin: 0 auto;
+				padding: 40px 48px 70px;
+				color: var(--muted);
+				font-size: 13px;
+				font-family: "IBM Plex Mono", monospace;
+				text-align: center;
+			}
+
+			@media (max-width: 880px) {
+				#sidebar {
+					position: fixed;
+					left: 0;
+					top: 0;
+					bottom: 0;
+					width: 260px;
+					transform: translateX(-100%);
+					transition: transform 0.25s ease;
+				}
+				#sidebar.open {
+					transform: translateX(0);
+				}
+				#main {
+					margin-left: 0;
+				}
+				.chapter {
+					padding: 44px 22px 8px;
+				}
+				.cover {
+					padding: 58px 22px 42px;
+				}
+				.chapter-sub {
+					margin-left: 0;
+					margin-top: 2px;
+				}
+				.chapter-head {
+					gap: 12px;
+				}
+				body {
+					font-size: 16.5px;
+				}
+			}
+			#menu-btn {
+				display: none;
+				position: fixed;
+				top: 16px;
+				left: 16px;
+				z-index: 60;
+				width: 44px;
+				height: 44px;
+				border-radius: 50%;
+				background: var(--ink);
+				border: 2px solid var(--gold);
+				color: var(--gold-2);
+				font-size: 18px;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+			}
+			@media (max-width: 880px) {
+				#menu-btn {
+					display: flex;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<button id="menu-btn" aria-label="Toggle chapter index">☰</button>
+
+		<aside id="sidebar">
+			<div class="brand">
+				<div class="stamp">05–17</div>
+				<h1>Indian Independence Movement: 1905–1917</h1>
+				<p>Modern India · BPSC Dossier</p>
+			</div>
+			<nav class="toc" id="toc"></nav>
+			<div class="legend-box">
+				<h3>Marker Key</h3>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="background: var(--hl-y)"
+					></span>
+					Core concept / policy
+				</div>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="background: var(--hl-b)"
+					></span>
+					Hard fact / date / number
+				</div>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="background: var(--hl-g)"
+					></span>
+					Person / place / institution
+				</div>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="background: var(--hl-r)"
+					></span>
+					MCQ trap / confusion
+				</div>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="
+							background: var(--ctx-bg);
+							border: 1px solid var(--ctx-bd);
+						"
+					></span>
+					Context box (fills narration gaps)
+				</div>
+			</div>
+		</aside>
+
+		<div id="main">
+			<section class="cover">
+				<div class="eyebrow">
+					Case File · From Curzon's Partition to the Lucknow Pact —
+					and the Revolutionary Thread Beyond
+				</div>
+				<h1>
+					The decade that turned petitions into Swadeshi, Swaraj, and
+					the bomb.
+				</h1>
+				<p class="sub">
+					Theory (NCERT/standard textbook) fused with every fact
+					buried inside PYQ explanations on the Partition of Bengal,
+					Swadeshi, the Surat Split, Muslim League, Morley-Minto,
+					revolutionary terrorism at home and abroad, and the Home
+					Rule League — sorted topic-wise, tabulated wherever the data
+					allows, with context boxes closing every narrative gap.
+				</p>
+				<div class="tags">
+					<span class="tag">Partition → Swadeshi</span>
+					<span class="tag">Moderates ⇄ Extremists</span>
+					<span class="tag">Revolutionary Terrorism</span>
+				</div>
+			</section>
+
+			<div class="chapters">
+				<!-- ============ CHAPTER 1 ============ -->
+				<section
+					class="chapter"
+					id="ch1"
+					data-title="Partition of Bengal (1905)"
+				>
+					<div class="chapter-head">
+						<div class="seal">1</div>
+						<h2>Partition of Bengal (1905)</h2>
+					</div>
+					<div class="chapter-sub">
+						The spark that lit the whole decade
+					</div>
+
+					<table>
+						<caption>
+							Partition of Bengal — full picture
+						</caption>
+						<thead class="blue">
+							<tr>
+								<th>Aspect</th>
+								<th>Detail</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Announced</b></td>
+								<td>
+									<mark class="b">20 July 1905</mark> by
+									Viceroy
+									<mark class="g">Lord Curzon</mark>
+									(resolution itself signed
+									<mark class="b">19 July 1905</mark> — 63rd
+									BPSC's answer key uses this earlier date).
+								</td>
+							</tr>
+							<tr>
+								<td><b>Implemented</b></td>
+								<td>
+									<mark class="b">16 October 1905</mark> (63rd
+									BPSC).
+								</td>
+							</tr>
+							<tr>
+								<td><b>Annulled</b></td>
+								<td>
+									<mark class="b">12 December 1911</mark>, at
+									the Delhi Durbar, by King
+									<mark class="g">George V</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Two new provinces</b></td>
+								<td>
+									<mark class="y">Western Bengal</mark> (with
+									Bihar &amp; Orissa), capital
+									<mark class="g">Calcutta</mark>;
+									<mark class="y">Eastern Bengal</mark> (with
+									Assam), capital
+									<mark class="g">Dacca</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Official justification</b></td>
+								<td>
+									Bengal's population of
+									<mark class="b">78 million</mark> made
+									administration unwieldy; development of
+									Assam also cited.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b
+										>Lieutenant-Governor of Bengal at the
+										time</b
+									>
+								</td>
+								<td>
+									<mark class="g"
+										>Sir Andrew Henderson Leith Fraser</mark
+									>
+									(1903–1908), who played a key role in
+									planning the partition.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Real motive, per Curzon himself</b></td>
+								<td>
+									<mark class="y"
+										>"Calcutta is the centre from which the
+										Congress Party is manipulated throughout
+										the whole of Bengal and indeed the whole
+										of India... The whole of their activity
+										is directed to creating an agency so
+										powerful that they may one day be able
+										to force a weak government to give them
+										what they desire."</mark
+									>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Real Motives</h3>
+						<ul>
+							<li>
+								<mark class="r">Weaken Indian nationalism</mark>
+								— Bengal was the nerve-centre of the national
+								movement; splitting it was meant to cripple that
+								unity.
+							</li>
+							<li>
+								<mark class="r"
+									>Linguistic and religious division</mark
+								>
+								— reduced Bengalis to a minority overall,
+								created a Hindu-majority west and a
+								Muslim-majority east.
+							</li>
+							<li>
+								<mark class="r">Divide and rule</mark> — a
+								deliberate strategy to foster communal division
+								between Hindus and Muslims; making
+								<mark class="g">Dacca</mark> the capital of the
+								Muslim-majority province was specifically meant
+								to secure Muslim political support (Curzon's
+								tactic).
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Effects</h3>
+						<ul>
+							<li>
+								Massive
+								<mark class="y">anti-partition agitation</mark>
+								across Bengal.
+							</li>
+							<li>
+								Birth of the
+								<mark class="y">Swadeshi Movement</mark> —
+								economic boycott of British goods.
+							</li>
+							<li>
+								A more aggressive,
+								<mark class="r">Extremist</mark> stance took
+								root within the national movement.
+							</li>
+							<li>
+								Sowed the seeds of communal politics that led
+								directly to the
+								<mark class="y"
+									>formation of the Muslim League (1906)</mark
+								>.
+							</li>
+							<li>
+								<mark class="g">Surendranath Banerjee's</mark>
+								reaction:
+								<mark class="y"
+									>"The Partition announcement fell like a
+									bomb shell. We felt that we had been
+									insulted, humiliated and tricked"</mark
+								>
+								(67th BPSC Re-exam).
+							</li>
+						</ul>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl"
+							>Context — reconciling the "which date"
+							confusion</span
+						>
+						Three dates circle this event and PYQs test all three
+						separately:
+						<mark class="y">19 July 1905</mark> (resolution signed),
+						<mark class="y">20 July 1905</mark> (public announcement
+						— the date most PCS answer keys use), and
+						<mark class="y">16 October 1905</mark> (the partition
+						actually took legal effect, observed as a day of
+						mourning in Bengal — Rabindranath Tagore suggested this
+						day be marked as <mark class="g">Rakhi Diwas</mark>,
+						tying Hindus and Muslims together symbolically with
+						wristbands). Keep all three straight:
+						<b>announce → resolution → effect</b>, spanning exactly
+						three months.
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 2 ============ -->
+				<section
+					class="chapter"
+					id="ch2"
+					data-title="Swadeshi and Boycott Movement"
+				>
+					<div class="chapter-head">
+						<div class="seal">2</div>
+						<h2>The Swadeshi and Boycott Movement</h2>
+					</div>
+					<div class="chapter-sub">
+						Struggle methods used for the first time
+					</div>
+
+					<div class="event">
+						<ul>
+							<li>
+								<mark class="r">Swadeshi</mark> and
+								<mark class="r">Boycott</mark> were adopted as
+								methods of struggle
+								<mark class="y">for the first time</mark> in
+								India's freedom movement during the agitation
+								against the Partition of Bengal (66th, 68th,
+								63rd BPSC; I.A.S. 2016 confirms the same, ruling
+								out the Home Rule Movement, Non-Cooperation, or
+								the Simon Commission visit as the "first"
+								instance).
+							</li>
+							<li>
+								Formal launch:
+								<mark class="b">7 August 1905</mark>, at a mass
+								meeting in
+								<mark class="g">Calcutta Town Hall</mark>, where
+								the
+								<mark class="y">Boycott Resolution</mark> was
+								passed — the actual formal proclamation of the
+								Swadeshi Movement.
+							</li>
+							<li>
+								<mark class="g">Krishna Kumar Mitra</mark>,
+								editor of the weekly <i>Sanjivani</i>, was the
+								<mark class="r">first</mark> to suggest a
+								boycott of British goods, in a special edition
+								dated <mark class="b">13 July 1905</mark> —
+								urging people to mourn, boycott, and sever links
+								with British officers/offices. His call was
+								publicly endorsed at a gathering in
+								<mark class="g">Bagerhat</mark> (Khulna
+								district) on
+								<mark class="b">16 July 1905</mark>.
+							</li>
+							<li>
+								<mark class="b">16 October 1905</mark> (the day
+								partition took effect): Indians mourned by
+								fasting, bathing in the Ganges, singing
+								<i>Bande Mataram</i>, and tying
+								<mark class="y">rakhi</mark> unity bands to each
+								other.
+							</li>
+							<li>
+								Immediate cause of the movement's launch:
+								<mark class="r"
+									>the Partition of Bengal itself</mark
+								>
+								(I.A.S. 2010) — not Tilak's imprisonment, Lajpat
+								Rai/Ajit Singh's deportation, or the Chapekar
+								brothers' sentencing, all distractor options in
+								that PYQ.
+							</li>
+							<li>
+								<mark class="y">7 August</mark> is now also
+								observed as
+								<mark class="g">National Handloom Day</mark>
+								(first observed 2015) — deliberately chosen to
+								commemorate the 1905 Swadeshi launch date
+								(I.A.S. 2023 confirms this direct causal link
+								between the two statements).
+							</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>
+							Key regional leaders of the Swadeshi Movement
+						</caption>
+						<thead class="green">
+							<tr>
+								<th>Region</th>
+								<th>Leader(s)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Bengal</td>
+								<td>
+									<mark class="g">Ashwini Kumar Dutta</mark>
+									(founded
+									<mark class="y"
+										>Swadesh Bandhab Samiti</mark
+									>
+									to organise masses)
+								</td>
+							</tr>
+							<tr>
+								<td>Bombay &amp; Poona / Maharashtra</td>
+								<td>
+									<mark class="g">Bal Gangadhar Tilak</mark>
+								</td>
+							</tr>
+							<tr>
+								<td>Madras Presidency</td>
+								<td>
+									<mark class="g"
+										>V.O. Chidambaram Pillai</mark
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>Delhi</td>
+								<td>
+									<mark class="g"
+										>Syed Hyder/Haider Reza</mark
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>Andhra</td>
+								<td>
+									<mark class="g"
+										>T. Prakasam and Krishna Rao</mark
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>Punjab &amp; U.P.</td>
+								<td>
+									<mark class="g"
+										>Lala Lajpat Rai and Ajit Singh</mark
+									>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>New Forms of Struggle</h3>
+						<ul>
+							<li>
+								<mark class="y">Boycott of foreign goods</mark>:
+								burning foreign textiles, mass abstention from
+								imported products.
+							</li>
+							<li>
+								<mark class="y"
+									>Public gatherings/processions</mark
+								>
+								to mobilise and unify.
+							</li>
+							<li>
+								<mark class="y"
+									>"Corps of Volunteers"/Samitis</mark
+								>: local bodies like
+								<mark class="g">Swadesh Bandhab Samiti</mark>
+								and
+								<mark class="g">Swadeshi Sangam</mark> spread
+								ideas through cultural events and social work.
+							</li>
+							<li>
+								<mark class="y">Festivals as propaganda</mark>:
+								Tilak's <mark class="g">Ganapati</mark> and
+								<mark class="g">Shivaji</mark> festivals became
+								Swadeshi platforms.
+							</li>
+							<li>
+								<mark class="y">Atma-Shakti</mark>
+								(self-reliance): promoted self-reliance,
+								national pride, and social reforms like fighting
+								caste discrimination and dowry.
+							</li>
+							<li>
+								<mark class="y">Swadeshi education</mark>:
+								<mark class="g">Bengal National College</mark>
+								and National Schools; the
+								<mark class="y"
+									>National Council of Education</mark
+								>
+								(established
+								<mark class="b">15 August 1906</mark>) focused
+								on nationalist education — formulated originally
+								by
+								<mark class="g">Satish Chandra Mukherjee</mark>
+								in 1889.
+							</li>
+							<li>
+								<mark class="y">Swadeshi enterprises</mark>:
+								textile mills, the
+								<mark class="g"
+									>Swadeshi Steam Navigation Company</mark
+								>, reducing dependency on British goods.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Cultural Impact</h3>
+						<ul>
+							<li>
+								<mark class="g">Rabindranath Tagore</mark>
+								composed
+								<i><mark class="y">Amar Sonar Bangla</mark></i>
+								during the movement — it later became
+								Bangladesh's national anthem. Tagore, however,
+								was also a <mark class="r">critic</mark> of the
+								movement's aggressive, exclusive nationalism and
+								over-reliance on boycott — he emphasised better
+								East-West understanding and later denounced
+								parts of it in his essay
+								<i>"The Cult of the Charkha"</i> (1925), and
+								called British rule "a political symptom of our
+								social disease."
+							</li>
+							<li>
+								<mark class="g">Abanindranath Tagore</mark>
+								painted the iconic
+								<mark class="y">"Bharat Mata"</mark> image
+								(1905) — a four-armed goddess in a saffron sari
+								— to visually personify India as a nation; he
+								and brother
+								<mark class="g">Gaganendranath Tagore</mark>
+								founded the
+								<mark class="y"
+									>Indian Society of Oriental Art</mark
+								>
+								(1907, initiated with
+								<mark class="g">E.B. Havell</mark>) to revive
+								Indian art traditions.
+								<mark class="g">Nandalal Bose</mark> also
+								significantly shaped Indian art through this
+								Society.
+							</li>
+							<li>
+								<mark class="g">Jagdish Chandra Bose</mark>
+								showcased India's scientific potential during
+								this era.
+							</li>
+							<li>
+								<i><mark class="y">Desher Katha</mark></i> by
+								<mark class="g">S.G. Deuskar</mark>: summarised
+								the economic-drain arguments of Ranade and
+								Naoroji, warning against Britain's "hypnotic
+								conquest of the mind," and inspired Swadeshi
+								plays and songs.
+							</li>
+							<li>
+								British journalist
+								<mark class="g">H.W. Nevinson</mark> spent four
+								months touring India reporting for the
+								<i>Manchester Guardian</i>,
+								<i>Glasgow Herald</i>, and
+								<i>Daily Chronicle</i>; compiled his reports
+								into the book
+								<i
+									><mark class="y"
+										>The New Spirit in India</mark
+									></i
+								>.
+							</li>
+							<li>
+								<i><mark class="y">Vande Mataram</mark></i>
+								became the movement's theme song and the
+								National Movement's overnight rallying anthem.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Extent &amp; Limits of Mass Participation</h3>
+						<ul>
+							<li>
+								Students led picketing against foreign goods,
+								facing punitive action: disaffiliation, job
+								disqualification, revoked scholarships, fines,
+								expulsion, arrest, even physical punishment.
+							</li>
+							<li>
+								<mark class="y">Women</mark> actively
+								participated in protests, processions, and
+								picketing — for the
+								<mark class="r">first time</mark> in any Indian
+								political movement.
+							</li>
+							<li>
+								<mark class="r"
+									>Farmers and Muslims (in general)</mark
+								>
+								showed limited participation — a class that was
+								"mainly unaffected" (40th BPSC).
+								<mark class="g">Maulana Azad</mark> was an
+								active exception among Muslim leaders, but many
+								upper/middle-class Muslims stayed away, put off
+								by Hindu-centric symbolism;
+								<mark class="g">Liyakat Hussain</mark> (contrary
+								to one distractor option) did
+								<mark class="r">not</mark> lead Barisal's Muslim
+								peasants —
+								<mark class="g">Ashwini Kumar Dutta</mark> did
+								(I.A.S. 2002).
+							</li>
+							<li>
+								<mark class="g">Nawab Salimullah</mark> actively
+								backed the East Bengal partition, seeing it as
+								favourable for Muslims.
+							</li>
+							<li>
+								The British encouraged the newly-formed
+								<mark class="y"
+									>All India Muslim League (1906)</mark
+								>
+								to deepen this communal division.
+							</li>
+							<li>
+								Strikes:
+								<mark class="g"
+									>Burn Company Clerks' Strike (1905,
+									Howrah)</mark
+								>,
+								<mark class="g"
+									>East Indian Railway Strike (1906)</mark
+								>,
+								<mark class="g"
+									>Jute Mills Strikes (1906–1908)</mark
+								>, <mark class="g">Rawalpindi Strike</mark> (led
+								by Lajpat Rai and Ajit Singh). Foreign mill
+								strikes were led by
+								<mark class="g"
+									>Subramaniya Siva and Chidambaram
+									Pillai</mark
+								>.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Why the Movement Dissipated</h3>
+						<ul>
+							<li>
+								Government repression, internal
+								Moderate–Extremist divisions, and limited
+								geographic reach beyond Bengal.
+							</li>
+							<li>
+								Muslim support was hindered by communal
+								divisions and the rival All India Muslim League
+								(1906).
+							</li>
+							<li>
+								Lack of central organisation, directionless
+								energy, and communal riots.
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 3 ============ -->
+				<section
+					class="chapter"
+					id="ch3"
+					data-title="Congress: Benaras, Calcutta & Surat"
+				>
+					<div class="chapter-head">
+						<div class="seal">3</div>
+						<h2>
+							Congress Sessions — Benaras, Calcutta &amp; Surat
+							(1905–07)
+						</h2>
+					</div>
+					<div class="chapter-sub">
+						Where the Swadeshi debate split the party
+					</div>
+
+					<table>
+						<caption>
+							Three pivotal Congress sessions
+						</caption>
+						<thead class="red">
+							<tr>
+								<th>Session</th>
+								<th>President</th>
+								<th>Key developments</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Benaras, 1905</b></td>
+								<td>
+									<mark class="g">Gopal Krishna Gokhale</mark>
+								</td>
+								<td>
+									Moderate–Extremist differences first emerged
+									over whether to extend the Swadeshi Movement
+									nationwide; a deliberately
+									<mark class="y">mild resolution</mark>
+									condemning the partition was passed to avert
+									an immediate split. Gokhale also founded the
+									<mark class="y"
+										>Servants of India Society</mark
+									>
+									the same year.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Calcutta, 1906</b></td>
+								<td><mark class="g">Dadabhai Naoroji</mark></td>
+								<td>
+									Moderates proposed Naoroji (respected by
+									both camps) to avoid an outright split;
+									Extremists had wanted Tilak or Lajpat Rai.
+									<mark class="y"
+										>"Swarajya" (self-government)</mark
+									>
+									was mentioned for the first time as a
+									Congress goal — but left
+									<mark class="r">undefined</mark>; four
+									resolutions passed:
+									<mark class="y"
+										>Swaraj, Boycott, Swadeshi, National
+										Education</mark
+									>. Naoroji unfurled the
+									<mark class="y"
+										>"Flag of Swaraj for India"</mark
+									>
+									at this session (68th BPSC).
+								</td>
+							</tr>
+							<tr>
+								<td><b>Surat, 1907</b></td>
+								<td>
+									<mark class="g">Rash Behari Ghosh</mark>
+								</td>
+								<td>
+									Extremists wanted Tilak or Lajpat Rai as
+									president and pushed to guarantee retention
+									of all four 1906 resolutions; Moderates
+									insisted on excluding Tilak. The firm
+									stances on both sides made the split
+									<mark class="r">inevitable</mark> — the
+									session ended in physical disorder.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>The Surat Split (1907) — cause and consequence</h3>
+						<ul>
+							<li>
+								<mark class="r">Root cause</mark>: the
+								Extremists' lack of faith in the Moderates'
+								capacity to negotiate effectively with the
+								British Government (I.A.S. 2016) —
+								<mark class="r">not</mark> Lord Minto
+								introducing communalism, the founding of the
+								Muslim League, or Aurobindo Ghosh's failure to
+								be elected president, all distractor options.
+							</li>
+							<li>
+								The Swadeshi Movement itself is identified as
+								the movement that
+								<mark class="r"
+									>caused the Moderate–Extremist split</mark
+								>
+								in Congress (I.A.S. 2015) — not Quit India,
+								Non-Cooperation, or Civil Disobedience, which
+								all came later.
+							</li>
+							<li>
+								After the split, Congress was
+								<mark class="r">controlled by Moderates</mark>,
+								refocused on constitutional, self-government
+								methods.
+							</li>
+							<li>
+								The two factions were popularly nicknamed
+								<mark class="y">"Garam Dal"</mark> (Extremists,
+								led by Lala Lajpat Rai) and
+								<mark class="y">"Naram Dal"</mark> (Moderates,
+								led by Rash Behari Ghosh, who went on to
+								preside).
+							</li>
+							<li>
+								<mark class="g">Dadabhai Naoroji</mark> presided
+								over Congress
+								<mark class="r">three times total</mark>: 1886,
+								1893, and <mark class="b">1906</mark> — a common
+								trap is claiming "four times," which is
+								incorrect (U.P.P.C.S. 2014).
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Government Repression, 1907–1911</h3>
+						<ul>
+							<li>
+								<mark class="y"
+									>Seditious Meetings Act (1907)</mark
+								>
+							</li>
+							<li>
+								<mark class="y"
+									>Criminal Law Amendment Act (1908)</mark
+								>
+							</li>
+							<li>
+								<mark class="y"
+									>Incitement to Offences Act (1908)</mark
+								>
+							</li>
+							<li>
+								<mark class="y"
+									>Explosive Substances Act (1908)</mark
+								>
+							</li>
+							<li>
+								<mark class="y">Indian Press Act (1910)</mark>
+							</li>
+						</ul>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl"
+							>Context — Dadabhai Naoroji, in his own words and
+							others'</span
+						>
+						<ul>
+							<li>
+								<mark class="g">C.Y. Chintamani</mark>: "Many
+								intelligent and selfless leaders had embellished
+								for the people of India, but in his era, no one
+								was like Dadabhai Naoroji."
+							</li>
+							<li>
+								<mark class="g">Gopal Krishna Gokhale</mark>:
+								<mark class="y"
+									>"If there is the divine in man, it is in
+									Dadabhai Naoroji."</mark
+								>
+							</li>
+							<li>
+								Known as the
+								<mark class="y">"Grand Old Man of India"</mark>;
+								first Indian elected to the British House of
+								Commons, <mark class="b">1892</mark>, from
+								Central Finsbury, on a
+								<mark class="g">Liberal Party</mark> ticket
+								(<mark class="r">not</mark> Conservative — a
+								repeated distractor).
+							</li>
+							<li>
+								First Indian appointed
+								<mark class="g"
+									>Professor of Mathematics and Natural
+									Philosophy</mark
+								>
+								at Elphinstone College, Bombay; started the
+								Gujarati newspaper <i>Rast Goftar</i> in 1851.
+							</li>
+							<li>
+								From <mark class="b">1904</mark> onward, Naoroji
+								was the leader who continuously emphasised the
+								grant of "self-rule" to India — first raising
+								"Swaraj" at the
+								<mark class="g"
+									>International Socialist Congress</mark
+								>
+								(1904), then formally demanding it in his 1906
+								Calcutta presidential address (U.P.P.C.S. Mains
+								2016).
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 4 ============ -->
+				<section
+					class="chapter"
+					id="ch4"
+					data-title="Annulment of Partition & Delhi Durbar"
+				>
+					<div class="chapter-head">
+						<div class="seal">4</div>
+						<h2>
+							Annulment of Partition &amp; the Delhi Durbar (1911)
+						</h2>
+					</div>
+
+					<div class="event">
+						<ul>
+							<li>
+								<mark class="b">1911</mark>:
+								<mark class="g">Lord Hardinge</mark> (as
+								Viceroy) organised a grand
+								<mark class="y">Delhi Durbar</mark>, attended by
+								King <mark class="g">George V</mark> and Queen
+								Mary.
+							</li>
+							<li>
+								Announcements at the Durbar (<mark class="b"
+									>12 December 1911</mark
+								>):
+								<mark class="r">Bengal Partition revoked</mark>;
+								and British India's
+								<mark class="r"
+									>capital shifted from Calcutta to
+									Delhi</mark
+								>.
+							</li>
+							<li>
+								Officially justified as "administrative
+								necessity, for better governance of a unified
+								Bengal" — really a concession to sustained
+								Swadeshi/Boycott pressure.
+							</li>
+							<li>
+								<mark class="b">22 March 1912</mark>: the new
+								province of
+								<mark class="y">Bihar and Orissa</mark> was
+								formed (came into existence
+								<mark class="b">1 April 1912</mark>); Assam
+								restored to its pre-1874 position; the Calcutta
+								High Court retained jurisdiction over the new
+								province initially.
+								<mark class="r"
+									>Bihar became a fully separate province only
+									in 1936.</mark
+								>
+							</li>
+							<li>
+								Actual physical/administrative transfer of the
+								capital was completed in
+								<mark class="b">1912</mark>, under
+								<mark class="g">Lord Hardinge II</mark> — so
+								while the <mark class="r">announcement</mark> is
+								dated 1911, many PYQs (when both years appear as
+								options) prefer <mark class="b">1912</mark> as
+								the completion year.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Delhi Conspiracy Case (1912)</h3>
+						<ul>
+							<li>
+								An assassination attempt on Viceroy
+								<mark class="g">Lord Hardinge</mark> during his
+								ceremonial procession through
+								<mark class="g">Chandni Chowk</mark>, Delhi,
+								<mark class="b">23 December 1912</mark>, marking
+								his state entry to the new capital.
+							</li>
+							<li>
+								Organised by
+								<mark class="g">Rash Behari Bose</mark> and
+								<mark class="g">Sachindra Nath Sanyal</mark>
+								(extremist revolutionaries), with the bomb
+								thrown into the Viceroy's howdah — Hardinge was
+								injured but survived; his attendant died.
+							</li>
+							<li>
+								Fourteen persons were accused;
+								<mark class="g"
+									>Master Amir Chand, Bhai Balmukund, Avadh
+									Bihari, and Basant Kumar Biswas</mark
+								>
+								were sentenced to death;
+								<mark class="g">Balraj and Harvansh Sahay</mark>
+								got life imprisonment;
+								<mark class="g">Dinanath</mark> turned approver;
+								<mark class="g">Bhagwati Charan Vohra</mark> was
+								<mark class="r">not</mark> involved in this
+								specific case (a repeated matching trap, since
+								he appears in later 1920s cases instead).
+							</li>
+							<li>
+								The organisation responsible is identified as
+								the
+								<mark class="g">Anushilan Samiti</mark> network
+								(U.P.P.C.S. 2023);
+								<mark class="g">Rash Behari Bose</mark>, who led
+								the plot, escaped to Japan and evaded trial.
+							</li>
+							<li>
+								Sachindra Nath Sanyal wrote his memoir
+								<i><mark class="y">Bandi Jeevan</mark></i>
+								("Life of a Prisoner") while jailed for his
+								role.
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<div class="part-divider">
+					<span class="plabel">Part II</span>
+					<div class="ptitle">
+						Muslim League &amp; Morley-Minto Reforms
+					</div>
+					<p class="pdesc">
+						Communal politics gets institutionalised.
+					</p>
+				</div>
+
+				<!-- ============ CHAPTER 5 ============ -->
+				<section
+					class="chapter"
+					id="ch5"
+					data-title="Formation of the Muslim League"
+				>
+					<div class="chapter-head">
+						<div class="seal">5</div>
+						<h2>Formation of the All India Muslim League (1906)</h2>
+					</div>
+
+					<div class="event">
+						<ul>
+							<li>
+								<mark class="y">Simla Deputation</mark>:
+								<mark class="b">1 October 1906</mark>, a
+								delegation of
+								<mark class="b">35</mark> prominent Muslim
+								leaders led by
+								<mark class="g">Aga Khan III</mark> met Viceroy
+								<mark class="g">Lord Minto</mark> at Shimla,
+								demanding
+								<mark class="r">separate electorates</mark> for
+								Muslims at all levels of governance.
+							</li>
+							<li>
+								<mark class="y"
+									>All India Mohammadan Educational
+									Conference</mark
+								>, Dhaka, <mark class="b">December 1906</mark>:
+								<mark class="g">Nawab Salimullah Khan</mark>
+								(President of the Welcome Committee) proposed
+								establishing the
+								<mark class="y">All India Muslim League</mark>
+								here — making him the
+								<mark class="r">founder</mark> in most answer
+								keys, even though Aga Khan III and
+								Mohsin-ul-Mulk are also closely credited.
+							</li>
+							<li>
+								A 60-member temporary committee was formed with
+								<mark class="g">Mohsin-ul-Mulk</mark> and
+								<mark class="g">Waqar-ul-Mulk</mark> as joint
+								secretaries;
+								<mark class="g">Aga Khan III</mark> became its
+								<mark class="r">first President</mark>;
+								headquartered at <mark class="g">Lucknow</mark>.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Stated Objectives (1906)</h3>
+						<ul>
+							<li>
+								Promote loyalty among Indian Muslims toward the
+								British government, clearing up any
+								misconceptions about government intentions.
+							</li>
+							<li>
+								Protect and advance Muslim political rights and
+								interests, representing their needs to
+								government.
+							</li>
+							<li>
+								Prevent hostility from rising between Muslims
+								and other communities.
+							</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>
+							Early Muslim League sessions and milestones
+						</caption>
+						<thead class="green">
+							<tr>
+								<th>Year</th>
+								<th>Event</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><mark class="b">1907</mark></td>
+								<td>
+									First annual session,
+									<mark class="g">Karachi</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td><mark class="b">1908</mark></td>
+								<td>
+									Session at
+									<mark class="g">Amritsar</mark> (30–31
+									December) — the League here made its
+									<mark class="r">clear, formal demand</mark>
+									for separate electorates, denouncing joint
+									electorates outright.
+								</td>
+							</tr>
+							<tr>
+								<td><mark class="b">1908</mark></td>
+								<td>
+									<mark class="y">London Muslim League</mark>
+									branch established under
+									<mark class="g">Syed Ameer Ali</mark>, to
+									lobby the British government directly for
+									Muslim interests.
+								</td>
+							</tr>
+							<tr>
+								<td><mark class="b">1925</mark></td>
+								<td>
+									The League began holding its annual
+									conventions on a
+									<mark class="r">regular</mark> basis from
+									this year onward (66th BPSC Re-exam) —
+									before this its sessions were held
+									erratically.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="factbox">
+						<span class="lbl"
+							>Fact Box · W.W. Hunter's remark on Muslim
+							loyalty</span
+						>
+						<dl>
+							<dt>Quote</dt>
+							<dd>
+								<mark class="y"
+									>"The Muslims, if contented and satisfied,
+									would become the greatest bulwark of British
+									power in India."</mark
+								>
+							</dd>
+							<dt>Source</dt>
+							<dd>
+								<mark class="g">W.W. Hunter</mark>, in his book
+								<i>The Indian Musalmans</i> — cited to show the
+								deliberate British strategy of cultivating
+								Muslim loyalty as a counterweight to Congress.
+							</dd>
+						</dl>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 6 ============ -->
+				<section
+					class="chapter"
+					id="ch6"
+					data-title="Morley-Minto Reforms (1909)"
+				>
+					<div class="chapter-head">
+						<div class="seal">6</div>
+						<h2>
+							Morley-Minto Reforms — Indian Councils Act, 1909
+						</h2>
+					</div>
+
+					<div class="event">
+						<ul>
+							<li>
+								Named after
+								<mark class="g">John Morley</mark> (Secretary of
+								State for India) and
+								<mark class="g">Lord Minto</mark> (Viceroy, who
+								replaced Curzon in 1905).
+							</li>
+							<li>
+								Formally the
+								<mark class="y">Indian Councils Act, 1909</mark
+								>.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Key Provisions</h3>
+						<ul>
+							<li>
+								<mark class="y"
+									>Expanded Legislative Councils</mark
+								>, though British officials retained the
+								majority, keeping ultimate control.
+							</li>
+							<li>
+								<mark class="r"
+									>Separate electorates for Muslims</mark
+								>
+								— the reform's most consequential (and
+								biggest-blunder) provision — allowing Muslims to
+								elect their own representatives (66th BPSC),
+								formally institutionalising communal division
+								for the first time.
+							</li>
+							<li>
+								Increased elected membership in both Imperial
+								and Provincial councils, though some seats
+								remained nominated.
+							</li>
+							<li>
+								Muslims received representation
+								<mark class="r"
+									>exceeding their population share</mark
+								>, via lower income qualifications for Muslim
+								voters than Hindu voters.
+							</li>
+							<li>
+								Indirect elections — members chosen through
+								local bodies.
+							</li>
+							<li>
+								Legislatures could pass resolutions and vote on
+								budget items, but <mark class="r">not</mark> on
+								the budget as a whole.
+							</li>
+							<li>
+								<mark class="g">Satyendra Sinha</mark> became
+								the
+								<mark class="r">first Indian member</mark> of
+								the Viceroy's Executive Council.
+							</li>
+						</ul>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl"
+							>Context — why Morley-Minto is called the seed of
+							Partition</span
+						>
+						<ul>
+							<li>
+								<mark class="g">Mahatma Gandhi</mark>:
+								<mark class="y"
+									>"The Morley-Minto Reforms have been our
+									undoing. Had it not been for the separate
+									electorates then established, then we should
+									have settled our differences by now."</mark
+								>
+							</li>
+							<li>
+								<mark class="g">Dr. Rajendra Prasad</mark> went
+								further, calling
+								<mark class="g">Lord Minto</mark> the
+								<mark class="r">"Father of Pakistan"</mark> —
+								since the 1909 Act's communal-electorate
+								principle, once established, was carried forward
+								and expanded by the
+								<mark class="g"
+									>Government of India Act, 1919</mark
+								>, ultimately culminating in Partition (63rd
+								BPSC).
+							</li>
+							<li>
+								Correct answer to "what event sowed the seeds of
+								eventual Partition":
+								<mark class="r"
+									>reservation of seats and separate
+									electorates for Muslims</mark
+								>
+								in legislative bodies (U.P.P.C.S./U.P.U.D.A.
+								2001/2004) — not merely the League's founding or
+								the 1905 partition itself, both of which were
+								precursors rather than the structural cause.
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<div class="part-divider">
+					<span class="plabel">Part III</span>
+					<div class="ptitle">
+						Revolutionary Nationalism — Phase I (1907–1917)
+					</div>
+					<p class="pdesc">
+						When petition politics gave way to the bomb and the
+						pistol.
+					</p>
+				</div>
+
+				<!-- ============ CHAPTER 7 ============ -->
+				<section
+					class="chapter"
+					id="ch7"
+					data-title="Revolutionary Nationalism: Background"
+				>
+					<div class="chapter-head">
+						<div class="seal">7</div>
+						<h2>
+							Revolutionary Nationalism — Background &amp; Phases
+						</h2>
+					</div>
+
+					<div class="event">
+						<ul>
+							<li>
+								<mark class="y">First Phase</mark>: followed the
+								decline of the Swadeshi Movement, running until
+								<mark class="b">1917</mark>.
+							</li>
+							<li>
+								<mark class="y">Second Phase</mark>: arose after
+								the Non-Cooperation Movement (see Ch.17 for its
+								direct continuation into the 1920s).
+							</li>
+							<li>
+								<mark class="y">Driving factors</mark>: decline
+								of moderate leadership under Curzon-era
+								repression, and weak post-Swadeshi leadership,
+								disillusioned young nationalists into adopting
+								revolutionary tactics.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Methods Employed</h3>
+						<ul>
+							<li>
+								<mark class="y">Acts of heroism</mark>:
+								assassinations of unpopular officials and
+								internal informers.
+							</li>
+							<li>
+								<mark class="y">Swadeshi dacoities</mark>:
+								robberies (often targeting moneylenders) to fund
+								revolutionary activity.
+							</li>
+							<li>
+								<mark class="y">Military conspiracies</mark>:
+								during WWI, plans for coordinated action with
+								Britain's wartime enemies (chiefly Germany).
+							</li>
+						</ul>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl"
+							>Context — Aurobindo Ghosh's ideological role vs.
+							organisational founders</span
+						>
+						Several matching PYQs list
+						<mark class="y"
+							>"Anushilan Samiti — Aurobindo Ghosh"</mark
+						>
+						as correct, while others give its organisational founder
+						as <mark class="g">Promotha (P.) Mitra</mark>. Both are
+						correct at different levels:
+						<mark class="g">Aurobindo Ghosh</mark> was the
+						movement's guiding
+						<mark class="r">ideological</mark> figure — he wrote the
+						influential pamphlet <i>Bhawani Mandir</i> (1905)
+						calling for a revolutionary organising centre, and
+						propounded the theory of
+						<mark class="y">Passive Resistance</mark> in his paper
+						<i>Bande Mataram</i> — while
+						<mark class="g">P. Mitra</mark> founded the actual
+						Calcutta organisational structure (with a first branch
+						under <mark class="g">Satish Chandra Basu</mark>, March
+						1902, and a second under Mitra himself with
+						<mark class="g">Jatindra Nath Mukherjee</mark> and
+						<mark class="g">Barindra Kumar Ghosh</mark> —
+						Aurobindo's own brother — also in 1902). A separate
+						Dhaka branch was founded by
+						<mark class="g">Pulin Bihari Das</mark> in October 1906.
+						So "founder" answers legitimately vary by which branch
+						and which level (ideological vs organisational) a
+						question is testing.
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 8 ============ -->
+				<section
+					class="chapter"
+					id="ch8"
+					data-title="Bengal Revolutionary Cases"
+				>
+					<div class="chapter-head">
+						<div class="seal">8</div>
+						<h2>Bengal — Revolutionary Cases, 1907–1917</h2>
+					</div>
+
+					<table>
+						<caption>
+							Bengal revolutionary activities (Phase I)
+						</caption>
+						<thead class="red">
+							<tr>
+								<th>Case/Org (Year)</th>
+								<th>People &amp; Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>The Anushilan Samiti (1902)</b></td>
+								<td>
+									Founded by
+									<mark class="g">Promotha Mitter</mark> and
+									others including
+									<mark class="g"
+										>Jatindranath Banerjee, Barindra Kumar
+										Ghosh</mark
+									>. Published journals
+									<mark class="y">Yugantar</mark> (60th–62nd
+									BPSC) and
+									<mark class="y">Sandhya Prakash</mark>
+									(60th–62nd BPSC). Advocated Swadeshi
+									dacoities, physical training, moral
+									education.
+									<mark class="g">Hemchandra Kanoongo</mark>
+									was the Calcutta branch's bomb
+									expert/assistant. A Patna branch was
+									established in
+									<mark class="b">1913</mark> by
+									<mark class="g">Sachindra Nath Sanyal</mark>
+									(63rd &amp; 67th BPSC).
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Attempt on Sir Fuller's life (1907)</b>
+								</td>
+								<td>
+									Yugantar-organised attempt on
+									<mark class="g">Sir Bampfylde Fuller</mark>,
+									Lt. Governor of Eastern Bengal &amp; Assam;
+									he eventually resigned.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b
+										>Muzaffarpur/Alipore Conspiracy Case
+										(1908)</b
+									>
+								</td>
+								<td>
+									<mark class="g">Prafulla Chaki</mark> and
+									<mark class="g">Khudiram Bose</mark> tried
+									to kill Muzaffarpur Magistrate
+									<mark class="g">Kingsford</mark> (30 April
+									1908) by bombing his carriage — instead
+									killed
+									<mark class="g"
+										>Mrs. &amp; Miss Kennedy</mark
+									>, wife/daughter of a sympathiser. Chaki
+									committed suicide; Khudiram Bose was hanged
+									(11 Aug 1908, aged just
+									<mark class="b">18 years 8 months</mark> —
+									the <mark class="r">youngest</mark> martyr
+									among comparable cases). In the linked
+									Alipore Conspiracy Case, 49 accused
+									(including
+									<mark class="g">Aurobindo Ghosh</mark> and
+									brother
+									<mark class="g">Barindra Kumar Ghosh</mark
+									>); 19 sentenced, but
+									<mark class="g">Aurobindo</mark> was
+									<mark class="r">acquitted</mark>, defended
+									successfully by
+									<mark class="g">Chittaranjan Das</mark>. In
+									prison,
+									<mark class="g">Kanhai Lal Dutt</mark> and
+									<mark class="g">Satyendra Bose</mark> shot
+									dead government witness
+									<mark class="g">Narendra Gossain</mark> and
+									were themselves executed.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Barrah/Barra Dacoity (1908)</b></td>
+								<td>
+									Carried out by
+									<mark class="g">Pulin Bihari Das</mark>'
+									Dacca Anushilan branch at a Zamindar's
+									residence in
+									<mark class="g">East Bengal</mark> (Dhaka
+									district), to fund revolutionary activity
+									(I.A.S. 1995 confirms East Bengal as the
+									location, not Bombay-Karnataka, Punjab, or
+									Madras).
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b
+										>German Plot / Zimmerman Plan
+										(1916–17)</b
+									>
+								</td>
+								<td>
+									Led by
+									<mark class="g"
+										>Jatindranath Mukherjee ("Bagha
+										Jatin")</mark
+									>
+									and Yugantar, to plan armed insurrection
+									during WWI with imported German arms; funded
+									via Swadeshi dacoities and boat dacoities.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<!-- ============ CHAPTER 9 ============ -->
+				<section
+					class="chapter"
+					id="ch9"
+					data-title="Maharashtra & Punjab Revolutionaries"
+				>
+					<div class="chapter-head">
+						<div class="seal">9</div>
+						<h2>Maharashtra &amp; Punjab — Revolutionary Cases</h2>
+					</div>
+
+					<table>
+						<caption>
+							Maharashtra revolutionary activities
+						</caption>
+						<thead class="purple">
+							<tr>
+								<th>Case/Org (Year)</th>
+								<th>People &amp; Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Ramosi Peasant Force (1879)</b></td>
+								<td>
+									Organised by
+									<mark class="g"
+										>Vasudev Balwant Phadke</mark
+									>
+									to instigate armed revolt against British
+									authority — predates the "1907–17" phase but
+									is grouped with Maharashtra's revolutionary
+									lineage as its earliest ancestor.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Chapekar Brothers Case (1897)</b></td>
+								<td>
+									<mark class="g">Damodar</mark> and
+									<mark class="g">Balkrishna Chapekar</mark>
+									(also called
+									<mark class="y">Vyayam Mandal</mark>,
+									founded with a third brother
+									<mark class="g">Vasudeo</mark>, 1896–97,
+									Poona) assassinated Plague Commissioner
+									<mark class="g">Rand</mark> and Lt.
+									<mark class="g">Ayerst</mark> (June 1897) as
+									revenge for repressive plague policies.
+									Arrested on information from the
+									<mark class="g">Dravid Brothers</mark>;
+									Damodar and his brothers were hanged. Tilak
+									was charged with sedition (Section 124-A
+									IPC, July 1897) for allegedly inciting the
+									murders through his writings — sentenced to
+									<mark class="b">18 months</mark>, but no
+									evidence directly proved incitement; the
+									trial itself made him an
+									<mark class="r">all-India leader</mark>,
+									earning him the title
+									<mark class="y">"Lokmanya."</mark>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b
+										>Mitra Mela (1899) → Abhinav Bharat
+										(1904)</b
+									>
+								</td>
+								<td>
+									Founded by
+									<mark class="g">V.D. Savarkar</mark> and his
+									brother
+									<mark class="g">G.D. Savarkar</mark>; merged
+									into the secret
+									<mark class="y"
+										>Abhinav Bharat Society</mark
+									>
+									(1904, Nasik), influenced by
+									<mark class="g">Mazzini's</mark> Young
+									Italy; branches also opened in Madhya
+									Pradesh and Karnataka. A London branch was
+									separately established in
+									<mark class="b">1906</mark> at India House
+									by <mark class="g">V.D. Savarkar</mark>,
+									once revolutionary activity was suppressed
+									in India.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Killing of Nasik Collector (1909)</b>
+								</td>
+								<td>
+									<mark class="g">Anant Lakshman Kanhere</mark
+									>, a member of the Abhinav Bharat / Karve
+									Group, killed
+									<mark class="g">A.M.T. Jackson</mark>,
+									Collector of Nasik (21 Dec 1909). Kanhere
+									and associates
+									<mark class="g">Krishnaji Gopal Karve</mark>
+									and
+									<mark class="g">Vinayak Deshpande</mark>
+									were hanged.
+									<mark class="g">V.D. Savarkar</mark> was
+									arrested in London and brought back to
+									India, sentenced to
+									<mark class="r">life imprisonment</mark> in
+									the linked Nasik Conspiracy Case — 27
+									Abhinav Bharat members were convicted
+									overall.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Punjab Extremism</h3>
+						<ul>
+							<li>
+								<mark class="g">Lala Lajpat Rai</mark> initiated
+								the newspaper <i>Punjabee</i> and the
+								organisation
+								<mark class="y"
+									>Anjuman-i-Mohisban-i-Watan</mark
+								>
+								in Lahore.
+							</li>
+							<li>
+								Revolutionaries active in this thread included
+								<mark class="g"
+									>Lala Hardayal, Bhai Parmanand, and Syed
+									Haider Raza</mark
+								>.
+							</li>
+							<li>
+								The Punjab movement shifted from constitutional
+								grievance-airing toward outright extremism after
+								British repression intensified.
+							</li>
+						</ul>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl"
+							>Context — Savarkar's "Abhinav Bharat" founder
+							confusion</span
+						>
+						One matching PYQ pairs
+						<mark class="y">"Abhinav Bharat — G.D. Savarkar"</mark>
+						and
+						<mark class="y">"Mitra Mela — V.D. Savarkar"</mark>
+						(U.P.P.C.S. 2014), which looks like a reversal of the
+						standard telling (V.D. Savarkar founding both). This
+						reflects that
+						<mark class="g">V.D. Savarkar</mark> founded
+						<mark class="y">Mitra Mela</mark> first (1899) — and it
+						was his elder brother
+						<mark class="g">Ganesh (G.D.) Savarkar</mark> who
+						formally converted/re-registered it as
+						<mark class="y">Abhinav Bharat</mark> in 1904 while V.D.
+						Savarkar was away studying — both brothers are
+						legitimately tied to the two names, and exam answer keys
+						sometimes credit the specific brother present at each
+						individual founding moment rather than crediting V.D.
+						Savarkar for both by default.
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 10 ============ -->
+				<section
+					class="chapter"
+					id="ch10"
+					data-title="Revolutionary Activities Outside India"
+				>
+					<div class="chapter-head">
+						<div class="seal">10</div>
+						<h2>Revolutionary Activities Outside India</h2>
+					</div>
+
+					<div class="event">
+						<h3>India House, London (1905)</h3>
+						<ul>
+							<li>
+								<mark class="g">Shyamji Krishna Verma</mark>
+								established the
+								<mark class="y"
+									>Indian Home Rule Society (IHRS)</mark
+								>
+								in <mark class="b">February 1905</mark>, London
+								— founded the nationalist student hostel
+								<mark class="y">"India House" (1905–10)</mark>
+								to foster radical Indian nationalism, and
+								started the monthly journal
+								<mark class="y">The Indian Sociologist</mark>
+								(January 1905).
+							</li>
+							<li>
+								Key figures at India House:
+								<mark class="g">V.D. Savarkar</mark> and
+								<mark class="g">Lala Hardayal</mark>, who also
+								contributed to <i>The Indian Sociologist</i>. It
+								inspired revolutionaries as far as Paris and
+								Geneva.
+							</li>
+							<li>
+								Shyamji later relocated from London to Paris,
+								then Geneva, as British government pressure
+								mounted.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Assassination of Curzon-Wyllie (1909)</h3>
+						<ul>
+							<li>
+								<mark class="g">Madanlal Dhingra</mark> shot
+								dead
+								<mark class="g">Sir Curzon-Wyllie</mark>
+								(political aide-de-camp to the Secretary of
+								State for India) and
+								<mark class="g">Cowasji Lalkaka</mark>,
+								<mark class="b">1 July 1909</mark>, at a meeting
+								of the
+								<mark class="y"
+									>National Indian Association</mark
+								>
+								(an organisation of Indian loyalists — see the
+								Congress dossier for its earlier, non-political
+								founding by Mary Carpenter, 1870).
+							</li>
+							<li>
+								Dhingra made no attempt to escape, and during
+								the trial personally requested a death sentence;
+								hanged in London,
+								<mark class="b">17 August 1909</mark> (63rd
+								BPSC).
+							</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>
+							Revolutionary hubs abroad
+						</caption>
+						<thead class="blue">
+							<tr>
+								<th>Year</th>
+								<th>Body</th>
+								<th>Location</th>
+								<th>Key figures &amp; purpose</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><mark class="b">1913</mark></td>
+								<td><mark class="y">Ghadar Party</mark></td>
+								<td>San Francisco, USA</td>
+								<td>See dedicated Ch.11.</td>
+							</tr>
+							<tr>
+								<td><mark class="b">1915</mark></td>
+								<td>
+									<mark class="y"
+										>Berlin Committee for Indian
+										Independence</mark
+									>
+								</td>
+								<td>Berlin, Germany</td>
+								<td>
+									Led by
+									<mark class="g"
+										>Virendranath Chattopadhyaya,
+										Bhupendranath Dutta, Lala Hardayal</mark
+									>, with German backing under the
+									<mark class="y">Zimmerman Plan</mark> —
+									aimed at rebellion and an armed invasion of
+									British India.
+								</td>
+							</tr>
+							<tr>
+								<td><mark class="b">1915</mark></td>
+								<td>Provisional Government of India, Kabul</td>
+								<td>Kabul, Afghanistan</td>
+								<td>
+									Founded
+									<mark class="b">1 December 1915</mark> by
+									<mark class="g">Raja Mahendra Pratap</mark>
+									(President) and
+									<mark class="g"
+										>Maulavi Barkatullah Khan</mark
+									>
+									(Prime Minister), with German and (per one
+									PYQ) Russian recognition; supported by
+									Afghanistan's Crown Prince
+									<mark class="g">Amanullah</mark>. Missions
+									to Baghdad, Persia, Turkey, and Kabul also
+									involved
+									<mark class="g">Obaidullah Sindhi</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td><mark class="b">1915</mark></td>
+								<td><mark class="y">Singapore Mutiny</mark></td>
+								<td>Singapore</td>
+								<td>
+									<mark class="b">15 February 1915</mark>: led
+									by
+									<mark class="g"
+										>Jamadar Chisti Khan, Jamadar Abdul
+										Gani, Subedar Daud Khan</mark
+									>, involving the
+									<mark class="g">5th Light Infantry</mark>
+									and
+									<mark class="g">36th Sikh Battalion</mark>;
+									suppressed, with executions and life
+									sentences.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>
+							Madam Bhikaji Cama — "Mother of the Indian
+							Revolution"
+						</h3>
+						<ul>
+							<li>
+								Born <mark class="b">24 September 1861</mark> to
+								a wealthy Parsi family (father
+								<mark class="g">Sorabji Patel</mark>); married
+								advocate/social worker
+								<mark class="g">Rustomji Cama</mark>.
+							</li>
+							<li>
+								Served as personal secretary to
+								<mark class="g">Dadabhai Naoroji</mark> in his
+								nationalist work before independently joining
+								the revolutionary movement, operating from
+								<mark class="g">Paris and Geneva</mark>; brought
+								out the journal
+								<i><mark class="y">Bande Mataram</mark></i
+								>.
+							</li>
+							<li>
+								At the
+								<mark class="y"
+									>International Socialist Conference</mark
+								>, <mark class="g">Stuttgart, Germany</mark> —
+								<mark class="b">21/22 August 1907</mark> — she
+								became the
+								<mark class="r"
+									>first person to unfurl India's tricolour
+									flag on foreign soil</mark
+								>; the flag itself was jointly designed by
+								<mark class="g"
+									>V.D. Savarkar, Shyamji Krishna Verma, and
+									Bhikaji Cama</mark
+								>.
+							</li>
+							<li>
+								Returned to Mumbai in 1935; died there in August
+								1936.
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 11 ============ -->
+				<section
+					class="chapter"
+					id="ch11"
+					data-title="The Ghadar Party & Komagata Maru"
+				>
+					<div class="chapter-head">
+						<div class="seal">11</div>
+						<h2>
+							The Ghadar Party &amp; the Komagata Maru Incident
+						</h2>
+					</div>
+
+					<div class="event">
+						<ul>
+							<li>
+								Founded
+								<mark class="b">21 April 1913</mark> (some
+								sources say formed at a meeting in Oregon),
+								headquartered at
+								<mark class="g">San Francisco, USA</mark>; a
+								revolutionary association of expatriate Indians
+								in the USA and Canada, aiming to overthrow
+								British rule through
+								<mark class="r">armed revolt</mark>, not
+								petitions.
+							</li>
+							<li>
+								<mark class="g">Sohan Singh Bhakna</mark>
+								founded the underlying
+								<mark class="y"
+									>"Hindustan Association of the Pacific
+									Coast"</mark
+								>
+								(1913), which published the weekly newspaper
+								<i><mark class="y">The Ghadar</mark></i>
+								(60th–62nd BPSC) — the paper's fame gave the
+								whole movement its name. Bhakna was the party's
+								<mark class="r">first Chairman/President</mark>;
+								<mark class="g">Lala Hardayal</mark> was its
+								ideological torchbearer.
+							</li>
+							<li>
+								Other key members:
+								<mark class="g"
+									>Ramchandra, Bhawan/Bhagwan Singh, Kartar
+									Singh Sarabha, Barkatullah, Bhai Parmanand,
+									Pandit Kashiram, Abdul Rahman, Raja Mahendra
+									Pratap, Madam Bhikaji Cama</mark
+								>.
+							</li>
+							<li>
+								Women in the Ghadar movement:
+								<mark class="g"
+									>Gulab Kaur ("Ghadri Gulab Kaur"), Bhikaji
+									Cama, Agnes Smedley, Kartar Kaur, Rani
+									Bhagwan Kaur, Sushila Mohan, Bhagwati Giri,
+									Janki Devi</mark
+								>
+								— organised support, spread ideas, ran safe
+								houses, raised funds, and built international
+								awareness.
+							</li>
+							<li>
+								<i>The Ghadar</i>'s first issue appeared
+								<mark class="b">November 1913</mark>,
+								serialising <mark class="g">Savarkar's</mark>
+								<i
+									>The First War of Indian Independence —
+									1857</i
+								>
+								and citing Tilak and Aurobindo.
+								<mark class="y">"Ghadar di Goonj"</mark> (a
+								poetry collection) urged cross-religious unity
+								and armed rebellion.
+							</li>
+							<li>
+								<mark class="g">Lala Hardayal</mark>,
+								separately, in 1911 got the opportunity to
+								become
+								<mark class="r"
+									>Professor of Indian Philosophy</mark
+								>
+								at the University of California/Stanford (71st
+								BPSC).
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>
+							Komagata Maru Incident (1914) &amp; the Ghadar
+							Rebellion (1915)
+						</h3>
+						<ul>
+							<li>
+								The <mark class="y">Komagata Maru</mark> was a
+								<mark class="r">Japanese steamliner</mark>
+								chartered by wealthy Punjabi businessman
+								<mark class="g">Gurdit Singh</mark> to challenge
+								discriminatory Canadian immigration laws —
+								departed 1914 carrying
+								<mark class="b">376 Indians</mark> (mostly Sikh
+								and Punjabi Muslim) toward Vancouver.
+							</li>
+							<li>
+								Canadian authorities refused entry; after a
+								standoff, the ship returned to
+								<mark class="g">Budge Budge port, Calcutta</mark
+								>; a clash with British police there killed
+								<mark class="b">20</mark> passengers (one
+								drowned), and <mark class="b">202</mark> were
+								jailed.
+							</li>
+							<li>
+								A <mark class="y">Shore Committee</mark> — led
+								by
+								<mark class="g"
+									>Hussain Rahim, Balwant Singh, and Sohan Lal
+									Pathak</mark
+								>
+								— had been formed to protect Indian travellers'
+								rights during the standoff.
+							</li>
+							<li>
+								The incident, combined with the outbreak of
+								<mark class="g">WWI</mark>, directly triggered
+								the
+								<mark class="y">Ghadar Rebellion (1915)</mark>:
+								activists planned revolts in
+								<mark class="g"
+									>Ferozepur, Lahore, and Rawalpindi</mark
+								>, but the plot was betrayed;
+								<mark class="r">45 leaders were executed</mark>,
+								and Pan-Islamist figures like the
+								<mark class="g"
+									>Ali brothers, Maulana Azad, and Hasrat
+									Mohani</mark
+								>
+								were interned under the
+								<mark class="y"
+									>Defence of India Rules, 1915</mark
+								>. <mark class="g">Rashbehari Bose</mark> fled
+								to Japan;
+								<mark class="g">Sachin Sanyal</mark> was
+								transported for life.
+							</li>
+							<li>
+								The failed rebellion is remembered as
+								<mark class="y">Ailan-e-Jung</mark>
+								("Proclamation of War"); it ultimately failed
+								for lack of mass support within Punjab itself.
+							</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>
+							Ghadar-era organisation headquarters (a matching PYQ
+							favourite)
+						</caption>
+						<thead class="green">
+							<tr>
+								<th>Organisation</th>
+								<th>Headquarters</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Swadesh Sevak Home</td>
+								<td><mark class="g">Vancouver</mark></td>
+							</tr>
+							<tr>
+								<td>United India House</td>
+								<td><mark class="g">Seattle</mark></td>
+							</tr>
+							<tr>
+								<td>Yugantar Ashram</td>
+								<td><mark class="g">San Francisco</mark></td>
+							</tr>
+							<tr>
+								<td>INA / Azad Hind Fauj (later, WWII era)</td>
+								<td><mark class="g">Rangoon</mark></td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<div class="part-divider">
+					<span class="plabel">Part IV</span>
+					<div class="ptitle">
+						WWI, Home Rule, and the Lucknow Reunion
+					</div>
+					<p class="pdesc">
+						Nationalism finds a wartime opening — and Congress
+						patches itself back together.
+					</p>
+				</div>
+
+				<!-- ============ CHAPTER 12 ============ -->
+				<section
+					class="chapter"
+					id="ch12"
+					data-title="WWI and the Nationalist Response"
+				>
+					<div class="chapter-head">
+						<div class="seal">12</div>
+						<h2>First World War &amp; Nationalist Response</h2>
+					</div>
+
+					<div class="event">
+						<ul>
+							<li>
+								<mark class="y">Allies</mark>: Britain, France,
+								Russia, USA, Italy, Japan.
+								<mark class="y">Central Powers</mark>: Germany,
+								Austria-Hungary, Turkey.
+							</li>
+							<li>
+								<mark class="y">Moderates</mark> supported
+								British war efforts as a matter of duty;
+								<mark class="y">Extremists</mark> (led by
+								figures like Tilak) hoped self-governance would
+								be the eventual reward for wartime loyalty;
+								<mark class="y">Revolutionaries</mark> saw the
+								war itself as an opportunity to strike
+								immediately at weakened British power.
+							</li>
+							<li>
+								British repression — suppressing anti-colonial
+								publications, interning leaders like the
+								<mark class="g">Ali brothers</mark> and
+								<mark class="g">Maulana Azad</mark> —
+								intensified anti-imperialist sentiment among the
+								so-called <mark class="y">"Young Party."</mark>
+							</li>
+							<li>
+								Financial strain: white troop numbers in India
+								fell to around <mark class="b">15,000</mark>,
+								while the war also opened possibilities of
+								support from Germany and Turkey.
+							</li>
+							<li>
+								<mark class="b">December 1914</mark>, Madras
+								Congress session: openly supported British war
+								efforts — marking the
+								<mark class="r"
+									>first time a Governor attended a Congress
+									session</mark
+								>.
+							</li>
+							<li>
+								<mark class="b">1916</mark>: the joint
+								Congress–Muslim League session at Lucknow saw
+								<mark class="g">Jinnah</mark> and
+								<mark class="g">Ambika Charan Majumdar</mark>
+								presiding over unified discussions (see Ch.14
+								for full detail).
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 13 ============ -->
+				<section
+					class="chapter"
+					id="ch13"
+					data-title="Home Rule League Movement"
+				>
+					<div class="chapter-head">
+						<div class="seal">13</div>
+						<h2>The Home Rule League Movement</h2>
+					</div>
+					<div class="chapter-sub">
+						Two parallel leagues, one wartime demand
+					</div>
+
+					<div class="event">
+						<ul>
+							<li>
+								Goal:
+								<mark class="y"
+									>self-government (Home Rule) for India
+									within the British Empire</mark
+								>, modelled on Irish Home Rule demands.
+							</li>
+							<li>
+								<mark class="g">Annie Besant</mark> first
+								publicly outlined the idea in her weekly
+								<i>The Commonweal</i>,
+								<mark class="b">2 January 1914</mark>.
+							</li>
+							<li>
+								Other supporters beyond Tilak and Besant:
+								<mark class="g"
+									>G.S. Khaparde, Joseph Baptista, Muhammad
+									Ali Jinnah, Motilal Nehru, Jawaharlal Nehru,
+									Bhulabhai Desai, Chittaranjan Das, K.M.
+									Munshi, B. Chakravarti, Saifuddin Kitchlew,
+									Madan Mohan Malaviya, Tej Bahadur Sapru,
+									Lala Lajpat Rai</mark
+								>, and
+								<mark class="g">Sir S. Subramania Iyer</mark>
+								(who renounced his knighthood in protest).
+							</li>
+							<li>
+								Drew moderate Congress members and some from
+								Gokhale's
+								<mark class="g">Servants of India Society</mark>
+								— but
+								<mark class="r"
+									>Anglo-Indians, many Muslims, and
+									non-Brahmins in the South largely stayed
+									away</mark
+								>, fearing Hindu-majority rule.
+							</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>
+							Tilak's League vs Besant's League
+						</caption>
+						<thead class="red">
+							<tr>
+								<th>Feature</th>
+								<th>Tilak's Home Rule League</th>
+								<th>Besant's Home Rule League</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Established</td>
+								<td>
+									<mark class="b">April 1916</mark>, first
+									meeting at Belgaum
+								</td>
+								<td><mark class="b">September 1916</mark></td>
+							</tr>
+							<tr>
+								<td>Headquarters</td>
+								<td><mark class="g">Poona</mark></td>
+								<td>
+									<mark class="g">Adyar, near Madras</mark>
+								</td>
+							</tr>
+							<tr>
+								<td>Coverage</td>
+								<td>
+									Maharashtra (except Bombay city), Karnataka,
+									Central Provinces &amp; Berar
+								</td>
+								<td>Rest of India, including Bombay City</td>
+							</tr>
+							<tr>
+								<td>First President / key office-bearer</td>
+								<td>
+									<mark class="g">Joseph Baptista</mark>
+									(President);
+									<mark class="g">N.C. Kelkar</mark>
+									(Secretary)
+								</td>
+								<td>
+									<mark class="g">George Arundale</mark>
+									(Organising Secretary); other key figures —
+									<mark class="g"
+										>B.W. Wadia, C.P. Ramaswamy Aiyar</mark
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>Branches</td>
+								<td><mark class="b">6</mark> branches</td>
+								<td><mark class="b">200</mark> branches</td>
+							</tr>
+							<tr>
+								<td>Organisational structure</td>
+								<td>Tighter, more organised (per PYQ)</td>
+								<td>Loosely organised</td>
+							</tr>
+							<tr>
+								<td>Publications</td>
+								<td>
+									<i>Mahratta</i> (English) &amp;
+									<i>Kesari</i> (Marathi)
+								</td>
+								<td>
+									<i>New India</i> &amp; <i>Commonweal</i>
+								</td>
+							</tr>
+							<tr>
+								<td>Demands / emphasis</td>
+								<td>
+									Swarajya, formation of linguistic states,
+									vernacular education
+								</td>
+								<td>
+									Self-government similar to the white
+									Dominions
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="ctx">
+						<span class="lbl"
+							>Context — why the two Leagues never merged</span
+						>
+						<mark class="g">Annie Besant</mark> herself explained:
+						<mark class="y"
+							>"Some of Tilak's supporters dislike me and some of
+							mine dislike him. We however, had no quarrel with
+							each other."</mark
+						>
+						The two Leagues were treated as complementary, dividing
+						India geographically rather than competing — hence
+						multiple PYQs correctly note "both continued to exist
+						despite the differences" as the accurate statement, and
+						any option claiming they "merged into one" is a trap.
+					</div>
+
+					<div class="event">
+						<h3>
+							Government Response &amp; the Movement's Decline (by
+							1919)
+						</h3>
+						<ul>
+							<li>
+								British repression, especially in Madras: banned
+								students from political activity.
+							</li>
+							<li>
+								<mark class="b">June 1917</mark>: Annie Besant
+								and associates arrested — triggered nationwide
+								protests.
+								<mark class="g">Edwin Montagu</mark> himself
+								remarked wryly:
+								<mark class="y"
+									>"Shiva... cut his wife into fifty-two
+									pieces only to discover that he had
+									fifty-two wives. This is what happens to the
+									Government of India when it interns Mrs
+									Besant."</mark
+								>
+							</li>
+							<li>
+								Weak organisation, sectarian unrest (1917–18),
+								Montagu's
+								<mark class="b">1917</mark> reform-promise
+								statement and Besant's release pacifying
+								moderates, Extremist calls for passive
+								resistance discouraging moderate involvement,
+								the divisive Montagu-Chelmsford Reforms (1918),
+								and a leadership vacuum (Tilak's absence,
+								Besant's indecision) all combined to end the
+								movement by 1919.
+							</li>
+							<li>
+								<mark class="b">1918</mark>:
+								<mark class="g">Annie Besant</mark> visited
+								<mark class="g">Bihar (Patna)</mark> twice (18
+								April and 25 July) specifically to strengthen
+								Home Rule League activities there (71st BPSC).
+							</li>
+							<li>
+								<mark class="b">1920</mark>: the
+								<mark class="y"
+									>All India Home Rule League</mark
+								>
+								elected <mark class="g">Mahatma Gandhi</mark> as
+								President, who renamed it
+								<mark class="y">"Swarajya Sabha"</mark> —
+								folding it formally into the Congress fold
+								(I.A.S. 2018).
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>
+							Related Background — Annie Besant &amp; Theosophy
+						</h3>
+						<ul>
+							<li>
+								The
+								<mark class="y">Theosophical Society</mark> was
+								established in <mark class="b">1875</mark> by
+								<mark class="g"
+									>Colonel Henry Steel Olcott, Madame Helena
+									Petrovna Blavatsky, and William Quan
+									Judge</mark
+								>
+								—
+								<mark class="r"
+									>Annie Besant was not its founder</mark
+								>, only a later member (joined 1889) and
+								eventually its President,
+								<mark class="b">1907–1933</mark> (I.A.S. 2013
+								confirms this exact distinction).
+							</li>
+							<li>
+								Besant was also a proponent of the British
+								<mark class="y">Fabian movement</mark> (I.A.S.
+								2005).
+							</li>
+							<li>
+								She became the
+								<mark class="r"
+									>first woman President of the Indian
+									National Congress</mark
+								>
+								at the Calcutta session,
+								<mark class="b">1917</mark> (see the Congress
+								dossier for the full session-by-session record).
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 14 ============ -->
+				<section
+					class="chapter"
+					id="ch14"
+					data-title="Lucknow Session & the Lucknow Pact"
+				>
+					<div class="chapter-head">
+						<div class="seal">14</div>
+						<h2>
+							The Lucknow Session (1916) &amp; the Lucknow Pact
+						</h2>
+					</div>
+
+					<div class="event">
+						<h3>Why Lucknow, 1916, mattered doubly</h3>
+						<ul>
+							<li>
+								Presided by
+								<mark class="g">Ambika Charan Majumdar</mark> —
+								this session
+								<mark class="r"
+									>reunited Moderates and Extremists</mark
+								>
+								after a
+								<mark class="b"
+									>10-year (nine-year, per one PYQ)
+									split</mark
+								>: the Extremists excluded since 1907 (Surat)
+								were formally readmitted.
+							</li>
+							<li>
+								Factors enabling reunion: diminished old
+								controversies, recognition of political
+								stagnation, active reconciliation efforts by
+								<mark class="g">Annie Besant and Tilak</mark>,
+								and Tilak's own more conciliatory stance after
+								his June <mark class="b">1914</mark> release
+								from prison. The deaths of moderate stalwarts
+								<mark class="g">Gopal Krishna Gokhale</mark> and
+								<mark class="g">Pherozeshah Mehta</mark> also
+								removed some of the strongest institutional
+								opposition to readmitting Extremists.
+							</li>
+							<li>
+								Both the
+								<mark class="g">Indian National Congress</mark>
+								and the
+								<mark class="g">Muslim League</mark> held their
+								annual sessions at
+								<mark class="g">Lucknow</mark> in the
+								<mark class="r">same</mark> year (1916) — a rare
+								and deliberate coincidence enabling joint
+								negotiation.
+							</li>
+							<li>
+								In this very session,
+								<mark class="g">Bal Gangadhar Tilak</mark>
+								declared:
+								<mark class="y"
+									>"Swaraj is my birthright, and I shall have
+									it."</mark
+								>
+							</li>
+							<li>
+								Also in this session,
+								<mark class="g">Raj Kumar Shukla</mark> first
+								apprised
+								<mark class="g">Mahatma Gandhi</mark> of the
+								plight of
+								<mark class="g">Champaran</mark> peasants —
+								planting the seed for Gandhi's first satyagraha
+								in India, in 1917 (U.P.R.O./A.R.O. 2013).
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>The Lucknow Pact — main clauses</h3>
+						<ul>
+							<li>
+								<mark class="y">Self-government</mark> declared
+								as the shared goal.
+							</li>
+							<li>
+								<mark class="r"
+									>One-third Muslim representation</mark
+								>
+								guaranteed in the central government — the
+								<mark class="r"
+									>first time Congress formally accepted
+									separate electorates</mark
+								>
+								for Muslims (1916, a notable and consequential
+								Congress concession — R.A.S./R.T.S. 1999).
+							</li>
+							<li>
+								<mark class="y">Separate electorates</mark>
+								continued (building on Morley-Minto).
+							</li>
+							<li>
+								A <mark class="y">weightage system</mark> in
+								legislative representation (minorities
+								over-represented relative to population, in
+								specific provinces).
+							</li>
+							<li>
+								<mark class="y"
+									>Central Legislative Council strength</mark
+								>: 150 members.
+							</li>
+							<li>
+								<mark class="b">Four-fifths</mark> of provincial
+								legislators to be elected.
+							</li>
+							<li>
+								<mark class="y">Adult franchise</mark> for
+								direct elections (an aspirational demand, not
+								yet implemented).
+							</li>
+							<li>
+								<mark class="y">Veto power</mark> for each
+								community on bills specifically affecting it.
+							</li>
+							<li>
+								<mark class="y"
+									>Separation of Executive and Judiciary</mark
+								>
+								— an older Moderate demand, folded into this
+								joint platform.
+							</li>
+						</ul>
+						<p>
+							Contributing factors to the Pact: Muslim
+							dissatisfaction over Britain's refusal to aid
+							Turkey, the 1911 Bengal Partition annulment, and
+							denial of Aligarh University affiliation; the
+							League's own 1912 Calcutta session shift toward
+							supporting self-government; and WWI-era repression
+							fuelling shared anti-imperial sentiment.
+							<mark class="g">Sarojini Naidu</mark> called
+							<mark class="g">Jinnah</mark>, the pact's chief
+							architect (alongside Tilak), the
+							<mark class="y"
+								>"Ambassador of Hindu-Muslim Unity."</mark
+							>
+						</p>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl"
+							>Context — the fragile 1916–1922 unity window</span
+						>
+						The period <mark class="b">1916–1922</mark> is
+						specifically identified in PYQs as the era of
+						Congress–Muslim League unanimity (U.P.P.C.S. 1992) — but
+						the Lucknow Pact was
+						<mark class="r">only a temporary arrangement</mark>; the
+						League retained its separate identity throughout and
+						kept advocating Muslim-specific interests independently.
+						The relationship began fraying as early as
+						<mark class="b">1920</mark>, when
+						<mark class="g">Jinnah resigned from Congress</mark>
+						over disagreements with
+						<mark class="g">Gandhi's</mark> approach (specifically
+						the shift toward mass agitation and the linking of the
+						Khilafat and Non-Cooperation movements) — meaning the
+						"unity window" quietly cracked two years before its
+						formally cited 1922 end-point.
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 15 ============ -->
+				<section
+					class="chapter"
+					id="ch15"
+					data-title="Montagu's Declaration & 1919 Reforms"
+				>
+					<div class="chapter-head">
+						<div class="seal">15</div>
+						<h2>
+							Montagu's Declaration (1917) &amp; the Government of
+							India Act, 1919
+						</h2>
+					</div>
+					<div class="chapter-sub">
+						The direct legislative sequel to this whole decade
+					</div>
+
+					<div class="event">
+						<h3>Montagu's Declaration, August 1917</h3>
+						<ul>
+							<li>
+								Marked a significant British shift —
+								acknowledging India's desire for self-governance
+								and introducing the concept of the
+								<mark class="y"
+									>"progressive realisation of responsible
+									government"</mark
+								>, where rulers would eventually answer to
+								elected Indian representatives rather than
+								solely to Britain.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>
+							Government of India Act, 1919 (Montagu-Chelmsford
+							Reforms)
+						</h3>
+						<ul>
+							<li>
+								Architects:
+								<mark class="g">Edwin Montagu</mark> (Secretary
+								of State for India) and
+								<mark class="g">Lord Chelmsford</mark>
+								(Viceroy);
+								<mark class="r">Prime Minister of England</mark>
+								when the Act passed:
+								<mark class="g">Lloyd George</mark> (60th–62nd
+								BPSC).
+							</li>
+							<li>
+								Clearly defined the jurisdictional split between
+								central and provincial governments for the first
+								time.
+							</li>
+							<li>
+								<mark class="y">Dyarchy</mark> introduced at the
+								provincial level — the "Father of Dyarchy" is
+								credited as
+								<mark class="g">Lionel Curtis</mark> (60th–62nd
+								BPSC). Subjects split into
+								<mark class="r">"reserved"</mark> (law &amp;
+								order, finance — under the Governor and his
+								bureaucratic executive council) and
+								<mark class="r">"transferred"</mark> (education,
+								health — under ministers from the elected
+								legislature, answerable to it). No
+								executive-councillor accountability to the
+								legislature; the Governor could take over
+								transferred subjects if constitutional machinery
+								failed; Secretary of State/Governor-General
+								could interfere <mark class="r">only</mark> in
+								reserved subjects.
+							</li>
+							<li>
+								Provincial legislatures expanded to
+								<mark class="b">70%</mark> elected membership;
+								communal/class electorates consolidated;
+								<mark class="r"
+									>voting rights granted to women</mark
+								>
+								for the first time. Legislature could initiate
+								legislation but needed the Governor's assent;
+								Governor retained veto power and could restore
+								rejected budgets.
+							</li>
+							<li>
+								<mark class="r"
+									>No responsible government at the central
+									level</mark
+								>
+								— the Governor-General remained chief executive;
+								central/provincial administrative lists
+								maintained separately; the Viceroy's Executive
+								Council included
+								<mark class="b">3 Indian members</mark>; the
+								Governor-General retained control over reserved
+								provincial subjects and could restore budget
+								cuts, certify bills, and issue ordinances.
+							</li>
+							<li>
+								<mark class="y"
+									>Bicameral central legislature</mark
+								>
+								introduced:
+								<mark class="g"
+									>Central Legislative Assembly</mark
+								>
+								(145 members, 3-year tenure) and
+								<mark class="g">Council of State</mark> (60
+								members, 5-year tenure, male-only). Legislators
+								had limited budget control —
+								<mark class="b">75%</mark> of the budget
+								remained non-votable; some Indian representation
+								was allowed on important committees, including
+								finance.
+							</li>
+							<li>
+								Important administrative change: the
+								<mark class="y"
+									>Secretary of State for India's</mark
+								>
+								salary was moved to be paid from the
+								<mark class="g">British exchequer</mark> going
+								forward, rather than from Indian revenues.
+							</li>
+							<li>
+								A
+								<mark class="y"
+									>High Commissioner for India</mark
+								>
+								was appointed, based in London for a six-year
+								term, tasked with overseeing Indian trade in
+								Europe (63rd BPSC).
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Congress Reaction — verdicts on the 1919 Act</h3>
+						<ul>
+							<li>
+								Congress, led by
+								<mark class="g">Hasan Imam</mark>, deemed the
+								reforms
+								<mark class="y"
+									>"disappointing" and "unsatisfactory,"</mark
+								>
+								demanding effective self-government instead.
+							</li>
+							<li>
+								<mark class="g">Tilak</mark>:
+								<mark class="y"
+									>"Unworthy and disappointing — a sunless
+									dawn."</mark
+								>
+							</li>
+							<li>
+								<mark class="g">Annie Besant</mark>:
+								<mark class="y"
+									>"Unworthy of England to offer and India to
+									accept."</mark
+								>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<div class="part-divider">
+					<span class="plabel">Part V</span>
+					<div class="ptitle">
+						Moderates vs Extremists — the Ideological Core
+					</div>
+					<p class="pdesc">
+						The people, the quotes, the personal stories behind the
+						split.
+					</p>
+				</div>
+
+				<!-- ============ CHAPTER 16 ============ -->
+				<section
+					class="chapter"
+					id="ch16"
+					data-title="Moderates vs Extremists — People & Quotes"
+				>
+					<div class="chapter-head">
+						<div class="seal">16</div>
+						<h2>
+							Moderates vs Extremists — the People Behind the
+							Ideology
+						</h2>
+					</div>
+
+					<div class="event">
+						<ul>
+							<li>
+								The <mark class="r">first two decades</mark> of
+								the INC (1885–1905) are described as its
+								<mark class="y">Moderate era</mark>. Prominent
+								Moderates:
+								<mark class="g"
+									>Dadabhai Naoroji, Surendranath Banerjee,
+									Mahadev Govind Ranade, Pherozeshah Mehta,
+									Gopal Krishna Gokhale, Anand Mohan Bose,
+									Dinshaw Wacha, W.C. Bonnerjee, Rash Behari
+									Ghosh</mark
+								>
+								— confident in British fairness, never aiming at
+								aggressive nationalism for independence.
+							</li>
+							<li>
+								Most Moderate leaders hailed from
+								<mark class="r">urban</mark> areas (43rd BPSC;
+								U.P.P.C.S. Mains 2016) — dominated by advocates,
+								doctors, engineers, journalists, and literary
+								figures, with little genuine mass connection.
+							</li>
+							<li>
+								<mark class="g">Pherozeshah Mehta</mark>:
+								<mark class="y"
+									>"The voice of Congress is not of the
+									masses, but it is the responsibility of
+									citizens in contact with Congress to
+									understand these emotions and propagate them
+									to the Nation."</mark
+								>
+							</li>
+							<li>
+								<mark class="g">Gopal Krishna Gokhale</mark>:
+								believed in the purity of means and ends;
+								political mentor (<mark class="y">"Guru"</mark>)
+								of <mark class="g">Mahatma Gandhi</mark>; first
+								entered politics in <mark class="b">1889</mark>.
+								In <mark class="b">1897</mark>, Gokhale and
+								<mark class="g">Dinshaw Wacha</mark> presented
+								proof of Indian expenditure before the
+								<mark class="y">Welby Commission</mark>. Elected
+								to the
+								<mark class="g"
+									>Bombay Legislative Council (1899)</mark
+								>
+								and the
+								<mark class="g">Imperial Council</mark> (1901).
+							</li>
+							<li>
+								<mark class="g">Welby Comission estb. 1895</mark
+								>:royal commission set up by the British
+								Government in 1895 to investigate wasteful
+								spending and financial administration in British
+								India. Its official name was the Royal
+								Commission on the Administration of Expenditure
+								of India.<mark class="y"
+									>Dadabhai Naoroji served as a member of the
+									commission, becoming the first Indian to sit
+									on a Royal Commission. He used this platform
+									to present his famous "Drain of Wealth"
+									theory, arguing that British economic
+									policies were impoverishing India</mark
+								>) of
+								<mark class="g"
+									>Gopal Krishna Gokhale and Dinshaw
+									Wacha</mark
+								>; deposed before the commission in 1897,
+								providing powerful critiques of high military
+								spending and unfair tax burdens.
+							</li>
+							<li>
+								Extremist leaders —
+								<mark class="g"
+									>Bal Gangadhar Tilak, Lala Lajpat Rai, Bipin
+									Chandra Pal, Aurobindo Ghosh</mark
+								>
+								— emerged in the early 1900s, targeting
+								<mark class="y">"Swaraj"</mark> outright, and
+								explicitly rejecting the Moderates'
+								<mark class="y"
+									>"politics of prayer, petition, and
+									protest."</mark
+								>
+							</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>
+							Famous accusations, titles and quotes — matched to
+							their speaker
+						</caption>
+						<thead class="red">
+							<tr>
+								<th>Quote / Title</th>
+								<th>Attributed to</th>
+								<th>Context</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<mark class="y"
+										>Accused Congress of "politics of
+										prayer, petition, and protest"</mark
+									>
+								</td>
+								<td><mark class="g">B.G. Tilak</mark></td>
+								<td>
+									Core Extremist critique of Moderate methods.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<mark class="y"
+										>Ended the Congress "policy of prayer
+										and petition"</mark
+									>
+								</td>
+								<td><mark class="g">B.G. Tilak</mark></td>
+								<td>
+									Credited with shifting Congress toward mass
+									agitation, drawing followers like Lajpat Rai
+									and Bipin Chandra Pal.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<mark class="y"
+										>Called Congress a "Begging
+										Institute"</mark
+									>
+								</td>
+								<td>
+									<mark class="g">Bipin Chandra Pal</mark>
+								</td>
+								<td>
+									A sharper Extremist dismissal of early
+									Congress methods.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<mark class="y"
+										>"Father of Indian Unrest"</mark
+									>
+								</td>
+								<td>
+									Coined by
+									<mark class="g">Sir Valentine Chirol</mark>,
+									applied to <mark class="g">B.G. Tilak</mark>
+								</td>
+								<td>
+									Tilak sued Chirol for defamation in England
+									and lost.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<mark class="y"
+										>"My interest in Tilak is that of a
+										Sanskrit scholar" (mercy plea)</mark
+									>
+								</td>
+								<td>
+									<mark class="g">Max Muller</mark> (with Sir
+									William Hunter)
+								</td>
+								<td>
+									Petitioned the Queen for mercy after Tilak's
+									1897 sedition conviction and failed Privy
+									Council appeal.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<mark class="y"
+										>"Annual National Festival of Educated
+										Indians" (re: Congress)</mark
+									>
+								</td>
+								<td><mark class="g">Lala Lajpat Rai</mark></td>
+								<td>
+									A dismissive characterisation of Congress's
+									limited, elite social reach.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<mark class="y"
+										>Sher-e-Punjab / Punjab Kesari</mark
+									>
+								</td>
+								<td><mark class="g">Lala Lajpat Rai</mark></td>
+								<td>
+									Punjab's Extremist representative in
+									Congress.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<mark class="y"
+										>Political "guru" of Lala Lajpat
+										Rai</mark
+									>
+								</td>
+								<td>
+									<mark class="g">Mazzini</mark> (Italian
+									revolutionary)
+								</td>
+								<td>
+									Lajpat Rai translated Mazzini's
+									<i>The Duties of Man</i> into Urdu after
+									reading his biography; also wrote brief
+									biographies of Krishna, Shivaji, Dayanand
+									Saraswati, Mazzini, and Garibaldi.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Tilak — later life details</h3>
+						<ul>
+							<li>
+								Jailed for <mark class="b">6 years</mark> in
+								<mark class="g">Mandalay, Burma</mark> (1908),
+								for sedition over an anti-British article in his
+								newspaper <i>Kesari</i>; wrote
+								<i><mark class="y">Gita Rahasya</mark></i> while
+								imprisoned there.
+							</li>
+							<li>
+								Started the
+								<mark class="y">Shivaji Mahotsav</mark> and
+								<mark class="y">Ganpati festival</mark> to
+								cultivate mass nationalist feeling — turning
+								traditional festivals into political platforms;
+								he also founded the
+								<mark class="y">"Lathi Club"</mark> along with
+								Hindu Akhadas.
+							</li>
+							<li>
+								Died <mark class="b">1 August 1920</mark>; his
+								funeral bier was lifted by
+								<mark class="g"
+									>Mahatma Gandhi, Maulana Shaukat Ali, and
+									Saifuddin Kitchlew</mark
+								>;
+								<mark class="g">Maulana Hasrat Mohani</mark>
+								read the eulogy.
+							</li>
+							<li>
+								<mark class="r">Not a communalist</mark>,
+								despite using religious festivals as political
+								tools — a common Assertion-Reason trap
+								(U.P.P.C.S. 2001) concludes he was a genuine
+								nationalist who used religion strategically, not
+								for communal ends.
+							</li>
+						</ul>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl"
+							>Context — international events that shaped the
+							pre-Gandhi movement</span
+						>
+						A landmark I.A.S. 1994 question confirms that
+						<mark class="r">all four</mark> of the following
+						international events influenced India's national
+						movement before Gandhi's rise: the
+						<mark class="g">Italian-Abyssinian War (1898)</mark>,
+						the
+						<mark class="g"
+							>Boxer Movement in China (1899–1901)</mark
+						>, the
+						<mark class="g">Irish revolutionary movement</mark>, and
+						— with the <mark class="r">greatest impact</mark> —
+						<mark class="g"
+							>Japan's victory over Russia in the Russo-Japanese
+							War (1905)</mark
+						>, which shattered the myth of white/European racial
+						invincibility and directly energised Indian
+						revolutionary confidence in this exact period.
+					</div>
+				</section>
+
+				<div class="part-divider">
+					<span class="plabel">Part VI</span>
+					<div class="ptitle">
+						The Revolutionary Thread Continues — into the 1920s
+					</div>
+					<p class="pdesc">
+						Provided for continuity: how Phase I above (1907–17)
+						directly produced Phase II.
+					</p>
+				</div>
+
+				<!-- ============ CHAPTER 17 ============ -->
+				<section
+					class="chapter"
+					id="ch17"
+					data-title="Revolutionary Activities in the 1920s (Phase II)"
+				>
+					<div class="chapter-head">
+						<div class="seal">17</div>
+						<h2>
+							Revolutionary Activities in the 1920s — Phase II
+						</h2>
+					</div>
+					<div class="chapter-sub">
+						Included for continuity, since these cases are the
+						direct successors of the 1907–17 organisations above
+					</div>
+
+					<div class="event">
+						<h3>Why the movement resumed</h3>
+						<ul>
+							<li>
+								The
+								<mark class="y">Russian Revolution (1917)</mark>
+								inspired Indian revolutionaries with
+								Marxist/socialist ideology.
+							</li>
+							<li>
+								New
+								<mark class="y">communist groups</mark> emerged,
+								emphasising the proletariat's role.
+							</li>
+							<li>
+								Publications like
+								<i>Atmasakti, Sarathi, Bijoli</i>, plus banned
+								works like <i>Bandi Jiwan</i> (Sachin Sanyal —
+								see Ch.4) and <i>Pather Dabi</i> (Sharatchandra
+								Chatterjee), glorified revolutionary sacrifice
+								and spread socialist ideas.
+							</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>
+							Revolutionary organisations &amp; cases, 1920s
+							(Phase II)
+						</caption>
+						<thead class="red">
+							<tr>
+								<th>Case/Org (Year, Place)</th>
+								<th>People &amp; Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<b
+										>Hindustan Republican Association / HRA
+										(1924, Kanpur)</b
+									>
+								</td>
+								<td>
+									Founded by
+									<mark class="g"
+										>Ram Prasad Bismil, Jogesh Chandra
+										Chatterjee, Sachindra Nath Sanyal</mark
+									>
+									(President) at a conference of young
+									revolutionaries, October 1924 — aimed to
+									overthrow colonial government and establish
+									a
+									<mark class="y"
+										>Federal Republic of the United States
+										of India</mark
+									>. Active across Punjab, U.P., Bihar.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b
+										>Kakori Robbery (9 Aug 1925, near
+										Lucknow)</b
+									>
+								</td>
+								<td>
+									HRA revolutionaries looted the
+									<mark class="g"
+										>8-Down Saharanpur-Lucknow train</mark
+									>
+									at Kakori. ~40 arrested;
+									<mark class="g"
+										>Ram Prasad Bismil, Ashfaqullah Khan,
+										Roshan Singh, Rajendra Lahiri</mark
+									>
+									executed (65th BPSC).
+									<mark class="g">Chandra Shekhar Azad</mark>
+									was the only key member who evaded arrest
+									throughout — he was never captured by
+									police.
+									<mark class="g">Asfaqullah Khan</mark> — the
+									<mark class="r"
+										>first recorded Muslim hanged</mark
+									>
+									for India's freedom struggle (19 Dec 1927,
+									Faizabad/Ayodhya Jail, aged 27);
+									<mark class="g">Bismil</mark> hanged at
+									<mark class="g">Gorakhpur</mark>,
+									<mark class="g">Rajendra Lahiri</mark> at
+									<mark class="g">Gonda</mark>,
+									<mark class="g">Roshan Singh</mark> at
+									<mark class="g">Allahabad</mark>. Public
+									prosecutor:
+									<mark class="g">Jagat Narain Mulla</mark>;
+									defence committee reportedly chaired by
+									<mark class="g">Govind Ballabh Pant</mark>,
+									under overall leadership of
+									<mark class="g">Motilal Nehru</mark> (a
+									disputed UPPSC answer-key point). Bismil
+									famously refused pre-execution milk, saying
+									<mark class="y"
+										>"I will drink only my mother's
+										milk."</mark
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b
+										>HRA → HSRA reorganisation (Sept 1928,
+										Feroz Shah Kotla, Delhi)</b
+									>
+								</td>
+								<td>
+									Reorganised as the
+									<mark class="y"
+										>Hindustan Socialist Republican
+										Association</mark
+									>
+									under
+									<mark class="g">Chandrashekhar Azad</mark>,
+									reflecting an ideological shift toward
+									socialism; key members —
+									<mark class="g"
+										>Bhagat Singh, Sukhdev, Bhagwaticharan
+										Vohra</mark
+									>
+									(Punjab),
+									<mark class="g"
+										>Bejoy Kumar Sinha, Shiv Verma, Jaidev
+										Kapur</mark
+									>
+									(U.P.). Founding attributed jointly to
+									<mark class="g"
+										>Azad, Bhagat Singh, and Sukhdev</mark
+									>
+									in different question phrasings.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Saunders' Murder (Dec 1928, Lahore)</b>
+								</td>
+								<td>
+									<mark class="g"
+										>Bhagat Singh, Chandrashekhar Azad,
+										Rajguru</mark
+									>
+									shot dead ASP
+									<mark class="g">John P. Saunders</mark>, in
+									retaliation for the lathi-charge that caused
+									<mark class="g">Lala Lajpat Rai's</mark>
+									death (17 Nov 1928) during an anti-Simon
+									Commission protest — Singh and Rajguru had
+									actually intended to target
+									<mark class="g">James Scott</mark>,
+									mistakenly killing Saunders instead.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b
+										>Central Legislative Assembly Bombing (8
+										April 1929, Delhi)</b
+									>
+								</td>
+								<td>
+									<mark class="g">Bhagat Singh</mark> and
+									<mark class="g">Batukeshwar Dutt</mark>
+									threw low-intensity, deliberately non-lethal
+									bombs to protest the Public Safety Bill and
+									Trade Disputes Bill — intended as a
+									political statement, using the ensuing trial
+									to spread revolutionary ideology; both
+									surrendered voluntarily. Bhagat Singh (born
+									26 Sept 1907) was just over
+									<mark class="b">21 years old</mark> at the
+									time (64th BPSC).
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Lahore Conspiracy Case (1929–1930)</b>
+								</td>
+								<td>
+									British prosecution of HSRA revolutionaries
+									for Saunders' killing;
+									<mark class="g"
+										>Bhagat Singh, Rajguru, Sukhdev</mark
+									>
+									sentenced to death, hanged and secretly
+									cremated on the banks of the
+									<mark class="g">Sutlej at Hussainiwala</mark
+									>, Ferozepur district,
+									<mark class="b">23 March 1931</mark>.
+									<mark class="g">Batukeshwar Dutt</mark> was
+									<mark class="r">not</mark> hanged in this
+									case — sent instead to the Cellular Jail,
+									Andaman, for "Kala Pani."
+									<mark class="g">Jatin Das</mark>, arrested
+									under the supplementary Lahore Conspiracy
+									charge (14 June 1929), died on a
+									<mark class="b">63-day hunger strike</mark>
+									for jail reforms (13 Sept 1929) — the first
+									Indian revolutionary to die that way.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b
+										>Chittagong Armoury Raid (18 April 1930,
+										Bengal)</b
+									>
+								</td>
+								<td>
+									Organised by
+									<mark class="g"
+										>Surya Sen ("Master Da")</mark
+									>
+									via his
+									<mark class="y"
+										>Indian Republican Army (IRA)</mark
+									>, with
+									<mark class="g"
+										>Ganesh Ghosh, Lokenath Baul, Nirmal
+										Sen, Ambika Chakraborty, Naresh Roy,
+										Kalpana Dutt, Anand Gupta</mark
+									>
+									and others (60th–62nd BPSC). Clash with
+									government forces (22 April 1930) killed 80
+									soldiers and 12 revolutionaries. Surya Sen
+									arrested 16 Feb 1933, hanged 12 January
+									1934.
+									<mark class="g">Kalpana Dutt</mark> was
+									arrested and given life imprisonment.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Meerut Conspiracy Case (1929, Meerut)</b>
+								</td>
+								<td>
+									Labour leaders and three Englishmen accused
+									of conspiring to organise a railway strike —
+									deepened British anxiety over communist
+									influence in India.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b
+										>Kanpur Conspiracy / Kanpur Bolshevik
+										Conspiracy Case (1924, Kanpur)</b
+									>
+								</td>
+								<td>
+									Main accused:
+									<mark class="g"
+										>Muzaffar Ahmed, Shaukat Usmani, Nalini
+										Gupta, S.A. Dange, Gopal Basak</mark
+									>
+									(and others — 13 accused in total, including
+									<mark class="g">M.N. Roy</mark>, tried in
+									absentia) — an early crackdown on rising
+									communist ideology;
+									<mark class="g">M.A. Ansari</mark> was
+									<mark class="r">not</mark> among the accused
+									(a repeated matching trap).
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b
+										>Ghadar Conspiracy (1915,
+										worldwide/India)</b
+									>
+								</td>
+								<td>
+									Led by
+									<mark class="g"
+										>Har Dayal, Raghubir Singh</mark
+									>, and others — see Ch.11 for full detail;
+									conspirators mobilised the Indian diaspora
+									internationally.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Berar Conspiracy Case (1916, Berar)</b>
+								</td>
+								<td>
+									<mark class="g">R.S. Nimbkar</mark> and
+									others incited armed rebellion.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Bombay Conspiracy Case (1917, Bombay)</b>
+								</td>
+								<td>
+									Key figures:
+									<mark class="g"
+										>V.N. Chatterjee, Joseph Baptista</mark
+									>
+									— sedition and incitement to warfare
+									charges, highlighting educated Indians'
+									growing role in the freedom struggle.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b
+										>Peshawar Conspiracy Cases (1922–1927,
+										Peshawar)</b
+									>
+								</td>
+								<td>
+									Pashtun leaders charged with anti-British
+									activity — harsh sentences, including
+									transportation for life, galvanised
+									North-West Frontier support for
+									Non-Cooperation.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b
+										>Murder of Michael O'Dwyer (13 March
+										1940, Caxton Hall, London)</b
+									>
+								</td>
+								<td>
+									<mark class="g">Udham Singh</mark> (67th
+									BPSC Re-exam) assassinated the former
+									Lieutenant-Governor of Punjab,
+									<mark class="g">Michael O'Dwyer</mark>,
+									responsible for endorsing/upholding the
+									actions during the
+									<mark class="r"
+										>Jallianwala Bagh massacre (1919)</mark
+									>
+									— Singh had survived that massacre himself.
+									He was hanged in London.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>
+							Other Revolutionary Bodies (Related,
+							Cross-Referenced)
+						</h3>
+						<ul>
+							<li>
+								<mark class="y">Naujawan Bharat Sabha</mark>:
+								founded by <mark class="g">Bhagat Singh</mark>,
+								March 1926, with
+								<mark class="g"
+									>Chhabil Das, Yaspal, Ramchandra, Bhagvati
+									Charan Vohra</mark
+								>
+								— a left-wing body organising worker/peasant
+								youth around Marxist ideas.
+								<mark class="g">Ambika Chakravarti</mark> (of
+								the Chittagong Jugantar Party) joined only
+								<mark class="r">later</mark>, not as an
+								early/founding member.
+							</li>
+							<li>
+								<mark class="y"
+									>Hindustan Independence League</mark
+								>: founded by
+								<mark class="g">Rash Behari Bose</mark> in Japan
+								(Tokyo conference, March 1942), later formalised
+								at a Bangkok Convention (June 1942) attended by
+								<mark class="g">Subhas Chandra Bose</mark> —
+								falls outside this dossier's core period but
+								flagged for continuity with earlier
+								revolutionary networks abroad (Ch.10–11).
+							</li>
+							<li>
+								<mark class="y">Forward Bloc</mark>: founded by
+								<mark class="g">Subhas Chandra Bose</mark>,
+								<mark class="b">3 May 1939</mark>, after
+								resigning the Congress presidency.
+							</li>
+							<li>
+								<mark class="y"
+									>Rashtriya Swayam Sevak Sangh (RSS)</mark
+								>: founded
+								<mark class="b">27 September 1925</mark> by
+								<mark class="g">Keshav Baliram Hedgewar</mark>,
+								headquartered at <mark class="g">Nagpur</mark> —
+								a social/cultural organisation, not itself a
+								revolutionary terrorist body, but often grouped
+								in the same PYQ era-context.
+							</li>
+						</ul>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl"
+							>Context — how Bengal's female revolutionaries fit
+							the picture</span
+						>
+						<ul>
+							<li>
+								<mark class="b">December 1931</mark>: two
+								schoolgirls,
+								<mark class="g"
+									>Shanti Ghosh and Suniti Chowdhury</mark
+								>, killed a district magistrate.
+							</li>
+							<li>
+								<mark class="b">February 1932</mark>:
+								<mark class="g">Bina Das</mark> fired
+								point-blank at Governor
+								<mark class="g">Sir Stanley Jackson</mark>
+								during her own convocation ceremony.
+							</li>
+							<li>
+								Both episodes show that women's participation in
+								Bengal's revolutionary underground, which began
+								quietly in the 1907–17 period discussed above
+								(e.g. through the Anushilan/Yugantar network's
+								broader social base), became directly militant
+								by the early 1930s — a natural extension of the
+								trend, not an isolated development.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Famous Revolutionary Sayings</h3>
+						<ul>
+							<li>
+								<mark class="g">Bhagat Singh</mark>:
+								<mark class="y"
+									>"Criticism and independent thinking are the
+									two indispensable qualities of a
+									revolutionary."</mark
+								>
+							</li>
+							<li>
+								<mark class="y">"Inquilab Zindabad"</mark>:
+								slogan originally written by
+								<mark class="g">Maulavi Hasrat Mohani</mark>;
+								popularised by
+								<mark class="g">Bhagat Singh</mark>, who made it
+								famous among freedom fighters.
+							</li>
+							<li>
+								<i
+									><mark class="y"
+										>"Sarfaroshi ki tamanna ab hamare dil me
+										hai..."</mark
+									></i
+								>: written by
+								<mark class="g">Bismil Azimabadi</mark> (born
+								Saiyad Shah Muhammad Hasan) —
+								<mark class="r">not</mark> Ram Prasad Bismil
+								himself, despite the shared pen-name "Bismil," a
+								very common mix-up; published 1922 in the
+								magazine <i>Sabah</i>.
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+			<!-- /chapters -->
+
+			<div class="footer">
+				Compiled from theory notes and PYQ (Ghatnachakra-style)
+				explanations · marker-coded per canonical study format ·
+				cross-verify years before the exam
+			</div>
+		</div>
+		<!-- /main -->
+
+		<script>
+			const chapters = document.querySelectorAll(".chapter");
+			const toc = document.getElementById("toc");
+			chapters.forEach((ch, i) => {
+				const a = document.createElement("a");
+				a.href = "#" + ch.id;
+				a.innerHTML =
+					'<span class="num">' +
+					String(i + 1).padStart(2, "0") +
+					"</span><span>" +
+					ch.dataset.title +
+					"</span>";
+				a.dataset.target = ch.id;
+				toc.appendChild(a);
+			});
+
+			const links = toc.querySelectorAll("a");
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							links.forEach((l) => l.classList.remove("active"));
+							const active = toc.querySelector(
+								'a[data-target="' + entry.target.id + '"]',
+							);
+							if (active) active.classList.add("active");
+						}
+					});
+				},
+				{ rootMargin: "-10% 0px -75% 0px", threshold: 0 },
+			);
+			chapters.forEach((ch) => observer.observe(ch));
+
+			const menuBtn = document.getElementById("menu-btn");
+			const sidebar = document.getElementById("sidebar");
+			menuBtn.addEventListener("click", () =>
+				sidebar.classList.toggle("open"),
+			);
+			links.forEach((l) =>
+				l.addEventListener("click", () =>
+					sidebar.classList.remove("open"),
+				),
+			);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indian Independence Movement 1918-22</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1E33;
+    --ink-2:#122A45;
+    --paper:#FBF7EC;
+    --paper-2:#F3ECDA;
+    --gold:#C9A227;
+    --gold-2:#E8C766;
+    --teal:#2E6171;
+    --text:#1C2B3A;
+    --muted:#5B6B7A;
+    --hl-y:#F1B400;
+    --hl-b:#1F6FB2;
+    --hl-g:#1E8449;
+    --hl-r:#B03A2E;
+    --trap-bg:#FDEDEC;
+    --trap-bd:#C0392B;
+    --ctx-bg:#EAF2F6;
+    --ctx-bd:#2E6171;
+    --tbl-head-blue:#1A5276;
+    --tbl-head-red:#7B241C;
+    --tbl-head-green:#145A32;
+    --tbl-head-purple:#5B2C6F;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17.5px;
+    display:flex;
+    min-height:100vh;
+  }
+  ::selection{background:var(--gold-2); color:var(--ink);}
+
+  #sidebar{
+    width:290px;
+    flex-shrink:0;
+    background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:#DCE6EE;
+    position:fixed;
+    top:0; left:0; bottom:0;
+    overflow-y:auto;
+    padding:28px 0 40px;
+    border-right:1px solid rgba(201,162,39,.25);
+    z-index:50;
+  }
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:rgba(201,162,39,.4); border-radius:3px;}
+
+  .brand{padding:0 24px 22px; border-bottom:1px solid rgba(201,162,39,.25); margin-bottom:14px;}
+  .brand .stamp{
+    width:46px;height:46px;border-radius:50%; border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif; font-weight:800; color:var(--gold-2);
+    font-size:13px; letter-spacing:.5px; margin-bottom:10px;
+  }
+  .brand h1{font-family:'Playfair Display', serif; font-size:19px; line-height:1.3; margin:0 0 4px; font-weight:700; color:#F4EFE1;}
+  .brand p{margin:0; font-size:12px; letter-spacing:.09em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono', monospace;}
+
+  nav.toc{padding:6px 10px;}
+  nav.toc a{
+    display:flex; align-items:baseline; gap:10px; padding:10px 14px; margin:1px 0;
+    border-radius:6px; color:#B7C6D3; text-decoration:none; font-size:13.6px; font-weight:500;
+    border-left:3px solid transparent; transition:background .15s, color .15s, border-color .15s;
+  }
+  nav.toc a .num{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--gold); flex-shrink:0; width:20px;}
+  nav.toc a:hover{background:rgba(201,162,39,.10); color:#F4EFE1;}
+  nav.toc a.active{background:rgba(201,162,39,.16); color:#F8F1DD; border-left-color:var(--gold); font-weight:600;}
+
+  .legend-box{margin:20px 16px 0; padding:14px 14px 16px; background:rgba(255,255,255,.04); border:1px solid rgba(201,162,39,.22); border-radius:8px;}
+  .legend-box h3{margin:0 0 10px; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  .legend-row{display:flex; align-items:center; gap:8px; margin-bottom:7px; font-size:12.5px; color:#CBD6DF;}
+  .legend-swatch{width:14px;height:14px;border-radius:3px; flex-shrink:0;}
+
+  #main{margin-left:290px; flex:1; padding:0; background:var(--ink);}
+  .cover{
+    padding:74px 64px 56px;
+    background:radial-gradient(circle at 85% 20%, rgba(201,162,39,.10), transparent 45%), linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:#EFE9D8; border-bottom:4px double rgba(201,162,39,.4);
+  }
+  .cover .eyebrow{font-family:'IBM Plex Mono',monospace; letter-spacing:.18em; text-transform:uppercase; font-size:12.5px; color:var(--gold-2); margin-bottom:16px;}
+  .cover h1{font-family:'Playfair Display', serif; font-weight:800; font-size:clamp(32px,4.2vw,50px); line-height:1.12; margin:0 0 16px; max-width:820px;}
+  .cover p.sub{font-size:17px; color:#C9D2DB; max-width:660px; line-height:1.7; margin:0 0 22px;}
+  .cover .tags{display:flex; gap:10px; flex-wrap:wrap;}
+  .cover .tag{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--gold-2); border:1px solid rgba(201,162,39,.45); padding:5px 12px; border-radius:20px; background:rgba(201,162,39,.06);}
+
+  .chapters{background:var(--paper); padding:10px 0 90px;}
+  .chapter{max-width:940px; margin:0 auto; padding:56px 48px 8px; border-bottom:1px solid rgba(28,43,58,.10); scroll-margin-top:14px;}
+  .chapter:last-child{border-bottom:none;}
+
+  .chapter-head{display:flex; align-items:center; gap:18px; margin-bottom:6px;}
+  .chapter-head .seal{
+    width:52px; height:52px; border-radius:50%; background:var(--ink); color:var(--gold-2);
+    display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:700; font-size:19px;
+    border:2px solid var(--gold); flex-shrink:0;
+  }
+  .chapter-head h2{font-family:'Playfair Display', serif; font-size:clamp(23px,2.8vw,30px); margin:0; color:var(--ink); font-weight:700; line-height:1.25;}
+  .chapter-sub{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin:6px 0 26px 70px;}
+
+  .event{margin:0 0 28px; padding-left:18px; border-left:3px solid var(--teal);}
+  .event.upcoming{border-left:3px solid var(--gold);}
+  .event h3{font-family:'Playfair Display', serif; font-size:19px; margin:0 0 6px; color:var(--ink); display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .datebox{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--teal); font-weight:600; margin-bottom:10px; display:block;}
+  .event p{margin:0 0 12px; line-height:1.85; font-size:16.5px;}
+  .event ul{margin:8px 0 12px; padding-left:22px;}
+  .event li{margin-bottom:11px; line-height:1.8; font-size:16.5px;}
+  .event ul ul{margin-top:6px;}
+
+  mark{
+    padding:.15em .42em; border-radius:4px; font-weight:700; color:#fff;
+    box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  }
+  .y{background:var(--hl-y); color:#1C1200;}
+  .b{background:var(--hl-b);}
+  .g{background:var(--hl-g);}
+  .r{background:var(--hl-r);}
+
+  .trap{background:var(--trap-bg); border:1px solid rgba(192,57,43,.35); border-left:5px solid var(--trap-bd); padding:14px 18px; border-radius:6px; margin:16px 0 20px; font-size:16px; line-height:1.8;}
+  .trap .lbl{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--trap-bd); font-weight:700; display:block; margin-bottom:6px;}
+  .trap ul{margin:6px 0 0; padding-left:20px;}
+  .trap li{margin-bottom:8px;}
+
+  .ctx{background:var(--ctx-bg); border:1px solid rgba(46,97,113,.35); border-left:5px solid var(--ctx-bd); padding:14px 18px; border-radius:6px; margin:16px 0 20px; font-size:16px; line-height:1.8;}
+  .ctx .lbl{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--ctx-bd); font-weight:700; display:block; margin-bottom:6px;}
+  .ctx ul{margin:6px 0 0; padding-left:20px;}
+  .ctx li{margin-bottom:8px;}
+
+  table{width:100%; border-collapse:collapse; margin:16px 0 26px; font-size:15.5px;}
+  caption{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--muted); margin-bottom:7px; text-transform:uppercase; letter-spacing:.06em;}
+  th,td{padding:11px 13px; text-align:left; border-bottom:1px solid rgba(28,43,58,.10); vertical-align:top; line-height:1.6;}
+  thead.blue th{background:var(--tbl-head-blue); color:#F4EFE1; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.red th{background:var(--tbl-head-red); color:#F4EFE1; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.green th{background:var(--tbl-head-green); color:#F4EFE1; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.purple th{background:var(--tbl-head-purple); color:#F4EFE1; font-weight:600; font-size:13px; text-transform:uppercase; letter-spacing:.03em;}
+  tbody tr:nth-child(even){background:var(--paper-2);}
+
+  .factbox{background:var(--paper-2); border:1px solid rgba(28,43,58,.12); border-radius:8px; padding:18px 20px; margin:18px 0 24px;}
+  .factbox .lbl{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--teal); font-weight:700; display:block; margin-bottom:10px;}
+  .factbox dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:8px 18px;}
+  .factbox dt{font-weight:700; font-size:15px; color:var(--ink); white-space:nowrap;}
+  .factbox dd{margin:0; font-size:15.5px; line-height:1.7;}
+
+  .country-block{margin:26px 0 6px; padding-top:20px; border-top:1px dashed rgba(28,43,58,.2);}
+  .country-block h4{font-family:'Playfair Display', serif; font-size:18px; margin:0 0 14px; color:var(--teal); display:flex; align-items:center; gap:8px;}
+  .country-block h4::before{content:"✦"; color:var(--gold); font-size:14px;}
+
+  .part-divider{max-width:940px; margin:0 auto; padding:40px 48px 0;}
+  .part-divider .plabel{font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); background:var(--ink); display:inline-block; padding:8px 18px; border-radius:20px;}
+  .part-divider .ptitle{font-family:'Playfair Display',serif; font-weight:700; font-size:27px; color:var(--ink); margin:14px 0 2px;}
+  .part-divider .pdesc{color:var(--muted); font-size:15px; margin:0 0 6px;}
+  @media (max-width:880px){ .part-divider{padding:30px 22px 0;} }
+
+  .note{font-size:14px; color:var(--muted); font-style:italic; margin:8px 0 16px;}
+
+  .footer{max-width:940px; margin:0 auto; padding:40px 48px 70px; color:var(--muted); font-size:13px; font-family:'IBM Plex Mono',monospace; text-align:center;}
+
+  @media (max-width: 880px){
+    #sidebar{position:fixed; left:0; top:0; bottom:0; width:260px; transform:translateX(-100%); transition:transform .25s ease;}
+    #sidebar.open{transform:translateX(0);}
+    #main{margin-left:0;}
+    .chapter{padding:44px 22px 8px;}
+    .cover{padding:58px 22px 42px;}
+    .chapter-sub{margin-left:0; margin-top:2px;}
+    .chapter-head{gap:12px;}
+    body{font-size:16.5px;}
+  }
+  #menu-btn{
+    display:none; position:fixed; top:16px; left:16px; z-index:60;
+    width:44px;height:44px;border-radius:50%; background:var(--ink);
+    border:2px solid var(--gold); color:var(--gold-2); font-size:18px;
+    align-items:center; justify-content:center; cursor:pointer;
+  }
+  @media (max-width: 880px){ #menu-btn{display:flex;} }
+</style>
+</head>
+<body>
+
+<button id="menu-btn" aria-label="Toggle chapter index">☰</button>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="stamp">18–22</div>
+    <h1>Indian Independence Movement 1918–22</h1>
+    <p>Modern India · Gandhian Phase Dossier</p>
+  </div>
+  <nav class="toc" id="toc"></nav>
+  <div class="legend-box">
+    <h3>Marker Key</h3>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-y)"></span> Core concept / policy</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-b)"></span> Hard fact / date / number</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-g)"></span> Person / place / institution</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-r)"></span> MCQ trap / confusion</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--ctx-bg); border:1px solid var(--ctx-bd);"></span> Context box (fills narration gaps)</div>
+  </div>
+</aside>
+
+<div id="main">
+
+  <section class="cover">
+    <div class="eyebrow">Case File · The Gandhian Phase — Champaran to Chauri Chaura</div>
+    <h1>How one barrister turned local grievances into India's first mass movement.</h1>
+    <p class="sub">Theory (NCERT/standard textbook) fused with every fact buried inside PYQ explanations on Gandhi's life, Champaran, Kheda, Ahmedabad, the Rowlatt Act, Jallianwala Bagh, Khilafat, and Non-Cooperation — plus the peasant and trade-union threads that ran alongside — sorted topic-wise, tabulated wherever the data allows, with context boxes closing every narrative gap.</p>
+    <div class="tags">
+      <span class="tag">Champaran → Chauri Chaura</span>
+      <span class="tag">Khilafat + Non-Cooperation</span>
+      <span class="tag">Theory + PYQ merged</span>
+    </div>
+  </section>
+
+  <div class="chapters">
+
+  <!-- ============ CHAPTER 1 ============ -->
+  <section class="chapter" id="ch1" data-title="Gandhi: Early Life & Influences">
+    <div class="chapter-head"><div class="seal">1</div><h2>Mahatma Gandhi — Early Life &amp; Influences</h2></div>
+    <div class="chapter-sub">1869–1893</div>
+
+    <table>
+      <caption>Gandhi — vitals and formative facts</caption>
+      <thead class="blue"><tr><th>Aspect</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><b>Born</b></td><td><mark class="b">2 October 1869</mark>, <mark class="g">Porbandar, Gujarat</mark>.</td></tr>
+        <tr><td><b>Parents</b></td><td>Father — <mark class="g">Karamchand Gandhi</mark> ("Kaba Gandhi"), Diwan of <mark class="g">Porbandar, Wankaner, and Rajkot</mark> (all three — a common "which one" trap); Mother — <mark class="g">Putali Bai</mark>.</td></tr>
+        <tr><td><b>Early education</b></td><td>Started at a Pathshala in Porbandar; moved to <mark class="g">Rajkot</mark> at age 7 after his father's transfer, studying there through high school.</td></tr>
+        <tr><td><b>Marriage</b></td><td>Married <mark class="g">Kasturba</mark> at age <mark class="b">13</mark>.</td></tr>
+        <tr><td><b>College in India</b></td><td><mark class="g">Samaldas Arts College, Bhavnagar</mark> (66th BPSC) — the only institution offering a degree in the region then; he later dropped out and returned to Porbandar.</td></tr>
+        <tr><td><b>Law training</b></td><td><mark class="g">Inner Temple, London</mark> — completed his law degree via <mark class="g">University College London</mark> after 3 years.</td></tr>
+        <tr><td><b>Political Guru</b></td><td><mark class="g">Gopal Krishna Gokhale</mark> — advised Gandhi to spend his first year in India <mark class="y">"with his ears open but his mouth shut"</mark> (U.P.P.C.S. Mains 2014), observing before acting.</td></tr>
+        <tr><td><b>Literary influences</b></td><td><mark class="g">John Ruskin</mark> — <i>Unto This Last</i> (taught him to respect physical labour; message: <mark class="y">"the good of the individual is contained in the good of all"</mark> — Gandhi said it transformed his life); <mark class="g">Thoreau</mark> — <i>Civil Disobedience</i> (taught him civil disobedience and the benefits of tax refusal); <mark class="g">Tolstoy</mark> — <i>"The Kingdom of God is Within You"</i> (became the base of his non-violence/non-cooperation ideas); also <mark class="g">The Bible</mark> and <mark class="g">The Gita</mark>.</td></tr>
+        <tr><td><b>Literary works</b></td><td><i>Hind Swaraj</i> (1909); <i>My Experiments with Truth</i> (autobiography); edited <i>Indian Opinion</i> (1903–15, South Africa, 70th BPSC), <i>Harijan</i>, and <i>Young India</i> (60th–62nd BPSC); also translated ancient Indian religious lyrics into English as <i>"Songs from Prison."</i></td></tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>Names given to Gandhi, and by whom</caption>
+      <thead class="green"><tr><th>Name/Title</th><th>Given by</th><th>Year</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="y">Mahatma</mark> ("Saint")</td><td><mark class="g">Rabindranath Tagore</mark> — during the <mark class="r">Champaran Satyagraha</mark> (settling a repeated trap: the title was given during Champaran, not at any Congress session)</td><td><mark class="b">1917</mark></td></tr>
+        <tr><td>Malang Baba / Naked Baba</td><td>Kabailies (tribal frontier people)</td><td><mark class="b">1930</mark></td></tr>
+        <tr><td>Half-naked Saint / Traitor Faqir</td><td><mark class="g">Winston Churchill</mark></td><td><mark class="b">1931</mark></td></tr>
+        <tr><td><mark class="y">Rashtrapita</mark> (Father of the Nation)</td><td><mark class="r">Netaji Subhas Chandra Bose</mark> — addressing Gandhi via Azad Hind Radio: <mark class="y">"India's last war of independence has begun. Father of Nation, we need your blessings and good wishes on this expedition."</mark></td><td><mark class="b">July 1944</mark></td></tr>
+      </tbody>
+    </table>
+
+    <div class="event">
+      <h3>Other biographical fragments</h3>
+      <ul>
+        <li>UNESCO declared <mark class="b">2 October</mark> as <mark class="y">International Day of Non-Violence (Ahimsa Diwas)</mark>.</li>
+        <li>Founded the <mark class="y">All India Anti-Untouchability League</mark> (later <mark class="g">All India Harijan Sevak Sangh</mark>) on <mark class="b">30 October 1932</mark>, Mumbai — aimed at eradicating untouchability, improving Dalit conditions, promoting inter-caste marriages, and building schools; began using the term <mark class="y">"Harijan"</mark> ("creation of God") for untouchables.</li>
+        <li>The word <mark class="y">"Satyagraha"</mark> was first coined not by Gandhi personally but by his nephew <mark class="g">Maganlal Gandhi</mark>, who won a contest with the term <mark class="y">"Sadagraha"</mark> — Gandhi then refined it to "Satyagraha" (U.P.P.C.S. Mains 2015).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 2 ============ -->
+  <section class="chapter" id="ch2" data-title="Gandhi in South Africa (1893-1914)">
+    <div class="chapter-head"><div class="seal">2</div><h2>Gandhi's Years in South Africa</h2></div>
+    <div class="chapter-sub">21 years that built the technique of Satyagraha</div>
+
+    <table>
+      <caption>South Africa timeline</caption>
+      <thead class="red"><tr><th>Year</th><th>Event</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="b">1893</mark></td><td>Departed for South Africa (24 May, aged 23) to fight a case for Gujarati trader <mark class="g">Dada Abdullah</mark> in <mark class="g">Pretoria</mark>; en route, thrown off a first-class train compartment at <mark class="r">Pietermaritzburg</mark> station despite holding a valid ticket — the incident that radicalised him against racial discrimination.</td></tr>
+        <tr><td><mark class="b">1894</mark></td><td>Founded the <mark class="y">Natal Indian Congress</mark>.</td></tr>
+        <tr><td><mark class="b">1899</mark></td><td>Established the <mark class="y">Indian Ambulance Corps</mark> during the Boer Wars.</td></tr>
+        <tr><td><mark class="b">1903</mark></td><td>Founded a law firm in Johannesburg (practised there till 1910); launched <i><mark class="y">Indian Opinion</mark></i> magazine (first issue June 1903, published in English, Gujarati, Hindi, Tamil) and the <mark class="y">Phoenix Farm</mark> (established 1904, Durban — reopened 27 Feb 2000; Gandhi's <mark class="r">first ever Ashram</mark>).</td></tr>
+        <tr><td><mark class="b">1906</mark></td><td>Initiated the <mark class="r">first Satyagraha</mark> — against the <mark class="y">Asiatic Ordinance</mark> in Transvaal, beginning with a registration-certificate protest, <mark class="b">11 September 1906</mark>.</td></tr>
+        <tr><td><mark class="b">1907</mark></td><td>Satyagraha against compulsory registration and passes for Asians (<mark class="y">"The Black Act"</mark>), Transvaal.</td></tr>
+        <tr><td><mark class="b">1908</mark></td><td>Imprisoned in Johannesburg — his <mark class="r">first jail term</mark>.</td></tr>
+        <tr><td><mark class="b">1910</mark></td><td>Founded <mark class="y">Tolstoy Farm</mark> (later "Gandhi Farm") near Johannesburg, inspired by Leo Tolstoy — promoted self-sustainability and social service; operated until 1913, following the earlier Phoenix Farm (1904).</td></tr>
+        <tr><td><mark class="b">1913</mark></td><td>Led Satyagraha against non-recognition of non-Christian (Hindu, Muslim, Parsi) marriages, Cape Town; also resisted the <mark class="y">three-pound poll tax</mark>; Gandhi led Satyagrahis, including <mark class="g">Kasturba</mark>, across borders, facing arrests.</td></tr>
+        <tr><td><mark class="b">1915</mark></td><td>Left South Africa for good, returned to India; awarded the <mark class="y">Kaisar-i-Hind</mark> medal (by Lord Hardinge II) for organising the Indian Ambulance Corps during the Boer Wars — a title he later <mark class="r">returned in protest</mark> during the Non-Cooperation Movement (Ch.13).</td></tr>
+      </tbody>
+    </table>
+
+    <div class="event">
+      <h3>The Technique of Satyagraha</h3>
+      <ul>
+        <li>Gandhi's South African struggle was first termed <mark class="y">"passive resistance"</mark>; later replaced with <mark class="y">"Satyagraha"</mark> — the two were <mark class="r">not identical</mark> for Gandhi: passive resistance was a political weapon, Satyagraha a moral power (compared by him to the North and South poles).</li>
+        <li>Satyagraha combined <mark class="g">Indian traditions, Christian teachings, and Tolstoy's philosophy</mark> — emphasising truth, non-violence, and fearlessness.</li>
+        <li>Methods: boycotts, non-payment of taxes, refusal of authority; Satyagrahis were to embrace suffering <mark class="r">without hatred</mark>.</li>
+        <li>In the Gandhian strategy, <mark class="y">fasting was the first weapon</mark> ("Agni-Baan"/fire-arrow), while <mark class="r">strike was the last step</mark> (U.P. Lower Sub. Mains 2013).</li>
+        <li>The <mark class="r">objective</mark> of Satyagraha was never to defeat the enemy, but to change the enemy's heart via the protester's own self-suffering — a Satyagrahi should hold no ill feeling toward opponents.</li>
+        <li>Assertion-Reason trap (U.P.R.O./A.R.O. 2023): "South African struggles prepared Gandhi to lead the National Movement" is <mark class="g">true</mark>; but the given reason — "seeing Indian militancy in South Africa, Gandhi believed Indians were ready for militant struggle" — is <mark class="r">false</mark>, since his South African struggle was itself completely non-violent, not militant.</li>
+      </ul>
+    </div>
+
+    <div class="ctx">
+      <span class="lbl">Context — Gandhi's political-economic-philosophical self-description</span>
+      <ul>
+        <li>Gandhi told <mark class="g">Louis Fischer</mark>: <mark class="y">"I am a true socialist and the aim of my socialism is progress of all"</mark> (some sources render it "Sarvodaya"). He is described (U.P. Lower Sub. Mains 2013) as <mark class="r">"an Individualist among Socialists, and a Marxist among Socialists"</mark> — sharing Marx's stateless/classless end-goal, but rejecting violent means in favour of non-violence.</li>
+        <li>Supported <mark class="y">Philosophical Anarchism</mark> (U.P. Lower Sub. 2009) — in his ideal non-violent state, citizens would have no need for state-enforced law.</li>
+        <li>On truth and non-violence: <mark class="y">"Ahimsa is the means; Truth is the end... if we take care of the means, we are bound to reach the end sooner or later."</mark> Non-violence, per Gandhi, is <mark class="r">a way to attain Truth</mark>, not an end in itself (U.P.P.C.S. 1994).</li>
+        <li>According to Gandhi, the <mark class="r">cruellest form of violence</mark> is the persistence of poverty (U.P. Lower Sub. Mains 2015).</li>
+        <li>For family planning, Gandhi's prescribed method was <mark class="y">self-control</mark> (not sterilisation or contraceptive devices).</li>
+        <li>Politics, for Gandhi, meant <mark class="y">activity for public welfare</mark> — his key structural suggestion was the <mark class="r">decentralisation of power</mark> to Gram Panchayats; his ideal political model combined morality, religion, and humanity, but had <mark class="r">no place for state authority</mark> — he wanted a stateless society.</li>
+        <li><mark class="y">Trusteeship</mark> principle: applied from his Johannesburg law-firm years (1903) onward — economic policy should be shaped by each country's own climate, land, and people's nature; opposed exploitation of any group by another, or of one country by another. He supported cottage industries (jaggery-making, oil extraction, papermaking, leatherwork) as the path to social and economic uplift of the poor.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Part II</span>
+    <div class="ptitle">Return to India &amp; the First Satyagrahas</div>
+    <p class="pdesc">Champaran, Ahmedabad, Kheda — Gandhi's local experiments before he went national.</p>
+  </div>
+
+  <!-- ============ CHAPTER 3 ============ -->
+  <section class="chapter" id="ch3" data-title="Gandhi's Return & Early Years in India">
+    <div class="chapter-head"><div class="seal">3</div><h2>Gandhi's Return to India (1915) &amp; Early Years</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>Returned to Bombay <mark class="b">9 January 1915</mark>, welcomed warmly at the <mark class="g">Kumbh Mela, Haridwar</mark> — his South African reputation had already made him a hero and martyr figure in India.</li>
+        <li><mark class="r">First attended a Congress session</mark> much earlier, actually, in <mark class="b">1901</mark> at <mark class="g">Calcutta</mark> — presided by <mark class="g">Dinshaw Wacha</mark> — where a resolution of his on Africa was passed. He established a law office at <mark class="g">Bombay</mark> in 1902 during a visit, before returning to South Africa.</li>
+        <li>Spent his first year back (1915–16) touring India to understand the masses, deliberately <mark class="r">not</mark> taking a political stance yet, honouring his promise to Gokhale; he was sceptical of moderate politics and opposed the <mark class="g">Home Rule Movement</mark> during WWI (see the 1905–17 dossier for full Home Rule detail).</li>
+        <li><mark class="b">20 May 1915</mark>: founded the <mark class="y">Satyagraha Ashram</mark> at <mark class="g">Kochrab</mark>, Ahmedabad (on barrister <mark class="g">Jivanlal Desai's</mark> bungalow); relocated <mark class="b">17 June 1917</mark> to a 36-acre site on the banks of the <mark class="g">Sabarmati River</mark> — later known as the <mark class="y">Sabarmati Ashram</mark>.</li>
+        <li>Gandhi abstained from active politics through <mark class="b">1916</mark>; his first major public speech in India was at the opening of <mark class="g">Banaras Hindu University</mark>, February 1916.</li>
+        <li>He adopted "Seva Dharma" during his time in <mark class="g">South Africa</mark> — serving as a volunteer compounder in Rustomji's charity hospitals and tending wounded Boer War soldiers.</li>
+      </ul>
+    </div>
+
+    <div class="ctx">
+      <span class="lbl">Context — Gandhi's political journey chronology, at a glance</span>
+      <table>
+        <caption>Gandhi's political journey — milestone chronology</caption>
+        <thead class="blue"><tr><th>Year</th><th>Milestone</th></tr></thead>
+        <tbody>
+          <tr><td><mark class="b">1915</mark></td><td>Arrives in Bombay (9 Jan); founds Satyagraha Ashram, Kochrab (20 May).</td></tr>
+          <tr><td><mark class="b">1916</mark></td><td>Abstains from active politics.</td></tr>
+          <tr><td><mark class="b">1917</mark></td><td>Leads Champaran Satyagraha — his <mark class="r">first Civil Disobedience Movement</mark> (70th BPSC Re-exam).</td></tr>
+          <tr><td><mark class="b">Feb 1918</mark></td><td>Ahmedabad struggle — Gandhi's <mark class="r">first-ever hunger strike</mark> (69th BPSC Prelims).</td></tr>
+          <tr><td><mark class="b">March 1918</mark></td><td>Kheda Satyagraha — his <mark class="r">first Non-Cooperation-style</mark> local campaign.</td></tr>
+          <tr><td><mark class="b">6 April 1919</mark></td><td>Calls for Satyagraha against the Rowlatt Act.</td></tr>
+          <tr><td><mark class="b">13 April 1919</mark></td><td>Returns his gold medal (Kaisar-i-Hind) in protest.</td></tr>
+          <tr><td><mark class="b">Nov 1919</mark></td><td>Elected President of the All India Khilafat Conference.</td></tr>
+          <tr><td><mark class="b">1920–22</mark></td><td>Leads the Non-Cooperation Movement.</td></tr>
+          <tr><td><mark class="b">1924</mark></td><td>Becomes President of the INC (only session he ever presided).</td></tr>
+          <tr><td><mark class="b">1925</mark></td><td>First political retirement, focuses on constructive programmes.</td></tr>
+          <tr><td><mark class="b">1927</mark></td><td>Resumes politics.</td></tr>
+          <tr><td><mark class="b">1930–31</mark></td><td>Dandi March; attends the Round Table Conference.</td></tr>
+          <tr><td><mark class="b">1934</mark></td><td>Second political retirement; establishes Sevagram Ashram; also formally <mark class="r">resigns Congress membership</mark> this year — never rejoined officially.</td></tr>
+          <tr><td><mark class="b">1940</mark></td><td>Resumes politics; initiates the Individual Satyagraha Movement.</td></tr>
+          <tr><td><mark class="b">1942</mark></td><td>Launches the Quit India Movement (<mark class="y">"Do or Die"</mark>, 70th BPSC); detained at the Aga Khan Palace, 1942–44.</td></tr>
+          <tr><td><mark class="b">1945–46</mark></td><td>Notices a decline in his influence within Congress.</td></tr>
+          <tr><td><mark class="b">1947</mark></td><td>Travels to Noakhali and Calcutta to restore communal peace; distressed by the Mountbatten Plan.</td></tr>
+          <tr><td><mark class="b">30 Jan 1948</mark></td><td>Assassinated by <mark class="g">Nathuram Godse</mark>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 4 ============ -->
+  <section class="chapter" id="ch4" data-title="Champaran Satyagraha (1917)">
+    <div class="chapter-head"><div class="seal">4</div><h2>Champaran Satyagraha (1917) — First Civil Disobedience</h2></div>
+
+    <div class="event">
+      <ul>
+        <li><mark class="y">Issue</mark>: Champaran (Bihar) farmers exploited by European indigo planters under the <mark class="r">Tinkathia system</mark> — compelled to cultivate indigo on <mark class="b">3/20th</mark> of their landholding (64th BPSC) at fixed, unfavourable prices; planters also imposed <mark class="y">Tawan</mark> (illegal lump-sum levies/cesses) to entrench the arrangement.</li>
+        <li><mark class="r">Gandhi's invitation</mark>: local indigo cultivator <mark class="g">Rajkumar Shukla</mark> persuaded Gandhi (met him at Lucknow, 70th BPSC Re-exam) to investigate; Gandhi arrived in Champaran <mark class="b">10 April 1917</mark>.</li>
+        <li>Colleagues who joined the investigation: <mark class="g">Rajendra Prasad, Mazharul Haq, Mahadev Desai, Narhari Parekh, J.B. Kripalani, Brajkishore Prasad, Anugrah Narayan Sinha, C.F. Andrews, Ramnavmi Prasad, Shambhusharan Varma</mark>.</li>
+        <li>On arrival, Gandhi was ordered to leave but <mark class="r">defied the order</mark> — a genuine act of civil disobedience, unlike earlier leaders (<mark class="g">Tilak, Annie Besant</mark>) who had complied with expulsion orders when confronted by British authority.</li>
+        <li>The provincial (Bihar &amp; Orissa) government then formed a formal inquiry — the <mark class="y">Champaran Agrarian Committee</mark> (also called the Champaran Agrarian Inquiry Committee), whose formation itself resulted from an <mark class="r">agreement between Gandhi and the government</mark> (71st BPSC) — Gandhi himself served as one of its members. Committee chair: <mark class="g">F.G. Slay</mark>; other members included <mark class="g">D.J. Reid, L.C. Adami, Raja Harihar Prasad, Narayan Singh, G. Rainny, M.E.L. Tainer</mark> (Anugrah Narayan was <mark class="r">not</mark> a member — a repeated matching trap, U.P.R.O./A.R.O. 2017).</li>
+        <li>Gandhi gathered evidence from <mark class="b">8,000</mark> peasants. Outcome: <mark class="r">abolition of the Tinkathia system</mark>, and planters agreed to a <mark class="y">25% compensation</mark> refund of illegally extracted dues (not the full amount) — planters eventually left the area within a decade.</li>
+        <li>Significance: Gandhi's <mark class="r">first victory</mark> in civil disobedience on Indian soil; also historically significant for <mark class="y">joining peasant unrest to India's National Movement</mark> for the first time (I.A.S. 2018) — not for all-India lawyer/student/women participation, Dalit/tribal involvement, or a drastic fall in commercial-crop cultivation, all incorrect distractors for that specific question.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Related facts</h3>
+      <ul>
+        <li><mark class="g">N.G. Ranga</mark> opposed Gandhi's Champaran involvement, while <mark class="g">Rabindranath Tagore</mark> gave him the title <mark class="y">"Mahatma"</mark> in this same episode.</li>
+        <li>Champaran was, notably, the <mark class="r">only</mark> movement of Gandhi's first-three local experiments (Champaran, Ahmedabad, Kheda) confined entirely to one district — the Rowlatt Satyagraha (1919) was his <mark class="r">first genuinely all-India-level</mark> movement (U.P.P.C.S. Mains 2011).</li>
+        <li>The Champaran movement was, at root, a struggle against enforced <mark class="y">cash-crop cultivation</mark> (66th BPSC Re-exam) — not against land revenue or land grants per se.</li>
+      </ul>
+    </div>
+
+    <div class="ctx">
+      <span class="lbl">Context — the poisoning attempt no other question links to Champaran directly</span>
+      A cook named <mark class="g">Batak Mian</mark>, working for a British indigo-plantation manager remembered as <mark class="g">"Erwin,"</mark> was reportedly coerced into poisoning Gandhi's milk during Champaran, <mark class="b">1917</mark> — but broke down and confessed before Gandhi drank it, saving him unhurt (69th &amp; 68th BPSC). This detail is corroborated by <mark class="g">Dr. Rajendra Prasad</mark> in a 1950s speech at Motihari, and cited in Prof. <mark class="g">Girish Mishra's</mark> writing on Gandhi's Champaran struggle — it doesn't appear in most standard textbook narrations of Champaran, which is why it's easy to miss.
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 5 ============ -->
+  <section class="chapter" id="ch5" data-title="Ahmedabad Mill Strike (1918)">
+    <div class="chapter-head"><div class="seal">5</div><h2>Ahmedabad Mill Strike (February 1918) — First Hunger Strike</h2></div>
+
+    <div class="event">
+      <ul>
+        <li><mark class="y">Dispute</mark>: cotton-mill owners vs. workers over the withdrawal of the wartime <mark class="r">plague bonus</mark>; workers sought a <mark class="b">50%</mark> wage increase (given wartime inflation), owners offered only <mark class="b">20%</mark>.</li>
+        <li><mark class="g">Anusuya Sarabhai</mark>, sister of mill owner <mark class="g">Ambalal Sarabhai</mark> (Gandhi's friend), sought Gandhi's intervention to mediate.</li>
+        <li>Gandhi, despite his friendship with Ambalal, backed the workers, proposing a <mark class="b">35%</mark> increase as compromise; as attendance at strike meetings dropped and worker resolve weakened, Gandhi undertook his <mark class="r">first-ever hunger strike</mark> ("fast unto death") to rally spirits (69th BPSC Prelims) — this is settled as the <mark class="r">first</mark> use of hunger strike as a weapon, ruling out the Non-Cooperation Movement, Bardoli Satyagraha, or Rowlatt Satyagraha as the "first" instance in various PYQ phrasings.</li>
+        <li>Owners eventually agreed to submit the dispute to a <mark class="y">tribunal</mark>, which ruled in favour of workers — granting the full <mark class="b">35%</mark> wage hike Gandhi had proposed, after a 21-day strike.</li>
+        <li>This is Gandhi's only early struggle directly involving <mark class="r">industrial workers</mark> (39th BPSC) — Champaran and Kheda were both farmers' movements.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 6 ============ -->
+  <section class="chapter" id="ch6" data-title="Kheda Satyagraha (1918)">
+    <div class="chapter-head"><div class="seal">6</div><h2>Kheda Satyagraha (March 1918) — First Non-Cooperation Movement</h2></div>
+
+    <div class="event">
+      <ul>
+        <li><mark class="y">Issue</mark>: severe crop failure and drought in Kheda, Gujarat; peasants refused to pay land revenue.</li>
+        <li>Government <mark class="r">did not suspend</mark> land revenue collection despite the drought (correct fact per I.A.S. 2011), and threatened property seizure for non-payment — a proposal to introduce Permanent Settlement in Gujarat was <mark class="r">not</mark> the actual cause (a distractor in the same question).</li>
+        <li>Gandhi served as the <mark class="y">spiritual leader</mark>, advocating non-payment of taxes; <mark class="g">Sardar Vallabhbhai Patel</mark> (along with <mark class="g">Narahari Parikh, Mohanlal Pandya, Ravi Shankar Vyas</mark>) provided the practical, on-ground organisational leadership.</li>
+        <li>Diverse ethnic/caste groups in Kheda backed the revolt with notable discipline and unity; Gujaratis elsewhere sheltered protesting farmers' families and property, while buyers of confiscated land faced social ostracism.</li>
+        <li><mark class="r">Resolution</mark>: government agreed to suspend land taxes for that year and the next, moderating the rate increase, and returning confiscated property.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Chronology traps: Champaran → Ahmedabad → Kheda → Non-Cooperation</h3>
+      <p>Multiple PYQs (I.A.S. 1993, Uttarakhand PCS 2010, U.P.P.C.S. 2017) test the correct order of Gandhi's early movements: <mark class="y">Champaran Satyagraha (1917) → Ahmedabad Mill Strike (Feb–Mar 1918) → Kheda Satyagraha (Mar–Jun 1918) → Rowlatt Satyagraha (1919) → Non-Cooperation Movement (1920–22)</mark>. Gandhi's <mark class="r">first-ever</mark> Satyagraha on Indian soil is settled uniformly across every PYQ as <mark class="g">Champaran</mark> — never Ahmedabad, Kheda, Bardoli, or "Individual Satyagraha" (all appear as wrong-answer distractors).</p>
+    </div>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Part III</span>
+    <div class="ptitle">Rowlatt Act &amp; Jallianwala Bagh</div>
+    <p class="pdesc">From "No Dalil, No Vakil, No Appeal" to the massacre that changed everything.</p>
+  </div>
+
+  <!-- ============ CHAPTER 7 ============ -->
+  <section class="chapter" id="ch7" data-title="The Rowlatt Act (1919)">
+    <div class="chapter-head"><div class="seal">7</div><h2>The Rowlatt Act (March 1919)</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>Official name: <mark class="y">Anarchical and Revolutionary Crimes Act</mark>; based on recommendations of the <mark class="g">Sedition Committee</mark>, chaired by Justice <mark class="g">Sidney Rowlatt</mark> (constituted <mark class="b">1917</mark>), tasked with investigating "seditious conspiracy" tied to revolutionary movements.</li>
+        <li>Passed <mark class="b">March 1919</mark>, during the viceroyalty of <mark class="g">Lord Chelmsford</mark> (1916–1921), <mark class="r">just before</mark> the Montagu-Chelmsford Reforms.</li>
+        <li>Purpose: give the British extraordinary powers to suppress dissent and quell political unrest.</li>
+        <li><mark class="y">Key provisions</mark>: imprisonment without trial and summary trial procedures; trials without juries; arrests without warrants on suspicion of treason; suspension of <mark class="r">Habeas Corpus</mark>; secret trials with no legal assistance. Popularly nicknamed <mark class="y">"No Dalil, No Vakil, No Appeal"</mark> — no argument, no lawyer, no appeal.</li>
+        <li><mark class="r">Opposition</mark>: unanimous opposition from all elected Indian members of the <mark class="g">Imperial Legislative Council</mark>, including <mark class="g">Mohammed Ali Jinnah, Madan Mohan Malaviya, Mazhar Ul Haq</mark> — all of whom resigned in protest.</li>
+        <li>Gandhi denounced it as the <mark class="y">"Black Act."</mark></li>
+        <li><mark class="g">Swami Shraddhanand</mark> suggested launching the protest with a <mark class="y">no-tax campaign</mark> (non-payment of Lagaan) as one method of resisting the Act.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 8 ============ -->
+  <section class="chapter" id="ch8" data-title="Satyagraha Against the Rowlatt Act">
+    <div class="chapter-head"><div class="seal">8</div><h2>Satyagraha Against the Rowlatt Act — First Mass, All-India Strike</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>Gandhi's <mark class="r">first venture into all-India politics</mark> (I.A.S. 1999) — unlike Champaran/Ahmedabad/Kheda, which were geographically limited, this drew participation across religions, castes, age groups, and genders nationwide, though (per I.A.S. 2023) it remained <mark class="r">largely restricted to cities</mark>.</li>
+        <li>Gandhi mobilised through existing networks: <mark class="g">Home Rule Leagues, Pan-Islamist groups, and the Satyagraha Sabha</mark> (I.A.S. 2015 confirms both these facts as correct, alongside the correct claim that Simon Commission protests came <mark class="r">later</mark>, not simultaneously with Rowlatt Satyagraha).</li>
+        <li>Launch date: <mark class="b">6 April 1919</mark> — a nationwide hartal (strike); a preceding hartal on <mark class="b">30 March</mark> in Delhi turned violent, setting a precedent for unrest elsewhere. Violent demonstrations followed in <mark class="g">Calcutta, Bombay, Delhi, Ahmedabad</mark>.</li>
+        <li>Punjab saw heightened tensions from wartime repression, forced recruitment, and disease; the government responded with a violent crackdown, including <mark class="r">aircraft used against protestors</mark> by <mark class="g">Sir Michael O'Dwyer</mark>, Lieutenant Governor of Punjab.</li>
+        <li>Gandhi tried to travel to Punjab to calm the situation but was <mark class="r">deported to Bombay</mark>; finding turmoil there and in his native Gujarat too, he stayed to address the unrest instead.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 9 ============ -->
+  <section class="chapter" id="ch9" data-title="Jallianwala Bagh Massacre (1919)">
+    <div class="chapter-head"><div class="seal">9</div><h2>Jallianwala Bagh Massacre (13 April 1919)</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>Context: growing unrest in <mark class="g">Amritsar</mark> — shop closures, halted trade.</li>
+        <li><mark class="b">9 April 1919</mark>: British officials arrested nationalist leaders <mark class="g">Saifuddin Kitchlew</mark> and <mark class="g">Dr. Satyapal</mark> (64th BPSC) — triggering widespread protest.</li>
+        <li><mark class="b">10 April</mark>: police fired on protestors; <mark class="g">Brigadier-General Reginald Dyer</mark> deployed troops, enforcing martial law.</li>
+        <li><mark class="b">13 April</mark>: Dyer's proclamation prohibited gatherings/demonstrations of more than <mark class="b">3</mark> people, requiring movement passes. On <mark class="g">Baisakhi day</mark>, a large crowd — unaware of the prohibitory order — gathered at Jallianwala Bagh to celebrate and pass resolutions against the Rowlatt Act and the 10 April firing.</li>
+        <li>Dyer ordered troops to fire directly into the unarmed crowd (men, women, children). <mark class="r">British official figures</mark>: <mark class="b">379 deaths</mark>, ~<mark class="b">1,100 injured</mark>; <mark class="r">INC's own estimate</mark>: over <mark class="b">1,000 deaths</mark>, ~<mark class="b">1,500 injured</mark>. Over <mark class="b">1,650 bullets</mark> fired into the crowd.</li>
+        <li>Martial law followed in Punjab, with brutal reprisals — public floggings and other degrading punishments.</li>
+        <li><mark class="r">National reaction</mark>: <mark class="g">Rabindranath Tagore</mark> renounced his <mark class="y">Knighthood</mark> (letter to the Governor-General, 31 May 1919 — a specific date some PYQs list, though the resignation-title event is also cited as 30 May in one question); <mark class="g">Gandhi</mark> surrendered his <mark class="y">Kaiser-i-Hind</mark> title (65th BPSC); <mark class="g">Sir Chettur Sankaran Nair</mark> resigned from the <mark class="y">Viceroy's Executive Council</mark> in protest — a distinct act from Tagore's/Gandhi's, and a frequent matching trap (only <mark class="g">Nair</mark> resigned from the Council; Tagore and Gandhi surrendered personal titles, not council seats).</li>
+        <li>Gandhi withdrew the Rowlatt Satyagraha on <mark class="b">18 April 1919</mark>, realising cooperation with the British regime was untenable — he privately called his approach a <mark class="y">"Himalayan Blunder"</mark> (though one PYQ answer key attributes the exact "Himalayan Blunder" phrase specifically to the earlier <mark class="g">Nadiad Satyagraha/martial-law period</mark> rather than Jallianwala Bagh directly — treat both contexts as connected, since they occurred within the same crisis window).</li>
+        <li>Secretary of State <mark class="g">Edwin Montagu</mark> controversially termed the massacre a <mark class="y">"Preventive Murder."</mark></li>
+      </ul>
+    </div>
+
+    <div class="ctx">
+      <span class="lbl">Context — the poem that followed the massacre</span>
+      The popular song <i><mark class="y">"Sarfaroshi Ki Tamanna Ab Hamare Dil Mein Hai"</mark></i> was written by <mark class="g">Bismil Azimabadi</mark> (66th BPSC) — an Urdu poet from Patna, Bihar, born 1901 — specifically <mark class="r">after</mark> the Jallianwala Bagh Massacre. It was first recited at the <mark class="b">1920 Calcutta Congress session</mark>, and published in the Urdu daily <i>Sabah</i> in <mark class="b">1921</mark>. This is the <mark class="r">same poem</mark> repeatedly, wrongly attributed to the revolutionary <mark class="g">Ram Prasad "Bismil"</mark> (Kakori fame) purely because of the shared pen-name "Bismil" — the two are different men entirely.
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 10 ============ -->
+  <section class="chapter" id="ch10" data-title="Hunter Committee (1919-20)">
+    <div class="chapter-head"><div class="seal">10</div><h2>Hunter Committee (1919–1920)</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>Triggered by the Jallianwala Bagh massacre; established by <mark class="g">Edwin Montagu</mark> on <mark class="b">14 October 1919</mark>.</li>
+        <li>Chairman: <mark class="g">Lord William Hunter</mark> (a Senator of the College of Justice of Scotland). Total <mark class="b">7</mark> members — <mark class="b">4</mark> British, <mark class="b">3</mark> Indian: <mark class="g">Sir Chimanlal Setalvad, Pandit Jagat Narayan, Sardar Sahibzada Sultan Ahmad Khan</mark>.</li>
+        <li>Purpose: investigate disturbances in Bombay, Delhi, and Punjab.</li>
+        <li>Inquiry began <mark class="b">29 October 1919</mark> in Delhi, moved to Lahore by November.</li>
+        <li><mark class="y">Report (March 1920)</mark>: condemned Dyer for firing without warning, prolonged firing, and exceeding his authority — a <mark class="y">minority report</mark> went further, calling his actions inhuman; but the majority report still <mark class="r">agreed with imposing martial law</mark> in Punjab and criticised Gandhi's Satyagraha method as partly responsible for the deteriorating law-and-order situation.</li>
+        <li><mark class="r">Outcome</mark>: no penalties for Dyer, due to the <mark class="y">Indemnity Act</mark>; he was merely asked to resign his Brigade Commander appointment.</li>
+        <li><mark class="r">Public reaction split sharply</mark>: <mark class="g">Winston Churchill</mark> condemned Dyer, leading to his dismissal (March 1920); but British newspapers hailed Dyer as the "protector of the British Empire," and the <mark class="y">House of Lords</mark> praised him as the <mark class="y">"Lion of the British Empire,"</mark> even funding a <mark class="y">Sword of Honour</mark> for him.</li>
+        <li>Congress formed its own parallel inquiry committee (including <mark class="g">Motilal Nehru, C.R. Das</mark>) to criticise Dyer and oppose Punjab's martial law; <mark class="g">Mahatma Gandhi</mark> was specifically entrusted with <mark class="r">drafting</mark> this Congress Inquiry Committee's report (U.P.P.C.S. 2014).</li>
+        <li><mark class="b">March 1940</mark>: <mark class="g">Udham Singh</mark> — an eyewitness survivor of the massacre — assassinated <mark class="g">Michael O'Dwyer</mark> (Punjab's Lieutenant-Governor at the time, and the massacre's chief political backer) at <mark class="g">Caxton Hall, London</mark>, in delayed revenge; hanged in London afterward.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Part IV</span>
+    <div class="ptitle">Khilafat &amp; the Non-Cooperation Movement</div>
+    <p class="pdesc">Hindu-Muslim unity, a national programme, and the withdrawal that shocked a nation.</p>
+  </div>
+
+  <!-- ============ CHAPTER 11 ============ -->
+  <section class="chapter" id="ch11" data-title="The Khilafat Movement">
+    <div class="chapter-head"><div class="seal">11</div><h2>The Khilafat Movement</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>Root cause: Indian Muslims viewed the <mark class="g">Sultan of Turkey</mark> as the <mark class="y">Caliph/Khalifa</mark> of the Muslim world; Turkey fought <mark class="r">against</mark> the Allies in WWI; Britain had promised fair post-war treatment of Turkey to secure Muslim wartime loyalty, but instead dismembered the Ottoman Empire — the <mark class="y">Treaty of Sèvres (May 1920)</mark> stripped Turkey down, and the Caliphate was formally abolished in <mark class="b">1924</mark> (after the <mark class="y">Treaty of Lausanne, 1922</mark>, when the last Ottoman Sultan was deposed and left Constantinople on a British warship).</li>
+        <li><mark class="y">Khilafat Committee</mark> formed <mark class="b">early 1919</mark> by the <mark class="g">Ali Brothers (Shaukat, Muhammad Ali), Maulana Azad, Hakim Ajmal Khan, Hasrat Mohani, Dr. Ansari</mark> — demands: retention of the Khalifa's control over sacred places, adequate territory for him.</li>
+        <li><mark class="g">Mahatma Gandhi</mark> was elected <mark class="r">President of the All India Khilafat Conference</mark>, held under the chairmanship of <mark class="g">Fazlul Haq</mark>, Delhi, <mark class="b">23–24 November 1919</mark>.</li>
+        <li>Gandhi viewed Khilafat as a <mark class="y">"golden opportunity"</mark> for Hindu-Muslim unity — an opportunity he believed would <mark class="r">not recur for a hundred years</mark> (40th BPSC) — and threw Congress's weight behind it to secure Muslim support against the British.</li>
+        <li>During this campaign, <mark class="g">Hakim Ajmal Khan</mark> renounced the title <mark class="y">"Haziq-ul-Mulk"</mark> (conferred by the British in 1908) as a gesture of protest.</li>
+        <li><mark class="r">M.A. Jinnah</mark> (then still a Congress Nationalist) opposed linking Khilafat with the national freedom struggle, warning Gandhi against <mark class="y">"encouraging fanaticism of Muslim religious leaders"</mark> (per K.M. Munshi's account) — he believed religion should be kept separate from politics.</li>
+        <li><mark class="g">Madan Mohan Malaviya</mark> also did <mark class="r">not</mark> support the Khilafat Movement — a frequent matching trap, since he otherwise cooperated closely with Gandhi on other fronts (e.g. defending the Chauri Chaura accused, Ch.14).</li>
+        <li><mark class="b">4 April 1919</mark>: <mark class="g">Swami Shraddhanand</mark> delivered a Hindu-Muslim unity speech to 30,000 Muslims from the pulpit of the <mark class="g">Jama Masjid, Delhi</mark>.</li>
+        <li>Congress's motive in backing Khilafat: reinstatement of the Caliph, and — crucially — <mark class="r">securing Muslim sympathy/support</mark> for the wider freedom struggle (U.P.P.C.S. 2000); it was <mark class="r">not</mark> about removing the Caliph or specifically marginalising Jinnah.</li>
+        <li><mark class="y">Outcome</mark>: the movement's most cited result is that <mark class="r">Hindu-Muslim differences were narrowed</mark> at least temporarily (U.P.P.C.S. 1996) — Aitchison's remark, <mark class="y">"In this instance, we could not play off the Mohammedans against the Hindus,"</mark> refers to exactly this Khilafat/Non-Cooperation period (I.A.S. 2000).</li>
+        <li>The <mark class="y">Moplah Rebellion (1921)</mark> in Malabar is identified as a direct offshoot of the Khilafat Movement (43rd BPSC) — Moplah Muslim peasants revolted against Hindu landlords allied with the British, and the two agitations became difficult to distinguish on the ground.</li>
+      </ul>
+    </div>
+
+    <div class="ctx">
+      <span class="lbl">Context — Tilak's internal disagreement with linking Khilafat and Swaraj</span>
+      Within Congress, <mark class="g">Tilak</mark> personally opposed aligning with Muslim leaders over what he saw as a purely religious matter, and questioned Satyagraha's effectiveness as a tool — Gandhi had to actively persuade him and other sceptics before securing formal Congress approval for the combined <mark class="y">Khilafat–Non-Cooperation programme</mark>. This internal friction is a useful bridge fact: it shows the 1920 Non-Cooperation resolution (Ch.13) wasn't an automatic, unanimous decision — it required real internal negotiation even among nominally allied leaders.
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 12 ============ -->
+  <section class="chapter" id="ch12" data-title="Launch of the Non-Cooperation Movement">
+    <div class="chapter-head"><div class="seal">12</div><h2>The Non-Cooperation Movement — Build-up &amp; Launch</h2></div>
+
+    <table>
+      <caption>Timeline to launch</caption>
+      <thead class="red"><tr><th>Date</th><th>Event</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="b">Feb 1920</mark></td><td>A joint Hindu-Muslim deputation seeking Khilafat redress fails; Gandhi hints at Non-Cooperation if peace terms with Turkey are unfavourable.</td></tr>
+        <tr><td><mark class="b">May 1920</mark></td><td><mark class="y">Treaty of Sèvres</mark> dismembers Turkey — worsens the Khilafat issue.</td></tr>
+        <tr><td><mark class="b">June 1920</mark></td><td>All-party conference at <mark class="g">Allahabad</mark> endorses boycotting educational/legal institutions, calls for Gandhi's leadership; the Khilafat Committee here also outlines a <mark class="y">four-stage non-cooperation plan</mark> (resigning honorary titles, civil services, police, military; then refusing to pay taxes).</td></tr>
+        <tr><td><mark class="b">1 Aug 1920</mark></td><td>Movement formally initiated after Gandhi's notice to the Viceroy lapsed; Gandhi asserts subjects' right to withdraw support from a mis-ruling government. <mark class="r">Notably, Bal Gangadhar Tilak died on this exact date</mark> — supporting the movement's principle of non-cooperation, though he had opposed its specific council-boycott method.</td></tr>
+        <tr><td><mark class="b">Sept 1920</mark></td><td>Special Congress session, <mark class="g">Calcutta</mark>, presided by <mark class="g">Lala Lajpat Rai</mark>: approves the Non-Cooperation programme addressing Punjab and Khilafat, and adopting <mark class="r">Swaraj</mark> as the goal — opposed initially by senior leaders <mark class="g">C.R. Das</mark> and <mark class="g">Madan Mohan Malaviya</mark>.</td></tr>
+        <tr><td><mark class="b">Dec 1920</mark></td><td><mark class="y">Nagpur Session</mark>: Congress formally adopts <mark class="r">Non-Violent Non-Cooperation</mark>; <mark class="g">C.R. Das</mark> himself moved the resolution here (having opposed it in September — a genuine reversal), and it passed with wide support. New Congress Constitution: peaceful methods, modern organisation — <mark class="y">All India Congress Committee</mark> (350 members) and a <mark class="y">Working Committee</mark> (15 members); Provincial Congress Committees restructured on <mark class="r">linguistic</mark> lines; annual membership fee cut to <mark class="b">4 annas</mark>; Hindi prioritised in communications.</td></tr>
+      </tbody>
+    </table>
+
+    <table>
+      <caption>The Seven-Point Non-Cooperation Programme (September 1920)</caption>
+      <thead class="green"><tr><th>#</th><th>Component</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Relinquishing titles and honorary offices.</td></tr>
+        <tr><td>2</td><td>Boycotting government or government-aided educational institutions.</td></tr>
+        <tr><td>3</td><td>Boycotting British courts.</td></tr>
+        <tr><td>4</td><td>Refraining from participating in provincial and central assembly elections.</td></tr>
+        <tr><td>5</td><td>Boycotting foreign goods.</td></tr>
+        <tr><td>6</td><td>Establishing Panchayats for settling disputes.</td></tr>
+        <tr><td>7</td><td>Observing strict non-violence; abstaining from government durbars and official functions; resisting participation in the Mesopotamia service.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="trap">
+      <span class="lbl">A precise clause trap</span>
+      I.A.S. 2025 tests: was <mark class="r">"retention of titles and honours without using them in public"</mark> part of the programme? <mark class="r">No</mark> — the actual demand was a <mark class="r">complete renunciation</mark> of titles/honours, not mere non-use. So of the four listed clauses in that question (boycott of law-courts &amp; foreign cloth; strict non-violence; retention-without-use of titles; Panchayats for disputes) — only <mark class="g">three</mark> genuinely match the programme.
+    </div>
+
+    <div class="event">
+      <h3>Underlying Khilafat–Congress joint objectives</h3>
+      <p>The Khilafat Committee and Congress united around three shared goals: <mark class="y">address the Khilafat issue, rectify Punjab's wrongs (Jallianwala Bagh/martial law), and achieve Swaraj</mark>. The plan was to run in stages — civil disobedience and non-payment of taxes were to follow only if Swaraj failed to materialise within a year <mark class="r">and</mark> the government resorted to repression (I.A.S. 2025 confirms this staged, conditional design as accurate).</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 13 ============ -->
+  <section class="chapter" id="ch13" data-title="Spread of the Non-Cooperation Movement">
+    <div class="chapter-head"><div class="seal">13</div><h2>Spread &amp; Social Response to the Non-Cooperation Movement</h2></div>
+
+    <div class="event">
+      <h3>Mobilisation &amp; Institution-Building</h3>
+      <ul>
+        <li>Gandhi, alongside the <mark class="g">Ali brothers</mark>, led a nationwide tour to mobilise support; ~<mark class="b">30,000 arrests</mark> in 1921 alone as the campaign gathered strength.</li>
+        <li><mark class="y">Educational boycott</mark>: thousands of students left government schools for ~<mark class="b">800 national schools/colleges</mark> — e.g. <mark class="g">Jamia Millia Islamia</mark> (founded Aligarh 1920, later moved to Delhi), <mark class="g">Kashi Vidyapeeth</mark> (Varanasi, 1921), <mark class="g">Gujarat Vidyapith</mark> (Ahmedabad, 1920), <mark class="g">Bihar Vidyapeeth</mark> — under leaders like <mark class="g">Acharya Narendra Dev, C.R. Das, Subhash Bose</mark>. (<mark class="r">Banaras Hindu University</mark>, founded 1916 by Malaviya, is a separate, <mark class="r">pre-existing</mark> institution — not one of the Non-Cooperation-era new foundations, a frequent matching trap, U.P.P.C.S. Mains 2005.)</li>
+        <li><mark class="y">Professional participation</mark>: prominent lawyers — <mark class="g">Motilal Nehru, Jawaharlal Nehru, C.R. Das, Vallabhbhai Patel</mark> (also <mark class="g">Vithalbhai Patel</mark>) — abandoned legal practice.</li>
+        <li>Public demonstrations included burning foreign cloth (significantly reducing imports) and picketing foreign-liquor shops; the <mark class="y">Tilak Swaraj Fund</mark> raised over <mark class="b">₹1 crore</mark>.</li>
+        <li>The <mark class="y">Congress Volunteer Corps</mark> functioned almost as a parallel police force, directly challenging government authority.</li>
+        <li><mark class="b">July 1921</mark>: the Ali brothers called on Muslims to resign from the army on religious grounds — resulting in their arrest that September.</li>
+        <li><mark class="b">November 1921</mark>: the visit of the <mark class="g">Prince of Wales</mark> incited strikes and demonstrations nationwide — Gandhi called for its boycott (M.P.P.C.S. 2024); Provincial Congress Committees were empowered to approve mass civil disobedience.</li>
+      </ul>
+    </div>
+
+    <table>
+      <caption>Regional dynamics of the Non-Cooperation Movement</caption>
+      <thead class="purple"><tr><th>Region</th><th>Character of the movement locally</th></tr></thead>
+      <tbody>
+        <tr><td>Midnapur</td><td>Cultivators' strike against a White zamindari company.</td></tr>
+        <tr><td>Andhra</td><td>No-tax movements defying forest laws.</td></tr>
+        <tr><td>Punjab</td><td><mark class="g">Akali Movement</mark> — sought control of gurudwaras from corrupt <mark class="g">mahants</mark>, using non-violent methods amid heavy repression.</td></tr>
+        <tr><td>Assam</td><td>Labour strikes on tea plantations and transport services, led by <mark class="g">J.M. Sengupta</mark>.</td></tr>
+        <tr><td>Avadh</td><td>Existing Kisan movement invigorated by Non-Cooperation propaganda, especially via <mark class="g">Jawaharlal Nehru</mark> — overlapped heavily with Non-Cooperation.</td></tr>
+        <tr><td>Malabar, Kerala</td><td>Non-Cooperation and Khilafat efforts incited Muslim tenants against landlords, occasionally straying into communal tension (see Moplah Rebellion, Ch.11).</td></tr>
+        <tr><td>Chhapra, Bihar</td><td><mark class="g">Rahul Sankrityayan</mark> (born Kedar Nath Pandey; later called "Father of Hindi Travel Literature") was active spreading Non-Cooperation locally (56th–59th BPSC).</td></tr>
+      </tbody>
+    </table>
+
+    <div class="event">
+      <h3>Response by Class/Group</h3>
+      <ul>
+        <li><mark class="y">Middle class</mark>: initially led the movement, but scepticism arose in elite centres (Calcutta, Bombay, Madras) over resigning government roles; <mark class="g">Rajendra Prasad</mark> and <mark class="g">Vallabhbhai Patel</mark> saw non-cooperation as a viable, non-terrorist alternative.</li>
+        <li><mark class="y">Business class</mark>: the economic boycott benefited Indian Swadeshi businesses, but larger firms were cautious over possible labour unrest.</li>
+        <li><mark class="y">Peasants</mark>: merged their own class struggle with the Non-Cooperation agenda, notably in Bihar (rising against landlords) — <mark class="g">Swami Vidyanand</mark> and <mark class="g">Raj Kumar Shukla</mark>-linked local leaders connected peasant grievances directly to the movement.</li>
+        <li><mark class="y">Students</mark>: actively engaged, leaving government institutions for national ones (e.g. <mark class="g">Jayaprakash Narayan</mark> left Patna College just 20 days before his exams, joining the Congress-run Bihar Vidyapeeth instead, 56th–59th BPSC).</li>
+        <li><mark class="y">Women</mark>: abandoned purdah, contributed jewellery to the Tilak Fund, and picketed foreign goods.</li>
+        <li><mark class="y">Hindu-Muslim unity</mark>: significant Muslim participation despite incidents like the Moplah Uprisings.</li>
+        <li>The <mark class="g">Justice Party</mark> of Madras <mark class="r">did not</mark> support the movement — it preferred working within the existing system and disagreed with Gandhi's perceived pro-Brahmin leanings (68th BPSC).</li>
+        <li>An interesting government counter-tactic: to offset lost liquor-tax revenue from the boycott, the <mark class="g">Bihar and Odisha</mark> provincial government circulated a list of famous historical drinkers (Alexander, Julius Caesar, Napoleon, Shakespeare) to encourage people back to alcohol (64th BPSC).</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Government Response &amp; Movement's Last Phase</h3>
+      <ul>
+        <li><mark class="b">May 1921</mark>: talks between Gandhi and Viceroy <mark class="g">Reading</mark> broke down when government sought to curb the Ali brothers' violent rhetoric.</li>
+        <li><mark class="b">December 1921</mark>: government crackdown — volunteer corps declared illegal, public gatherings banned, press censored, most leaders arrested (Gandhi himself was <mark class="r">not</mark> arrested at this point).</li>
+        <li><mark class="b">1921 Ahmedabad Session</mark>: presided over by <mark class="g">C.R. Das</mark> — while still in <mark class="r">jail</mark> (for his defence of Aurobindo Ghosh in the Alipore case earlier); <mark class="g">Hakim Ajmal Khan</mark> presided in his physical absence — this session designated Gandhi as the <mark class="r">sole authority</mark> on civil disobedience.</li>
+        <li><mark class="b">1 February 1922</mark>: from <mark class="g">Bardoli</mark>, Gandhi threatened to launch civil disobedience unless political prisoners were released and press restrictions lifted.</li>
+      </ul>
+    </div>
+
+    <div class="factbox">
+      <span class="lbl">Fact Box · The 1922 Sarabandi (peasant tax-refusal) campaign — a related but separate thread</span>
+      <dl>
+        <dt>What</dt><dd>The <mark class="y">Sarabandi Campaign, 1922</mark>, led by <mark class="g">Sardar Vallabhbhai Patel</mark> — peasants refused to pay taxes to British authorities (65th BPSC).</dd>
+        <dt>Distinguish from</dt><dd>The later, more famous <mark class="g">Bardoli Satyagraha (1928)</mark> — also led by Patel, but a distinct, later campaign (see Ch.16 for the peasant-movement thread).</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 14 ============ -->
+  <section class="chapter" id="ch14" data-title="Chauri Chaura & Withdrawal">
+    <div class="chapter-head"><div class="seal">14</div><h2>Chauri Chaura Incident &amp; the Withdrawal (Feb 1922)</h2></div>
+
+    <div class="event">
+      <ul>
+        <li><mark class="y">Location</mark>: <mark class="g">Chauri-Chaura, Gorakhpur district</mark>, United Provinces (67th BPSC Re-exam).</li>
+        <li><mark class="y">Date</mark>: <mark class="b">4 February 1922</mark>.</li>
+        <li>Inciting event: police violently confronted volunteers protesting liquor sales and high food prices; the crowd retaliated by attacking and burning the police station, killing <mark class="r">22 (some sources say 23) policemen</mark> and <mark class="b">3 civilians</mark> in total.</li>
+        <li><mark class="g">Madan Mohan Malaviya</mark> and <mark class="g">Krishna Kant</mark> provided legal defence for those arrested — of <mark class="b">225</mark> accused, the Sessions Judge initially sentenced <mark class="b">170</mark> to death; Malaviya's defence before the Allahabad High Court's Chief Justice saved <mark class="b">151</mark> from the gallows, though <mark class="b">19</mark> were still executed (I.A.S. 2025).</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Withdrawal — sequence and reasoning</h3>
+      <ul>
+        <li>Correct chronological order: <mark class="y">Chauri-Chaura incident (4 Feb) → Bardoli Resolution (12 Feb) → suspension of the Non-Cooperation Movement</mark> (U.P.P.C.S. 2001) — the Congress Working Committee met at Bardoli and resolved to halt mass civil disobedience, instructing local committees to advise cultivators to resume paying revenue.</li>
+        <li>Reasons for withdrawal: the movement's growing violence (Chauri Chaura being the tipping point); Gandhi's fear that continued unrest would invite harsher colonial repression; signs of fatigue and declining mass enthusiasm by late 1921; growing revolutionary/labour unrest pressuring leaders toward more radical positions, which Gandhi actively sought to restrain.</li>
+        <li><mark class="b">24 February 1922</mark>: at a Delhi meeting of the All India Congress Committee, further limits were placed on law-violating activities; <mark class="g">Dr. Moonje</mark> tabled a formal <mark class="y">vote of censure</mark> against Gandhi for calling off the movement — reflecting real internal backlash.</li>
+        <li>Gandhi was arrested <mark class="b">10 March 1922</mark>, sentenced to <mark class="b">6 years</mark> in prison.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Diverse contemporary views on the withdrawal</h3>
+      <ul>
+        <li><mark class="g">Subhas Chandra Bose</mark>: viewed it as a <mark class="r">national calamity</mark>.</li>
+        <li><mark class="y">Marxist interpretation</mark>: read the withdrawal as an effort to control/contain revolutionary potential building up within the movement.</li>
+        <li><mark class="y">Strategic-withdrawal view</mark>: Gandhi's decision seen as a necessary tactical retreat to regroup, not a betrayal.</li>
+      </ul>
+    </div>
+
+    <div class="ctx">
+      <span class="lbl">Context — Rabindranath Tagore's dissent, kept separate from his 1919 Knighthood renunciation</span>
+      Tagore is often (correctly) remembered for renouncing his Knighthood after Jallianwala Bagh (Ch.9) — but he was <mark class="r">also a critic</mark> of Non-Cooperation's specific methods, in a <mark class="r">separate</mark> episode: he wrote to Gandhi that burning foreign cloth was <mark class="y">"a ruthless waste"</mark> (or "indiscriminate/callous waste," depending on the exact PYQ phrasing), preferring constructive programmes over mass agitation and destruction of goods. An Assertion-Reason PYQ (U.P.R.O./A.R.O. 2021) confirms these are two <mark class="r">distinct</mark> episodes: Tagore did <mark class="r">not</mark> renounce his Knighthood in order to join the Non-Cooperation Movement — the renunciation (1919) predates and is unconnected to his later critique of the movement's methods (1920–22).
+    </div>
+
+    <div class="factbox">
+      <span class="lbl">Fact Box · Overall evaluation of the Khilafat-Non-Cooperation Movement</span>
+      <dl>
+        <dt>Positive</dt><dd>Politicised diverse social groups, instilled a genuinely revolutionary spirit, challenged colonial myths of invincibility, reduced popular fear of repression, gave Congress a mass character it had never had before.</dd>
+        <dt>Negative</dt><dd>Engaged urban Muslims but arguably fuelled communalism rather than resolving it; struggled to shift Muslim political identity from religion toward secular nationalism; critics (including some contemporaries) argued it prioritised Islamic/Khilafat interests over purely national interests, deepening rather than healing communal divisions in the long run.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Part V</span>
+    <div class="ptitle">Parallel Threads — Peasants, Trade Unions, and Communism</div>
+    <p class="pdesc">The organised movements that ran alongside, and sometimes fed, the Gandhian mainstream.</p>
+  </div>
+
+  <!-- ============ CHAPTER 15 ============ -->
+  <section class="chapter" id="ch15" data-title="Peasant Movements & Kisan Sabha">
+    <div class="chapter-head"><div class="seal">15</div><h2>Peasant Movements &amp; the Kisan Sabha Thread</h2></div>
+
+    <table>
+      <caption>Major peasant movements — chronological</caption>
+      <thead class="red"><tr><th>Movement (Year, Place)</th><th>Leaders &amp; Description</th></tr></thead>
+      <tbody>
+        <tr><td><b>Bijolia Movement (from 1897, Mewar/Rajasthan)</b></td><td><mark class="r">India's first peasant movement</mark> (R.A.S./R.T.S. 1992) — against feudal exploitation; ran for ~44 years, one of the longest. First phase led by <mark class="g">Sadhu Sitaram Das</mark> (from 1913); second phase by <mark class="g">Vijay Singh Pathik</mark> (from 1915). Pathik did <mark class="r">not</mark> personally meet Gandhi to inform him of the movement (a false statement in a Rajasthan PCS 2024 PYQ) — but newspapers <i>Abhyudaya</i> (Prayag) and <i>Bharat Mitra</i> (Calcutta) regularly covered it.</td></tr>
+        <tr><td><b>U.P. Kisan Sabha (Feb 1918)</b></td><td>Formed by <mark class="g">Indra Narayan Dwivedi</mark> and <mark class="g">Gauri Shankar Mishra</mark>, with <mark class="g">Madan Mohan Malaviya's</mark> support — organised peasants at scale (large U.P. peasant turnout at the 1918 Delhi Congress session traces to this). <mark class="r">Jawaharlal Nehru was NOT involved</mark> in its formation (I.A.S. 2005) — a repeated trap.</td></tr>
+        <tr><td><b>Nai-Dhobi Bandh (1919, Pratapgarh, Awadh)</b></td><td>A social-boycott movement against exploitative landlords — barbers and washermen refused services to landlord households. Early leaders <mark class="g">Jhinguri Singh</mark> and <mark class="g">Durgapal (Singh)</mark>; <mark class="g">Baba Ramchandra</mark> (a Sanyasi who had worked as an indentured labourer in Fiji, carrying a Tulsidas Ramayana to recite to rural audiences) emerged as its defining leader by mid-1920, founding the <mark class="y">Oudh Kisan Sabha (1920)</mark>.</td></tr>
+        <tr><td><b>Eka (Unity) Movement (1921–22, Hardoi, Barabanki, Bahraich, Sitapur)</b></td><td>Led by <mark class="g">Madari Pasi</mark> (a lower-caste leader) and small zamindars. Grievances: rents <mark class="b">50% higher</mark> than recorded rates, oppression by revenue-collecting Thikedars, share-rent practices. Demand: convert rent-in-kind to a fixed <mark class="r">cash</mark> payment, paid on time (39th BPSC) — peasants did <mark class="r">not</mark> refuse to pay rent outright, they insisted on cash collection given high inflation. Severe repression ended it by March 1922.</td></tr>
+        <tr><td><b>Bihar Provincial Kisan Sabha / BPKS (1929)</b></td><td>Founded by <mark class="g">Swami Sahajanand Saraswati</mark> — called <mark class="y">"Kisan-Pran"</mark> for his devotion to farmers; aimed at eradicating the Zamindari system and securing land-ownership rights for cultivators. Published the Hindi weekly <i><mark class="y">Hunkar</mark></i> from Patna (63rd BPSC) — <mark class="r">not</mark> <i>Lok Sangraha</i> (a distractor from another question, 70th BPSC, that is actually incorrect per the more specific 63rd BPSC answer). Assisted by <mark class="g">Karyanand Sharma, Rahul Sankrityayan, Panchanan Sharma, Yadunandan Sharma</mark>.</td></tr>
+        <tr><td><b>All India Kisan Congress / Sabha (11 April 1936, Lucknow)</b></td><td><mark class="g">Swami Sahajanand Saraswati</mark> — first President; <mark class="g">N.G. Ranga</mark> — first General Secretary. Later renamed <mark class="y">All India Kisan Sabha (AIKS)</mark>; held its second session at <mark class="g">Faizpur</mark> alongside the 1936 Congress session there, chaired by <mark class="g">N.G. Ranga</mark>. <mark class="g">Jawaharlal Nehru</mark> addressed its first meeting. Just before his death (1950), Sahajanand formed the <mark class="y">All India United Kisan Sabha</mark>, demanding nationalisation of land, waterways, and energy sources.</td></tr>
+        <tr><td><b>Bardoli Satyagraha (1928, Surat district)</b></td><td>Led by <mark class="g">Vallabhbhai Patel</mark> — a peasant tax-refusal campaign; its success led the <mark class="r">women of Bardoli</mark> to confer on Patel the title <mark class="y">"Sardar."</mark></td></tr>
+        <tr><td><b>Tebhaga Movement (Sept–Nov 1946, Bengal)</b></td><td>Launched by the <mark class="g">Bengal Provincial Kisan Sabha</mark> — sharecroppers demanded the landlord's share be reduced from one-half to <mark class="r">one-third</mark> (Tebhaga = "three-part sharing"), keeping two-thirds for themselves; based on the <mark class="g">Floud Commission's</mark> recommendations; the resulting <mark class="y">Bargadari Act</mark> enacted this one-third principle. Most affected: districts of North Bengal.</td></tr>
+        <tr><td><b>Bhoodan Movement (from 18 April 1951, Pochampalli, Telangana)</b></td><td>Started by <mark class="g">Acharya Vinoba Bhave</mark> at Pochampally (Nalgonda district, then a communist-activity hub); landlord <mark class="g">Ramachandra Reddy</mark> donated <mark class="b">100 acres</mark> to 40 Harijan families — the movement's founding gift. Vinoba set a target of <mark class="b">50 million acres by 1957</mark>; most successful in <mark class="g">Odisha</mark>. <mark class="g">Jaya Prakash Narayan</mark> joined the movement in 1954, leaving active politics.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="trap">
+      <span class="lbl">Regional peasant-leader matching table (U.P.P.C.S. 1998)</span>
+      <ul>
+        <li><mark class="g">Swami Sahajanand Saraswati</mark> — <mark class="r">Bihar</mark></li>
+        <li><mark class="g">Khudai Khidmatgars</mark> (Khan Abdul Ghaffar Khan) — <mark class="r">North-West Frontier Province</mark></li>
+        <li><mark class="g">Swami Ramanand</mark> — <mark class="r">Hyderabad</mark></li>
+        <li><mark class="g">Abdul Hamid Khan</mark> — <mark class="r">Southern Assam</mark></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 16 ============ -->
+  <section class="chapter" id="ch16" data-title="Trade Unions & the Communist Party">
+    <div class="chapter-head"><div class="seal">16</div><h2>Trade Unions &amp; the Communist Party of India</h2></div>
+
+    <div class="event">
+      <h3>Early Trade Unionism</h3>
+      <ul>
+        <li><mark class="y">Madras Labour Union (1918)</mark> — India's <mark class="r">first modern trade union</mark>, founded by <mark class="g">B.P. Wadia</mark> and <mark class="g">V. Kalyanasundaram</mark>, covering workers of the <mark class="g">Buckingham and Carnatic Mills</mark>; soon followed by two unions in Bombay, one in Calcutta (the <mark class="g">Indian Seamen's Union</mark>), and four more in Madras.</li>
+        <li><mark class="y">Ahmedabad Textile Labour Association</mark> — established <mark class="b">25 February 1920</mark> by <mark class="g">Anasuya Sarabhai</mark> (its President) and <mark class="g">Mahatma Gandhi</mark>, emerging directly out of the 1918 Ahmedabad Mill Strike (Ch.5).</li>
+        <li><mark class="y">All India Trade Union Congress (AITUC)</mark> — founded <mark class="b">31 October 1920</mark>, Bombay, by <mark class="g">N.M. Joshi</mark>; first President <mark class="g">Lala Lajpat Rai</mark>, Vice-President <mark class="g">Joseph Baptista</mark>, General Secretary <mark class="g">Diwan Chaman Lal</mark>. Motivated by the founding of the <mark class="g">International Labour Organization (ILO)</mark> in 1919, prompting Indian workers to organise formally.</li>
+        <li>AITUC first split at its <mark class="g">Nagpur session, 1929</mark> — presided by <mark class="g">Jawaharlal Nehru</mark> — a leftist-vs-moderate power struggle; the moderate faction (<mark class="g">N.M. Joshi, V.V. Giri, B. Shiva Rao</mark>) broke away to form the <mark class="y">Indian Trade Union Federation</mark> — <mark class="r">not</mark> founded by S.A. Dange, a repeated matching trap (Uttarakhand PCS 2025).</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>The Communist Thread</h3>
+      <ul>
+        <li><mark class="y">Communist International (Comintern)</mark> founded <mark class="b">March 1919</mark> by <mark class="g">Vladimir Lenin</mark> and Russia's Bolshevik Party.</li>
+        <li><mark class="g">M.N. Roy</mark> — the <mark class="r">first Indian</mark> to join the Communist International, visiting Russia at Lenin's invitation; on <mark class="b">17 October 1920</mark>, Roy headed a group at <mark class="g">Tashkent</mark> (with Abani Mukherjee, Mohd. Ali, Mohd. Shafique, Evelyn Roy Trent, Rosa Fitingov, M.P.T. Acharya) founding the <mark class="y">Communist Party of India</mark> there.</li>
+        <li><mark class="y">Kanpur Conspiracy Case (1924)</mark>: British government prosecuted early communists — <mark class="g">M.N. Roy, S.A. Dange, Ghulam Hussain, Ramcharan Lal Sharma, Muzaffar Ahmed, Shaukat Usmani, Singaravelu Chettiar, Nalini Gupta, Shamuddin Hassan, M.R.S. Velayndhun, Dr. Manilal, Sampurnanand, Satyabhakta</mark> — charged with conspiring "to deprive the Emperor of his sovereignty over British India... through a violent revolution."</li>
+        <li><mark class="y">Revolutionary phase of the Trade Union Movement</mark>: <mark class="b">1926–1939</mark> (48th–52nd BPSC) — key leaders <mark class="g">M.N. Roy, Muzaffar Ahmed, Shripad Amrit Dange, Shaukat Usmani</mark>.</li>
+        <li><mark class="y">Meerut Conspiracy Case (1929–33)</mark>: 32 labour leaders charged, 31 arrested (including two Britishers) — drew <mark class="r">worldwide sympathetic attention</mark> from figures like <mark class="g">Albert Einstein, H.G. Wells, Harold Laski, and (F.D.) Roosevelt</mark> (U.P.P.C.S. 2017) — a rare instance of an Indian political trial drawing this level of international celebrity solidarity.</li>
+        <li><mark class="y">Workers and Peasants Party</mark>: formed regionally (Bengal 1926, Bombay 1927, U.P. 1928, Punjab as the Kirti Kisan Party) before uniting as the <mark class="y">All India Workers and Peasants Party</mark> at a Calcutta conference, December 1928 — its actual purpose was to work <mark class="r">within</mark> Congress to push it toward a more revolutionary, mass-organisation orientation (U.P.P.C.S. 2024) — not as an independent all-India body from the outset.</li>
+        <li>Splinter/successor parties: <mark class="g">M.N. Roy</mark> founded the <mark class="y">Radical Democratic Party</mark> (1940); <mark class="g">Saumyendranath Tagore</mark> founded the <mark class="y">Revolutionary Communist Party of India</mark> (1934), breaking away from the CPI.</li>
+      </ul>
+    </div>
+  </section>
+
+  </div><!-- /chapters -->
+
+  <div class="footer">Compiled from theory notes and PYQ (Ghatnachakra-style) explanations · marker-coded per canonical study format · cross-verify years before the exam</div>
+
+</div><!-- /main -->
+
+<script>
+  const chapters = document.querySelectorAll('.chapter');
+  const toc = document.getElementById('toc');
+  chapters.forEach((ch, i) => {
+    const a = document.createElement('a');
+    a.href = '#' + ch.id;
+    a.innerHTML = '<span class="num">' + String(i+1).padStart(2,'0') + '</span><span>' + ch.dataset.title + '</span>';
+    a.dataset.target = ch.id;
+    toc.appendChild(a);
+  });
+
+  const links = toc.querySelectorAll('a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = toc.querySelector('a[data-target="' + entry.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px', threshold: 0 });
+  chapters.forEach(ch => observer.observe(ch));
+
+  const menuBtn = document.getElementById('menu-btn');
+  const sidebar = document.getElementById('sidebar');
+  menuBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+  links.forEach(l => l.addEventListener('click', () => sidebar.classList.remove('open')));
+</script>
+
+</body>
+</html>
