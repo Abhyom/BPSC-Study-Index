@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prelims Factsheet — May 2026 (Combined)</title>
+  <style>
+    :root {
+      --bg: #131314;
+      --surface: #1e1f20;
+      --surface-hover: #2a2b2d;
+      --border: #2d2f31;
+      --text: #e3e2e6;
+      --text-muted: #8e918f;
+      --accent: #a8c7fa;
+      --accent-bg: rgba(168, 199, 250, 0.1);
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+      /* Semantic highlight colors for keywords / numbers / quotes */
+      --hl-n: #7dd3fc;   /* numbers, figures, dates, currency */
+      --hl-n-bg: rgba(125, 211, 252, 0.10);
+      --hl-p: #86efac;   /* places: states, countries, cities */
+      --hl-p-bg: rgba(134, 239, 172, 0.10);
+      --hl-k: #fde047;   /* keywords: orgs, schemes, portals, people */
+      --hl-k-bg: rgba(253, 224, 71, 0.10);
+      --hl-q: #d8b4fe;   /* quoted themes / mottos */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-family);
+      line-height: 1.5;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .page-header h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* Legend for highlight colors */
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 3px 9px;
+      border-radius: 12px;
+    }
+    .legend .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .legend .dot.n { background: var(--hl-n); }
+    .legend .dot.p { background: var(--hl-p); }
+    .legend .dot.k { background: var(--hl-k); }
+    .legend .dot.q { background: var(--hl-q); }
+
+    /* ---------- Tab Navigation ---------- */
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 6px;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      text-align: center;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-family);
+      transition: background-color 0.15s, color 0.15s;
+    }
+
+    .tab-btn:hover {
+      background-color: var(--surface-hover);
+      color: var(--text);
+    }
+
+    .tab-btn.active {
+      background-color: var(--accent-bg);
+      color: var(--accent);
+    }
+
+    /* Hamburger (mobile only) */
+    .hamburger-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    .hamburger-bar .current-tab-label {
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 0.95rem;
+    }
+
+    .hamburger-icon {
+      width: 22px;
+      height: 16px;
+      position: relative;
+    }
+
+    .hamburger-icon span {
+      display: block;
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      left: 0;
+      transition: transform 0.2s, opacity 0.2s, top 0.2s;
+    }
+
+    .hamburger-icon span:nth-child(1) { top: 0; }
+    .hamburger-icon span:nth-child(2) { top: 7px; }
+    .hamburger-icon span:nth-child(3) { top: 14px; }
+
+    .hamburger-icon.open span:nth-child(1) {
+      top: 7px;
+      transform: rotate(45deg);
+    }
+    .hamburger-icon.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-icon.open span:nth-child(3) {
+      top: 7px;
+      transform: rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px;
+      margin-bottom: 16px;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu button {
+      text-align: left;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: var(--font-family);
+    }
+
+    .mobile-menu button.active {
+      background-color: var(--accent-bg);
+      color: var(--accent);
+    }
+
+    .mobile-menu button:active {
+      background-color: var(--surface-hover);
+    }
+
+    /* ---------- Section / Table styling (same as originals) ---------- */
+    .tab-section {
+      display: none;
+    }
+
+    .tab-section.active {
+      display: block;
+    }
+
+    .section-header {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .title-area {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-header h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .badge {
+      background: var(--accent-bg);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid rgba(168, 199, 250, 0.2);
+      white-space: nowrap;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background-color: var(--surface);
+      color: var(--text);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-box:focus {
+      border-color: var(--accent);
+    }
+
+    .table-wrapper {
+      background-color: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    thead {
+      background-color: #282a2c;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    th {
+      padding: 14px 16px;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover {
+      background-color: var(--surface-hover);
+    }
+
+    /* Semantic highlight classes applied to <strong>/<em> inside facts */
+    td strong {
+      font-weight: 600;
+    }
+
+    td strong.hl-n {
+      color: var(--hl-n);
+      background: var(--hl-n-bg);
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    td strong.hl-p {
+      color: var(--hl-p);
+      background: var(--hl-p-bg);
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    td strong.hl-k {
+      color: var(--hl-k);
+      background: var(--hl-k-bg);
+      padding: 1px 4px;
+      border-radius: 4px;
+    }
+
+    td em.hl-q {
+      color: var(--hl-q);
+      font-style: italic;
+    }
+
+    .sno {
+      color: var(--text-muted);
+      font-weight: 500;
+      width: 60px;
+    }
+
+    .topic {
+      font-weight: 600;
+      color: #ffffff;
+      width: 25%;
+    }
+
+    /* Mobile Responsive Card-Style Layout */
+    @media (max-width: 768px) {
+      body {
+        padding: 12px 8px;
+      }
+
+      .tab-bar {
+        display: none;
+      }
+
+      .hamburger-bar {
+        display: flex;
+      }
+
+      .table-wrapper {
+        background: transparent;
+        border: none;
+      }
+
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        background-color: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 14px;
+        margin-bottom: 12px;
+      }
+
+      tr:hover {
+        background-color: var(--surface);
+      }
+
+      td {
+        padding: 4px 0;
+        border: none;
+      }
+
+      .sno {
+        display: inline-block;
+        font-size: 0.8rem;
+        color: var(--accent);
+        background: var(--accent-bg);
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin-bottom: 6px;
+        width: auto;
+      }
+
+      .topic {
+        width: 100%;
+        font-size: 1.05rem;
+        color: #ffffff;
+        margin-bottom: 8px;
+      }
+
+      .facts {
+        font-size: 0.88rem;
+        color: var(--text);
+        line-height: 1.5;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="page-header">
+    <h1>Prelims Factsheet — May 2026</h1>
+  </div>
+
+  <div class="legend">
+    <span><span class="dot n"></span>Numbers / Figures / Dates</span>
+    <span><span class="dot p"></span>Places / States / Countries</span>
+    <span><span class="dot k"></span>Keywords / Orgs / Schemes / People</span>
+    <span><span class="dot q"></span>Themes / Quotes</span>
+  </div>
+
+  <!-- Desktop tab bar -->
+  <div class="tab-bar" id="tabBar"></div>
+
+  <!-- Mobile hamburger -->
+  <div class="hamburger-bar" id="hamburgerBar">
+    <span class="current-tab-label" id="currentTabLabel"></span>
+    <div class="hamburger-icon" id="hamburgerIcon">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu"></div>
+
+
+  <div class="tab-section active" id="section-national">
+    <div class="section-header">
+      <div class="title-area">
+        <h2>Prelims Factsheet</h2>
+        <span class="badge" id="count-badge-national">127 Entries</span>
+      </div>
+      <input type="text" id="searchInput-national" class="search-box" placeholder="Search keywords, topics, states, numbers..." onkeyup="filterTable('national')">
+    </div>
+
+    <div class="table-wrapper">
+      <table id="factTable-national">
+        <thead>
+          <tr>
+            <th>S.No.</th><th>Topic / Event Name</th><th>Key Prelims Facts, Keywords, Figures & Numbers</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+          <td class="sno">1</td>
+          <td class="topic">Foreign Exchange Management Rules, 2026 (Amended)</td>
+          <td class="facts"><strong class="hl-n">100% FDI</strong> permitted in insurance sector under automatic route; issued by Ministry of Finance.</td>
+        </tr>
+        <tr>
+          <td class="sno">2</td>
+          <td class="topic">Paperless Judiciary in Sikkim</td>
+          <td class="facts">Sikkim declared India's <strong class="hl-n">1st paperless judiciary state</strong>; announced by CJI Surya Kant in Gangtok.</td>
+        </tr>
+        <tr>
+          <td class="sno">3</td>
+          <td class="topic">Small Hydropower Development Scheme</td>
+          <td class="facts">Cabinet approved for <strong class="hl-n">2026–27 to 2030–31</strong>; Total outlay: <strong class="hl-n">₹2,584.60 crore</strong>; Supports 1–25 MW projects to unlock ~1500 MW capacity in hilly/NE states.</td>
+        </tr>
+        <tr>
+          <td class="sno">4</td>
+          <td class="topic">Allahabad High Court Ruling on Public Places</td>
+          <td class="facts">Ruled against offering Namaz or religious activities on public land and roads to prevent public obstruction.</td>
+        </tr>
+        <tr>
+          <td class="sno">5</td>
+          <td class="topic">India's First Green Methanol Plant</td>
+          <td class="facts">Located at Deendayal Port Authority, Kandla (Gujarat); Feedstock: <em class="hl-q">Prosopis juliflora</em> (<em class="hl-q">gando baval</em>); Capacity: <strong class="hl-n">5 tonnes/day</strong> via gasification (H₂, CO, CO₂).</td>
+        </tr>
+        <tr>
+          <td class="sno">6</td>
+          <td class="topic">NITI Aayog 'DPI @ 2047 for Viksit Bharat'</td>
+          <td class="facts">Target: <strong class="hl-n">$30 trillion economy</strong> by 2047; <strong class="hl-n">DPI 2.0 (2025–2035)</strong> for productivity/livelihoods; <strong class="hl-n">DPI 3.0 (2035–2047)</strong> for broad-based prosperity.</td>
+        </tr>
+        <tr>
+          <td class="sno">7</td>
+          <td class="topic">Supreme Court Judge Expansion</td>
+          <td class="facts">Supreme Court Amendment Bill, 2026 introduced to increase SC judges from <strong class="hl-n">34 to 38</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">8</td>
+          <td class="topic">Coal/Lignite Gasification Scheme</td>
+          <td class="facts">Outlay: <strong class="hl-n">₹37,500 crore</strong>; Target: Gasify <strong class="hl-n">75 million tonnes</strong> of surface coal/lignite.</td>
+        </tr>
+        <tr>
+          <td class="sno">9</td>
+          <td class="topic">Aama Didi Bahini Bus Seva</td>
+          <td class="facts">Special women's bus service launched in Gangtok, Sikkim by President Droupadi Murmu.</td>
+        </tr>
+        <tr>
+          <td class="sno">10</td>
+          <td class="topic">Project Mission Queen Pineapple</td>
+          <td class="facts">3-year project (<strong class="hl-n">2026–2028</strong>); Outlay: <strong class="hl-n">₹236 crore</strong>; Jointly launched by Central and Tripura governments for GI-tagged Tripura Queen Pineapple.</td>
+        </tr>
+        <tr>
+          <td class="sno">11</td>
+          <td class="topic">Simultaneous Bhujangasana World Record</td>
+          <td class="facts"><strong class="hl-n">6,000+ people</strong> set Asia Book of Records milestone at Kanha Shanti Vanam, Hyderabad; organized by MDNIY under Ministry of Ayush.</td>
+        </tr>
+        <tr>
+          <td class="sno">12</td>
+          <td class="topic">World Migration Report 2026</td>
+          <td class="facts">Released by IOM; <strong class="hl-n">India #1 globally</strong> in remittances ($83.15B to <strong class="hl-n">$137.67 billion in 2024</strong>); Followed by Mexico, Philippines, France.</td>
+        </tr>
+        <tr>
+          <td class="sno">13</td>
+          <td class="topic">Asia University Rankings 2026</td>
+          <td class="facts">Released by Times Higher Education (THE); <strong class="hl-n">Tsinghua University (China) #1</strong> (8th consecutive year); <strong class="hl-p">IISc Bengaluru</strong> top in India.</td>
+        </tr>
+        <tr>
+          <td class="sno">14</td>
+          <td class="topic">Op Netra 1.0 & App</td>
+          <td class="facts">4-day surgical eye camp at 153 General Hospital, Leh (<strong class="hl-n">April 27–30, 2026</strong>) by Indian Army; Launched indigenous <strong class="hl-k">Op Netra app</strong> for digital patient records and scheduling.</td>
+        </tr>
+        <tr>
+          <td class="sno">15</td>
+          <td class="topic">Project Padma Doree</td>
+          <td class="facts">MoU between NEHHDC & DATCC Ashoknagar; Blends "Ahimsa" Eri Silk (North East) with Chanderi Weaving (MP).</td>
+        </tr>
+        <tr>
+          <td class="sno">16</td>
+          <td class="topic">First Pearl Farming Cluster</td>
+          <td class="facts">Established in Hazaribagh, Jharkhand under PM Matsya Sampada Yojana.</td>
+        </tr>
+        <tr>
+          <td class="sno">17</td>
+          <td class="topic">Mission for Cotton Productivity</td>
+          <td class="facts">Cabinet approved for <strong class="hl-n">2026–27 to 2030–31</strong>; Outlay: <strong class="hl-n">~₹5,659.22 crore</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">18</td>
+          <td class="topic">Skyroot Aerospace</td>
+          <td class="facts">Hyderabad-based firm became India's <strong class="hl-n">1st space-tech unicorn</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">19</td>
+          <td class="topic">Gig Worker Grievance Redressal System</td>
+          <td class="facts">India's <strong class="hl-n">1st digital grievance system</strong> for gig workers (cab drivers, delivery partners) launched in Karnataka.</td>
+        </tr>
+        <tr>
+          <td class="sno">20</td>
+          <td class="topic">QS MBA Rankings 2026</td>
+          <td class="facts"><strong class="hl-k">IIM Bangalore</strong> ranked <strong class="hl-n">64th globally</strong>; only Indian institution in top 100.</td>
+        </tr>
+        <tr>
+          <td class="sno">21</td>
+          <td class="topic">Fruit Horizon 2026</td>
+          <td class="facts">Organized in Lucknow to boost production, processing, and global export of high-quality fruits.</td>
+        </tr>
+        <tr>
+          <td class="sno">22</td>
+          <td class="topic">Tallest Underwater Human Stack</td>
+          <td class="facts">Guinness Record (<strong class="hl-n">22.3 meters</strong>) created at Swaraj Dweep, Andaman & Nicobar Islands.</td>
+        </tr>
+        <tr>
+          <td class="sno">23</td>
+          <td class="topic">Rare Earth & Titanium Theme Park</td>
+          <td class="facts">Country's <strong class="hl-n">1st theme park</strong> established in Bhopal by Indian Rare Earths Limited.</td>
+        </tr>
+        <tr>
+          <td class="sno">24</td>
+          <td class="topic">First PM MITRA Park</td>
+          <td class="facts">Inaugurated in Warangal, Telangana by PM Modi; Cost: <strong class="hl-n">₹1,695.54 crore</strong>; Based on <strong class="hl-n">5F vision</strong> (Farm to Fibre to Factory to Fashion to Foreign).</td>
+        </tr>
+        <tr>
+          <td class="sno">25</td>
+          <td class="topic">Aftercare Scheme for Young Persons</td>
+          <td class="facts">Launched on Mother's Day (<strong class="hl-n">May 10</strong>) by Delhi CM Rekha Gupta for vulnerable youth >18 under JJ Act 2015.</td>
+        </tr>
+        <tr>
+          <td class="sno">26</td>
+          <td class="topic">SEBI 'GARUDA' Mechanism</td>
+          <td class="facts">"Green-Channel: AIF Rollout upon Document Acknowledgement" to accelerate AIF fundraising approvals.</td>
+        </tr>
+        <tr>
+          <td class="sno">27</td>
+          <td class="topic">Railway Q-Mitra</td>
+          <td class="facts">Digital system tested at Begusarai station (Bihar, Sonpur division) to eliminate Tatkal touts and long queues.</td>
+        </tr>
+        <tr>
+          <td class="sno">28</td>
+          <td class="topic">Project Zero</td>
+          <td class="facts">Kerala government initiative against administrative misconduct and bribery.</td>
+        </tr>
+        <tr>
+          <td class="sno">29</td>
+          <td class="topic">BHAVYA Scheme</td>
+          <td class="facts">Central Govt scheme with <strong class="hl-n">₹33,660 crore</strong> outlay to develop <strong class="hl-n">100 plug-and-play industrial parks</strong> (2026–27 to 2031–32).</td>
+        </tr>
+        <tr>
+          <td class="sno">30</td>
+          <td class="topic">Portable Bedside MRI Facility</td>
+          <td class="facts">Launched at AIIMS Delhi using Hyperfine 'Swoop' technology.</td>
+        </tr>
+        <tr>
+          <td class="sno">31</td>
+          <td class="topic">Commercial Seaplane Airline</td>
+          <td class="facts">DGCA granted AOC to Gurugram-based SkyHop Aviation; Phase 1 in Lakshadweep connecting Kochi to islands.</td>
+        </tr>
+        <tr>
+          <td class="sno">32</td>
+          <td class="topic">C-ART Observatory</td>
+          <td class="facts">Coastal Atmospheric Research Testbed open-field observatory established at Andhra University, Visakhapatnam.</td>
+        </tr>
+        <tr>
+          <td class="sno">33</td>
+          <td class="topic">Savills Global City Growth Ranking</td>
+          <td class="facts"><strong class="hl-p">Bengaluru</strong> identified as world's fastest-growing major city by 2035 (out of 245 global urban centers evaluated).</td>
+        </tr>
+        <tr>
+          <td class="sno">34</td>
+          <td class="topic">Simhastha Kumbh Mela Official Logo</td>
+          <td class="facts">Unveiled by Maharashtra CM Devendra Fadnavis for Nashik-Trimbakeshwar; features Trishul, Trimbakeshwar Temple, Godavari River, Shivling.</td>
+        </tr>
+        <tr>
+          <td class="sno">35</td>
+          <td class="topic">Samagra Shiksha & PM POSHAN</td>
+          <td class="facts">Provisional extension granted till <strong class="hl-n">September 30, 2026</strong> by Union Ministry of Finance.</td>
+        </tr>
+        <tr>
+          <td class="sno">36</td>
+          <td class="topic">LEADS 2025 Report</td>
+          <td class="facts">Released by Piyush Goyal (DPIIT); <strong class="hl-n">UP #1</strong> in Landlocked States, <strong class="hl-n">TN #1</strong> in Coastal States; High Performers: HR, TS, CG, BR, JK, PY; Exemplar UT: Delhi.</td>
+        </tr>
+        <tr>
+          <td class="sno">37</td>
+          <td class="topic">Hydrogen Shuttle Bus Service</td>
+          <td class="facts">India's <strong class="hl-n">1st service</strong> launched in Delhi, operated by DMRC in Central Vista area.</td>
+        </tr>
+        <tr>
+          <td class="sno">38</td>
+          <td class="topic">Global Steel Production Ranking</td>
+          <td class="facts">China #1; <strong class="hl-n">India #2</strong> in production (<strong class="hl-n">7.9% global share in 2024</strong>) and #2 in consumption.</td>
+        </tr>
+        <tr>
+          <td class="sno">39</td>
+          <td class="topic">Fish Production Leader</td>
+          <td class="facts"><strong class="hl-p">Andhra Pradesh</strong> leads India, contributing <strong class="hl-n">40–41%</strong> of national fish output.</td>
+        </tr>
+        <tr>
+          <td class="sno">40</td>
+          <td class="topic">National Panchayat Awards 2025</td>
+          <td class="facts"><strong class="hl-n">42 Panchayats</strong> honored (22 women-headed); <strong class="hl-n">Karnataka #1</strong> (6 awards); AP & Odisha #2 (5 each); Best Gram Panchayat: <strong class="hl-k">Napam Gaon</strong> (Sonitpur, Assam) - Nanaji Deshmukh Sarvottam Satat Vikas Puraskar.</td>
+        </tr>
+        <tr>
+          <td class="sno">41</td>
+          <td class="topic">Sindhu Hospital</td>
+          <td class="facts">State-of-the-art cancer care facility inaugurated by PM Modi in Hyderabad, Telangana.</td>
+        </tr>
+        <tr>
+          <td class="sno">42</td>
+          <td class="topic">Hyderabadi Haleem</td>
+          <td class="facts"><strong class="hl-n">1st meat-based dish</strong> in India to receive Geographical Indication (GI) tag.</td>
+        </tr>
+        <tr>
+          <td class="sno">43</td>
+          <td class="topic">Rupmoni Goh Everest Ascent</td>
+          <td class="facts"><strong class="hl-n">1st woman from Assam</strong> to scale Mount Everest.</td>
+        </tr>
+        <tr>
+          <td class="sno">44</td>
+          <td class="topic">LNJP Hospital NQAS Certification</td>
+          <td class="facts">Delhi's LNJP became country's <strong class="hl-n">1st govt hospital with 2,000 beds</strong> to receive NQAS certification.</td>
+        </tr>
+        <tr>
+          <td class="sno">45</td>
+          <td class="topic">Botswana Cheetahs in Kuno</td>
+          <td class="facts">2 female cheetahs from Botswana released into Kuno National Park (MP) by CM Mohan Yadav.</td>
+        </tr>
+        <tr>
+          <td class="sno">46</td>
+          <td class="topic">Zero Waste Airport</td>
+          <td class="facts">CSMIA Mumbai achieved 'Zero Waste to Landfill' Platinum rating (diverting <strong class="hl-n">>99%</strong> operational waste).</td>
+        </tr>
+        <tr>
+          <td class="sno">47</td>
+          <td class="topic">Museum of Medical Archives</td>
+          <td class="facts">India's <strong class="hl-n">1st private medical museum</strong> established in Ulloor, Thiruvananthapuram, Kerala.</td>
+        </tr>
+        <tr>
+          <td class="sno">48</td>
+          <td class="topic">Jaisalmer Natural Gas Field</td>
+          <td class="facts">Oil India Limited discovered major natural gas field at Dandewala, Jaisalmer, Rajasthan.</td>
+        </tr>
+        <tr>
+          <td class="sno">49</td>
+          <td class="topic">Demographic Study Committee</td>
+          <td class="facts">High-level panel headed by <strong class="hl-k">Justice Prakash Prabhakar Navlekar</strong> to study demographic shifts from illegal immigration.</td>
+        </tr>
+        <tr>
+          <td class="sno">50</td>
+          <td class="topic">Sugarcane Production Leader</td>
+          <td class="facts"><strong class="hl-p">Uttar Pradesh</strong> leads nation in sugarcane output and timely payments.</td>
+        </tr>
+        <tr>
+          <td class="sno">51</td>
+          <td class="topic">Department for Senior Citizens Welfare</td>
+          <td class="facts"><strong class="hl-p">Kerala</strong> created India's 1st dedicated government department for senior citizen welfare.</td>
+        </tr>
+        <tr>
+          <td class="sno">52</td>
+          <td class="topic">11th Quad Foreign Ministers Meeting</td>
+          <td class="facts">Held in New Delhi, hosted by EAM S. Jaishankar.</td>
+        </tr>
+        <tr>
+          <td class="sno">53</td>
+          <td class="topic">Quad Maritime & Minerals Initiatives</td>
+          <td class="facts">India to host Quad At-Sea Ship observe mission; Quad Critical Minerals Initiative Framework established.</td>
+        </tr>
+        <tr>
+          <td class="sno">54</td>
+          <td class="topic">Top Crude Oil Suppliers</td>
+          <td class="facts"><strong class="hl-p">Russia, UAE, Venezuela</strong> are currently India's top crude oil suppliers.</td>
+        </tr>
+        <tr>
+          <td class="sno">55</td>
+          <td class="topic">Nakshatra Vatika</td>
+          <td class="facts">Haryana's <strong class="hl-n">1st constellation garden</strong> created at Saraswati Wildlife Sanctuary (Kaithal & Kurukshetra).</td>
+        </tr>
+        <tr>
+          <td class="sno">56</td>
+          <td class="topic">Singpen Special Task Force</td>
+          <td class="facts">Tamil Nadu state police wing created exclusively for women's safety.</td>
+        </tr>
+        <tr>
+          <td class="sno">57</td>
+          <td class="topic">Integrated CCUS Field Lab</td>
+          <td class="facts">India's <strong class="hl-n">1st carbon capture, utilization & storage field lab</strong> at IIT Bombay inaugurated under 'Bharat Innovates 2026'.</td>
+        </tr>
+        <tr>
+          <td class="sno">58</td>
+          <td class="topic">Google Cloud Agentic Campus</td>
+          <td class="facts">GLA University (Mathura) home to Microsoft GenAI campus & India's <strong class="hl-n">1st Google Cloud Agentic campus</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">59</td>
+          <td class="topic">SIDE 2026 Report</td>
+          <td class="facts">State of India's Digital Economy report: <strong class="hl-n">India #4</strong> in AI performance, <strong class="hl-n">#5</strong> in digital economy, <strong class="hl-n">#2</strong> in AI talent (<strong class="hl-n">26%</strong> of AI users); Top 3 in AI: USA, China, Singapore.</td>
+        </tr>
+        <tr>
+          <td class="sno">60</td>
+          <td class="topic">2nd-Largest Cricket Stadium</td>
+          <td class="facts">80,000-capacity international cricket stadium being built in Bengaluru, Karnataka.</td>
+        </tr>
+        <tr>
+          <td class="sno">61</td>
+          <td class="topic">Mahey Tokpo-Raldho Irrigation Canal</td>
+          <td class="facts"><strong class="hl-n">2 km long</strong> canal inaugurated in Ladakh by LG Vinai Kumar Saxena.</td>
+        </tr>
+        <tr>
+          <td class="sno">62</td>
+          <td class="topic">Alcohol-in-Beverage Excise Duty</td>
+          <td class="facts"><strong class="hl-p">Karnataka</strong> became 1st state to implement alcohol-content based excise duty.</td>
+        </tr>
+        <tr>
+          <td class="sno">63</td>
+          <td class="topic">President's Colour</td>
+          <td class="facts">Awarded to <strong class="hl-p">Sikkim Police</strong> in Gangtok by President Droupadi Murmu.</td>
+        </tr>
+        <tr>
+          <td class="sno">64</td>
+          <td class="topic">NetraSemi A2000</td>
+          <td class="facts">Kerala startup NetraSemi developed India's <strong class="hl-n">1st indigenous Edge AI chip</strong> (TSMC 12nm node).</td>
+        </tr>
+        <tr>
+          <td class="sno">65</td>
+          <td class="topic">Integrated Biofuel Complex</td>
+          <td class="facts">Located at Dhuriapar, Gorakhpur (UP); Target: <strong class="hl-n">750 kilolitres/day</strong> ethanol and Sustainable Aviation Fuel (SAF).</td>
+        </tr>
+        <tr>
+          <td class="sno">66</td>
+          <td class="topic">SkyCast</td>
+          <td class="facts">India's <strong class="hl-n">1st integrated aviation weather intelligence</strong> facility at IGI Airport, Delhi.</td>
+        </tr>
+        <tr>
+          <td class="sno">67</td>
+          <td class="topic">Liquid Tree Bioreactor</td>
+          <td class="facts">India's <strong class="hl-n">1st micro-algae bioreactor</strong> installed at Swami Vivekananda Park, Bhopal (MP) to absorb CO2 and release O2.</td>
+        </tr>
+        <tr>
+          <td class="sno">68</td>
+          <td class="topic">5th Fully Literate State</td>
+          <td class="facts"><strong class="hl-p">Sikkim</strong> declared 5th fully literate state (<strong class="hl-n">99.82% literacy</strong>) under ULLAS initiative (after Mizoram, Goa, Tripura, HP).</td>
+        </tr>
+        <tr>
+          <td class="sno">69</td>
+          <td class="topic">Swachh Survekshan Feedback Ranking</td>
+          <td class="facts">Top 5 cities based on citizen feedback: <strong class="hl-n">1. Indore, 2. Patna, 3. Lucknow, 4. Prayagraj, 5. Agra</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">70</td>
+          <td class="topic">Chola Copper Plates</td>
+          <td class="facts">11th-century Anaimangalam copper plates returned to India by Netherlands (The Hague).</td>
+        </tr>
+        <tr>
+          <td class="sno">71</td>
+          <td class="topic">18th Railway Zone</td>
+          <td class="facts"><strong class="hl-k">South Coast Railway Zone</strong> (Visakhapatnam, AP) operational from <strong class="hl-n">June 1, 2026</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">72</td>
+          <td class="topic">Urban Testbed & Aerosol Observatory</td>
+          <td class="facts">India's <strong class="hl-n">1st comprehensive urban facility</strong> inaugurated in Chennai under Ministry of Earth Sciences.</td>
+        </tr>
+        <tr>
+          <td class="sno">73</td>
+          <td class="topic">'Apnapan: Narendra Modi Sang Mere Anubhav'</td>
+          <td class="facts">Book by <strong class="hl-k">Shivraj Singh Chouhan</strong> launched in New Delhi on <strong class="hl-n">May 26</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">74</td>
+          <td class="topic">Bhojshala Complex Ruling</td>
+          <td class="facts">MP High Court declared Dhar district complex as a temple dedicated to Goddess Saraswati (Vagdevi).</td>
+        </tr>
+        <tr>
+          <td class="sno">75</td>
+          <td class="topic">RAINMUMBAI Index</td>
+          <td class="facts">World's <strong class="hl-n">1st rainfall-based index</strong> by NCDEX & IIT Bombay; Trading period: <strong class="hl-n">May 29 to Sept 30</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">76</td>
+          <td class="topic">Dhyan Mandir</td>
+          <td class="facts">Grand meditation hall inaugurated by PM Modi at Art of Living International Center, Bengaluru.</td>
+        </tr>
+        <tr>
+          <td class="sno">77</td>
+          <td class="topic">PMAY-Urban 2.0</td>
+          <td class="facts"><strong class="hl-p">Odisha</strong> secured #1 spot for fastest house construction completion.</td>
+        </tr>
+        <tr>
+          <td class="sno">78</td>
+          <td class="topic">DASCA Accreditation</td>
+          <td class="facts"><strong class="hl-k">O.P. Jindal Global University</strong> 1st in India to receive Data Science Council of America accreditation.</td>
+        </tr>
+        <tr>
+          <td class="sno">79</td>
+          <td class="topic">Cyber Security AI Task Force</td>
+          <td class="facts">Constituted by <strong class="hl-k">SEBI</strong> to address security vulnerabilities from AI tools in financial markets.</td>
+        </tr>
+        <tr>
+          <td class="sno">80</td>
+          <td class="topic">International Deep-Tech Park</td>
+          <td class="facts">IIT Madras Global Research Foundation established 1st international park at <strong class="hl-k">Menlo Park, California</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">81</td>
+          <td class="topic">Greenfield Mega Shipyard</td>
+          <td class="facts">Agreement between HD KSOE (South Korea) and TN Govt to build shipyard in <strong class="hl-p">Tuticorin, Tamil Nadu</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">82</td>
+          <td class="topic">Banda District Heat Record</td>
+          <td class="facts">Banda (UP) recorded <strong class="hl-n">48.2°C</strong>, making it the hottest district in Asia.</td>
+        </tr>
+        <tr>
+          <td class="sno">83</td>
+          <td class="topic">Kami Rita Sherpa Record</td>
+          <td class="facts">Scaled Mt. Everest for a record <strong class="hl-n">32nd time</strong> on May 17, 2026 (1st climb in 1994 at age 24).</td>
+        </tr>
+        <tr>
+          <td class="sno">84</td>
+          <td class="topic">Committee on Empowerment of Women</td>
+          <td class="facts">Constituted by Lok Sabha Speaker Om Birla for 2026–27; Chaired by <strong class="hl-k">MP Dr. Daggubati Purandeswari</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">85</td>
+          <td class="topic">Million Minds Tech Park & GREMI City Campus</td>
+          <td class="facts">Inaugurated in Ahmedabad by Union Minister Amit Shah.</td>
+        </tr>
+        <tr>
+          <td class="sno">86</td>
+          <td class="topic">AMCA Flight Testing Centre</td>
+          <td class="facts">Rajnath Singh laid foundation stone for AMCA core integration/testing center at Puttaparthi, AP.</td>
+        </tr>
+        <tr>
+          <td class="sno">87</td>
+          <td class="topic">Dedicated State AI Portfolio</td>
+          <td class="facts"><strong class="hl-p">Kerala</strong> created India's 1st dedicated AI portfolio.</td>
+        </tr>
+        <tr>
+          <td class="sno">88</td>
+          <td class="topic">Ahmedabad-Dholera Railway Corridor</td>
+          <td class="facts">India's <strong class="hl-n">1st semi-high-speed rail corridor</strong>; Length: <strong class="hl-n">134 km</strong>; Speed: <strong class="hl-n">200 km/h</strong>; Fully indigenous.</td>
+        </tr>
+        <tr>
+          <td class="sno">89</td>
+          <td class="topic">CTBC Bank Branch</td>
+          <td class="facts">Taiwan's largest private bank opened 1st Indian branch at <strong class="hl-p">GIFT City, Gujarat</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">90</td>
+          <td class="topic">Uber Data Center</td>
+          <td class="facts">Uber's 1st data center in India built in <strong class="hl-p">Ahmedabad</strong> in partnership with Adani Group.</td>
+        </tr>
+        <tr>
+          <td class="sno">91</td>
+          <td class="topic">Vande Mataram Mandate</td>
+          <td class="facts">West Bengal made singing of Vande Mataram mandatory in government schools.</td>
+        </tr>
+        <tr>
+          <td class="sno">92</td>
+          <td class="topic">Human-Elephant Conflict Research Center</td>
+          <td class="facts">Country's <strong class="hl-n">1st center</strong> established in Palamu, Jharkhand.</td>
+        </tr>
+        <tr>
+          <td class="sno">93</td>
+          <td class="topic">AI & Digitally-Powered Bank Branch</td>
+          <td class="facts">India's <strong class="hl-n">1st AI bank branch</strong> launched in <strong class="hl-p">Guwahati, Assam</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">94</td>
+          <td class="topic">Artificial Intelligence Policy 2026</td>
+          <td class="facts">Approved by <strong class="hl-p">Maharashtra</strong> government to foster innovation and employment.</td>
+        </tr>
+        <tr>
+          <td class="sno">95</td>
+          <td class="topic">CPO Portal</td>
+          <td class="facts">Launched by NITI Aayog on <strong class="hl-n">May 5, 2026</strong> for central-local admin coordination.</td>
+        </tr>
+        <tr>
+          <td class="sno">96</td>
+          <td class="topic">Vehicle Sticker Ban</td>
+          <td class="facts"><strong class="hl-p">Nagaland</strong> imposed complete ban on religious, NGO, or unauthorized stickers/slogans on vehicles.</td>
+        </tr>
+        <tr>
+          <td class="sno">97</td>
+          <td class="topic">CII Annual Summit 2026</td>
+          <td class="facts">Held in New Delhi.</td>
+        </tr>
+        <tr>
+          <td class="sno">98</td>
+          <td class="topic">National Compliance Reduction Initiative</td>
+          <td class="facts"><strong class="hl-p">Tripura</strong> became 1st state to complete all 51 priority reform areas.</td>
+        </tr>
+        <tr>
+          <td class="sno">99</td>
+          <td class="topic">Jan Bhagidari - Sabse Door, Sabse Pehle</td>
+          <td class="facts">Campaign launched by <strong class="hl-p">Chhattisgarh</strong> government for tribal village welfare schemes.</td>
+        </tr>
+        <tr>
+          <td class="sno">100</td>
+          <td class="topic">Ragi Java Program Extension</td>
+          <td class="facts">Andhra Pradesh extended nutrition program for school students until <strong class="hl-n">April 2029</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">101</td>
+          <td class="topic">Bharat Tex 2026</td>
+          <td class="facts">India's premier global textile exhibition held at Bharat Mandapam, Pragati Maidan, New Delhi.</td>
+        </tr>
+        <tr>
+          <td class="sno">102</td>
+          <td class="topic">Private Marine Gas Turbine Facility</td>
+          <td class="facts">India's 1st private facility set up in <strong class="hl-p">Visakhapatnam, AP</strong> by Bharat Forge across 80 acres.</td>
+        </tr>
+        <tr>
+          <td class="sno">103</td>
+          <td class="topic">CIC Ruling on BCCI</td>
+          <td class="facts">Central Information Commission ruled <strong class="hl-n">BCCI is outside RTI Act 2005</strong> (not government funded/controlled).</td>
+        </tr>
+        <tr>
+          <td class="sno">104</td>
+          <td class="topic">Petrol/Diesel Cab Aggregator Ban</td>
+          <td class="facts">Haryana government banned new petrol and diesel vehicles for cab aggregators and delivery retailers in NCR.</td>
+        </tr>
+        <tr>
+          <td class="sno">105</td>
+          <td class="topic">Shram-Mitra App</td>
+          <td class="facts">Launched by Haryana government to connect workers directly with employers and eliminate 'Labour Chowks'.</td>
+        </tr>
+        <tr>
+          <td class="sno">106</td>
+          <td class="topic">National AI and Digital Water Summit</td>
+          <td class="facts">Held in <strong class="hl-p">Bengaluru</strong>, Karnataka.</td>
+        </tr>
+        <tr>
+          <td class="sno">107</td>
+          <td class="topic">Karnataka Chief Minister Resignation</td>
+          <td class="facts">Siddaramaiah resigned; <strong class="hl-k">D.K. Shivakumar</strong> sworn in as Chief Minister of Karnataka.</td>
+        </tr>
+        <tr>
+          <td class="sno">108</td>
+          <td class="topic">Medical Innovations Patent Mitra</td>
+          <td class="facts">Launched by ICMR; transferred <strong class="hl-n">41 public health technologies</strong> to industry.</td>
+        </tr>
+        <tr>
+          <td class="sno">109</td>
+          <td class="topic">NFHS-6 Health Report</td>
+          <td class="facts">Key Stats: TFR stable at <strong class="hl-n">2.0</strong>; Women using internet: <strong class="hl-n">64.3%</strong>; Women operating bank accounts: <strong class="hl-n">89%</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">110</td>
+          <td class="topic">West Bengal Assembly Dissolution</td>
+          <td class="facts">Governor R.N. Ravi invoked <strong class="hl-n">Article 174(2)(b)</strong> of Constitution following election defeat and CM refusal to resign.</td>
+        </tr>
+        <tr>
+          <td class="sno">111</td>
+          <td class="topic">Anand Karaj Act in Sikkim</td>
+          <td class="facts">Sikh Marriage Act came into effect in Sikkim on <strong class="hl-n">June 1, 2026</strong> (previously registered under Hindu Marriage Act).</td>
+        </tr>
+        <tr>
+          <td class="sno">112</td>
+          <td class="topic">Maternal Mortality Ratio (MMR)</td>
+          <td class="facts"><strong class="hl-p">Uttar Pradesh</strong> highest MMR in India at <strong class="hl-n">154 per 100,000 live births</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">113</td>
+          <td class="topic">Centre of Excellence in Space Technology</td>
+          <td class="facts">India's 1st state-run CoE launched in <strong class="hl-p">Bengaluru, Karnataka</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">114</td>
+          <td class="topic">North Tech Symposium</td>
+          <td class="facts">Inaugurated in Prayagraj by Rajnath Singh; Theme: <strong class="hl-k">'Raksha Triveni Sangam'</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">115</td>
+          <td class="topic">Supreme Court Court Infra Panel</td>
+          <td class="facts">Headed by <strong class="hl-k">Arvind Kumar</strong> to improve court infrastructure across the country.</td>
+        </tr>
+        <tr>
+          <td class="sno">116</td>
+          <td class="topic">Kalam and Kavach 3.0</td>
+          <td class="facts">3rd edition of major defense dialogue held in New Delhi.</td>
+        </tr>
+        <tr>
+          <td class="sno">117</td>
+          <td class="topic">SME Semiconductor Chip Unit</td>
+          <td class="facts">India's <strong class="hl-n">1st commercial SME semiconductor unit</strong> established in <strong class="hl-p">Bhiwadi, Rajasthan</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">118</td>
+          <td class="topic">PM-AJAY Portal & AJAY Mobile App</td>
+          <td class="facts">Launched by Ministry of Social Justice for complete digitization of Pradhan Mantri Anusuchit Jaati Abhyudaya Yojana.</td>
+        </tr>
+        <tr>
+          <td class="sno">119</td>
+          <td class="topic">NSB & NST Rules 2026</td>
+          <td class="facts">Notified by MYAS (National Sports Board Rules & National Sports Tribunal Rules) for sports governance transparency.</td>
+        </tr>
+        <tr>
+          <td class="sno">120</td>
+          <td class="topic">Namma 112</td>
+          <td class="facts">Bengaluru City Police launched India's <strong class="hl-n">1st multilingual (10+ languages)</strong> AI emergency response system.</td>
+        </tr>
+        <tr>
+          <td class="sno">121</td>
+          <td class="topic">One Case One Data & Su-Sahay</td>
+          <td class="facts">Launched by Supreme Court for unified digital judicial data system.</td>
+        </tr>
+        <tr>
+          <td class="sno">122</td>
+          <td class="topic">SEHAT Mission</td>
+          <td class="facts">Joint <strong class="hl-k">ICAR-ICMR</strong> initiative linking agriculture, nutrition, and health; launched by J.P. Nadda and Shivraj Singh Chouhan.</td>
+        </tr>
+        <tr>
+          <td class="sno">123</td>
+          <td class="topic">Mizoram Ginger Mission</td>
+          <td class="facts">Launched by DoNER Minister & Mizoram CM; Outlay: <strong class="hl-n">₹189.79 crore</strong>; promotes GI-tagged Mizo Ginger.</td>
+        </tr>
+        <tr>
+          <td class="sno">124</td>
+          <td class="topic">National AI Doctor Mission</td>
+          <td class="facts">Launched in New Delhi; Notes: <strong class="hl-k">John McCarthy</strong> = Father of AI, <strong class="hl-k">Prof. Raj Reddy</strong> = Father of AI in India.</td>
+        </tr>
+        <tr>
+          <td class="sno">125</td>
+          <td class="topic">Multi-Lane Free Flow (MLFF) Tolling</td>
+          <td class="facts">Country's <strong class="hl-n">1st barrier-less tolling system</strong> at Chorayasi plaza (Surat-Bharuch, NH-48, Gujarat).</td>
+        </tr>
+        <tr>
+          <td class="sno">126</td>
+          <td class="topic">Ayushman Bharat Diwas</td>
+          <td class="facts">Observed <strong class="hl-n">April 30</strong>; Theme: <em class="hl-q">"Ayushman Bharat : India's path to universal Health Coverage."</em></td>
+        </tr>
+        <tr>
+          <td class="sno">127</td>
+          <td class="topic">Underwater Tricolour World Record</td>
+          <td class="facts">Unfurled world's largest national flag (<strong class="hl-n">60 x 40 meters / 2,400 sq.m</strong>) underwater at Radhanagar Beach, Swaraj Dweep (A&N Islands).</td>
+        </tr>
+      
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="tab-section" id="section-international">
+    <div class="section-header">
+      <div class="title-area">
+        <h2>International Events Complete Factsheet (May 2026)</h2>
+        <span class="badge" id="count-badge-international">63 Entries</span>
+      </div>
+      <input type="text" id="searchInput-international" class="search-box" placeholder="Search France, OPEC, Modi, Summit, WHO, AI minister..." onkeyup="filterTable('international')">
+    </div>
+
+    <div class="table-wrapper">
+      <table id="factTable-international">
+        <thead>
+          <tr>
+            <th>S.No.</th><th>Topic / Global Event</th><th>Complete Details, Themes & Key Highlights</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+          <td class="sno">1</td>
+          <td class="topic">France Coal Phase-Out & Energy Roadmap</td>
+          <td class="facts">France set a goal to completely phase out coal from its energy system by <strong class="hl-n">2030</strong>. Presented a comprehensive roadmap to become completely fossil fuel-free by <strong class="hl-n">2050</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">2</td>
+          <td class="topic">Mexico City Sinking Rate (NISAR)</td>
+          <td class="facts">According to latest data from the <strong class="hl-k">NISAR mission</strong>, Mexico City is sinking by <strong class="hl-n">more than 2 cm annually</strong> due to groundwater extraction.</td>
+        </tr>
+        <tr>
+          <td class="sno">3</td>
+          <td class="topic">UAE OPEC & OPEC+ Withdrawal</td>
+          <td class="facts">UAE announced withdrawal from OPEC and OPEC+ effective <strong class="hl-n">May 1</strong>. Currently, OPEC has <strong class="hl-n">11 members</strong> while OPEC+ comprises <strong class="hl-n">21 member countries</strong>. Headquarters: <strong class="hl-p">Vienna, Austria</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">4</td>
+          <td class="topic">'Aarogya Maitri' Expansion in Jamaica</td>
+          <td class="facts">Jamaica expanded its <strong class="hl-k">'Aarogya Maitri'</strong> healthcare initiative to strengthen bilateral and regional ties with the <strong class="hl-p">Caribbean Community (CARICOM)</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">5</td>
+          <td class="topic">US 'Project Freedom' (Strait of Hormuz)</td>
+          <td class="facts">US President launched <strong class="hl-k">'Project Freedom'</strong> to provide safe passage to commercial vessels stranded in the Strait of Hormuz.</td>
+        </tr>
+        <tr>
+          <td class="sno">6</td>
+          <td class="topic">Hantavirus Outbreak on MV Hondius</td>
+          <td class="facts">3 dead and several infected with <strong class="hl-k">Hantavirus</strong> on cruise ship <em class="hl-q">MV Hondius</em> in the Atlantic Ocean. Rodent-borne virus spreading via contact with urine, feces, or saliva.</td>
+        </tr>
+        <tr>
+          <td class="sno">7</td>
+          <td class="topic">Mount Mayon Volcanic Eruption</td>
+          <td class="facts">Mount Mayon volcano located on the island of <strong class="hl-k">Luzon, Philippines</strong> erupted on June 5, 2026.</td>
+        </tr>
+        <tr>
+          <td class="sno">8</td>
+          <td class="topic">Zero-Carbon Direct Coal Fuel Cell (ZC-DCFC)</td>
+          <td class="facts">Unveiled by <strong class="hl-p">Shenzhen University, China</strong>; world's 1st zero-carbon emission device generating electricity directly from coal without thermal conversion.</td>
+        </tr>
+        <tr>
+          <td class="sno">9</td>
+          <td class="topic">Robot 'Gabi' Buddhist Initiation</td>
+          <td class="facts">For the first time, a robot named <strong class="hl-k">'Gabi'</strong> participated in a Buddhist initiation ceremony at Jogyesa temple in <strong class="hl-p">Seoul, South Korea</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">10</td>
+          <td class="topic">India–Netherlands Bilateral Bilaterals</td>
+          <td class="facts">Agreements signed in presence of PM Narendra Modi and Netherlands PM Rob Jetten covering critical minerals, renewable energy, education, water, dairy, and floriculture.</td>
+        </tr>
+        <tr>
+          <td class="sno">11</td>
+          <td class="topic">Ebola Emergency (Congo & Uganda)</td>
+          <td class="facts">WHO declared Ebola outbreak a Public Health Emergency of International Concern (PHEIC). Notes that <strong class="hl-k">Bundibugyo virus</strong> is part of the Ebola family.</td>
+        </tr>
+        <tr>
+          <td class="sno">12</td>
+          <td class="topic">Surya Midha Forbes Billionaires Ranking</td>
+          <td class="facts">22-year-old Indian-origin co-founder of AI startup <em class="hl-q">Mercor</em> topped Forbes list of <strong class="hl-k">world's youngest billionaires</strong> with estimated net worth of <strong class="hl-n">$2.2 billion</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">13</td>
+          <td class="topic">International Day of Light 2026</td>
+          <td class="facts">Observed on <strong class="hl-n">May 16</strong> with the official theme: <em class="hl-q">"Light for a Sustainable Future"</em>.</td>
+        </tr>
+        <tr>
+          <td class="sno">14</td>
+          <td class="topic">International Day for Women in Maritime</td>
+          <td class="facts">Observed annually on <strong class="hl-n">May 18</strong>. 2026 Theme: <em class="hl-q">"From Policy to Practice: Advancing Gender Equality for Maritime Excellence"</em>.</td>
+        </tr>
+        <tr>
+          <td class="sno">15</td>
+          <td class="topic">Afsluitdijk Dam & Kalpasar Project</td>
+          <td class="facts">PM Modi visited 32 km Afsluitdijk dam (separating North Sea from IJsselmeer lake). India & Netherlands signed LoI for <strong class="hl-k">Kalpasar Project</strong> (freshwater reservoir in Gulf of Khambhat, Gujarat).</td>
+        </tr>
+        <tr>
+          <td class="sno">16</td>
+          <td class="topic">International Tea Day</td>
+          <td class="facts">Observed annually on <strong class="hl-n">May 21</strong> (declared by UNGA in 2019). 2026 Theme: <em class="hl-q">"Fostering Growth and Inclusion, Sustaining Tea, Supporting Communities"</em>.</td>
+        </tr>
+        <tr>
+          <td class="sno">17</td>
+          <td class="topic">PM Modi's 5-Country Diplomatic Tour</td>
+          <td class="facts">5-country tour (May 15–20, 2026) to boost energy security, defense, tech, and trade: <strong class="hl-p">UAE</strong> (May 15), <strong class="hl-p">Netherlands</strong> (May 15–17), <strong class="hl-p">Sweden</strong> (May 17), <strong class="hl-p">Norway</strong> (May 18–19), <strong class="hl-p">Italy</strong> (May 19–20).</td>
+        </tr>
+        <tr>
+          <td class="sno">18</td>
+          <td class="topic">India–Italy Strategic Partnership Elevation</td>
+          <td class="facts">Elevated to Strategic Partnership during PM Modi's visit. Year <strong class="hl-n">2027</strong> declared <em class="hl-q">'India-Italy Year of Culture and Tourism'</em> (marking 80th anniversary of diplomatic ties).</td>
+        </tr>
+        <tr>
+          <td class="sno">19</td>
+          <td class="topic">1st Indian War Memorial in South Korea</td>
+          <td class="facts">Inaugurated at <strong class="hl-k">Imjingak Peace Park in Seoul</strong> by Defence Minister Rajnath Singh and South Korea's Patriots & Veterans Affairs Minister Kwon Oheul.</td>
+        </tr>
+        <tr>
+          <td class="sno">20</td>
+          <td class="topic">World's Largest Deep-Sea Floating Wind Turbine</td>
+          <td class="facts">China installed 16 MW turbine named <strong class="hl-n">'MySE 16-260'</strong> (also known as <em class="hl-q">'Three Georges Pilot'</em>) in Guangdong province, southern China.</td>
+        </tr>
+        <tr>
+          <td class="sno">21</td>
+          <td class="topic">World Turtle Day</td>
+          <td class="facts">Observed annually on <strong class="hl-n">May 23</strong>. Theme for 2026: <em class="hl-q">"Dancing Turtles Rock!"</em>.</td>
+        </tr>
+        <tr>
+          <td class="sno">22</td>
+          <td class="topic">Smart Border Project</td>
+          <td class="facts">Initiated to make borders with India, Bangladesh, and Pakistan impregnable to curb illegal infiltration using state-of-the-art digital security grid to enhance BSF capabilities.</td>
+        </tr>
+        <tr>
+          <td class="sno">23</td>
+          <td class="topic">Albania Appoints World's 1st AI Minister</td>
+          <td class="facts">European country Albania appointed world's first AI minister, named <strong class="hl-k">'Diella'</strong> (meaning sun), to combat corruption.</td>
+        </tr>
+        <tr>
+          <td class="sno">24</td>
+          <td class="topic">Billionaire Athlete Milestones</td>
+          <td class="facts"><strong class="hl-k">Cristiano Ronaldo</strong> (Portugal) is top billionaire athlete; <strong class="hl-k">Lionel Messi</strong> (Argentina) became 2nd footballer in history to reach billionaire status.</td>
+        </tr>
+        <tr>
+          <td class="sno">25</td>
+          <td class="topic">Shenzhou-23 Crewed Mission</td>
+          <td class="facts">China launched the crewed space mission <strong class="hl-n">Shenzhou-23</strong> to its Tiangong space station.</td>
+        </tr>
+        <tr>
+          <td class="sno">26</td>
+          <td class="topic">International Day of Families</td>
+          <td class="facts">Observed on <strong class="hl-n">May 15, 2026</strong> with theme: <em class="hl-q">"Families, Inequalities, and Child Well-being"</em>.</td>
+        </tr>
+        <tr>
+          <td class="sno">27</td>
+          <td class="topic">Malaysia Under-16 Social Media Ban</td>
+          <td class="facts">Malaysia banned children <strong class="hl-n">under the age of 16</strong> from creating and using social media accounts.</td>
+        </tr>
+        <tr>
+          <td class="sno">28</td>
+          <td class="topic">Myanmar President State Visit to India</td>
+          <td class="facts">President <strong class="hl-k">U Min Aung Hlaing</strong> paid 5-day visit to India; offered prayers at Mahabodhi Temple in Bodh Gaya on May 30.</td>
+        </tr>
+        <tr>
+          <td class="sno">29</td>
+          <td class="topic">International Day of UN Peacekeepers</td>
+          <td class="facts">Observed on <strong class="hl-n">May 29</strong>. Theme for 2026: <em class="hl-q">"Invest in Peace"</em>.</td>
+        </tr>
+        <tr>
+          <td class="sno">30</td>
+          <td class="topic">Taiwan Stock Market Ranking</td>
+          <td class="facts">Taiwan overtook India to become the <strong class="hl-n">world's 5th-largest stock market</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">31</td>
+          <td class="topic">Bangladesh Nuclear Energy Milestone</td>
+          <td class="facts">Became <strong class="hl-n">33rd country</strong> to generate nuclear power by loading fuel into 2.4 GW <strong class="hl-k">Rooppur Nuclear Power Plant</strong> (built with Russian assistance; supplies 10–12% electricity).</td>
+        </tr>
+        <tr>
+          <td class="sno">32</td>
+          <td class="topic">8th European Political Community Summit</td>
+          <td class="facts">Canada became <strong class="hl-n">1st non-European country</strong> to participate in 8th EPC summit in Yerevan, capital of Armenia (May 4, 2026).</td>
+        </tr>
+        <tr>
+          <td class="sno">33</td>
+          <td class="topic">Solomon Islands Leadership Change</td>
+          <td class="facts">Jeremiah Manele, Prime Minister of Solomon Islands, was removed from office following no-confidence motion in Parliament on May 7, 2026.</td>
+        </tr>
+        <tr>
+          <td class="sno">34</td>
+          <td class="topic">Pakistan 'Marka-e-Haq Day'</td>
+          <td class="facts">Prime Minister Shehbaz Sharif declared May 10th to be observed annually as <strong class="hl-k">'Marka-e-Haq Day'</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">35</td>
+          <td class="topic">Kimberley Process Intersessional Meeting 2026</td>
+          <td class="facts">Organized and hosted in <strong class="hl-p">Mumbai, India</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">36</td>
+          <td class="topic">'Shunya to Ananta' Exhibition at UN</td>
+          <td class="facts">Inaugurated by External Affairs Minister S. Jaishankar at the UN Headquarters.</td>
+        </tr>
+        <tr>
+          <td class="sno">37</td>
+          <td class="topic">G20 Foreign Ministers' Meeting 2026</td>
+          <td class="facts">Scheduled to be held in <strong class="hl-p">Atlanta, Georgia, United States</strong> in October 2026.</td>
+        </tr>
+        <tr>
+          <td class="sno">38</td>
+          <td class="topic">1st Conference on Moving Away from Fossil Fuels</td>
+          <td class="facts">First international conference held in <strong class="hl-k">Santa Marta, Colombia</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">39</td>
+          <td class="topic">52nd G7 Summit</td>
+          <td class="facts">Held in the French town of <strong class="hl-p">Evian-les-Bains, France</strong> from June 15 to 17.</td>
+        </tr>
+        <tr>
+          <td class="sno">40</td>
+          <td class="topic">68th Session of Asian Productivity Organization</td>
+          <td class="facts">Governing Body session of APO hosted in <strong class="hl-p">India</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">41</td>
+          <td class="topic">India IAEA Regional Cooperative Agreement (RCA) Chair</td>
+          <td class="facts">India assumed RCA chairmanship for year 2026 under IAEA; announced at 48th National Representatives Meeting (NRM) in Navi Mumbai hosted by DAE.</td>
+        </tr>
+        <tr>
+          <td class="sno">42</td>
+          <td class="topic">UN Sexual Violence Watchlist Inclusion</td>
+          <td class="facts">United Nations added <strong class="hl-p">Israel</strong> and <strong class="hl-p">Russia</strong> to its watchlist for conflict-related sexual violence.</td>
+        </tr>
+        <tr>
+          <td class="sno">43</td>
+          <td class="topic">Greece AI Constitutional Amendment</td>
+          <td class="facts">Greece proposed constitutional amendment to prioritize humanity amidst growing threats posed by AI.</td>
+        </tr>
+        <tr>
+          <td class="sno">44</td>
+          <td class="topic">APAC Operational Data Center Ranking</td>
+          <td class="facts">India ranked <strong class="hl-n">2nd</strong> among top countries in Asia-Pacific (APAC) region in terms of operational data center capacity.</td>
+        </tr>
+        <tr>
+          <td class="sno">45</td>
+          <td class="topic">WHA Global Recognition of Stroke</td>
+          <td class="facts">World Health Assembly officially recognized <strong class="hl-k">'stroke'</strong> as a global public health priority for the first time in history.</td>
+        </tr>
+        <tr>
+          <td class="sno">46</td>
+          <td class="topic">Buddha Disciples' Relics to Mongolia</td>
+          <td class="facts">Sacred relics of Lord Buddha's disciples (Sariputra and Mahamoggallana) transported to Gandantegchenling Monastery in Mongolia via IAF IL-76 'Graj' for 10-day exhibition <em class="hl-q">"Vessels of Light"</em>.</td>
+        </tr>
+        <tr>
+          <td class="sno">47</td>
+          <td class="topic">India–Trinidad and Tobago MoUs</td>
+          <td class="facts">Signed <strong class="hl-n">8 MoUs</strong> (tourism, healthcare, infrastructure, Ayurveda, digital support) during EAM S. Jaishankar's two-day visit.</td>
+        </tr>
+        <tr>
+          <td class="sno">48</td>
+          <td class="topic">Cyprus President State Visit to India</td>
+          <td class="facts">President <strong class="hl-k">Nikos Christodoulides</strong> of Cyprus arrived on 4-day state visit (May 20–23) at invitation of PM Narendra Modi.</td>
+        </tr>
+        <tr>
+          <td class="sno">49</td>
+          <td class="topic">Prof. Manindra Agrawal FRS Honour</td>
+          <td class="facts">Director of IIT Kanpur conferred prestigious <strong class="hl-k">'Fellow of the Royal Society' (FRS)</strong> honour by Royal Society in London.</td>
+        </tr>
+        <tr>
+          <td class="sno">50</td>
+          <td class="topic">PM Modi's Diplomatic Gifts to Italian PM</td>
+          <td class="facts">Presented Giorgia Meloni with Muga silk stole (Assam), Shirui Lily silk stole (Manipur), and 'Melody'.</td>
+        </tr>
+        <tr>
+          <td class="sno">51</td>
+          <td class="topic">US DNI Tulsi Gabbard Resignation</td>
+          <td class="facts">US Director of National Intelligence <strong class="hl-k">Tulsi Gabbard</strong> resigned from her post.</td>
+        </tr>
+        <tr>
+          <td class="sno">52</td>
+          <td class="topic">CTA Sikyong Oath of Office</td>
+          <td class="facts"><strong class="hl-k">Penpa Tsering</strong> took oath for 2nd term as 'Sikyong' (President/PM) of Central Tibetan Administration (CTA) in McLeod Ganj (Dharamshala, HP).</td>
+        </tr>
+        <tr>
+          <td class="sno">53</td>
+          <td class="topic">French Repeal of 'Black Code'</td>
+          <td class="facts">French Parliament (National Assembly) unanimously passed historic bill repealing colonial-era <strong class="hl-k">'Black Code'</strong> in May 2026.</td>
+        </tr>
+        <tr>
+          <td class="sno">54</td>
+          <td class="topic">2nd International Migration Review Forum</td>
+          <td class="facts">IMRF 2026 organized at United Nations Headquarters in New York, United States.</td>
+        </tr>
+        <tr>
+          <td class="sno">55</td>
+          <td class="topic">1st International Big Cat Alliance Summit</td>
+          <td class="facts">India to host in New Delhi with participation from 95 range countries; expected to adopt <strong class="hl-p">'New Delhi Declaration'</strong> on big cat conservation.</td>
+        </tr>
+        <tr>
+          <td class="sno">56</td>
+          <td class="topic">World's 1st Smart Island Monitoring System</td>
+          <td class="facts">Launched on <strong class="hl-k">Floreana Island</strong> in Ecuador's Galápagos archipelago.</td>
+        </tr>
+        <tr>
+          <td class="sno">57</td>
+          <td class="topic">UNESCO 'Ru-Soam' Bridge Project</td>
+          <td class="facts">UNESCO + Govt of Sikkim + Airbnb documenting Lepcha community's traditional bamboo/cane/wood bridges in Khangchendzonga Biosphere Reserve for Intangible Cultural Heritage listing.</td>
+        </tr>
+        <tr>
+          <td class="sno">58</td>
+          <td class="topic">4th India-Africa Forum Summit</td>
+          <td class="facts">Scheduled to be held in <strong class="hl-p">New Delhi, India</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">59</td>
+          <td class="topic">21st UN Forum on Forests</td>
+          <td class="facts">21st session held in the <strong class="hl-p">United States</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">60</td>
+          <td class="topic">3rd Nordic-India Summit</td>
+          <td class="facts">Hosted and held in <strong class="hl-p">Oslo, Norway</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">61</td>
+          <td class="topic">79th World Health Assembly</td>
+          <td class="facts">Held in <strong class="hl-p">Switzerland</strong> with participation from Union Health Minister JP Nadda.</td>
+        </tr>
+        <tr>
+          <td class="sno">62</td>
+          <td class="topic">Shangri-La Dialogue 2026</td>
+          <td class="facts">23rd Asia Security Summit held in <strong class="hl-p">Singapore</strong>; Indian delegation highlighted defense diplomacy for a stable, secure, and inclusive Indo-Pacific region.</td>
+        </tr>
+        <tr>
+          <td class="sno">63</td>
+          <td class="topic">Sarah Taylor Historic Coaching Appointment</td>
+          <td class="facts">Former England wicketkeeper-batter became <strong class="hl-k">first woman in history</strong> appointed as fielding coach for England's senior men's Test team.</td>
+        </tr>
+      
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="tab-section" id="section-defence">
+    <div class="section-header">
+      <div class="title-area">
+        <h2>Defence & Science-Tech Complete Factsheet</h2>
+        <span class="badge" id="count-badge-defence">44 Entries</span>
+      </div>
+      <input type="text" id="searchInput-defence" class="search-box" placeholder="Search IMD, BESS, NADA, Aerosol, missiles, satellites..." onkeyup="filterTable('defence')">
+    </div>
+
+    <div class="table-wrapper">
+      <table id="factTable-defence">
+        <thead>
+          <tr>
+            <th>S.No.</th><th>Topic / System Name</th><th>Key Prelims Facts, Specifications & Strategic Developments</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+          <td class="sno">1</td>
+          <td class="topic">IMD AI Monsoon Forecasting System</td>
+          <td class="facts">India's <strong class="hl-n">1st Artificial Intelligence (AI)-enabled block-level monsoon forecasting system</strong> launched by the India Meteorological Department (IMD).</td>
+        </tr>
+        <tr>
+          <td class="sno">2</td>
+          <td class="topic">Adani Green BESS Milestone</td>
+          <td class="facts">Adani Green Energy connected <strong class="hl-n">3,370 MWh</strong> lithium-ion Battery Energy Storage System (BESS) at 30 GW Khavda Renewable Energy Park, Gujarat; Reached milestone of <strong class="hl-n">World's 2nd-Largest Battery Network</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">3</td>
+          <td class="topic">NADA Anti-Doping Ban</td>
+          <td class="facts">National Anti-Doping Agency (NADA) imposed a <strong class="hl-n">3-year ban</strong> on Ankit (Services Sports Control Board) and Jayesh Patil (Railways) for testing positive for banned substance <em class="hl-q">'Meldonium'</em>.</td>
+        </tr>
+        <tr>
+          <td class="sno">4</td>
+          <td class="topic">Urban Testbed & Aerosol Observatory</td>
+          <td class="facts">India's <strong class="hl-n">1st comprehensive urban testbed and aerosol observatory</strong> inaugurated in Chennai, Tamil Nadu.</td>
+        </tr>
+        <tr>
+          <td class="sno">5</td>
+          <td class="topic">Intellectual Property (IP) Catalyst</td>
+          <td class="facts">Launched by Ministry of Electronics and Information Technology (MeitY) to foster innovation; Implemented by <strong class="hl-p">C-DAC, Pune</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">6</td>
+          <td class="topic">BIRSA-101 Gene Therapy</td>
+          <td class="facts">Workshop organized in New Delhi on 'BIRSA-101', India's <strong class="hl-n">1st indigenous CRISPR-based gene therapy</strong> for Sickle Cell Disease; Developed by CSIR-IGIB & Ministry of Tribal Affairs.</td>
+        </tr>
+        <tr>
+          <td class="sno">7</td>
+          <td class="topic">Portable Bedside MRI System</td>
+          <td class="facts">India's <strong class="hl-n">1st portable (handheld) bedside MRI system</strong> installed at AIIMS, New Delhi.</td>
+        </tr>
+        <tr>
+          <td class="sno">8</td>
+          <td class="topic">DAMPE ("Wukong") Satellite</td>
+          <td class="facts">Dark Matter Particle Explorer satellite developed by <strong class="hl-p">China</strong>; Launched in 2015 to study dark matter (invisible mass) and high-energy cosmic rays.</td>
+        </tr>
+        <tr>
+          <td class="sno">9</td>
+          <td class="topic">Mini/Micro LED Display Factory</td>
+          <td class="facts">India's <strong class="hl-n">1st major commercial Mini/Micro LED display panel factory</strong> set up in Dholera, Gujarat.</td>
+        </tr>
+        <tr>
+          <td class="sno">10</td>
+          <td class="topic">Agni Missile with MIRV System</td>
+          <td class="facts">Advanced Agni ballistic missile equipped with <strong class="hl-k">MIRV</strong> (Multiple Independently Targetable Re-entry Vehicle) technology flight-tested from Dr. APJ Abdul Kalam Island off Odisha coast.</td>
+        </tr>
+        <tr>
+          <td class="sno">11</td>
+          <td class="topic">Hydrogen Fuel Cell Trainset</td>
+          <td class="facts">Indian Railways approved India's <strong class="hl-n">1st indigenous hydrogen fuel cell-based trainset</strong> for Jind–Sonipat section in Haryana under Green Rail Transition.</td>
+        </tr>
+        <tr>
+          <td class="sno">12</td>
+          <td class="topic">PECVD Solar & RETINA Incubator</td>
+          <td class="facts">Plasma-Enhanced Chemical Vapor Deposition (PECVD) system for amorphous silicon solar cells and <strong class="hl-k">RETINA</strong> (startup incubator center) inaugurated in Kolkata.</td>
+        </tr>
+        <tr>
+          <td class="sno">13</td>
+          <td class="topic">NASA Psyche Mars Flyby</td>
+          <td class="facts">Asteroid-bound Psyche probe completed a fuel-saving Mars gravity assist flyby on May 15, 2026 (~4,500 km altitude at ~19,840 km/h) en route to metallic asteroid 16 Psyche.</td>
+        </tr>
+        <tr>
+          <td class="sno">14</td>
+          <td class="topic">Mission Drishti (OptoSAR Payload)</td>
+          <td class="facts">Deployed on May 3, 2026 aboard SpaceX Falcon 9 by Indian space startup <strong class="hl-k">GalaxEye</strong>; Features world's 1st commercial dual-sensor "OptoSAR" payload (combined optical MSI + microwave radar).</td>
+        </tr>
+        <tr>
+          <td class="sno">15</td>
+          <td class="topic">SEHAT Mission</td>
+          <td class="facts">Joint initiative of <strong class="hl-k">ICAR and ICMR</strong> launched by J.P. Nadda and Shivraj Singh Chouhan; Goal: <em class="hl-q">"Healthy Food, Healthy Farm, and Healthy India"</em>.</td>
+        </tr>
+        <tr>
+          <td class="sno">16</td>
+          <td class="topic">Vikram-1 Orbital Rocket</td>
+          <td class="facts">India's <strong class="hl-n">1st private orbital rocket</strong>; Developed by Hyderabad-based space tech startup Skyroot Aerospace.</td>
+        </tr>
+        <tr>
+          <td class="sno">17</td>
+          <td class="topic">INS Mahendragiri (Project 17A)</td>
+          <td class="facts"><strong class="hl-n">6th stealth frigate</strong> built under Project 17A; Constructed by Mazagon Dock Shipbuilders Limited (MDL) and inducted into Navy fleet in Mumbai.</td>
+        </tr>
+        <tr>
+          <td class="sno">18</td>
+          <td class="topic">ICGS Achal (Fast Patrol Vessel)</td>
+          <td class="facts"><strong class="hl-n">5th vessel</strong> in series of 8 Fast Patrol Vessels (FPVs) built by Goa Shipyard Limited (GSL); Inducted into Indian Coast Guard fleet.</td>
+        </tr>
+        <tr>
+          <td class="sno">19</td>
+          <td class="topic">SACHET Alert System</td>
+          <td class="facts">Indigenous 'Integrated Alert System' developed by <strong class="hl-k">C-DOT</strong>; Conducted nationwide emergency warning test with Central Government on May 2, 2026.</td>
+        </tr>
+        <tr>
+          <td class="sno">20</td>
+          <td class="topic">Vayu Astra-1 System</td>
+          <td class="facts">Tested by <strong class="hl-p">Indian Army</strong> in Joshimath (Uttarakhand) and Pokhran deserts; Altitude capacity: <strong class="hl-n">14,000 feet</strong>; Built by Nibe Limited (Pune).</td>
+        </tr>
+        <tr>
+          <td class="sno">21</td>
+          <td class="topic">Mizoram Ginger Mission</td>
+          <td class="facts">Convergence initiative with <strong class="hl-n">₹189.79 crore outlay</strong> involving Ministries of DoNER, Agriculture, Rural Dev, and Food Processing; Mizo Ginger holds GI Tag.</td>
+        </tr>
+        <tr>
+          <td class="sno">22</td>
+          <td class="topic">National AI Doctor Mission</td>
+          <td class="facts">Launched in New Delhi to integrate AI in healthcare; Notes: <strong class="hl-k">John McCarthy</strong> = Father of AI, <strong class="hl-k">Prof. Raj Reddy</strong> = Father of AI in India.</td>
+        </tr>
+        <tr>
+          <td class="sno">23</td>
+          <td class="topic">Combined Commanders' Conference 2026</td>
+          <td class="facts">Held in <strong class="hl-p">Jaipur, Rajasthan</strong>; Theme: <em class="hl-q">"Military Capability in New Domains"</em>.</td>
+        </tr>
+        <tr>
+          <td class="sno">24</td>
+          <td class="topic">Yildirimhan Missile</td>
+          <td class="facts">Intercontinental Ballistic Missile (ICBM) developed by <strong class="hl-k">Türkiye</strong>; Unveiled at SAHA 2026 Exhibition in Istanbul.</td>
+        </tr>
+        <tr>
+          <td class="sno">25</td>
+          <td class="topic">Oreshnik Hypersonic Missile</td>
+          <td class="facts">Nuclear-capable hypersonic missile launched and operationally tested by <strong class="hl-p">Russia</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">26</td>
+          <td class="topic">AI Predictive Maintenance for Su-30MKI</td>
+          <td class="facts">Indian Air Force (IAF) signed 3 agreements with <strong class="hl-k">IIT Bombay</strong> to develop AI-powered predictive maintenance technology for Su-30MKI fighter jets.</td>
+        </tr>
+        <tr>
+          <td class="sno">27</td>
+          <td class="topic">Circulating Water Tunnel Facility</td>
+          <td class="facts">Inaugurated at <strong class="hl-k">IIT Madras (Thaiyur campus)</strong>; Hydrodynamic research facility dedicated to Indian Navy ship design and hull technology.</td>
+        </tr>
+        <tr>
+          <td class="sno">28</td>
+          <td class="topic">LR-ASHM & Hypersonic Cruise Missiles</td>
+          <td class="facts">Breakthrough by <strong class="hl-k">DRDO</strong> in indigenous hypersonic technology; Long-Range Anti-Ship Hypersonic Glide Missile (LR-ASHM) ready for Indian Navy induction.</td>
+        </tr>
+        <tr>
+          <td class="sno">29</td>
+          <td class="topic">MiG-29K Ejection Seat Overhaul</td>
+          <td class="facts"><strong class="hl-p">IAF Base Repair Depot (BRD) Nashik</strong> achieved India's 1st indigenous complete repair and overhaul of ejection seats for Indian Navy MiG-29K fighter jets.</td>
+        </tr>
+        <tr>
+          <td class="sno">30</td>
+          <td class="topic">Detect, Delete, and Deport Policy</td>
+          <td class="facts">Policy implemented by <strong class="hl-p">West Bengal government</strong> against illegal Bangladeshi infiltrators.</td>
+        </tr>
+        <tr>
+          <td class="sno">31</td>
+          <td class="topic">TARA Glide Weapon System</td>
+          <td class="facts">Tactical Advanced Range Augmentation (TARA) tested by <strong class="hl-k">DRDO & IAF</strong> off Odisha coast on May 7, 2026; India's <strong class="hl-n">1st indigenous glide weapon system</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">32</td>
+          <td class="topic">RS-28 Sarmat ("Satan II")</td>
+          <td class="facts">Super-heavy liquid-fueled ICBM developed by <strong class="hl-p">Russia</strong>.</td>
+        </tr>
+        <tr>
+          <td class="sno">33</td>
+          <td class="topic">Kaal Bhairav Autonomous Drone</td>
+          <td class="facts">India's <strong class="hl-n">1st autonomous combat drone</strong> under 'Operation 777'; Manufactured in Portugal by Flying Wedge Defence & Aerospace (FWDA) and SKETCHPIXEL.</td>
+        </tr>
+        <tr>
+          <td class="sno">34</td>
+          <td class="topic">ULPGM-V3 Missile</td>
+          <td class="facts">Unmanned Aerial Vehicle Launched Precision Guided Missile developed by <strong class="hl-k">DRDO</strong>; Test-fired from UAV at Kurnool firing range, Andhra Pradesh.</td>
+        </tr>
+        <tr>
+          <td class="sno">35</td>
+          <td class="topic">Agni-1 Ballistic Missile</td>
+          <td class="facts">Short-range ballistic missile (SRBM) successfully flight-tested by India from Odisha.</td>
+        </tr>
+        <tr>
+          <td class="sno">36</td>
+          <td class="topic">Kautilya & Q-FORCE Systems</td>
+          <td class="facts">AI-based digital software systems developed by <strong class="hl-p">Indian Army</strong> for command intelligence, battlefield tracking, and logistics management.</td>
+        </tr>
+        <tr>
+          <td class="sno">37</td>
+          <td class="topic">Squadron Leader Sanya Milestone</td>
+          <td class="facts">Became the <strong class="hl-n">1st female officer in IAF</strong> history to earn prestigious 'Cat-A Qualified Flying Instructor' qualification.</td>
+        </tr>
+        <tr>
+          <td class="sno">38</td>
+          <td class="topic">INS Sanghamitra (NGOPV)</td>
+          <td class="facts">Next-Generation Offshore Patrol Vessel (NGOPV) launched at GRSE Kolkata to strengthen Indian Navy coastal surveillance and anti-piracy.</td>
+        </tr>
+        <tr>
+          <td class="sno">39</td>
+          <td class="topic">Suryastra Rocket Launcher</td>
+          <td class="facts">India's <strong class="hl-n">1st indigenous universal multi-caliber</strong> long-range rocket launcher system; Range: <strong class="hl-n">300 km</strong>; Developed by Nibe Limited (Pune) in collaboration with Israel.</td>
+        </tr>
+        <tr>
+          <td class="sno">40</td>
+          <td class="topic">Venus Orbiter Mission (Shukrayaan)</td>
+          <td class="facts">ISRO partnered with <strong class="hl-k">Swedish National Space Agency (SNSA)</strong> and Swedish Institute of Space Physics (IRF) for scientific instrument payload on Venus probe.</td>
+        </tr>
+        <tr>
+          <td class="sno">41</td>
+          <td class="topic">Pathfinder AI Satellite</td>
+          <td class="facts">India's <strong class="hl-n">1st AI orbital data center satellite</strong> developed by space startup Pixxel in collaboration with AI firm Sarvam AI.</td>
+        </tr>
+        <tr>
+          <td class="sno">42</td>
+          <td class="topic">Cell Broadcast System (CBS)</td>
+          <td class="facts">Indigenous emergency warning alert platform launched by Union Minister Jyotiraditya Scindia (Ministry of Communications) for disaster safety.</td>
+        </tr>
+        <tr>
+          <td class="sno">43</td>
+          <td class="topic">NetraSemi A2000 AI Chip</td>
+          <td class="facts">India's <strong class="hl-n">1st indigenous Edge AI processor chip</strong> (TSMC 12nm node) developed by Kerala-based startup NetraSemi.</td>
+        </tr>
+        <tr>
+          <td class="sno">44</td>
+          <td class="topic">AMCA Flight Testing Centre</td>
+          <td class="facts">Foundation stone laid at <strong class="hl-k">Puttaparthi, AP</strong> by Rajnath Singh for core integration and flight testing of Advanced Medium Combat Aircraft (AMCA).</td>
+        </tr>
+      
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const sections = [{"id": "national", "label": "National"}, {"id": "international", "label": "International"}, {"id": "defence", "label": "Defence & Tech"}];
+  let activeSection = sections[0].id;
+
+  function buildNav() {
+    const tabBar = document.getElementById('tabBar');
+    const mobileMenu = document.getElementById('mobileMenu');
+    tabBar.innerHTML = '';
+    mobileMenu.innerHTML = '';
+
+    sections.forEach(s => {
+      const btn = document.createElement('button');
+      btn.className = 'tab-btn' + (s.id === activeSection ? ' active' : '');
+      btn.textContent = s.label;
+      btn.onclick = () => switchTab(s.id);
+      tabBar.appendChild(btn);
+
+      const mbtn = document.createElement('button');
+      mbtn.className = (s.id === activeSection ? 'active' : '');
+      mbtn.textContent = s.label;
+      mbtn.onclick = () => { switchTab(s.id); closeMobileMenu(); };
+      mobileMenu.appendChild(mbtn);
+    });
+
+    const active = sections.find(s => s.id === activeSection);
+    document.getElementById('currentTabLabel').textContent = active.label;
+  }
+
+  function switchTab(id) {
+    activeSection = id;
+    sections.forEach(s => {
+      document.getElementById('section-' + s.id).classList.toggle('active', s.id === id);
+    });
+    buildNav();
+  }
+
+  function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.getElementById('hamburgerIcon').classList.toggle('open');
+  }
+
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburgerIcon').classList.remove('open');
+  }
+
+  document.getElementById('hamburgerBar').addEventListener('click', toggleMobileMenu);
+
+  function filterTable(sectionId) {
+    const input = document.getElementById('searchInput-' + sectionId);
+    const filter = input.value.toLowerCase();
+    const table = document.getElementById('factTable-' + sectionId);
+    const tr = table.getElementsByTagName('tr');
+    let visibleCount = 0;
+
+    for (let i = 1; i < tr.length; i++) {
+      const textContent = tr[i].textContent || tr[i].innerText;
+      if (textContent.toLowerCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+        visibleCount++;
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+
+    document.getElementById('count-badge-' + sectionId).innerText = visibleCount + " Entries";
+  }
+
+  buildNav();
+  switchTab(activeSection);
+</script>
+
+</body>
+</html>
