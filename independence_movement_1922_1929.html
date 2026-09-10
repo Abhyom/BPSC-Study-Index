@@ -1,0 +1,3549 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Indian Independence Movement: 1922-1929</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--ink: #0b1e33;
+				--ink-2: #122a45;
+				--paper: #fbf7ec;
+				--paper-2: #f3ecda;
+				--gold: #c9a227;
+				--gold-2: #e8c766;
+				--teal: #2e6171;
+				--text: #1c2b3a;
+				--muted: #5b6b7a;
+				--hl-y: #f1b400;
+				--hl-b: #1f6fb2;
+				--hl-g: #1e8449;
+				--hl-r: #b03a2e;
+				--trap-bg: #fdedec;
+				--trap-bd: #c0392b;
+				--ctx-bg: #eaf2f6;
+				--ctx-bd: #2e6171;
+				--tbl-head-blue: #1a5276;
+				--tbl-head-red: #7b241c;
+				--tbl-head-green: #145a32;
+				--tbl-head-purple: #5b2c6f;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+			body {
+				margin: 0;
+				background: var(--ink);
+				color: var(--text);
+				font-family: "Source Sans 3", sans-serif;
+				font-size: 17.5px;
+				display: flex;
+				min-height: 100vh;
+			}
+			::selection {
+				background: var(--gold-2);
+				color: var(--ink);
+			}
+
+			#sidebar {
+				width: 290px;
+				flex-shrink: 0;
+				background: linear-gradient(
+					180deg,
+					var(--ink) 0%,
+					var(--ink-2) 100%
+				);
+				color: #dce6ee;
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				overflow-y: auto;
+				padding: 28px 0 40px;
+				border-right: 1px solid rgba(201, 162, 39, 0.25);
+				z-index: 50;
+			}
+			#sidebar::-webkit-scrollbar {
+				width: 6px;
+			}
+			#sidebar::-webkit-scrollbar-thumb {
+				background: rgba(201, 162, 39, 0.4);
+				border-radius: 3px;
+			}
+
+			.brand {
+				padding: 0 24px 22px;
+				border-bottom: 1px solid rgba(201, 162, 39, 0.25);
+				margin-bottom: 14px;
+			}
+			.brand .stamp {
+				width: 46px;
+				height: 46px;
+				border-radius: 50%;
+				border: 2px solid var(--gold);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: "Playfair Display", serif;
+				font-weight: 800;
+				color: var(--gold-2);
+				font-size: 13px;
+				letter-spacing: 0.5px;
+				margin-bottom: 10px;
+			}
+			.brand h1 {
+				font-family: "Playfair Display", serif;
+				font-size: 19px;
+				line-height: 1.3;
+				margin: 0 0 4px;
+				font-weight: 700;
+				color: #f4efe1;
+			}
+			.brand p {
+				margin: 0;
+				font-size: 12px;
+				letter-spacing: 0.09em;
+				text-transform: uppercase;
+				color: var(--gold-2);
+				font-family: "IBM Plex Mono", monospace;
+			}
+
+			nav.toc {
+				padding: 6px 10px;
+			}
+			nav.toc a {
+				display: flex;
+				align-items: baseline;
+				gap: 10px;
+				padding: 10px 14px;
+				margin: 1px 0;
+				border-radius: 6px;
+				color: #b7c6d3;
+				text-decoration: none;
+				font-size: 13.6px;
+				font-weight: 500;
+				border-left: 3px solid transparent;
+				transition:
+					background 0.15s,
+					color 0.15s,
+					border-color 0.15s;
+			}
+			nav.toc a .num {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11px;
+				color: var(--gold);
+				flex-shrink: 0;
+				width: 20px;
+			}
+			nav.toc a:hover {
+				background: rgba(201, 162, 39, 0.1);
+				color: #f4efe1;
+			}
+			nav.toc a.active {
+				background: rgba(201, 162, 39, 0.16);
+				color: #f8f1dd;
+				border-left-color: var(--gold);
+				font-weight: 600;
+			}
+
+			.legend-box {
+				margin: 20px 16px 0;
+				padding: 14px 14px 16px;
+				background: rgba(255, 255, 255, 0.04);
+				border: 1px solid rgba(201, 162, 39, 0.22);
+				border-radius: 8px;
+			}
+			.legend-box h3 {
+				margin: 0 0 10px;
+				font-size: 10.5px;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: var(--gold-2);
+				font-family: "IBM Plex Mono", monospace;
+				font-weight: 500;
+			}
+			.legend-row {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				margin-bottom: 7px;
+				font-size: 12.5px;
+				color: #cbd6df;
+			}
+			.legend-swatch {
+				width: 14px;
+				height: 14px;
+				border-radius: 3px;
+				flex-shrink: 0;
+			}
+
+			#main {
+				margin-left: 290px;
+				flex: 1;
+				padding: 0;
+				background: var(--ink);
+			}
+			.cover {
+				padding: 74px 64px 56px;
+				background:
+					radial-gradient(
+						circle at 85% 20%,
+						rgba(201, 162, 39, 0.1),
+						transparent 45%
+					),
+					linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+				color: #efe9d8;
+				border-bottom: 4px double rgba(201, 162, 39, 0.4);
+			}
+			.cover .eyebrow {
+				font-family: "IBM Plex Mono", monospace;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				font-size: 12.5px;
+				color: var(--gold-2);
+				margin-bottom: 16px;
+			}
+			.cover h1 {
+				font-family: "Playfair Display", serif;
+				font-weight: 800;
+				font-size: clamp(32px, 4.2vw, 50px);
+				line-height: 1.12;
+				margin: 0 0 16px;
+				max-width: 820px;
+			}
+			.cover p.sub {
+				font-size: 17px;
+				color: #c9d2db;
+				max-width: 660px;
+				line-height: 1.7;
+				margin: 0 0 22px;
+			}
+			.cover .tags {
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+			}
+			.cover .tag {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 12px;
+				color: var(--gold-2);
+				border: 1px solid rgba(201, 162, 39, 0.45);
+				padding: 5px 12px;
+				border-radius: 20px;
+				background: rgba(201, 162, 39, 0.06);
+			}
+
+			.chapters {
+				background: var(--paper);
+				padding: 10px 0 90px;
+			}
+			.chapter {
+				max-width: 940px;
+				margin: 0 auto;
+				padding: 56px 48px 8px;
+				border-bottom: 1px solid rgba(28, 43, 58, 0.1);
+				scroll-margin-top: 14px;
+			}
+			.chapter:last-child {
+				border-bottom: none;
+			}
+
+			.chapter-head {
+				display: flex;
+				align-items: center;
+				gap: 18px;
+				margin-bottom: 6px;
+			}
+			.chapter-head .seal {
+				width: 52px;
+				height: 52px;
+				border-radius: 50%;
+				background: var(--ink);
+				color: var(--gold-2);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: "Playfair Display", serif;
+				font-weight: 700;
+				font-size: 19px;
+				border: 2px solid var(--gold);
+				flex-shrink: 0;
+			}
+			.chapter-head h2 {
+				font-family: "Playfair Display", serif;
+				font-size: clamp(23px, 2.8vw, 30px);
+				margin: 0;
+				color: var(--ink);
+				font-weight: 700;
+				line-height: 1.25;
+			}
+			.chapter-sub {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 12px;
+				color: var(--muted);
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				margin: 6px 0 26px 70px;
+			}
+
+			.event {
+				margin: 0 0 28px;
+				padding-left: 18px;
+				border-left: 3px solid var(--teal);
+			}
+			.event.upcoming {
+				border-left: 3px solid var(--gold);
+			}
+			.event h3 {
+				font-family: "Playfair Display", serif;
+				font-size: 19px;
+				margin: 0 0 6px;
+				color: var(--ink);
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				flex-wrap: wrap;
+			}
+			.datebox {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 13px;
+				color: var(--teal);
+				font-weight: 600;
+				margin-bottom: 10px;
+				display: block;
+			}
+			.event p {
+				margin: 0 0 12px;
+				line-height: 1.85;
+				font-size: 16.5px;
+			}
+			.event ul {
+				margin: 8px 0 12px;
+				padding-left: 22px;
+			}
+			.event li {
+				margin-bottom: 11px;
+				line-height: 1.8;
+				font-size: 16.5px;
+			}
+			.event ul ul {
+				margin-top: 6px;
+			}
+
+			mark {
+				padding: 0.15em 0.42em;
+				border-radius: 4px;
+				font-weight: 700;
+				color: #fff;
+				box-decoration-break: clone;
+				-webkit-box-decoration-break: clone;
+			}
+			.y {
+				background: var(--hl-y);
+				color: #1c1200;
+			}
+			.b {
+				background: var(--hl-b);
+			}
+			.g {
+				background: var(--hl-g);
+			}
+			.r {
+				background: var(--hl-r);
+			}
+
+			.trap {
+				background: var(--trap-bg);
+				border: 1px solid rgba(192, 57, 43, 0.35);
+				border-left: 5px solid var(--trap-bd);
+				padding: 14px 18px;
+				border-radius: 6px;
+				margin: 16px 0 20px;
+				font-size: 16px;
+				line-height: 1.8;
+			}
+			.trap .lbl {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--trap-bd);
+				font-weight: 700;
+				display: block;
+				margin-bottom: 6px;
+			}
+			.trap ul {
+				margin: 6px 0 0;
+				padding-left: 20px;
+			}
+			.trap li {
+				margin-bottom: 8px;
+			}
+
+			.ctx {
+				background: var(--ctx-bg);
+				border: 1px solid rgba(46, 97, 113, 0.35);
+				border-left: 5px solid var(--ctx-bd);
+				padding: 14px 18px;
+				border-radius: 6px;
+				margin: 16px 0 20px;
+				font-size: 16px;
+				line-height: 1.8;
+			}
+			.ctx .lbl {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--ctx-bd);
+				font-weight: 700;
+				display: block;
+				margin-bottom: 6px;
+			}
+			.ctx ul {
+				margin: 6px 0 0;
+				padding-left: 20px;
+			}
+			.ctx li {
+				margin-bottom: 8px;
+			}
+
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin: 16px 0 26px;
+				font-size: 15.5px;
+			}
+			caption {
+				text-align: left;
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11.5px;
+				color: var(--muted);
+				margin-bottom: 7px;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+			}
+			th,
+			td {
+				padding: 11px 13px;
+				text-align: left;
+				border-bottom: 1px solid rgba(28, 43, 58, 0.1);
+				vertical-align: top;
+				line-height: 1.6;
+			}
+			thead.blue th {
+				background: var(--tbl-head-blue);
+				color: #f4efe1;
+				font-weight: 600;
+				font-size: 13px;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+			}
+			thead.red th {
+				background: var(--tbl-head-red);
+				color: #f4efe1;
+				font-weight: 600;
+				font-size: 13px;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+			}
+			thead.green th {
+				background: var(--tbl-head-green);
+				color: #f4efe1;
+				font-weight: 600;
+				font-size: 13px;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+			}
+			thead.purple th {
+				background: var(--tbl-head-purple);
+				color: #f4efe1;
+				font-weight: 600;
+				font-size: 13px;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+			}
+			tbody tr:nth-child(even) {
+				background: var(--paper-2);
+			}
+
+			.factbox {
+				background: var(--paper-2);
+				border: 1px solid rgba(28, 43, 58, 0.12);
+				border-radius: 8px;
+				padding: 18px 20px;
+				margin: 18px 0 24px;
+			}
+			.factbox .lbl {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--teal);
+				font-weight: 700;
+				display: block;
+				margin-bottom: 10px;
+			}
+			.factbox dl {
+				margin: 0;
+				display: grid;
+				grid-template-columns: auto 1fr;
+				gap: 8px 18px;
+			}
+			.factbox dt {
+				font-weight: 700;
+				font-size: 15px;
+				color: var(--ink);
+				white-space: nowrap;
+			}
+			.factbox dd {
+				margin: 0;
+				font-size: 15.5px;
+				line-height: 1.7;
+			}
+
+			.country-block {
+				margin: 26px 0 6px;
+				padding-top: 20px;
+				border-top: 1px dashed rgba(28, 43, 58, 0.2);
+			}
+			.country-block h4 {
+				font-family: "Playfair Display", serif;
+				font-size: 18px;
+				margin: 0 0 14px;
+				color: var(--teal);
+				display: flex;
+				align-items: center;
+				gap: 8px;
+			}
+			.country-block h4::before {
+				content: "✦";
+				color: var(--gold);
+				font-size: 14px;
+			}
+
+			.part-divider {
+				max-width: 940px;
+				margin: 0 auto;
+				padding: 40px 48px 0;
+			}
+			.part-divider .plabel {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 12.5px;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				color: var(--gold);
+				background: var(--ink);
+				display: inline-block;
+				padding: 8px 18px;
+				border-radius: 20px;
+			}
+			.part-divider .ptitle {
+				font-family: "Playfair Display", serif;
+				font-weight: 700;
+				font-size: 27px;
+				color: var(--ink);
+				margin: 14px 0 2px;
+			}
+			.part-divider .pdesc {
+				color: var(--muted);
+				font-size: 15px;
+				margin: 0 0 6px;
+			}
+			@media (max-width: 880px) {
+				.part-divider {
+					padding: 30px 22px 0;
+				}
+			}
+
+			.note {
+				font-size: 14px;
+				color: var(--muted);
+				font-style: italic;
+				margin: 8px 0 16px;
+			}
+
+			.footer {
+				max-width: 940px;
+				margin: 0 auto;
+				padding: 40px 48px 70px;
+				color: var(--muted);
+				font-size: 13px;
+				font-family: "IBM Plex Mono", monospace;
+				text-align: center;
+			}
+
+			@media (max-width: 880px) {
+				#sidebar {
+					position: fixed;
+					left: 0;
+					top: 0;
+					bottom: 0;
+					width: 260px;
+					transform: translateX(-100%);
+					transition: transform 0.25s ease;
+				}
+				#sidebar.open {
+					transform: translateX(0);
+				}
+				#main {
+					margin-left: 0;
+				}
+				.chapter {
+					padding: 44px 22px 8px;
+				}
+				.cover {
+					padding: 58px 22px 42px;
+				}
+				.chapter-sub {
+					margin-left: 0;
+					margin-top: 2px;
+				}
+				.chapter-head {
+					gap: 12px;
+				}
+				body {
+					font-size: 16.5px;
+				}
+			}
+			#menu-btn {
+				display: none;
+				position: fixed;
+				top: 16px;
+				left: 16px;
+				z-index: 60;
+				width: 44px;
+				height: 44px;
+				border-radius: 50%;
+				background: var(--ink);
+				border: 2px solid var(--gold);
+				color: var(--gold-2);
+				font-size: 18px;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+			}
+			@media (max-width: 880px) {
+				#menu-btn {
+					display: flex;
+				}
+			}
+			/* ============ MASTER DATE TABLE ============ */
+			.master-section {
+				background: #212121;
+				color: #ececec;
+				padding: 70px 48px 80px;
+				border-top: 1px solid #3a3a3a;
+			}
+			.master-inner {
+				max-width: 1180px;
+				margin: 0 auto;
+			}
+			.master-section .master-eyebrow {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11.5px;
+				text-transform: uppercase;
+				letter-spacing: 0.12em;
+				color: #a8a8a8;
+				margin-bottom: 10px;
+			}
+			.master-section h2 {
+				font-family: "Playfair Display", serif;
+				font-size: clamp(26px, 3vw, 34px);
+				color: #f5f5f5;
+				margin: 0 0 8px;
+				line-height: 1.25;
+			}
+			.master-section .master-sub {
+				color: #b8b8b8;
+				font-size: 15px;
+				line-height: 1.7;
+				margin: 0 0 24px;
+			}
+			.master-table-wrap {
+				overflow-x: auto;
+				border: 1px solid #3d3d3d;
+				border-radius: 8px;
+				background: #212121;
+			}
+			.master-table {
+				width: 100%;
+				min-width: 760px;
+				margin: 0;
+				border-collapse: collapse;
+				font-size: 15px;
+				color: #e8e8e8;
+			}
+			.master-table th,
+			.master-table td {
+				padding: 12px 14px;
+				text-align: left;
+				vertical-align: top;
+				border-bottom: 1px solid #3a3a3a;
+				line-height: 1.6;
+			}
+			.master-table thead th {
+				background: #2f2f2f;
+				color: #f5f5f5;
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 12px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+				position: sticky;
+				top: 0;
+				z-index: 2;
+			}
+			.master-table tbody tr:nth-child(even) {
+				background: #292929;
+			}
+			.master-table tbody tr:hover {
+				background: #333333;
+			}
+			.master-table tbody tr:last-child td {
+				border-bottom: none;
+			}
+			.master-table td:first-child {
+				width: 150px;
+				color: #f0f0f0;
+				font-family: "IBM Plex Mono", monospace;
+				font-weight: 600;
+				white-space: nowrap;
+			}
+			.master-table td:nth-child(2) {
+				color: #f0f0f0;
+				font-weight: 600;
+			}
+			.master-table td:nth-child(3) {
+				color: #bdbdbd;
+			}
+			.master-table .must {
+				display: inline-block;
+				margin-left: 7px;
+				padding: 2px 7px;
+				border: 1px solid #666;
+				border-radius: 10px;
+				color: #d7d7d7;
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 9px;
+				font-weight: 500;
+				letter-spacing: 0.05em;
+				text-transform: uppercase;
+			}
+			@media (max-width: 880px) {
+				.master-section {
+					padding: 52px 22px 60px;
+				}
+			}
+
+		</style>
+	</head>
+	<body>
+		<button id="menu-btn" aria-label="Toggle chapter index">☰</button>
+
+		<aside id="sidebar">
+			<div class="brand">
+				<div class="stamp">22–29</div>
+				<h1>Indian Independence Movement: 1922–1929</h1>
+				<p>Modern India · BPSC Dossier</p>
+			</div>
+			<nav class="toc" id="toc"></nav>
+			<div class="legend-box">
+				<h3>Marker Key</h3>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="background: var(--hl-y)"
+					></span>
+					Core concept / policy
+				</div>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="background: var(--hl-b)"
+					></span>
+					Hard fact / date / number
+				</div>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="background: var(--hl-g)"
+					></span>
+					Person / place / institution
+				</div>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="background: var(--hl-r)"
+					></span>
+					MCQ trap / confusion
+				</div>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="
+							background: var(--ctx-bg);
+							border: 1px solid var(--ctx-bd);
+						"
+					></span>
+					Context box (fills narration gaps)
+				</div>
+			</div>
+		</aside>
+
+		<div id="main">
+			<section class="cover">
+				<div class="eyebrow">
+					Case File · From the Gaya Split to the Lahore "Complete
+					Independence" Resolution
+				</div>
+				<h1>
+					Councils, conspiracies, and kisans — the decade India
+					argued out its own future.
+				</h1>
+				<p class="sub">
+					Theory (standard textbook) fused with every fact buried
+					inside PYQ explanations on the Swaraj Party, the Simon
+					Commission, the Nehru Report, the revolutionary
+					underground from Kakori to Chittagong, the rise of the
+					organised Left and Trade Unions, and the peasant and
+					caste movements of the period — sorted topic-wise,
+					tabulated wherever the data allows, with context boxes
+					closing every narrative gap.
+				</p>
+				<div class="tags">
+					<span class="tag">Swarajists ⇄ No-Changers</span>
+					<span class="tag">Simon Go Back</span>
+					<span class="tag">HRA → HSRA</span>
+					<span class="tag">Kisan Sabha Movement</span>
+				</div>
+			</section>
+
+			<div class="chapters">
+				<!-- ============ CHAPTER 1 ============ -->
+				<section
+					class="chapter"
+					id="ch1"
+					data-title="Formation of the Swaraj Party (1923)"
+				>
+					<div class="chapter-head">
+						<div class="seal">1</div>
+						<h2>Formation of the Swaraj Party (1923)</h2>
+					</div>
+					<div class="chapter-sub">
+						From council boycott to "enter and wreck"
+					</div>
+
+					<table>
+						<caption>
+							Swaraj Party — full picture
+						</caption>
+						<thead class="blue">
+							<tr>
+								<th>Aspect</th>
+								<th>Detail</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Background</b></td>
+								<td>
+									The Central Legislature (Council of States
+									&amp; Legislative Assembly) and Provincial
+									Legislative Councils, set up by the
+									<mark class="y">Government of India Act, 1919</mark>,
+									were boycotted by Congress on
+									<mark class="g">Gandhiji's</mark> directions —
+									Congress did not contest the
+									<mark class="b">1920 elections</mark>. After the
+									withdrawal of the Non-Cooperation Movement
+									and Gandhi's arrest, an atmosphere of
+									hopelessness set in.
+								</td>
+							</tr>
+							<tr>
+								<td><b>New ideology</b></td>
+								<td>
+									<mark class="g">C.R. Das</mark> and
+									<mark class="g">Motilal Nehru</mark>
+									proposed that Congress should fight
+									elections, enter the councils, become part
+									of Government, and continue the struggle
+									from within — this plan was
+									<mark class="r">rejected</mark> by the
+									majority of Congressmen.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Split &amp; founding</b></td>
+								<td>
+									Suspension of the NCM led to a split within
+									Congress at the
+									<mark class="g">Gaya session</mark>,
+									<mark class="b">December 1922</mark>. C.R.
+									Das, then President of Congress,
+									<b>resigned the presidency</b> and, with
+									Motilal Nehru, organised a party within
+									Congress in
+									<mark class="b">January 1923</mark>, named
+									the <mark class="y">Swaraj Party</mark>
+									(also called <i>Swaraj Dal</i>).
+								</td>
+							</tr>
+							<tr>
+								<td><b>Mandate / strategy</b></td>
+								<td>
+									Enter the Councils and hinder/wreck their
+									working through agitation from within —
+									slogan <mark class="y">"end or mend"</mark>;
+									the aim was to expose the councils as
+									"sham parliaments."
+								</td>
+							</tr>
+							<tr>
+								<td><b>Leadership</b></td>
+								<td>
+									<mark class="g">C.R. Das</mark> — President
+									of the Party;
+									<mark class="g">Motilal Nehru</mark> —
+									General Secretary;
+									<mark class="g">S. Srinivasa Iyengar</mark>
+									(founder of the Swaraj Party at Madras) and
+									<mark class="g">N.C. Kelkar</mark> were the
+									other main leaders.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Elections contested</b></td>
+								<td>
+									Legislative Council elections held
+									<mark class="b">November 1923</mark>. The
+									Swarajists won
+									<mark class="b">42 out of 104</mark>
+									elected seats and a clear majority in the
+									provincial assemblies of the Central
+									Provinces; in the Central Legislature they
+									joined hands with liberals and
+									independents like
+									<mark class="g">Jinnah</mark> and
+									<mark class="g">Malviya</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Biggest achievement</b></td>
+								<td>
+									Election of
+									<mark class="g">Vithalbhai Patel</mark> as
+									Speaker/President of the (Central)
+									Legislative Assembly in
+									<mark class="b">1925</mark> — he was the
+									<b>first Indian Speaker</b> of the Central
+									Legislative Assembly, and was also a
+									co-founder of the Swaraj Party.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Legislative actions</b></td>
+								<td>
+									Swarajists disrupted the councils, passed
+									resolutions for self-government, demanded
+									civil liberties, and exposed British
+									repressive policies.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Decline</b></td>
+								<td>
+									Faced internal divisions including
+									communal tensions; declined after the
+									death of
+									<mark class="g">C.R. Das</mark> in
+									<mark class="b">1925</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Demand</b></td>
+								<td>
+									Setting up of responsible Government in
+									India with necessary changes to the GoI
+									Act, 1919.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="factbox">
+						<span class="lbl">Fact Box · Chittaranjan Das ("Deshbandhu")</span>
+						<dl>
+							<dt>Title</dt>
+							<dd>
+								<mark class="g">'Desh Bandhu'</mark> — "Friend
+								of the Country."
+							</dd>
+							<dt>Background</dt>
+							<dd>
+								Studied law in London, became an advocate in
+								India; helped secure the
+								<b>acquittal of Aurobindo Ghose</b> in the
+								<mark class="g">Alipore Bomb Conspiracy Case</mark>.
+							</dd>
+							<dt>Slogan</dt>
+							<dd>
+								<mark class="y"
+									>"Swaraj should be for common people, not
+									only for classes"</mark
+								> — "Swaraj for the masses, not for the
+								classes"; "Swaraj is government by the people
+								and for the people." (42nd BPSC 1997)
+							</dd>
+						</dl>
+					</div>
+
+					<div class="event">
+						<h3>Other 1922–23 political splits and fallout</h3>
+						<ul>
+							<li>
+								<b>Madan Mohan Malviya</b> — founder member of
+								the <mark class="g">Hindu Mahasabha</mark>; also
+								founded
+								<mark class="g">Benaras Hindu University</mark>
+								in 1916.
+							</li>
+							<li>
+								On
+								<mark class="b">16 December 1922</mark>,
+								<mark class="g">Madan Mohan Malviya</mark> and
+								<mark class="g">Motilal Nehru</mark> decided to
+								launch the
+								<mark class="y">Independent Party</mark>
+								(UP PCS Mains 2006 — code pairs 2 &amp; 4;
+								Lala Har Dayal and M.A. Jinnah were
+								<mark class="r">not</mark> part of this
+								decision).
+							</li>
+							<li>
+								When Congress condemned the
+								<mark class="y">Montagu-Chelmsford Report</mark>,
+								many moderates left the party to form the
+								<mark class="y">Indian Liberal Federation</mark>
+								(IAS Pre 2003) — Surendranath Banerjee and
+								other Liberal leaders had welcomed the
+								Montagu-Chelmsford reforms and disassociated
+								from Congress.
+							</li>
+							<li>
+								When the Montford Reforms report was made
+								public in 1918, Congress split — moderates
+								accepted it, extremists opposed it; the
+								moderate remnants
+								<mark class="g">(Sapru, Jayakar, Chintamani)</mark>
+								formed the
+								<mark class="y">Indian National Liberal Federation</mark>
+								in 1918 (68th BPSC 2022), founded by
+								<mark class="g">Surendra Nath Banerjee</mark>;
+								<mark class="g">T.B. Sapru</mark>,
+								<mark class="g">V.S. Srinivas Sastri</mark> and
+								<mark class="g">M.R. Jayakar</mark> were
+								prominent leaders.
+							</li>
+						</ul>
+					</div>
+
+					<div class="trap">
+						<span class="lbl">MCQ Trap · who was / wasn't in the Swaraj Party</span>
+						<ul>
+							<li>
+								<b>Not</b> associated with formation of Swaraj
+								Party: <mark class="r">Subhash Chandra Bose</mark>
+								and <mark class="r">Jawaharlal Nehru</mark>
+								(only C.R. Das and Motilal Nehru are correct —
+								UP PCS Pre 1998).
+							</li>
+							<li>
+								<b>Not</b> a member of the Swaraj Party:
+								<mark class="r">C. Rajagopalachari</mark>
+								(UP PCS 1993/1991) and
+								<mark class="r">Rajendra Prasad</mark>
+								(UP PCS Mains 2014) — both were "No-Changers,"
+								not Swarajists.
+							</li>
+							<li>
+								Party name formed by Motilal Nehru &amp; C.R.
+								Das in 1923 is the
+								<mark class="g">Swaraj Party</mark> —
+								<mark class="r">not</mark> the Independence
+								Party, Ghadar Party, or Indian National Party
+								(UP PCS Pre 2016).
+							</li>
+						</ul>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl">Context — Pro-changers vs No-changers</span>
+						After the Non-Cooperation Movement, Congress divided
+						into two groups. The
+						<mark class="y">pro-changers</mark> wanted to enter
+						the legislatures — led by
+						<mark class="g">C.R. Das</mark>,
+						<mark class="g">Motilal Nehru</mark> and
+						<mark class="g">Vithalbhai Patel</mark>; they formed
+						the Swaraj Party in 1923. The
+						<mark class="y">no-changers</mark> wanted to boycott
+						the legislatures — led by
+						<mark class="g">Vallabhbhai Patel</mark>,
+						<mark class="g">C. Rajagopalachari</mark> and
+						<mark class="g">Rajendra Prasad</mark>. This is why
+						Rajagopalachari and Rajendra Prasad are the classic
+						"was NOT part of Swaraj Party" trap answers.
+					</div>
+
+					<div class="event">
+						<h3>Swaraj Dal in Bihar &amp; chronology check</h3>
+						<ul>
+							<li>
+								A branch of Swaraj Dal was formed in
+								<mark class="g">Bihar</mark>, led by
+								<mark class="g">Shri Krishna Singh</mark> (65th
+								BPSC 2019).
+							</li>
+							<li>
+								Correct chronological order (R.A.S./R.T.S.
+								2018):
+								<mark class="b">Lucknow Pact (1916)</mark> →
+								<mark class="b">Jallianwala Massacre (1919)</mark>
+								→
+								<mark class="b">Death of Bal Gangadhar Tilak (1920)</mark>
+								→
+								<mark class="b">Formation of Swaraj Party (1923)</mark>.
+							</li>
+							<li>
+								Who supported the Swaraj Party in the Central
+								Legislative Assembly:
+								<mark class="g">M.A. Jinnah</mark> (UP PCS
+								2017) — the Swarajists, having won 42/104
+								seats in the Nov 1923 elections, joined hands
+								with liberals and independents like Jinnah and
+								Malviya.
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 2 ============ -->
+				<section
+					class="chapter"
+					id="ch2"
+					data-title="Swarajists vs No-Changers"
+				>
+					<div class="chapter-head">
+						<div class="seal">2</div>
+						<h2>Swarajists vs No-Changers — Head to Head</h2>
+					</div>
+					<div class="chapter-sub">
+						Emergence of Swarajists and Socialist Ideas
+					</div>
+
+					<table>
+						<caption>
+							Swarajists vs No-Changers
+						</caption>
+						<thead class="purple">
+							<tr>
+								<th>Aspect</th>
+								<th>Swarajists</th>
+								<th>No-Changers</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Key Leaders</b></td>
+								<td>
+									<mark class="g">C.R. Das</mark>,
+									<mark class="g">Motilal Nehru</mark>
+									(66th BPSC)
+								</td>
+								<td>
+									<mark class="g">C. Rajagopalachari</mark>,
+									<mark class="g">Vallabhbhai Patel</mark>,
+									<mark class="g">Rajendra Prasad</mark>,
+									<mark class="g">M.A. Ansari</mark>
+								</td>
+							</tr>
+							<tr>
+								<td><b>Formation</b></td>
+								<td>
+									Formed
+									<mark class="b">1 January 1923</mark>,
+									after the Gaya Congress proposal was
+									defeated in 1922. Aimed to enter
+									legislative councils to expose them as
+									<mark class="y">"sham parliaments."</mark>
+								</td>
+								<td>
+									Led by Gandhi; insisted on continuing the
+									boycott of legislative councils and
+									focused on the constructive programme of
+									social reforms, khadi, and rural
+									upliftment.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Main Strategy</b></td>
+								<td>
+									Participation in legislative councils to
+									disrupt them if nationalist demands not
+									met. Slogan:
+									<mark class="y">"end or mend."</mark>
+								</td>
+								<td>
+									Complete boycott of councils; focus on
+									constructive work (khadi, rural
+									development, social reforms), preparation
+									for future civil disobedience.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Outcome</b></td>
+								<td>
+									Initial success, but faced internal
+									divisions, including communal tensions,
+									leading to decline after the death of C.R.
+									Das in
+									<mark class="b">1925</mark>.
+								</td>
+								<td>
+									Maintained focus on constructive work and
+									long-term non-violent preparation for mass
+									struggle; limited internal decline.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Gandhi's Stance</b></td>
+								<td>
+									Initially opposed the Swarajists, fearing
+									their entry into councils would divert
+									attention from mass movements. After the
+									1923 elections, he supported their
+									participation.
+								</td>
+								<td>
+									Gandhi led the No-Changers, believing in
+									maintaining the boycott. Eventually
+									reconciled with Swarajists at the
+									<mark class="g">Belgaum Congress</mark>,
+									<mark class="b">1924</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Legislative Actions</b></td>
+								<td>
+									Disrupted councils, passed resolutions for
+									self-government, demanded civil liberties,
+									exposed British repressive policies.
+								</td>
+								<td>
+									Avoided participation in legislative
+									councils, focused on constructive
+									programmes and future civil disobedience.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Stand on Constructive Work</b></td>
+								<td>
+									Criticised No-Changers' Constructive Work
+									as too gradual; acknowledged their efforts
+									in khadi/education/Hindu-Muslim unity but
+									believed these lacked immediate impact;
+									favoured civil disobedience/non-cooperation
+									instead.
+								</td>
+								<td>
+									Established ashrams in
+									<mark class="g">Kheda</mark> and
+									<mark class="g">Bardoli</mark> (Gujarat) to
+									promote khadi, charkha, uplift tribals and
+									lower castes; worked on Hindu-Muslim
+									unity, untouchability eradication,
+									boycott of foreign goods; supported
+									Khilafat Movement, national schools/
+									colleges, flood relief — formed the
+									backbone of the Civil Disobedience
+									Movement.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<!-- ============ CHAPTER 3 ============ -->
+				<section
+					class="chapter"
+					id="ch3"
+					data-title="Simon Commission (1927)"
+				>
+					<div class="chapter-head">
+						<div class="seal">3</div>
+						<h2>Simon Commission (1927)</h2>
+					</div>
+					<div class="chapter-sub">
+						The "White Commission" and "Simon Go Back"
+					</div>
+
+					<table>
+						<caption>
+							Simon Commission — setup and composition
+						</caption>
+						<thead class="blue">
+							<tr>
+								<th>Aspect</th>
+								<th>Detail</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Statutory basis</b></td>
+								<td>
+									The
+									<mark class="y">Government of India Act, 1919</mark>
+									had a provision that a commission would be
+									appointed after ten years to study the
+									progress of the government scheme and
+									suggest new steps — it was based on the
+									recommendations of
+									<mark class="g">Lord Chelmsford</mark> and
+									<mark class="g">Samuel Montagu</mark> to
+									introduce self-governing institutions
+									gradually.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Established</b></td>
+								<td>
+									<mark class="b">November 1927</mark>
+									(specifically
+									<mark class="b">8 November 1927</mark>)
+									by the British Conservative Government
+									under PM
+									<mark class="g">Stanley Baldwin</mark>, to
+									report on the working of the Indian
+									Constitution under the GoI Act, 1919.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Composition</b></td>
+								<td>
+									An all-White,
+									<mark class="b">seven-member</mark> Indian
+									Statutory Commission chaired by
+									<mark class="g">Sir John Simon</mark>
+									(Liberal Party). Members:
+									<mark class="g">Sir John Simon</mark>,
+									<mark class="g">Clement Attlee</mark>
+									(Labour Party — later UK PM during India's
+									independence),
+									<mark class="g">Sir Harry Levy-Lawson</mark>,
+									<mark class="g">Sir Edward Cecil George Cadogan</mark>,
+									<mark class="g">Vernon Hartshorn</mark>,
+									<mark class="g">George Richard Lane-Fox</mark>,
+									<mark class="g">Donald Sterling Palmer Howard</mark>.
+									<mark class="r">No Indian member</mark> —
+									on the suggestion of
+									<mark class="g">Lord Irwin</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Objective</b></td>
+								<td>
+									Assess whether India was ready for further
+									constitutional reforms and recommend
+									changes to the British Government.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Political context</b></td>
+								<td>
+									The Conservative Government aimed to act
+									before a possible Labour Party victory in
+									Britain.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Indian response</b></td>
+								<td>
+									Opposed and boycotted by the
+									<mark class="g">Indian National Congress</mark>
+									and a section of the
+									<mark class="g">Muslim League</mark>
+									(headed by
+									<mark class="g">Muhammad Ali Jinnah</mark>);
+									termed the <mark class="y">"White Commission"</mark>
+									by Indians, purely on the ground that it
+									had no Indian member. Congress's Madras
+									session,
+									<mark class="b">December 1927</mark>, led
+									by
+									<mark class="g">M.A. Ansari</mark> and
+									<mark class="g">Jawaharlal Nehru</mark>,
+									decided to boycott the Commission and
+									demand complete independence.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Arrival &amp; protests</b></td>
+								<td>
+									Reached
+									<mark class="g">Bombay</mark> on
+									<mark class="b">3 February 1928</mark>,
+									sparking countrywide hartals, rallies and
+									protests across
+									<mark class="g">Calcutta, Lahore, Madras, Lucknow</mark>,
+									with the slogan
+									<mark class="y">"Simon, Go Back!"</mark>
+								</td>
+							</tr>
+							<tr>
+								<td><b>Police violence</b></td>
+								<td>
+									<mark class="g">Lala Lajpat Rai</mark>,
+									leading the protest in Lahore, was
+									severely injured in a
+									<mark class="r">lathi charge</mark> in
+									<mark class="b">October 1928</mark> and
+									succumbed to his injuries on
+									<mark class="b">17 November 1928</mark>.
+									He was a major political leader of Punjab
+									known as <mark class="g">'Punjab Kesari'</mark>.
+									This directly led to
+									<mark class="g">Bhagat Singh's</mark>
+									assassination of
+									<mark class="g">Saunders</mark> in
+									retaliation.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Dr. B.R. Ambedkar</b></td>
+								<td>
+									Advocated before the Commission for
+									Universal Adult Franchise and protections
+									for the depressed classes.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Visits to India</b></td>
+								<td>
+									Visited India
+									<b>twice</b>: first visit
+									<mark class="b">3 February – 31 March 1928</mark>;
+									second visit
+									<mark class="b">11 October 1928 – 13 April 1929</mark>
+									(UP RO/ARO Pre 2023 — a statement claiming
+									the second visit ran Oct 1929–Apr 1930 is
+									<mark class="r">incorrect</mark>).
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table>
+						<caption>
+							Simon Commission Recommendations (1930)
+						</caption>
+						<thead class="green">
+							<tr>
+								<th>Area</th>
+								<th>Recommendation</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Provincial reforms</b></td>
+								<td>
+									Abolish
+									<mark class="y">dyarchy</mark>, increase
+									legislative councils, grant provincial
+									autonomy, governors given discretionary
+									powers on security — i.e. recommended
+									<b>replacement of diarchy with responsible
+									government in the provinces</b> (IAS Pre
+									2010).
+								</td>
+							</tr>
+							<tr>
+								<td><b>Central governance</b></td>
+								<td>
+									Rejected parliamentary responsibility at
+									the centre; strengthened the
+									Governor-General's authority; retained
+									central control over High Courts.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Communal electorates</b></td>
+								<td>
+									Extended separate communal electorates.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Federalism</b></td>
+								<td>
+									Gradual federalism; a
+									<mark class="g">Consultative Council of Greater India</mark>;
+									reconstitution of the Central legislature
+									with a
+									<b>federal</b> (not unitary) character,
+									members elected indirectly from provincial
+									legislatures.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Local legislatures</b></td>
+								<td>
+									For NWFP and Baluchistan, represented at
+									the centre.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Separation</b></td>
+								<td>
+									Separate
+									<mark class="g">Sindh</mark> from Bombay;
+									<mark class="g">Burma</mark> from India.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Military</b></td>
+								<td>
+									Indianization of the army, while retaining
+									British forces.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="ctx">
+						<span class="lbl">Context — the composite MCQ statement</span>
+						A frequently tested compound statement (UP PCS Mains
+						2005) holds all of the following as
+						<b>true</b>: (1) the Commission was appointed to
+						inquire into the working of the 1919 Act; (2) it was
+						headed by Sir John Simon; (3) it recommended a
+						Federal form of Government; (4) it was opposed by
+						Indian leaders. All four check out — remember this
+						as one bundle.
+					</div>
+
+					<div class="trap">
+						<span class="lbl">MCQ Trap · why was it boycotted</span>
+						The boycott was
+						<b>only</b> because it had
+						<mark class="r">no Indian member</mark> — not because
+						Indians opposed reviewing the 1919 Act, not because
+						it recommended abolishing dyarchy, and not because of
+						any partition suggestion. Assertion–Reason questions
+						on this (UP PCS 2010, UDA/LDA Spl 2010, Mains 2010)
+						confirm: both statements true, and "no Indian
+						member" correctly explains "Congress boycotted it."
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 4 ============ -->
+				<section
+					class="chapter"
+					id="ch4"
+					data-title="Nehru Report (1928)"
+				>
+					<div class="chapter-head">
+						<div class="seal">4</div>
+						<h2>Nehru Report (1928)</h2>
+					</div>
+					<div class="chapter-sub">
+						India's own answer to the Simon Commission
+					</div>
+
+					<table>
+						<caption>
+							Nehru Report — origin and recommendations
+						</caption>
+						<thead class="blue">
+							<tr>
+								<th>Aspect</th>
+								<th>Detail</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Trigger</b></td>
+								<td>
+									<mark class="g">Lord Birkenhead</mark>
+									(Secretary of State for India) challenged
+									Indians to produce a unified constitutional
+									proposal if they rejected the Simon
+									Commission.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Initiative</b></td>
+								<td>
+									<mark class="b">February 1928</mark>: the
+									<mark class="g">All Parties Conference</mark>
+									(held in Delhi, presided over by
+									<mark class="g">Dr. M.A. Ansari</mark>,
+									attended by representatives of
+									<mark class="b">29 organisations</mark>
+									— Hindu Mahasabha, Muslim League, Khilafat
+									Committee etc.) appointed a subcommittee
+									led by
+									<mark class="g">Motilal Nehru</mark> to
+									draft a constitution.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Committee</b></td>
+								<td>
+									Chairman:
+									<mark class="g">Motilal Nehru</mark>;
+									Secretary:
+									<mark class="g">Jawaharlal Nehru</mark>.
+									Ten members including two Muslim members.
+									Named members:
+									<mark class="g">Tej Bahadur Sapru</mark>,
+									<mark class="g">Subhas Chandra Bose</mark>,
+									<mark class="g">M.S. Aney</mark>,
+									<mark class="g">Mangal Singh</mark>,
+									<mark class="g">Ali Imam</mark>,
+									<mark class="g">Shuaib Qureshi</mark>,
+									<mark class="g">G.R. Pradhan</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Finalised</b></td>
+								<td><mark class="b">August 1928</mark>.</td>
+							</tr>
+							<tr>
+								<td><b>Dominion Status</b></td>
+								<td>
+									Proposed
+									<mark class="y">Dominion Status</mark>
+									akin to self-governing dominions within
+									the British Empire —
+									<mark class="r">not</mark> complete
+									independence.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Electoral system</b></td>
+								<td>
+									Rejected separate electorates; advocated
+									<mark class="y">joint/mixed electorates</mark>
+									with reserved constituencies for
+									minorities (excluding Punjab and Bengal,
+									where minorities were actually a
+									majority).
+								</td>
+							</tr>
+							<tr>
+								<td><b>Provincial reforms</b></td>
+								<td>Suggested establishment of linguistic provinces.</td>
+							</tr>
+							<tr>
+								<td><b>Fundamental rights</b></td>
+								<td>
+									Proposed
+									<mark class="b">19 fundamental rights</mark>,
+									including equal rights for women, right to
+									form unions, universal adult suffrage,
+									right of free expression of opinion, right
+									to assemble peaceably and without arms,
+									right to form associations/unions.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Governance structure</b></td>
+								<td>
+									<b>Indian Parliament:</b> House of
+									Representatives (500 members, elected by
+									adult suffrage, 5-year term); Senate (200
+									members, elected by provincial councils,
+									7-year term).
+									<b>Governor-General:</b> appointed by the
+									British Government, paid from Indian
+									revenues, worked with a central executive
+									council responsible to Parliament.
+									<b>Provincial Councils:</b> headed by a
+									governor acting on the advice of
+									provincial executive councils.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Muslim interests</b></td>
+								<td>
+									Ensured full protection of Muslim cultural
+									and religious interests.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Secular state</b></td>
+								<td>
+									Advocated complete separation of state
+									from religion.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Aftermath</h3>
+						<ul>
+							<li>
+								Congress set a
+								<mark class="b">two-year deadline</mark> for
+								Dominion Status, later reduced to
+								<mark class="b">one year</mark>, threatening
+								civil disobedience if unmet.
+							</li>
+							<li>
+								Younger nationalists —
+								<mark class="g">Jawaharlal Nehru</mark> and
+								<mark class="g">Subhash Chandra Bose</mark> —
+								were dissatisfied with the Dominion Status
+								demand and founded the
+								<mark class="g">Independence for India League</mark>
+								in opposition to the Nehru Report itself
+								(IAS Pre 1995), demanding Complete
+								Independence instead.
+							</li>
+							<li>
+								<mark class="b">December 1929</mark>, Lahore
+								Session of Congress adopted the
+								<mark class="y">Complete Independence</mark>
+								resolution; Nehru's Tricolour hoisting
+								symbolised this commitment at midnight,
+								<mark class="b">31 December 1929</mark>.
+							</li>
+							<li>
+								Despite its limitations, the Report laid the
+								groundwork for future discussions on Indian
+								governance and constitutional reform.
+							</li>
+						</ul>
+					</div>
+
+					<div class="trap">
+						<span class="lbl">MCQ Trap · what the Nehru Report actually recommended</span>
+						<ul>
+							<li>
+								It recommended <b>Dominion Status</b>,
+								<mark class="r">not</mark> Complete
+								Independence (IAS Pre 2011) — statement "it
+								recommended Complete Independence" is
+								<mark class="r">false</mark>.
+							</li>
+							<li>
+								It recommended
+								<b>joint electorates</b> with reservation of
+								seats for minorities and provision of
+								fundamental rights — both
+								<mark class="g">true</mark>.
+							</li>
+							<li>
+								First to demand Dominion Status for India, per
+								one PYQ's coded answer: 
+								<mark class="g">Sir Tej Bahadur Sapru and Jaykar</mark>
+								(UP PCS 2013) — the option pairing Motilal
+								Nehru with Govind Ballabh Pant is the
+								<mark class="r">trap</mark>, since Pant was
+								not connected to that 1926 demand.
+							</li>
+							<li>
+								Responsible for founding the Independence for
+								India League (1928):
+								<mark class="g">Jawaharlal Nehru and Subhash Chandra Bose</mark>
+								only —
+								<mark class="r">not</mark> Acharya Narendra
+								Dev or Jaya Prakash Narayan (UP Lower Spl
+								2008).
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 5 ============ -->
+				<section
+					class="chapter"
+					id="ch5"
+					data-title="Communal Responses: Delhi Proposals &amp; Jinnah's 14 Points"
+				>
+					<div class="chapter-head">
+						<div class="seal">5</div>
+						<h2>
+							Communal Responses — Delhi Proposals &amp;
+							Jinnah's Fourteen Points
+						</h2>
+					</div>
+					<div class="chapter-sub">
+						Muslim League and Hindu Mahasabha reactions to the
+						Nehru Report
+					</div>
+
+					<table>
+						<caption>
+							Delhi Proposals (1927) vs Jinnah's Fourteen Points (March 1929)
+						</caption>
+						<thead class="red">
+							<tr>
+								<th>Delhi Proposals (Dec 1927, Muslim League)</th>
+								<th>Jinnah's Fourteen Points (March 1929)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									Replace separate electorates with
+									<mark class="y">joint electorates</mark>,
+									reserving seats for Muslims.
+								</td>
+								<td>
+									Reversed course:
+									<mark class="y">separate electorates</mark>
+									for Muslims restored as a demand.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									One-third representation for Muslims in
+									the Central Assembly.
+								</td>
+								<td>
+									One-third representation for Muslims in
+									the central legislature
+									<b>and any cabinet</b>.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Proportional representation in Punjab and
+									Bengal.
+								</td>
+								<td>
+									Territorial redistribution to protect
+									Muslim majorities in Punjab, Bengal and
+									NWFP; ensuring no Muslim-majority province
+									turned into a minority.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Creation of Sindh, Balochistan, and NWFP as
+									Muslim-majority provinces.
+								</td>
+								<td>
+									Separation of Sindh from Bombay;
+									constitutional reforms in NWFP and
+									Balochistan.
+								</td>
+							</tr>
+							<tr>
+								<td>—</td>
+								<td>
+									Federal constitution with provincial
+									residual powers; provincial autonomy, no
+									constitutional amendments without state
+									concurrence.
+								</td>
+							</tr>
+							<tr>
+								<td>—</td>
+								<td>
+									Veto power for minorities — no bill passed
+									if three-fourths of a minority opposed it.
+								</td>
+							</tr>
+							<tr>
+								<td>—</td>
+								<td>
+									Muslim representation in services and
+									self-governing bodies; religious freedom
+									guaranteed to all communities; protection
+									of Muslim rights in religion, culture,
+									education, language.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Amendments proposed to the Nehru Report (1928)</h3>
+						<ul>
+							<li>
+								One-third representation for Muslims in the
+								central legislature.
+							</li>
+							<li>
+								Reservations for Muslims in Bengal and Punjab
+								legislatures based on population, until adult
+								suffrage.
+							</li>
+							<li>Residual powers for provinces.</li>
+						</ul>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl">Context — Hindu Mahasabha's response &amp; the Report's fate</span>
+						The <mark class="g">Hindu Mahasabha</mark> opposed the
+						creation of new Muslim-majority provinces and
+						reserved seats in Punjab and Bengal, advocating
+						instead for a
+						<mark class="y">unitary political structure</mark> —
+						complicating communal negotiations. The
+						<mark class="r">Nehru Report was rejected</mark> by
+						the Muslim League, the Hindu Mahasabha, Sikh
+						communalists, and younger Congress members (all
+						dissatisfied with Dominion Status for different
+						reasons) — this three-way rejection directly
+						contributed to Nehru and Bose forming the
+						<mark class="g">Independence for India League</mark>.
+					</div>
+
+					<div class="trap">
+						<span class="lbl">MCQ Trap · which session, which year</span>
+						Jinnah put forth his Fourteen Points proposal in the
+						<mark class="g">1929</mark> session of the Muslim
+						League (UP PCS Mains 2015) —
+						<mark class="r">not</mark> 1927, 1928, or 1930. The
+						Fourteen Points were a reply to (and rejection of)
+						the Nehru Report's terms.
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 6 ============ -->
+				<section
+					class="chapter"
+					id="ch6"
+					data-title="Independence for India League &amp; Youth Activism"
+				>
+					<div class="chapter-head">
+						<div class="seal">6</div>
+						<h2>
+							Independence for India League &amp; the Rise of
+							Youth Activism
+						</h2>
+					</div>
+					<div class="chapter-sub">1928–1929</div>
+
+					<div class="event">
+						<h3>Independence for India League (1928)</h3>
+						<ul>
+							<li>
+								Founded in
+								<mark class="b">1928</mark> by
+								<mark class="g">Subhas Chandra Bose</mark> and
+								<mark class="g">Jawaharlal Nehru</mark> to
+								demand
+								<mark class="y">Complete Independence</mark>
+								instead of Dominion Status.
+							</li>
+							<li>
+								Formed in direct opposition to the
+								<mark class="g">Nehru Report</mark>, whose
+								Dominion Status demand had disappointed the
+								Congress's radical/youth wing.
+							</li>
+							<li>
+								Played an important role in uniting
+								progressive powers against British rule.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Emergence of Youth Activism in the Freedom Struggle</h3>
+						<ul>
+							<li>
+								Youth brought energy and vision that shaped
+								the trajectory of the independence movement.
+							</li>
+							<li>
+								<b>Organisational platforms:</b> in the late
+								1920s and 1930s, youths established student
+								leagues and political wings for idea exchange
+								and strategising.
+							</li>
+							<li>
+								<b>Significance of 1928:</b>
+								<mark class="g">Jawaharlal Nehru's</mark>
+								presidency at the
+								<mark class="g">All Bengal Students' Conference</mark>
+								symbolised the union of seasoned wisdom with
+								youthful vigour.
+							</li>
+							<li>
+								<b>Active participation:</b> young activists
+								engaged in boycotts, protests, and
+								non-violent resistance, reaching into rural
+								areas.
+							</li>
+							<li>
+								<b>Literary influence:</b> pamphlets and
+								underground newsletters were produced and
+								circulated, envisioning a liberated India.
+							</li>
+							<li>
+								<b>Colonial repression:</b> the British used
+								arrests and expulsions to stifle youth
+								influence — but this only fuelled resistance.
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 7 ============ -->
+				<section
+					class="chapter"
+					id="ch7"
+					data-title="The Left Movement: CPI, CSP, RSP &amp; M.N. Roy"
+				>
+					<div class="chapter-head">
+						<div class="seal">7</div>
+						<h2>The Left Movement — CPI, CSP, RSP &amp; M.N. Roy</h2>
+					</div>
+					<div class="chapter-sub">
+						Emergence of new forces in the 1920s
+					</div>
+
+					<table>
+						<caption>
+							Left parties of the freedom movement
+						</caption>
+						<thead class="green">
+							<tr>
+								<th>Party</th>
+								<th>Founded</th>
+								<th>Key facts</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Communist Party of India (CPI)</b></td>
+								<td><mark class="b">1920</mark> / formally <mark class="b">1925</mark></td>
+								<td>
+									<mark class="g">M.N. Roy</mark> founded
+									the CPI in
+									<mark class="b">1920</mark>; it was
+									formally established at the
+									<mark class="g">Indian Communist Conference, Kanpur</mark>,
+									in
+									<mark class="b">1925</mark>. Faced
+									government crackdowns (e.g. Meerut
+									Conspiracy Case 1929); aligned with
+									Congress, promoting Marxist ideas and
+									strengthening its left-wing presence.
+									Later split into factions such as
+									<mark class="g">CPI(M)</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Congress Socialist Party (CSP)</b></td>
+								<td><mark class="b">17 May 1934</mark>, Patna</td>
+								<td>
+									President:
+									<mark class="g">Acharya Narendra Dev</mark>
+									(66th BPSC Re-Exam). Supported cooperative
+									economies, independent farmers, local
+									governance; opposed the dictatorship of
+									the proletariat. Pushed for radical
+									measures within Congress — removal of
+									middlemen, cancellation of peasants'
+									debts. After independence, struggled to
+									redefine its role and eventually
+									dissolved as Congress adopted a socialist
+									agenda under Nehru.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Revolutionary Socialist Party (RSP)</b></td>
+								<td><mark class="b">1940</mark>, Bengali socialist movement</td>
+								<td>
+									Criticised both Soviet-style socialism and
+									the Gandhian approach; active primarily in
+									<mark class="g">West Bengal</mark> and
+									<mark class="g">Kerala</mark>; focused on
+									working-class rights, opposing both
+									capitalist and Stalinist models. Limited
+									electoral success but influenced leftist
+									policy debates.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Radical Democratic Party</b></td>
+								<td><mark class="b">1940</mark></td>
+								<td>
+									Established by
+									<mark class="g">M.N. Roy</mark> (UP PCS
+									Mains 2007).
+								</td>
+							</tr>
+							<tr>
+								<td><b>Revolutionary Communist Party of India (RCPI)</b></td>
+								<td><mark class="b">1934</mark></td>
+								<td>
+									Founded by
+									<mark class="g">Saumendra Nath Tagore</mark>,
+									breaking away from the CPI (UP PCS Re-Exam
+									2015).
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Origins of the Left movement — driving factors</h3>
+						<ul>
+							<li>
+								<b>Development of Indian Industries:</b>
+								economic advancements prompted the rise of
+								new political ideas.
+							</li>
+							<li>
+								<b>Economic stress from World War I:</b> the
+								war exacerbated existing economic hardships.
+							</li>
+							<li>
+								<b>Success of the Bolshevik Revolution:</b>
+								inspired young nationalists to seek radical
+								solutions to India's socio-political
+								challenges.
+							</li>
+						</ul>
+						<h3>Key figures</h3>
+						<ul>
+							<li>
+								<mark class="g">M.N. Roy</mark> — pivotal
+								figure introducing communist ideas to India;
+								founded the CPI in 1920. Visited Russia on the
+								invitation of
+								<mark class="g">Lenin</mark> and joined the
+								<mark class="g">Communist International</mark>
+								(founded March 1919 by Lenin and the
+								Bolshevik Party of Russia) — the
+								<b>first Indian</b> to do so.
+								<mark class="b">17 October 1920</mark>: Roy,
+								along with
+								<mark class="g">Abani Mukherjee</mark>,
+								<mark class="g">Mohd. Ali</mark>,
+								<mark class="g">Mohd. Shafique</mark>,
+								<mark class="g">Evelyn Roy Trent</mark>,
+								<mark class="g">Rosa Fitingov</mark> and
+								<mark class="g">M.P.T. Acharya</mark>, founded
+								the Indian Communist Party at
+								<mark class="g">Tashkent</mark>.
+							</li>
+							<li>
+								<mark class="g">Jawaharlal Nehru</mark> and
+								<mark class="g">Subhash Chandra Bose</mark> —
+								influential leaders within Congress's left
+								wing, shaped by socialist thought.
+							</li>
+							<li>
+								<mark class="g">S.A. Dange</mark> — involved
+								in the Kanpur Bolshevik Conspiracy Case of
+								1924, contributing to the spread of communist
+								ideas.
+							</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>
+							Kanpur (1924) vs Meerut (1929) Conspiracy Cases
+						</caption>
+						<thead class="red">
+							<tr>
+								<th>Aspect</th>
+								<th>Kanpur Conspiracy Case</th>
+								<th>Meerut Conspiracy Case</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Year</b></td>
+								<td><mark class="b">1924</mark></td>
+								<td><mark class="b">1929–33</mark></td>
+							</tr>
+							<tr>
+								<td><b>Against</b></td>
+								<td>
+									Leaders of the
+									<mark class="y">Communist Movement</mark>
+									(UP PSC GIC 2010, UP PCS 2001).
+								</td>
+								<td>
+									Labour leaders and communist activists;
+									included
+									<mark class="b">three Englishmen</mark>
+									among the accused.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Accused</b></td>
+								<td>
+									<mark class="g">M.N. Roy</mark>,
+									<mark class="g">Muzaffar Ahmed</mark>,
+									<mark class="g">Shripad Amrit Dange</mark>,
+									<mark class="g">Shaukat Usmani</mark>,
+									<mark class="g">Ramcharan Lal Sharma</mark>,
+									<mark class="g">Singaravelu Chettiar</mark>,
+									<mark class="g">Ghulam Hussain</mark>,
+									<mark class="g">Nalini Gupta</mark>,
+									<mark class="g">Shamuddin Hassan</mark>,
+									<mark class="g">M.R.S. Velayndhun</mark>,
+									<mark class="g">Dr. Manilal</mark>,
+									<mark class="g">Sampurnanand</mark>,
+									<mark class="g">Satyabhakta</mark>.
+								</td>
+								<td>
+									<mark class="b">32 labour leaders</mark>
+									charged, <mark class="b">31 arrested</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Charge</b></td>
+								<td>
+									Conspiring "to deprive the Emperor of his
+									sovereignty over British India, by
+									complete separation of India from
+									imperialistic Britain through a violent
+									revolution."
+								</td>
+								<td>
+									Conspiring to organise a railway strike.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Outcome</b></td>
+								<td>Accused sentenced to rigorous imprisonment.</td>
+								<td>
+									Various sentences given, leading to
+									widespread protest and increasing British
+									concern over communist influence.
+								</td>
+							</tr>
+							<tr>
+								<td><b>International reaction</b></td>
+								<td>—</td>
+								<td>
+									Attracted worldwide publicity; drew
+									sympathetic comments from
+									<mark class="g">Albert Einstein</mark>,
+									<mark class="g">H.G. Wells</mark>,
+									<mark class="g">Harold Laski</mark> and
+									<mark class="g">(Franklin D.) Roosevelt</mark>
+									in favour of the convicts (UP PCS 2017).
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="ctx">
+						<span class="lbl">Context — the "revolutionary phase" of the trade-union movement</span>
+						The
+						<mark class="y">revolutionary phase of the Trade Union Movement</mark>
+						in India is dated
+						<mark class="b">1926–1939</mark> (48th–52nd BPSC
+						2008). Main leaders in this militant phase: M.N.
+						Roy, Muzaffar Ahmed, Shripad Amrit Dange, Shauqat
+						Usmani, etc. The Kanpur and Peshawar Conspiracy
+						Cases are also classified against leaders of the
+						Communist Movement, alongside Meerut.
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 8 ============ -->
+				<section
+					class="chapter"
+					id="ch8"
+					data-title="Revolutionary Underground: HRA → HSRA, Kakori to the Assembly Bombing"
+				>
+					<div class="chapter-head">
+						<div class="seal">8</div>
+						<h2>
+							Revolutionary Underground — HRA → HSRA, Kakori to
+							the Assembly Bombing
+						</h2>
+					</div>
+					<div class="chapter-sub">Punjab, UP &amp; Bihar, 1924–1931</div>
+
+					<div class="event">
+						<h3>Major influences driving revolutionary activity</h3>
+						<ul>
+							<li>
+								<b>Impact of the Russian Revolution (1917):</b>
+								the establishment of the Soviet state
+								inspired Indian revolutionaries, infusing
+								Marxist and socialist ideologies into their
+								struggles.
+							</li>
+							<li>
+								<b>Emergence of Communist Groups:</b> new
+								communist organisations promoted Marxism and
+								emphasised the role of the proletariat in
+								revolution.
+							</li>
+							<li>
+								<b>Role of publications:</b> journals such as
+								<i>Atmasakti</i>, <i>Sarathi</i>, and
+								<i>Bijoli</i>, along with banned literature
+								like
+								<i>Bandi Jiwan</i>
+								by <mark class="g">Sachin Sanyal</mark> and
+								<i>Pather Dabi</i>
+								by <mark class="g">Sharatchandra Chatterjee</mark>,
+								glorified revolutionary sacrifices and spread
+								socialist ideas.
+							</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>
+							HRA / HSRA and the Kakori–Assembly Bombing chain
+						</caption>
+						<thead class="red">
+							<tr>
+								<th>Case / Organisation (Year, Place)</th>
+								<th>Associated people &amp; description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<b>Hindustan Republican Association (HRA) /
+									Hindustan Socialist Republican Association (HSRA)</b>
+									<br />(1924, Punjab, United Provinces, Bihar)
+								</td>
+								<td>
+									Founded in
+									<mark class="g">Kanpur</mark> by
+									<mark class="g">Ramprasad Bismil</mark>,
+									<mark class="g">Jogesh Chandra Chatterjee</mark>,
+									and
+									<mark class="g">Sachin Sanyal</mark>. Aim:
+									overthrow the colonial government through
+									armed revolution and establish a
+									<mark class="y">Federal Republic of the United States of India</mark>.
+									Reorganised as
+									<mark class="y">HSRA</mark> in
+									<mark class="b">September 1928</mark>
+									under
+									<mark class="g">Chandrashekhar Azad</mark>,
+									reflecting an ideological shift toward
+									socialist ideas. Key participants:
+									<mark class="g">Bhagat Singh</mark>,
+									<mark class="g">Sukhdev</mark>,
+									<mark class="g">Bhagwaticharan Vohra</mark>
+									(Punjab), and
+									<mark class="g">Bejoy Kumar Sinha</mark>,
+									<mark class="g">Shiv Verma</mark>,
+									<mark class="g">Jaidev Kapur</mark> (United
+									Provinces).
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Kakori Robbery</b><br />(1925, Kakori,
+									near Lucknow)
+								</td>
+								<td>
+									HRA revolutionaries looted the
+									<mark class="g">8-Down train</mark> at
+									Kakori railway station near Lucknow. Led
+									to arrest of several revolutionaries; key
+									figures
+									<mark class="r">Bismil, Ashfaqullah, Roshan Singh, and Rajendra Lahiri</mark>
+									were <b>executed</b> (65th BPSC).
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Saunders' Murder</b><br />(December
+									1928, Lahore)
+								</td>
+								<td>
+									<mark class="g">Bhagat Singh</mark>,
+									<mark class="g">Chandrashekhar Azad</mark>,
+									and
+									<mark class="g">Rajguru</mark> shot dead
+									<mark class="g">Saunders</mark>, the
+									police official responsible for the
+									lathi-charge in Lahore that killed Lala
+									Lajpat Rai — retaliation for his death
+									during the anti-Simon-Commission protest.
+									Bhagat Singh and Rajguru
+									<mark class="r">mistakenly</mark>
+									assassinated
+									<mark class="g">John P. Saunders</mark>
+									instead of their intended target,
+									<mark class="g">James Scott</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Bombing of Central Legislative Assembly</b>
+									<br />(April 1929, Delhi) (70th BPSC
+									Re-exam)
+								</td>
+								<td>
+									<mark class="g">Bhagat Singh</mark> and
+									<mark class="g">Batukeshwar Dutt</mark>
+									bombed the Central Legislative Assembly
+									in protest against the
+									<mark class="y">Public Safety Bill</mark>
+									and the
+									<mark class="y">Trade Disputes Bill</mark>
+									on
+									<mark class="b">8 April 1929</mark>. The
+									bombing was intended as a statement, not
+									to cause harm; the duo aimed to use the
+									trial to spread revolutionary ideology.
+									<b>Note:</b> Bhagat Singh was born
+									<mark class="b">26 September 1907</mark>,
+									so at the time of the bombing he was
+									<mark class="b">a little over 21 years old</mark>
+									(64th BPSC).
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Lahore Conspiracy Case</b><br />(1929–30)
+								</td>
+								<td>
+									<mark class="g">Bhagat Singh</mark>,
+									<mark class="g">Sukhdev</mark>, and
+									<mark class="g">Rajguru</mark> tried here.
+									Imprisoned, they protested poor conditions
+									through hunger strikes, demanding
+									political-prisoner status.
+									<mark class="g">Jatin Das</mark> became the
+									first martyr, arrested
+									<mark class="b">14 June 1929</mark> and
+									dying on
+									<mark class="b">13 September 1929</mark>
+									after a 63/64-day hunger strike.
+									<mark class="g">Chandrashekhar Azad</mark>
+									died in a police encounter in Allahabad
+									(<mark class="b">February 1931</mark>).
+									On
+									<mark class="b">23 March 1931</mark>
+									(67th BPSC Re-exam),
+									<mark class="g">Bhagat Singh, Sukhdev, and Rajguru</mark>
+									were executed by hanging.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="factbox">
+						<span class="lbl">Fact Box · Contribution of Bhagat Singh</span>
+						<dl>
+							<dt>Born</dt>
+							<dd><mark class="b">1907</mark> — well-read political leader.</dd>
+							<dt>Ideology</dt>
+							<dd>
+								Shifted from terrorism to
+								<mark class="y">Marxism</mark>, focused on
+								abolition of exploitation (per the
+								<mark class="g">HRA Manifesto, 1925</mark>).
+							</dd>
+							<dt>Organisations</dt>
+							<dd>
+								Founded
+								<mark class="g">Punjab Naujawan Bharat Sabha</mark>
+								(<mark class="b">1926</mark>) — engaged
+								youth/workers, promoted secularism and
+								religious tolerance. Also part of the
+								<mark class="g">Lahore Students Union</mark> —
+								legal political engagement for students.
+							</dd>
+							<dt>Politics</dt>
+							<dd>
+								Opposed communalism; advocated national unity
+								and separation of religion from politics.
+							</dd>
+							<dt>Writing</dt>
+							<dd>
+								<mark class="y">"Why I Am an Atheist"</mark> —
+								rejected religion and superstition.
+							</dd>
+						</dl>
+					</div>
+
+					<div class="trap">
+						<span class="lbl">MCQ Trap · which "Bismil" wrote the famous line</span>
+						The couplet
+						<mark class="y">"Sarfaroshi ki tamanna ab hamare dil me hai..."</mark>
+						was written by
+						<mark class="g">Bismil Azimabadi</mark> (born Saiyad
+						Shah Muhammad Hasan) —
+						<mark class="r">not</mark>
+						<mark class="g">Ram Prasad Bismil</mark> himself,
+						despite the shared pen-name "Bismil," a very common
+						mix-up; published 1922 in the magazine
+						<i>Sabah</i>.
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 9 ============ -->
+				<section
+					class="chapter"
+					id="ch9"
+					data-title="Other Conspiracy Cases &amp; Revolutionary Bengal"
+				>
+					<div class="chapter-head">
+						<div class="seal">9</div>
+						<h2>Other Conspiracy Cases &amp; Revolutionary Bengal</h2>
+					</div>
+					<div class="chapter-sub">
+						Ghadar to Chittagong, and the women of the underground
+					</div>
+
+					<table>
+						<caption>
+							Other revolutionary conspiracy cases
+						</caption>
+						<thead class="purple">
+							<tr>
+								<th>Case (Year, Place)</th>
+								<th>Details</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Ghadar Conspiracy</b><br />(1915, Worldwide/India)</td>
+								<td>
+									Led by
+									<mark class="g">Har Dayal</mark>,
+									<mark class="g">Raghubir Singh</mark> and
+									others. Conspired to initiate an armed
+									revolt. Many conspirators executed or
+									imprisoned. Mobilised the Indian diaspora,
+									underscoring the international aspect of
+									the freedom movement.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Berar Conspiracy Case</b><br />(1916, Berar)</td>
+								<td>
+									<mark class="g">R.S. Nimbkar</mark> and
+									others involved in inciting an armed
+									rebellion. Accused received various
+									sentences, broadening the reach of the
+									freedom movement.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Bombay Conspiracy Case</b><br />(1917, Bombay)</td>
+								<td>
+									Key figures:
+									<mark class="g">V.N. Chatterjee</mark>,
+									<mark class="g">Joseph Baptista</mark> and
+									others. Involved sedition and incitement
+									to warfare. Imprisonment led to increased
+									urban discontent, highlighting the role
+									of educated Indians in the freedom
+									struggle.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Peshawar Conspiracy Cases</b><br />(1922–1927, Peshawar)</td>
+								<td>
+									Various Pashtun leaders involved in
+									anti-British activities/conspiracies.
+									Harsh sentences (including transportation
+									for life) galvanised support for
+									non-cooperation, especially in the
+									North-West Frontier Province.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Chittagong Armoury Raid</b><br />(April 1930, Bengal)</td>
+								<td>
+									Organised by
+									<mark class="g">Surya Sen</mark> with
+									associates
+									<mark class="g">Anant Singh</mark>,
+									<mark class="g">Ganesh Ghosh</mark>, and
+									<mark class="g">Lokenath Baul</mark>
+									(60th–62nd BPSC). Aimed to show it was
+									possible to challenge the armed might of
+									the British Empire. Did not achieve
+									immediate goals but became a powerful
+									symbol of resistance, demonstrating a
+									commitment to social justice alongside
+									political freedom.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Murder of Michael O'Dwyer</b><br />
+									(13 March 1940, Caxton Hall, London)
+									(60th–62nd BPSC)
+								</td>
+								<td>
+									<mark class="g">Udham Singh</mark>
+									(67th BPSC Re-exam) assassinated
+									<mark class="g">Michael O'Dwyer</mark>,
+									former Lieutenant Governor of Punjab, at
+									Caxton Hall in London. O'Dwyer was
+									responsible for the
+									<mark class="g">Jallianwala Bagh massacre (1919)</mark>,
+									which Udham Singh had survived.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Revolutionary Activities in Bengal (1920s–1930s)</h3>
+						<ul>
+							<li>
+								Revolutionary groups reorganised underground
+								networks while some operated under Congress,
+								gaining access to the masses.
+							</li>
+							<li>
+								Collaboration with
+								<mark class="g">C.R. Das</mark> strengthened
+								the Swarajist agenda.
+							</li>
+							<li>
+								Post-Das's death (
+								<mark class="b">1925</mark>), Bengal Congress
+								split into the
+								<mark class="g">J.M. Sengupta</mark> faction
+								(backed by
+								<mark class="g">Anushilan</mark>) and the
+								<mark class="g">Subhash Bose</mark> faction
+								(supported by
+								<mark class="g">Yugantar</mark>).
+							</li>
+							<li>
+								<b>Role of Surya Sen:</b> also a poet and
+								admirer of Tagore and Qazi Nazrul Islam;
+								seized Chittagong's main armouries; disrupted
+								railway, telephone and telegraph systems, and
+								proclaimed a provisional revolutionary
+								government; execution of the raid was
+								conducted by
+								<mark class="b">65 members</mark> under the
+								<mark class="g">Indian Republican Army – Chittagong Branch</mark>;
+								Surya Sen was arrested
+								<mark class="b">16 February 1933</mark> and
+								hanged
+								<mark class="b">12 January 1934</mark>.
+							</li>
+							<li>
+								<b>Inclusivity:</b> the movement abandoned
+								Hindu rituals, facilitating Muslim
+								participation (
+								<mark class="g">Satar, Mir Ahmed, Fakir Ahmed Mian, Tunu Mian</mark>).
+							</li>
+							<li>
+								<b>Drawbacks:</b> retained some conservative
+								elements and failed to develop broader
+								socio-economic goals; the Swarajists did not
+								support the Muslim peasantry against
+								zamindars in Bengal.
+							</li>
+							<li>
+								<b>Group action:</b> targeted colonial
+								structures rather than individuals, inspiring
+								youth and demoralising the British
+								bureaucracy.
+							</li>
+						</ul>
+					</div>
+
+					<div class="factbox">
+						<span class="lbl">Fact Box · Women of the Bengal revolutionary underground</span>
+						<dl>
+							<dt><mark class="g">Pritilata Waddedar</mark></dt>
+							<dd>Died in action during a raid.</dd>
+							<dt><mark class="g">Kalpana Dutt</mark></dt>
+							<dd>Arrested, tried with Surya Sen, sentenced to life.</dd>
+							<dt><mark class="g">Santi Ghosh &amp; Suniti Chandheri</mark></dt>
+							<dd>Assassinated a district magistrate (<mark class="b">1931</mark>).</dd>
+							<dt><mark class="g">Bina Das</mark></dt>
+							<dd>
+								Attempted to assassinate the Bengal governor
+								(Stanley Jackson) in
+								<mark class="b">February 1932</mark>.
+							</dd>
+						</dl>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 10 ============ -->
+				<section
+					class="chapter"
+					id="ch10"
+					data-title="Trade Unionism: Madras, Ahmedabad &amp; the AITUC"
+				>
+					<div class="chapter-head">
+						<div class="seal">10</div>
+						<h2>Growth of Trade Unionism</h2>
+					</div>
+					<div class="chapter-sub">
+						Madras Labour Union to the AITUC split
+					</div>
+
+					<table>
+						<caption>
+							Early trade unions
+						</caption>
+						<thead class="blue">
+							<tr>
+								<th>Union</th>
+								<th>Founded</th>
+								<th>Detail</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Madras Labour Union</b></td>
+								<td><mark class="b">1918</mark></td>
+								<td>
+									Under
+									<mark class="g">B.P. Wadia</mark> and
+									<mark class="g">V. Kalyanasundaram</mark>
+									— India's
+									<b>first modern labour union</b> (UP PCS
+									Mains 2007). Members included
+									<mark class="g">Buckingham and Carnatic Mills</mark>
+									labourers. Soon after, two unions formed
+									in
+									<mark class="g">Bombay</mark>, one in
+									<mark class="g">Calcutta</mark> (the
+									<mark class="g">Indian Seamen's Union</mark>),
+									and four more in Madras.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Ahmedabad Textile Labour Association</b></td>
+								<td><mark class="b">25 February 1920</mark></td>
+								<td>
+									Established by
+									<mark class="g">Anasuya Sarabhai</mark>
+									(became its President) and
+									<mark class="g">Mahatma Gandhi</mark>
+									(IAS Pre 2009), following the
+									<mark class="b">1918 Ahmedabad mill strike</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td><b>All India Trade Union Congress (AITUC)</b></td>
+								<td><mark class="b">31 October 1920</mark>, Bombay</td>
+								<td>
+									Founded by
+									<mark class="g">N.M. Joshi</mark>.
+									<mark class="g">Lala Lajpat Rai</mark> —
+									first President;
+									<mark class="g">Joseph Baptista</mark> —
+									Vice President;
+									<mark class="g">Dewan/Diwan Chaman Lal</mark>
+									— General Secretary (all founding
+									members). Motive: the establishment of
+									the
+									<mark class="g">International Labour Organization</mark>
+									in 1919 prompted Indian labourers to
+									organise as labour unions.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Notable strikes and agitations</h3>
+						<ul>
+							<li>
+								<b>Kharagpur Railway Workshops:</b> early
+								strike against poor working conditions and
+								unfair wages.
+							</li>
+							<li>
+								<b>Tata Iron and Steel Works:</b> workers
+								protested discriminatory wages and working
+								conditions.
+							</li>
+							<li>
+								<b>Bombay Textile Mills:</b> major unrest,
+								demanding better wages, working hours, and
+								safe environments.
+							</li>
+							<li>
+								<b>Milestone — May Day:</b> the first May Day
+								was celebrated in
+								<mark class="g">Madras in 1923</mark>,
+								symbolising international worker solidarity.
+							</li>
+						</ul>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl">Context — the 1929 AITUC split at Nagpur</span>
+						AITUC's first split occurred in
+						<mark class="b">1929</mark> at
+						<mark class="g">Nagpur</mark>, with
+						<mark class="g">Jawaharlal Nehru</mark> presiding at
+						that session — the session displayed a "trial of
+						strength" between leftists and rightists/moderates.
+						The moderate section, under
+						<mark class="g">N.M. Joshi</mark>,
+						<mark class="g">V.V. Giri</mark> and
+						<mark class="g">B. Shiva Rao</mark>, broke off to
+						form the
+						<mark class="y">Indian Trade Union Federation</mark>
+						— <mark class="r">not</mark> founded by S.A. Dange,
+						a common MCQ trap (Uttarakhand PCS 2025).
+					</div>
+
+					<div class="event">
+						<h3>Workers and Peasants Party (WPP)</h3>
+						<ul>
+							<li>
+								<b>Labour Swaraj Party</b> formed in Bengal in
+								<mark class="b">1925</mark> under Congress,
+								transformed into the
+								<mark class="y">Workers and Peasants Party of Bengal</mark>
+								in
+								<mark class="b">1926</mark>.
+							</li>
+							<li>
+								<mark class="b">1927</mark>:
+								<mark class="y">Workers and Peasants Party of Bombay Province</mark>
+								formed from the Congress Labour Party (which
+								had emerged within Congress in Bombay
+								Province in 1926).
+							</li>
+							<li>
+								<mark class="b">1928</mark>: Workers and
+								Peasants Party formed in the United
+								Provinces, and in Punjab under the name
+								<mark class="g">Kirti Kisan Party</mark>.
+							</li>
+							<li>
+								<mark class="b">December 1928</mark>: at a
+								conference of these provincial parties held
+								in Calcutta, the
+								<mark class="y">All India Workers and Peasants Party</mark>
+								was formed as a pan-India organisation (
+								<mark class="r">not</mark> in 1927, a common
+								trap — UP PCS 2024).
+							</li>
+							<li>
+								<b>Purpose:</b> to work within Congress to
+								make it a more revolution-inclined party and
+								an organisation of the common people.
+							</li>
+						</ul>
+					</div>
+
+					<div class="trap">
+						<span class="lbl">MCQ Trap · Radical Democratic Party &amp; RCPI founders</span>
+						<ul>
+							<li>
+								<mark class="g">M.N. Roy</mark> founded the
+								<mark class="y">Radical Democratic Party</mark>
+								in 1940 (
+								<mark class="r">not</mark> Somendranath Tagore
+								or Shachindranath Sanyal) — note "Bandi
+								Jeevan" was written by
+								<mark class="g">Shachindranath Sanyal</mark>,
+								a separate fact often confused with the RDP
+								founder.
+							</li>
+							<li>
+								<mark class="g">Saumyandranath Tagore</mark>
+								founded the
+								<mark class="y">Revolutionary Communist Party of India</mark>
+								in 1934, breaking away from the CPI.
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 11 ============ -->
+				<section
+					class="chapter"
+					id="ch11"
+					data-title="Caste Movements &amp; Praja Mandal Movements"
+				>
+					<div class="chapter-head">
+						<div class="seal">11</div>
+						<h2>Caste Movements &amp; Praja Mandal (State People's) Movements</h2>
+					</div>
+					<div class="chapter-sub">
+						Social reform meets princely-state politics
+					</div>
+
+					<table>
+						<caption>
+							Caste movements of the early 20th century
+						</caption>
+						<thead class="green">
+							<tr>
+								<th>Movement</th>
+								<th>Leader / Founder</th>
+								<th>Focus</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Self-Respect Movement</b> (1925)</td>
+								<td><mark class="g">E.V. Ramaswamy Naicker (Periyar)</mark></td>
+								<td>
+									Non-Brahmin and Dravidian equality,
+									challenging Brahmin dominance and
+									irrational customs.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Satyashodhak Samaj</b></td>
+								<td><mark class="g">Jyotirao Phule</mark> (founded in the 19th century)</td>
+								<td>Promoted lower caste rights and education.</td>
+							</tr>
+							<tr>
+								<td><b>Justice Party</b> (1916)</td>
+								<td>Non-Brahmin elites, Madras Presidency</td>
+								<td>Sought political and job reservations.</td>
+							</tr>
+							<tr>
+								<td><b>All India Non-Brahmin Conference</b></td>
+								<td>—</td>
+								<td>Demanded communal representation for non-Brahmins.</td>
+							</tr>
+							<tr>
+								<td><b>Mahars Movement</b></td>
+								<td><mark class="g">B.R. Ambedkar</mark></td>
+								<td>Focused on uplifting the Mahar community.</td>
+							</tr>
+							<tr>
+								<td><b>Radical Ezhavas Movement</b></td>
+								<td><mark class="g">K. Aiyappan</mark></td>
+								<td>Aimed at improving Ezhava community status.</td>
+							</tr>
+							<tr>
+								<td><b>Yadav's Movement</b></td>
+								<td>—</td>
+								<td>Focused on improving the Yadav community's status in Bihar.</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>State People's Conference / Praja Mandal Movements (68th BPSC)</h3>
+						<ul>
+							<li>
+								Emerged in the early 20th century as a
+								significant aspect of the national movement
+								within the princely states.
+							</li>
+							<li>
+								Following the Non-Cooperation Movement of
+								1920, facilitated establishment of people's
+								organisations advocating for democratic
+								rights and addressing grievances of subjects
+								under feudal rule.
+							</li>
+							<li>
+								<b>Anti-Feudal and Anti-Colonial:</b> aimed
+								to combat both feudal princes and the British
+								administration, demanding democratic rights
+								for subjects of princely states.
+							</li>
+							<li>
+								<b>Focus:</b> the primary demand was
+								establishment of democratic rights and
+								governance.
+							</li>
+						</ul>
+						<h3>Key organisations</h3>
+						<ul>
+							<li>
+								<mark class="g">Hitvardhak Sabha</mark> —
+								founded
+								<mark class="b">May 1921</mark> in Poona;
+								addressed issues facing the people of the
+								southern princely states.
+							</li>
+							<li>
+								<mark class="g">Akhil Bhor Sansthan Praja Sabha</mark>
+								— founded
+								<mark class="b">November 1921</mark> by
+								<mark class="g">Wamanrao Patwardhan</mark> in
+								the Bhor region; tackled local problems
+								affecting the Bhor populace.
+							</li>
+							<li>
+								<mark class="g">All India Association of the People's Council</mark>
+								— the Bombay session in
+								<mark class="b">1927</mark> transformed the
+								princely states' national movement into a
+								nationwide cause, seeking responsible
+								governance and rights for citizens of
+								princely states.
+							</li>
+							<li>
+								<b>Congress's role:</b> INC supported the
+								movement, endorsing its demands during the
+								Madras Session and integrating it with the
+								national struggle against British rule.
+							</li>
+						</ul>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl">Context — Congress's contribution &amp; later development</span>
+						The Congress Party's policies and programmes,
+						particularly those of the Gandhian Movement,
+						boosted the Praja Mandal movement. In
+						<mark class="g">Orissa</mark>, Congress leaders
+						organised a State People's Conference in
+						<mark class="b">1937</mark> to address conditions in
+						princely states, which was reconstituted in
+						<mark class="b">1938</mark> under
+						<mark class="g">H.K. Mahatab</mark>. The
+						establishment of a Congress ministry in Orissa in
+						<mark class="b">July 1937</mark> inspired further
+						activism against despotic rulers.
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 12 ============ -->
+				<section
+					class="chapter"
+					id="ch12"
+					data-title="Peasant Movements &amp; the Kisan Sabha"
+				>
+					<div class="chapter-head">
+						<div class="seal">12</div>
+						<h2>Peasant Movements &amp; the Kisan Sabha</h2>
+					</div>
+					<div class="chapter-sub">
+						From Bijolia (1897) to Bhoodan (1951)
+					</div>
+
+					<table>
+						<caption>
+							Major peasant movements — chronological
+						</caption>
+						<thead class="blue">
+							<tr>
+								<th>Movement</th>
+								<th>Period / Place</th>
+								<th>Leadership &amp; details</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Bijolia Movement</b></td>
+								<td>
+									<mark class="b">1897</mark> onward, Mewar
+									(Rajasthan) — ~44 years, the
+									<mark class="y">first peasant movement of India</mark>
+									(R.A.S./R.T.S. 1992).
+								</td>
+								<td>
+									First phase led by
+									<mark class="g">Sadhu Sitaram Das</mark>
+									(from
+									<mark class="b">1913</mark>); second phase
+									by
+									<mark class="g">Vijay Singh Pathik</mark>
+									(from
+									<mark class="b">1915</mark>), who organised
+									farmers against excessive taxes imposed by
+									the rulers. Newspapers
+									<i>Prayag's Abhyudaya</i> and Calcutta's
+									<i>Bharat Mitra</i> regularly published
+									news on it (Rajasthan PCS 2024) —
+									<mark class="r">it is not true</mark> that
+									Pathik went to meet Gandhi to inform him
+									of the movement.
+								</td>
+							</tr>
+							<tr>
+								<td><b>UP / Oudh Kisan Sabha</b></td>
+								<td>
+									UP Kisan Sabha:
+									<mark class="b">February 1918</mark>.
+									Oudh Kisan Sabha: <mark class="b">1920</mark>.
+								</td>
+								<td>
+									Workers of the
+									<mark class="g">Home Rule League</mark>
+									were active in Awadh and organised
+									peasants. UP Kisan Sabha formed by
+									<mark class="g">Indra Narayan Dwivedi</mark>
+									and
+									<mark class="g">Gauri Shankar Mishra</mark>,
+									with support of
+									<mark class="g">Madan Mohan Malaviya</mark>
+									(
+									<mark class="r">not</mark> Jawaharlal
+									Nehru — IAS 2005). A huge number of
+									farmers from UP participated in the 1918
+									Delhi Session of Congress. End of 1919:
+									<mark class="y">'Nai-Dhobi Bandh'</mark>
+									social boycott started in the
+									<mark class="g">Pratapgarh</mark>
+									district of Oudh against exploiting
+									landlords (39th BPSC 1994) — led initially
+									by
+									<mark class="g">Jhinguri Singh</mark> and
+									<mark class="g">Durgapal (Singh)</mark>;
+									<mark class="g">Baba Ramchandra</mark>
+									then emerged (mid-1920) as a peasants'
+									leader in
+									<mark class="g">Awadh/Oudh</mark>, forming
+									the Oudh Kisan Sabha in 1920. Baba
+									Ramchandra was a
+									<mark class="g">Sanyasi</mark> who had
+									earlier been an indentured labourer in
+									<mark class="g">Fiji</mark>, carrying a
+									copy of the Tulsidas
+									<i>Ramayana</i> to recite verses to rural
+									audiences (68th BPSC 2022).
+								</td>
+							</tr>
+							<tr>
+								<td><b>Eka Movement</b></td>
+								<td>
+									<mark class="b">1921–22</mark>, Hardoi,
+									Barabanki, Bahraich, Sitapur (UP).
+								</td>
+								<td>
+									Grassroots leadership by
+									<mark class="g">Madari Pasi</mark> (lower
+									caste) and other low-caste leaders and
+									small Zamindars. Issues: rent
+									<mark class="b">50% higher</mark> than
+									recorded rates; oppression by Thikedars
+									collecting revenue; practice of
+									share-rents. Aim:
+									<mark class="y">transformation of rent into cash</mark>
+									(39th BPSC 1994) — peasants did not
+									refuse to pay rent, but insisted on
+									paying in cash due to high inflation.
+									Symbolic ritual vows: pay only recorded
+									rent, but on time; not leave when
+									evicted; refuse forced labour; give no
+									help to criminals; abide by Panchayat
+									decisions. Ended by
+									<mark class="b">March 1922</mark> due to
+									severe government repression.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Bardoli Satyagraha</b></td>
+								<td>
+									<mark class="b">1928</mark>, Bardoli
+									taluka, Surat district (Gujarat).
+								</td>
+								<td>
+									Led by
+									<mark class="g">Vallabhbhai Patel</mark>
+									(sustained campaign since 1922 had been
+									run by Gandhi's followers, the
+									<mark class="g">Mehta brothers</mark>).
+									With its success, the
+									<b>women of Bardoli</b> gave Patel the
+									title
+									<mark class="y">'Sardar'</mark> (on behalf
+									of the women, conferred by Gandhi).
+								</td>
+							</tr>
+							<tr>
+								<td><b>Bihar Provincial Kisan Sabha (BPKS) / AIKS</b></td>
+								<td>
+									BPKS: <mark class="b">1929</mark>.
+									All India Kisan Congress:
+									<mark class="b">11 April 1936</mark>,
+									Lucknow.
+								</td>
+								<td>
+									Founded by
+									<mark class="g">Swami Sahajanand Saraswati</mark>
+									(also called
+									<mark class="g">'Kisan-Pran'</mark>);
+									programme aimed at eradication of the
+									Zamindari system and granting ownership
+									rights to farmers. Sahajanand became
+									first President of the All India Kisan
+									Congress;
+									<mark class="g">N.G. Ranga</mark> first
+									General Secretary. Later renamed the
+									<mark class="y">All India Kisan Sabha (AIKS)</mark>;
+									held its session alongside the Congress
+									session at Faizpur, chaired by N.G.
+									Ranga. Sahajanand helped by
+									<mark class="g">Karyanand Sharma</mark>,
+									<mark class="g">Rahul Sankrityayan</mark>,
+									<mark class="g">Panchanan Sharma</mark>,
+									<mark class="g">Yadunandan Sharma</mark>
+									and other communist leaders at village
+									level.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Tebhaga Movement</b></td>
+								<td>
+									<mark class="b">September–November 1946</mark>,
+									North Bengal.
+								</td>
+								<td>
+									Bengal Provincial Kisan Council decided in
+									September 1946 to launch it for the
+									harvest season of November 1946.
+									Sharecroppers (
+									<mark class="g">bargadars</mark>) demanded
+									the Zamindars' share be reduced from
+									one-half to
+									<mark class="y">one-third</mark> of
+									produce, with two-thirds going to the
+									sharecropper — implementing the
+									<mark class="g">Flood Commission's</mark>
+									recommendation; the
+									<mark class="g">Bargadari Act</mark> was
+									passed as a result. Led by the
+									<mark class="g">Kisan Sabha</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Bhoodan Movement</b></td>
+								<td>
+									<mark class="b">18 April 1951</mark>,
+									Pochampalli / Bhudan Pochampally (now
+									Yadadri Bhuvanagiri district, Telangana —
+									carved from Nalgonda).
+								</td>
+								<td>
+									Started by
+									<mark class="g">Acharya Vinoba Bhave</mark>
+									in relation to a
+									<mark class="g">Sarvodaya conference</mark>;
+									the district was then a centre of
+									communist activities. Zamindar
+									<mark class="g">Ramachandra Reddy</mark>
+									donated
+									<mark class="b">100 acres</mark> of land
+									to
+									<mark class="b">40 Harijan families</mark>.
+									In October 1951, Vinoba set a target of
+									<mark class="b">50 million acres by 1957</mark>;
+									the movement continued beyond 1957 but
+									began to wane later.
+									<mark class="g">Jaya Prakash Narayan</mark>
+									left active politics and joined the
+									Bhoodan Movement in
+									<mark class="b">1954</mark>. Bhoodan was
+									most successful in
+									<mark class="g">Orissa</mark>.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="factbox">
+						<span class="lbl">Fact Box · Match List — leaders and their movements/areas</span>
+						<dl>
+							<dt>Bardoli Satyagraha</dt>
+							<dd><mark class="g">Sardar Vallabhbhai Patel</mark></dd>
+							<dt>Bhartiya Kisan Vidyalaya</dt>
+							<dd><mark class="g">N.G. Ranga</mark></dd>
+							<dt>Bengal Praja Party (Krishak Praja Party)</dt>
+							<dd>Founded 1929 by <mark class="g">Fazlul Haq</mark></dd>
+							<dt>Bakashat Agitation (Bihar)</dt>
+							<dd><mark class="g">Swami Shraddhananda Saraswati</mark></dd>
+							<dt>Sahajanand Saraswati — Bihar</dt>
+							<dd>Peasant/Farmers Movement</dd>
+							<dt>Khudai Khidmatgars — NWFP</dt>
+							<dd>Civil Disobedience Movement, under Khan Abdul Ghaffar Khan (Lalkurti Organisation)</dd>
+							<dt>Swami Ramanand — Hyderabad</dt>
+							<dd>1930s peasant movement leadership</dd>
+							<dt>Abdul Hamid Khan — Southern Assam</dt>
+							<dd>1930s peasant movement leadership</dd>
+						</dl>
+					</div>
+
+					<div class="event">
+						<h3>Sahajanand Saraswati — publications &amp; associations</h3>
+						<ul>
+							<li>
+								Published
+								<mark class="y">"Lok Sangraha"</mark>, a
+								newspaper highlighting peasant hardships
+								(70th BPSC 2024).
+							</li>
+							<li>
+								Ran the Hindi weekly
+								<mark class="y">"Hunkar"</mark> from Patna
+								(63rd BPSC 2017) — Sahajanand (1889–1950) was
+								a Sanyasi, prominent farmers'-rights
+								activist, Indian freedom fighter, and
+								forceful writer.
+							</li>
+							<li>
+								Just before his death, formed the
+								<mark class="g">All India United Kisan Sabha</mark>
+								with the demand for
+								<mark class="y">'nationalization of land and waterways'</mark>
+								and all sources of energy/wealth (56th–59th
+								BPSC 2015).
+							</li>
+							<li>
+								<mark class="g">Jawaharlal Nehru</mark>
+								addressed and participated in the first
+								meeting of the AIKS (April 1936, Lucknow),
+								where Sahajanand was chosen President and
+								N.G. Ranga secretary (UP PCS Mains 2017).
+							</li>
+							<li>
+								<mark class="g">Rajendra Prasad</mark> was
+								associated with the Kisan Movement in Bihar
+								(44th BPSC 2000) — he later became President
+								of the Constituent Assembly and independent
+								India's first President.
+							</li>
+						</ul>
+					</div>
+
+					<div class="trap">
+						<span class="lbl">MCQ Trap · easily mixed-up Kisan Sabha facts</span>
+						<ul>
+							<li>
+								First All India Kisan Maha Sabha was formed at
+								<mark class="g">Lucknow</mark>, not Allahabad,
+								Kolkata or Patna.
+							</li>
+							<li>
+								The
+								<b>Akhil Bhartiya Kisan Congress</b> was
+								founded in
+								<mark class="b">1936</mark>, not 1939/1942/1945.
+							</li>
+							<li>
+								<b>General Secretary</b> of the All India
+								Kisan Congress:
+								<mark class="g">N.G. Ranga</mark> —
+								<mark class="r">not</mark> E.M.S.
+								Namboodiripad or Acharya Narendra Dev, both
+								common distractors.
+							</li>
+							<li>
+								Tebhaga demanded reducing the landlord's
+								share from
+								<b>one-half to one-third</b> —
+								<mark class="r">not</mark> full ownership
+								transfer, abolition of zamindari, or
+								debt-writing-off (those are separate,
+								unrelated demands from other movements).
+							</li>
+							<li>
+								Bhoodan Movement began in
+								<mark class="g">Andhra Pradesh</mark>
+								(present-day Telangana) — the specific
+								starting village is
+								<mark class="g">Pochampalli</mark>, not
+								Udaygiri, Raipur, or Venkatagiri.
+							</li>
+						</ul>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl">Context — Vinoba Bhave's own trajectory</span>
+						<mark class="g">Vinoba Bhave</mark> was one of the
+						great spiritual leaders and reformers of Modern
+						India. He was the
+						<b>first person</b> to be elected for
+						<mark class="y">Individual Satyagraha</mark> in
+						1940. After Independence, he organised the
+						<mark class="g">Sarvodaya Samaj</mark> to bring
+						about non-violent social transformation through
+						land reforms, persuading large landlords to gift at
+						least one-sixth of their land — leading into the
+						Bhoodan Movement, whose main objective was to
+						distribute land to landless farmers.
+					</div>
+				</section>
+			</div>
+			<!-- /chapters -->
+
+			<!-- ============ MASTER TABLE ============ -->
+			<section class="master-section" id="master-table">
+				<div class="master-inner">
+					<div class="master-eyebrow">BPSC Prelims · Final Revision</div>
+					<h2>Master Table — Important Dates (1897–1951)</h2>
+					<p class="master-sub">Chronological date bank collected from this dossier, prioritising dates and events useful for Prelims revision.</p>
+					<div class="master-table-wrap">
+						<table class="master-table">
+							<thead>
+								<tr>
+									<th>Date</th>
+									<th>Event</th>
+									<th>Why it matters</th>
+								</tr>
+							</thead>
+							<tbody>
+<tr><td>1897</td><td>Bijolia Movement begins</td><td>First peasant movement of India, Mewar (Rajasthan); lasted ~44 years.</td></tr>
+<tr><td>1913</td><td>Sadhu Sitaram Das leads Bijolia (Phase I)</td><td>First phase of the longest-running peasant movement.</td></tr>
+<tr><td>1915</td><td>Ghadar Conspiracy</td><td>Led by Har Dayal, Raghubir Singh and others; international mobilisation of the diaspora.</td></tr>
+<tr><td>1915</td><td>Vijay Singh Pathik leads Bijolia (Phase II)</td><td>Organised Mewar farmers against excessive taxation.</td></tr>
+<tr><td>1916</td><td>Berar Conspiracy Case</td><td>R.S. Nimbkar and others; incitement of armed rebellion.</td></tr>
+<tr><td>1916</td><td>Justice Party founded, Madras Presidency</td><td>Non-Brahmin elite movement seeking political and job reservations.</td></tr>
+<tr><td>1917</td><td>Bombay Conspiracy Case</td><td>V.N. Chatterjee, Joseph Baptista and others tried for sedition.</td></tr>
+<tr><td>1918</td><td>Madras Labour Union founded</td><td>India's first modern labour union, under B.P. Wadia and V. Kalyanasundaram.</td></tr>
+<tr><td>1918</td><td>Ahmedabad Mill Strike</td><td>Background to the Ahmedabad Textile Labour Association.</td></tr>
+<tr><td>February 1918</td><td>UP Kisan Sabha formed</td><td>By Indra Narayan Dwivedi and Gauri Shankar Mishra, supported by Madan Mohan Malaviya.</td></tr>
+<tr><td>1919</td><td>Communist International founded</td><td>By Vladimir Lenin and the Bolshevik Party of Russia at Moscow.</td></tr>
+<tr><td>End 1919</td><td>Nai-Dhobi Bandh, Pratapgarh</td><td>Social boycott of exploiting landlords; early sign of grassroots peasant activity in Oudh.</td></tr>
+<tr><td>25 February 1920</td><td>Ahmedabad Textile Labour Association established</td><td>Founded by Anasuya Sarabhai and Mahatma Gandhi.</td></tr>
+<tr><td>1920</td><td>Communist Party of India founded</td><td>By M.N. Roy; formally established at Kanpur in 1925.</td></tr>
+<tr><td>Mid-1920</td><td>Baba Ramchandra emerges as Oudh peasant leader</td><td>Organised the peasants of Awadh/Oudh.</td></tr>
+<tr><td>1920</td><td>Oudh Kisan Sabha established</td><td>Formed through Baba Ramchandra's efforts.</td></tr>
+<tr><td>31 October 1920</td><td>AITUC founded, Bombay</td><td>By N.M. Joshi; Lala Lajpat Rai first President, Joseph Baptista VP, Chaman Lal General Secretary.</td></tr>
+<tr><td>17 October 1920</td><td>Indian Communist Party founded at Tashkent</td><td>By M.N. Roy with Abani Mukherjee and others.</td></tr>
+<tr><td>1921–22</td><td>Eka Movement, UP</td><td>Led by Madari Pasi; demanded rent be paid in cash; ended by repression, March 1922.</td></tr>
+<tr><td>May 1921</td><td>Hitvardhak Sabha founded, Poona</td><td>Early Praja Mandal-type organisation for southern princely states.</td></tr>
+<tr><td>November 1921</td><td>Akhil Bhor Sansthan Praja Sabha founded</td><td>By Wamanrao Patwardhan, in the Bhor region.</td></tr>
+<tr><td>December 1922</td><td>Gaya Congress session</td><td>Non-Cooperation Movement's suspension causes a Congress split.</td></tr>
+<tr><td>16 December 1922</td><td>Madan Mohan Malviya &amp; Motilal Nehru launch the Independent Party</td><td>Precursor political move ahead of the Swaraj Party's formation.</td></tr>
+<tr><td>January 1923</td><td>Swaraj Party founded</td><td>By C.R. Das and Motilal Nehru, after the Gaya Congress split.</td></tr>
+<tr><td>1923</td><td>First May Day celebrated, Madras</td><td>Symbolised international worker solidarity.</td></tr>
+<tr><td>November 1923</td><td>Legislative Council elections</td><td>Swarajists won 42/104 seats; joined hands with liberals/independents like Jinnah and Malviya.</td></tr>
+<tr><td>1924</td><td>Hindustan Republican Association (HRA) founded, Kanpur</td><td>By Ramprasad Bismil, Jogesh Chandra Chatterjee, Sachin Sanyal.</td></tr>
+<tr><td>1924</td><td>Kanpur Bolshevik Conspiracy Case</td><td>Against M.N. Roy, S.A. Dange, Muzaffar Ahmed and others; charged with conspiring for violent separation of India from Britain.</td></tr>
+<tr><td>1924</td><td>Belgaum Congress</td><td>Gandhi reconciles with the Swarajists.</td></tr>
+<tr><td>1925</td><td>Kakori Robbery</td><td>HRA revolutionaries loot the 8-Down train near Lucknow; Bismil, Ashfaqullah, Roshan Singh, Rajendra Lahiri executed.</td></tr>
+<tr><td>1925</td><td>Death of C.R. Das</td><td>Leads to the decline of the Swaraj Party and a split in Bengal Congress (Sengupta vs Bose factions).</td></tr>
+<tr><td>1925</td><td>Vithalbhai Patel elected Speaker of the Legislative Assembly</td><td>Swaraj Party's biggest legislative achievement; first Indian Speaker.</td></tr>
+<tr><td>1925</td><td>Indian Communist Conference, Kanpur</td><td>Formal establishment of the Communist Party of India.</td></tr>
+<tr><td>1925</td><td>Self-Respect Movement launched</td><td>By E.V. Ramaswamy Naicker (Periyar).</td></tr>
+<tr><td>1926</td><td>Punjab Naujawan Bharat Sabha founded</td><td>By Bhagat Singh; engaged youth/workers, promoted secularism.</td></tr>
+<tr><td>1926</td><td>Congress Labour Party emerges, Bombay Province</td><td>Precursor to the Workers and Peasants Party of Bombay.</td></tr>
+<tr><td>1927</td><td>Workers and Peasants Party of Bombay Province formed</td><td>From the Congress Labour Party.</td></tr>
+<tr><td>1927</td><td>All India Association of the People's Council, Bombay session</td><td>Transformed princely-state politics into a nationwide cause.</td></tr>
+<tr><td>8 November 1927</td><td>Simon Commission established</td><td>Under PM Stanley Baldwin; all-White, 7 members, chaired by Sir John Simon.</td></tr>
+<tr><td>December 1927</td><td>INC Madras Session boycotts Simon Commission</td><td>Led by M.A. Ansari and Jawaharlal Nehru; also decided to demand complete independence.</td></tr>
+<tr><td>December 1927</td><td>Delhi Proposals (Muslim League)</td><td>Advocated joint electorates and Muslim-majority provinces.</td></tr>
+<tr><td>3 February 1928</td><td>Simon Commission arrives, Bombay</td><td>Sparks countrywide strikes; slogan "Simon Go Back."</td></tr>
+<tr><td>February 1928</td><td>All Parties Conference, Delhi</td><td>Presided by Dr. M.A. Ansari; appointed the Motilal Nehru subcommittee to draft a constitution.</td></tr>
+<tr><td>1928</td><td>Workers and Peasants Party formed, United Provinces &amp; Punjab (Kirti Kisan Party)</td><td>Provincial spread of the WPP movement.</td></tr>
+<tr><td>1928</td><td>Bardoli Satyagraha</td><td>Led by Vallabhbhai Patel; success earns him the title 'Sardar.'</td></tr>
+<tr><td>1928</td><td>Independence for India League founded</td><td>By Jawaharlal Nehru and Subhas Chandra Bose, demanding Complete Independence.</td></tr>
+<tr><td>1928</td><td>All Bengal Students' Conference</td><td>Jawaharlal Nehru's presidency symbolised the union of experience and youthful vigour.</td></tr>
+<tr><td>August 1928</td><td>Nehru Report finalised</td><td>Recommended Dominion Status, joint electorates, 19 fundamental rights.</td></tr>
+<tr><td>September 1928</td><td>HRA reorganised as HSRA</td><td>Under Chandrashekhar Azad; ideological shift toward socialism.</td></tr>
+<tr><td>October 1928</td><td>Lala Lajpat Rai injured in lathi charge</td><td>During anti-Simon-Commission protest in Lahore.</td></tr>
+<tr><td>17 November 1928</td><td>Lala Lajpat Rai dies of injuries</td><td>Directly triggers Bhagat Singh's retaliation against Saunders.</td></tr>
+<tr><td>December 1928</td><td>Saunders' murder, Lahore</td><td>By Bhagat Singh, Azad and Rajguru — mistaken identity for intended target James Scott.</td></tr>
+<tr><td>December 1928</td><td>All India Workers and Peasants Party formed, Calcutta</td><td>Pan-India unification of provincial Workers and Peasants Parties.</td></tr>
+<tr><td>8 April 1929</td><td>Bombing of the Central Legislative Assembly</td><td>By Bhagat Singh and Batukeshwar Dutt, protesting the Public Safety &amp; Trade Disputes Bills.</td></tr>
+<tr><td>1929</td><td>Meerut Conspiracy Case begins</td><td>32 labour leaders charged, incl. 3 Englishmen; drew global sympathy (Einstein, H.G. Wells, Laski, Roosevelt).</td></tr>
+<tr><td>1929</td><td>AITUC splits at Nagpur</td><td>Jawaharlal Nehru presides; moderates under N.M. Joshi form the Indian Trade Union Federation.</td></tr>
+<tr><td>1929</td><td>Bengal Praja Party (Krishak Praja Party) founded</td><td>By Fazlul Haq.</td></tr>
+<tr><td>1929</td><td>Bihar Provincial Kisan Sabha founded</td><td>By Swami Sahajanand Saraswati, aiming to end the Zamindari system.</td></tr>
+<tr><td>14 June 1929</td><td>Jatin Das arrested</td><td>Under the Lahore Conspiracy Case.</td></tr>
+<tr><td>13 September 1929</td><td>Jatin Das dies on hunger strike</td><td>First martyr among the Lahore Conspiracy Case prisoners.</td></tr>
+<tr><td>March 1929</td><td>Jinnah's Fourteen Points</td><td>Muslim League's reply to (and rejection of) the Nehru Report.</td></tr>
+<tr><td>December 1929</td><td>Lahore Session of Congress</td><td>Adopts the Complete Independence resolution; Nehru hoists the Tricolour at midnight, 31 Dec.</td></tr>
+<tr><td>1930</td><td>Simon Commission Recommendations published</td><td>Abolish dyarchy, gradual federalism, separate Sindh &amp; Burma.</td></tr>
+<tr><td>April 1930</td><td>Chittagong Armoury Raid</td><td>Organised by Surya Sen with Anant Singh, Ganesh Ghosh, Lokenath Baul.</td></tr>
+<tr><td>February 1931</td><td>Chandrashekhar Azad dies</td><td>In a police encounter at Allahabad.</td></tr>
+<tr><td>23 March 1931</td><td>Bhagat Singh, Sukhdev &amp; Rajguru executed</td><td>Lahore Conspiracy Case concludes.</td></tr>
+<tr><td>1931</td><td>Santi Ghosh &amp; Suniti Chandheri assassinate a district magistrate</td><td>Bengal revolutionary action.</td></tr>
+<tr><td>February 1932</td><td>Bina Das's assassination attempt on the Bengal governor</td><td>Major female revolutionary action.</td></tr>
+<tr><td>16 February 1933</td><td>Surya Sen arrested</td><td>Following the Chittagong Armoury Raid.</td></tr>
+<tr><td>1934</td><td>Revolutionary Communist Party of India founded</td><td>By Saumendra Nath Tagore, breaking from CPI.</td></tr>
+<tr><td>12 January 1934</td><td>Surya Sen hanged</td><td>Executed after the Chittagong revolutionary movement.</td></tr>
+<tr><td>17 May 1934</td><td>Congress Socialist Party founded, Patna</td><td>Acharya Narendra Dev its president.</td></tr>
+<tr><td>1936</td><td>Bihar Kisan Sabha founded (formal date per AIKS founding)</td><td>By Swami Sahajanand Saraswati.</td></tr>
+<tr><td>11 April 1936</td><td>All India Kisan Congress founded, Lucknow</td><td>Sahajanand Saraswati first President, N.G. Ranga first General Secretary; later renamed AIKS.</td></tr>
+<tr><td>1936</td><td>AIKS &amp; Congress hold joint session at Faizpur</td><td>Congress's 1937 agrarian manifesto strongly influenced by the AIKS agenda.</td></tr>
+<tr><td>1937</td><td>Congress ministry formed in Orissa (July)</td><td>Inspires activism against despotic rulers in princely states.</td></tr>
+<tr><td>1937</td><td>State People's Conference organised in Orissa</td><td>Reconstituted 1938 under H.K. Mahatab.</td></tr>
+<tr><td>1940</td><td>Vinoba Bhave elected for Individual Satyagraha</td><td>First person chosen for this form of protest.</td></tr>
+<tr><td>1940</td><td>Revolutionary Socialist Party founded</td><td>Within the Bengali socialist movement.</td></tr>
+<tr><td>1940</td><td>Radical Democratic Party founded</td><td>By M.N. Roy.</td></tr>
+<tr><td>September 1946</td><td>Bengal Provincial Kisan Council decides on Tebhaga Movement</td><td>To launch during the November 1946 harvest.</td></tr>
+<tr><td>November 1946</td><td>Tebhaga Movement launched</td><td>Demand: reduce landlords' share from one-half to one-third of the crop.</td></tr>
+<tr><td>1950</td><td>Death of Swami Sahajanand Saraswati</td><td>Just before his death, formed the All India United Kisan Sabha demanding nationalisation of land and waterways.</td></tr>
+<tr><td>18 April 1951</td><td>Bhoodan Movement begins, Pochampalli</td><td>Vinoba Bhave; Zamindar Ramachandra Reddy donates 100 acres to 40 Harijan families.</td></tr>
+<tr><td>October 1951</td><td>Vinoba Bhave sets 50-million-acre Bhoodan target</td><td>Target set for 1957; movement continues beyond, later wanes.</td></tr>
+<tr><td>1954</td><td>Jaya Prakash Narayan joins Bhoodan Movement</td><td>Leaves active politics to join Vinoba Bhave's land-gift campaign.</td></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+
+			<div class="footer">
+				Compiled from theory notes and PYQ (Ghatnachakra-style)
+				explanations · marker-coded per canonical study format ·
+				cross-verify years before the exam
+			</div>
+		</div>
+		<!-- /main -->
+
+		<script>
+			const chapters = document.querySelectorAll(".chapter");
+			const toc = document.getElementById("toc");
+			chapters.forEach((ch, i) => {
+				const a = document.createElement("a");
+				a.href = "#" + ch.id;
+				a.innerHTML =
+					'<span class="num">' +
+					String(i + 1).padStart(2, "0") +
+					"</span><span>" +
+					ch.dataset.title +
+					"</span>";
+				a.dataset.target = ch.id;
+				toc.appendChild(a);
+			});
+
+			const links = toc.querySelectorAll("a");
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							links.forEach((l) => l.classList.remove("active"));
+							const active = toc.querySelector(
+								'a[data-target="' + entry.target.id + '"]',
+							);
+							if (active) active.classList.add("active");
+						}
+					});
+				},
+				{ rootMargin: "-10% 0px -75% 0px", threshold: 0 },
+			);
+			chapters.forEach((ch) => observer.observe(ch));
+
+			const menuBtn = document.getElementById("menu-btn");
+			const sidebar = document.getElementById("sidebar");
+			menuBtn.addEventListener("click", () =>
+				sidebar.classList.toggle("open"),
+			);
+			links.forEach((l) =>
+				l.addEventListener("click", () =>
+					sidebar.classList.remove("open"),
+				),
+			);
+		</script>
+	</body>
+</html>
