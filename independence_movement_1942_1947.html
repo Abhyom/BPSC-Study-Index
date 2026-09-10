@@ -1,0 +1,1559 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Indian Independence Movement: 1942-47</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--ink: #0b1e33;
+				--ink-2: #122a45;
+				--paper: #fbf7ec;
+				--paper-2: #f3ecda;
+				--gold: #c9a227;
+				--gold-2: #e8c766;
+				--teal: #2e6171;
+				--text: #1c2b3a;
+				--muted: #5b6b7a;
+				--hl-y: #f1b400;
+				--hl-b: #1f6fb2;
+				--hl-g: #1e8449;
+				--hl-r: #b03a2e;
+				--trap-bg: #fdedec;
+				--trap-bd: #c0392b;
+				--ctx-bg: #eaf2f6;
+				--ctx-bd: #2e6171;
+				--tbl-head-blue: #1a5276;
+				--tbl-head-red: #7b241c;
+				--tbl-head-green: #145a32;
+				--tbl-head-purple: #5b2c6f;
+			}
+			* { box-sizing: border-box; }
+			html { scroll-behavior: smooth; }
+			body {
+				margin: 0;
+				background: var(--ink);
+				color: var(--text);
+				font-family: "Source Sans 3", sans-serif;
+				font-size: 17.5px;
+				display: flex;
+				min-height: 100vh;
+			}
+			::selection { background: var(--gold-2); color: var(--ink); }
+
+			#sidebar {
+				width: 290px;
+				flex-shrink: 0;
+				background: linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+				color: #dce6ee;
+				position: fixed;
+				top: 0; left: 0; bottom: 0;
+				overflow-y: auto;
+				padding: 28px 0 40px;
+				border-right: 1px solid rgba(201, 162, 39, 0.25);
+				z-index: 50;
+			}
+			#sidebar::-webkit-scrollbar { width: 6px; }
+			#sidebar::-webkit-scrollbar-thumb { background: rgba(201, 162, 39, 0.4); border-radius: 3px; }
+
+			.brand { padding: 0 24px 22px; border-bottom: 1px solid rgba(201, 162, 39, 0.25); margin-bottom: 14px; }
+			.brand .stamp {
+				width: 46px; height: 46px; border-radius: 50%;
+				border: 2px solid var(--gold);
+				display: flex; align-items: center; justify-content: center;
+				font-family: "Playfair Display", serif; font-weight: 800;
+				color: var(--gold-2); font-size: 13px; letter-spacing: 0.5px; margin-bottom: 10px;
+			}
+			.brand h1 { font-family: "Playfair Display", serif; font-size: 19px; line-height: 1.3; margin: 0 0 4px; font-weight: 700; color: #f4efe1; }
+			.brand p { margin: 0; font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--gold-2); font-family: "IBM Plex Mono", monospace; }
+
+			nav.toc { padding: 6px 10px; }
+			nav.toc a {
+				display: flex; align-items: baseline; gap: 10px;
+				padding: 10px 14px; margin: 1px 0; border-radius: 6px;
+				color: #b7c6d3; text-decoration: none; font-size: 13.6px; font-weight: 500;
+				border-left: 3px solid transparent;
+				transition: background 0.15s, color 0.15s, border-color 0.15s;
+			}
+			nav.toc a .num { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--gold); flex-shrink: 0; width: 20px; }
+			nav.toc a:hover { background: rgba(201, 162, 39, 0.1); color: #f4efe1; }
+			nav.toc a.active { background: rgba(201, 162, 39, 0.16); color: #f8f1dd; border-left-color: var(--gold); font-weight: 600; }
+
+			.legend-box { margin: 20px 16px 0; padding: 14px 14px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(201,162,39,0.22); border-radius: 8px; }
+			.legend-box h3 { margin: 0 0 10px; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-2); font-family: "IBM Plex Mono", monospace; font-weight: 500; }
+			.legend-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; font-size: 12.5px; color: #cbd6df; }
+			.legend-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+
+			#main { margin-left: 290px; flex: 1; padding: 0; background: var(--ink); }
+			.cover {
+				padding: 74px 64px 56px;
+				background: radial-gradient(circle at 85% 20%, rgba(201,162,39,0.1), transparent 45%), linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+				color: #efe9d8;
+				border-bottom: 4px double rgba(201,162,39,0.4);
+			}
+			.cover .eyebrow { font-family: "IBM Plex Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; font-size: 12.5px; color: var(--gold-2); margin-bottom: 16px; }
+			.cover h1 { font-family: "Playfair Display", serif; font-weight: 800; font-size: clamp(32px, 4.2vw, 50px); line-height: 1.12; margin: 0 0 16px; max-width: 820px; }
+			.cover p.sub { font-size: 17px; color: #c9d2db; max-width: 660px; line-height: 1.7; margin: 0 0 22px; }
+			.cover .tags { display: flex; gap: 10px; flex-wrap: wrap; }
+			.cover .tag { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--gold-2); border: 1px solid rgba(201,162,39,0.45); padding: 5px 12px; border-radius: 20px; background: rgba(201,162,39,0.06); }
+
+			.chapters { background: var(--paper); padding: 10px 0 90px; }
+			.chapter { max-width: 960px; margin: 0 auto; padding: 56px 48px 8px; border-bottom: 1px solid rgba(28,43,58,0.1); scroll-margin-top: 14px; }
+			.chapter:last-child { border-bottom: none; }
+
+			.chapter-head { display: flex; align-items: center; gap: 18px; margin-bottom: 6px; }
+			.chapter-head .seal { width: 52px; height: 52px; border-radius: 50%; background: var(--ink); color: var(--gold-2); display: flex; align-items: center; justify-content: center; font-family: "Playfair Display", serif; font-weight: 700; font-size: 17px; border: 2px solid var(--gold); flex-shrink: 0; }
+			.chapter-head h2 { font-family: "Playfair Display", serif; font-size: clamp(21px, 2.6vw, 28px); margin: 0; color: var(--ink); font-weight: 700; line-height: 1.25; }
+			.chapter-sub { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin: 6px 0 26px 70px; }
+
+			.event { margin: 0 0 28px; padding-left: 18px; border-left: 3px solid var(--teal); }
+			.event h3 { font-family: "Playfair Display", serif; font-size: 19px; margin: 0 0 6px; color: var(--ink); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+			.datebox { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--teal); font-weight: 600; margin-bottom: 10px; display: block; }
+			.event p { margin: 0 0 12px; line-height: 1.85; font-size: 16.5px; }
+			.event ul { margin: 8px 0 12px; padding-left: 22px; }
+			.event li { margin-bottom: 11px; line-height: 1.8; font-size: 16.5px; }
+			.event ul ul { margin-top: 6px; }
+
+			mark { padding: 0.15em 0.42em; border-radius: 4px; font-weight: 700; color: #fff; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+			.y { background: var(--hl-y); color: #1c1200; }
+			.b { background: var(--hl-b); }
+			.g { background: var(--hl-g); }
+			.r { background: var(--hl-r); }
+
+			.trap { background: var(--trap-bg); border: 1px solid rgba(192,57,43,0.35); border-left: 5px solid var(--trap-bd); padding: 14px 18px; border-radius: 6px; margin: 16px 0 20px; font-size: 16px; line-height: 1.8; }
+			.trap .lbl { font-family: "IBM Plex Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--trap-bd); font-weight: 700; display: block; margin-bottom: 6px; }
+			.trap ul { margin: 6px 0 0; padding-left: 20px; }
+			.trap li { margin-bottom: 8px; }
+
+			.ctx { background: var(--ctx-bg); border: 1px solid rgba(46,97,113,0.35); border-left: 5px solid var(--ctx-bd); padding: 14px 18px; border-radius: 6px; margin: 16px 0 20px; font-size: 16px; line-height: 1.8; }
+			.ctx .lbl { font-family: "IBM Plex Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ctx-bd); font-weight: 700; display: block; margin-bottom: 6px; }
+			.ctx ul { margin: 6px 0 0; padding-left: 20px; }
+			.ctx li { margin-bottom: 8px; }
+
+			table { width: 100%; border-collapse: collapse; margin: 16px 0 26px; font-size: 15.5px; }
+			caption { text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--muted); margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.06em; }
+			th, td { padding: 11px 13px; text-align: left; border-bottom: 1px solid rgba(28,43,58,0.1); vertical-align: top; line-height: 1.6; }
+			thead.blue th { background: var(--tbl-head-blue); color: #f4efe1; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+			thead.red th { background: var(--tbl-head-red); color: #f4efe1; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+			thead.green th { background: var(--tbl-head-green); color: #f4efe1; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+			thead.purple th { background: var(--tbl-head-purple); color: #f4efe1; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+			tbody tr:nth-child(even) { background: var(--paper-2); }
+
+			.factbox { background: var(--paper-2); border: 1px solid rgba(28,43,58,0.12); border-radius: 8px; padding: 18px 20px; margin: 18px 0 24px; }
+			.factbox .lbl { font-family: "IBM Plex Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal); font-weight: 700; display: block; margin-bottom: 10px; }
+			.factbox dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 18px; }
+			.factbox dt { font-weight: 700; font-size: 15px; color: var(--ink); white-space: nowrap; }
+			.factbox dd { margin: 0; font-size: 15.5px; line-height: 1.7; }
+
+			.part-divider { max-width: 960px; margin: 0 auto; padding: 40px 48px 0; }
+			.part-divider .plabel { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); background: var(--ink); display: inline-block; padding: 8px 18px; border-radius: 20px; }
+			.part-divider .ptitle { font-family: "Playfair Display", serif; font-weight: 700; font-size: 27px; color: var(--ink); margin: 14px 0 2px; }
+			.part-divider .pdesc { color: var(--muted); font-size: 15px; margin: 0 0 6px; }
+			@media (max-width: 880px) { .part-divider { padding: 30px 22px 0; } }
+
+			.note { font-size: 14px; color: var(--muted); font-style: italic; margin: 8px 0 16px; }
+			.footer { max-width: 960px; margin: 0 auto; padding: 40px 48px 70px; color: var(--muted); font-size: 13px; font-family: "IBM Plex Mono", monospace; text-align: center; }
+
+			@media (max-width: 880px) {
+				#sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 260px; transform: translateX(-100%); transition: transform 0.25s ease; }
+				#sidebar.open { transform: translateX(0); }
+				#main { margin-left: 0; }
+				.chapter { padding: 44px 22px 8px; }
+				.cover { padding: 58px 22px 42px; }
+				.chapter-sub { margin-left: 0; margin-top: 2px; }
+				.chapter-head { gap: 12px; }
+				body { font-size: 16.5px; }
+			}
+			#menu-btn { display: none; position: fixed; top: 16px; left: 16px; z-index: 60; width: 44px; height: 44px; border-radius: 50%; background: var(--ink); border: 2px solid var(--gold); color: var(--gold-2); font-size: 18px; align-items: center; justify-content: center; cursor: pointer; }
+			@media (max-width: 880px) { #menu-btn { display: flex; } }
+
+			.master-section { background: #212121; color: #ececec; padding: 70px 48px 80px; border-top: 1px solid #3a3a3a; }
+			.master-inner { max-width: 1180px; margin: 0 auto; }
+			.master-section .master-eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.12em; color: #a8a8a8; margin-bottom: 10px; }
+			.master-section h2 { font-family: "Playfair Display", serif; font-size: clamp(26px, 3vw, 34px); color: #f5f5f5; margin: 0 0 8px; line-height: 1.25; }
+			.master-section .master-sub { color: #b8b8b8; font-size: 15px; line-height: 1.7; margin: 0 0 24px; }
+			.master-table-wrap { overflow-x: auto; border: 1px solid #3d3d3d; border-radius: 8px; background: #212121; }
+			.master-table { width: 100%; min-width: 760px; margin: 0; border-collapse: collapse; font-size: 15px; color: #e8e8e8; }
+			.master-table th, .master-table td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid #3a3a3a; line-height: 1.6; }
+			.master-table thead th { background: #2f2f2f; color: #f5f5f5; font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; position: sticky; top: 0; z-index: 2; }
+			.master-table tbody tr:nth-child(even) { background: #292929; }
+			.master-table tbody tr:hover { background: #333333; }
+			.master-table tbody tr:last-child td { border-bottom: none; }
+			.master-table td:first-child { width: 160px; color: #f0f0f0; font-family: "IBM Plex Mono", monospace; font-weight: 600; white-space: nowrap; }
+			.master-table td:nth-child(2) { color: #f0f0f0; font-weight: 600; }
+			.master-table td:nth-child(3) { color: #bdbdbd; }
+			@media (max-width: 880px) { .master-section { padding: 52px 22px 60px; } }
+		</style>
+	</head>
+	<body>
+		<button id="menu-btn" aria-label="Toggle chapter index">☰</button>
+
+		<aside id="sidebar">
+			<div class="brand">
+				<div class="stamp">42–47</div>
+				<h1>Indian Independence Movement: 1942–47</h1>
+				<p>Modern India · BPSC Dossier</p>
+			</div>
+			<nav class="toc" id="toc"></nav>
+			<div class="legend-box">
+				<h3>Marker Key</h3>
+				<div class="legend-row"><span class="legend-swatch" style="background: var(--hl-y)"></span>Core concept / policy</div>
+				<div class="legend-row"><span class="legend-swatch" style="background: var(--hl-b)"></span>Hard fact / date / number</div>
+				<div class="legend-row"><span class="legend-swatch" style="background: var(--hl-g)"></span>Person / place / institution</div>
+				<div class="legend-row"><span class="legend-swatch" style="background: var(--hl-r)"></span>MCQ trap / confusion</div>
+				<div class="legend-row"><span class="legend-swatch" style="background: var(--ctx-bg); border: 1px solid var(--ctx-bd);"></span>Context box (fills narration gaps)</div>
+			</div>
+		</aside>
+
+		<div id="main">
+			<section class="cover">
+				<div class="eyebrow">Case File · From Quit India to the Radcliffe Line</div>
+				<h1>The five years that turned "Do or Die" into Independence and Partition.</h1>
+				<p class="sub">
+					Theory (standard textbook) fused with every fact buried inside PYQ explanations
+					(Ghatnachakra-style) on the Quit India Movement, the Bengal Famine, Subhas Chandra
+					Bose and the INA, the Cabinet Mission, the Interim Government, the Naval Mutiny,
+					and the Mountbatten Plan — sorted topic-wise in chronological order, tabulated
+					wherever the data allows, with duplicate facts from theory and PYQ merged into one
+					entry, and context boxes closing every narrative gap.
+				</p>
+				<div class="tags">
+					<span class="tag">Quit India → INA → Partition</span>
+					<span class="tag">Every PYQ Explanation Mined</span>
+					<span class="tag">1942 – 1947</span>
+				</div>
+			</section>
+
+			<div class="chapters">
+				<!-- ============ PART DIVIDER ============ -->
+				<div class="part-divider">
+					<span class="plabel">Part I · 1942</span>
+					<div class="ptitle">The August Revolution</div>
+					<p class="pdesc">From the failure of the Cripps Mission to the "Do or Die" call, the leaderless mass upsurge, and its brutal suppression.</p>
+				</div>
+
+				<!-- ============ CHAPTER 1 ============ -->
+				<section class="chapter" id="ch1" data-title="Background: Cripps Failure & Wardha Resolution">
+					<div class="chapter-head">
+						<div class="seal">1</div>
+						<h2>Background — Cripps Failure &amp; the Wardha Resolution</h2>
+					</div>
+					<div class="chapter-sub">July 5–14, 1942 · the resolution that set the movement in motion</div>
+
+					<table>
+						<caption>Quit India Movement — identity card</caption>
+						<thead class="blue"><tr><th>Aspect</th><th>Detail</th></tr></thead>
+						<tbody>
+							<tr><td><b>Also known as</b></td><td><mark class="y">August Revolution</mark> / <mark class="y">Bharat Chhodo Andolan</mark></td></tr>
+							<tr><td><b>Launched in response to</b></td><td>Failure of the <mark class="g">Cripps Mission</mark> (1942) — I.A.S. 2013 confirms this over the Cabinet Mission Plan, Simon Commission Report, and Wavell Plan as distractor options.</td></tr>
+							<tr><td><b>Demand</b></td><td><mark class="y">Immediate British withdrawal</mark>; initiated a non-violent non-cooperation movement, framed partly against a possible <mark class="y">Japanese invasion</mark>.</td></tr>
+							<tr><td><b>Nature</b></td><td>Differed from earlier campaigns by its <mark class="y">spontaneous mass participation</mark> — it was effectively a <mark class="r">leaderless movement</mark> once top leaders were arrested at the outset.</td></tr>
+							<tr><td><b>Slogan</b></td><td>"<mark class="y">Quit India</mark>" / "<mark class="y">Bharat Chhodo</mark>". <mark class="g">Yusuf Meher Ali</mark> is credited with coining the slogan (M.P. PCS 2018) — a distinct fact from who gave the "Do or Die" mantra (Gandhi — see Ch.2).</td></tr>
+							<tr><td><b>Character</b></td><td>Unprecedented public courage and militancy; the British prioritised war efforts, imposed draconian measures, and declared most political activity illegal, framing the movement as revolutionary and threatening to colonial rule.</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Factors responsible</h3>
+						<ul>
+							<li><b>Cripps Mission failure (1942):</b> highlighted British reluctance to concede real progress, fuelling self-determination demands.</li>
+							<li><b>Inflation &amp; shortages:</b> discontent from essential-goods shortages; rumours of British <mark class="r">scorched-earth policies</mark> added to panic.</li>
+							<li><b>British setbacks:</b> losses in Southeast Asia and Burma sharpened fears of a Japanese invasion.</li>
+							<li><b>Economic insecurity:</b> bank runs, gold hoarding.</li>
+							<li><b>Regional impact:</b> strongest in <mark class="g">Eastern U.P. and Bihar</mark>; comparatively weak in Madras.</li>
+							<li>Multi-part PYQ synthesis (Uttarakhand UDA/LDA 2003): the movement was a reaction to (1) disappointment against the Cripps Mission, (2) the threat of Japanese attack, and (4) the passing of the August 1942 AICC proposal — <mark class="r">not</mark> to any incitement to violence by Gandhi's writings (he never provoked violent means in his articles).</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>The Wardha meeting (5–14 July 1942)</h3>
+						<ul>
+							<li>A meeting of the <mark class="g">Congress Working Committee</mark> was held at <mark class="g">Wardha</mark>, attended by <mark class="g">Jawaharlal Nehru, Abul Kalam Azad, Vallabhbhai Patel, Mahatma Gandhi, Aruna Asaf Ali, Achyut Patwardhan, Dr. Anugrah Narayan Sinha</mark>, and <mark class="g">Pattabhi Sitaramayya</mark> among others.</li>
+							<li>On <mark class="b">6 July 1942</mark>, at this CWC meeting, Gandhi discussed his "Quit India Policy" for the first time — the meeting was chaired by Congress President <mark class="g">Maulana Abul Kalam Azad</mark> (43rd BPSC).</li>
+							<li>The '<mark class="y">Quit India</mark>' resolution was passed on <mark class="b">14 July 1942</mark>, again chaired by Azad as sitting Congress President.</li>
+							<li>The resolution — proposed by <mark class="g">Jawaharlal Nehru</mark>, seconded by <mark class="g">Sardar Patel</mark> — was later ratified at the <mark class="g">All India Congress Committee</mark> meeting at <mark class="g">Gowalia Tank</mark>, Bombay, on <mark class="b">8 August 1942</mark>.</li>
+							<li>The <b>draft</b> of the resolution was prepared by <mark class="g">Mahatma Gandhi</mark> himself, with the help of <mark class="g">Jawaharlal Nehru</mark> (and, per the Ghatnachakra explanation, also Maulana Abul Kalam Azad).</li>
+							<li>Gandhi, confident the moment was opportune, expressed impatience to proceed even if Congress itself was hesitant — but Congress followed his lead, marking unity in the decision for mass action.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>'Kurnool Circular' (29 July 1942)</h3>
+						<p>The Provincial Congress Committee in Andhra issued the '<mark class="y">Kurnool Circular</mark>', drafted by <mark class="g">Kala Venkat Rao</mark>, and sent for CWC approval through <mark class="g">Dr. Pattabhi Sitaramaiah</mark>. It outlined strategic directives for the movement — but was seized when the Kurnool Congress office was raided by police.</p>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl">Context — Azad's presidency</span>
+						<mark class="g">Maulana Abul Kalam Azad</mark> was Congress President throughout this entire phase. He was elected in the <mark class="y">Ramgarh Session (1940)</mark>, and — because no Congress session was held from <mark class="b">1941–1945</mark> — he continued as President for <mark class="b">six consecutive years</mark>, the longest tenure of any Congress President before independence, spanning the most politically fragile years of the freedom struggle. He negotiated with both the <mark class="g">Cripps Mission</mark> and <mark class="g">Lord Wavell</mark>.
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 2 ============ -->
+				<section class="chapter" id="ch2" data-title="Gowalia Tank & the Launch (8–9 August 1942)">
+					<div class="chapter-head">
+						<div class="seal">2</div>
+						<h2>Gowalia Tank &amp; the Launch of the Movement</h2>
+					</div>
+					<div class="chapter-sub">8–9 August 1942 · "Do or Die"</div>
+
+					<table>
+						<caption>The Gowalia Tank Resolution</caption>
+						<thead class="blue"><tr><th>Aspect</th><th>Detail</th></tr></thead>
+						<tbody>
+							<tr><td><b>Venue</b></td><td><mark class="g">Gowalia Tank Maidan</mark>, Bombay (now <mark class="g">August Kranti Ground</mark>) — the correct venue over distractors like Marine Drive, Kala Ghoda, or Chembur grounds.</td></tr>
+							<tr><td><b>Dates</b></td><td>Historic AICC session began <mark class="b">7 August</mark> and concluded <mark class="b">8 August 1942</mark>; the Wardha Resolution was confirmed here and, after a few modifications, the Quit India resolution was passed on <mark class="b">8 August 1942</mark>.</td></tr>
+							<tr><td><b>Movement launched</b></td><td><mark class="b">9 August 1942</mark> — the correct date over the distractor options of 7th/10th/15th/16th August (repeatedly tested: 48th–52nd BPSC, M.P. PCS 2022, Chhattisgarh PCS 2023).</td></tr>
+							<tr><td><b>Moved / seconded</b></td><td>Presented by <mark class="g">Jawaharlal Nehru</mark>; supported/seconded by <mark class="g">Sardar Vallabhbhai Patel</mark>.</td></tr>
+							<tr><td><b>8 Aug 1942 — correct statement (I.A.S. 2021)</b></td><td>The <mark class="y">Quit India Resolution was adopted by the AICC</mark> — <mark class="r">not</mark> an expanded Viceroy's Council, Congress ministries resigning, or a Cripps Dominion-Status offer (all false for this date).</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>The four demands of the Quit India Resolution</h3>
+						<ul>
+							<li>Immediate end to British rule in India.</li>
+							<li>Commitment of Free India to resist fascism and imperialism.</li>
+							<li>Formation of a Provisional Government after British withdrawal.</li>
+							<li>Sanction of Civil Disobedience against British rule.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>"Do or Die" — Gandhi's mantra</h3>
+						<p>Gandhi's rallying cry, "<mark class="y">Do or Die</mark>" ("<mark class="y">Karo Ya Maro</mark>"), underscored the movement's intensity and urgency, urging unity and non-violent resistance. Full sense of the statement: <i>"I am not going to be satisfied with anything short than complete freedom... Today I give you a mantra 'Do or Die'. This mantra means that either we will free our country or will die fighting for Independence."</i></p>
+						<div class="trap">
+							<span class="lbl">Repeatedly tested — attribution trap</span>
+							<ul>
+								<li>"Do or Die" was said by <mark class="g">Mahatma Gandhi</mark> — <mark class="r">not</mark> Nehru, Azad, or Savarkar (71st BPSC 2025; 70th BPSC 2024 explicitly rules out Subhas Chandra Bose and Nehru).</li>
+								<li>It is associated specifically with the <mark class="g">Quit India Movement</mark> — <mark class="r">not</mark> the Dandi March, Non-Cooperation, Khilafat, Swadeshi, or Civil Disobedience movements (tested across UPPCS, I.A.S., Uttarakhand, Chhattisgarh papers repeatedly).</li>
+								<li>The statement "We shall either free India or die in the attempt" is the same Quit India slogan, occasionally quoted as a separate-sounding line (U.P. PCS 2009).</li>
+							</ul>
+						</div>
+						<p><mark class="g">Pattabhi Sitaramayya</mark> remarked on Gandhi's speech that day: he was speaking as though "motivated with the power of Avatar and Paigambar."</p>
+					</div>
+
+					<div class="event">
+						<h3>Gandhi's instructions to different sections</h3>
+						<table>
+							<thead class="green"><tr><th>Section</th><th>Instruction</th></tr></thead>
+							<tbody>
+								<tr><td>Hindus &amp; Muslims</td><td>Set aside religious differences for Indian unity.</td></tr>
+								<tr><td>Government servants</td><td>Should <mark class="r">not resign</mark> — stay in service, but <mark class="y">declare/pledge allegiance to Congress</mark>.</td></tr>
+								<tr><td>Soldiers</td><td><mark class="r">Refuse to fire</mark> on fellow Indians (not "leave their posts" — a commonly tested distinction).</td></tr>
+								<tr><td>Students</td><td>Leave studies <mark class="y">only if</mark> they stood firmly on this decision until independence.</td></tr>
+								<tr><td>Peasants</td><td>Withhold rent from pro-government zamindars.</td></tr>
+								<tr><td>Princes</td><td>Accept the sovereignty of their people, declare their province part of the Indian nation, and support the masses / ally with anti-government rulers.</td></tr>
+							</tbody>
+						</table>
+						<div class="trap">
+							<span class="lbl">I.A.S. 2005 — assertion trap</span>
+							Of the statements "Gandhi asked govt servants to resign," "asked soldiers to leave their posts," and "asked princes to accept the sovereignty of their people" — <mark class="r">only the third is correct</mark>. Government servants were told to stay in service (declaring Congress allegiance), and soldiers were told to refuse firing, not desert their posts.
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>Preparation, Operation Zero Hour &amp; the arrests (9 August 1942)</h3>
+						<ul>
+							<li>Gandhi built momentum through civil disobedience and propaganda in the run-up.</li>
+							<li>The British pre-emptively arrested Congress leaders in the early hours of 9 August under "<mark class="r">Operation Zero Hour</mark>"; Congress was declared unlawful under the <mark class="y">Criminal Law Amendment Act (1908)</mark>; <mark class="y">Rule 56 of the Defence of India Rules</mark> banned public meetings.</li>
+							<li><mark class="g">Gandhi and Sarojini Naidu</mark> were kept at the <mark class="g">Aga Khan Palace</mark>, Pune (Poona) — <mark class="r">not</mark> Yerawada Jail or Naini Jail.</li>
+							<li>Members of the <mark class="g">Congress Working Committee</mark> — <mark class="g">Nehru, Abul Kalam Azad, Govind Ballabh Pant, Dr. Prafulla Chandra Ghosh, Dr. Pattabhi Sitaramayya, Dr. Syed Mahmud, Acharya Kripalani</mark> — were taken to <mark class="g">Ahmednagar Fort</mark>.</li>
+							<li><mark class="g">Dr. Rajendra Prasad</mark>, a CWC member, could not reach Bombay; he was arrested in Patna (under the Bihar Security Rules per one source) and sent to <mark class="g">Patna (Bankipur) Jail</mark>.</li>
+							<li><mark class="g">Aruna Asaf Ali</mark> hoisted the tricolour at the Gowalia Tank ground on 9 August, becoming one of the movement's most celebrated symbols.</li>
+							<li><mark class="g">Baldev Sahai</mark> resigned from the post of Advocate General in <mark class="b">1942</mark> in protest against Operation Zero Hour and other repressive acts.</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 3 ============ -->
+				<section class="chapter" id="ch3" data-title="Spread, Underground Leadership & Suppression">
+					<div class="chapter-head">
+						<div class="seal">3</div>
+						<h2>Spread, Underground Leadership &amp; Suppression</h2>
+					</div>
+					<div class="chapter-sub">Sabotage, secret radio, parallel governments — and the price paid</div>
+
+					<div class="event">
+						<h3>Public rampage, sabotage &amp; participation</h3>
+						<ul>
+							<li>Acts of defiance — hoisting flags, courting arrest — spread nationwide.</li>
+							<li>Sabotage in <mark class="g">U.P. and Bihar</mark>: bridges, railway tracks, telegraph lines were targeted; in the first week alone, official assessment recorded <mark class="b">~250 railway stations</mark> damaged/destroyed and over <mark class="b">500 post offices</mark> and <mark class="b">150 police stations</mark> attacked.</li>
+							<li>Strikes in <mark class="g">Ahmedabad, Bombay, Jamshedpur, Ahmednagar, and Poona</mark>; students led strikes and circulated illegal news sheets. The labour class, however, did <mark class="r">not</mark> broadly engage (monetary constraints, fear of repression, effect of trade unions).</li>
+							<li>Movement of 1942 showed maximum impact in <mark class="g">Bombay, Bengal, Bihar, Orissa, United Provinces, and Madras</mark> — though whole-country participation was needed (and largely occurred) for it to succeed.</li>
+							<li>Leadership went underground, coordinating activities across <mark class="g">Bombay, Poona, Satara, Gujarat, Bihar, and Delhi</mark>.</li>
+						</ul>
+					</div>
+
+					<div class="factbox">
+						<span class="lbl">Underground radio &amp; the Congress Radio</span>
+						<dl>
+							<dt>Run by</dt><dd><mark class="g">Usha Mehta</mark> — a valued member of the small underground Congress group that operated the secret <mark class="y">Congress Radio</mark>, broadcast from different parts of Bombay and audible up to Madras (U.P.PCS 1997; 67th BPSC Re-Exam 2022; I.A.S. 2011).</dd>
+							<dt>Regular broadcaster</dt><dd><mark class="g">Ram Manohar Lohia</mark> — directed the movement while underground and made regular broadcasts on Congress Radio (U.P. Lower Sub. 2008).</dd>
+							<dt>Not the broadcaster</dt><dd><mark class="r">Not</mark> Subhadra Kumari Chauhan, Sucheta Kripalani, or Annie Besant (67th BPSC Re-Exam distractors).</dd>
+						</dl>
+					</div>
+
+					<div class="event">
+						<h3>Jayaprakash Narayan's escape &amp; the Azad Dasta</h3>
+						<ul>
+							<li>JP Narayan gained recognition as a national leader specifically through the <mark class="y">Quit India Movement</mark> — the main leaders having been arrested at the outset, he (with Lohia and Aruna Asaf Ali) stepped up to consolidate public support secretly.</li>
+							<li>On <mark class="b">9 November 1942</mark> — the day of <mark class="y">Deepawali/Diwali</mark> — JP Narayan escaped from <mark class="g">Hazaribagh Jail</mark> along with <mark class="g">Yogendra Shukla</mark> and comrades.</li>
+							<li>Shukla was later arrested at Muzaffarpur and sent to <mark class="g">Patna</mark>, where he was brought on <mark class="b">7 December 1942</mark>.</li>
+							<li>JP Narayan organised the <mark class="y">All India Azad Dasta</mark> at Bakri Ka Tapu, in the Terai region of Nepal, to wage a guerrilla war against the British.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Louis Fischer &amp; international solidarity</h3>
+						<p><mark class="g">Louis Fischer</mark>, an American journalist and Gandhi's biographer, was with Gandhi at <mark class="g">Sevagram Ashram, Wardha</mark> just before the movement — arriving in India in May 1942 and spending a week with him. Fischer, along with American intellectuals <mark class="g">Pearl Buck, Edgar Snow, Fredrick L. Schuman, and Norman Thomas</mark>, publicly demanded India's independence.</p>
+					</div>
+
+					<div class="event">
+						<h3>Key underground/alternate leadership figures</h3>
+						<p><mark class="g">Rammanohar Lohia, Jayaprakash Narayan, Aruna Asaf Ali, Usha Mehta, Biju Patnaik, Chhotubhai Puranik, Achyut Patwardhan, Sucheta Kripalani</mark>, and <mark class="g">R.P. Goenka</mark> provided alternate leadership to the movement once the top leadership was jailed.</p>
+					</div>
+
+					<div class="event">
+						<h3>Parallel governments</h3>
+						<table>
+							<caption>Established during the Quit India Movement</caption>
+							<thead class="green"><tr><th>Place</th><th>Period / Leader</th><th>Activities</th></tr></thead>
+							<tbody>
+								<tr><td><b>Ballia</b> (U.P.)</td><td><mark class="b">August 1942</mark> · <mark class="g">Chittu Pandey</mark></td><td>Secured release of numerous Congress leaders; functioned as a parallel government for about a week.</td></tr>
+								<tr><td><b>Tamluk</b> (Midnapore, Bengal)</td><td><mark class="b">December 1942 – September 1944</mark> · <mark class="y">Tamralipta Jatiya Sarkar</mark></td><td>Cyclone-relief efforts, grants to schools, distributed paddy from the affluent to the needy, organised <mark class="y">Vidyut Vahinis</mark>.</td></tr>
+								<tr><td><b>Satara</b> (Maharashtra)</td><td><mark class="b">Mid/August 1943 – 1945/May 1946</mark> · <mark class="y">"Prati Sarkar"</mark> — <mark class="g">Y.B. Chavan, Nana Patil</mark></td><td>Longest-running parallel government; village libraries, Nyayadan Mandals, prohibition campaigns, arranged "Gandhi marriages."</td></tr>
+								<tr><td><b>Talcher / Talchar</b> (Orissa)</td><td>—</td><td>Ran a parallel government (<mark class="y">Praja Mandal</mark>) for some time.</td></tr>
+							</tbody>
+						</table>
+						<div class="trap">
+							<span class="lbl">70th BPSC 2024 — mismatch trap</span>
+							"<mark class="y">Raiyati Sarkar — Kheda (Gujarat)</mark>" is the <mark class="r">incorrectly matched</mark> pair; the genuine matches are Prati Sarkar–Satara, Praja Mandal–Talchar, and Jatiya Sarkar–Tamluk. Also, U.P. Mains 2002 lists <mark class="g">Ballia and Satara</mark> (not Hazaribagh, Meerut, or Agra) as sites of parallel governments.
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>Mass participation, by section</h3>
+						<table>
+							<thead class="blue"><tr><th>Group</th><th>Role</th></tr></thead>
+							<tbody>
+								<tr><td>Youth</td><td>Students from schools/colleges played a prominent role.</td></tr>
+								<tr><td>Women</td><td>School/college girls actively engaged; notable figures — <mark class="g">Aruna Asaf Ali, Sucheta Kripalani, Usha Mehta</mark>.</td></tr>
+								<tr><td>Workers</td><td>Strikes in Ahmedabad, Bombay, Jamshedpur, Ahmednagar, Poona — but labour class did not broadly engage.</td></tr>
+								<tr><td>Peasants</td><td>Central to the movement; attacked symbols of authority, but <mark class="r">no anti-zamindar violence</mark> reported.</td></tr>
+								<tr><td>Government officials</td><td>Lower-level officials, including police, participated — indicating declining loyalty to the British government.</td></tr>
+								<tr><td>Muslims</td><td>Sheltered underground activists; no communal clashes occurred during the movement.</td></tr>
+								<tr><td>Communists</td><td><mark class="r">Refrained</mark> from participation, aligning with the British war effort after the Nazi attack on Russia.</td></tr>
+								<tr><td>Muslim League</td><td><mark class="r">Opposed</mark> — feared minority oppression if the British withdrew.</td></tr>
+								<tr><td>Hindu Mahasabha</td><td><mark class="r">Boycotted</mark> the movement.</td></tr>
+								<tr><td>Princely states</td><td>Subdued, limited engagement.</td></tr>
+								<tr><td>RSS</td><td><mark class="r">Did not participate</mark> — in fact took no part in any movement between 1940 and the end of foreign rule in 1947 (40th BPSC 1995 assertion — true, but the given reason, "feared it would delay freedom," is <mark class="r">false</mark>).</td></tr>
+								<tr><td>Unionist Party (Punjab)</td><td>Did not support the movement.</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="event">
+						<h3>Government's response &amp; the human cost</h3>
+						<ul>
+							<li>9 August 1942: all top Congress leaders arrested and moved to undisclosed locations; CWC, AICC and Provincial Congress Committees declared unlawful under the Criminal Law Amendment Act (1908).</li>
+							<li>Martial law was <mark class="r">not</mark> formally declared, but baton charges, tear gas and gunfire were used on crowds.</li>
+							<li>Death toll estimated at around <mark class="b">10,000</mark>.</li>
+							<li>Press freedom suppressed; military took control of numerous cities; police and secret service exercised significant authority.</li>
+							<li>Defiant villages faced heavy fines and mass floggings.</li>
+							<li>Riots were widest in <mark class="g">Bihar and the United Provinces</mark> — centres of self-instilled mass revolt included Eastern U.P. (<mark class="g">Azamgarh, Ballia, Gorakhpur</mark>) and Bihar's <mark class="g">Gaya, Champaran, Saran, Purnia, Shahabad, Muzaffarpur, Bhagalpur</mark> districts.</li>
+							<li>Farmer groups worked their fields by day and rioted at night; their ferocity echoed 1857 — Viceroy <mark class="g">Linlithgow</mark>, in a telegram to Churchill, termed it "by far the most serious rebellion" since the Revolt of 1857 (I.A.S. 1999 assertion-reason: both true, the peasant upsurge explains the rebellion label).</li>
+							<li><mark class="g">Munger district</mark>, Bihar was the district most affected by uprooted railway lines — cut off from the outside world for <mark class="b">two weeks</mark>; <mark class="g">Medinipur</mark> (Bengal) and <mark class="g">Baliya</mark> (U.P.) were the other major centres of public anger (43rd BPSC 1999).</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Bihar's own martyrs &amp; leaders</h3>
+						<ul>
+							<li><mark class="g">Shri Krishna Singh</mark>, known as "<mark class="y">Bihar Kesari</mark>," was an active Quit India participant and went on to become Bihar's first Chief Minister (69th BPSC 2023).</li>
+							<li><mark class="g">Rampyari Devi</mark>, wife of <mark class="g">Jagat Narayan Lal</mark>, addressed the assembly at Bankipur and called on people to quit government jobs.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Women martyrs of 1942 — and a common trap</h3>
+						<ul>
+							<li><mark class="g">Matangini Hazra</mark> — 73 years old, fell to British bullets leading a protest march at Tamluk, Bengal.</li>
+							<li><mark class="g">Kanaklata Barua</mark> — an AISF leader who joined the "<mark class="y">Mrityu Bahini</mark>" (Death Army), a youth death squad from the Gohpur sub-division, Assam, in line with the "Do or Die" call; shot dead in September 1942 at about age 17 while bearing the national flag, near Borangabari, Gohpur (Sonitpur district), Assam.</li>
+							<li><mark class="g">Aruna Asaf Ali</mark> — remembered for hoisting the flag at Gowalia Tank.</li>
+							<li><mark class="g">Gangaram and Kheemdev</mark> (also recorded as Gangadutt and Kheemananda) — two brothers martyred during police firing at <mark class="g">Almora</mark> during the Quit India Movement.</li>
+						</ul>
+						<div class="trap">
+							<span class="lbl">U.P. PCS 2023 — trap</span>
+							<mark class="g">Shanti Ghosh</mark> was <mark class="r">not</mark> associated with the Quit India Movement — she belonged to the earlier revolutionary group <mark class="y">Yugantar</mark> and, with Suniti, shot dead a District Magistrate on 14 December 1931.
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>Gandhi's fast (February 1943) &amp; "Operation Rubicon"</h3>
+						<ul>
+							<li>While imprisoned at the Aga Khan Palace, Gandhi undertook a fast in response to the British government's demand that he condemn violence — he instead directed his protest against the <mark class="y">state's own use of force</mark>.</li>
+							<li>The fast drew widespread public support: hartals, demonstrations and strikes at home and abroad.</li>
+							<li>Three members of the <mark class="g">Viceroy's Executive Council</mark> resigned in solidarity.</li>
+							<li>Outcomes: boosted public morale, strengthened anti-British sentiment, allowed a surge in political activity, and exposed the government's authoritarian actions.</li>
+							<li>"<mark class="y">Operation Rubicon</mark>" was the secret code word the British government proposed to use in India if Gandhi died during this fast unto death (R.O./A.R.O. 2017).</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Pakistan Day &amp; Gandhi's release</h3>
+						<ul>
+							<li><b>Pakistan Day</b> was observed on <mark class="b">23 March 1943</mark>, marking a milestone in the demand for a separate Muslim state.</li>
+							<li>Gandhi was released on <mark class="b">5/6 May 1944</mark> on account of poor health (the two source dates differ by a day across texts).</li>
+							<li>On his release, Churchill remarked: <i>"When we are winning around the globe how can we be defeated by this old man who is our enemy for a long time."</i></li>
+						</ul>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl">Context — was Quit India really "non-violent"?</span>
+						I.A.S. 2011 and U.P. R.O./A.R.O. (Re-Exam) 2016 both test this: the claims "it was a non-violent movement" and "it was led by Mahatma Gandhi" are <mark class="r">individually not fully correct</mark> — Gandhi never got to actually lead it (he was jailed before it began), and it was far from non-violent (railway/post-office/police-station attacks, Gandhi's own refusal to condemn the violence as "an answer to the huge violence of the rulers"). What <em>is</em> correct: it was spontaneous, and Congress was declared an illegal body. An assertion–reason pairing (U.P. PCS 2005) further affirms that the Quit India Movement marked the <mark class="y">culmination</mark> of the national movement, after which a mechanism for the transfer of power had to be found — both statements true, reason correctly explains assertion.
+					</div>
+				</section>
+				<!-- ============ PART DIVIDER ============ -->
+				<div class="part-divider">
+					<span class="plabel">Part II · 1943–45</span>
+					<div class="ptitle">Famine, Failed Formulas &amp; a Broken Conference</div>
+					<p class="pdesc">Bengal starves while individual leaders and viceregal plans repeatedly fail to bridge the Congress–League divide.</p>
+				</div>
+
+				<!-- ============ CHAPTER 4 ============ -->
+				<section class="chapter" id="ch4" data-title="The Bengal Famine of 1943">
+					<div class="chapter-head">
+						<div class="seal">4</div>
+						<h2>The Famine of 1943</h2>
+					</div>
+					<div class="chapter-sub">Man-made catastrophe amid wartime mismanagement</div>
+
+					<table>
+						<caption>Bengal Famine — full picture</caption>
+						<thead class="red"><tr><th>Aspect</th><th>Detail</th></tr></thead>
+						<tbody>
+							<tr><td><b>Worst-hit regions</b></td><td>Southwestern Bengal, including <mark class="g">Tamluk–Contai–Diamond Harbour, Dacca, Faridpur, Tippera, and Noakhali</mark>.</td></tr>
+							<tr><td><b>Death toll</b></td><td>Approximately <mark class="b">1.5 to 3 million</mark> deaths from starvation, malnutrition, and epidemics (malaria, cholera, smallpox).</td></tr>
+							<tr><td><b>Causes</b></td><td>Supplies redirected to feed the British Army; disruption of rice imports from Burma/Southeast Asia; gross mismanagement and profiteering; rationing introduced late and limited to major cities, leaving rural areas unsupported.</td></tr>
+						</tbody>
+					</table>
+				</section>
+
+				<!-- ============ CHAPTER 5 ============ -->
+				<section class="chapter" id="ch5" data-title="Rajagopalachari Formula & Gandhi–Jinnah Talks (1944)">
+					<div class="chapter-head">
+						<div class="seal">5</div>
+						<h2>Rajagopalachari Formula &amp; the Gandhi–Jinnah Parleys</h2>
+					</div>
+					<div class="chapter-sub">1944 · an individual attempt to bridge the Congress–League divide</div>
+
+					<div class="event">
+						<h3>The Rajagopalachari (CR) Formula</h3>
+						<ul>
+							<li>In 1944, <mark class="g">C. Rajagopalachari (CR)</mark>, a senior Congress leader, proposed a plan — later published as a pamphlet titled "<mark class="y">The Way Out</mark>" — tacitly acknowledging the League's demand for Pakistan, aimed at solving the constitutional deadlock (I.A.S. 2010).</li>
+							<li><mark class="g">Gandhi endorsed</mark> the plan, signalling Congress's willingness to cooperate.</li>
+						</ul>
+						<table>
+							<caption>Key points of the CR Formula</caption>
+							<thead class="green"><tr><th>Provision</th><th>Content</th></tr></thead>
+							<tbody>
+								<tr><td>Independence</td><td>The Muslim League would endorse Congress's demand for independence.</td></tr>
+								<tr><td>Provisional Government</td><td>League would collaborate with Congress to form a provisional central government.</td></tr>
+								<tr><td>Plebiscite</td><td>After World War II, a plebiscite in Muslim-majority North-West and North-East India to decide on a separate sovereign state.</td></tr>
+								<tr><td>Post-Partition agreement</td><td>If partition occurred, a joint agreement would safeguard defence, commerce, and communications between the two entities.</td></tr>
+								<tr><td>Population transfer</td><td>Any transfer of population would be voluntary.</td></tr>
+								<tr><td>British handover</td><td>Implementation contingent on Britain transferring full powers to India.</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="event">
+						<h3>Opposition</h3>
+						<ul>
+							<li><b>Jinnah:</b> demanded Congress accept the two-nation theory outright; wanted only Muslims in the North-West/North-East (not the whole population) to vote in the plebiscite; opposed any common centre for defence/governance.</li>
+							<li><b>Hindu leaders</b> — notably <mark class="g">Vir Savarkar</mark> — condemned the plan as an acceptance of the League's Pakistan demand.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Gandhi–Jinnah Parleys (1944)</h3>
+						<p>After Gandhi's release on 5 May 1944, he proposed negotiations with Jinnah based on the CR Formula. Jinnah rejected it, accusing Rajagopalachari of "mutilating" the original Lahore Resolution. Gandhi opposed the two-nation theory and advocated independence for all of India; Jinnah insisted on Muslim self-determination as a separate nation. Key sticking points: the plebiscite (League rejected it) and a common centre for defence/commerce/communications. Talks collapsed after two weeks over these ideological differences.</p>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 6 ============ -->
+				<section class="chapter" id="ch6" data-title="Desai–Liaquat Pact (1945)">
+					<div class="chapter-head">
+						<div class="seal">6</div>
+						<h2>Desai–Liaquat Pact</h2>
+					</div>
+					<div class="chapter-sub">1945 · a provisional-arrangement attempt that also failed</div>
+					<div class="event">
+						<ul>
+							<li><b>Objective:</b> establish a provisional central-governance arrangement and ease Congress–League tension.</li>
+							<li><b>Equal Representation:</b> proposed an equal number of Congress and League representatives in the central legislature for an interim government.</li>
+							<li><b>Minority Representation:</b> reserved 20% of seats for minorities.</li>
+							<li><b>Outcome:</b> no final agreement — but its emphasis on equal representation signalled a potential shift toward parity between Congress and the League, and its failure underscored the persistent divide over India's future.</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 7 ============ -->
+				<section class="chapter" id="ch7" data-title="Wavell Plan & Shimla Conference (1945)">
+					<div class="chapter-head">
+						<div class="seal">7</div>
+						<h2>Wavell Plan &amp; the Shimla Conference</h2>
+					</div>
+					<div class="chapter-sub">June–July 1945 · the last pre-war-end viceregal attempt</div>
+
+					<div class="event">
+						<h3>Wavell Plan (14 June 1945)</h3>
+						<p>Post-Europe-war, Churchill's Conservative government sought a solution for India's future. <mark class="g">Lord Wavell</mark>, Viceroy, began negotiations; Congress leaders were released in <mark class="b">June 1945</mark> for talks.</p>
+						<table>
+							<thead class="blue"><tr><th>Britain's interest</th><th>Reason</th></tr></thead>
+							<tbody>
+								<tr><td>British elections</td><td>Conservatives wanted to demonstrate commitment to a constitutional resolution for India.</td></tr>
+								<tr><td>War efforts</td><td>Allied forces urged more Indian support for the ongoing war.</td></tr>
+								<tr><td>Strategic redirection</td><td>Steering Indian efforts to benefit Britain.</td></tr>
+							</tbody>
+						</table>
+						<table>
+							<caption>Key features of the Wavell Plan</caption>
+							<thead class="green"><tr><th>Feature</th><th>Detail</th></tr></thead>
+							<tbody>
+								<tr><td>Indian majority</td><td>All Executive Council members except the Governor-General and Commander-in-Chief would be Indian.</td></tr>
+								<tr><td>Equal representation</td><td>Caste Hindus and Muslims would have equal representation.</td></tr>
+								<tr><td>Interim government</td><td>Under the 1935 Government of India Act framework.</td></tr>
+								<tr><td>Governor-General's veto</td><td>Retained, but exercised on ministerial advice.</td></tr>
+								<tr><td>Party representation</td><td>Joint nominations or separate lists for council members.</td></tr>
+								<tr><td>Post-war constitution</td><td>Further discussions to follow after the war.</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="event">
+						<h3>Shimla Conference (June 1945)</h3>
+						<ul>
+							<li><b>Objective:</b> finalise the Wavell Plan, focusing on self-governance for India.</li>
+							<li><b>Muslim League's position:</b> demanded that Muslim council members be League nominees (to avoid Congress-nominated minority influence); sought a two-thirds-majority veto for decisions affecting Muslim interests.</li>
+							<li><b>Congress's position:</b> opposed the plan as limiting Congress to caste Hindus; insisted on the right to nominate members from all communities.</li>
+							<li><b>Breakdown:</b> <mark class="g">Wavell's mistake</mark> was declaring the talks a failure, inadvertently giving the Muslim League de facto veto power in council matters — this strengthened Jinnah's influence, visible in the 1945–46 elections.</li>
+						</ul>
+					</div>
+
+					<div class="factbox">
+						<span class="lbl">1945 sequencing (Chhattisgarh PSC 2017)</span>
+						<dl>
+							<dt>Wavell Plan</dt><dd>14 June 1945</dd>
+							<dt>Shimla Conference</dt><dd>25 June – 14 July 1945</dd>
+							<dt>INA Trial (Red Fort)</dt><dd>November 1945</dd>
+							<dt>Naval Mutiny</dt><dd>18–23 February 1946 (the odd one out — occurs the following year)</dd>
+						</dl>
+					</div>
+				</section>
+				<!-- ============ PART DIVIDER ============ -->
+				<div class="part-divider">
+					<span class="plabel">Part III · Subhas Chandra Bose</span>
+					<div class="ptitle">Netaji &amp; the Azad Hind Fauj</div>
+					<p class="pdesc">From Cambridge philosophy graduate to Supreme Commander of a provisional government — the INA's rise, campaign, and the trials that turned it into a national cause.</p>
+				</div>
+
+				<!-- ============ CHAPTER 8 ============ -->
+				<section class="chapter" id="ch8" data-title="Bose — Life, Ideology & the Forward Bloc">
+					<div class="chapter-head">
+						<div class="seal">8</div>
+						<h2>Subhas Chandra Bose — Life, Ideology &amp; the Forward Bloc</h2>
+					</div>
+					<div class="chapter-sub">1897–1939 · from the ICS to open revolt against Gandhian strategy</div>
+
+					<table>
+						<caption>Early life</caption>
+						<thead class="blue"><tr><th>Aspect</th><th>Detail</th></tr></thead>
+						<tbody>
+							<tr><td><b>Birth</b></td><td><mark class="b">23 January 1897</mark>, in <mark class="g">Cuttack</mark>, Odisha (Orissa) division of Bengal province.</td></tr>
+							<tr><td><b>Family</b></td><td>Father <mark class="g">Janakinath Bose</mark> was a prominent lawyer; brother <mark class="g">Sarat Chandra Bose</mark> was a notable freedom fighter.</td></tr>
+							<tr><td><b>Education</b></td><td>Schooling in Cuttack and Calcutta; graduated from <mark class="g">Scottish Church College</mark> (Calcutta University) in <mark class="b">1919</mark>; passed the <mark class="y">Indian Civil Services</mark> exam in <mark class="b">1920</mark> — he later resigned from the ICS to join the freedom struggle.</td></tr>
+							<tr><td><b>Political guru</b></td><td><mark class="g">C.R. Das</mark> (R.O./A.R.O. 2017).</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Congress career &amp; break</h3>
+						<ul>
+							<li>Joined the INC, advocating immediate independence and opposing Gandhi's non-violence strategy.</li>
+							<li>Elected <mark class="y">President of the INC</mark> in the <b>1938 Haripura session</b> (Gujarat) and again the <b>1939 Tripuri session</b> (Madhya Pradesh) — 71st BPSC 2025 clarifies 1938 was Haripura, not Tripuri, as sometimes mis-stated.</li>
+							<li>Resigned the Congress presidency in <mark class="b">1939</mark> after the Tripuri crisis, over ideological conflicts with Gandhi.</li>
+							<li>Founded the <mark class="y">Forward Bloc</mark> on <mark class="b">3 May 1939</mark> to advocate a more aggressive anti-colonial stance (I.A.S. 2005; UP Lower Sub. 2008; ruling out Sardar Sinhji Rana, JP Narayan, Lakshmi Sahgal as founders).</li>
+							<li>Escaped house internment/arrest in <mark class="b">January 1941</mark>, disguised, successfully leaving Calcutta (71st BPSC 2025 confirms this escape date; note the assembly's provisional-government date is Oct 1943, not 1943's own escape year — commonly conflated).</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Titles &amp; ideology</h3>
+						<ul>
+							<li>Rabindranath Tagore gave him the title "<mark class="y">Desh Nayak</mark>" (National Leader) in 1938 at Shantiniketan, after Bose became Congress President.</li>
+							<li>Gandhi called him "<mark class="y">Patriot of Patriots</mark>."</li>
+							<li>The honorific "<mark class="y">Netaji</mark>" was first applied to him in <mark class="g">Germany</mark> in early 1942, by Indian soldiers of the <mark class="g">Indische Legion</mark> and by German/Indian officials of the Special Bureau for India in Berlin (67th BPSC).</li>
+							<li>Bose advocated complete independence, anti-imperialism, and a socialist, secular India; he supported armed resistance and sought alliances with Germany and Japan during WWII.</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 9 ============ -->
+				<section class="chapter" id="ch9" data-title="Germany, the Free Indian Legion & the Birth of the INA">
+					<div class="chapter-head">
+						<div class="seal">9</div>
+						<h2>Germany, the Free Indian Legion &amp; the Birth of the INA</h2>
+					</div>
+					<div class="chapter-sub">1941–43 · Mohan Singh's INA before Bose's arrival</div>
+
+					<div class="event">
+						<h3>Bose in Germany</h3>
+						<ul>
+							<li>Reached Germany on <mark class="b">3 April 1941</mark>; with German government help, founded the "<mark class="y">Free India Centre</mark>," printing pamphlets and giving speeches for India's independence.</li>
+							<li>Adolf Hitler approved and permitted Bose to organise an army for the independence war in late 1941.</li>
+							<li>Bose recruited about <mark class="b">10,000 Indian war prisoners</mark> captured under General <mark class="g">Erwin Rommel</mark> in North Africa, forming the "<mark class="y">Free Indian Legion</mark>" (also called the Indische Legion) — the correct answer over Lala Hardayal, Ras Behari Bose, and V.D. Savarkar as founders (I.A.S. 2008).</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>The Indian National Army — Mohan Singh phase</h3>
+						<ul>
+							<li>The INA's brainchild is credited to <mark class="g">Giani Pritam Singh (Dhillon)</mark>, working with Japanese Major <mark class="g">Iwaichi Fujiwara</mark>, who had reached an agreement of collaboration with the Japanese at Bangkok in <mark class="b">December 1941</mark> — this predates the actual formation of the army (U.P. PCS 2001: the "brainchild" answer is Pritam Singh + Fujiwara, not Mohan Singh or Bose).</li>
+							<li>When the British Army retreated in the war with Japan, <mark class="g">Captain Mohan Singh</mark> (a British Indian Army officer) joined hands with the Japanese; Japan handed over captured Indian soldiers to him to recruit into an Indian army.</li>
+							<li>In December 1941, in the Malay forests, the Punjab battalion led by Mohan Singh was defeated by the Japanese army; Lt. Col. L.V. Fitz Patrick (British) was among the POWs.</li>
+							<li>In February 1942 (also recorded as 15 July 1942 in one source), under Mohan Singh's leadership, the Indian National Army was formed from defeated Indian soldiers of the British Army's Malay expedition.</li>
+							<li>The INA was officially constituted in <mark class="b">September 1942</mark>; Captain Mohan Singh became its <mark class="y">first Commander</mark> — he was the first operational commander, not the originator of the idea.</li>
+							<li>After the fall of Singapore, Singh had enlisted about <mark class="b">40,000 men</mark> by the end of 1942, in response to the potential Japanese occupation of India.</li>
+							<li>The unit was dissolved in <mark class="b">December 1942</mark> after disagreements/distrust between Mohan Singh and the INA leadership, and between the League leadership (notably <mark class="g">Rash Behari Bose</mark>) — but most volunteers later rejoined the INA's second incarnation under Subhas Chandra Bose.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Rash Behari Bose (1886–1945) — and a name-confusion trap</h3>
+						<ul>
+							<li>Fled to Japan in 1915 after revolutionary activities in India; founded the Indian Club in Tokyo, opposing Western imperialism.</li>
+							<li>Established the <mark class="y">Indian Independence League</mark> in 1942, unifying independence efforts.</li>
+							<li>On <mark class="b">4 July 1943</mark>, handed over INA leadership to <mark class="g">Subhas Chandra Bose</mark> (Supreme Commander) at Singapore; had earlier offered to resign the presidency to Subhas at their meeting in Tokyo (June 1943).</li>
+							<li>Died on <mark class="b">21 January 1945</mark>, after a lung collapse in February 1944.</li>
+						</ul>
+						<div class="trap">
+							<span class="lbl">Trap — do NOT confuse the two "Bose"s</span>
+							<mark class="g">Ras Behari Ghosh (1845–1921)</mark> is a <mark class="r">completely different</mark> person: Bengal-born, London-educated lawyer, Congress President in <b>1907 and 1908</b>, key figure in the <b>Surat Split (1907)</b>, promoted women's education/social upliftment for lower castes. He has no INA connection.
+						</div>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 10 ============ -->
+				<section class="chapter" id="ch10" data-title="Bose Takes Command — the Azad Hind Government (Oct 1943)">
+					<div class="chapter-head">
+						<div class="seal">10</div>
+						<h2>Bose Takes Command — the Azad Hind Government</h2>
+					</div>
+					<div class="chapter-sub">July–October 1943 · Singapore</div>
+
+					<table>
+						<caption>Provisional Government of Free India — Azad Hind Sarkar</caption>
+						<thead class="green"><tr><th>Aspect</th><th>Detail</th></tr></thead>
+						<tbody>
+							<tr><td><b>Bose arrives</b></td><td><mark class="g">Singapore</mark>, <mark class="b">2/4 July 1943</mark>; took control of the INA (sources differ slightly on the exact July date of arrival vs. formal command handover).</td></tr>
+							<tr><td><b>Formal command handover</b></td><td><mark class="b">4 July 1943</mark>, from Rash Behari Bose.</td></tr>
+							<tr><td><b>Officially took charge / renamed INA</b></td><td><mark class="b">26 August 1943</mark> — renamed it <mark class="y">Azad Hind Fauj</mark>.</td></tr>
+							<tr><td><b>Provisional Government declared</b></td><td><mark class="b">21 October 1943</mark>, Singapore — "<mark class="y">Arzi Hukumat-e-Azad Hind</mark>" (71st BPSC 2025; 42nd BPSC 1997; U.P.R.O./A.R.O. 2013 all confirm this date over 22/23/24 October distractors).</td></tr>
+							<tr><td><b>Key appointees</b></td><td><mark class="g">H.C. Chatterjee</mark> (Finance), <mark class="g">Lakshmi Swaminathan</mark> (Women's Department) — she also founded/headed the <mark class="y">Rani of Jhansi Regiment</mark> (the INA's women's regiment).</td></tr>
+							<tr><td><b>Where formed</b></td><td>Singapore — under Japanese occupation (1942–45); Singapore was part of British Malaya at the time (it became part of Malaysia only in 1963, separating as an independent country on 9 August 1965).</td></tr>
+							<tr><td><b>Declaration of war</b></td><td>Provisional government declared war on <mark class="g">Britain and the United States</mark>, gaining Axis recognition.</td></tr>
+							<tr><td><b>Women's unit</b></td><td><mark class="y">Rani of Jhansi (Laxmibai) Regiment</mark> — formed 1943, named after the Rani of Jhansi; other INA battalions: Subhash Brigade, Nehru Brigade, Azad Brigade, Gandhi Brigade.</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>International recognition</h3>
+						<p>The Azad Hind Government was recognised by <mark class="b">9 countries</mark> (70th BPSC 2024): <mark class="g">Japan, Germany, Italy, Thailand, Burma (Japanese-controlled), the Philippines (Japanese-sponsored Second Republic), Manchukuo (Japanese puppet state in Manchuria), the Independent State of Croatia</mark>, and the <mark class="g">Japanese-controlled government in Nanking, China</mark>.</p>
+						<div class="trap"><span class="lbl">Trap</span><mark class="g">Indonesia</mark> did <mark class="r">not</mark> recognise the Azad Hind Government (U.P. R.O./A.R.O. Re-Exam 2025).</div>
+					</div>
+
+					<div class="event">
+						<h3>Andaman &amp; Nicobar handed over</h3>
+						<p>Japan handed the <mark class="g">Andaman &amp; Nicobar Islands</mark> to the INA on <mark class="b">6 November 1943</mark>. Bose renamed <mark class="g">Andaman as "Shaheed" (Shahid) Dweep</mark> and <mark class="g">Nicobar as "Swaraj" Dweep</mark> (67th BPSC Re-Exam 2022).</p>
+					</div>
+
+					<div class="event">
+						<h3>Slogans</h3>
+						<ul>
+							<li>"<mark class="y">Jai Hind</mark>" was suggested by <mark class="g">Abid Hasan</mark> (Bose's secretary) and formally adopted as the greeting/salute of the Azad Hind Fauj — now India's national slogan (U.P. PCS 1990).</li>
+							<li>"<mark class="y">Give me blood, I'll give you freedom</mark>" ("<i>Tum Mujhe Khoon Do, Mai Tumhe Azadi Dunga</i>") — said by Bose in Burma while motivating soldiers; his slogan endures as a symbol of resistance (M.P. PCS 2000).</li>
+							<li>"<mark class="y">Chalo Delhi</mark>" / "Delhi Chalo" — the battle cry Bose gave on reorganising the Azad Hind Fauj (71st BPSC 2025).</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Address to Gandhi &amp; other associates</h3>
+						<ul>
+							<li>On <mark class="b">6 July 1944</mark>, Bose addressed Gandhi as "<mark class="y">Father of the Nation</mark>" over Azad Hind Radio, seeking his blessings.</li>
+							<li><mark class="g">Sheel Bhadra Yajee</mark>, a Bihar freedom fighter, joined Bose in founding the All India Forward Bloc and was actively associated with the INA movement (60th–62nd BPSC 2016).</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 11 ============ -->
+				<section class="chapter" id="ch11" data-title="INA Headquarters, the Imphal Campaign & Collapse">
+					<div class="chapter-head">
+						<div class="seal">11</div>
+						<h2>INA Headquarters, the Imphal Campaign &amp; Collapse</h2>
+					</div>
+					<div class="chapter-sub">January 1944 – August 1945</div>
+
+					<table>
+						<thead class="blue"><tr><th>Date</th><th>Event</th></tr></thead>
+						<tbody>
+							<tr><td><mark class="b">January 1944</mark></td><td>INA headquarters moved to <mark class="g">Rangoon</mark> — the correct HQ location over Tokyo, Berlin, or Delhi (M.P. PCS 2013) — rallying recruits with "Chalo Delhi!"</td></tr>
+							<tr><td>—</td><td><b>Imphal Campaign:</b> INA battalion under <mark class="g">Shah Nawaz Khan</mark> faced discrimination, shortages, and demoralisation.</td></tr>
+							<tr><td><mark class="b">18 March 1944</mark></td><td>INA crossed the Burma border into India, advancing toward Kohima and Imphal.</td></tr>
+							<tr><td><mark class="b">14 April 1944</mark></td><td>Colonel <mark class="g">Shaukat Ali Malik</mark> raised the INA flag at <mark class="g">Moirang, Manipur</mark> — a significant symbolic moment.</td></tr>
+							<tr><td>3-month span</td><td>INA managed military administration at Moirang, until Allied forces reclaimed the territory.</td></tr>
+							<tr><td><mark class="b">18 July 1944</mark></td><td>INA withdrew from Moirang.</td></tr>
+							<tr><td><mark class="b">15 August 1945</mark></td><td>Following Japan's surrender, the INA also surrendered.</td></tr>
+							<tr><td><mark class="b">18 August 1945</mark></td><td>Bose reportedly died in an air crash at <mark class="g">Taipei, Taiwan</mark> — his death remains officially "mysterious."</td></tr>
+						</tbody>
+					</table>
+					<div class="event">
+						<h3>Post-war fallout</h3>
+						<p>INA prisoners of war faced court-martial on returning to India, prompting a strong national movement for their defence and elevating the issue of Indian independence on the global stage.</p>
+					</div>
+					<div class="event">
+						<h3>People NOT associated with the INA — traps</h3>
+						<ul>
+							<li><mark class="g">Major Kartar Singh</mark> — <mark class="r">not</mark> associated with the Azad Hind Fauj (Major General Shahnawaz Khan, Colonel Prem Kumar Sahgal, and Colonel Shaukat Ali Malik <em>were</em>) — U.P. R.O./A.R.O. 2017.</li>
+							<li><mark class="g">S.A. Dange</mark> (Shripad Amrut Dange) — associated with the <mark class="y">Communist Movement</mark>, <mark class="r">not</mark> the INA (70th BPSC Re-Exam 2024); Prem Singh Sehgal, Shahnawaz Khan, and General Mohan Singh <em>were</em> INA figures.</li>
+							<li><mark class="g">B.C. Dutta</mark> — <mark class="r">not</mark> associated with the INA (U.P.R.O./A.R.O. Re-Exam 2016); Rashid Ali, Shahnawaz, and P.K. Sahgal <em>were</em>.</li>
+						</ul>
+					</div>
+				</section>
+				<!-- ============ CHAPTER 12 ============ -->
+				<section class="chapter" id="ch12" data-title="INA Trials & the INA Agitation (Nov 1945)">
+					<div class="chapter-head">
+						<div class="seal">12</div>
+						<h2>INA Trials &amp; the INA Agitation</h2>
+					</div>
+					<div class="chapter-sub">November 1945 · the Red Fort trials that reunited India</div>
+
+					<table>
+						<caption>The Red Fort trial</caption>
+						<thead class="red"><tr><th>Aspect</th><th>Detail</th></tr></thead>
+						<tbody>
+							<tr><td><b>Venue &amp; date</b></td><td><mark class="g">Red Fort, Delhi</mark>, <mark class="b">November 1945</mark> — the first (and most famous) of the INA trials.</td></tr>
+							<tr><td><b>Accused (first trial)</b></td><td><mark class="g">Colonel Prem Kumar Sahgal, Major General Shah Nawaz Khan, Colonel Gurbaksh Singh Dhillon</mark> — jointly tried for waging war against the King, murder, and attempted murder; <mark class="g">Rashid Ali</mark> also tried.</td></tr>
+							<tr><td><b>Charges/outcome</b></td><td>Sahgal, Dhillon and Shahnawaz sentenced to <mark class="y">transportation for life</mark>; <mark class="g">Rashid Ali</mark> was sentenced to <mark class="b">7 years'</mark> imprisonment.</td></tr>
+							<tr><td><b>Defence team</b></td><td><mark class="g">Bhulabhai Desai</mark> (headed the group of advocates), <mark class="g">Tej Bahadur Sapru, Kailash Nath Katju, Jawaharlal Nehru, Asaf Ali</mark> — coordinated by the <mark class="y">INA Defence Committee</mark>. <mark class="r">Not</mark> included: Sardar Vallabhbhai Patel.</td></tr>
+							<tr><td><b>Officer who did NOT face trial</b></td><td><mark class="g">Mohan Singh</mark> — despite founding-commander status, he was not among the Red Fort defendants (M.P. PCS 2010).</td></tr>
+							<tr><td><b>Outcome after pressure</b></td><td>Countrywide protests forced Commander-in-Chief <mark class="g">Claude Auchinleck</mark> to commute the life-transportation sentences and free the other INA soldiers.</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>INA Relief &amp; the wider agitation</h3>
+						<ul>
+							<li>At the <mark class="g">September 1945 Congress session, Bombay</mark>, a strong resolution endorsed the INA cause.</li>
+							<li>The <mark class="y">INA Relief and Enquiry Committee</mark> provided monetary, food, and employment support to affected individuals; organised fund collection.</li>
+							<li><b>INA Day:</b> <mark class="b">12 November 1945</mark>; <b>INA Week:</b> <mark class="b">5–11 November 1945</mark> — celebrated nationwide.</li>
+							<li>Nationwide participation from Delhi, Bombay, Calcutta, and regions like Coorg, Balochistan, Assam; cross-sector support from film stars, municipal committees, and expatriates.</li>
+							<li>Mass activities: shop closures, student meetings, kisan conferences, demands for prisoner release.</li>
+							<li>Broad support: Congress, Muslim League, Communist Party, Akalis, Hindu Mahasabha — even loyalist strongholds backed the cause.</li>
+							<li>The movement framed the INA issue as increasingly "Indian versus British," questioning Britain's right to adjudicate Indian matters.</li>
+							<li>Deployment of Indian Army units to reinforce French/Dutch colonial rule in Vietnam and Indonesia heightened anti-imperialist sentiment among urban populations and the military.</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ PART DIVIDER ============ -->
+				<div class="part-divider">
+					<span class="plabel">Part IV · 1945–46</span>
+					<div class="ptitle">Post-War Reckoning</div>
+					<p class="pdesc">A more sympathetic Britain, a decisive election, and the winter upsurges that made British withdrawal inevitable.</p>
+				</div>
+
+				<!-- ============ CHAPTER 13 ============ -->
+				<section class="chapter" id="ch13" data-title="Post-War National Scenario">
+					<div class="chapter-head">
+						<div class="seal">13</div>
+						<h2>Post-War National Scenario</h2>
+					</div>
+					<div class="chapter-sub">June–September 1945 · Britain's attitude shifts</div>
+
+					<div class="event">
+						<h3>Change in government attitude</h3>
+						<ul>
+							<li><mark class="b">June 1945</mark>: ban on Congress lifted, leaders released.</li>
+							<li>Wavell Plan failed to resolve the constitutional deadlock.</li>
+							<li><mark class="b">July 1945</mark>: <mark class="g">Labour Party</mark> took power in Britain — <mark class="g">Clement Attlee</mark> as Prime Minister (26 July 1945), <mark class="g">Pethick Lawrence</mark> as Secretary of State for India.</li>
+							<li><mark class="b">August 1945</mark>: elections announced for central and provincial assemblies, followed by a plan to convene a constituent assembly in September, aligned with the Cripps Offer's principles.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Why Britain's attitude changed</h3>
+						<ul>
+							<li><b>Global power shift:</b> UK's decline, rise of USA and USSR, both sympathetic to India's independence.</li>
+							<li><b>Labour sympathy:</b> the new government was more sympathetic to Indian demands.</li>
+							<li><b>Resource strain:</b> UK owed <mark class="b">£1.2 billion</mark> to India by 1945.</li>
+							<li><b>Anti-imperialist sentiment</b> from resistance to colonial rule in Vietnam and Indonesia.</li>
+							<li><b>Fear of revolt:</b> threat of agrarian uprisings and disaffection among the army and INA veterans.</li>
+							<li><b>Inevitability of elections:</b> post-war elections became unavoidable, prompting British retreat.</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 14 ============ -->
+				<section class="chapter" id="ch14" data-title="Election Results (1945–46)">
+					<div class="chapter-head">
+						<div class="seal">14</div>
+						<h2>Election Results (1945–46)</h2>
+					</div>
+					<div class="chapter-sub">Communal voting sets the stage for partition politics</div>
+
+					<table>
+						<thead class="blue"><tr><th>Party</th><th>Performance</th></tr></thead>
+						<tbody>
+							<tr><td><b>Congress</b></td><td>Secured <mark class="b">91%</mark> of non-Muslim votes; won <mark class="b">57 of 102</mark> seats in the Central Assembly; majorities in most provinces except Bengal, Sindh, Punjab; held majorities in NWFP and Assam.</td></tr>
+							<tr><td><b>Muslim League</b></td><td>Garnered <mark class="b">86.6%</mark> of Muslim votes and <mark class="b">all 30</mark> reserved seats in the Central Assembly; secured majorities in Bengal and Sindh.</td></tr>
+							<tr><td><b>Punjab</b></td><td>Coalition led by <mark class="g">Khizr Hayat Khan</mark> — Unionists, Congress, and Akalis.</td></tr>
+						</tbody>
+					</table>
+					<div class="event">
+						<h3>Key features</h3>
+						<ul>
+							<li>Elections were heavily communal due to separate electorates.</li>
+							<li><b>Limited franchise:</b> less than <mark class="b">10%</mark> of the population could vote for provincial assemblies, and under <mark class="b">1%</mark> for the Central Assembly.</li>
+						</ul>
+					</div>
+					<div class="event">
+						<h3>Bengal ministry (1946)</h3>
+						<p><mark class="g">A.K. Fazlul Haq</mark>'s Krishak Praja Party allied with the Muslim League to form a coalition government in Bengal after the 1946 elections; the resulting Muslim League cabinet ruled until 14 August 1947, with <mark class="g">H.S. Suhrawardy</mark> as Prime Minister of the province.</p>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 15 ============ -->
+				<section class="chapter" id="ch15" data-title="Three Upsurges & the Naval Mutiny (Winter 1945–46)">
+					<div class="chapter-head">
+						<div class="seal">15</div>
+						<h2>Three Upsurges &amp; the Naval Mutiny</h2>
+					</div>
+					<div class="chapter-sub">Winter 1945–46 · the final straw for British colonialism</div>
+
+					<div class="event">
+						<h3>The three upsurges</h3>
+						<table>
+							<thead class="red"><tr><th>Date</th><th>Event</th></tr></thead>
+							<tbody>
+								<tr><td><mark class="b">21 November 1945</mark></td><td>Calcutta protest over INA trials — students (Forward Bloc, SFI activists) protested at Dalhousie Square, faced police lathi charges, retaliated with stones; two deaths.</td></tr>
+								<tr><td><mark class="b">11 February 1946</mark></td><td>Calcutta demonstrations against the seven-year sentence handed to INA officer <mark class="g">Rashid Ali</mark>; Muslim League students defied Section 144, faced arrests/lathi charges.</td></tr>
+								<tr><td><mark class="b">18 February 1946</mark></td><td><mark class="y">Bombay Naval Strike</mark> initiated by Royal Indian Navy ratings — around <mark class="b">1,100 ratings</mark> from <mark class="g">HMIS Talwar</mark> struck against racial discrimination and poor treatment, raising the tricolour, crescent, and hammer-and-sickle flags together.</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="event">
+						<h3>Three-stage pattern</h3>
+						<ul>
+							<li><b>Stage I — Defiance of authority:</b> the three flashpoints above.</li>
+							<li><b>Stage II — Citywide participation:</b> Calcutta and Bombay faced near-paralysis; strikes and attacks on police, shops, and transport hubs.</li>
+							<li><b>Stage III — National solidarity:</b> students organised boycotts/hartals, sparking sympathetic strikes in military establishments across India; the <mark class="g">Royal Indian Air Force</mark> also joined the protests.</li>
+							<li>On <mark class="b">23 February 1946</mark>, the ratings surrendered after assurances from <mark class="g">Patel and Jinnah</mark> against victimisation.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>The Naval Mutiny's significance</h3>
+						<ul>
+							<li>Sailors protested poor conditions and racial discrimination, seeking independence; the mutiny gained widespread support from the populace, political leaders, and military factions (including the RIAF).</li>
+							<li>Exposed British vulnerability; attracted international pressure, particularly from the U.S. and Soviet Union, urging independence.</li>
+							<li>Fostered rare unity between Congress and the Muslim League; highlighted the impracticality of continued British rule; accelerated the transfer of power.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Evaluation &amp; Congress's response</h3>
+						<ul>
+							<li><b>Militant spirit:</b> the upsurges, including the RIN revolt, symbolised the looming end of British rule.</li>
+							<li><b>British concessions:</b> Dec 1946 — trials limited to serious offences; Jan 1947 — pardons for initial INA prisoners; Feb 1947 — withdrawal of Indian soldiers from Indo-China/Indonesia; finalisation of the Cabinet Mission and a parliamentary delegation to India.</li>
+							<li><b>Limited participation:</b> mainly militant groups, urban-focused; British repression mechanisms remained largely effective.</li>
+							<li><b>Congress strategy:</b> leftist concern over loss of control and discipline in an independent India; viewed the upsurges as extensions of earlier nationalist movements but refrained from endorsing violent uprisings; favoured negotiation — Gandhi opposed the mutiny, urging resolution through established leadership.</li>
+						</ul>
+					</div>
+				</section>
+				<!-- ============ PART DIVIDER ============ -->
+				<div class="part-divider">
+					<span class="plabel">Part V · 1946</span>
+					<div class="ptitle">The Cabinet Mission Year</div>
+					<p class="pdesc">A last attempt at a united India — the plan, the Constituent Assembly it created, and the Interim Government that broke down under League obstruction.</p>
+				</div>
+
+				<!-- ============ CHAPTER 16 ============ -->
+				<section class="chapter" id="ch16" data-title="The Cabinet Mission (1946)">
+					<div class="chapter-head">
+						<div class="seal">16</div>
+						<h2>The Cabinet Mission</h2>
+					</div>
+					<div class="chapter-sub">March–June 1946 · the last opportunity to avoid partition</div>
+
+					<table>
+						<caption>Cabinet Mission — identity card</caption>
+						<thead class="blue"><tr><th>Aspect</th><th>Detail</th></tr></thead>
+						<tbody>
+							<tr><td><b>Announced</b></td><td><mark class="b">19 February 1946</mark> by PM <mark class="g">Clement Attlee</mark> in the House of Commons.</td></tr>
+							<tr><td><b>Arrived in Delhi</b></td><td><mark class="b">24 March 1946</mark> (68th BPSC; 60th–62nd BPSC 2016 — ruling out Feb/March-1942-style distractor years).</td></tr>
+							<tr><td><b>Members</b></td><td><mark class="g">Lord Pethick Lawrence</mark> (Chairman &amp; Secretary of State for India), <mark class="g">Sir Stafford Cripps</mark> (President, Board of Trade), <mark class="g">A.V. Alexander</mark> (First Lord of the Admiralty).</td></tr>
+							<tr><td><b>Not a member</b></td><td><mark class="r">Lord Wavell</mark> (the Viceroy — present at some talks but not a formal Mission member), and <mark class="r">John/Ramsay Simon-Macdonald-type distractors</mark> (Sir John Simon, Ramsay MacDonald, William Wood, Lord Emery) are all wrong-option names repeatedly tested.</td></tr>
+							<tr><td><b>Goal</b></td><td>Set the framework for British withdrawal and future relations; emphasise minority rights while preventing minority veto on majority progress; work out a constitutional arrangement for the transfer of power (<mark class="r">not</mark> to establish the national government itself, nor to work out Jinnah's Pakistan demand in detail — 68th BPSC 2022).</td></tr>
+							<tr><td><b>Congress President during visit</b></td><td><mark class="g">Maulana Abul Kalam Azad</mark>, who negotiated with the Mission members on 6 April 1946.</td></tr>
+							<tr><td><b>Gandhi's view</b></td><td>Supported the Mission, calling it "the best document the British Government could have produced in the circumstances" — while cautioning their best may still be harmful.</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Recommendations (announced 16 May 1946)</h3>
+						<ul>
+							<li>A <mark class="y">Union of India</mark>, embracing British India and the princely states, controlling only <mark class="y">foreign affairs, defence, and communications</mark>; all other subjects to remain with the provinces/states.</li>
+							<li>The Muslim League's demand for a full-fledged <mark class="r">Pakistan was rejected</mark>.</li>
+							<li>The Union to have an Executive and Legislature drawn from British India Provinces and Princely State representatives.</li>
+							<li>A <mark class="y">Constituent Assembly</mark> to be formed from Provincial Legislative Assembly, Chief Commissioners' Provinces, and Princely State representatives.</li>
+							<li>Reconstitution of the <mark class="g">Viceroy's Executive Council</mark>, with all portfolios (including War) held by Indians (I.A.S. 2008).</li>
+							<li>An interim National Government to be formed with leaders of Indian parties.</li>
+							<li>Reasons for rejecting full Pakistan: non-Muslim populations of <mark class="b">38%</mark> in the North-West and <mark class="b">48%</mark> in the North-East; risk of splitting Hindu-majority Bengal and Sikh/Hindu-majority Punjab; disruption of regional ties and military security.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Grouping of provinces</h3>
+						<table>
+							<thead class="green"><tr><th>Group</th><th>Provinces</th></tr></thead>
+							<tbody>
+								<tr><td><b>Group A</b> (Hindu-majority)</td><td>Madras, Bombay, Central Provinces (&amp; Berar), United Provinces, Bihar, Orissa — plus Delhi, Ajmer-Marwar &amp; Coorg (Chief Commissioners' Provinces).</td></tr>
+								<tr><td><b>Group B</b> (Muslim-majority)</td><td>Punjab, North-West Frontier Province, Sindh — plus Baluchistan.</td></tr>
+								<tr><td><b>Group C</b> (Muslim-majority)</td><td>Bengal, Assam.</td></tr>
+							</tbody>
+						</table>
+						<ul>
+							<li><b>Congress:</b> preferred optional grouping (feared it paved the way for Pakistan); opposed removal of veto power.</li>
+							<li><b>Muslim League:</b> insisted on <mark class="r">compulsory grouping</mark> as a step toward Pakistan.</li>
+							<li>Provinces could exit their groups after elections; communal issues in the central legislature to be decided by simple majority of both communities present.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Federal structure &amp; the Constituent Assembly (as proposed)</h3>
+						<ul>
+							<li>Proposed a <mark class="y">three-tier</mark> government — provincial, sectional, and union levels (a distinctive Cabinet Mission innovation, testable against Nehru Committee/Simon Commission/Cripps Mission distractors).</li>
+							<li>Constituent Assembly of <mark class="b">389 members</mark>: <mark class="b">292</mark> from provincial assemblies, <mark class="b">93</mark> from princely states, <mark class="b">4</mark> from Chief Commissioners' provinces.</li>
+							<li>Seats allotted roughly at <mark class="b">one representative per 10 lakh</mark> population, on a communal basis, across three voter classes: <mark class="y">General, Muslims, and Sikhs</mark> (Sikhs only in Punjab).</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Objections, acceptance &amp; withdrawal</h3>
+						<ul>
+							<li><b>Congress objections:</b> opposed mandatory grouping of NWFP/Assam; disagreed with the absence of elected princely-state representatives.</li>
+							<li><b>League objections:</b> insisted on compulsory grouping; expected to be invited to form the interim government after Congress's initial rejection.</li>
+							<li><b>Muslim League accepted</b> the plan on <mark class="b">6 June 1946</mark>.</li>
+							<li><b>Congress accepted</b> on <mark class="b">24 June 1946</mark>.</li>
+							<li>Provincial elections for the Constituent Assembly held <mark class="b">July 1946</mark>: <mark class="g">208 Congress</mark> members elected, <mark class="g">73 Muslim League</mark> candidates won, <mark class="b">15</mark> others elected (total 296 British-India seats). <mark class="r">M.A. Jinnah was not a member</mark> of the Constituent Assembly.</li>
+							<li><mark class="g">Nehru's statement</mark> (10 July 1946): suggested grouping might not be necessary, given objections from NWFP and Assam.</li>
+							<li>On <mark class="b">29 July 1946</mark>, the League <mark class="r">withdrew its acceptance</mark> and called for "<mark class="y">Direct Action</mark>" from <mark class="b">16 August 1946</mark>, demanding Pakistan — triggering violent communal riots in Calcutta, Bombay, Noakhali, Bihar, and Garhmukteshwar with thousands of deaths.</li>
+						</ul>
+						<div class="trap">
+							<span class="lbl">I.A.S. 2002 — "last opportunity" trap</span>
+							The <mark class="r">rejection of the Cabinet Mission Plan</mark> (not the Cripps Mission, CR Formula, or Wavell Plan) is identified as the last opportunity lost to avoid partition.
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>Socialist-Party dissent</h3>
+						<p>The National Executive of the Indian <mark class="g">Socialist Party</mark> (1946) called for dissolution of the (indirectly elected) Constituent Assembly and its re-election by universal adult suffrage — leaders <mark class="g">JP Narayan</mark> and <mark class="g">Ram Manohar Lohia</mark> argued it did not adequately represent common Indians (Rajasthan PCS 2024).</p>
+					</div>
+
+					<div class="factbox">
+						<span class="lbl">Quick line-identification</span>
+						<dl>
+							<dt>"...still wanted a united India. There was to be the Federal Union composed of British provinces."</dt>
+							<dd>Describes the <mark class="g">Cabinet Mission</mark> (I.A.S. 1999) — not the Simon Commission, Gandhi-Irwin Pact, or Cripps Mission.</dd>
+						</dl>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 17 ============ -->
+				<section class="chapter" id="ch17" data-title="The Constituent Assembly">
+					<div class="chapter-head">
+						<div class="seal">17</div>
+						<h2>The Constituent Assembly</h2>
+					</div>
+					<div class="chapter-sub">Idea to institution</div>
+
+					<div class="event">
+						<h3>Genealogy of the idea</h3>
+						<ul>
+							<li>Earliest non-official draft: the <mark class="y">Swaraj Bill of 1895</mark>, influenced by <mark class="g">Bal Gangadhar Tilak</mark>'s thinking.</li>
+							<li><mark class="g">Gandhi</mark> first raised the idea in 1922 — that the Indian Constitution should be made per India's needs.</li>
+							<li><mark class="b">8 February 1924</mark>: <mark class="g">Motilal Nehru</mark> officially moved the "<mark class="y">National Demand</mark>" resolution in the Central Legislative Assembly, calling for a round-table conference to establish a constitution-making body.</li>
+							<li><mark class="g">M.N. Roy</mark> then proposed the demand; <mark class="g">Jawaharlal Nehru</mark> reiterated the basic concept.</li>
+							<li>The Congress <mark class="y">Faizpur Session (December 1936)</mark> officially reaffirmed and elaborated the idea of a Constituent Assembly (U.P.UDA/LDA 2001 — over the Swaraj Party 1935 / Muslim League 1942 / All Parties Conference 1946 distractors).</li>
+							<li>The <mark class="y">Constituent Assembly was formed on the recommendation of the Cabinet Mission Plan</mark> (U.P.PCS Mains 2008; U.P.UDA/LDA 2010) — the idea's genealogy is older, but its formal creation traces to the Cabinet Mission.</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>Constituent Assembly milestones</caption>
+						<thead class="green"><tr><th>Date</th><th>Event</th></tr></thead>
+						<tbody>
+							<tr><td><mark class="b">9 December 1946</mark></td><td>First meeting; <mark class="g">Dr. Sachchidananda Sinha</mark> was the first provisional (temporary) Chairman. (Sinha himself was associated with the Quit India Movement.)</td></tr>
+							<tr><td><mark class="b">11 December 1946</mark></td><td>Meeting at Delhi; <mark class="g">Dr. Rajendra Prasad</mark> elected <mark class="y">Permanent Chairman</mark>.</td></tr>
+							<tr><td><mark class="b">Midnight, 14/15 August 1947</mark></td><td>Constituent Assembly declared a <mark class="y">sovereign body</mark> of the Dominion of India, with Rajendra Prasad as its President — this is when it first held sovereign power, not at its 1946 formation.</td></tr>
+							<tr><td><mark class="b">17 November 1947</mark></td><td>The <mark class="y">Constituent Assembly (Legislative)</mark> — separated from the constitution-making function — began functioning as the Dominion Legislature.</td></tr>
+							<tr><td><mark class="b">26 November 1949</mark></td><td>Indian Constitution adopted.</td></tr>
+							<tr><td><mark class="b">26 January 1950</mark></td><td>Constitution came into force — chosen to honour the <mark class="y">Purna Swaraj / first Independence Day pledge of 26 January 1930</mark> at the Lahore Congress session (banks of the Ravi, midnight 31 Dec 1929).</td></tr>
+						</tbody>
+					</table>
+					<div class="note">Note: articles like 5, 6, 7, 8, 9, 60, 324 had already come into force from 26 November 1949 itself.</div>
+
+					<div class="event">
+						<h3>Officers &amp; portfolios</h3>
+						<ul>
+							<li><mark class="g">G.V. Mavalankar</mark> held both the Speakership of the (British-era) Central Legislative Assembly (24 Jan 1946 – 14 Aug 1947) and became the <mark class="y">first Speaker of Lok Sabha</mark> after independence (1952–56); he was also Speaker of the Bombay Legislative Assembly, 1937–46.</li>
+							<li>Members of the Constituent Assembly from the Provinces were <mark class="y">elected by the Provincial Legislative Assemblies</mark> (indirect election) — a point of Socialist Party criticism (see Ch.16).</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 18 ============ -->
+				<section class="chapter" id="ch18" data-title="The Interim Government & Direct Action Day">
+					<div class="chapter-head">
+						<div class="seal">18</div>
+						<h2>The Interim Government &amp; Direct Action Day</h2>
+					</div>
+					<div class="chapter-sub">2 September 1946 – August 1947</div>
+
+					<table>
+						<caption>Formation</caption>
+						<thead class="blue"><tr><th>Aspect</th><th>Detail</th></tr></thead>
+						<tbody>
+							<tr><td><b>Invitation</b></td><td>Lord Wavell invited Congress President <mark class="g">Jawaharlal Nehru</mark> to form the government on <mark class="b">12/24 August 1946</mark> (the two sources give both dates for the announcement/communiqué).</td></tr>
+							<tr><td><b>Inaugurated</b></td><td><mark class="b">2 September 1946</mark> — a Congress-led government, headed (as Vice President of the Executive Council) by <mark class="g">Nehru</mark>; the Muslim League did not participate at first.</td></tr>
+							<tr><td><b>Functionality</b></td><td>Despite the "Interim Government" label, it functioned primarily as an extension of the former Viceroy's executive authority.</td></tr>
+							<tr><td><b>League joins</b></td><td>After repeated requests by Wavell, the League joined on <mark class="b">13/26 October 1946</mark> — five League members entered; three of the twelve original ministers (<mark class="g">Syed Ali Zaheer, Sharat Chandra Bose, Sir Shafat Ahmed Khan</mark>) resigned to make room.</td></tr>
+							<tr><td><b>League's boycott</b></td><td>Boycotted the first meeting of the Constituent Assembly on <mark class="b">9 December 1946</mark>.</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Ministers of the Interim Government (2 Sept 1946 – 15 Aug 1947)</h3>
+						<table>
+							<thead class="green"><tr><th>Minister</th><th>Portfolio</th></tr></thead>
+							<tbody>
+								<tr><td><mark class="g">Jawaharlal Nehru</mark></td><td>Vice President, Executive Council; External Affairs &amp; Commonwealth Relations.</td></tr>
+								<tr><td><mark class="g">Vallabhbhai Patel</mark></td><td>Home; Information &amp; Broadcasting; <b>princely-states portfolio</b> (67th BPSC Re-Exam 2021).</td></tr>
+								<tr><td><mark class="g">Baldev Singh</mark></td><td>Defence.</td></tr>
+								<tr><td><mark class="g">C. Rajagopalachari</mark></td><td>Education.</td></tr>
+								<tr><td><mark class="g">C.H. Bhabha</mark></td><td>Works, Mines &amp; Power.</td></tr>
+								<tr><td><mark class="g">Rajendra Prasad</mark></td><td><b>Food &amp; Agriculture</b> (I.A.S. 2006 / 67th BPSC 2021 — a commonly-tested pairing; not Defence).</td></tr>
+								<tr><td><mark class="g">Jagjivan Ram</mark></td><td><b>Labour</b> (67th BPSC Re-Exam 2022 — not given to Rajendra Prasad, Anugraha Narayan Singh, or Syed Ali Zaheer).</td></tr>
+								<tr><td><mark class="g">Asaf Ali</mark></td><td><b>Railways / Communications, Transport</b> (U.P. Lower Sub. 2008).</td></tr>
+								<tr><td><mark class="g">Dr. John Mathai</mark></td><td>Industries &amp; Supplies.</td></tr>
+								<tr><td colspan="2"><i>Muslim League members (joined Oct 1946):</i></td></tr>
+								<tr><td><mark class="g">Liaquat Ali Khan</mark></td><td><b>Finance</b> — imposed heavy taxes on businessmen/industrialists in his budget (I.A.S. 1998; 67th BPSC 2022).</td></tr>
+								<tr><td><mark class="g">Ibrahim Ismail Chundrigar</mark></td><td>Commerce.</td></tr>
+								<tr><td><mark class="g">Abdur Rab Nishtar</mark></td><td>Communications.</td></tr>
+								<tr><td><mark class="g">Ghazanfar Ali Khan</mark></td><td>Health.</td></tr>
+								<tr><td><mark class="g">Jogendra Nath Mandal</mark></td><td>Law.</td></tr>
+							</tbody>
+						</table>
+						<div class="trap">
+							<span class="lbl">Not members of the Interim Government</span>
+							<mark class="g">B.R. Ambedkar</mark> was <mark class="r">not</mark> a member (U.P.PCS Spl. 2004); nor was <mark class="g">Abul Kalam Azad</mark> (U.P.R.O./A.R.O. Mains 2013).
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>League's obstructionism</h3>
+						<p>The League adopted an obstructionist approach: refused informal cabinet meetings, contested Congress decisions/appointments; <mark class="g">Liaqat Ali Khan</mark>, as Finance Minister, imposed restrictions hindering other ministries. The League viewed its participation as a continuation of the civil war by other means. In February 1947, nine Congress cabinet members wrote to the Viceroy demanding the League's resignation, threatening to withdraw their own nominees. The League then called for dissolving the Constituent Assembly, escalating toward crisis. In a final cabinet meeting in March 1947, Wavell overruled ministers on key decisions, including the release of INA prisoners.</p>
+					</div>
+
+					<div class="event">
+						<h3>Direct Action Day (16 August 1946)</h3>
+						<ul>
+							<li>The League fixed <mark class="b">16 August 1946</mark> as "<mark class="y">Direct Action Day</mark>" (repeatedly tested against 13/14/15 August and October/November/December distractors — Uttarakhand PCS 2025, M.P. PCS 2025, 70th BPSC 2024, UP UDA/LDA 2010).</li>
+							<li>Purpose: demonstrate that Hindus and Muslims could not coexist in one country, by rejecting the interim-cabinet decision of the Viceroy and demanding a separate Pakistan.</li>
+							<li><mark class="g">Calcutta</mark> was the main centre of Direct Action Day rioting; <mark class="g">Noakhali</mark> riots began later, in October 1946.</li>
+							<li>The League's formal demand for a separate Muslim state — the <mark class="y">Pakistan/Lahore Resolution</mark> — dates to <mark class="b">23 March 1940</mark>, at its Lahore general session.</li>
+						</ul>
+					</div>
+				</section>
+				<!-- ============ PART DIVIDER ============ -->
+				<div class="part-divider">
+					<span class="plabel">Part VI · 1947</span>
+					<div class="ptitle">Independence With Partition</div>
+					<p class="pdesc">Mountbatten replaces Wavell, a plan is drawn in weeks, and two dominions are born at midnight.</p>
+				</div>
+
+				<!-- ============ CHAPTER 19 ============ -->
+				<section class="chapter" id="ch19" data-title="Wavell's Breakdown Plan & Attlee's February Statement">
+					<div class="chapter-head">
+						<div class="seal">19</div>
+						<h2>Wavell's "Breakdown Plan" &amp; Attlee's February Statement</h2>
+					</div>
+					<div class="chapter-sub">May 1946 – February 1947</div>
+
+					<div class="event">
+						<h3>Wavell's Breakdown Plan (May 1946)</h3>
+						<p>Lord Wavell proposed this to the Cabinet Mission as a compromise between "repression" and "scuttle":</p>
+						<ul>
+							<li><b>Withdrawal of British Forces:</b> British Army/officials would retreat to Muslim provinces in the North-West and North-East.</li>
+							<li><b>Transfer of power</b> over the rest of India to Congress.</li>
+							<li><b>Recognition of reality:</b> suppressing a Congress-led rebellion was increasingly untenable.</li>
+							<li><b>Desire for partition:</b> some British officials sought a division resembling "Northern Ireland" within Pakistan.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Independence with partition — the interpretive frame</h3>
+						<ul>
+							<li><b>Imperialist view:</b> Britain viewed independence as fulfilling its "mission" to facilitate Indian self-government; partition seen as a consequence of the Hindu-Muslim divide and failed consensus on power transfer.</li>
+							<li><b>Radical view:</b> independence resulted from mass actions of 1946–47, in which Communists emerged as leaders; but bourgeois Congress leaders, fearing revolutionary upsurge, opted to negotiate with the imperialists — compromising national unity.</li>
+							<li>The <mark class="g">Hindu Mahasabha</mark> explored establishing a separate Hindu province in West Bengal.</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>Attlee's declaration &amp; the path to Mountbatten</caption>
+						<thead class="blue"><tr><th>Date</th><th>Event</th></tr></thead>
+						<tbody>
+							<tr><td><mark class="b">20 February 1947</mark></td><td><mark class="g">Attlee</mark> announced in the House of Commons that British rule would end by <mark class="b">30 June 1948</mark> at the latest, regardless of a constitutional agreement — power could go to a central authority or directly to provincial governments in Muslim-majority areas; British responsibility over princely states would also lapse, hinting at partition (similar to the Cripps Offer). This decision aimed to resolve deadlock and demonstrate British sincerity, per Lord Wavell's own assessment of Britain's declining control.</td></tr>
+							<tr><td>—</td><td>The announcement triggered violence in Punjab, collapsed <mark class="g">Khizr Hayat Khan</mark>'s coalition, and pushed Congress toward accepting partition, while the League saw it as validation.</td></tr>
+							<tr><td><mark class="b">10 March 1947</mark></td><td><mark class="g">Nehru</mark> suggested the Cabinet Mission's implementation was the best solution, with partition of Punjab and Bengal the only viable alternative.</td></tr>
+							<tr><td><mark class="b">April 1947</mark></td><td>Congress President <mark class="g">J.B. Kripalani</mark> expressed willingness to accept Pakistan to avoid conflict, contingent on a fair Bengal/Punjab partition.</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Mountbatten arrives as Viceroy</h3>
+						<ul>
+							<li><mark class="g">Lord Mountbatten</mark> served as Viceroy <mark class="b">12 Feb 1947 – 15 Aug 1947</mark> — more decisive than his predecessors, with delegated powers for on-the-spot decisions.</li>
+							<li>He came with specific instructions to <mark class="y">keep India united if possible</mark> (I.A.S. 1998) — not to Balkanise it, accept Jinnah's demand outright, or simply persuade Congress toward partition — but was authorised to act per Indian circumstances and minimise British loss.</li>
+							<li>He aimed to explore unity/division options until October 1947, but quickly recognised the Cabinet Mission Plan's futility, with <mark class="g">Jinnah</mark> adamant on a sovereign state.</li>
+							<li>Between 24 March – 6 May 1947, across 133 recorded talks with Indian politicians, Mountbatten concluded the Cabinet Mission Plan was impractical, drafting an alternative he called "<mark class="y">Plan Balkan</mark>" — the brainchild of <mark class="g">Lord Mountbatten</mark> himself (I.A.S. 2000).</li>
+							<li><b>Gandhi's suggestion (31 March 1947, first Gandhi–Mountbatten meeting):</b> as an alternative to partition, Gandhi suggested inviting <mark class="g">Jinnah</mark> to form/lead the government — Congress leaders (including Patel and Nehru) and the CWC did not support this (I.A.S. 2000).</li>
+							<li>The "<mark class="y">Dickie Bird Plan</mark>," floated before the final Mountbatten Plan, suggested provinces become independent successor states instead of forming an Indian Union or two dominions; <mark class="g">Nehru rejected</mark> it, warning of Balkanisation and conflict — it was cancelled.</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 20 ============ -->
+				<section class="chapter" id="ch20" data-title="The Mountbatten Plan (3 June 1947)">
+					<div class="chapter-head">
+						<div class="seal">20</div>
+						<h2>The Mountbatten Plan</h2>
+					</div>
+					<div class="chapter-sub">3 June 1947 · freedom with partition</div>
+
+					<table>
+						<caption>Mountbatten Plan — core provisions</caption>
+						<thead class="green"><tr><th>Provision</th><th>Detail</th></tr></thead>
+						<tbody>
+							<tr><td><b>Announced</b></td><td><mark class="b">3 June 1947</mark> — the basis for both the transfer of power and the partition of the country.</td></tr>
+							<tr><td><b>Dominion status innovation</b></td><td>Immediate transfer of power on the basis of grant of <mark class="y">dominion status</mark> (with right of secession) — actually <mark class="g">suggested by V.P. Menon</mark>, obviating the need to wait for the Constituent Assembly to agree on a new political structure.</td></tr>
+							<tr><td><b>Punjab &amp; Bengal</b></td><td>Legislative Assemblies would vote (as separate Hindu/Muslim groups) for partition; a simple majority in either group meant partition of that province.</td></tr>
+							<tr><td><b>Two dominions</b></td><td>If partitioned: India and Pakistan, each with its own constituent assembly.</td></tr>
+							<tr><td><b>Sindh</b></td><td>Would make its own decision on partition.</td></tr>
+							<tr><td><b>Referendums</b></td><td>In NWFP, Sindh (per one summary), Baluchistan, and the Sylhet district of Bengal/Assam (Jharkhand PCS 2016) to determine their fate.</td></tr>
+							<tr><td><b>Boundary commission</b></td><td>To be set up if partition occurred.</td></tr>
+							<tr><td><b>Freedom date</b></td><td>Set for <mark class="b">15 August 1947</mark>.</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Congress's concessions &amp; gains</h3>
+						<ul>
+							<li>Congress conceded the demand for a unified India while securing: princely states could not remain independent (must join India or Pakistan); independence for Bengal ruled out; accession of <mark class="g">Hyderabad</mark> to Pakistan ruled out (Mountbatten supported Congress here).</li>
+							<li><b>Why the early date (15 Aug 1947)?</b> Britain wanted to secure Congress's acceptance of dominion status and evade responsibility for escalating communal tensions.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Reactions to the plan</h3>
+						<ul>
+							<li><b>Gandhi:</b> expressed deep distress at partition, urged resistance to the plan as contradicting the unity fostered during the freedom movement; famously said he would let partition happen only "over my dead body" — yet accepted the AICC's partition resolution (14–15 June 1947) despite fundamentally opposing division, to avoid further communal bloodshed. He did not participate anywhere in the 15 August 1947 Independence Day celebrations — he fasted and prayed instead.</li>
+							<li><b>Azad:</b> vehemently opposed Congress leadership's acquiescence, viewing it as capitulation to power.</li>
+							<li><b>Congress's reasons for accepting dominion status &amp; partition:</b> continuity in administration/bureaucracy/military; Britain's desire to retain India within the Commonwealth; failure to integrate Muslim masses into a unified nation; urgent need to prevent communal violence and a failed Interim Government; prevention of Balkanisation of princely states; exhaustion and inability to control riots.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>AICC accepts partition (14–15 June 1947)</h3>
+						<ul>
+							<li>Congress President at the time: <mark class="g">J.B. Kripalani</mark> (in office 23 Nov 1946 – Nov 1947, elected at the Meerut Session 1946).</li>
+							<li>Proposal presented by <mark class="g">Govind Ballabh Pant</mark>, seconded by <mark class="g">Maulana Abul Kalam Azad</mark>.</li>
+							<li><mark class="g">Khan Abdul Ghaffar Khan</mark> ("Frontier Gandhi") <mark class="r">voted against</mark> the partition proposal.</li>
+							<li><mark class="g">Dr. Saifuddin Kitchlew</mark> (President, Punjab Regional Congress Committee), also opposed to partition, remarked that "Nationalism surrendered to Communalism" on the resolution's passing — he later left Congress and joined the Communist Party of India.</li>
+							<li>J.B. Kripalani resigned in November 1947; <mark class="g">Rajendra Prasad</mark> became interim President; <mark class="g">Pattabhi Sitaramayya</mark> became the next President at the 1948 Jaipur session; <mark class="g">Purushottam Das Tandon</mark> at the 1950 Nasik session; <mark class="g">Nehru</mark> was President 1951–54.</li>
+							<li><mark class="g">Jawaharlal Nehru</mark> and <mark class="g">Sardar Patel</mark> represented the INC on the <mark class="y">Partition Council</mark> headed by Mountbatten.</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 21 ============ -->
+				<section class="chapter" id="ch21" data-title="The Radcliffe Line & the Indian Independence Act, 1947">
+					<div class="chapter-head">
+						<div class="seal">21</div>
+						<h2>The Radcliffe Line &amp; the Indian Independence Act</h2>
+					</div>
+					<div class="chapter-sub">June–August 1947</div>
+
+					<div class="event">
+						<h3>Boundary Commissions</h3>
+						<ul>
+							<li>Mountbatten set up the <mark class="y">Punjab Boundary Commission</mark> and <mark class="y">Bengal Boundary Commission</mark> on <mark class="b">30 June 1947</mark>, to determine the India–Pakistan division in Punjab and Bengal.</li>
+							<li><mark class="g">Cyril Radcliffe</mark> chaired both commissions — the correct answer over A.P. Moon and A.V. Alexander (68th BPSC 2022). Each commission had 4 members (judges): 2 from Congress, 2 from the Muslim League.</li>
+							<li>The commissions demarcated boundaries based on contiguous majority areas of Muslim/non-Muslim population, among other factors — and were tasked with delineating borders (<mark class="r">not</mark> solving the minorities problem broadly, effecting the Independence Bill itself, or enquiring into East Bengal riots — I.A.S. 2014).</li>
+							<li>The Radcliffe Award, ready by <mark class="b">12 August 1947</mark>, was deliberately delayed by Mountbatten and published on <mark class="b">17 August 1947</mark> — two days after Independence, absolving the British of responsibility for the ensuing disturbances.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Execution of the Mountbatten Plan</h3>
+						<ul>
+							<li>Legislative assemblies in Bengal and Punjab voted for partition: <b>East Bengal</b> and <b>West Punjab</b> became part of Pakistan; <b>West Bengal</b> and <b>East Punjab</b> remained with India.</li>
+							<li>A <mark class="y">referendum in Sylhet</mark> led to its incorporation into East Bengal (Pakistan).</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>Indian Independence Act, 1947</caption>
+						<thead class="red"><tr><th>Aspect</th><th>Detail</th></tr></thead>
+						<tbody>
+							<tr><td><b>Basis</b></td><td>Based on the Mountbatten Plan; provided the legal basis for the partition of British India and creation of two dominions (71st BPSC 2025 — over the Govt of India Acts of 1919/1935 as distractors).</td></tr>
+							<tr><td><b>Presented / passed</b></td><td>Presented in the House of Commons by Attlee on <mark class="b">4 July 1947</mark>; passed by the Commons on <mark class="b">15 July 1947</mark>, then by the House of Lords the next day.</td></tr>
+							<tr><td><b>Royal Assent</b></td><td><mark class="b">18 July 1947</mark>.</td></tr>
+							<tr><td><b>Key provisions</b></td><td>Creation of two independent dominions, India and Pakistan, effective <mark class="b">15 August 1947</mark>; each dominion to have a Governor-General implementing the Act; constituent assemblies to exercise legislative powers, dissolving the existing Central Legislative Assembly and Council of States; governance under the <mark class="y">Government of India Act, 1935</mark> until new constitutions were adopted.</td></tr>
+							<tr><td><b>Independence dates</b></td><td><mark class="g">Pakistan</mark>: <mark class="b">14 August</mark>; <mark class="g">India</mark>: <mark class="b">15 August 1947</mark>. <mark class="g">M.A. Jinnah</mark> became Pakistan's first Governor-General; <mark class="g">Lord Mountbatten</mark> continued as India's Governor-General, at India's own request.</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>The National Flag</h3>
+						<p>The Indian National Flag was adopted by the Constituent Assembly on <mark class="b">22 July 1947</mark> (70th BPSC 2024) — the tricolour of saffron, white, and green with the Ashoka Chakra at the centre; the flag's width-to-length ratio is fixed at <mark class="b">2:3</mark>.</p>
+					</div>
+
+					<div class="event">
+						<h3>Midnight of 14/15 August 1947</h3>
+						<ul>
+							<li>The Constituent Assembly assumed full sovereign powers at midnight; the existing Central Legislature ceased to exist, replaced by the Assembly acting also as the Dominion Legislature.</li>
+							<li><mark class="g">Jawaharlal Nehru</mark> delivered his famous speech as India's first Prime Minister; he was appointed PM by Governor-General <mark class="g">Lord Mountbatten</mark>.</li>
+							<li><mark class="g">Sucheta Kripalani</mark> sang "<mark class="y">Vande Mataram</mark>," "<mark class="y">Jan-Gan-Man</mark>," and Iqbal's "<mark class="y">Sare Jahan Se Achha</mark> / Hindustan Hamara" in the Assembly at midnight (U.P.PCS 2010).</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Governors-General &amp; Presidents — sequencing</h3>
+						<table>
+							<thead class="blue"><tr><th>Office</th><th>Holder(s)</th></tr></thead>
+							<tbody>
+								<tr><td>First Governor-General of Independent India</td><td><mark class="g">Lord Mountbatten</mark> (1947–48).</td></tr>
+								<tr><td>First (and last) <b>Indian</b> Governor-General</td><td><mark class="g">C. Rajagopalachari</mark> (1948–50) — stayed until 26 January 1950; also Chief Minister of Madras, 1952–54; later formed the Swatantra Party (1959).</td></tr>
+								<tr><td>Last Viceroy of India</td><td><mark class="g">Lord Mountbatten</mark> — took charge 24 March 1947, presented the partition plan 3 June 1947.</td></tr>
+								<tr><td>First Law Minister of India</td><td><mark class="g">Dr. B.R. Ambedkar</mark> — appointed on Gandhi's recommendation; also President of the Drafting Committee.</td></tr>
+								<tr><td>Presidents of India, in sequence</td><td><mark class="g">Rajendra Prasad (1950–62) → S. Radhakrishnan (1962–67) → Zakir Hussain (1967–69) → V.V. Giri (1969–74)</mark>.</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="event">
+						<h3>Reflections on the Raj</h3>
+						<ul>
+							<li><mark class="g">R. Coupland</mark>: "Indian nationalism, in truth, was the child of the British Raj" — but (per the dossier's counter-note) failed to add that the British authorities denied this "child" nourishment and tried to choke it.</li>
+							<li><mark class="g">K.M. Panikkar</mark>: "The greatest achievement of British Rule is the unity of India."</li>
+							<li>The British Monarch at the time of independence was <mark class="g">George VI</mark> (r. 1936–1952) — not George V or Edward VII.</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 22 ============ -->
+				<section class="chapter" id="ch22" data-title="Integration of Princely States">
+					<div class="chapter-head">
+						<div class="seal">22</div>
+						<h2>Integration of Princely States</h2>
+					</div>
+					<div class="chapter-sub">1946–48</div>
+
+					<div class="event">
+						<ul>
+							<li>The <mark class="y">State People's Movement (1946–47)</mark> demanded political rights and representation in the Constituent Assembly; <mark class="g">Nehru</mark> chaired the All India State People's Conference at <mark class="g">Udaipur (1945)</mark> and <mark class="g">Gwalior (April 1947)</mark>, warning non-participating states would be treated as hostile.</li>
+							<li><b>Phase I — Instrument of Accession:</b> by 15 August 1947, all states except <mark class="g">Kashmir, Hyderabad, and Junagadh</mark> had signed, granting central control over defence, external affairs, and communication.</li>
+							<li><b>Phase II — Integration:</b> complex integration into Kathiawar, Vindhya, Madhya Pradesh, Rajasthan, and Himachal Pradesh; Hyderabad, Mysore, and Travancore-Cochin retained their boundaries; privy purses were offered, and some princes became Governors or Rajpramukhs.</li>
+							<li>On <mark class="b">15 February 1948</mark>, <mark class="b">222</mark> princely states (217 from the Kathiawar Agency, 5 others) merged to form the <mark class="y">Saurashtra Sangh</mark> (M.P. PCS 2023).</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 23 ============ -->
+				<section class="chapter" id="ch23" data-title="Evolution of the Two-Nation Theory (1887–1947)">
+					<div class="chapter-head">
+						<div class="seal">23</div>
+						<h2>Evolution of the Two-Nation Theory</h2>
+					</div>
+					<div class="chapter-sub">A background chronology, 1887–1947</div>
+
+					<table>
+						<thead class="purple"><tr><th>Year</th><th>Development</th></tr></thead>
+						<tbody>
+							<tr><td><mark class="b">1887</mark></td><td>Dufferin &amp; Colvin's anti-Congress strategies leveraged figures like <mark class="g">Syed Ahmed Khan</mark> to discourage Muslim participation in Congress, despite some Muslims joining.</td></tr>
+							<tr><td><mark class="b">1906</mark></td><td>The <mark class="y">Shimla Deputation</mark>, led by the <mark class="g">Aga Khan</mark>, demanded separate electorates for Muslims — leading to the formation of the All India Muslim League.</td></tr>
+							<tr><td><mark class="b">1909</mark></td><td><mark class="y">Morley-Minto Reforms</mark> granted separate electorates, strengthening communal identities.</td></tr>
+							<tr><td><mark class="b">1912–24</mark></td><td>The Muslim League experienced internal shifts, increasingly adopting a communal perspective.</td></tr>
+							<tr><td><mark class="b">1915</mark></td><td>First All India <mark class="y">Hindu Mahasabha</mark> session — organised Hindu political mobilisation.</td></tr>
+							<tr><td><mark class="b">1916</mark></td><td>Congress accepted separate electorates for Muslims, politically validating the League.</td></tr>
+							<tr><td><mark class="b">1920–22</mark></td><td>Muslim involvement in the Khilafat movement continued, but communal elements persisted.</td></tr>
+							<tr><td><mark class="b">1920s</mark></td><td>Communal riots escalated — Arya Samajists' <mark class="y">Shuddhi movement</mark> and Muslim counteractions were emblematic.</td></tr>
+							<tr><td><mark class="b">1928</mark></td><td>The <mark class="y">Nehru Report</mark> faced Muslim backlash, leading to <mark class="g">Jinnah's Fourteen Points</mark>, intensifying communal demands.</td></tr>
+							<tr><td><mark class="b">1930–34</mark></td><td>Limited Muslim participation in the Civil Disobedience Movement highlighted nationalist divides.</td></tr>
+							<tr><td><mark class="b">1932</mark></td><td>The <mark class="y">Communal Award</mark> legitimised separate communal demands for Muslims.</td></tr>
+							<tr><td>Post-<mark class="b">1937</mark></td><td>The League embraced extreme communalism, influenced by <mark class="g">Rahmat Ali</mark> and <mark class="g">Iqbal</mark>; the pamphlet "<mark class="y">Now or Never</mark>" was written by Rahmat Ali (63rd BPSC).</td></tr>
+							<tr><td><mark class="b">24 March 1940</mark></td><td>The <mark class="y">Lahore Resolution</mark> called for independent states for Muslims in contiguous regions — crystallising the two-nation theory.</td></tr>
+							<tr><td><b>WWII years</b></td><td>The British government gave the League significant leverage, letting it press for a separate Pakistan — ultimately achieved in 1947.</td></tr>
+						</tbody>
+					</table>
+				</section>
+
+				<!-- ============ MASTER TABLE ============ -->
+				<section class="master-section" id="master-table">
+					<div class="master-inner">
+						<div class="master-eyebrow">BPSC Prelims · Final Revision</div>
+						<h2>Master Table — Important Dates (1942–47)</h2>
+						<p class="master-sub">Chronological date bank collected from this dossier, merging theory and every PYQ-explanation fact, prioritising dates useful for Prelims revision.</p>
+						<div class="master-table-wrap">
+							<table class="master-table">
+								<thead><tr><th>Date</th><th>Event</th><th>Why it matters</th></tr></thead>
+								<tbody>
+<tr><td>6 July 1942</td><td>Gandhi first discusses "Quit India Policy" at Wardha CWC</td><td>Chaired by Congress President Abul Kalam Azad.</td></tr>
+<tr><td>5–14 July 1942</td><td>Wardha CWC meeting</td><td>Passed the Quit India resolution on 14 July.</td></tr>
+<tr><td>14 July 1942</td><td>Quit India resolution passed at Wardha</td><td>Proposed by Nehru, seconded by Patel; drafted by Gandhi with Nehru/Azad.</td></tr>
+<tr><td>29 July 1942</td><td>'Kurnool Circular' issued</td><td>Drafted by Kala Venkat Rao; seized by police at Kurnool.</td></tr>
+<tr><td>7–8 August 1942</td><td>AICC session, Gowalia Tank, Bombay</td><td>Wardha resolution confirmed and re-passed as Quit India Resolution.</td></tr>
+<tr><td>8 August 1942</td><td>Quit India Resolution adopted by AICC</td><td>Nehru presented, Patel seconded; four demands adopted.</td></tr>
+<tr><td>9 August 1942</td><td>Quit India Movement launched; Operation Zero Hour arrests</td><td>Gandhi/Naidu to Aga Khan Palace; CWC to Ahmednagar Fort; Rajendra Prasad to Bankipur Jail.</td></tr>
+<tr><td>9 August 1942</td><td>Aruna Asaf Ali hoists flag at Gowalia Tank</td><td>Iconic act of defiance on launch day.</td></tr>
+<tr><td>9 November 1942</td><td>JP Narayan escapes Hazaribagh Jail (Diwali day)</td><td>With Yogendra Shukla; later formed the Azad Dasta.</td></tr>
+<tr><td>December 1942</td><td>Mohan Singh's INA dissolved</td><td>Distrust between Mohan Singh, League leadership; volunteers later rejoin under Bose.</td></tr>
+<tr><td>Dec 1942 – Sep 1944</td><td>Tamluk Jatiya Sarkar (Bengal)</td><td>Parallel government; cyclone relief, school grants.</td></tr>
+<tr><td>February 1943</td><td>Gandhi's fast in Aga Khan Palace</td><td>Protested state violence; "Operation Rubicon" was the British code-word if he died.</td></tr>
+<tr><td>23 March 1943</td><td>Pakistan Day observed</td><td>Milestone in the separate-state demand.</td></tr>
+<tr><td>August 1943 – 1945/46</td><td>Satara "Prati Sarkar" parallel government</td><td>Y.B. Chavan, Nana Patil; longest-running parallel government.</td></tr>
+<tr><td>2 July 1943 (also 4 July)</td><td>Subhas Chandra Bose arrives Singapore, takes INA command</td><td>From Rash Behari Bose.</td></tr>
+<tr><td>26 August 1943</td><td>Bose officially takes charge; INA renamed Azad Hind Fauj</td><td>Formal renaming under Bose's command.</td></tr>
+<tr><td>21 October 1943</td><td>Provisional Government of Free India declared, Singapore</td><td>"Azad Hind Sarkar"; recognised by 9 countries.</td></tr>
+<tr><td>6 November 1943</td><td>Andaman & Nicobar handed to INA by Japan</td><td>Renamed Shaheed Dweep and Swaraj Dweep.</td></tr>
+<tr><td>1944</td><td>Rajagopalachari (CR) Formula / "The Way Out"</td><td>Gandhi-endorsed; rejected by Jinnah and Hindu Mahasabha.</td></tr>
+<tr><td>5/6 May 1944</td><td>Gandhi released (poor health)</td><td>Proposed Gandhi–Jinnah Parleys on the CR Formula basis; talks collapsed after two weeks.</td></tr>
+<tr><td>January 1944</td><td>INA headquarters moved to Rangoon</td><td>Rallying cry: "Chalo Delhi!"</td></tr>
+<tr><td>18 March 1944</td><td>INA crosses Burma border into India</td><td>Advance toward Kohima and Imphal.</td></tr>
+<tr><td>14 April 1944</td><td>INA flag hoisted at Moirang, Manipur</td><td>By Colonel Shaukat Ali Malik.</td></tr>
+<tr><td>18 July 1944</td><td>INA withdraws from Moirang</td><td>After Allied forces reclaimed the territory.</td></tr>
+<tr><td>1945</td><td>Desai–Liaquat Pact</td><td>Proposed equal Congress-League representation; no final agreement.</td></tr>
+<tr><td>14 June 1945</td><td>Wavell Plan</td><td>Indian-majority Executive Council proposal.</td></tr>
+<tr><td>25 June – 14 July 1945</td><td>Shimla Conference</td><td>Broke down over League's veto/nomination demands.</td></tr>
+<tr><td>15 August 1945</td><td>Japan surrenders; INA surrenders</td><td>End of the INA's military campaign.</td></tr>
+<tr><td>18 August 1945</td><td>Bose reportedly dies in air crash, Taipei</td><td>Death remains officially "mysterious."</td></tr>
+<tr><td>September 1945</td><td>Congress Bombay session endorses INA cause</td><td>Beginning of the organised INA agitation.</td></tr>
+<tr><td>5–11 November 1945</td><td>INA Week</td><td>Nationwide celebrations/protests.</td></tr>
+<tr><td>November 1945</td><td>Red Fort (INA) Trial begins</td><td>Sahgal, Dhillon, Shahnawaz, Rashid Ali tried; defence led by Bhulabhai Desai.</td></tr>
+<tr><td>12 November 1945</td><td>INA Day</td><td>Marked the height of the agitation.</td></tr>
+<tr><td>21 November 1945</td><td>Calcutta student protest (First Upsurge)</td><td>Over INA trials; two deaths in police firing.</td></tr>
+<tr><td>1945–46</td><td>Central & Provincial Assembly elections</td><td>Congress 91% non-Muslim vote; League 86.6% Muslim vote, all 30 reserved seats.</td></tr>
+<tr><td>19 February 1946</td><td>Attlee announces Cabinet Mission</td><td>Dispatch of Mission for constitutional reforms.</td></tr>
+<tr><td>11 February 1946</td><td>Calcutta protest over Rashid Ali's sentence (Second Upsurge)</td><td>Muslim League students defied Section 144.</td></tr>
+<tr><td>18–23 February 1946</td><td>Royal Indian Navy Mutiny / Bombay Naval Strike (Third Upsurge)</td><td>~1,100 ratings of HMIS Talwar; ended with Patel–Jinnah assurances.</td></tr>
+<tr><td>24 March 1946</td><td>Cabinet Mission arrives in Delhi</td><td>Pethick Lawrence, Cripps, A.V. Alexander.</td></tr>
+<tr><td>16 May 1946</td><td>Cabinet Mission recommendations announced</td><td>Three-tier polity; Pakistan demand rejected; grouping into A/B/C.</td></tr>
+<tr><td>6 June 1946</td><td>Muslim League accepts Cabinet Mission Plan</td><td>Later withdrawn (29 July 1946).</td></tr>
+<tr><td>24 June 1946</td><td>Congress accepts Cabinet Mission Plan</td><td>Accepted the constituent-assembly proposals.</td></tr>
+<tr><td>July 1946</td><td>Constituent Assembly elections held</td><td>208 Congress, 73 League, 15 others (of 296 British-India seats).</td></tr>
+<tr><td>10 July 1946</td><td>Nehru's statement on grouping</td><td>Suggested grouping may not be necessary.</td></tr>
+<tr><td>29 July 1946</td><td>Muslim League withdraws acceptance; calls for Direct Action</td><td>From 16 August 1946.</td></tr>
+<tr><td>12/24 August 1946</td><td>Wavell invites Nehru to form Interim Government</td><td>Congress announces communiqué for first Interim Government.</td></tr>
+<tr><td>16 August 1946</td><td>Direct Action Day</td><td>Calcutta riots; Noakhali riots followed in October.</td></tr>
+<tr><td>2 September 1946</td><td>Interim Government inaugurated</td><td>Nehru-led; League absent initially.</td></tr>
+<tr><td>13/26 October 1946</td><td>Muslim League joins Interim Government</td><td>Liaquat Ali Khan given Finance portfolio.</td></tr>
+<tr><td>9 December 1946</td><td>First meeting of Constituent Assembly</td><td>Sachchidananda Sinha, provisional Chairman; League boycotted.</td></tr>
+<tr><td>11 December 1946</td><td>Rajendra Prasad elected permanent Chairman</td><td>Of the Constituent Assembly.</td></tr>
+<tr><td>February 1947</td><td>Nine Congress ministers demand League's resignation</td><td>Wrote to the Viceroy amid League obstruction.</td></tr>
+<tr><td>12 February 1947</td><td>Lord Mountbatten becomes Viceroy</td><td>Replaces Wavell; serves till 15 Aug 1947.</td></tr>
+<tr><td>20 February 1947</td><td>Attlee's withdrawal-by-June-1948 statement</td><td>Triggered Punjab violence; collapsed Khizr Hayat Khan's coalition.</td></tr>
+<tr><td>10 March 1947</td><td>Nehru proposes partition of Punjab and Bengal</td><td>As the only viable alternative to the Cabinet Mission Plan.</td></tr>
+<tr><td>24 March – 6 May 1947</td><td>Mountbatten's 133 talks; drafts "Plan Balkan"</td><td>Concludes Cabinet Mission Plan is impractical.</td></tr>
+<tr><td>31 March 1947</td><td>First Gandhi–Mountbatten meeting</td><td>Gandhi suggests Jinnah lead the government instead of partition.</td></tr>
+<tr><td>April 1947</td><td>J.B. Kripalani accepts Pakistan in principle</td><td>Contingent on fair Bengal/Punjab partition.</td></tr>
+<tr><td>3 June 1947</td><td>Mountbatten Plan announced</td><td>Dominion status (V.P. Menon's idea); freedom set for 15 Aug 1947.</td></tr>
+<tr><td>14–15 June 1947</td><td>AICC accepts partition, Delhi</td><td>Moved by Pant, seconded by Azad; Khan Abdul Ghaffar Khan voted against.</td></tr>
+<tr><td>30 June 1947</td><td>Punjab & Bengal Boundary Commissions set up</td><td>Cyril Radcliffe chairs both.</td></tr>
+<tr><td>4 July 1947</td><td>Indian Independence Bill presented in Commons</td><td>By Attlee.</td></tr>
+<tr><td>15 July 1947</td><td>Bill passed by House of Commons</td><td>Passed by Lords the next day.</td></tr>
+<tr><td>18 July 1947</td><td>Indian Independence Act receives Royal Assent</td><td>Basis: the Mountbatten Plan.</td></tr>
+<tr><td>22 July 1947</td><td>National Flag adopted by Constituent Assembly</td><td>Tricolour with Ashoka Chakra; 2:3 ratio.</td></tr>
+<tr><td>12 August 1947</td><td>Radcliffe Award ready</td><td>Deliberately withheld from publication until after Independence.</td></tr>
+<tr><td>14 August 1947</td><td>Pakistan's independence</td><td>Jinnah becomes first Governor-General.</td></tr>
+<tr><td>Midnight, 14/15 August 1947</td><td>India's independence; Constituent Assembly turns sovereign</td><td>Nehru's speech as first PM; Sucheta Kripalani sings the anthems; Mountbatten continues as Governor-General.</td></tr>
+<tr><td>17 August 1947</td><td>Radcliffe Line published</td><td>Two days after Independence — by design.</td></tr>
+<tr><td>17 November 1947</td><td>Constituent Assembly (Legislative) begins functioning</td><td>Separated from the constitution-making function.</td></tr>
+<tr><td>15 February 1948</td><td>Saurashtra Sangh formed</td><td>222 princely states merged.</td></tr>
+<tr><td>1948–50</td><td>C. Rajagopalachari, first & last Indian Governor-General</td><td>Until 26 January 1950.</td></tr>
+<tr><td>26 November 1949</td><td>Constitution of India adopted</td><td>Several articles (5,6,7,8,9,60,324) came into force immediately.</td></tr>
+<tr><td>26 January 1950</td><td>Constitution comes into force; Republic Day</td><td>Chosen to honour 26 Jan 1930's Purna Swaraj pledge.</td></tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- /chapters -->
+
+			<div class="footer">
+				Compiled from theory notes and PYQ (Ghatnachakra-style) explanations · marker-coded per canonical study format · cross-verify years before the exam
+			</div>
+		</div>
+		<!-- /main -->
+
+		<script>
+			const chapters = document.querySelectorAll(".chapter");
+			const toc = document.getElementById("toc");
+			chapters.forEach((ch, i) => {
+				const a = document.createElement("a");
+				a.href = "#" + ch.id;
+				a.innerHTML = '<span class="num">' + String(i + 1).padStart(2, "0") + "</span><span>" + ch.dataset.title + "</span>";
+				a.dataset.target = ch.id;
+				toc.appendChild(a);
+			});
+			const links = toc.querySelectorAll("a");
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							links.forEach((l) => l.classList.remove("active"));
+							const active = toc.querySelector('a[data-target="' + entry.target.id + '"]');
+							if (active) active.classList.add("active");
+						}
+					});
+				},
+				{ rootMargin: "-10% 0px -75% 0px", threshold: 0 },
+			);
+			chapters.forEach((ch) => observer.observe(ch));
+
+			const menuBtn = document.getElementById("menu-btn");
+			const sidebar = document.getElementById("sidebar");
+			menuBtn.addEventListener("click", () => sidebar.classList.toggle("open"));
+			links.forEach((l) => l.addEventListener("click", () => sidebar.classList.remove("open")));
+		</script>
+	</body>
+</html>
