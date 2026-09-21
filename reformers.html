@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Reformer's Ledger — Socio-Religious Reform Movements</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --ink:#0B1E33;
+    --ink-2:#122A45;
+    --paper:#FBF7EC;
+    --paper-2:#F3ECDA;
+    --gold:#C9A227;
+    --gold-2:#E8C766;
+    --teal:#2E6171;
+    --text:#1C2B3A;
+    --muted:#5B6B7A;
+    --hl-y:#F1B400;
+    --hl-b:#1F6FB2;
+    --hl-g:#1E8449;
+    --hl-r:#B03A2E;
+    --hl-p:#6C3483;
+    --trap-bg:#FDEDEC;
+    --trap-bd:#C0392B;
+    --ctx-bg:#EAF2F6;
+    --ctx-bd:#2E6171;
+    --tbl-head-blue:#1A5276;
+    --tbl-head-red:#7B241C;
+    --tbl-head-green:#145A32;
+    --tbl-head-purple:#5B2C6F;
+    --tbl-head-brown:#7E5109;
+    --border-strong:#0B1E33;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17.5px;
+    display:flex;
+    min-height:100vh;
+  }
+  ::selection{background:var(--gold-2); color:var(--ink);}
+
+  #sidebar{
+    width:290px;
+    flex-shrink:0;
+    background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:#DCE6EE;
+    position:fixed;
+    top:0; left:0; bottom:0;
+    overflow-y:auto;
+    padding:28px 0 40px;
+    border-right:1px solid rgba(201,162,39,.25);
+    z-index:50;
+  }
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:rgba(201,162,39,.4); border-radius:3px;}
+
+  .brand{padding:0 24px 22px; border-bottom:1px solid rgba(201,162,39,.25); margin-bottom:14px;}
+  .brand .stamp{
+    width:46px;height:46px;border-radius:50%; border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif; font-weight:800; color:var(--gold-2);
+    font-size:13px; letter-spacing:.5px; margin-bottom:10px;
+  }
+  .brand h1{font-family:'Playfair Display', serif; font-size:19px; line-height:1.3; margin:0 0 4px; font-weight:700; color:#F4EFE1;}
+  .brand p{margin:0; font-size:12px; letter-spacing:.09em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono', monospace;}
+
+  nav.toc{padding:6px 10px;}
+  nav.toc a{
+    display:flex; align-items:baseline; gap:10px; padding:9px 14px; margin:1px 0;
+    border-radius:6px; color:#B7C6D3; text-decoration:none; font-size:13.2px; font-weight:500;
+    border-left:3px solid transparent; transition:background .15s, color .15s, border-color .15s;
+  }
+  nav.toc a .num{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--gold); flex-shrink:0; width:20px;}
+  nav.toc a:hover{background:rgba(201,162,39,.10); color:#F4EFE1;}
+  nav.toc a.active{background:rgba(201,162,39,.16); color:#F8F1DD; border-left-color:var(--gold); font-weight:600;}
+
+  .legend-box{margin:20px 16px 0; padding:14px 14px 16px; background:rgba(255,255,255,.04); border:1px solid rgba(201,162,39,.22); border-radius:8px;}
+  .legend-box h3{margin:0 0 10px; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  .legend-row{display:flex; align-items:center; gap:8px; margin-bottom:7px; font-size:12.5px; color:#CBD6DF;}
+  .legend-swatch{width:14px;height:14px;border-radius:3px; flex-shrink:0;}
+
+  #main{margin-left:290px; flex:1; padding:0; background:var(--ink);}
+  .cover{
+    padding:74px 64px 56px;
+    background:radial-gradient(circle at 85% 20%, rgba(201,162,39,.10), transparent 45%), linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:#EFE9D8; border-bottom:4px double rgba(201,162,39,.4);
+  }
+  .cover .eyebrow{font-family:'IBM Plex Mono',monospace; letter-spacing:.18em; text-transform:uppercase; font-size:12.5px; color:var(--gold-2); margin-bottom:16px;}
+  .cover h1{font-family:'Playfair Display', serif; font-weight:800; font-size:clamp(28px,4.2vw,44px); line-height:1.16; margin:0 0 16px; max-width:820px;}
+  .cover p.sub{font-size:17px; color:#C9D2DB; max-width:680px; line-height:1.7; margin:0 0 22px;}
+  .cover .tags{display:flex; gap:10px; flex-wrap:wrap;}
+  .cover .tag{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--gold-2); border:1px solid rgba(201,162,39,.45); padding:5px 12px; border-radius:20px; background:rgba(201,162,39,.06);}
+
+  .chapters{background:var(--paper); padding:10px 0 90px;}
+  .chapter{max-width:1040px; margin:0 auto; padding:56px 48px 8px; border-bottom:1px solid rgba(28,43,58,.10); scroll-margin-top:14px;}
+  .chapter:last-child{border-bottom:none;}
+
+  .chapter-head{display:flex; align-items:center; gap:18px; margin-bottom:6px;}
+  .chapter-head .seal{
+    width:52px; height:52px; border-radius:50%; background:var(--ink); color:var(--gold-2);
+    display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:700; font-size:19px;
+    border:2px solid var(--gold); flex-shrink:0;
+  }
+  .chapter-head h2{font-family:'Playfair Display', serif; font-size:clamp(22px,2.7vw,29px); margin:0; color:var(--ink); font-weight:700; line-height:1.25;}
+  .chapter-sub{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin:6px 0 26px 70px;}
+
+  .event{margin:0 0 28px; padding-left:18px; border-left:3px solid var(--teal);}
+  .event.upcoming{border-left:3px solid var(--gold);}
+  .event h3{font-family:'Playfair Display', serif; font-size:19px; margin:0 0 6px; color:var(--ink); display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .event p{margin:0 0 12px; line-height:1.85; font-size:16.5px;}
+  .event ul{margin:8px 0 12px; padding-left:22px;}
+  .event li{margin-bottom:11px; line-height:1.8; font-size:16.5px;}
+  .event ul ul{margin-top:6px;}
+
+  /* bullet spacing inside table cells */
+  td ul{margin:.2rem 0; padding-left:1.15rem;}
+  td li{margin-bottom:.85em; line-height:1.65;}
+  td li:last-child{margin-bottom:0;}
+  td ul ul{margin-top:.5em;}
+  td ul ul li{margin-bottom:.6em;}
+
+  mark{
+    padding:.15em .42em; border-radius:4px; font-weight:700; color:#fff;
+    box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  }
+  .y{background:var(--hl-y); color:#1C1200;}
+  .b{background:var(--hl-b);}
+  .g{background:var(--hl-g);}
+  .r{background:var(--hl-r);}
+  .p{background:var(--hl-p);}
+
+  .trap{background:var(--trap-bg); border:1px solid rgba(192,57,43,.35); border-left:5px solid var(--trap-bd); padding:14px 18px; border-radius:6px; margin:16px 0 20px; font-size:16px; line-height:1.8;}
+  .trap .lbl{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--trap-bd); font-weight:700; display:block; margin-bottom:6px;}
+  .trap ul{margin:6px 0 0; padding-left:20px;}
+  .trap li{margin-bottom:8px;}
+
+  .ctx{background:var(--ctx-bg); border:1px solid rgba(46,97,113,.35); border-left:5px solid var(--ctx-bd); padding:14px 18px; border-radius:6px; margin:16px 0 20px; font-size:16px; line-height:1.8;}
+  .ctx .lbl{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--ctx-bd); font-weight:700; display:block; margin-bottom:6px;}
+  .ctx ul{margin:6px 0 0; padding-left:20px;}
+  .ctx li{margin-bottom:8px;}
+
+  /* ===== PROMINENT BORDERS: every table gets a heavy frame + visible cell rules ===== */
+  .tablewrap{overflow-x:auto; border-radius:10px;}
+  table{
+    width:100%; border-collapse:collapse; margin:16px 0 26px; font-size:15px;
+    border:3px solid var(--border-strong); border-radius:8px; overflow:hidden;
+    box-shadow:0 3px 14px rgba(11,30,51,.18);
+  }
+  caption{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--muted); margin-bottom:7px; text-transform:uppercase; letter-spacing:.06em;}
+  th,td{padding:10px 12px; text-align:left; border:1.5px solid rgba(11,30,51,.38); vertical-align:top; line-height:1.6;}
+  td.entity{font-weight:700; font-family:'Source Sans 3',sans-serif; min-width:150px; background:var(--paper-2) !important; border-right:2.5px solid var(--border-strong);}
+  thead.blue th{background:var(--tbl-head-blue); color:#F4EFE1; font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em; border:1.5px solid #0B2A3D;}
+  thead.red th{background:var(--tbl-head-red); color:#F4EFE1; font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em; border:1.5px solid #4A1510;}
+  thead.green th{background:var(--tbl-head-green); color:#F4EFE1; font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em; border:1.5px solid #0B3A1F;}
+  thead.purple th{background:var(--tbl-head-purple); color:#F4EFE1; font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em; border:1.5px solid #391C46;}
+  thead.brown th{background:var(--tbl-head-brown); color:#F4EFE1; font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em; border:1.5px solid #4F3506;}
+  tbody tr:nth-child(even){background:var(--paper-2);}
+  tbody tr:hover td{background:#EFE2C0;}
+
+  .factbox{background:var(--paper-2); border:2px solid rgba(28,43,58,.30); border-radius:8px; padding:18px 20px; margin:18px 0 24px;}
+  .factbox .lbl{font-family:'IBM Plex Mono',monospace; font-size:15px; text-transform:uppercase; letter-spacing:.08em; color:var(--trap-bd); font-weight:800; display:block; margin-bottom:10px;}
+  .factbox dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:8px 18px;}
+  .factbox dt{font-weight:700; font-size:15px; color:var(--ink); white-space:nowrap;}
+  .factbox dd{margin:0; font-size:15.5px; line-height:1.7;}
+
+  .part-divider{max-width:1040px; margin:0 auto; padding:40px 48px 0;}
+  .part-divider .plabel{font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); background:var(--ink); display:inline-block; padding:8px 18px; border-radius:20px;}
+  .part-divider .ptitle{font-family:'Playfair Display',serif; font-weight:700; font-size:27px; color:var(--ink); margin:14px 0 2px;}
+  .part-divider .pdesc{color:var(--muted); font-size:15px; margin:0 0 6px;}
+  @media (max-width:880px){ .part-divider{padding:30px 22px 0;} }
+
+  .note{font-size:14px; color:var(--muted); font-style:italic; margin:8px 0 16px;}
+
+  .footer{max-width:1040px; margin:0 auto; padding:40px 48px 70px; color:var(--muted); font-size:13px; font-family:'IBM Plex Mono',monospace; text-align:center;}
+
+  @media (max-width: 880px){
+    #sidebar{position:fixed; left:0; top:0; bottom:0; width:260px; transform:translateX(-100%); transition:transform .25s ease;}
+    #sidebar.open{transform:translateX(0);}
+    #main{margin-left:0;}
+    .chapter{padding:44px 22px 8px;}
+    .cover{padding:58px 22px 42px;}
+    .chapter-sub{margin-left:0; margin-top:2px;}
+    .chapter-head{gap:12px;}
+    body{font-size:16.5px;}
+
+    /* ===== CARD VIEW: tables become stacked cards on phones ===== */
+    .tablewrap{overflow-x:visible; border:none;}
+    table{
+      display:block; width:100%; border:none; box-shadow:none; margin:14px 0 22px;
+      background:transparent;
+    }
+    table caption{margin-bottom:12px; font-size:12px;}
+    table thead{
+      position:absolute; width:1px; height:1px; overflow:hidden;
+      clip:rect(0 0 0 0); white-space:nowrap; border:0; padding:0; margin:-1px;
+    }
+    table tbody{display:block;}
+    table tbody tr{
+      display:block; margin:0 0 18px; border:2.5px solid var(--border-strong);
+      border-radius:10px; overflow:hidden; background:var(--paper);
+      box-shadow:0 3px 12px rgba(11,30,51,.18);
+    }
+    table tbody tr:nth-child(even){background:var(--paper);}
+    table td{
+      display:block; width:100%; border:none; border-bottom:1.5px solid rgba(11,30,51,.22);
+      padding:12px 14px;
+    }
+    table td:last-child{border-bottom:none;}
+    table td.entity{
+      background:var(--ink) !important; color:#F4EFE1; font-size:15.5px;
+      border-right:none; border-bottom:2.5px solid var(--gold);
+      font-family:'Playfair Display',serif; font-weight:700; letter-spacing:.02em;
+    }
+    table td:not(.entity)::before{
+      content:attr(data-th); display:block; font-family:'IBM Plex Mono',monospace;
+      font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--trap-bd);
+      font-weight:700; margin-bottom:6px;
+    }
+  }
+  #menu-btn{
+    display:none; position:fixed; top:16px; left:16px; z-index:60;
+    width:44px;height:44px;border-radius:50%; background:var(--ink);
+    border:2px solid var(--gold); color:var(--gold-2); font-size:18px;
+    align-items:center; justify-content:center; cursor:pointer;
+  }
+  @media (max-width: 880px){ #menu-btn{display:flex;} }
+</style>
+</head>
+<body>
+<button aria-label="Toggle chapter index" id="menu-btn">☰</button>
+<aside id="sidebar">
+<div class="brand">
+<div class="stamp">R.L.</div>
+<h1>The Reformer's Ledger</h1>
+<p>Socio-Religious Reform · BPSC Dossier</p>
+</div>
+<nav class="toc" id="toc"></nav>
+<div class="legend-box">
+<h3>Marker Key</h3>
+<div class="legend-row"><span class="legend-swatch" style="background:var(--hl-y)"></span> Concept / slogan / policy</div>
+<div class="legend-row"><span class="legend-swatch" style="background:var(--hl-b)"></span> Hard fact / date / number</div>
+<div class="legend-row"><span class="legend-swatch" style="background:var(--hl-g)"></span> Person / place / institution</div>
+<div class="legend-row"><span class="legend-swatch" style="background:var(--hl-r)"></span> MCQ trap / confusion</div>
+<div class="legend-row"><span class="legend-swatch" style="background:var(--hl-p)"></span> Journal / book / newspaper</div>
+</div>
+</aside>
+<div id="main">
+<section class="cover">
+<div class="eyebrow">Case File · Socio-Religious &amp; Caste Reform Movements</div>
+<h1>Every fact from 157 Ghatna Chakra PYQs, fused with BPSC Wallah theory — nothing dropped, nothing repeated twice.</h1>
+<p class="sub">Part I merges GC's questions/options/explanations with theory, entity by entity, wherever both sources cover the same person or organisation. Part II holds everything theory adds that Ghatna Chakra's 157 questions never touched.</p>
+<div class="tags">
+<span class="tag">Brahmo → Arya → Ramakrishna</span>
+<span class="tag">Women's Acts</span>
+<span class="tag">Caste &amp; Muslim Movements</span>
+</div>
+</section>
+<div class="chapters">
+<div class="part-divider">
+<span class="plabel">Part I</span>
+<div class="ptitle">Ghatna Chakra × Theory — Merged Facts</div>
+<p class="pdesc">Every entity that appears in both sources, combined into one entry.</p>
+</div>
+<section class="chapter" data-title="The Bengal Renaissance &amp; the Brahmo Samaj Family" id="brahmo">
+<div class="chapter-head"><div class="seal">1</div><h2>The Bengal Renaissance &amp; the Brahmo Samaj Family</h2></div>
+<div class="chapter-sub">Raja Ram Mohan Roy → Atmiya Sabha → Brahmo Sabha/Samaj → Tattvabodhini Sabha → the 1866 &amp; 1878 splits</div>
+<table>
+<caption>Every fact on Roy, Tagore, Sen and the Brahmo family — GC (157 Qs) + BPSC Wallah theory merged</caption>
+<thead class="red"><tr><th style="width:16%">Entity</th><th>Facts (GC PYQ facts + Theory facts combined, duplicates merged)</th></tr></thead>
+<tbody>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Raja Ram Mohan Roy</mark><br/>(1772–1833)</td>
+<td data-th="Facts (GC PYQ facts + Theory facts combined, duplicates merged)"><ul>
+<li>Called <mark class="y">Father of Indian Renaissance</mark>, <mark class="y">Prophet of Indian Nationalism</mark>, <mark class="y">Father of Modern India</mark>, <mark class="y">First Modern Man</mark>, <mark class="y">Yugdoot</mark>, <mark class="y">Bridge between past and future</mark>, <mark class="y">Maker of Modern India</mark>, <mark class="y">Father of Indian Nationalism</mark> (<mark class="r">no single person is officially "Father of Indian Nationalism" per UPRO/ARO Mains 2013 — trap</mark>)</li>
+<li><mark class="b">1815</mark>: set up <mark class="g">Atmiya Sabha</mark> in Calcutta — first society he founded — to propagate <mark class="y">monotheistic ideals</mark> of Hindu religion among rich/influential youth followers</li>
+<li><mark class="b">1828</mark> (<mark class="b">20 Aug 1828</mark>): founded <mark class="g">Brahmo Sabha</mark> (later renamed <mark class="g">Brahmo Samaj</mark>), by renting a house from Feringhee Kamal Bose; <mark class="g">Tarachand Chakroborty</mark> was its first secretary</li>
+<li>Brahmo Samaj principles: <mark class="y">monotheism</mark>, opposed <mark class="y">idolatry</mark>, sacerdotalism, anthropomorphism; preached universal worship of one omnipresent/omniscient God; denied need for priestly class; emphasised reason; upheld Vedas/Upanishads; critiqued Sati; promoted human dignity/social reform (did NOT popularise Vedas-as-infallible — that was Dayanand Saraswati, <mark class="r">trap</mark>)</li>
+<li>Mughal Emperor <mark class="g">Akbar II</mark> gave him the title <mark class="y">'Raja'</mark> in <mark class="b">1830</mark>, sent him to court of British King <mark class="g">William IV</mark> as ambassador to negotiate increment of Akbar II's pension</li>
+<li>Died <mark class="b">27 Sept 1833</mark> at Stapleton near <mark class="g">Bristol, England</mark> (cause: meningitis); his Samadhi/mausoleum is at Bristol (<mark class="r">not Kolkata/Patna/Canada — trap</mark>)</li>
+<li>Advocated English/Western education — opposed the Sanskrit-school system in an <mark class="b">11 Dec 1823</mark> letter to Lord Amherst, favouring maths, natural philosophy, chemistry, anatomy; did <em>not</em> protest Western education (<mark class="r">he protested Sati, child marriage, idolatry — trap on "what did he NOT protest"</mark>)</li>
+<li>Opposed idol worship, Child marriage, and the practice of Sati</li>
+<li>Strongly opposed <mark class="y">Sati</mark>; with Governor-General <mark class="g">Lord William Bentinck</mark>, got it declared illegal via <mark class="y">Regulation XVII of 1829</mark> (Bengal Sati Regulation) — called <mark class="y">"murder according to every shastra"</mark></li>
+<li>Editor/founder context of <mark class="p">Samvad Kaumudi</mark> — launched <mark class="b">4 Dec 1821</mark> as a weekly; officially edited by <mark class="g">Bhavanicharan Bandyopadhyay</mark> though Roy's paper (<mark class="r">Roy's own name was not in the credits — trap</mark>); championed abolition of Sati; also linked to journal <mark class="p">Mirat-ul-Akbar</mark></li>
+<li><mark class="p">Samachar Chandrika</mark> (<mark class="b">1822</mark>), by Bhavani Charan Bandyopadhyay (earlier editor of Samvad Kaumudi), was started <em>in opposition</em> to Roy's religious/social ideas</li>
+<li>Founded <mark class="g">Calcutta Unitarian Committee</mark> (with Dwarkanath Tagore and William Adam) — NOT Keshab Chandra Sen (<mark class="r">trap — Sen founded Tabernacle of New Dispensation &amp; Indian Reform Association instead</mark>)</li>
+<li>Strongly opposed the <mark class="y">Jury Act of 1826</mark>, which gave only Christians the right to sit as jurors in trials of Christians</li>
+<li>Had genuine respect for traditional Eastern/Indian philosophical systems <em>and</em> simultaneously wanted rational/scientific approach + human dignity + social equality for men and women — both are true (IAS Pre 2025)</li>
+<li>Ideological foundations (theory): <mark class="y">Rationalism</mark> — promoted reason, advocated widow remarriage, opposed child marriage and polygamy; <mark class="y">Religious Universalism</mark> (shared with Syed Ahmed Khan, Keshub Chandra Sen) — emphasised unity/equality, criticised caste discrimination</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Devendranath Tagore</mark><br/>(Debendranath Tagore)</td>
+<td data-th="Facts (GC PYQ facts + Theory facts combined, duplicates merged)"><ul>
+<li><mark class="b">1839</mark>: founded <mark class="g">Tattvabodhini Sabha</mark> in Calcutta to propagate rational thinking, study ancient texts (Upanishads), and spread Ram Mohan Roy's ideals; merged into Brahmo Samaj in 1859</li>
+<li>Theory objectives: response to the expansion of <mark class="y">Christianity</mark> in India, promote <mark class="y">Vedantism</mark> and indigenous culture, develop the <mark class="y">Bengali language</mark>; notable followers included Ishwar Chandra Vidyasagar and Akshay Kumar Dutt; key publication: <mark class="p">Tattvabodhini Patrika</mark></li>
+<li>Joined Brahmo Samaj in <mark class="b">1843</mark>; appointed <mark class="g">Keshab Chandra Sen</mark> as Acharya of Brahmo Samaj, then stripped him of that title in <mark class="b">1865</mark> over differences of opinion</li>
+<li>After the <mark class="b">1866</mark> split, his branch became known as <mark class="g">Adi Brahmo Samaj</mark> (he is its founder — <mark class="r">NOT Keshab Chandra Sen, who founded the rival Bhartiya Brahmo Samaj — commonly mis-attributed, trap</mark>)</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Keshab Chandra Sen</mark><br/>(Keshub Chandra Sen)</td>
+<td data-th="Facts (GC PYQ facts + Theory facts combined, duplicates merged)"><ul>
+<li>Joined Brahmo Samaj in <mark class="b">1857</mark>; made the movement popular, established branches in UP and Madras</li>
+<li><mark class="b">11 Nov 1866</mark>: formally founded <mark class="g">Bhartiya Brahmo Samaj</mark> (also called "Brahmo Samaj of India" / "Neo Brahmo Samaj") after a rift with Devendranath Tagore — historians have sometimes wrongly labelled this "Adi Brahmo Samaj"; the true Adi Brahmo Samaj stayed with Tagore</li>
+<li>Associated with founding the <mark class="g">Tabernacle of New Dispensation</mark> and the <mark class="g">Indian Reform Association</mark> (<mark class="b">29 Oct 1870</mark>, as its president) — NOT the Calcutta Unitarian Committee</li>
+<li><mark class="b">1872</mark>: played a key role in passing the <mark class="y">Native Marriage Act</mark> (Act III of 1872 — also called the <mark class="y">Special Marriage Act 1872</mark> / <mark class="y">Brahmo Marriage Act 1872</mark> / Civil Marriage Act 1872), fixing minimum marriage age at <mark class="b">14 for girls, 18 for boys</mark></li>
+<li><mark class="b">1878</mark>: married his under-14-year-old daughter to the king of Coonch Behar, contradicting his own reform stance — led <mark class="g">Anand Mohan Bose</mark> and <mark class="g">Shivnath Shastri</mark> to break away and form the <mark class="g">Sadharan Brahmo Samaj</mark></li>
+<li>Reform programme: abolition of child marriage, polygamy, widow remarriage, inter-caste marriage; campaigned for women's education under his leadership</li>
+<li>Theory: led the "Brahmo Samaj of India" with a broader, organised structure; journal — <mark class="p">Indian Mirror</mark>; also founded <mark class="g">Veda Samaj</mark> (1864, Madras, with Sridharalu Naidu) and helped Atmaram Pandurang found <mark class="g">Prarthana Samaj</mark> (1867, Bombay)</li>
+<li>Indian Reform Association objectives: build public consensus against child marriages, elevate social status of women, advocate legalisation of Brahmo-tradition marriages</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Sadharan Brahmo Samaj</mark></td>
+<td data-th="Facts (GC PYQ facts + Theory facts combined, duplicates merged)"><ul>
+<li>Formed by <mark class="g">Anand Mohan Bose</mark> and <mark class="g">Shivnath Shastri</mark> after Keshab Chandra Sen's 1878 child-marriage controversy</li>
+<li>Theory: seceded from Sen's group, emphasised a more inclusive approach; journals — <mark class="p">Tattva Kaumudi</mark>, <mark class="p">The Indian Messenger</mark>, <mark class="p">The Sanjibani</mark>, <mark class="p">Navyabharat</mark>, <mark class="p">Prabasi</mark></li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Atmiya Sabha</mark></td>
+<td data-th="Facts (GC PYQ facts + Theory facts combined, duplicates merged)"><ul>
+<li>Founded <mark class="b">1815</mark>, Calcutta — first society founded by Raja Ram Mohan Roy, to propagate monotheistic Hindu ideals among influential youth</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" data-title="Arya Samaj &amp; Dayanand Saraswati" id="arya">
+<div class="chapter-head"><div class="seal">2</div><h2>Arya Samaj &amp; Dayanand Saraswati</h2></div>
+<table>
+<caption>Dayanand Saraswati and Arya Samaj — every fact merged from GC + theory</caption>
+<thead class="green"><tr><th style="width:16%">Entity</th><th>Facts</th></tr></thead>
+<tbody>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Swami Dayanand Saraswati</mark><br/>(born Mulshankar / Mool Shankar; also spelt Mula Shankar Tiwari)</td>
+<td data-th="Facts"><ul>
+<li>Born in old <mark class="g">Morvi Princely State, Kathiyawara, Gujarat</mark>, into a rich Brahmin family (birth year given as <mark class="b">1824</mark> in one source)</li>
+<li><mark class="b">1845–1860</mark> (fifteen years): wandered various places in search of knowledge</li>
+<li><mark class="b">1860</mark>: came under <mark class="g">Swami Virajananda Saraswati</mark> at Mathura; started preaching in <mark class="b">1864</mark></li>
+<li><mark class="b">Nov 1869</mark>: engaged in a major <mark class="y">Shastrartha</mark> with Hindu orthodoxy leaders at Kashi</li>
+<li><mark class="b">1867</mark>: hoisted the <mark class="y">"Pakhand Khandini Pataka"</mark> on the bank of the Ganga to enlighten common people against superstition and bad rituals</li>
+<li><mark class="b">1875</mark>: founded <mark class="g">Arya Samaj</mark> in <mark class="g">Bombay</mark> (theory: April 1875)</li>
+<li>Wrote <mark class="p">Satyartha Prakash</mark> (also spelt Satyarth Prakash) in <mark class="b">1875</mark> — his masterpiece/magnum opus; also wrote <mark class="p">Rigvedadibhashyabhumika</mark>, <mark class="p">Rigveda Bhashya</mark>, <mark class="p">Advaitmat Khandan</mark>, <mark class="p">Panch Mahayajya Vidhi</mark>, <mark class="p">Ved-Viruddh-mat-Khandanam</mark> — sacred book of Arya Samaj (<mark class="r">not written by Vivekananda/Tilak/other saints — a repeated trap</mark>)</li>
+<li><mark class="b">1877</mark>: Arya Samaj HQ shifted to <mark class="g">Lahore</mark>, accelerating the movement's spread</li>
+<li>Slogan: <mark class="y">"Go Back to the Vedas"</mark> — call for revival of Vedic learning and religious purity; identified Hinduism with the religion instituted in the Vedas</li>
+<li>Rejected idol worship, incarnations, tantra-mantra; denied authenticity of the Puranas (blamed them for idolatry); did a logical, scientific, critical analysis of faith</li>
+<li>Aim: oneness of all religions, society, and the nation</li>
+<li>Called <mark class="y">"The (Martin) Luther of India"</mark> / <mark class="y">"Martin Luther King of India"</mark> for his religious-reform efforts</li>
+<li>First to use the word <mark class="y">'Swaraj'</mark>; first to advocate <mark class="y">Hindi</mark> as India's official/national language; first to suggest renunciation of foreign goods and adoption of indigenous (Swadeshi) goods</li>
+<li>According to Annie Besant, first person to say <mark class="y">"India is only for the Indians"</mark> (framed as his own political message against colonial cultural submergence)</li>
+<li>Theory: rejected rituals, Brahminical dominance, idol worship, superstitions; promoted social reform, women's rights, social equality; challenged untouchability and caste; used Hindi to reach Northern India; established <mark class="g">Dayanand Anglo-Vedic (DAV)</mark> schools</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Arya Samaj</mark></td>
+<td data-th="Facts"><ul>
+<li>Founded <mark class="b">1875</mark>, Bombay, by Dayanand Saraswati; spread rapidly as a reaction against Western influence; HQ shifted to Lahore in <mark class="b">1877</mark></li>
+<li>Later split into two groups: <mark class="r">pro-Western-education vs anti-Western-education (trap)</mark> —
+  <ul>
+<li>Opposed Western education: <mark class="g">Swami Sraddhanand</mark> (Mahatma Munshi Ram Vij) and <mark class="g">Lekhraj</mark>; established the <mark class="g">Gurukul</mark> in <mark class="b">1902</mark></li>
+<li>Supported Western education: <mark class="g">Lala Lajpat Rai</mark> and <mark class="g">Hansraj</mark>; established <mark class="g">Dayanand Anglo Vedic (DAV) College</mark></li>
+</ul>
+</li>
+<li>Supported the <mark class="y">Shuddhi Movement</mark> (re-converting people back into Hinduism)</li>
+<li>Gave Hindus self-confidence and self-reliance; undermined belief in superiority of the White Race, while itself asserting the superiority of Hindus (both statements true, but the second does not explain the first — AR trap)</li>
+<li><mark class="g">Lala Lajpat Rai</mark> was a member and did <em>not</em> oppose Arya Samaj's appeal to Vedic authority (<mark class="r">a commonly tested false statement</mark>)</li>
+<li>Contributed significantly to development of education and knowledge among followers</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" data-title="The Ramakrishna Movement" id="rk">
+<div class="chapter-head"><div class="seal">3</div><h2>The Ramakrishna Movement</h2></div>
+<table>
+<caption>Ramakrishna Paramahamsa, Vivekananda, and Ram Krishna Mission — merged facts</caption>
+<thead class="purple"><tr><th style="width:16%">Entity</th><th>Facts</th></tr></thead>
+<tbody>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Ramakrishna Paramahamsa</mark><br/>(Gadadhar Chattopadhyay)</td>
+<td data-th="Facts"><ul>
+<li>Emphasised that <mark class="y">Hari, Ram, Allah, and Christ are different names for the same God</mark> and that there are many ways to reach God/salvation</li>
+<li>Married to <mark class="g">Sharadamani</mark> (also known as <mark class="g">Sharada Devi</mark>) at her age of five, in <mark class="b">1859</mark></li>
+<li>Guru of Swami Vivekananda (born Narendranath Dutta)</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Swami Vivekananda</mark><br/>(Narendranath Dutta)</td>
+<td data-th="Facts"><ul>
+<li>Spread Ramakrishna's message and reconciled it to the needs of contemporary Indian society; emerged as the preacher of <mark class="y">Neo-Hinduism</mark> — considered its best representative in the second half of the 19th century</li>
+<li><mark class="b">1893</mark>: delivered his famous speech at the <mark class="g">Parliament of the World's Religions</mark>, Chicago — gave a short introduction of Hinduism, spoke on "The meaning of the Hindu religion"; represented India there (not Dayanand, Ramakrishna, or Roy — <mark class="r">frequently confused option set, trap</mark>)</li>
+<li><mark class="g">Subhash Chandra Bose</mark> said: "So far as Bengal is concerned, Vivekananda may be regarded as the <mark class="y">spiritual father of the Modern nationalist movement</mark>"</li>
+<li><mark class="b">1897</mark>: founded <mark class="g">Ram Krishna Mission</mark> (officially registered <mark class="b">1909</mark> under the Societies Registration Act 1860); HQ at <mark class="g">Belur, Howrah</mark>, West Bengal (also has a centre at Mayavati)</li>
+<li>Advocated <mark class="y">'Practical Vedanta'</mark>; gave his first speech on it on <mark class="b">10 Nov 1896</mark> in London</li>
+<li>Wrote <mark class="p">Jnana Yoga</mark>, <mark class="p">Karma Yoga</mark>, <mark class="p">Raja Yoga</mark> (and Bhakti Yoga)</li>
+<li>Quote: <mark class="y">"Truth can be stated in a thousand different ways, yet each one can be true."</mark></li>
+<li>Theory: objectives — rejuvenation of Hinduism through Vedanta and ancient texts; opposed caste restrictions, oppression, superstitions; focused on uplifting women and restructuring education; promoted renunciation and practical spirituality through the Ramakrishna Math and Mission; advocated service to humanity as devotion to God</li>
+<li>Key concepts: <mark class="y">"As many faiths, so many paths"</mark> (oneness of religions); <mark class="y">"Service of man is the service of God"</mark></li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Ram Krishna Mission</mark></td>
+<td data-th="Facts"><ul>
+<li>Founded <mark class="b">1897</mark>; registered <mark class="b">1909</mark> under Societies Registration Act 1860; HQ at Belur, Howrah (West Bengal)</li>
+<li>Objective: non-political, non-sectarian spiritual movement engaged in humanitarian, social and cultural service, inspired by ancient Indian culture; ideal is the <mark class="y">Theory of Pure Vedanta</mark></li>
+<li>Accepted traditional Hindu practices (idol worship, rituals, symbols) in their original form — unlike Brahmo/Arya Samaj which rejected idolatry (<mark class="r">trap: don't confuse RK Mission's idol-acceptance with Brahmo/Arya's idol-rejection</mark>)</li>
+<li>Core belief: truth of all religions — all religious paths lead to the same one God</li>
+<li>Considered the last famous religious movement of the 19th century, aiming at harmony of religions, of East and West, of the ancient and the modern, spiritual fulfilment, social equality and peace for all humanity without distinction of caste, creed, race or nationality</li>
+<li>Math and Mission function as separate but complementary organisations</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" data-title="Maharashtra Reformers — Prarthana Samaj, Satyashodhak Samaj &amp; Allies" id="maha">
+<div class="chapter-head"><div class="seal">4</div><h2>Maharashtra Reformers — Prarthana Samaj, Satyashodhak Samaj &amp; Allies</h2></div>
+<table>
+<caption>Ranade, Phule, Karve, Lokahitwadi, Vishnu Shastri Pandit and their organisations — merged</caption>
+<thead class="brown"><tr><th style="width:16%">Entity</th><th>Facts</th></tr></thead>
+<tbody>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Prarthana Samaj</mark></td>
+<td data-th="Facts"><ul>
+<li>Founded <mark class="b">1867</mark>, Bombay, by <mark class="g">Atmaram Pandurang</mark>, inspired by Keshab Chandra Sen (who helped found it)</li>
+<li><mark class="g">Mahadev Govind Ranade</mark> joined in <mark class="b">1869</mark> (theory says 1870), boosting its popularity</li>
+<li>Aim: oppose the caste system, raise the marriage age for men and women, promote widow remarriage and women's education; disapproval of religious orthodoxy</li>
+<li>Key mentors: M.G. Ranade, R.G. Bhandarkar; <mark class="g">Dhondo Keshav Karve</mark> and <mark class="g">Vishnu Shastri</mark> contributed to the Widow Remarriage Movement and the Widows' Home Association</li>
+<li>Precursor: <mark class="g">Paramahansa Sabha</mark>, which promoted liberal ideas and caste/community breakdown</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Mahadev Govind Ranade</mark></td>
+<td data-th="Facts"><ul>
+<li>Joined Prarthana Samaj in <mark class="b">1869/1870</mark>; called <mark class="y">"Precursor of the cultural Renaissance of Western India"</mark></li>
+<li><mark class="b">1887</mark>: co-founded (with <mark class="g">Raghunath Rao</mark>) the <mark class="g">Indian National Social Conference</mark> — aim: abolish polygamy, child marriage and patriarchy/oligarchy (kulinism)</li>
+<li>Relied on <mark class="y">legislation</mark> to eradicate social ills like child marriage and the Purdah system; the Conference met for years alongside the annual INC sessions</li>
+<li>Theory: INC did not want social reforms in its own deliberations, so this separate body was formed; it launched the <mark class="y">'Pledge Movement'</mark> against child marriage, advocated inter-caste marriage, opposed polygamy and kulinism</li>
+<li>Co-founded the <mark class="g">Deccan Education Society</mark> (1884, Pune) with Tilak, V.G. Chibdonkar, G.G. Agarkar — established <mark class="g">Fergusson College, Pune</mark> (1885)</li>
+<li>Gave support to Gokhale's <mark class="g">Servants of India Society</mark> (1905)</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Atmaram Pandurang</mark></td>
+<td data-th="Facts"><ul><li>Founded Prarthana Samaj in 1867, after being inspired by Keshab Chandra Sen</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Jyotirao (Jyotiba) Phule</mark><br/>&amp; <mark class="g">Savitribai Phule</mark></td>
+<td data-th="Facts"><ul>
+<li>Jyotiba born <mark class="b">1827</mark> to a gardener family; founded <mark class="g">Satya Shodhak Samaj</mark> (Satyashodhak Samaj) in <mark class="b">1873</mark></li>
+<li>Wrote the book <mark class="p">Gulamgiri</mark>, criticising the "opportunistic Vedas" of the Brahmans and calling for protection of lower castes from exploitation</li>
+<li>Samaj's objective: redeem Shudras/Ati-Shudras from Brahmanical scriptural influence, make them conscious of human rights, liberate them from mental and religious slavery; an <mark class="y">anti-caste movement</mark> in Maharashtra</li>
+<li>Theory: leadership drawn from Malis, Telis, Kunbis; rejected Lord Rama as a symbol, promoted Rajah Bali; vision — abolition of caste, equality, human dignity; political engagement via the <mark class="g">Poona Municipal Committee (1876)</mark></li>
+<li>Savitribai Phule headed the women's section of the Samaj, working for lower-caste girls' welfare; also taught alongside <mark class="g">Fatima Sheikh</mark> and <mark class="g">Sagunabai</mark>, and ran a night school</li>
+<li>Together opened the <mark class="y">first girls' school in India</mark>, at <mark class="g">Bhide Wada, Pune</mark>, in <mark class="b">1848</mark>; ran a widow-remarriage movement and a widow shelter (1854)</li>
+<li>The women's movement in India is said to have started largely under Jyotiba Phule's inspiration — he believed social evils could only be eliminated after uplifting women and Dalits</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Gopal Hari Deshmukh</mark><br/>("Lokahitwadi")</td>
+<td data-th="Facts"><ul>
+<li>Social reformer of Maharashtra (<mark class="b">1823–92</mark>); popularly known as <mark class="y">Lokahitwadi</mark></li>
+<li>Member of the Governor-General's Council in <mark class="b">1880</mark></li>
+<li>From age 25, wrote articles for social reform in the weekly <mark class="p">Prabhakar</mark> under the pen-name Lokahitvadi; wrote 108 articles in the first two years, later compiled as <mark class="p">'Lokahitawadinchi Shatapatre'</mark></li>
+<li>Appeared in the Delhi court wearing hand-woven Khadi clothes, as a supporter of national self-reliance</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Vishnu Shastri Pandit</mark><br/>(Vishnu Parashuram Pandit)</td>
+<td data-th="Facts"><ul>
+<li>Social reformer and advocate of widow remarriage in 19th-century Maharashtra; in the 1850s founded the <mark class="g">'Punarvivahottejak Mandali'</mark> (also called the <mark class="g">Widow Remarriage Association</mark>) to promote widow remarriages</li>
+<li>Published a Marathi translation of Vidyasagar's book in <mark class="p">Indu Prakash</mark> in <mark class="b">1868</mark></li>
+<li>Led the campaign for widow remarriage in Maharashtra</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">D.K. Karve</mark><br/>(Dhondo Keshav Karve)</td>
+<td data-th="Facts"><ul>
+<li>Championed widow remarriage in Western India; married a widow himself in <mark class="b">1893</mark>; became secretary of the Widow Remarriage Association</li>
+<li>Established a <mark class="g">Widows' Home in Pune (1896)</mark> for vocational training</li>
+<li><mark class="b">1916</mark>: founded the <mark class="g">Indian Women's University</mark> in Bombay (India's first women's university)</li>
+<li>Founded the <mark class="g">Nishkam Karma Math</mark> ("Monastery of Disinterested Work") in <mark class="b">1910</mark>, Pune — established the women's university in Pune, now part of Mumbai University; emphasised women's education and self-reliance</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" data-title="Theosophical Society &amp; Annie Besant" id="theo">
+<div class="chapter-head"><div class="seal">5</div><h2>Theosophical Society &amp; Annie Besant</h2></div>
+<table>
+<caption>Theosophical Society, Blavatsky, Olcott, Annie Besant — merged</caption>
+<thead class="blue"><tr><th style="width:16%">Entity</th><th>Facts</th></tr></thead>
+<tbody>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Theosophical Society</mark></td>
+<td data-th="Facts"><ul>
+<li>Founded by <mark class="g">Madame H.P. Blavatsky</mark> (1831–91, Russian/Ukrainian noblewoman), <mark class="g">Colonel H.S. Olcott</mark> (1832–1907, American army officer) and others, in <mark class="b">1875</mark> in <mark class="g">New York</mark> (theory adds William Quan Judge as a co-founder)</li>
+<li><mark class="b">1882</mark>: HQ shifted from New York to <mark class="g">Adyar</mark>, on the outskirts of Madras (moved there from 1879 onward), which became its International Headquarters</li>
+<li><mark class="b">1889</mark>: Annie Besant became a member; <mark class="b">1893</mark>: she arrived in India and played the most active role for the Society</li>
+<li>Believed Hinduism to be the most spiritual and esoteric religion; theory adds it was inspired by the Upanishads, Vedanta and ancient philosophies; aimed at religious revival and social reform, advocating revival of Hinduism, Zoroastrianism and Buddhism; recognised transmigration of the soul; preached universal brotherhood; promoted women's advancement; fought untouchability</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Annie Besant</mark></td>
+<td data-th="Facts"><ul>
+<li>Came into contact with the Theosophical Society in <mark class="b">1882</mark>, became its official member in <mark class="b">1889</mark>, arrived in India in <mark class="b">1893</mark>; became its chairman/president after Col. Olcott's death in <mark class="b">1907</mark></li>
+<li>The Society's success in India was mainly attributed to her; she believed Hinduism was the world's most esoteric/spiritual religion and believed in the principle of rebirth</li>
+<li>Led the <mark class="y">Home Rule Movement/League</mark> (1916)</li>
+<li>Theory: founded the <mark class="g">Indian Women's Association</mark> (1917, Madras) — worked for the upliftment of Indian women via annual conferences (leading to the All India Women's Conference); advocated women's rights and social reforms</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" data-title="Other Reform Organisations" id="other-orgs">
+<div class="chapter-head"><div class="seal">6</div><h2>Other Reform Organisations</h2></div>
+<table>
+<caption>Dev Samaj, Dharma Sabha, Radhaswami Satsang, Servants of India Society, Bahujan Samaj — merged</caption>
+<thead class="red"><tr><th style="width:16%">Entity</th><th>Facts</th></tr></thead>
+<tbody>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Dev Samaj</mark></td>
+<td data-th="Facts"><ul>
+<li>Founded by <mark class="g">Shiv Narayan Agnihotri</mark> (Bhagwan Devatma) at <mark class="g">Lahore</mark> in <mark class="b">1887</mark>; a former follower of Brahmo Samaj</li>
+<li>Teachings compiled in the book <mark class="p">Dev Shastra</mark></li>
+<li>Theory: closely aligned with Brahmo Samaj philosophy; advocated righteous living, moral behaviour, spiritual discipline; social code opposed bribery, gambling, alcohol, non-vegetarian food; promoted non-violence and ethical living; strong opposition to child marriage</li>
+<li>Popularity ended in <mark class="b">1913</mark> after Shiv Narayana appointed his second son as spiritual successor</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Dharma Sabha</mark></td>
+<td data-th="Facts"><ul>
+<li>Founded by <mark class="g">Radhakant Deb</mark> (Radhakanta Deb, 1794–1876) in <mark class="b">1830</mark> at Calcutta (Bengal)</li>
+<li>Opposed socio-religious reforms; supported orthodox elements; opposed the abolition of Sati</li>
+<li>Yet Radhakant Deb also played an active role in promoting Western education among girls</li>
+<li>Theory: countered Brahmo Samaj, opposed radical/liberal reforms, but promoted Western education and celebrated Indian culture's importance and pride</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Radhasoami / Radhaswami Satsang</mark></td>
+<td data-th="Facts"><ul>
+<li>Began at <mark class="g">Agra</mark> in <mark class="b">1861</mark>; founding member <mark class="g">Shiv Dayal Singh</mark> (Soamiji / Swamiji Maharaj / "Tulsi Ram" per theory) — originally a Persian-language translator, later joined his father's moneylending business</li>
+<li>Followers believed in one god, the greatness of the teacher (guru), Satsang (community of pious individuals), and ordinary social life</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Servants of India Society</mark></td>
+<td data-th="Facts"><ul>
+<li>Founded by <mark class="g">Gopal Krishna Gokhale</mark> in <mark class="b">1905</mark> at Fergusson Hill, Pune district, Maharashtra (with support from M.G. Ranade); co-founded with 3 friends: <mark class="g">Natesh Appaji Dravid</mark>, <mark class="g">Gopal Krishna Deodhar</mark>, <mark class="g">Anant Vinayak Patwardhan</mark> — all lifelong members</li>
+<li>Gokhale chaired the 21st Session of Congress in <mark class="b">1905</mark> (Banaras/Varanasi); was the political guru of Mahatma Gandhi; K.M. Panikkar called him <mark class="y">"the first diplomat of modern India"</mark></li>
+<li>Objectives: famine relief, welfare of tribals, economic upliftment/employment for women, training "national missionaries" using constitutional means; publication <mark class="p">Hitavada</mark> (started <mark class="b">1911</mark>)</li>
+<li>After Gokhale's death in <mark class="b">1915</mark>, <mark class="g">Srinivasa Shastri</mark> became president</li>
+<li>Distinguished members: <mark class="g">M.C. Setalvad</mark>, <mark class="g">B.N. Rao</mark>, <mark class="g">Alladi Krishnaswamy Iyer</mark>, <mark class="g">V. Srinivas Shastri</mark>, <mark class="g">G.K. Devdhar</mark>, <mark class="g">N.M. Joshi</mark>, <mark class="g">Pandit Hridayalnath Kunzuru</mark></li>
+<li>First secular organisation devoted to unprivileged rural and tribal peoples</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Bahujan Samaj</mark></td>
+<td data-th="Facts"><ul>
+<li>Founded <mark class="b">1910</mark> by <mark class="g">Mukund Rao Patil</mark> and <mark class="g">Shankar Rao Jadhav</mark>, under the influence of Jyotiba Phule</li>
+<li>Aim: oppose exploitation of lower castes by upper castes, moneylenders and landlords; also opposed the INC; later became a supporter of the British Government</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Indian National Social Conference</mark></td>
+<td data-th="Facts"><ul>
+<li>Founded <mark class="b">1887</mark>, Bombay, by <mark class="g">M.G. Ranade</mark> and <mark class="g">Raghunath Rao</mark></li>
+<li>Aim: abolish polygamy, child marriage, patriarchy; served as the social-reform wing of the INC, since Congress itself declined to include social reform in its own deliberations</li>
+<li>Launched the 'Pledge Movement' against child marriage; advocated inter-caste marriage; opposed polygamy and kulinism</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" data-title="Women's Issues &amp; Reform Legislation" id="women">
+<div class="chapter-head"><div class="seal">7</div><h2>Women's Issues &amp; Reform Legislation</h2></div>
+<table>
+<caption>Sati, infanticide, widow remarriage, child marriage, age of consent, women's education — merged</caption>
+<thead class="green"><tr><th style="width:16%">Issue / Act</th><th>Facts</th></tr></thead>
+<tbody>
+<tr>
+<td class="entity" data-th="Issue / Act"><mark class="y">Abolition of Sati</mark></td>
+<td data-th="Facts"><ul>
+<li><mark class="b">1829</mark>: <mark class="y">Bengal Sati Regulation / Regulation XVII of 1829</mark>, passed by Governor-General <mark class="g">Lord William Bentinck</mark>, made Sati illegal, terming it "murder according to every shastra"; achieved through the efforts of <mark class="g">Raja Ram Mohan Roy</mark></li>
+<li>Historical precedents: restrictions on Sati seen earlier under the <mark class="g">Portuguese, Dutch and French</mark> in the 16th century; Mughal emperor <mark class="g">Akbar</mark> issued orders against coerced Sati in <mark class="b">1582</mark></li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Issue / Act"><mark class="y">Ban on Infanticide</mark></td>
+<td data-th="Facts"><ul>
+<li>A grave practice especially among <mark class="g">Bengalis and Rajputs</mark>, driven by economic concerns and social pressures</li>
+<li><mark class="y">Bengal Regulations of 1795 (Regulation XXI)</mark> and <mark class="y">1804 (Act III)</mark> classified infanticide as murder to discourage the practice</li>
+<li><mark class="y">Female Infanticide Prevention Act, 1870</mark>: required parents to record every birth and verify female children, to curb covert infanticide</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Issue / Act"><mark class="y">Slavery abolished</mark></td>
+<td data-th="Facts"><ul>
+<li><mark class="y">Act V of 1843</mark> made slavery illegal across India, during the tenure of Governor-General <mark class="g">Lord Ellenborough</mark>; a clause in the Charter Act of 1833 had called for ending slavery; all slaves were freed without compensation to owners</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Issue / Act"><mark class="y">Hindu Widows' Remarriage Act, 1856</mark><br/>(Act XV of 1856)</td>
+<td data-th="Facts"><ul>
+<li>Passed <mark class="b">25 July 1856</mark>, through the efforts of <mark class="g">Ishwar Chandra Vidyasagar</mark>, Principal of Sanskrit College</li>
+<li>Vidyasagar researched ancient Hindu Shastras/Dharmashastras and demonstrated widow remarriage was permitted by Vedic scripture; petitioned the government with <mark class="b">987 signatories</mark></li>
+<li>Legalised widow remarriage and recognised children from such unions as legitimate — though its practical impact was limited in Bengal</li>
+<li>Other reformers who promoted widow remarriage and women's rights: <mark class="g">Veeresalingam Pantulu</mark> (Madras), <mark class="g">Jagannath Shankar Seth</mark>, <mark class="g">Bhau Daji</mark>, <mark class="g">Vishnu Shastri Pandit</mark>, <mark class="g">Karsondas Mulji</mark>, <mark class="g">B.M. Malabari</mark>, <mark class="g">Narmad Dave</mark>, <mark class="g">Justice Govind Mahadeo Ranade</mark>, <mark class="g">K. Natarajan</mark>, <mark class="g">Jyotiba Phule</mark>, <mark class="g">Savitribai Phule</mark></li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Issue / Act"><mark class="y">Native Marriage Act, 1872</mark><br/>(Civil Marriage Act / Brahmo Marriage Act)</td>
+<td data-th="Facts"><ul>
+<li>Keshab Chandra Sen played the key role in its passage; fixed minimum marriage age at <mark class="b">14 for girls, 18 for boys</mark> (one source: min age of girls placed at 14)</li>
+<li>Legalised unorthodox inter-caste marriages and banned polygamy</li>
+<li>Theory: prohibited marriage for girls below 18 and boys below 21 — but did NOT apply to Hindus, Muslims or other recognised faiths, limiting its reach (<mark class="r">the two figures — 14/18 in GC vs 18/21 in theory — reflect different provisions/sources; both appear in PYQs, watch for the exact figure asked</mark>)</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Issue / Act"><mark class="y">Age of Consent Act, 1891</mark></td>
+<td data-th="Facts"><ul>
+<li>Passed through the efforts of <mark class="g">Behramji M. Malabari</mark>, a Parsi social reformer born <mark class="b">1853</mark> at Baroda; editor of <mark class="p">Indian Spectator</mark> and <mark class="p">Voice of India</mark>; his activism also led to the <mark class="y">Criminal Law Amendment Act, 1885</mark></li>
+<li>Forbade marriage of girls below age <mark class="b">12</mark> (theory)</li>
+<li><mark class="g">Bal Gangadhar Tilak</mark> opposed this Act (<mark class="r">trap: the Extremist faction under Tilak did NOT support it</mark>)</li>
+<li>Linked to <mark class="g">Rukhmabai Raut's</mark> case: India's first female physician and a child-marriage reformer; married at 11 to Dadaji Bhikaji, contested her marriage's validity; lost her appeal in <mark class="b">1887</mark>; public outcry led <mark class="g">Queen Victoria</mark> to intervene and spare her imprisonment; the <mark class="g">Rukhmabai Defence Committee</mark> (with Malabari and Ramabai Ranade) publicised her case, inspiring this Act</li>
+<li>Malabari also founded <mark class="g">Seva Sadan</mark> (1885, Bombay, with Diwan Dayaram Gidumal) — against child marriage, promoting widow remarriage, supporting exploited/abandoned women with education, medical care and welfare services across castes</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Issue / Act"><mark class="y">Sharda Act / Child Marriage Restraint Act, 1929</mark></td>
+<td data-th="Facts"><ul>
+<li>Enacted through the efforts of Indian judge <mark class="g">Dr. Har Bilas Sharda</mark>; fixed minimum marriage age at <mark class="b">14 for girls, 18 for boys</mark>; effective from <mark class="b">1930</mark></li>
+<li>Amended in <mark class="b">1978</mark> (Child Marriage Restraint Amendment Act), raising the age to <mark class="b">18 for girls, 21 for boys</mark> — later substituted by the <mark class="y">Prohibition of Child Marriage Act, 2006</mark></li>
+<li>Present-day marriage age: <mark class="b">18 years for girls, 21 years for boys</mark></li>
+<li><mark class="g">Muthulakshmi Reddi</mark>, first woman legislator in Chennai's Legislative Council (theory table), played a crucial role advocating for this Act</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Issue / Act"><mark class="y">Women's Education</mark></td>
+<td data-th="Facts"><ul>
+<li>19th-century resistance stemmed from the belief that female education was contrary to Hindu scriptures and would cause widowhood</li>
+<li><mark class="g">Bethune School (1849)</mark>, Calcutta — founded by <mark class="g">J.E.D. Bethune</mark>; <mark class="g">Ishwar Chandra Vidyasagar</mark> served as its first Secretary (the institution originally called the Hindu Female School, later renamed Bethune Female School)</li>
+<li>Vidyasagar was instrumental in establishing girls' schools across Bengal and in challenging the misconception that female education contradicted Hindu scriptures</li>
+<li><mark class="g">Charles Wood's Despatch (1854)</mark>, supported by Lord Dalhousie, highlighted the need for educating women as part of broader educational reform</li>
+<li>Prominent advocates: <mark class="g">Jagannath Shankarsheth</mark> (founder of School Society &amp; Native School of Bombay, opened English-Marathi school in Girgaum); <mark class="g">Bhau Daji Lad</mark> (first Indian president of Students' Literary and Scientific Society); <mark class="g">Jyotirao &amp; Savitribai Phule</mark> (first girls' school, Bhide Wada, Pune, 1848; taught with Fatima Sheikh and Sagunabai; ran a night school); <mark class="g">Cornelia Sorabji</mark> (first woman to graduate from Bombay University, 1887; advocated women's higher education)</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" data-title="Caste Reform Movements" id="caste">
+<div class="chapter-head"><div class="seal">8</div><h2>Caste Reform Movements</h2></div>
+<table>
+<caption>Satyashodhak Samaj, Nadars, Justice Party, Self-Respect Movement, Ambedkar — merged (see also section 4 for Phule)</caption>
+<thead class="purple"><tr><th style="width:16%">Entity</th><th>Facts</th></tr></thead>
+<tbody>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Satya Shodhak Samaj</mark><br/>(see also §4 Phule)</td>
+<td data-th="Facts"><ul>
+<li>Founded <mark class="b">1873</mark> by Jyotiba Phule; organised an <mark class="y">anti-caste movement</mark> in Maharashtra; liberation of Shudras and Ati-Shudras from exploitation by Arya-Brahmins was its main objective</li>
+<li>Savitribai Phule headed the women's section; <mark class="g">Deenbandhu</mark> played an important role in spreading the movement to remote parts of Maharashtra</li>
+<li>Main aim: upliftment of backward classes and Dalits; wrote 'Sarvjanik Satyadharm Pustak' and 'Gulamgiri' to spread anti-Brahmin ideas</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Nadars</mark></td>
+<td data-th="Facts"><ul>
+<li>Demanded the right to enter temples, leading to riots in <mark class="g">Tirunelveli</mark> in <mark class="b">1899</mark></li>
+<li>Theory (Nadar Movement, 1910, Tamil Nadu): origin as <mark class="g">Shanans</mark>, an untouchable caste of agricultural labourers; by the late 19th century became a prosperous mercantile class and adopted the title 'Nadars' to claim Kshatriya status</li>
+<li>Key organisation: <mark class="g">Nadar Mahajan Sangam</mark> (established 1910)</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Justice Party / Movement</mark><br/>[1916, Madras]</td>
+<td data-th="Facts"><ul>
+<li>Founders: <mark class="g">Dr. T.M. Nair</mark>, <mark class="g">P. Tyagaraja Chetti</mark>, <mark class="g">C.N. Mudaliar</mark>; the "South Indian Liberal Federation (SILF)" formed in 1916 to challenge Brahmin dominance in government service, education and politics</li>
+<li>Opposed the Congress by calling it a Brahmin-dominated organisation; claimed the same communal representation for non-Brahmins as Muslims received under the <mark class="y">Morley-Minto reforms</mark></li>
+<li>Led to reservations for various communities via government orders; first non-Brahmin political organisation in South India</li>
+<li><mark class="g">E.V. Ramaswami Naicker (Periyar)</mark> became President in <mark class="b">1937</mark>, spearheading anti-Brahminism and social reform; criticised Hinduism, the Laws of Manu, and the Puranas as inhumane; removed caste name-boards from hotels, desecrated Hindu idols, cut sacred threads worn by Brahmins; motto: <mark class="y">"Some things cannot be mended, only ended."</mark></li>
+<li>Evolution: renamed <mark class="g">Dravida Kazhagam</mark> in <mark class="b">1944</mark>; became the <mark class="g">Dravida Munnetra Kazhagam (DMK)</mark> in <mark class="b">1949</mark> under <mark class="g">C.N. Annadurai</mark></li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Self-Respect Movement</mark><br/>[1925, Tamil Nadu]</td>
+<td data-th="Facts"><ul>
+<li>Founded by <mark class="g">E.V. Ramaswami Naicker (Periyar)</mark>; goal — reject Brahminical customs, challenge caste hierarchy, promote rationalism</li>
+<li>Criticised Brahmin priests as agents of oppression; advocated alternative wedding ceremonies and women's liberation; mobilised marginalised communities against caste injustice</li>
+<li>Associated journal: <mark class="p">Kudi</mark> (1910); impact — reshaped Tamil Nadu's social fabric, formed the Justice Party, pushed egalitarianism and social justice</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">B.R. Ambedkar</mark></td>
+<td data-th="Facts"><ul>
+<li>Advocated <mark class="y">'Neo-Buddhism'</mark> — the Dalit Bauddha Movement, redefining Buddhism and founding the new Buddhist sect <mark class="y">'Navayan'</mark></li>
+<li>Founded the <mark class="g">Bahishkrit Hitkarini Sabha</mark> (<mark class="r">frequently mismatched to Jyotiba Phule in "not correctly matched" questions — trap</mark>)</li>
+<li>Theory (Depressed Classes/Mahars Movement, 1924, Maharashtra): objective — elevate the Mahar community (untouchables); key demands — access to public places, temple entry, abolition of Mahar Watan, separate legislative representation</li>
+<li><mark class="b">1927</mark>: Bahiskrit Bharat Samaj Samta Sangh initiated by the Depressed Classes Institution (a Marathi fortnightly); <mark class="b">1942</mark>: Caste Federation formed to advocate untouchables' rights</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Congress' Harijan Movement / All India Anti-Untouchability League</mark></td>
+<td data-th="Facts"><ul>
+<li><mark class="g">Mahatma Gandhi</mark> founded the <mark class="g">All India Anti-Untouchability League</mark> in <mark class="b">1932</mark> (later renamed <mark class="g">Harijan Sevak Sangh</mark>)</li>
+<li>Theory: key leaders — Gandhi, <mark class="g">Madan Mohan Malviya</mark>, <mark class="g">Jamnalal Bajaj</mark>; <mark class="b">1917</mark>: Congress passed a resolution advocating abolition of untouchability; <mark class="b">1929</mark>: Anti-Untouchability Sub-Committee formed within Congress, led by Malviya and Bajaj; journal — <mark class="p">Harijan</mark>, published by Gandhi</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Tilak on untouchability</mark></td>
+<td data-th="Facts"><ul>
+<li>At a conference organised on abolition of untouchability, <mark class="g">Bal Gangadhar Tilak</mark> (called Lokmanya or Betaj Badshah) said: <mark class="y">"If God were to tolerate untouchability, I would not recognize him as God at all."</mark></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" data-title="Muslim Reform Movements" id="muslim">
+<div class="chapter-head"><div class="seal">9</div><h2>Muslim Reform Movements</h2></div>
+<table>
+<caption>Deoband, Faraizi, Aligarh — merged</caption>
+<thead class="brown"><tr><th style="width:16%">Entity</th><th>Facts</th></tr></thead>
+<tbody>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Darul Uloom Deoband</mark><br/>(Deoband Movement)</td>
+<td data-th="Facts"><ul>
+<li>Founding members: <mark class="g">Muhammad Qasim Nanautawi</mark>, <mark class="g">Haji Syed Muhammad Abid Deobandi</mark>, <mark class="g">Mahtab Ali Deobandi</mark>, <mark class="g">Zulfiqar Ali Deobandi</mark>, <mark class="g">Fazlur Rahman Usmani Deobandi</mark>, <mark class="g">Haji Fazle Haq Deobandi</mark>, <mark class="g">Shaikh Nihal Deobandi</mark>, and others</li>
+<li>Foundation laid <mark class="b">31 May 1866</mark> at <mark class="g">Deoband, Saharanpur district, UP (United Province)</mark>; objective — overthrow British rule, restore Islamic rule</li>
+<li>Theory: co-founded by <mark class="g">Muhammad Qasim Nanaytavi (1832–80)</mark> and <mark class="g">Rashid Ahmad Gangohi (1828–1905)</mark>; other key figures — <mark class="g">Maulana Abul Kalam Azad</mark>, <mark class="g">Mahmud-ul-Hasan</mark>, <mark class="g">Shibli Numani</mark></li>
+<li>A revivalist movement focused on Quranic teachings, rejecting Western education, advocating a liberal interpretation of Islam; supported the INC; issued a <mark class="b">1888</mark> fatwa against Syed Ahmed Khan's associations (<mark class="r">note: Deoband rejected Western education while Aligarh embraced it — commonly contrasted, trap</mark>)</li>
+<li>Mahmud-ul-Hasan fused Islamic principles with nationalism; Jamiat-ul-Ulema upheld Muslim rights; Shibli Numani supported English, European sciences and Hindu-Muslim unity</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Dar-ul-Uloom, Nadwatul Ulama</mark><br/>(Lucknow — distinct from Deoband)</td>
+<td data-th="Facts"><ul>
+<li>Established <mark class="b">1898</mark> at Lucknow, by Nadwatul Ulma; the underlying Nadwatul Uloom body was established by <mark class="g">Maulana Luftullah</mark> and <mark class="g">Maulana Shibli Numani</mark> at Kanpur in <mark class="b">1893</mark>; Shibli Numani taught at this Dar-ul-Uloom (<mark class="r">easily confused with Darul Uloom Deoband — trap</mark>)</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Haji Shariatullah</mark><br/>(Faraizi Movement)</td>
+<td data-th="Facts"><ul>
+<li>Began the <mark class="y">Faraizi Movement</mark>; a movement against British rule, which had denied Muslims religious freedom and confiscated their rights</li>
+<li>Theory: 1818–19, East Bengal; later led by his son <mark class="g">Dudu Mian</mark>; initial focus — reinterpretation of Islam, eradicating un-Islamic practices; after 1840 (post British conquest) it transformed into a revolutionary movement</li>
+<li>Dudu Mian organised a paramilitary force against Hindu landlords and Indigo planters; built an organisational structure from village to provincial level, with khalifa (authorised deputies) overseeing each region</li>
+</ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Syed Ahmed Khan</mark><br/>(Aligarh Movement, 1875)</td>
+<td data-th="Facts"><ul>
+<li>Founded the <mark class="g">Muhammadan-Anglo Oriental College, Aligarh</mark> (later AMU); founder dates 1817–98</li>
+<li>Promoted religious reform through rational inquiry, emphasising a scientific/rational outlook; recognised the value of Western education and aimed to socially reform Muslims</li>
+<li>Founded the <mark class="g">Scientific Society</mark> in <mark class="b">1864</mark>; associated journal: <mark class="p">Tahziz-al-Akhlaq</mark> (Urdu)</li>
+<li>Deoband issued a fatwa against his associations in 1888, reflecting the Deoband–Aligarh ideological rivalry on Western education</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" data-title="Miscellaneous Individuals &amp; Revolutionary Organisations" id="misc">
+<div class="chapter-head"><div class="seal">10</div><h2>Miscellaneous Individuals &amp; Revolutionary Organisations</h2></div>
+<table>
+<caption>Sister Nivedita, Savarkar — GC facts not tied to a larger organisation above</caption>
+<thead class="blue"><tr><th style="width:16%">Entity</th><th>Facts</th></tr></thead>
+<tbody>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Sister Nivedita</mark></td>
+<td data-th="Facts"><ul><li>Said: <mark class="y">"The British Empire is rotten to the core, corrupt in every direction and tyrannical and mean."</mark></li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Vinayak Damodar Savarkar</mark></td>
+<td data-th="Facts"><ul>
+<li>Founded the revolutionary organisation <mark class="g">'Abhinav Bharat Society'</mark></li>
+<li>With his brother <mark class="g">Ganesh Damodar Savarkar</mark>, started an organisation called <mark class="g">'Mitra Mela'</mark>, which V.D. Savarkar renamed <mark class="g">'Abhinav Bharat Society'</mark> at <mark class="g">Nashik</mark> in <mark class="b">1904</mark></li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+<div class="part-divider">
+<span class="plabel">Part II</span>
+<div class="ptitle">BPSC Wallah Exclusive</div>
+<p class="pdesc">Organisations, people and movements found only in the theory book — no matching question, option or explanation anywhere in the 157-question Ghatna Chakra set.</p>
+</div>
+<section class="chapter" data-title="BPSC Wallah Exclusive — Organisations &amp; People (no mention in Ghatna Chakra's 157 Qs)" id="excl-orgs">
+<div class="chapter-head"><div class="seal">11</div><h2>BPSC Wallah Exclusive — Organisations &amp; People (no mention in Ghatna Chakra's 157 Qs)</h2></div>
+<div class="chapter-sub">These appear only in the theory book — no matching question, option, or explanation was found anywhere in the 157-question Ghatna Chakra set.</div>
+<table>
+<caption>Institutions and individuals unique to BPSC Wallah theory — general reform bodies</caption>
+<thead class="red"><tr><th style="width:16%">Entity</th><th>Facts</th></tr></thead>
+<tbody>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Swaminarayan Sampraday</mark><br/>[Early 19th c., Gujarat]</td>
+<td data-th="Facts"><ul><li>Founder: <mark class="g">Swami Sahajanand (Ghanashyama)</mark> (1781–1830)</li>
+<li>Advocated monotheism and a theistic god; protested against certain Vaishnavism practices; prescribed a moral code for personal conduct</li>
+<li>Promoted vegetarianism, discouraged liquor/drugs; open to all regardless of caste or creed</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Paramahansa Mandali</mark><br/>[1849, Maharashtra]</td>
+<td data-th="Facts"><ul><li>Founded by <mark class="g">Dadoba Pandurang</mark> and <mark class="g">Mehtaji Durgaram</mark></li>
+<li>Focus: reforming Hindu religion and society; linked to Manav Dharma Sabha</li>
+<li>Ideology: worship one god, love, moral conduct, freedom of thought, rationality; broke caste rules; promoted widow remarriage, supported women's education</li>
+<li>Branches: Poona, Satara, other Maharashtra towns; religious reforms in Bombay were started by the Paramhans Mandali</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Young Bengal Movement</mark><br/>[1830s, Calcutta]</td>
+<td data-th="Facts"><ul><li>Founder: <mark class="g">Henry Louis Vivian Derozio</mark>; key figures — Rasik Krishna Mullick, Tarachand Chucker-vati, Krishna Mohan Banerjee</li>
+<li>Ideology: opposed societal vices, advocated truth, freedom, reason; pushed for women's rights and education; established the <mark class="g">Society for the Acquisition of General Knowledge</mark></li>
+<li>Journals: <mark class="p">Janavesan</mark>, <mark class="p">Hesperus</mark>, <mark class="p">The Calcutta Library Gazette</mark>, <mark class="p">India Gazette</mark> (edited by Derozio)</li>
+<li>Demands: Indian representation in higher services, protection/fair treatment for ryots and Indian labour abroad, revision of the Company's charter, freedom of the press, trial by jury</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Bharat Dharma Mahamandal</mark><br/>[1902, Varanasi]</td>
+<td data-th="Facts"><ul><li>Leader: <mark class="g">Pandit Madan Mohan Malaviya</mark></li>
+<li>Objectives: manage Hindu religious institutions, promote Hindu education</li>
+<li>Formed 1902 from a coalition of orthodox-defending bodies (Sanatana Dharma Sabha, Dharma Maha Parishad, Dharma Mahamandali); HQ Varanasi</li>
+<li>Opposed the Arya Samajists, Theosophists, and the Ramakrishna Mission</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Students' Literary and Scientific Society</mark><br/>[1848]</td>
+<td data-th="Facts"><ul><li>Objectives: debate popular science and social issues; promote study of literature and science; advocate use of vernacular languages in education</li>
+<li>First Indian president: <mark class="g">Bhau Daji Lad</mark></li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Veda Samaj</mark><br/>[1864, Madras]</td>
+<td data-th="Facts"><ul><li>Founders: <mark class="g">Sridharalu Naidu</mark> and <mark class="g">Keshab Chandra Sen</mark>; heavily influenced by Brahmo Samaj's theistic principles</li>
+<li>Viewed marriage/funeral rituals as routine, not religious; advocated eliminating sectarian beliefs; promoted gradual eradication of caste distinctions</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Deccan Education Society</mark><br/>[1884, Pune]</td>
+<td data-th="Facts"><ul><li>Founders: M.G. Ranade, Lokmanya Tilak, V.G. Chibdonkar, G.G. Agarkar</li>
+<li>Objective: advance education as a tool for social change; established <mark class="g">Fergusson College, Pune (1885)</mark></li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Seva Sadan</mark><br/>[1885, Bombay]</td>
+<td data-th="Facts"><ul><li>Founder: Behramji M. Malabari, with <mark class="g">Diwan Dayaram Gidumal</mark></li>
+<li>Objective: against child marriage, promoting widow remarriage, supporting exploited/abandoned women; provided education, medical care, welfare across all castes</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Madras Hindu Association</mark><br/>[1892, Madras]</td>
+<td data-th="Facts"><ul><li>Founder: <mark class="g">Viresialingam Pantulu</mark></li>
+<li>Focus: Social Purity Movement; opposition to the Devadasi system; alleviating oppression of widows</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Poona Seva Sadan</mark><br/>[1909, Pune]</td>
+<td data-th="Facts"><ul><li>Founders: <mark class="g">G.K. Devadhar</mark> and <mark class="g">Ramabai Ranade</mark> (wife of M.G. Ranade)</li>
+<li>Focus: educational advancement for women, betterment of widows' conditions</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Nishkam Karma Math</mark><br/>[1910, Pune]</td>
+<td data-th="Facts"><ul><li>Founder: <mark class="g">Dhondo Keshav Karve</mark></li>
+<li>Established the women's university in Pune, now part of Mumbai University</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Social Service League</mark><br/>[1911, Bombay]</td>
+<td data-th="Facts"><ul><li>Founder: <mark class="g">Narayan Malhar Joshi</mark></li>
+<li>Improved conditions for common masses via schools, libraries, cooperative societies; supported legal aid, slum excursions, medical relief, boys' clubs</li>
+<li>Key role in founding the <mark class="g">All India Trade Union Congress</mark> in 1920</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Seva Samiti</mark><br/>[1914, Allahabad]</td>
+<td data-th="Facts"><ul><li>Founder: <mark class="g">Hridyanath Kunzru</mark></li>
+<li>Focus: enhancing the status of suffering classes through social service and education</li></ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" data-title="BPSC Wallah Exclusive — Women's Organisations, Institutions &amp; the Freedom-Struggle Women's Timeline" id="excl-women">
+<div class="chapter-head"><div class="seal">12</div><h2>BPSC Wallah Exclusive — Women's Organisations, Institutions &amp; the Freedom-Struggle Women's Timeline</h2></div>
+<table>
+<caption>Women's institutions and organisations found only in theory</caption>
+<thead class="green"><tr><th style="width:16%">Entity</th><th>Facts</th></tr></thead>
+<tbody>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Calcutta Female Juvenile Society</mark> [1819]</td>
+<td data-th="Facts">Established by Christian missionaries — one of the first organisations for girls' education in India.</td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Alexandra Society</mark> [1863]</td>
+<td data-th="Facts">Formed by Parsis to educate Parsi girls.</td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Women's Medical Service</mark> [1914]</td>
+<td data-th="Facts">Focused on training nurses and midwives; vital role in women's healthcare education.</td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Lady Hardinge Medical College</mark> [1916, Delhi]</td>
+<td data-th="Facts">Opened to train women in medical sciences.</td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Arya Mahila Samaj</mark> [1882]</td>
+<td data-th="Facts">Founded by <mark class="g">Pandita Ramabai Saraswati</mark> to advocate for women's rights and education; her efforts led to inclusion of medical education for women at <mark class="g">Lady Dufferin College</mark>.</td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Ladies Social Conference</mark> (Bharat Mahila Parishad) [1904, Bombay]</td>
+<td data-th="Facts">Established by <mark class="g">Ramabai Ranade</mark> under the National Social Conference; focused on social reforms for women.</td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Bharat Stree Mahamandal</mark> [1910]</td>
+<td data-th="Facts"><mark class="g">Sarla Devi Chaudhurani</mark> convened its first meeting in Allahabad — the first major women-led organisation in India; aimed to improve women's education, abolish purdah, elevate women's socio-economic/political status; Sarla Devi likened the struggle to living "under the shade of Manu."</td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">National Council of Women in India</mark> [1925]</td>
+<td data-th="Facts">Significant contributions from <mark class="g">Meherbai Tata</mark>, <mark class="g">Cornelia Sorabji</mark>, <mark class="g">Tarabai Premchand</mark>, <mark class="g">Shaffi Tyabji</mark>, <mark class="g">Maharani Sucharu Devi</mark>; addressed the purdah system, caste restrictions, women's lack of education.</td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">All India Women's Conference (AIWC)</mark> [1927, Fergusson College, Pune]</td>
+<td data-th="Facts">Founded by <mark class="g">Margaret Cousins</mark>; founding members — <mark class="g">Maharani Chimnabai Gaekwad</mark>, <mark class="g">Rani Sahiba of Sangli</mark>, <mark class="g">Sarojini Naidu</mark>, <mark class="g">Kamla Devi Chattopadhyaya</mark>, <mark class="g">Lady Dorab Tata</mark>; promoted social justice, equal rights, equitable resource distribution regardless of gender/birth.</td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="y">Key Women's-Rights Legislation (post-independence)</mark></td>
+<td data-th="Facts">Sarda Act (1929), Hindu Women's Right to Property Act (1937), Factory Act (1947), Hindu Marriage and Divorce Act (1954), Special Marriage Act (1954), Hindu Minority and Guardianship Act (1956), Hindu Adoption and Maintenance Act (1956), Suppression of Immoral Traffic in Women Act (1958), Maternity Benefits Act (1961), Dowry Prohibition Act (1961), Equal Remuneration Act (1976).</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>Women's Movements &amp; Personalities Timeline, 1872–1947 (theory-exclusive)</caption>
+<thead class="purple"><tr><th style="width:16%">Movement / Event</th><th>Key Personalities</th><th>Contribution / Significance</th></tr></thead>
+<tbody>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1872</mark> — Early Feminist Movement</td><td data-th="Key Personalities"><mark class="g">Dr. Rakhmabai</mark></td><td data-th="Contribution / Significance">Legal battle against child marriage led to the Age of Consent Act, 1891; became one of the first female doctors in colonial India.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1872</mark> — Kuka Movement</td><td data-th="Key Personalities">Women of the Kuka Community</td><td data-th="Contribution / Significance">Actively participated in protests against British rule in Punjab, providing significant support.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1905</mark> — Partition of Bengal</td><td data-th="Key Personalities"><mark class="g">Swarnakumari Devi</mark>, <mark class="g">Sarala Devi Chaudhurani</mark></td><td data-th="Contribution / Significance">Key figures protesting Partition of Bengal; important role in the Swadeshi movement.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1916</mark> — Home Rule Movement</td><td data-th="Key Personalities"><mark class="g">Annie Besant</mark>, <mark class="g">Margaret Cousins</mark></td><td data-th="Contribution / Significance">Besant led the Home Rule League; Cousins co-founded the Women's Indian Association, advocating suffrage across Madras, Maharashtra, Gujarat, UP.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1917</mark> — Women's Indian Association</td><td data-th="Key Personalities">Annie Besant, <mark class="g">Dorothy Jinarajadasa</mark>, Margaret Cousins</td><td data-th="Contribution / Significance">Worked towards women's suffrage and social reforms, beginning in Madras.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1919</mark> — Rowlatt Satyagraha</td><td data-th="Key Personalities"><mark class="g">Kasturba Gandhi</mark>, <mark class="g">Sarojini Naidu</mark></td><td data-th="Contribution / Significance">Instrumental in protesting the Rowlatt Act and the Satyagraha against repressive laws.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1921</mark> — Non-Cooperation Movement</td><td data-th="Key Personalities"><mark class="g">Basanti Debi</mark>, <mark class="g">Suniti Devi</mark></td><td data-th="Contribution / Significance">Basanti Debi — first woman arrested for the movement; Suniti Devi promoted khadi spinning and boycott of foreign goods in Bengal.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1925</mark> — Trade Union Movements</td><td data-th="Key Personalities"><mark class="g">Anasuya Sarabhai</mark></td><td data-th="Contribution / Significance">Founded the Ahmedabad Textile Labour Association, advocating labour rights and working conditions for textile workers.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1927</mark> — AIWC</td><td data-th="Key Personalities">Margaret Cousins</td><td data-th="Contribution / Significance">Central figure founding AIWC, promoting women's education, social rights, economic empowerment.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1929</mark> — Sharda Act</td><td data-th="Key Personalities"><mark class="g">Muthulakshmi Reddi</mark></td><td data-th="Contribution / Significance">First woman legislator in Chennai's Legislative Council; crucial role advocating for the Child Marriage Restraint Act.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1930</mark> — Salt Satyagraha</td><td data-th="Key Personalities">Sarojini Naidu, <mark class="g">Mithuben Petit</mark></td><td data-th="Contribution / Significance">Naidu led the Dharasana Salt Works raid; Petit prominent in the Salt Marches.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1930s</mark> — Revolutionary Movement</td><td data-th="Key Personalities"><mark class="g">Santi Ghose</mark>, <mark class="g">Suniti Chaudhuri</mark></td><td data-th="Contribution / Significance">Involved in the assassination of a British district magistrate — women entering revolutionary activity.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1930s</mark> — Civil Disobedience Movement</td><td data-th="Key Personalities"><mark class="g">Usha Mehta</mark>, <mark class="g">Kamaladevi Chattopadhyay</mark></td><td data-th="Contribution / Significance">Mehta ran the secret Congress Radio; Chattopadhyay promoted self-reliance via handicrafts, sold contraband salt.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1942</mark> — Quit India Movement</td><td data-th="Key Personalities"><mark class="g">Aruna Asaf Ali</mark>, <mark class="g">Sucheta Kriplani</mark>, <mark class="g">Matangini Hazra</mark>, Kasturba Gandhi, <mark class="g">Parbati Giri</mark>, <mark class="g">Bina Das</mark></td><td data-th="Contribution / Significance">Asaf Ali hoisted the flag at Gowalia Tank; Kriplani organised protests; Hazra became a martyr; Kasturba participated widely; Giri gave humanitarian service; Bina Das attempted to assassinate the Governor of Bengal.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1943</mark> — Bengal Famine</td><td data-th="Key Personalities"><mark class="g">Kalyani Das</mark>, Bina Das</td><td data-th="Contribution / Significance">Played vital roles in famine relief and the independence struggle.</td></tr>
+<tr><td class="entity" data-th="Movement / Event"><mark class="b">1947</mark> — Partition of India</td><td data-th="Key Personalities"><mark class="g">Rameshwari Nehru</mark>, <mark class="g">Mridula Sarabhai</mark></td><td data-th="Contribution / Significance">Focused on refugee rehabilitation and women's welfare post-Partition.</td></tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" data-title="BPSC Wallah Exclusive — Sikh, Parsi &amp; Additional Muslim Movements" id="excl-sikh">
+<div class="chapter-head"><div class="seal">13</div><h2>BPSC Wallah Exclusive — Sikh, Parsi &amp; Additional Muslim Movements</h2></div>
+<table>
+<caption>Sikh reform movements, Parsi reform, and Muslim movements not covered in Ghatna Chakra</caption>
+<thead class="purple"><tr><th style="width:16%">Entity</th><th>Facts</th></tr></thead>
+<tbody>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Wahabi Movement</mark><br/>[1820s onward — Rohilkhand, Kabul, NWFP, Bengal, Central Provinces]</td>
+<td data-th="Facts"><ul><li>Founder: <mark class="g">Syed Ahmad of Rai Bareilly</mark>; other leaders — Vilayat Ali, Shah Muhammad Hussain, Farhat Hussain, Inayat Ali (all from Patna)</li>
+<li>Inspired by <mark class="g">Abdul Wahab</mark> (Arabia) and <mark class="g">Shah Waliullah</mark> (1702–63)</li>
+<li>Objective: revive authentic Islam and Arabian culture as in the Prophet's time; opposed Western influence on Islam; emphasised individual conscience</li>
+<li>Initially directed against the Sikhs in Punjab, later shifted against the British after Punjab's annexation (1849); played a significant role in the 1857 Revolt</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Titu Mir's Movement</mark> [1831]</td>
+<td data-th="Facts"><ul><li>Leader: <mark class="g">Syed Mir Nisar Ali (Titu Mir)</mark>, a disciple of Syed Ahmad Barelvi and follower of Wahabism</li>
+<li>Advocated Sharia principles in Bengal; organised Muslim peasants against Hindu landlords and British indigo planters</li>
+<li>Confrontation with British police in 1831 resulted in his death</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Taayuuni Movement</mark> [Dacca, 1839]</td>
+<td data-th="Facts"><ul><li>Leader: <mark class="g">Karamat Ali Jaunpuri</mark>; founded on the teachings of Shah Waliullah</li>
+<li>Opposed the Faraizi Movement — a more traditionalist religious stance without Faraizi's revolutionary/social-reform goals</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Mohammedan Literary Society of Calcutta</mark> [1863]</td>
+<td data-th="Facts"><ul><li>Leader: <mark class="g">Abdul Latif</mark></li>
+<li>Aim: promote modern education and scientific knowledge among Muslims; eradicate practices like polygamy among upper/middle-class Muslims</li>
+<li>Played a pivotal role in fostering Hindu-Muslim unity</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Ahmadiyya Movement</mark> [1889]</td>
+<td data-th="Facts"><ul><li>Founder: <mark class="g">Mirza Ghulam Ahmad</mark> (1839–1908)</li>
+<li>Promoted human rights, tolerance, separation of mosque and state; opposed jihad; favoured Western education</li>
+<li>Mirza Ghulam Ahmad claimed to be the Messiah, ending religious wars; criticised for mystical elements akin to the Bahai faith</li>
+<li>The only Islamic sect holding that the Messiah has already arrived, in the form of Mirza Ghulam Ahmad</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Namdhari / Kuka Movement</mark> [1841–71, NWFP, Bhain]</td>
+<td data-th="Facts"><ul><li>Founders: <mark class="g">Bhai Balak Singh</mark> and <mark class="g">Baba Ram Singh</mark></li>
+<li>Religio-political revival within Sikhism, emphasising worship of one God via prayer/meditation per the Rehatnamas; opposed the caste system, infanticide, early marriage; promoted Anand Marriage ceremonies</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Singh Sabha Movement</mark> [1873]</td>
+<td data-th="Facts"><ul><li>Founders: <mark class="g">Thakur Singh Sandhawalia</mark> and <mark class="g">Giani Gian Singh</mark></li>
+<li>Aimed to re-establish original-form Sikhism via religious literature, promoting Punjabi, reintegrating Sikh apostates; established Khalsa schools across Punjab; countered Christian missionaries, Brahmo Samaj, Arya Samaj, Muslim maulvis</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Akali Movement</mark> [1920–25]</td>
+<td data-th="Facts"><ul><li>Offshoot of the Singh Sabha Movement; aimed to liberate Sikh gurudwaras from corrupt, hereditary Udasi mahants</li>
+<li><mark class="b">1922</mark>: Sikh Gurdwaras Act passed (amended 1925), granting gurudwara control to the Sikh masses via the <mark class="g">Shiromani Gurudwara Prabandhak Committee (SGPC)</mark></li>
+<li>Non-violent, non-cooperation movement launched 1921 — regional but not communal</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Nirankari Movement</mark> [1851]</td>
+<td data-th="Facts"><ul><li>Founder: <mark class="g">Baba Dayal Das</mark></li>
+<li>Opposed idol-worship and veneration of tombs; rejected the militant Khalsa brotherhood; accepted living Gurus as spiritual leaders; simplified/standardised birth, health and marriage rituals</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Rehnumai Mazdayasan Sabha</mark> [1851]<br/><span style="font-weight:400;font-family:Georgia,serif;">(also referenced in GC — see below)</span></td>
+<td data-th="Facts"><ul><li>Founders: <mark class="g">Dadabhai Naoroji</mark>, <mark class="g">Nauroji Furdonji</mark>, <mark class="g">S.S. Bengalee</mark></li>
+<li>Aimed to reform orthodox Parsi practices — modernising social customs, improving women's education, reforming marriage; advocated restoring Zoroastrianism's purity, uniform inheritance/marriage laws</li>
+<li>GC: same body founded 1851 by Naoroji Furdonji and others, described as a Parsi religious reform association</li></ul></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="chapter" data-title="BPSC Wallah Exclusive — Additional Caste Movements" id="excl-caste">
+<div class="chapter-head"><div class="seal">14</div><h2>BPSC Wallah Exclusive — Additional Caste Movements</h2></div>
+<table>
+<caption>Caste-reform movements with no matching Ghatna Chakra question/option</caption>
+<thead class="brown"><tr><th style="width:16%">Entity</th><th>Facts</th></tr></thead>
+<tbody>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Sree Narayana Guru Dharma Paripalana (SNDP) Movement</mark><br/>[1903, Kerala]</td>
+<td data-th="Facts"><ul><li>Founder: <mark class="g">Sree Narayana Guru</mark> (1854–1928); the <mark class="g">Ezhavas</mark> (toddy-tappers) faced untouchability, denial of education and temple entry in Kerala</li>
+<li>Catalyst: <mark class="b">1888</mark> symbolic act at <mark class="g">Aruvippuram</mark>, installing a Sivalinga from the Neyyar River to challenge caste practices</li>
+<li><mark class="b">1889</mark>: Aruvippuram Kshetra Yogam; <mark class="b">1903</mark>: SNDP Yogam registered under the Indian Companies Act, Guru as permanent chairman, <mark class="g">Kumaran Asan</mark> as general secretary</li>
+<li>Slogan: <mark class="y">"One religion, one caste, one god for mankind"</mark>; criticised Congress and Gandhi for not addressing caste discrimination</li>
+<li>Inscribed on the Aruvippuram temple wall: <mark class="y">"No dividing walls of caste or race, live in brotherhood."</mark></li>
+<li>Promoted social mobility for Ezhavas in education, government jobs, temple entry, political representation; led to structural changes in Kerala's power dynamics</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Nair Movement</mark> [1891, Kerala]</td>
+<td data-th="Facts"><ul><li>Key leaders: <mark class="g">C.V. Raman Pillai</mark>, <mark class="g">K. Rama Krishna Pillai</mark>, <mark class="g">M. Padmanabha Pillai</mark></li>
+<li>Emerged against Brahmin dominance in Kerala; C.V. Raman Pillai established the Memorial to challenge Brahminical authority; M. Padmanabha Pillai founded the <mark class="g">Nair Service Society (NSS)</mark> to uplift the Nair community</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Vokkaliga Sangha</mark> [1905, Mysore]</td>
+<td data-th="Facts"><ul><li>Initiated as an anti-Brahmin movement in Mysore; <mark class="g">T. Byanna</mark> was its first president</li>
+<li>Patrons: Maharaja of Mysore <mark class="g">Krishnaraja Wodeyar IV</mark> and Diwan <mark class="g">V.P. Madhava Rao</mark> (patron and vice-patron respectively)</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Vaikom Satyagraha</mark> [1924, Northern Travancore]</td>
+<td data-th="Facts"><ul><li>Leader: <mark class="g">K.P. Kesava</mark>; objective — challenge denial of temple and public-road access to untouchables</li>
+<li>Supported by Jathas (processions) from Punjab and Madurai; <mark class="g">Mahatma Gandhi</mark> visited Kerala to show solidarity</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Temple Entry Movement</mark> [1924–1938]</td>
+<td data-th="Facts"><ul><li><mark class="g">Guruvayur Satyagraha (1931)</mark>: leaders <mark class="g">K. Kelappan</mark> and poet <mark class="g">Subramaniyam Tirumambu</mark> ("the singing sword of Kerala"); 16 volunteers marched to Guruvayur; notable satyagrahis — <mark class="g">P. Krishna Pillai</mark>, <mark class="g">A.K. Gopalan</mark></li>
+<li><mark class="g">Travancore Proclamation (1936)</mark>: Maharaja of Travancore allowed all Hindu castes access to government-controlled temples</li>
+<li><mark class="g">Temple Entry in Madras (1938)</mark>: led by <mark class="g">C. Rajagopalachari</mark>; Madras administration expanded the movement's influence across South India</li></ul></td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Gopal Baba Walangkar</mark></td>
+<td data-th="Facts">Founded <mark class="g">Anarya Dosh Parihar Samaj</mark>; published <mark class="p">'Vital Vidhwansak'</mark> to protest against Brahmanism.</td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Iyothee Thass</mark> (Tamil Nadu)</td>
+<td data-th="Facts">Promoted Siddha medicine and Buddhist conversion; founded the <mark class="g">Dalit Mahajan Sabha</mark>.</td>
+</tr>
+<tr>
+<td class="entity" data-th="Entity"><mark class="g">Kaivartas' Movement</mark> [1897 onward, Midnapore, Bengal]</td>
+<td data-th="Facts">Establishment of the <mark class="g">Jati Nirdharan Sabha</mark> (1897) and the <mark class="g">Mahishya Samiti</mark> (1901) marked initial steps toward the Kaivartas' evolving into the cohesive Mahishya identity.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</div><!-- /chapters -->
+<div class="footer">The Reformer's Ledger · compiled from 157 Ghatna Chakra PYQs (questions, options &amp; explanations) and BPSC Wallah theory · duplicate-origin facts merged, none omitted</div>
+</div><!-- /main -->
+<script>
+  const chapters = document.querySelectorAll('.chapter');
+  const toc = document.getElementById('toc');
+  chapters.forEach((ch, i) => {
+    const a = document.createElement('a');
+    a.href = '#' + ch.id;
+    a.innerHTML = '<span class="num">' + String(i+1).padStart(2,'0') + '</span><span>' + ch.dataset.title + '</span>';
+    a.dataset.target = ch.id;
+    toc.appendChild(a);
+  });
+
+  const links = toc.querySelectorAll('a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = toc.querySelector('a[data-target="' + entry.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px', threshold: 0 });
+  chapters.forEach(ch => observer.observe(ch));
+
+  const menuBtn = document.getElementById('menu-btn');
+  const sidebar = document.getElementById('sidebar');
+  menuBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+  links.forEach(l => l.addEventListener('click', () => sidebar.classList.remove('open')));
+</script>
+</body>
+</html>

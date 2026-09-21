@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Development of Press and Education in British India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1E33;
+    --ink-2:#122A45;
+    --paper:#FBF7EC;
+    --paper-2:#F3ECDA;
+    --gold:#C9A227;
+    --gold-2:#E8C766;
+    --teal:#2E6171;
+    --text:#1C2B3A;
+    --muted:#5B6B7A;
+    --hl-y:#F1B400;
+    --hl-b:#1F6FB2;
+    --hl-g:#1E8449;
+    --hl-r:#B03A2E;
+    --hl-p:#6C3483;
+    --trap-bg:#FDEDEC;
+    --trap-bd:#C0392B;
+    --ctx-bg:#EAF2F6;
+    --ctx-bd:#2E6171;
+    --tbl-head-blue:#1A5276;
+    --tbl-head-red:#7B241C;
+    --tbl-head-green:#145A32;
+    --tbl-head-purple:#5B2C6F;
+    --tbl-head-brown:#7E5109;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text);
+    font-family:'Source Sans 3', sans-serif;
+    font-size:17.5px;
+    display:flex;
+    min-height:100vh;
+  }
+  ::selection{background:var(--gold-2); color:var(--ink);}
+
+  #sidebar{
+    width:290px;
+    flex-shrink:0;
+    background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:#DCE6EE;
+    position:fixed;
+    top:0; left:0; bottom:0;
+    overflow-y:auto;
+    padding:28px 0 40px;
+    border-right:1px solid rgba(201,162,39,.25);
+    z-index:50;
+  }
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:rgba(201,162,39,.4); border-radius:3px;}
+
+  .brand{padding:0 24px 22px; border-bottom:1px solid rgba(201,162,39,.25); margin-bottom:14px;}
+  .brand .stamp{
+    width:46px;height:46px;border-radius:50%; border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Playfair Display',serif; font-weight:800; color:var(--gold-2);
+    font-size:13px; letter-spacing:.5px; margin-bottom:10px;
+  }
+  .brand h1{font-family:'Playfair Display', serif; font-size:19px; line-height:1.3; margin:0 0 4px; font-weight:700; color:#F4EFE1;}
+  .brand p{margin:0; font-size:12px; letter-spacing:.09em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono', monospace;}
+
+  nav.toc{padding:6px 10px;}
+  nav.toc a{
+    display:flex; align-items:baseline; gap:10px; padding:9px 14px; margin:1px 0;
+    border-radius:6px; color:#B7C6D3; text-decoration:none; font-size:13.2px; font-weight:500;
+    border-left:3px solid transparent; transition:background .15s, color .15s, border-color .15s;
+  }
+  nav.toc a .num{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--gold); flex-shrink:0; width:20px;}
+  nav.toc a:hover{background:rgba(201,162,39,.10); color:#F4EFE1;}
+  nav.toc a.active{background:rgba(201,162,39,.16); color:#F8F1DD; border-left-color:var(--gold); font-weight:600;}
+
+  .legend-box{margin:20px 16px 0; padding:14px 14px 16px; background:rgba(255,255,255,.04); border:1px solid rgba(201,162,39,.22); border-radius:8px;}
+  .legend-box h3{margin:0 0 10px; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  .legend-row{display:flex; align-items:center; gap:8px; margin-bottom:7px; font-size:12.5px; color:#CBD6DF;}
+  .legend-swatch{width:14px;height:14px;border-radius:3px; flex-shrink:0;}
+
+  #main{margin-left:290px; flex:1; padding:0; background:var(--ink);}
+  .cover{
+    padding:74px 64px 56px;
+    background:radial-gradient(circle at 85% 20%, rgba(201,162,39,.10), transparent 45%), linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    color:#EFE9D8; border-bottom:4px double rgba(201,162,39,.4);
+  }
+  .cover .eyebrow{font-family:'IBM Plex Mono',monospace; letter-spacing:.18em; text-transform:uppercase; font-size:12.5px; color:var(--gold-2); margin-bottom:16px;}
+  .cover h1{font-family:'Playfair Display', serif; font-weight:800; font-size:clamp(30px,4.2vw,48px); line-height:1.14; margin:0 0 16px; max-width:820px;}
+  .cover p.sub{font-size:17px; color:#C9D2DB; max-width:660px; line-height:1.7; margin:0 0 22px;}
+  .cover .tags{display:flex; gap:10px; flex-wrap:wrap;}
+  .cover .tag{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--gold-2); border:1px solid rgba(201,162,39,.45); padding:5px 12px; border-radius:20px; background:rgba(201,162,39,.06);}
+
+  .chapters{background:var(--paper); padding:10px 0 90px;}
+  .chapter{max-width:960px; margin:0 auto; padding:56px 48px 8px; border-bottom:1px solid rgba(28,43,58,.10); scroll-margin-top:14px;}
+  .chapter:last-child{border-bottom:none;}
+
+  .chapter-head{display:flex; align-items:center; gap:18px; margin-bottom:6px;}
+  .chapter-head .seal{
+    width:52px; height:52px; border-radius:50%; background:var(--ink); color:var(--gold-2);
+    display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:700; font-size:19px;
+    border:2px solid var(--gold); flex-shrink:0;
+  }
+  .chapter-head h2{font-family:'Playfair Display', serif; font-size:clamp(22px,2.7vw,29px); margin:0; color:var(--ink); font-weight:700; line-height:1.25;}
+  .chapter-sub{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; margin:6px 0 26px 70px;}
+
+  .event{margin:0 0 28px; padding-left:18px; border-left:3px solid var(--teal);}
+  .event.upcoming{border-left:3px solid var(--gold);}
+  .event h3{font-family:'Playfair Display', serif; font-size:19px; margin:0 0 6px; color:var(--ink); display:flex; align-items:center; gap:8px; flex-wrap:wrap;}
+  .datebox{font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--teal); font-weight:600; margin-bottom:10px; display:block;}
+  .event p{margin:0 0 12px; line-height:1.85; font-size:16.5px;}
+  .event ul{margin:8px 0 12px; padding-left:22px;}
+  .event li{margin-bottom:11px; line-height:1.8; font-size:16.5px;}
+  .event ul ul{margin-top:6px;}
+
+  mark{
+    padding:.15em .42em; border-radius:4px; font-weight:700; color:#fff;
+    box-decoration-break:clone; -webkit-box-decoration-break:clone;
+  }
+  .y{background:var(--hl-y); color:#1C1200;}
+  .b{background:var(--hl-b);}
+  .g{background:var(--hl-g);}
+  .r{background:var(--hl-r);}
+  .p{background:var(--hl-p);}
+
+  .trap{background:var(--trap-bg); border:1px solid rgba(192,57,43,.35); border-left:5px solid var(--trap-bd); padding:14px 18px; border-radius:6px; margin:16px 0 20px; font-size:16px; line-height:1.8;}
+  .trap .lbl{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--trap-bd); font-weight:700; display:block; margin-bottom:6px;}
+  .trap ul{margin:6px 0 0; padding-left:20px;}
+  .trap li{margin-bottom:8px;}
+
+  .ctx{background:var(--ctx-bg); border:1px solid rgba(46,97,113,.35); border-left:5px solid var(--ctx-bd); padding:14px 18px; border-radius:6px; margin:16px 0 20px; font-size:16px; line-height:1.8;}
+  .ctx .lbl{font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--ctx-bd); font-weight:700; display:block; margin-bottom:6px;}
+  .ctx ul{margin:6px 0 0; padding-left:20px;}
+  .ctx li{margin-bottom:8px;}
+
+  table{width:100%; border-collapse:collapse; margin:16px 0 26px; font-size:15px;}
+  caption{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--muted); margin-bottom:7px; text-transform:uppercase; letter-spacing:.06em;}
+  th,td{padding:10px 12px; text-align:left; border-bottom:1px solid rgba(28,43,58,.10); vertical-align:top; line-height:1.6;}
+  thead.blue th{background:var(--tbl-head-blue); color:#F4EFE1; font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.red th{background:var(--tbl-head-red); color:#F4EFE1; font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.green th{background:var(--tbl-head-green); color:#F4EFE1; font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.purple th{background:var(--tbl-head-purple); color:#F4EFE1; font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.brown th{background:var(--tbl-head-brown); color:#F4EFE1; font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em;}
+  tbody tr:nth-child(even){background:var(--paper-2);}
+
+  .factbox{background:var(--paper-2); border:1px solid rgba(28,43,58,.12); border-radius:8px; padding:18px 20px; margin:18px 0 24px;}
+  .factbox .lbl{font-family:'IBM Plex Mono',monospace; font-size:18px; text-transform:uppercase; letter-spacing:.08em; color:var(--trap-bd); font-weight:800; display:block; margin-bottom:10px;}
+  .factbox dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:8px 18px;}
+  .factbox dt{font-weight:700; font-size:15px; color:var(--ink); white-space:nowrap;}
+  .factbox dd{margin:0; font-size:15.5px; line-height:1.7;}
+
+  .part-divider{max-width:960px; margin:0 auto; padding:40px 48px 0;}
+  .part-divider .plabel{font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); background:var(--ink); display:inline-block; padding:8px 18px; border-radius:20px;}
+  .part-divider .ptitle{font-family:'Playfair Display',serif; font-weight:700; font-size:27px; color:var(--ink); margin:14px 0 2px;}
+  .part-divider .pdesc{color:var(--muted); font-size:15px; margin:0 0 6px;}
+  @media (max-width:880px){ .part-divider{padding:30px 22px 0;} }
+
+  .note{font-size:14px; color:var(--muted); font-style:italic; margin:8px 0 16px;}
+
+  .footer{max-width:960px; margin:0 auto; padding:40px 48px 70px; color:var(--muted); font-size:13px; font-family:'IBM Plex Mono',monospace; text-align:center;}
+
+  @media (max-width: 880px){
+    #sidebar{position:fixed; left:0; top:0; bottom:0; width:260px; transform:translateX(-100%); transition:transform .25s ease;}
+    #sidebar.open{transform:translateX(0);}
+    #main{margin-left:0;}
+    .chapter{padding:44px 22px 8px;}
+    .cover{padding:58px 22px 42px;}
+    .chapter-sub{margin-left:0; margin-top:2px;}
+    .chapter-head{gap:12px;}
+    body{font-size:16.5px;}
+  }
+  #menu-btn{
+    display:none; position:fixed; top:16px; left:16px; z-index:60;
+    width:44px;height:44px;border-radius:50%; background:var(--ink);
+    border:2px solid var(--gold); color:var(--gold-2); font-size:18px;
+    align-items:center; justify-content:center; cursor:pointer;
+  }
+  @media (max-width: 880px){ #menu-btn{display:flex;} }
+</style>
+</head>
+<body>
+
+<button id="menu-btn" aria-label="Toggle chapter index">☰</button>
+
+<aside id="sidebar">
+  <div class="brand">
+    <div class="stamp">A+B</div>
+    <h1>Development of Press &amp; Education in British India</h1>
+    <p>Modern India · BPSC Dossier</p>
+  </div>
+  <nav class="toc" id="toc"></nav>
+  <div class="legend-box">
+    <h3>Marker Key</h3>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-y)"></span> Core concept / policy</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-b)"></span> Hard fact / date / number</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-g)"></span> Person / place / institution</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-r)"></span> MCQ trap / confusion</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--hl-p)"></span> Newspaper / journal name</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:var(--ctx-bg); border:1px solid var(--ctx-bd);"></span> Context box (fills narration gaps)</div>
+  </div>
+</aside>
+
+<div id="main">
+
+  <section class="cover">
+    <div class="eyebrow">Case File · Colonial Education Policy &amp; the Rise of the Indian Press</div>
+    <h1>From Calcutta Madrasah to Al-Hilal: two engines that built a national consciousness the British never intended.</h1>
+    <p class="sub">Theory (NCERT/standard textbook) fused with every fact buried inside PYQ explanations on colonial education commissions and the newspaper ecosystem — sorted topic-wise, tabulated wherever the data allows, ending in two extensively colour-coded master chronological tables.</p>
+    <div class="tags">
+      <span class="tag">Macaulay → Sargent</span>
+      <span class="tag">Hickey → Al-Hilal</span>
+      <span class="tag">Master Timelines</span>
+    </div>
+  </section>
+
+  <div class="chapters">
+
+  <!-- ============ CHAPTER 1 ============ -->
+  <section class="chapter" id="ch1" data-title="Company-Era Institutions (Pre-1813)">
+    <div class="chapter-head"><div class="seal">1</div><h2>Company-Era Educational Initiatives (Before 1813)</h2></div>
+    <div class="chapter-sub">Minimal interest, individual initiatives</div>
+
+    <div class="event">
+      <p>The East India Company, focused on trade, showed <mark class="r">minimal interest in education</mark> until 1813 — what little existed came from individual officers acting on personal scholarly or political motives.</p>
+    </div>
+
+    <table>
+      <caption>Pre-1813 institutions</caption>
+      <thead class="blue"><tr><th>Institution</th><th>Founder</th><th>Year</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="g">Calcutta Madrasah</mark></td><td><mark class="g">Warren Hastings</mark></td><td><mark class="b">1780/1781</mark></td><td>For the study of Muslim law and related subjects; <mark class="r">first principal (Najin)</mark> was <mark class="g">Mulla Majduddin</mark>; taught Farsi, Arabic, Muslim law; graduates worked as interpreters in the Raj.</td></tr>
+        <tr><td><mark class="g">Asiatic Society (of Bengal)</mark></td><td><mark class="g">Sir William Jones</mark></td><td><mark class="b">1784</mark></td><td>Established at Hastings' encouragement; Hastings himself <mark class="r">declined the Presidentship</mark> in Jones' favour despite being a keen Orientalist himself (I.A.S. 2019 Assertion-Reason: both true, R is the correct explanation of A). Jones translated Kalidasa's <i>Abhijnan Shakuntalam</i> into English (1789). Hastings wrote the preface to <mark class="g">Charles Wilkins'</mark> English translation of the <i>Bhagavad Gita</i> — Wilkins was the <mark class="r">first</mark> to translate the Gita into English (I.A.S. 2001).</td></tr>
+        <tr><td><mark class="g">Sanskrit College, Benaras</mark></td><td><mark class="g">Jonathan Duncan</mark> (Resident at Benaras)</td><td><mark class="b">1791</mark></td><td>For the study of Hindu law, philosophy, and literature.</td></tr>
+        <tr><td><mark class="g">Fort William College, Calcutta</mark></td><td><mark class="g">Lord Wellesley</mark></td><td><mark class="b">10 July 1800</mark></td><td>Sole purpose: <mark class="r">train British civil servants</mark> in Indian languages (Persian, Hindustani) and customs for administrative work — <mark class="r">not</mark> for reviving oriental scholarship or historical research (I.A.S. 2020). Closed <mark class="b">1802</mark>.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ctx">
+      <span class="lbl">Context — early linguistic/oriental scholarship threads</span>
+      <ul>
+        <li><mark class="g">Nathaniel Halhed</mark> published <i>A Grammar of the Bengal Language</i> in <mark class="b">1778</mark> — an early foundational text for Bengali linguistics, predating even the Asiatic Society.</li>
+        <li><mark class="g">Raja Rammohan Roy</mark> was granted membership of the <mark class="y">Asiatic Society of Paris (Société Asiatique)</mark>, established <mark class="b">1822</mark> — a distinct honour from any Indian institutional role, often tested as a standalone fact (U.P.P.C.S. Mains 2007).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 2 ============ -->
+  <section class="chapter" id="ch2" data-title="Charter Act 1813 & the Orientalist-Anglicist Controversy">
+    <div class="chapter-head"><div class="seal">2</div><h2>Charter Act of 1813 &amp; the Orientalist-Anglicist Controversy</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>The <mark class="y">Charter Act, 1813</mark> incorporated the principle of promoting knowledge of modern sciences, allocating <mark class="r">₹1 lakh annually</mark> for education — the <mark class="r">first-ever</mark> statutory grant for Indian education (U.P.P.C.S. Mains 2009) — though actual implementation was delayed until <mark class="b">1823</mark>.</li>
+        <li><mark class="b">1817</mark>: <mark class="g">Raja Rammohan Roy</mark> influenced funding for <mark class="y">Hindu College, Calcutta</mark> (founded with <mark class="g">David Hare</mark>) — one of the first institutions to introduce Western education in India (I.A.S. 2009). The government separately established <mark class="y">three Sanskrit colleges</mark> — Calcutta, Delhi, Agra.</li>
+        <li><mark class="b">1823</mark>: a <mark class="y">General Committee of Public Instruction</mark> was appointed to administer the ₹1-lakh grant — 10 members, evenly split (5 Anglicists, 5 Orientalists), which is why the medium-of-instruction dispute dragged on for <mark class="r">12 years</mark> without resolution by vote (I.A.S. 2018).</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>The Orientalist–Anglicist Controversy</h3>
+      <ul>
+        <li><mark class="y">Orientalists</mark> supported traditional Indian learning (Sanskrit, Persian, Arabic); <mark class="y">Anglicists</mark> favoured Western-focused education; a secondary split among Anglicists themselves over <mark class="r">medium</mark> — English vs. vernacular.</li>
+        <li>This 12-year deadlock was only broken by <mark class="g">Lord Macaulay's Minute</mark> (Ch.3).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 3 ============ -->
+  <section class="chapter" id="ch3" data-title="Macaulay's Minute (1835)">
+    <div class="chapter-head"><div class="seal">3</div><h2>Lord Macaulay's Minute (1835) &amp; the Downward Filtration Theory</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>Issued <mark class="r">2 February 1835</mark> (70th BPSC Re-exam) — <mark class="g">Lord William Bentinck</mark> had appointed <mark class="g">Macaulay</mark> (Law Member of the Governor-General's Executive Council) to head the Committee of Public Instruction and resolve the medium dispute.</li>
+        <li>Macaulay's core claim: <mark class="y">"Indian learning was inferior to European learning"</mark> — famously: <mark class="y">"a single shelf of a good European library was worth the whole literature of India and Arabia."</mark></li>
+        <li>Settled the dispute in favour of <mark class="r">Anglicists</mark>: English became the medium in schools/colleges; mass education and Sanskrit/Arabic study were deliberately neglected in favour of Western sciences/literature.</li>
+        <li>Bentinck accepted Macaulay's proposal, and on <mark class="r">7 March 1835</mark>, a government resolution declared: <mark class="y">"the great object of the British Government ought to be the promotion of European literature and science amongst the natives of India... all funds appropriated for education would be best employed on English education alone."</mark></li>
+        <li>This is regarded as the point at which <mark class="r">English officially became India's education medium</mark> (I.A.S. 1993) — the foundation of the <mark class="r">modern educational system</mark> in India, more so than the 1813 Charter Act, Wood's Despatch (1854), or the Hunter Commission (1882), all distractor options for this specific "foundation" question.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>The Downward Filtration Theory</h3>
+      <ul>
+        <li>Plan: educate a <mark class="y">small upper-middle-class section</mark> who would act as interpreters, becoming <mark class="y">"Indian in blood and colour but English in tastes, in opinions, in morals and in intellect."</mark></li>
+        <li>Premise: education would <mark class="r">"trickle down"</mark> from this educated elite to the masses over time — hence "Downward Filtration."</li>
+        <li>This theory later shaped subsequent policy debate, notably informing critiques within the <mark class="g">Hunter Commission</mark> era (Ch.6).</li>
+      </ul>
+    </div>
+
+    <div class="factbox">
+      <span class="lbl">Thomson's Village Education (1843–53)</span>
+      <dl>
+        <dt>Who</dt><dd><mark class="g">James Thomson</mark>, Lieutenant-Governor of the North-Western Provinces.</dd>
+        <dt>What</dt><dd>Introduced <mark class="y">vernacular-based village education</mark>, teaching practical subjects to Revenue and Public Works Department personnel — a rare early counter-current to the Anglicist-only trend.</dd>
+      </dl>
+    </div>
+    <div class="factbox">
+      <span class="lbl">Post Macaulay Minute's developement</span>
+      <dl>
+        <dt><mark class="y">Bethune School, Calcutta (1849)</mark></dt><dd>founded by <mark class="g">J.E.D. Bethune</mark>, promoted by <mark class="g">Ishwar Chandra Vidyasagar</mark> — the <mark class="r">first girls' school</mark> in Calcutta; Bethune, as President of the Council of Education, got girls' schools placed on a sound footing under government grants-in-aid and inspection.</dd>
+        <dt><mark class="y">Technical institutes</mark></dt><dd><mark class="g">Engineering Institute, Roorkee</mark> (founded originally as <mark class="y">Thomson College of Civil Engineering</mark>, <mark class="b">1847</mark>, by James Thomson — now IIT Roorkee).</dd>
+      </dl>
+    </div>
+  </section>
+  
+ 
+
+  <!-- ============ CHAPTER 4 ============ -->
+  <section class="chapter" id="ch4" data-title="Wood's Despatch (1854)">
+    <div class="chapter-head"><div class="seal">4</div><h2>Charles Wood's Despatch (1854) — "Magna Carta of English Education"</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>Issued <mark class="b">19 July 1854</mark> by <mark class="g">Sir Charles Wood</mark>, President of the Board of Control; Governor-General at the time: <mark class="g">Lord Dalhousie</mark> (69th BPSC Prelims) — the <mark class="r">first comprehensive plan</mark> for the spread of education in India.</li>
+        <li>Key recommendations: emphasised European sciences/arts/philosophy/literature as core curriculum (liberal education); <mark class="y">English</mark> as the primary medium for <mark class="r">higher</mark> education, while stressing <mark class="y">vernacular languages</mark> for reaching the masses (I.A.S. 2018 &amp; 69th BPSC both confirm this dual emphasis — English for higher studies, vernacular/female education/vocational training also stressed, <mark class="r">not</mark> "English at all levels," a common overreach trap).</li>
+        <li>Proposed: primary schools in villages, Anglo-Vernacular high schools at district level, affiliated colleges; <mark class="y">three universities</mark> at Calcutta, Madras, Bombay, modelled on the University of London; a <mark class="y">Grants-in-Aid system</mark> to support private educational initiatives, contingent on quality standards and qualified teachers; and a separate <mark class="y">Education Department</mark> in every province.</li>
+        <li>Emphasised the need for greater <mark class="r">state involvement</mark> in education generally.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 5 ============ -->
+  <section class="chapter" id="ch5" data-title="Post-Wood's Despatch Developments">
+    <div class="chapter-head"><div class="seal">5</div><h2>Post-Wood's Despatch Developments (Late 19th Century)</h2></div>
+
+    <div class="event">
+      <ul>
+        <li><mark class="y">1857</mark>: the three universities — <mark class="g">Calcutta, Bombay, Madras</mark> — established, per Wood's Despatch's own recommendation, modelled on London University (R.A.S./R.T.S. 2010). during <mark class="g">Lord Caning</mark> Tenure</li>
+        <li>Overall dominance of Wood's Despatch ideals led to <mark class="r">Westernization</mark> of the education system, with European-run institutions, plus gradually emerging missionary and private Indian efforts.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 6 ============ -->
+  <section class="chapter" id="ch6" data-title="Hunter Commission (1882)">
+    <div class="chapter-head"><div class="seal">6</div><h2>Hunter Commission (1882)</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>Appointed by <mark class="g">Lord Ripon</mark> (66th BPSC Re-exam confirms Ripon, not Wedderburn/Curzon/Lytton); chaired by <mark class="g">W.W. (William Wilson) Hunter</mark>.</li>
+        <li>Objective: review implementation of Wood's Despatch, assess elementary education specifically.</li>
+        <li>Key recommendations: a <mark class="y">dual track</mark> in high-school education (vocational/commercial training alongside literary studies for university admission); strong emphasis on <mark class="r">primary education</mark> in local languages with practical subjects (U.P.P.C.S. 2004 — primary education, <mark class="r">not</mark> higher, girls', or technical education, is the settled correct answer); <mark class="y">decentralisation</mark> — district and city boards to administer primary education; promoted private effort under public oversight.</li>
+        <li>Follow-on growth: teaching-cum-examining universities set up — <mark class="g">Punjab University (1882)</mark> and <mark class="g">Allahabad University (1887)</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="factbox">
+      <span class="lbl">W.W. Hunter, the man</span>
+      <dl>
+        <dt>Background</dt><dd>Scottish historian, statistician, compiler, and member of the Indian Civil Service.</dd>
+        <dt>Best known for</dt><dd><i>The Imperial Gazetteer of India</i> (published 1881).</dd>
+        <dt>Famous quote</dt><dd><mark class="y">"The Muslims, if contented and satisfied, would become the greatest bulwark of British power in India"</mark> (61st–62nd BPSC) — from his book <i>The Indian Musalmans</i>, encapsulating the British strategy of cultivating Muslim loyalty as a communal counterweight (cross-reference the Muslim League chapters in the 1905–17 dossier).</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 7 ============ -->
+  <section class="chapter" id="ch7" data-title="Indian Universities Act 1904 & the 1910-13 Reforms">
+    <div class="chapter-head"><div class="seal">7</div><h2>Indian Universities Act (1904) &amp; the Gokhale-Era Reforms</h2></div>
+
+    <div class="event">
+      <h3>Raleigh Commission (1902) → Indian Universities Act, 1904</h3>
+      <ul>
+        <li>Constituted <mark class="b">1902</mark> by <mark class="g">Lord Curzon</mark>, chaired by <mark class="g">Sir Thomas Raleigh</mark>; two Indian members: <mark class="g">Syed Hussain Bilgrami</mark> and <mark class="g">Justice Gurudas Banerjee</mark> (66th BPSC Re-exam ) <br> <mark class="y">Members => B & B</li>
+        
+        <li>Scope: examined conditions/prospects of universities, <mark class="r">explicitly excluding</mark> primary or secondary education from its remit.</li>
+        <li><mark class="y">Provisions of the 1904 Act</mark>: universities instructed to prioritise study and research; reduced the number of university fellows while increasing government-nominated ones; government gained <mark class="r">veto/amendment power</mark> over university regulations; stricter conditions for affiliating private colleges; sanctioned <mark class="b">₹5 lakh/year</mark> for improving higher education.</li>
+        <li><mark class="g">Curzon</mark> justified this as promoting quality/efficiency — nationalists saw it as an attempt to <mark class="r">restrict education</mark> and discipline the educated toward loyalty, strengthening imperial control. <mark class="g">Gokhale</mark> famously called it a <mark class="y">"retrograde measure."</mark></li>
+      </ul>
+    </div>
+    <div class="factbox"><span class="lbl">PUSA University Patna 1904</span>
+    <dl>
+      <dt>Location:</dt><dd> Established in the Samastipur district of Bihar along the Burhi Gandak River.</dd>
+        <dt>Founding Year:</dt><dd> Officially opened on April 1, 1905, by Viceroy Lord Curzon.</dd><dt>Funding:</dt> <dd>Built using a £30,000 donation from US philanthropist Henry Phipps (inspiring the acronym PUSA- Phipps of USA).</dd>
+      <dt>Legal Authority:</dt> <dd>Created via an executive Government Resolution in 1904, completely separate from the Indian Universities Act of 1904.</dd>
+      <dt>The Move:</dt> <dd>Relocated to New Delhi in 1936 after a massive 1934 earthquake destroyed the original Bihar buildings.</dd>
+      <dt>Modern Act:</dt><dd> The remaining Bihar campus was finally formalized by parliament under the Dr. Rajendra Prasad Central Agricultural University Act, 2016.</dd>
+    </dl></div>
+
+    <div class="event">
+      <h3>Gokhale's Resolution (1910) → Government Resolution on Education Policy (1913)</h3>
+      <ul>
+        <li><mark class="g">Gokhale's Resolution, 1910</mark>: proposed <mark class="y">compulsory primary education</mark> in areas where at least <mark class="b">35%</mark> of 6–7-year-old boys were already receiving instruction; allowed state/local authorities to determine cost-sharing; recommended a separate <mark class="y">central Education Department</mark> and an <mark class="y">Education Secretary</mark>. Gokhale ultimately <mark class="r">withdrew</mark> the resolution based on government assurances of reform.</li>
+        <li>The <mark class="y">1913 Government Resolution</mark> (also influenced by <mark class="g">Baroda's Compulsory Primary Education, 1906</mark>) followed: government declined <mark class="r">direct responsibility</mark> for compulsory education, but committed to reducing illiteracy; encouraged provinces toward free elementary education for the poor/marginalised; supported private educational efforts and improving secondary-school quality; recommended a <mark class="y">university in each province</mark>.</li>
+        <li>Women's education: recommended a <mark class="y">practical, utility-focused curriculum</mark> for girls (minimising exam emphasis), and more <mark class="y">female teachers/inspectors</mark>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 8 ============ -->
+  <section class="chapter" id="ch8" data-title="Sadler Commission (1917-19)">
+    <div class="chapter-head"><div class="seal">8</div><h2>Sadler University Commission (1917–1919)</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>Constituted <mark class="b">1917</mark> to study <mark class="g">Calcutta University</mark> specifically, but its recommendations applied broadly.</li>
+        <li>Chairman: <mark class="g">Dr. Michael Sadler</mark>, Vice-Chancellor of <mark class="g">Leeds University</mark> ; two Indian members: <mark class="g">Dr. Ashutosh Mukherjee</mark> and <mark class="g">Dr. Ziauddin Ahmad</mark> <br> <mark class="y">Members => A to Z</mark>.</li>
+        <li>Core position: improving <mark class="r">secondary education</mark> is a necessary precondition for improving university education; strongly criticised the <mark class="g">University Act, 1904</mark> for poor college-university coordination.</li>
+        <li>Key recommendations: a <mark class="y">12-year schooling system</mark> — students entering university after an <mark class="r">intermediate stage</mark> (rather than matriculation) for a 3-year degree course, meant to better prepare students, relieve universities of below-standard entrants, and provide collegiate education for non-university-bound students; a <mark class="y">separate board</mark> for secondary/intermediate education; <mark class="y">university autonomy</mark> (less rigid regulation); extended female and technical/vocational education, improved teacher training.</li>
+      </ul>
+    </div>
+
+    <div class="factbox">
+      <span class="lbl">Impact of the Sadler Commission (1916–1921)</span>
+      <dl>
+        <dt>New universities</dt><dd><mark class="b">Seven</mark> established: Mysore, Patna, Benaras, Aligarh, Dacca, Lucknow, Osmania.</dd>
+        <dt>Structural change</dt><dd>More teaching-and-residential universities (vs. purely examining bodies); Honours courses introduced; new Academic Councils created for internal governance (curriculum, exams, research).</dd>
+        <dt>Coordination body</dt><dd><mark class="y">Inter-University Board</mark> established <mark class="b">1925</mark>.</dd>
+        <dt>Student welfare</dt><dd>First time student welfare became an institutional concern — dedicated Students' Welfare Boards set up in each university.</dd>
+      </dl>
+    </div>
+
+    <table>
+      <caption>New universities, 1916–1929 (Sadler-era wave)</caption>
+      <thead class="green"><tr><th>University</th><th>Established</th></tr></thead>
+      <tbody>
+        <tr><td>Banaras Hindu University</td><td><mark class="b">1916</mark></td></tr>
+        <tr><td>Mysore University</td><td><mark class="b">1916</mark></td></tr>
+        <tr><td>Patna University</td><td><mark class="b">1917</mark></td></tr>
+        <tr><td>Osmania University, Hyderabad</td><td><mark class="b">1918</mark></td></tr>
+        <tr><td>Aligarh University</td><td><mark class="b">1920</mark></td></tr>
+        <tr><td>Lucknow University</td><td><mark class="b">1921</mark></td></tr>
+        <tr><td>Dacca University</td><td><mark class="b">1921</mark></td></tr>
+        <tr><td>Delhi University</td><td><mark class="b">1922</mark></td></tr>
+        <tr><td>Andhra University</td><td><mark class="b">1926</mark></td></tr>
+        <tr><td>Agra University</td><td><mark class="b">1927</mark></td></tr>
+        <tr><td>Annamalai University</td><td><mark class="b">1929</mark></td></tr>
+      </tbody>
+    </table>
+
+    <div class="event">
+      <h3>Education under Dyarchy (from 1919)</h3>
+      <p>Following the <mark class="g">Montagu-Chelmsford Reforms</mark>, responsibility for education was <mark class="r">transferred to provincial ministries</mark> (a "transferred subject" under Dyarchy) — a significant decentralising shift in educational administration (cross-refer the Government of India Act, 1919 in the 1918–22 dossier).</p>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 9 ============ -->
+  <section class="chapter" id="ch9" data-title="Hartog Committee, Sargent Plan & Wardha Scheme">
+    <div class="chapter-head"><div class="seal">9</div><h2>Hartog Committee (1929), the Sargent Plan (1944) &amp; the Wardha Scheme (1937)</h2></div>
+
+    <div class="event">
+      <h3>Hartog Committee (1929)</h3>
+      <ul>
+        <li>Chair: <mark class="g">Philip Hartog</mark>; appointed by the <mark class="g">Simon Commission</mark> to assess deteriorating educational standards.</li>
+        <li>Primary education: government control/inspection of primary schools to fix stagnation and wastage; curriculum suited to local needs with practical value; refresher courses for teachers; primary schools doubling as <mark class="y">community centres</mark> (adult education, medical relief, recreation).</li>
+        <li>Secondary education: criticised the exam-focused system, urged a more diversified curriculum (industrial/commercial subjects).</li>
+        <li>Higher education: recommended affiliated universities alongside unitary models, better libraries, honours courses; admission based on <mark class="r">aptitude</mark>, not rote memorisation.</li>
+        <li>Women's education: equal importance to boys'/girls' education; more female teachers and primary schools for girls; secondary curriculum for girls to include hygiene, home science, music.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Wardha Scheme of Basic Education (1937)</h3>
+      <ul>
+        <li>Initiated by Congress, under the <mark class="g">Zakir Hussain Committee</mark>; principle: <mark class="y">Nai Talim</mark> ("learning through activity") — rooted in <mark class="g">Gandhian philosophy</mark>, promoting practical skills through education.</li>
+        <li>Key features: free and compulsory education for the first <mark class="b">7 years</mark> of school; instruction in the <mark class="y">mother tongue</mark>, with Hindi taught where it wasn't the local language; community engagement via service activities around schools; curriculum included mathematics, general science, social studies, painting, music, physical education — <mark class="r">excluding religious education</mark>.</li>
+        <li>Limited long-term impact due to <mark class="g">WWII</mark> and the <mark class="r">resignation of Congress ministries in 1939</mark>.</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Sargent Plan (1944)</h3>
+      <ul>
+        <li>Drafted by <mark class="g">Sir John Sargent</mark>, the Government of India's Educational Advisor — aimed at improving Indian education post-WWII.</li>
+        <li>Recommendations: <mark class="y">free pre-primary education</mark> (ages 3–6, trained female teachers); <mark class="y">universal, compulsory, free education</mark> for ages <mark class="b">6–11</mark> (junior basic) and further to age 14 (senior basic per one source's split), focused on learning-through-activity and physical training; <mark class="y">six years of high school</mark> (ages 11–17) with academic and vocational streams, mother tongue as medium, English as compulsory second language; post-higher-secondary <mark class="y">3-year university degree</mark>; financial assistance for poor students; improved teacher competence/service conditions; high standards for postgraduate/applied research; an <mark class="y">all-India coordinating body</mark> like England's University Grants Committee; plus liquidation of adult illiteracy, school medical check-ups, and special education for the physically handicapped.</li>
+        <li>Impact: laid the foundation for compulsory/free education and teacher-training programmes in independent India.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Part II</span>
+    <div class="ptitle">Named Institutions — the Colonial-Era Education Landscape</div>
+    <p class="pdesc">Every college and university PYQs actually test, gathered in one maximalist table.</p>
+  </div>
+
+  <!-- ============ CHAPTER 10 ============ -->
+  <section class="chapter" id="ch10" data-title="Named Educational Institutions — Master Table">
+    <div class="chapter-head"><div class="seal">10</div><h2>Named Institutions — Founders, Years, Purpose</h2></div>
+
+    <table>
+      <caption>Colonial-era institutions (chronological)</caption>
+      <thead class="purple"><tr><th>Year</th><th>Institution</th><th>Founder</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="b">1780</mark></td><td>Calcutta Madrasah</td><td><mark class="g">Warren Hastings</mark></td><td>Muslim law &amp; related subjects; first principal Mulla Majduddin.</td></tr>
+        <tr><td><mark class="b">1784</mark></td><td>Asiatic Society (Bengal)</td><td><mark class="g">William Jones</mark></td><td>Oriental scholarship; publication <i>Asiatick Researches</i>.</td></tr>
+        <tr><td><mark class="b">1791</mark></td><td>Sanskrit College, Benaras</td><td><mark class="g">Jonathan Duncan</mark></td><td>Hindu law, philosophy, literature.</td></tr>
+        <tr><td><mark class="b">1800</mark></td><td>Fort William College, Calcutta</td><td><mark class="g">Lord Wellesley</mark></td><td>Trained Company civil servants in Indian languages; closed 1802.</td></tr>
+        <tr><td><mark class="b">1817</mark></td><td>Hindu College, Calcutta</td><td><mark class="g">David Hare</mark> (funding influenced by Rammohan Roy)</td><td><mark class="r">First</mark> Western-education institution in India.</td></tr>
+        <tr><td><mark class="b">1824</mark></td><td>Delhi College</td><td>—</td><td>—</td></tr>
+        <tr><td><mark class="b">1825</mark></td><td>Vedanta College, Calcutta</td><td><mark class="g">Raja Ram Mohan Roy</mark></td><td>Synthesis of Western learning with Vedantic ideals.</td></tr>
+        <tr><td><mark class="b">1847</mark></td><td>Thomson College of Civil Engineering (now IIT Roorkee)</td><td><mark class="g">James Thomson</mark></td><td>Engineering education.</td></tr>
+        <tr><td><mark class="b">1849</mark></td><td>Bethune School, Calcutta</td><td><mark class="g">J.E. Bethune</mark> (promoted by Vidyasagar)</td><td><mark class="r">First</mark> girls' school in Calcutta.</td></tr>
+        <tr><td><mark class="b">1857</mark></td><td>Universities of Calcutta, Madras, Bombay</td><td><mark class="g">Lord Canning</mark> (per Wood's Despatch)</td><td>Modelled on London University.</td></tr>
+        <tr><td><mark class="b">1875</mark></td><td>Mayo College, Ajmer</td><td>—</td><td>—</td></tr>
+        <tr><td><mark class="b">1875</mark></td><td>Muhammadan Anglo-Oriental College (MAO), Aligarh</td><td><mark class="g">Sayyid Ahmad Khan</mark></td><td>Founded as "Madarsatul Uloom Musalmanan-i-Hind" (1875), renamed MAO College (1877); became <mark class="r">Aligarh Muslim University</mark> in 1920. Principal <mark class="g">Theodore Beck</mark> is identified as having encouraged Muslim separatist tendencies there in the late 19th century (71st BPSC). The Movement's <mark class="r">initial</mark> objective was promoting Western scientific education among Indian Muslims (Uttarakhand PCS 2024) — not directly a separate-state demand, which came later/indirectly.</td></tr>
+        <tr><td><mark class="b">1880s</mark></td><td>New English School, Bombay/Pune → Deccan Education Society (1884) → Fergusson College</td><td><mark class="g">Vishnushastri Chiplunkar, Bal Gangadhar Tilak, M.B. Namjoshi, G.G. Agarkar</mark> (also Vaman Shivram Apte); <mark class="r">M.G. Ranade was NOT a founder</mark>, only a patron (U.P.P.C.S. 2013)</td><td>Became Fergusson College, a major Pune institution.</td></tr>
+        <tr><td><mark class="b">1898/1916</mark></td><td>Central Hindu School/College, Benaras → Banaras Hindu University</td><td><mark class="g">Annie Besant</mark> (founded the school, 7 July 1898); <mark class="g">Madan Mohan Malaviya</mark> (converted it into BHU, 1916)</td><td>Foundation stone of BHU laid by <mark class="g">Lord Hardinge II</mark>, 4 Feb 1916 (Basant Panchami); Malaviya was Vice-Chancellor 1919–1939; BHU is regarded as the <mark class="r">first Central University</mark> (U.P.P.C.S. Mains 2011).</td></tr>
+        <tr><td><mark class="b">1905/06</mark></td><td>National Council of Education, Bengal → Bengal National College</td><td><mark class="g">Satish Chandra Mukherjee</mark> and others; principal later <mark class="g">Aurobindo Ghosh</mark></td><td>Precursor: <mark class="g">Rangpur National School</mark> (8 Nov 1905) — the first milestone in national education; Calcutta conference (16 Nov 1905) resolved to form the Council; NCE Bengal constituted <mark class="r">15 August 1906</mark> (53rd–55th BPSC — settled date, not 1903/04/05); Bengal National College inaugurated 14 August 1906.</td></tr>
+        <tr><td><mark class="b">1916</mark></td><td>SNDT Women's University, Pune (India's first women's university)</td><td><mark class="g">Maharishi (D.K.) Karve</mark></td><td>Karve earlier founded a "Home for Widows" (1896, Poona — now Maharshi Karve Stree Shikshan Samstha); married a Brahmin widow himself; awarded <mark class="r">Bharat Ratna, 1958</mark>.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="trap">
+      <span class="lbl">Frequently-tested matching traps</span>
+      <ul>
+        <li>Order of first establishment (U.P.P.C.S. 2012): <mark class="g">Hindu College, Calcutta (1817)</mark> predates Delhi College (1824), Mayo College (1875), and MAO College (1875) — Hindu College is the earliest of the four.</li>
+        <li>I.A.S. 2018 matching: <mark class="g">Sanskrit College, Benaras — Jonathan Duncan</mark> (<mark class="r">not</mark> William Jones); <mark class="g">Calcutta Madarsa — Warren Hastings</mark> (correct); <mark class="g">Fort William College — Wellesley</mark> (<mark class="r">not</mark> Arthur Wellesley specifically as founder-of-record in that pairing — only the Calcutta Madarsa/Hastings pairing is fully correct in that specific 3-item question, "2 only").</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Part III</span>
+    <div class="ptitle">Development of the Indian Press</div>
+    <p class="pdesc">From Hickey's Bengal Gazette to the Press Enquiry Committee of 1947.</p>
+  </div>
+
+  <!-- ============ CHAPTER 11 ============ -->
+  <section class="chapter" id="ch11" data-title="Origins of the Indian Press">
+    <div class="chapter-head"><div class="seal">11</div><h2>Origins of the Indian Press</h2></div>
+
+    <div class="event">
+      <ul>
+        <li><mark class="y">Printing</mark> was introduced to India (and all of Asia) by the <mark class="r">Portuguese</mark> — at <mark class="g">Goa, 1556/1557</mark> (Jharkhand PCS 2021 gives 1556 as the settled year), with Jesuits publishing the first book.</li>
+        <li><mark class="b">1684</mark>: the East India Company established a press in Bombay — but <mark class="r">no newspapers</mark> were published in Company territory for nearly a century, largely to suppress news of Company misconduct.</li>
+        <li><mark class="b">1776</mark>: <mark class="g">William Bolts</mark>, after being censured by the Company, tried to publish a newspaper exposing its wrongdoings — stopped by the authorities before it could appear.</li>
+        <li><mark class="b">29 January 1780</mark>: <mark class="g">James Augustus Hickey</mark> launched <i><mark class="p">The Bengal Gazette</mark></i> (also called the <i>Original Calcutta General Advertiser</i>) — <mark class="r">India's first newspaper</mark> (71st BPSC), published from Calcutta, spreading across Bengal, Bihar, Orissa; known for outspoken criticism of the Company. Hickey's press was <mark class="r">seized in 1782</mark> after his attacks on officials.</li>
+        <li><mark class="b">1824</mark>: <mark class="g">Raja Rammohan Roy</mark> protested against press restrictions — the earliest organised call for press freedom in India.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 12 ============ -->
+  <section class="chapter" id="ch12" data-title="Press Laws & Acts — Chronological">
+    <div class="chapter-head"><div class="seal">12</div><h2>Press Laws &amp; Regulations — Full Chronology</h2></div>
+
+    <table>
+      <caption>Every Press Act/Regulation, in order</caption>
+      <thead class="red"><tr><th>Year</th><th>Act/Regulation</th><th>Enacted by</th><th>Key provisions</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="b">1799</mark></td><td><mark class="y">Censorship of Press Act</mark></td><td><mark class="g">Lord Wellesley</mark></td><td>Anticipating a French invasion — near-wartime restrictions; <mark class="r">pre-censorship</mark> required (all material approved by government before publication); violation → immediate deportation. Expanded <mark class="b">1807</mark> to cover journals, pamphlets, books.</td></tr>
+        <tr><td><mark class="b">1818</mark></td><td>Abolition of pre-censorship</td><td><mark class="g">Lord Hastings</mark></td><td>Pre-censorship abolished, but editorial guidelines retained to prevent content undermining government authority.</td></tr>
+        <tr><td><mark class="b">1823</mark></td><td><mark class="y">Licensing Regulations</mark></td><td>Acting Governor-General <mark class="g">John Adams</mark></td><td>Required a licence to operate a printing press; unlicensed printing → fine of <mark class="b">Rs 400</mark> or imprisonment; magistrates could seize unlicensed presses. Primarily aimed at <mark class="r">Indian-language</mark> newspapers/Indian editors. Forced <mark class="g">Rammohan Roy's</mark> <i><mark class="p">Mirat-ul-Akbar</mark></i> to stop publication.</td></tr>
+        <tr><td><mark class="b">1835</mark></td><td><mark class="y">Press Act (Metcalfe Act)</mark></td><td><mark class="g">Charles Metcalfe</mark> (acting Governor-General; formal Bentinck-era bill enacted under Metcalfe, Aug 1835)</td><td>Repealed the 1823 regulations; Metcalfe became known as the <mark class="y">"Liberator of the Indian Press."</mark> Required printers/publishers to give accurate premises details; allowed cessation by simple declaration. Led to rapid newspaper expansion; this liberal approach lasted until <mark class="b">1856</mark>.</td></tr>
+        <tr><td><mark class="b">1857</mark></td><td><mark class="y">Licensing Act</mark></td><td>Post-Revolt emergency measure</td><td>Reinforced licensing; government could revoke licences, halt publication/circulation. Temporary (1-year) measure; Metcalfe's 1835 regulations otherwise stayed in force.</td></tr>
+        <tr><td><mark class="b">1867</mark></td><td><mark class="y">Registration Act</mark></td><td>—</td><td>Replaced the 1835 Metcalfe Act — shifted focus from restriction to <mark class="r">regulation</mark>: required every book/newspaper to display printer's name, publisher, place of publication, and submit a copy to local government within a month. Amended in 1890, 1914, 1952, 1963. Ran parallel to <mark class="y">Section 124-A IPC</mark> (sedition).</td></tr>
+        <tr><td><mark class="b">1878</mark></td><td><mark class="y">Vernacular Press Act</mark> ("Gagging Act")</td><td><mark class="g">Lord Lytton</mark> (69th BPSC Prelims)</td><td>See full detail, Ch.13.</td></tr>
+        <tr><td><mark class="b">1898</mark></td><td>Section 124-A Amendment</td><td>—</td><td>Expanded sedition law — made it a criminal offence to bring "contempt" upon the Government of India, or incite hatred between classes.</td></tr>
+        <tr><td><mark class="b">1908</mark></td><td><mark class="y">Newspapers (Incitement to Offences) Act</mark></td><td>—</td><td>Aimed at suppressing the <mark class="r">Extremist nationalist press</mark> during Swadeshi; authorised magistrates to seize press property for inflammatory material. Tilak was arrested under this Act, sparking nationwide protest.</td></tr>
+        <tr><td><mark class="b">1910</mark></td><td><mark class="y">Indian Press Act</mark></td><td>—</td><td>Empowered local governments to demand security deposits from publishers and confiscate presses for "objectionable" content.</td></tr>
+        <tr><td><mark class="b">1914–18 (WWI)</mark></td><td><mark class="y">Defence of India Rules</mark></td><td>—</td><td>Used to suppress political dissent under wartime security; intensified censorship, especially against Congress-linked activity.</td></tr>
+        <tr><td><mark class="b">1921</mark></td><td>Press Committee</td><td>Chaired by <mark class="g">Tej Bahadur Sapru</mark></td><td>Recommended <mark class="r">repeal</mark> of the 1908 and 1910 Press Acts — a genuine liberalising shift.</td></tr>
+        <tr><td><mark class="b">1930</mark></td><td><mark class="y">Press Ordinance</mark></td><td>—</td><td>Aimed to "provide for the better control of the Press" — effectively revived the 1910 Press Act's provisions, coinciding with the Civil Disobedience Movement.</td></tr>
+        <tr><td><mark class="b">1931</mark></td><td><mark class="y">Indian Press (Emergency Powers) Act</mark></td><td>—</td><td>Broad powers to provincial governments to suppress media linked to Civil Disobedience; <mark class="y">Section 4(1)</mark> penalised incitement to violence/support for violent-crime participants. Expanded by the <mark class="y">Criminal Amendment Act, 1932</mark>.</td></tr>
+        <tr><td><mark class="b">WWII era</mark></td><td>Defence of India Rules (re-enacted) + Press Emergency Act + Official Secrets Amendment</td><td>—</td><td>Pre-censorship of all content; financial-security demands revived; publication of sensitive government information criminalised.</td></tr>
+        <tr><td><mark class="b">1947</mark></td><td><mark class="y">Press Enquiry Committee</mark></td><td>—</td><td>Reassessed press laws for the independence transition. Recommended: <mark class="r">repeal</mark> of the 1931 Emergency Powers Act; amendments to the Press and Registration of Books Act; changes to IPC Sections 124-A and 153-A (protecting free expression); repeal of Indian States Protection Acts.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="factbox">
+      <span class="lbl">Post-independence press legislation (for continuity)</span>
+      <dl>
+        <dt>Further Acts</dt><dd>Press (Objectionable Matters) Act, 1951; Press Commission, 1952; Delivery of Books and Newspapers (Public Libraries) Act, 1954; Working Journalists Act, 1955; Newspaper (Price and Page) Act, 1956; Parliamentary Proceedings (Protection of Publications) Act, 1960.</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 13 ============ -->
+  <section class="chapter" id="ch13" data-title="The Vernacular Press Act (1878) in Detail">
+    <div class="chapter-head"><div class="seal">13</div><h2>The Vernacular Press Act, 1878 — Full Detail</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>Passed under <mark class="g">Lord Lytton</mark> (1876–1880) — the vernacular press had grown increasingly critical of British rule since the 1857 revolt, and public discontent from the <mark class="r">1876–77 famine</mark> plus Lytton's own lavish spending intensified this criticism, prompting the Act.</li>
+        <li><mark class="y">Provisions</mark> (69th &amp; 70th BPSC): empowered <mark class="r">District Magistrates</mark> to compel printers/publishers into bonds preventing "disaffection" or inter-community "antipathy"; decisions were <mark class="r">final and unappealable</mark> in court; publishers could submit content to a government censor in advance to avoid punishment; repeated violations → confiscation of press equipment; security deposits could be forfeited on violation. It treated the <mark class="r">vernacular press more harshly than the English press</mark>, earning the derogatory nickname <mark class="y">"Gagging Act."</mark></li>
+        <li>Proceedings were instituted against papers like <i><mark class="p">Som Prakash</mark></i>, <i>Bharat Mihir</i>, <i>Dacca Prakash</i>, and <i>Samachar</i>.</li>
+        <li>Pre-censorship clause removed in <mark class="b">1878</mark> itself, following objections from <mark class="g">Lord Cranbrook</mark>; a <mark class="y">Press Commissioner</mark> post was created to supply accurate news to the press.</li>
+        <li><mark class="r">Repealed 1882</mark> under <mark class="g">Lord Ripon</mark>, after widespread protest — its original justification no longer held (70th BPSC Re-exam confirms all three linked facts: Lytton enacted it, it was the "Gagging Act," Ripon repealed it — all correct together).</li>
+      </ul>
+    </div>
+
+    <div class="event">
+      <h3>Aftermath (post-1882)</h3>
+      <ul>
+        <li><mark class="g">Surendranath Banerjea (1883)</mark> — <mark class="r">first Indian journalist imprisoned</mark> for criticising a judge in <i><mark class="p">The Bengalee</mark></i> (70th BPSC) — jailed 2 April 1883 for calling out a Calcutta High Court judge's insensitivity toward Bengali religious sentiment.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTER 14 ============ -->
+  <section class="chapter" id="ch14" data-title="Tilak, Repression & the Extremist-Phase Press">
+    <div class="chapter-head"><div class="seal">14</div><h2>Bal Gangadhar Tilak &amp; Press Repression in the Extremist Phase</h2></div>
+
+    <div class="event">
+      <ul>
+        <li>Through <i><mark class="p">Kesari</mark></i> (Marathi) and <i><mark class="p">Mahratta</mark></i> (English), both launched <mark class="b">1881</mark>, Poona — plus the <mark class="g">Ganapati and Shivaji festivals</mark> — Tilak promoted anti-imperialist sentiment; led the <mark class="y">boycott of foreign cloth (1896)</mark> and a <mark class="y">no-tax movement (1897)</mark> in Maharashtra.</li>
+        <li><mark class="y">Plague unrest (1897)</mark>: Tilak supported government anti-plague measures broadly, but their harsh execution sparked discontent, leading the <mark class="g">Chapekar brothers</mark> to assassinate British official <mark class="g">Rand</mark>.</li>
+        <li><mark class="r">Sedition charges against Tilak</mark>: arrested for a poem and a speech justifying <mark class="g">Shivaji's</mark> killing of Afzal Khan, published/delivered around the Chapekar affair — resulting in an <mark class="b">18-month</mark> prison sentence (though earlier notes tie the specific 1897 arrest itself to Section 124-A IPC directly for the Kesari articles). His imprisonment sparked nationwide protest, earning him the title <mark class="y">Lokmanya</mark> ("Respected by the People," 64th BPSC).</li>
+        <li>Tilak was <mark class="r">first Indian to go to jail specifically for journalism-related "duty"</mark> per one framing (though Surendranath Banerjea is separately credited as the very first journalist imprisoned, 1883 — the two claims apply to slightly different specific charges/contexts, so watch which exact phrasing a question uses).</li>
+        <li>He was later (1908) arrested under the <mark class="y">Newspaper Act</mark> for continued Extremist-press activity — see Ch.12's table.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Part IV</span>
+    <div class="ptitle">Named Newspapers &amp; Journals — Master Table</div>
+    <p class="pdesc">Every newspaper tested in PYQs, with founder, place, and language.</p>
+  </div>
+
+  <!-- ============ CHAPTER 15 ============ -->
+  <section class="chapter" id="ch15" data-title="Named Newspapers — Master Table">
+    <div class="chapter-head"><div class="seal">15</div><h2>Named Newspapers &amp; Journals — Founder, Place, Language</h2></div>
+    <div class="chapter-sub">Chronological, with every matching-trap resolved</div>
+
+    <table>
+      <caption>Newspapers of colonial India</caption>
+      <thead class="blue"><tr><th>Year</th><th>Paper</th><th>Founder/Editor</th><th>Place</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="b">1780</mark></td><td><i><mark class="p">Bengal Gazette</mark></i></td><td><mark class="g">James Augustus Hickey</mark></td><td>Calcutta</td><td><mark class="r">First</mark> newspaper in India; outspoken; seized 1782.</td></tr>
+        <tr><td><mark class="b">1784/85</mark></td><td><i>Madras Courier</i></td><td><mark class="g">Richard Johnston</mark></td><td>Madras</td><td>First newspaper from Madras.</td></tr>
+        <tr><td><mark class="b">1789</mark></td><td><i>Bombay Herald</i></td><td>—</td><td>Bombay</td><td>First newspaper from Bombay (English title <i>Indian Herald</i>).</td></tr>
+        <tr><td><mark class="b">1818</mark></td><td><i>Bengal Gazette</i> (Bengali)</td><td><mark class="g">Harish Chandra Ray</mark></td><td>Calcutta</td><td><mark class="r">First</mark> Bengali newspaper.</td></tr>
+        <tr><td><mark class="b">1821</mark></td><td><i><mark class="p">Sambad Kaumudi</mark></i></td><td><mark class="g">Raja Ram Mohan Roy</mark></td><td>Calcutta</td><td>Bengali weekly promoting social/religious reform.</td></tr>
+        <tr><td><mark class="b">1822</mark></td><td><i><mark class="p">Mirat-ul-Akbar</mark></i></td><td><mark class="g">Raja Ram Mohan Roy</mark></td><td>Calcutta</td><td>First Persian-language journal; forced to stop by the 1823 Licensing Regulations.</td></tr>
+        <tr><td><mark class="b">1822</mark></td><td><i>Jam-i-Jahan Numah</i></td><td>(English firm)</td><td>Calcutta</td><td><mark class="r">First</mark> Urdu-language paper.</td></tr>
+        <tr><td><mark class="b">1822</mark></td><td><i>Banga-Duta</i></td><td><mark class="g">Rammohan Roy &amp; Dwarkanath Tagore</mark></td><td>Calcutta</td><td>Weekly in four languages — English, Bengali, Persian, Hindi.</td></tr>
+        <tr><td><mark class="b">1822</mark></td><td><i>Bombay Samachar</i></td><td><mark class="g">Fardunjee Marzban</mark></td><td>Bombay</td><td><mark class="r">First</mark> Gujarati newspaper.</td></tr>
+        <tr><td><mark class="b">1826</mark></td><td><i>Udant Martand</i></td><td><mark class="g">Pt. Jugal Kishore Shukla</mark></td><td>Calcutta</td><td><mark class="r">First Hindi</mark> newspaper (30 May 1826).</td></tr>
+        <tr><td><mark class="b">1838</mark></td><td><i>Bombay Times</i></td><td><mark class="g">Thomas Bennett</mark> (founded by Robert Knight)</td><td>Bombay</td><td>Renamed <i>The Times of India</i>, 1861 — <mark class="r">NOT a nationalist newspaper</mark> (64th BPSC); British-owned, editorially aligned with colonial interests.</td></tr>
+        <tr><td><mark class="b">1851</mark></td><td><i><mark class="p">Rast Goftar</mark></i></td><td><mark class="g">Dadabhai Naoroji</mark></td><td>Bombay</td><td>Gujarati fortnightly; educated Indians on economic/political rights.</td></tr>
+        <tr><td><mark class="b">1853</mark></td><td><i>Hindoo Patriot</i></td><td><mark class="g">Girishchandra Ghosh</mark> (1853–55), then <mark class="g">Harish Chandra Mukherjee</mark> (1855–61, championed Indigo-farmer cause), then <mark class="g">Kristo Das Pal</mark> (1861–84)</td><td>Calcutta</td><td><mark class="r">First</mark> newspaper published by Indians in English.</td></tr>
+        <tr><td><mark class="b">1858</mark></td><td><i>Som Prakash</i></td><td>Idea by <mark class="g">Ishwar Chandra Vidyasagar</mark>; first edited by <mark class="g">Dwarkanath Vidyabhushan</mark></td><td>Calcutta</td><td>Bengali weekly; supported Indigo-revolt farmers, women's rights, widow remarriage.</td></tr>
+        <tr><td><mark class="b">1861/62</mark></td><td><i>Indian Mirror</i></td><td><mark class="g">Devendranath Tagore &amp; Man Mohan Ghosh</mark></td><td>Calcutta</td><td>English fortnightly/daily; wrote presciently of the future INC as <mark class="y">"nucleus of a future Parliament of country"</mark> (Jan 1886 edition, 70th BPSC Re-exam).</td></tr>
+        <tr><td><mark class="b">1862</mark></td><td><i><mark class="p">The Bengalee</mark></i></td><td>Started by <mark class="g">Girish Chandra Ghosh</mark>; taken over by <mark class="g">Surendranath Banerjee</mark> (1879, 64th BPSC)</td><td>Calcutta</td><td>—</td></tr>
+        <tr><td><mark class="b">1865</mark></td><td><i>The Pioneer</i></td><td><mark class="g">George Allen</mark></td><td>Allahabad</td><td>—</td></tr>
+        <tr><td><mark class="b">1868</mark></td><td><i>Amrita Bazar Patrika</mark></i></td><td><mark class="g">Sisir Kumar Ghosh &amp; Motilal Ghosh</mark></td><td>Jessore (Bangladesh) → Calcutta</td><td>Bengali → switched to English <mark class="r">overnight in 1878</mark> specifically to dodge the Vernacular Press Act.</td></tr>
+        <tr><td><mark class="b">1871</mark></td><td><i>Tahzib-ul-Akhlaq</mark></i></td><td><mark class="g">Sir Syed Ahmad Khan</mark></td><td>Aligarh</td><td>Urdu — women's education, Muslim family-law reform, modernisation.</td></tr>
+        <tr><td><mark class="b">1878</mark></td><td><i>The Hindu</mark></i></td><td><mark class="g">G.S. Iyer, Vir Raghavacharya, Subba Rao Pandit</mark></td><td>Madras</td><td>Moderate political weekly, later daily (64th BPSC).</td></tr>
+        <tr><td><mark class="b">1881</mark></td><td><i><mark class="p">Kesari</mark></i> &amp; <i>Mahratta</i></td><td><mark class="g">Bal Gangadhar Tilak</mark> (64th BPSC) — Kesari's first editor was actually <mark class="g">Gopal Ganesh Agarkar</mark></td><td>Poona</td><td>Kesari — Marathi, Home Rule Movement's main organ; Mahratta — English.</td></tr>
+        <tr><td><mark class="b">1881</mark></td><td><i>The Tribune</i></td><td><mark class="g">Dayal Singh Majeetia</mark></td><td>Lahore</td><td>—</td></tr>
+        <tr><td><mark class="b">1882</mark></td><td><i>Arya Gazette</i></td><td><mark class="g">Pandit Dayanand Saraswati</mark></td><td>Lahore</td><td>English and Hindi.</td></tr>
+        <tr><td><mark class="b">1888</mark></td><td><i><mark class="p">Sudharak</mark></i></td><td><mark class="g">Gopal Krishna Gokhale</mark></td><td>Poona</td><td>Marathi; social-reform advocacy (64th BPSC).</td></tr>
+        <tr><td><mark class="b">1883</mark></td><td><i>Voice of India</mark></i></td><td><mark class="g">Dadabhai Naoroji</mark></td><td>Bombay</td><td>Later merged into <i>Indian Spectator</i> (70th BPSC).</td></tr>
+        <tr><td><mark class="b">1903</mark></td><td><i><mark class="p">Indian Opinion</mark></i></td><td><mark class="g">M.K. Gandhi</mark>; first editor <mark class="g">Mansukh Lal Hiralal Nazar</mark></td><td>Durban, South Africa</td><td>English, Gujarati, Hindi, Tamil — <mark class="r">not Urdu</mark>, a repeated trap.</td></tr>
+        <tr><td><mark class="b">1905/06</mark></td><td><i>Sandhya</i></td><td><mark class="g">Brahmabandhab Upadhyay</mark></td><td>Bengal</td><td>Revolutionary-extremist advocacy.</td></tr>
+        <tr><td><mark class="b">1906</mark></td><td><i>Yugantar</i></td><td><mark class="g">Barindra Kumar Ghosh &amp; Bhupendra Dutta</mark></td><td>Bengal</td><td>Propaganda organ of the <mark class="g">Anushilan Samiti</mark>.</td></tr>
+        <tr><td><mark class="b">1906</mark></td><td><i>Vande Mataram</mark></i></td><td><mark class="g">Bipin Chandra Pal</mark> (Aug–Oct 1906), then <mark class="g">Aurobindo Ghosh</mark> (Oct 1906–May 1907); Paris edition (1909) under <mark class="g">Lala Hardayal</mark>, distributed by <mark class="g">Madame Bhikaji Cama</mark></td><td>Calcutta → Paris</td><td>English weekly/daily; <mark class="r">not</mark> primarily a Savarkar/Cama-edited paper despite Cama's distribution role.</td></tr>
+        <tr><td><mark class="b">1906</mark></td><td><i>Kal</i></td><td><mark class="g">Shivram Mahadev Paranjape</mark></td><td>Maharashtra</td><td>Revolutionary-extremist advocacy.</td></tr>
+        <tr><td><mark class="b">1906</mark></td><td><i>The Mussalman</i></td><td><mark class="g">Zafar Ali Khan</mark></td><td>Calcutta</td><td>—</td></tr>
+        <tr><td><mark class="b">1907</mark></td><td><i>The Leader</mark></i></td><td><mark class="g">Madan Mohan Malaviya</mark></td><td>Allahabad</td><td>Liberal-policy mouthpiece.</td></tr>
+        <tr><td><mark class="b">1909</mark></td><td><i>The Karmayogi</i></td><td><mark class="g">Aurobindo Ghosh</mark></td><td>Puducherry</td><td>English.</td></tr>
+        <tr><td><mark class="b">1911</mark></td><td><i>Comrade</mark></i></td><td><mark class="g">Maulana Mohammad Ali</mark></td><td>Calcutta</td><td>English — Indian self-rule, Muslim rights.</td></tr>
+        <tr><td><mark class="b">1911</mark></td><td><i>Hitavada</i></td><td><mark class="g">G.K. Gokhale</mark></td><td>Nagpur</td><td>English &amp; Marathi.</td></tr>
+        <tr><td><mark class="b">1912</mark></td><td><i><mark class="p">Al-Hilal</mark></i></td><td><mark class="g">Abul Kalam Azad</mark> (68th BPSC)</td><td>Calcutta</td><td>Urdu weekly; banned <mark class="b">1914</mark> under Press Act. (Companion papers: <i>Al-Balagh</i>, 1915/1912; <i>The Azad</i>.)</td></tr>
+        <tr><td><mark class="b">1913</mark></td><td><i>Pratap</i></td><td><mark class="g">Ganesh Shankar Vidyarthi</mark></td><td>Kanpur</td><td>Vijay Singh Pathik used <i>Pratap</i> to publicise the <mark class="g">Bijolia peasant movement</mark> nationally (R.A.S./R.T.S. 1996).</td></tr>
+        <tr><td><mark class="b">1913</mark></td><td><i>Bombay Chronicle</i></td><td>Started by <mark class="g">Pherozeshah Mehta</mark>; edited by <mark class="g">B.G. Horniman</mark></td><td>Bombay</td><td>—</td></tr>
+        <tr><td><mark class="b">1913</mark></td><td><i><mark class="p">The Ghadar</mark></i></td><td><mark class="g">Lala Hardayal</mark>/Ghadar Party</td><td>San Francisco</td><td>First issue <mark class="b">1 Nov 1913</mark>, in Urdu; Gurmukhi from <mark class="b">9 Dec 1913</mark>; later Marathi, Hindi, English, Gujarati, even Pashto. A <mark class="r">weekly</mark> (U.P.P.C.S. Mains 2013).</td></tr>
+        <tr><td><mark class="b">1914</mark></td><td><i>New India</i></td><td><mark class="g">Annie Besant</mark></td><td>Madras</td><td>Alongside <i>The Commonweal</i> — Besant's <mark class="r">two</mark> papers (U.P.P.C.S. matching).</td></tr>
+        <tr><td><mark class="b">1919</mark></td><td><i>The Independent</i></td><td><mark class="g">Motilal Nehru</mark></td><td>Allahabad</td><td>Demanded self-rule/Home Rule for India.</td></tr>
+        <tr><td><mark class="b">1919</mark></td><td><i><mark class="p">Young India</mark></i></td><td><mark class="g">M.K. Gandhi</mark> (71st BPSC)</td><td>Bombay → Ahmedabad</td><td>Bi-weekly from Bombay (7 May 1919); Gandhi became editor 8 Oct 1919, moved weekly to Ahmedabad. Early publishers: <mark class="g">Jamnadas Dwarkadas &amp; Shankarlal Banker</mark> (both from Besant's Home Rule movement).</td></tr>
+        <tr><td><mark class="b">1920</mark></td><td><i>Hindustan Times</i></td><td><mark class="g">Sunder Singh Lyallpuri</mark>; later edited by <mark class="g">K.M. Panikkar</mark></td><td>Delhi</td><td>Linked initially to the <mark class="g">Akali Dal</mark> movement (64th BPSC).</td></tr>
+        <tr><td><mark class="b">1920</mark></td><td><i>Mook Nayak</i></td><td><mark class="g">B.R. Ambedkar</mark> (67th BPSC)</td><td>Bombay</td><td>Marathi weekly for Dalit rights.</td></tr>
+        <tr><td><mark class="b">1921</mark></td><td><i>The Swarajya</i></td><td><mark class="g">C. Rajagopalachari</mark></td><td>Madras</td><td>English.</td></tr>
+        <tr><td><mark class="b">1923</mark></td><td><i>The Milap</i></td><td><mark class="g">M.K. Chand</mark></td><td>Lahore</td><td>—</td></tr>
+        <tr><td><mark class="b">1924</mark></td><td><i>Hunkar</mark></i></td><td><mark class="g">Swami Sahajanand Saraswati</mark></td><td>Patna</td><td>Hindi weekly for peasant hardships (63rd BPSC).</td></tr>
+        <tr><td><mark class="b">1927</mark></td><td><i>Bahishkrit Bharat</mark></i></td><td><mark class="g">B.R. Ambedkar</mark> (67th BPSC)</td><td>Bombay</td><td>Marathi fortnightly, follow-on to the <mark class="g">Bahiskrit Hitakarini Sabha</mark> (founded July 1924/1920, Bombay).</td></tr>
+        <tr><td><mark class="b">1929</mark></td><td><i>Young India</i> (US edition)</td><td><mark class="g">Lala Lajpat Rai</mark></td><td>USA (1916), later <i>Bande Mataram</i> (Urdu daily) and <i>The People</i> (English weekly), Lahore, 1920/1925</td><td>Rai's American paper predates his Lahore papers.</td></tr>
+        <tr><td><mark class="b">1932</mark></td><td><i><mark class="p">Harijan</mark></i></td><td><mark class="g">M.K. Gandhi</mark></td><td>Ahmedabad → first issue Pune, 11 Feb 1933</td><td>English &amp; Hindi (also <i>Harijan Bandhu</i>, Gujarati) — Dalit-rights advocacy.</td></tr>
+        <tr><td><mark class="b">1936</mark></td><td><i>Free Hindustan</mark></i></td><td><mark class="g">Tarak Nath Das</mark> (70th BPSC)</td><td>Canada &amp; USA (Vancouver)</td><td>English — self-rule, international cooperation.</td></tr>
+        <tr><td><mark class="b">1938</mark></td><td><i>National Herald</i></td><td><mark class="g">Jawaharlal Nehru</mark></td><td>Lucknow</td><td>Tool for independence; <mark class="r">banned 1942–45</mark> during Quit India.</td></tr>
+        <tr><td><mark class="b">1945</mark></td><td><i>Qaumi Awaz</i></td><td><mark class="g">Jawaharlal Nehru &amp; Rafi Ahmed Kidwai</mark></td><td>Lucknow</td><td>Urdu; publication stopped 2008.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="event">
+      <h3>Revolutionary press published abroad</h3>
+      <ul>
+        <li><i><mark class="p">The Indian Sociologist</mark></i> — <mark class="g">Shyamji Krishnavarma</mark>, London.</li>
+        <li><i><mark class="p">Bande Mataram</mark></i> (Paris edition) — <mark class="g">Madam Bhikaji Cama</mark>.</li>
+        <li><i>Talvar</i> — <mark class="g">Virendranath Chattopadhyaya</mark>, Berlin.</li>
+        <li><i><mark class="p">Ghadar</mark></i> — <mark class="g">Lala Hardayal</mark>/Ghadar Party, San Francisco (detailed above).</li>
+      </ul>
+    </div>
+
+    <div class="trap">
+      <span class="lbl">High-frequency matching traps</span>
+      <ul>
+        <li><mark class="r">NOT</mark> associated with Gandhi: <i>Indian Mirror</i> (edited by Manmohan Ghosh/Debendranath Tagore) and <i>Yugantar</i> (Bhupendra Dutta/Barindra Ghosh) — Gandhi's own papers were only <i>Indian Opinion, Young India, Navjeevan, Harijan</i>.</li>
+        <li><i>The Pioneer</i> is <mark class="r">wrongly</mark> sometimes paired with Gandhi — it was George Allen's Allahabad paper, unconnected to Gandhi.</li>
+        <li><i>Independent</i> is <mark class="r">wrongly</mark> paired with Ambedkar in one distractor set — it belongs to <mark class="g">Motilal Nehru</mark>.</li>
+        <li><i>Tahzeeb-ul-Akhlaq</i> is <mark class="r">wrongly</mark> paired with Jinnah in one distractor — it is <mark class="g">Sir Syed Ahmed Khan's</mark> paper.</li>
+        <li><mark class="g">Editor sequence, Vande Mataram</mark>: Bipin Chandra Pal (Aug–Oct 1906) → Aurobindo Ghosh (Oct 1906–May 1907) → Paris edition under Hardayal (from Sept 1909), distributed by Bhikaji Cama — a four-stage sequence often flattened incorrectly to a single name in PYQ options.</li>
+        <li><i>Amrita Bazar Patrika</i> founder is <mark class="g">Shishir Kumar Ghosh</mark> (with Motilal Ghosh) — <mark class="r">not</mark> Girish Chandra Ghosh, who founded the separate <i>Bengalee</i> and <i>Hindoo Patriot</i>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="part-divider">
+    <span class="plabel">Master Timelines</span>
+    <div class="ptitle">Chronological Summary — Education &amp; Press</div>
+    <p class="pdesc">Two extensively colour-coded master tables, side by side in sequence, for final revision.</p>
+  </div>
+
+  <!-- ============ CHAPTER 16 ============ -->
+  <section class="chapter" id="ch16" data-title="MASTER TABLE: Education Timeline">
+    <div class="chapter-head"><div class="seal">M1</div><h2>Master Table — Education in British India (Full Chronology)</h2></div>
+
+    <table>
+      <caption>Every education milestone, one continuous timeline</caption>
+      <thead class="brown"><tr><th>Year</th><th>Milestone</th><th>Key Person(s)</th><th>Category</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="b">1780</mark></td><td>Calcutta Madrasah founded</td><td><mark class="g">Warren Hastings</mark></td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1784</mark></td><td>Asiatic Society of Bengal founded</td><td><mark class="g">William Jones</mark></td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1791</mark></td><td>Sanskrit College, Benaras founded</td><td><mark class="g">Jonathan Duncan</mark></td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1800</mark></td><td>Fort William College founded</td><td><mark class="g">Wellesley</mark></td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1813</mark></td><td><mark class="r">Charter Act</mark> — ₹1 lakh/year for education (first statutory grant)</td><td>British Parliament</td><td><mark class="p">Policy/Act</mark></td></tr>
+        <tr><td><mark class="b">1817</mark></td><td>Hindu College, Calcutta founded</td><td><mark class="g">David Hare, Rammohan Roy</mark></td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1823</mark></td><td>General Committee of Public Instruction appointed; Orientalist-Anglicist controversy begins</td><td>—</td><td><mark class="p">Policy/Act</mark></td></tr>
+        <tr><td><mark class="b">1825</mark></td><td>Vedanta College, Calcutta founded</td><td><mark class="g">Rammohan Roy</mark></td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1835</mark></td><td><mark class="r">Macaulay's Minute</mark> — English as education medium; Downward Filtration Theory</td><td><mark class="g">Macaulay, Bentinck</mark></td><td><mark class="p">Policy/Act</mark></td></tr>
+        <tr><td><mark class="b">1843–53</mark></td><td>Thomson's vernacular village education, N-W Provinces</td><td><mark class="g">James Thomson</mark></td><td><mark class="p">Policy/Act</mark></td></tr>
+        <tr><td><mark class="b">1847</mark></td><td>Thomson College of Civil Engineering (now IIT Roorkee)</td><td><mark class="g">James Thomson</mark></td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1849</mark></td><td>Bethune School — first girls' school, Calcutta</td><td><mark class="g">J.E. Bethune, Vidyasagar</mark></td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1854</mark></td><td><mark class="r">Wood's Despatch</mark> — "Magna Carta of English Education"</td><td><mark class="g">Charles Wood</mark></td><td><mark class="p">Policy/Act</mark></td></tr>
+        <tr><td><mark class="b">1857</mark></td><td>Universities of Calcutta, Bombay, Madras established</td><td><mark class="g">Lord Canning</mark></td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1875</mark></td><td>MAO College, Aligarh founded (→ AMU, 1920); Mayo College, Ajmer</td><td><mark class="g">Sayyid Ahmad Khan</mark></td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1880s</mark></td><td>New English School → Deccan Education Society (1884) → Fergusson College</td><td><mark class="g">Tilak, Agarkar, Chiplunkar</mark></td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1882</mark></td><td><mark class="r">Hunter Commission</mark> — primary education emphasis; Punjab University founded</td><td><mark class="g">W.W. Hunter, Lord Ripon</mark></td><td><mark class="p">Policy/Act</mark></td></tr>
+        <tr><td><mark class="b">1887</mark></td><td>Allahabad University founded</td><td>—</td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1898</mark></td><td>Central Hindu School, Benaras founded</td><td><mark class="g">Annie Besant</mark></td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1902–04</mark></td><td>Raleigh Commission → <mark class="r">Indian Universities Act, 1904</mark></td><td><mark class="g">Lord Curzon, Thomas Raleigh</mark></td><td><mark class="p">Policy/Act</mark></td></tr>
+        <tr><td><mark class="b">1905–06</mark></td><td>Rangpur National School; National Council of Education, Bengal; Bengal National College</td><td><mark class="g">Satish Chandra Mukherjee, Aurobindo Ghosh</mark></td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1910</mark></td><td>Gokhale's Resolution on compulsory primary education (withdrawn)</td><td><mark class="g">G.K. Gokhale</mark></td><td><mark class="p">Policy/Act</mark></td></tr>
+        <tr><td><mark class="b">1913</mark></td><td>Government Resolution on Education Policy</td><td>—</td><td><mark class="p">Policy/Act</mark></td></tr>
+        <tr><td><mark class="b">1916</mark></td><td>Banaras Hindu University, Mysore University, SNDT Women's University founded</td><td><mark class="g">Malviya, Karve</mark></td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1917–19</mark></td><td><mark class="r">Sadler Commission</mark> — 12-year schooling system, university autonomy</td><td><mark class="g">Michael Sadler</mark></td><td><mark class="p">Policy/Act</mark></td></tr>
+        <tr><td><mark class="b">1917–1929</mark></td><td>Seven new universities: Patna, Osmania, Aligarh, Lucknow, Dacca, Delhi, Andhra, Agra, Annamalai</td><td>—</td><td><mark class="y">Institution</mark></td></tr>
+        <tr><td><mark class="b">1919</mark></td><td>Education transferred to provincial ministries under <mark class="r">Dyarchy</mark></td><td>Montagu-Chelmsford Reforms</td><td><mark class="p">Policy/Act</mark></td></tr>
+        <tr><td><mark class="b">1925</mark></td><td>Inter-University Board established</td><td>—</td><td><mark class="p">Policy/Act</mark></td></tr>
+        <tr><td><mark class="b">1929</mark></td><td><mark class="r">Hartog Committee</mark> — assessed deteriorating standards</td><td><mark class="g">Philip Hartog</mark></td><td><mark class="p">Policy/Act</mark></td></tr>
+        <tr><td><mark class="b">1937</mark></td><td><mark class="r">Wardha Scheme</mark> (Nai Talim) — basic education</td><td><mark class="g">Zakir Hussain Committee</mark></td><td><mark class="p">Policy/Act</mark></td></tr>
+        <tr><td><mark class="b">1944</mark></td><td><mark class="r">Sargent Plan</mark> — post-WWII comprehensive education blueprint</td><td><mark class="g">John Sargent</mark></td><td><mark class="p">Policy/Act</mark></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ CHAPTER 17 ============ -->
+  <section class="chapter" id="ch17" data-title="MASTER TABLE: Press Timeline">
+    <div class="chapter-head"><div class="seal">M2</div><h2>Master Table — Press in British India (Full Chronology)</h2></div>
+
+    <table>
+      <caption>Every press milestone, one continuous timeline</caption>
+      <thead class="brown"><tr><th>Year</th><th>Milestone</th><th>Key Person(s)</th><th>Category</th></tr></thead>
+      <tbody>
+        <tr><td><mark class="b">1556</mark></td><td>Printing introduced to India/Asia</td><td>Portuguese Jesuits, Goa</td><td><mark class="y">Origin</mark></td></tr>
+        <tr><td><mark class="b">1684</mark></td><td>East India Company establishes a press, Bombay</td><td>—</td><td><mark class="y">Origin</mark></td></tr>
+        <tr><td><mark class="b">1780</mark></td><td><i><mark class="p">Bengal Gazette</mark></i> — India's first newspaper</td><td><mark class="g">J.A. Hickey</mark></td><td><mark class="y">Origin</mark></td></tr>
+        <tr><td><mark class="b">1799</mark></td><td><mark class="r">Censorship of Press Act</mark> — pre-censorship imposed</td><td><mark class="g">Lord Wellesley</mark></td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1818</mark></td><td>Pre-censorship abolished</td><td><mark class="g">Lord Hastings</mark></td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1821–22</mark></td><td><i><mark class="p">Sambad Kaumudi, Mirat-ul-Akbar, Bombay Samachar</mark></i> founded</td><td><mark class="g">Rammohan Roy, Fardunjee Marzban</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1823</mark></td><td><mark class="r">Licensing Regulations</mark> — press licences mandatory</td><td><mark class="g">John Adams</mark></td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1824</mark></td><td>Rammohan Roy protests press restrictions</td><td><mark class="g">Rammohan Roy</mark></td><td><mark class="y">Origin</mark></td></tr>
+        <tr><td><mark class="b">1826</mark></td><td><i>Udant Martand</i> — first Hindi newspaper</td><td><mark class="g">Jugal Kishore Shukla</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1835</mark></td><td><mark class="r">Press Act (Metcalfe Act)</mark> — 1823 rules repealed</td><td><mark class="g">Charles Metcalfe</mark></td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1838</mark></td><td><i>Bombay Times</i> founded (→ <i>Times of India</i>, 1861)</td><td><mark class="g">Thomas Bennett</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1851</mark></td><td><i><mark class="p">Rast Goftar</mark></i> founded</td><td><mark class="g">Dadabhai Naoroji</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1853</mark></td><td><i>Hindoo Patriot</i> — first Indian-run English paper</td><td><mark class="g">Girish Chandra Ghosh</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1857</mark></td><td><mark class="r">Licensing Act</mark> (post-Revolt emergency measure)</td><td>—</td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1862</mark></td><td><i><mark class="p">The Bengalee</mark></i> founded</td><td><mark class="g">Girish Chandra Ghosh</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1867</mark></td><td><mark class="r">Registration Act</mark> — regulation replaces restriction</td><td>—</td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1868</mark></td><td><i><mark class="p">Amrita Bazar Patrika</mark></i> founded</td><td><mark class="g">Sisir Kumar Ghosh</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1878</mark></td><td><mark class="r">Vernacular Press Act</mark> ("Gagging Act"); <i>The Hindu</i> founded</td><td><mark class="g">Lord Lytton</mark></td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1881</mark></td><td><i><mark class="p">Kesari</mark></i> &amp; <i>Mahratta</i> founded</td><td><mark class="g">Tilak</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1882</mark></td><td>Vernacular Press Act <mark class="r">repealed</mark></td><td><mark class="g">Lord Ripon</mark></td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1883</mark></td><td>Surendranath Banerjea — first journalist jailed</td><td><mark class="g">S.N. Banerjea</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1897</mark></td><td>Tilak sedition case (Kesari) — "Lokmanya" title</td><td><mark class="g">Tilak</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1898</mark></td><td>Section 124-A amended (expanded sedition)</td><td>—</td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1903</mark></td><td><i><mark class="p">Indian Opinion</mark></i> founded, South Africa</td><td><mark class="g">M.K. Gandhi</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1905–06</mark></td><td><i>Sandhya, Yugantar, Kal, Vande Mataram, Comrade</mark></i> (later) founded</td><td><mark class="g">Various revolutionaries</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1908</mark></td><td><mark class="r">Newspapers (Incitement to Offences) Act</mark> — Tilak arrested</td><td>—</td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1910</mark></td><td><mark class="r">Indian Press Act</mark></td><td>—</td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1912</mark></td><td><i><mark class="p">Al-Hilal</mark></i> founded (banned 1914)</td><td><mark class="g">Abul Kalam Azad</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1913</mark></td><td><i><mark class="p">The Ghadar</mark></i> founded, San Francisco</td><td><mark class="g">Lala Hardayal</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1914–18</mark></td><td><mark class="r">Defence of India Rules</mark> — wartime censorship</td><td>—</td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1919</mark></td><td><i><mark class="p">Young India</mark></i> founded</td><td><mark class="g">M.K. Gandhi</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1920</mark></td><td><i>Hindustan Times, Mook Nayak</i> founded</td><td><mark class="g">S.S. Lyallpuri, B.R. Ambedkar</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1921</mark></td><td>Press Committee (Sapru) — recommends repeal of 1908/1910 Acts</td><td><mark class="g">Tej Bahadur Sapru</mark></td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1927</mark></td><td><i><mark class="p">Bahishkrit Bharat</mark></i> founded</td><td><mark class="g">B.R. Ambedkar</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1930</mark></td><td><mark class="r">Press Ordinance</mark> — revives 1910 Act provisions</td><td>—</td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1931</mark></td><td><mark class="r">Indian Press (Emergency Powers) Act</mark></td><td>—</td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1932</mark></td><td><i><mark class="p">Harijan</mark></i> founded; Criminal Amendment Act (expands 1931 Act)</td><td><mark class="g">M.K. Gandhi</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1938</mark></td><td><i>National Herald</i> founded (banned 1942–45)</td><td><mark class="g">Jawaharlal Nehru</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1939–45 (WWII)</mark></td><td>Defence of India Rules re-enacted; Press Emergency Act revived</td><td>—</td><td><mark class="p">Act/Law</mark></td></tr>
+        <tr><td><mark class="b">1945</mark></td><td><i>Qaumi Awaz</i> founded</td><td><mark class="g">Nehru, Rafi Ahmed Kidwai</mark></td><td><mark class="y">Newspaper</mark></td></tr>
+        <tr><td><mark class="b">1947</mark></td><td><mark class="r">Press Enquiry Committee</mark> — recommends repeal of 1931 Act</td><td>—</td><td><mark class="p">Act/Law</mark></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  </div><!-- /chapters -->
+
+  <div class="footer">Compiled from theory notes and PYQ (Ghatnachakra-style) explanations · marker-coded per canonical study format · cross-verify years before the exam</div>
+
+</div><!-- /main -->
+
+<script>
+  const chapters = document.querySelectorAll('.chapter');
+  const toc = document.getElementById('toc');
+  chapters.forEach((ch, i) => {
+    const a = document.createElement('a');
+    a.href = '#' + ch.id;
+    a.innerHTML = '<span class="num">' + String(i+1).padStart(2,'0') + '</span><span>' + ch.dataset.title + '</span>';
+    a.dataset.target = ch.id;
+    toc.appendChild(a);
+  });
+
+  const links = toc.querySelectorAll('a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = toc.querySelector('a[data-target="' + entry.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -75% 0px', threshold: 0 });
+  chapters.forEach(ch => observer.observe(ch));
+
+  const menuBtn = document.getElementById('menu-btn');
+  const sidebar = document.getElementById('sidebar');
+  menuBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
+  links.forEach(l => l.addEventListener('click', () => sidebar.classList.remove('open')));
+</script>
+
+</body>
+</html>

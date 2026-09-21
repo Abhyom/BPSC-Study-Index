@@ -1,0 +1,5131 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Civil Resistance: People's Resistance Against the British</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--ink: #0b1e33;
+				--ink-2: #122a45;
+				--paper: #fbf7ec;
+				--paper-2: #f3ecda;
+				--gold: #c9a227;
+				--gold-2: #e8c766;
+				--teal: #2e6171;
+				--text: #1c2b3a;
+				--muted: #5b6b7a;
+				--hl-y: #f1b400;
+				--hl-b: #1f6fb2;
+				--hl-g: #1e8449;
+				--hl-r: #b03a2e;
+				--trap-bg: #fdedec;
+				--trap-bd: #c0392b;
+				--ctx-bg: #eaf2f6;
+				--ctx-bd: #2e6171;
+				--tbl-head-blue: #1a5276;
+				--tbl-head-red: #7b241c;
+				--tbl-head-green: #145a32;
+				--tbl-head-purple: #5b2c6f;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+			body {
+				margin: 0;
+				background: var(--ink);
+				color: var(--text);
+				font-family: "Source Sans 3", sans-serif;
+				font-size: 17.5px;
+				display: flex;
+				min-height: 100vh;
+			}
+			::selection {
+				background: var(--gold-2);
+				color: var(--ink);
+			}
+			#sidebar {
+				width: 290px;
+				flex-shrink: 0;
+				background: linear-gradient(
+					180deg,
+					var(--ink) 0%,
+					var(--ink-2) 100%
+				);
+				color: #dce6ee;
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				overflow-y: auto;
+				padding: 28px 0 40px;
+				border-right: 1px solid rgba(201, 162, 39, 0.25);
+				z-index: 50;
+			}
+			#sidebar::-webkit-scrollbar {
+				width: 6px;
+			}
+			#sidebar::-webkit-scrollbar-thumb {
+				background: rgba(201, 162, 39, 0.4);
+				border-radius: 3px;
+			}
+			.brand {
+				padding: 0 24px 22px;
+				border-bottom: 1px solid rgba(201, 162, 39, 0.25);
+				margin-bottom: 14px;
+			}
+			.brand .stamp {
+				width: 46px;
+				height: 46px;
+				border-radius: 50%;
+				border: 2px solid var(--gold);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: "Playfair Display", serif;
+				font-weight: 800;
+				color: var(--gold-2);
+				font-size: 13px;
+				letter-spacing: 0.5px;
+				margin-bottom: 10px;
+			}
+			.brand h1 {
+				font-family: "Playfair Display", serif;
+				font-size: 19px;
+				line-height: 1.3;
+				margin: 0 0 4px;
+				font-weight: 700;
+				color: #f4efe1;
+			}
+			.brand p {
+				margin: 0;
+				font-size: 12px;
+				letter-spacing: 0.09em;
+				text-transform: uppercase;
+				color: var(--gold-2);
+				font-family: "IBM Plex Mono", monospace;
+			}
+			nav.toc {
+				padding: 6px 10px;
+			}
+			nav.toc a {
+				display: flex;
+				align-items: baseline;
+				gap: 10px;
+				padding: 10px 14px;
+				margin: 1px 0;
+				border-radius: 6px;
+				color: #b7c6d3;
+				text-decoration: none;
+				font-size: 13.6px;
+				font-weight: 500;
+				border-left: 3px solid transparent;
+				transition:
+					background 0.15s,
+					color 0.15s,
+					border-color 0.15s;
+			}
+			nav.toc a .num {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11px;
+				color: var(--gold);
+				flex-shrink: 0;
+				width: 20px;
+			}
+			nav.toc a:hover {
+				background: rgba(201, 162, 39, 0.1);
+				color: #f4efe1;
+			}
+			nav.toc a.active {
+				background: rgba(201, 162, 39, 0.16);
+				color: #f8f1dd;
+				border-left-color: var(--gold);
+				font-weight: 600;
+			}
+			.legend-box {
+				margin: 20px 16px 0;
+				padding: 14px 14px 16px;
+				background: rgba(255, 255, 255, 0.04);
+				border: 1px solid rgba(201, 162, 39, 0.22);
+				border-radius: 8px;
+			}
+			.legend-box h3 {
+				margin: 0 0 10px;
+				font-size: 10.5px;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				color: var(--gold-2);
+				font-family: "IBM Plex Mono", monospace;
+				font-weight: 500;
+			}
+			.legend-row {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				margin-bottom: 7px;
+				font-size: 12.5px;
+				color: #cbd6df;
+			}
+			.legend-swatch {
+				width: 14px;
+				height: 14px;
+				border-radius: 3px;
+				flex-shrink: 0;
+			}
+			#main {
+				margin-left: 290px;
+				flex: 1;
+				padding: 0;
+				background: var(--ink);
+			}
+			.cover {
+				padding: 74px 64px 56px;
+				background:
+					radial-gradient(
+						circle at 85% 20%,
+						rgba(201, 162, 39, 0.1),
+						transparent 45%
+					),
+					linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+				color: #efe9d8;
+				border-bottom: 4px double rgba(201, 162, 39, 0.4);
+			}
+			.cover .eyebrow {
+				font-family: "IBM Plex Mono", monospace;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				font-size: 12.5px;
+				color: var(--gold-2);
+				margin-bottom: 16px;
+			}
+			.cover h1 {
+				font-family: "Playfair Display", serif;
+				font-weight: 800;
+				font-size: clamp(32px, 4.2vw, 50px);
+				line-height: 1.12;
+				margin: 0 0 16px;
+				max-width: 820px;
+			}
+			.cover p.sub {
+				font-size: 17px;
+				color: #c9d2db;
+				max-width: 680px;
+				line-height: 1.7;
+				margin: 0 0 22px;
+			}
+			.cover .tags {
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+			}
+			.cover .tag {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 12px;
+				color: var(--gold-2);
+				border: 1px solid rgba(201, 162, 39, 0.45);
+				padding: 5px 12px;
+				border-radius: 20px;
+				background: rgba(201, 162, 39, 0.06);
+			}
+			.chapters {
+				background: var(--paper);
+				padding: 10px 0 90px;
+			}
+			.chapter {
+				max-width: 960px;
+				margin: 0 auto;
+				padding: 56px 48px 8px;
+				border-bottom: 1px solid rgba(28, 43, 58, 0.1);
+				scroll-margin-top: 14px;
+			}
+			.chapter:last-child {
+				border-bottom: none;
+			}
+			.chapter-head {
+				display: flex;
+				align-items: center;
+				gap: 18px;
+				margin-bottom: 6px;
+			}
+			.chapter-head .seal {
+				width: 52px;
+				height: 52px;
+				border-radius: 50%;
+				background: var(--ink);
+				color: var(--gold-2);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: "Playfair Display", serif;
+				font-weight: 700;
+				font-size: 19px;
+				border: 2px solid var(--gold);
+				flex-shrink: 0;
+			}
+			.chapter-head h2 {
+				font-family: "Playfair Display", serif;
+				font-size: clamp(23px, 2.8vw, 30px);
+				margin: 0;
+				color: var(--ink);
+				font-weight: 700;
+				line-height: 1.25;
+			}
+			.chapter-sub {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 12px;
+				color: var(--muted);
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				margin: 6px 0 26px 70px;
+			}
+			.event {
+				margin: 0 0 28px;
+				padding-left: 18px;
+				border-left: 3px solid var(--teal);
+			}
+			.event h3 {
+				font-family: "Playfair Display", serif;
+				font-size: 19px;
+				margin: 0 0 6px;
+				color: var(--ink);
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				flex-wrap: wrap;
+			}
+			.datebox {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 13px;
+				color: var(--teal);
+				font-weight: 600;
+				margin-bottom: 10px;
+				display: block;
+			}
+			.event p {
+				margin: 0 0 12px;
+				line-height: 1.85;
+				font-size: 16.5px;
+			}
+			.event ul {
+				margin: 8px 0 12px;
+				padding-left: 22px;
+			}
+			.event li {
+				margin-bottom: 11px;
+				line-height: 1.8;
+				font-size: 16.5px;
+			}
+			.event ul ul {
+				margin-top: 6px;
+			}
+			mark {
+				padding: 0.15em 0.42em;
+				border-radius: 4px;
+				font-weight: 700;
+				color: #fff;
+				box-decoration-break: clone;
+				-webkit-box-decoration-break: clone;
+			}
+			.y {
+				background: var(--hl-y);
+				color: #1c1200;
+			}
+			.b {
+				background: var(--hl-b);
+			}
+			.g {
+				background: var(--hl-g);
+			}
+			.r {
+				background: var(--hl-r);
+			}
+			.trap {
+				background: var(--trap-bg);
+				border: 1px solid rgba(192, 57, 43, 0.35);
+				border-left: 5px solid var(--trap-bd);
+				padding: 14px 18px;
+				border-radius: 6px;
+				margin: 16px 0 20px;
+				font-size: 16px;
+				line-height: 1.8;
+			}
+			.trap .lbl {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--trap-bd);
+				font-weight: 700;
+				display: block;
+				margin-bottom: 6px;
+			}
+			.trap ul {
+				margin: 6px 0 0;
+				padding-left: 20px;
+			}
+			.trap li {
+				margin-bottom: 8px;
+			}
+			.ctx {
+				background: var(--ctx-bg);
+				border: 1px solid rgba(46, 97, 113, 0.35);
+				border-left: 5px solid var(--ctx-bd);
+				padding: 14px 18px;
+				border-radius: 6px;
+				margin: 16px 0 20px;
+				font-size: 16px;
+				line-height: 1.8;
+			}
+			.ctx .lbl {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--ctx-bd);
+				font-weight: 700;
+				display: block;
+				margin-bottom: 6px;
+			}
+			.ctx ul {
+				margin: 6px 0 0;
+				padding-left: 20px;
+			}
+			.ctx li {
+				margin-bottom: 8px;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin: 16px 0 26px;
+				font-size: 15.5px;
+			}
+			caption {
+				text-align: left;
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11.5px;
+				color: var(--muted);
+				margin-bottom: 7px;
+				text-transform: uppercase;
+				letter-spacing: 0.06em;
+			}
+			th,
+			td {
+				padding: 11px 13px;
+				text-align: left;
+				border-bottom: 1px solid rgba(28, 43, 58, 0.1);
+				vertical-align: top;
+				line-height: 1.6;
+			}
+			thead.blue th {
+				background: var(--tbl-head-blue);
+				color: #f4efe1;
+				font-weight: 600;
+				font-size: 13px;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+			}
+			thead.red th {
+				background: var(--tbl-head-red);
+				color: #f4efe1;
+				font-weight: 600;
+				font-size: 13px;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+			}
+			thead.green th {
+				background: var(--tbl-head-green);
+				color: #f4efe1;
+				font-weight: 600;
+				font-size: 13px;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+			}
+			thead.purple th {
+				background: var(--tbl-head-purple);
+				color: #f4efe1;
+				font-weight: 600;
+				font-size: 13px;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+			}
+			tbody tr:nth-child(even) {
+				background: var(--paper-2);
+			}
+			.factbox {
+				background: var(--paper-2);
+				border: 1px solid rgba(28, 43, 58, 0.12);
+				border-radius: 8px;
+				padding: 18px 20px;
+				margin: 18px 0 24px;
+			}
+			.factbox .lbl {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 18px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--trap-bd);
+				font-weight: 800;
+				display: block;
+				margin-bottom: 10px;
+			}
+			.factbox dl {
+				margin: 0;
+				display: grid;
+				grid-template-columns: auto 1fr;
+				gap: 8px 18px;
+			}
+			.factbox dt {
+				font-weight: 700;
+				font-size: 15px;
+				color: var(--ink);
+				white-space: nowrap;
+			}
+			.factbox dd {
+				margin: 0;
+				font-size: 15.5px;
+				line-height: 1.7;
+			}
+			.part-divider {
+				max-width: 960px;
+				margin: 0 auto;
+				padding: 40px 48px 0;
+			}
+			.part-divider .plabel {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 12.5px;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				color: var(--gold);
+				background: var(--ink);
+				display: inline-block;
+				padding: 8px 18px;
+				border-radius: 20px;
+			}
+			.part-divider .ptitle {
+				font-family: "Playfair Display", serif;
+				font-weight: 700;
+				font-size: 27px;
+				color: var(--ink);
+				margin: 14px 0 2px;
+			}
+			.part-divider .pdesc {
+				color: var(--muted);
+				font-size: 15px;
+				margin: 0 0 6px;
+			}
+			.note {
+				font-size: 14px;
+				color: var(--muted);
+				font-style: italic;
+				margin: 8px 0 16px;
+			}
+			.footer {
+				max-width: 960px;
+				margin: 0 auto;
+				padding: 40px 48px 70px;
+				color: var(--muted);
+				font-size: 13px;
+				font-family: "IBM Plex Mono", monospace;
+				text-align: center;
+			}
+			@media (max-width: 880px) {
+				#sidebar {
+					position: fixed;
+					left: 0;
+					top: 0;
+					bottom: 0;
+					width: 260px;
+					transform: translateX(-100%);
+					transition: transform 0.25s ease;
+				}
+				#sidebar.open {
+					transform: translateX(0);
+				}
+				#main {
+					margin-left: 0;
+				}
+				.chapter {
+					padding: 44px 22px 8px;
+				}
+				.cover {
+					padding: 58px 22px 42px;
+				}
+				.chapter-sub {
+					margin-left: 0;
+					margin-top: 2px;
+				}
+				.chapter-head {
+					gap: 12px;
+				}
+				body {
+					font-size: 16.5px;
+				}
+				.part-divider {
+					padding: 30px 22px 0;
+				}
+			}
+			#menu-btn {
+				display: none;
+				position: fixed;
+				top: 16px;
+				left: 16px;
+				z-index: 60;
+				width: 44px;
+				height: 44px;
+				border-radius: 50%;
+				background: var(--ink);
+				border: 2px solid var(--gold);
+				color: var(--gold-2);
+				font-size: 18px;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+			}
+			@media (max-width: 880px) {
+				#menu-btn {
+					display: flex;
+				}
+			}
+			.master-section {
+				background: #212121;
+				color: #ececec;
+				padding: 70px 48px 80px;
+				border-top: 1px solid #3a3a3a;
+			}
+			.master-inner {
+				max-width: 1180px;
+				margin: 0 auto;
+			}
+			.master-section .master-eyebrow {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 11.5px;
+				text-transform: uppercase;
+				letter-spacing: 0.12em;
+				color: #a8a8a8;
+				margin-bottom: 10px;
+			}
+			.master-section h2 {
+				font-family: "Playfair Display", serif;
+				font-size: clamp(26px, 3vw, 34px);
+				color: #f5f5f5;
+				margin: 0 0 8px;
+				line-height: 1.25;
+			}
+			.master-section .master-sub {
+				color: #b8b8b8;
+				font-size: 15px;
+				line-height: 1.7;
+				margin: 0 0 24px;
+			}
+			.master-table-wrap {
+				overflow-x: auto;
+				border: 1px solid #3d3d3d;
+				border-radius: 8px;
+				background: #212121;
+			}
+			.master-table {
+				width: 100%;
+				min-width: 760px;
+				margin: 0;
+				border-collapse: collapse;
+				font-size: 15px;
+				color: #e8e8e8;
+			}
+			.master-table th,
+			.master-table td {
+				padding: 12px 14px;
+				text-align: left;
+				vertical-align: top;
+				border-bottom: 1px solid #3a3a3a;
+				line-height: 1.6;
+			}
+			.master-table thead th {
+				background: #2f2f2f;
+				color: #f5f5f5;
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 12px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+				position: sticky;
+				top: 0;
+				z-index: 2;
+			}
+			.master-table tbody tr:nth-child(even) {
+				background: #292929;
+			}
+			.master-table tbody tr:hover {
+				background: #333333;
+			}
+			.master-table tbody tr:last-child td {
+				border-bottom: none;
+			}
+			.master-table td:first-child {
+				width: 160px;
+				color: #f0f0f0;
+				font-family: "IBM Plex Mono", monospace;
+				font-weight: 600;
+				white-space: nowrap;
+			}
+			.master-table td:nth-child(2) {
+				color: #f0f0f0;
+				font-weight: 600;
+			}
+			.master-table td:nth-child(3) {
+				color: #bdbdbd;
+			}
+			@media (max-width: 880px) {
+				.master-section {
+					padding: 52px 22px 60px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<button id="menu-btn" aria-label="Toggle chapter index">☰</button>
+		<aside id="sidebar">
+			<div class="brand">
+				<div class="stamp">1763–1947</div>
+				<h1>Civil Resistance</h1>
+				<p>People's Resistance vs. British · BPSC Dossier</p>
+			</div>
+			<nav class="toc" id="toc"></nav>
+			<div class="legend-box">
+				<h3>Marker Key</h3>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="background: var(--hl-y)"
+					></span
+					>Core concept / policy
+				</div>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="background: var(--hl-b)"
+					></span
+					>Hard fact / date / number
+				</div>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="background: var(--hl-g)"
+					></span
+					>Person / place / institution
+				</div>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="background: var(--hl-r)"
+					></span
+					>MCQ trap / confusion
+				</div>
+				<div class="legend-row">
+					<span
+						class="legend-swatch"
+						style="
+							background: var(--ctx-bg);
+							border: 1px solid var(--ctx-bd);
+						"
+					></span
+					>Context box (fills narration gaps)
+				</div>
+			</div>
+		</aside>
+		<div id="main">
+			<section class="cover">
+				<div class="eyebrow">
+					Case File · Civil Rebellions, Tribal Revolts, Sepoy
+					Mutinies, Peasant Uprisings & Labour Movements — 1763 to
+					1951
+				</div>
+				<h1>
+					Every act of resistance India's ordinary people mounted
+					before Independence, in one ledger.
+				</h1>
+				<p class="sub">
+					Theory (standard textbook coverage) fused with every fact
+					buried inside Ghatnachakra-style PYQ explanations — civil
+					rebellions, tribal insurrections, pre-1857 sepoy mutinies,
+					peasant movements, North-East uprisings, and the
+					working-class/trade-union movement — sorted topic-wise,
+					tabulated wherever the data allows, with duplicate facts
+					from theory and PYQ merged into single entries.
+				</p>
+				<div class="tags">
+					<span class="tag">Civil Rebellions</span>
+					<span class="tag">Tribal Revolts (3 Phases)</span>
+					<span class="tag">Peasant Movements</span>
+					<span class="tag">Working Class Movement</span>
+				</div>
+			</section>
+			<div class="chapters">
+				<!-- ============ CHAPTER 1 ============ -->
+				<section
+					class="chapter"
+					id="ch1"
+					data-title="Civil Rebellions (1763–1844)"
+				>
+					<div class="chapter-head">
+						<div class="seal">1</div>
+						<h2>Civil Rebellions (1763–1844)</h2>
+					</div>
+					<div class="chapter-sub">
+						The earliest resistance — zamindars, peasants, sanyasis,
+						disbanded soldiers
+					</div>
+
+					<table>
+						<caption>
+							Master table — civil rebellions at a glance
+						</caption>
+						<thead class="blue">
+							<tr>
+								<th>Name &amp; Year (Region)</th>
+								<th>Leaders</th>
+								<th>Cause</th>
+								<th>British Response / Outcome</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<b>Sanyasi Revolt</b><br /><mark class="b"
+										>1763–1800</mark
+									>, Bengal &amp; Bihar
+								</td>
+								<td>
+									<mark class="g">Majnum/Maznoom Shah</mark>,
+									Chirag Ali, Musa Shah,
+									<mark class="g">Bhawani Pathak</mark>,
+									<mark class="g"
+										>Devi/Debi Choudharani/Chaudharani</mark
+									>
+								</td>
+								<td>
+									<mark class="b">1770 Bengal famine</mark>,
+									high revenue demands, dispossession of
+									zamindars,
+									<mark class="y"
+										>British restriction on pilgrimage</mark
+									>
+									to Hindu &amp; Muslim sacred sites; Hindu
+									and Muslim sanyasis/fakirs united
+								</td>
+								<td>
+									Suppressed by military action under
+									<mark class="g">Warren Hastings</mark>;
+									inspired
+									<mark class="g"
+										>Bankim Chandra Chatterjee's</mark
+									>
+									<i>Anandamath</i> &amp;
+									<mark class="y">"Vande Mataram"</mark>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Moamarias Revolt</b><br /><mark class="b"
+										>1769–1799</mark
+									>, Assam
+								</td>
+								<td><mark class="g">Aniruddhadeva</mark></td>
+								<td>
+									Discontent with Ahom kingdom's policies;
+									British interference destabilised region
+								</td>
+								<td>
+									British assisted Ahoms in suppression but
+									failed to prevent later Burmese invasion;
+									Ahom kingdom weakened → eventual British
+									annexation of Assam
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Civil Uprisings, Gorakhpur &amp; Basti</b
+									><br /><mark class="b">1781</mark>, UP
+								</td>
+								<td>
+									Zamindars &amp; cultivators vs. British
+									agent
+									<mark class="g">Alexander Hannay</mark>
+								</td>
+								<td>Excessive revenue demands by Hannay</td>
+								<td>
+									British military intervention → Hannay
+									dismissed; end of
+									<mark class="y">Izara system</mark>;
+									zamindars regained control
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Midnapore &amp; Dhalbhum Revolt</b
+									><br /><mark class="b">1766–74</mark>,
+									Bengal
+								</td>
+								<td>
+									<mark class="g">Damodar Singh</mark>,
+									<mark class="g">Jagannath Dhal</mark>
+								</td>
+								<td>
+									Resentment against new British revenue
+									system
+								</td>
+								<td>
+									Suppressed; consolidated British control,
+									marginalised zamindars
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Poligars' Revolt</b><br /><mark class="b"
+										>1795–1805</mark
+									>, Tamil Nadu
+								</td>
+								<td>
+									<mark class="g">Kattaboman Nayakan</mark>,
+									<mark class="g">Oomanthurai</mark>
+								</td>
+								<td>
+									British revenue policies; loss of autonomy
+									of local Poligar chieftains
+								</td>
+								<td>
+									<mark class="g">Kattaboman</mark> executed;
+									became a regional hero symbolising
+									resistance
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Ganjam &amp; Gumsur Uprising</b
+									><br /><mark class="b">1800; 1808–1837</mark
+									>, Odisha
+								</td>
+								<td>
+									Local zamindars &amp; peasants — Ganjam
+									(<mark class="b">1800–1805</mark>) led by
+									<mark class="g">Dhananjay</mark>; Gumsur
+									first under
+									<mark class="g">Shrikar Bhanja</mark>, then
+									his son
+									<mark class="g">Dhananjay Bhanja II</mark>
+								</td>
+								<td>
+									Oppressive taxation, harsh revenue policies
+								</td>
+								<td>
+									British suppression; established British
+									authority in Ganjam &amp; Gumsur
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Palamau Uprisings</b><br /><mark
+										class="b"
+										>1800–02</mark
+									>, Jharkhand
+								</td>
+								<td>
+									Tribal chieftains &amp; peasant
+									<mark class="g">Bhukhan Singh</mark>
+								</td>
+								<td>
+									Exploitation through revenue collection,
+									loss of tribal autonomy
+								</td>
+								<td>
+									Suppressed; British strengthened control
+									over Chhotanagpur
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Kerala Varma Pazhassi Raja Revolt</b
+									><br /><mark class="b">1797–1805</mark>,
+									Kerala (Malabar/Wayanad)
+								</td>
+								<td>
+									<mark class="g"
+										>Kerala Varma Pazhassi Raja</mark
+									>, supported by Nairs, Mappilas &amp;
+									Pathans; Nair Army commander
+									<mark class="g">Edachana Kungan Nair</mark>
+								</td>
+								<td>
+									Discontent with British tax policies &amp;
+									the Wayanad dispute
+								</td>
+								<td>
+									In <mark class="b">1802</mark> Kungan Nair's
+									Nair troops were the backbone of Pazhassi
+									Raja's attack on the British Military Camp
+									in Wayanad; suppressed, Pazhassi Raja
+									eventually died — symbol of resistance in
+									Kerala
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Vizianagaram Rebellion</b><br /><mark
+										class="b"
+										>1794</mark
+									>, Andhra Pradesh
+								</td>
+								<td>Raja of Vizianagaram</td>
+								<td>
+									British revenue demands, loss of autonomy,
+									broken British promises
+								</td>
+								<td>
+									Raja killed; British later reconciled with
+									his son; Vizianagaram brought under direct
+									British influence
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Awadh Civil Rebellion</b><br /><mark
+										class="b"
+										>1799</mark
+									>, Eastern UP
+								</td>
+								<td>Zamindars &amp; peasants</td>
+								<td>
+									British interference in Awadh's traditional
+									administration
+								</td>
+								<td>
+									Suppressed by British military; Awadh's
+									local control diminished
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Haryana Uprisings (Bhiwani)</b
+									><br /><mark class="b">1803</mark> onwards
+								</td>
+								<td>Local chieftains &amp; peasants</td>
+								<td>
+									Cession of Haryana to British after
+									<mark class="y"
+										>Treaty of Surji-Arjungaon</mark
+									>
+								</td>
+								<td>
+									Suppressed; Haryana integrated into British
+									India
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Bundelkhand Disturbances</b><br /><mark
+										class="b"
+										>1808–12</mark
+									>
+								</td>
+								<td>Local chieftains &amp; peasants</td>
+								<td>
+									Resentment over contractual obligations
+									(<mark class="y">Ikarnamahs</mark>) imposed
+									by British
+								</td>
+								<td>
+									Suppressed; consolidated British power in
+									Bundelkhand
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Dewan Velu Thambi Revolt</b><br /><mark
+										class="b"
+										>1808–1809</mark
+									>, Travancore
+								</td>
+								<td>
+									<mark class="g">Dewan Velu Thambi</mark>,
+									supported by Nair troops/battalion
+								</td>
+								<td>
+									In <mark class="b">1805</mark> Wellesley
+									compelled the Maharaja of Travancore
+									(Kerala) into the
+									<mark class="y">subsidiary alliance</mark>;
+									Maharaja unhappy, hesitated; British
+									resident's rude, hateful behaviour
+								</td>
+								<td>
+									Suppression led to Thambi's death; British
+									dominance in Travancore reaffirmed
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Parlakimedi Uprising</b><br /><mark
+										class="b"
+										>1813–34</mark
+									>, Odisha
+								</td>
+								<td>
+									Local tribal leaders &amp; zamindars (<mark
+										class="g"
+										>Narayan Deo</mark
+									>, <mark class="g">Gajpati Deo</mark>)
+								</td>
+								<td>Excessive land &amp; revenue taxes</td>
+								<td>
+									Suppression, administrative adjustments;
+									formally integrated into British control
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Bareilly Rising</b><br /><mark class="b"
+										>1816</mark
+									>, UP
+								</td>
+								<td>
+									Zamindars &amp; peasants, led by
+									<mark class="g">Mufti Muhammad Aiwaz</mark>
+								</td>
+								<td>
+									Discontent with British-imposed
+									<mark class="y">police tax</mark>
+								</td>
+								<td>
+									Suppression, leaders captured/executed;
+									highlighted widespread discontent with
+									colonial taxation
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Paika Rebellion</b><br /><mark class="b"
+										>1817</mark
+									>, Odisha (Khordha)
+								</td>
+								<td>
+									<mark class="g"
+										>Bakshi Jagabandhu Bidyadhar</mark
+									>
+									— full name
+									<mark class="g"
+										>Jagabandhu Vidyadhar Mahapatra
+										Bhramarbar Ray</mark
+									>, born at Rorunga near Puri
+								</td>
+								<td>
+									Forced land dispossession, revenue demands,
+									currency devaluation
+								</td>
+								<td>
+									Suppression, leaders arrested/executed;
+									demonstrated early anti-British sentiment;
+									later minor tax &amp; land reforms
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Kutch Rebellion</b><br /><mark class="b"
+										>1816–1832</mark
+									>, Gujarat
+								</td>
+								<td>
+									Maharaja <mark class="g">Bharamal II</mark>
+								</td>
+								<td>
+									British interference in Kutch's
+									administration
+								</td>
+								<td>
+									Military action followed by reconciliation;
+									British influence limited, some autonomy
+									preserved
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Waghera Rising</b><br /><mark class="b"
+										>1818–1820</mark
+									>
+									(Okhamandal region), Gujarat
+								</td>
+								<td>
+									Waghera chieftains (Gaekwad of Baroda,
+									supported by British, compelled them to
+									arms)
+								</td>
+								<td>Dispute over Baroda's fortification</td>
+								<td>
+									Peace treaty concluded revolt in
+									<mark class="b">1820</mark>; set precedent
+									for negotiated solutions (a related episode
+									is also recorded 1858–59 in Okhamandal)
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Wahabi Movement</b><br /><mark class="b"
+										>1830–1861</mark
+									>, Bengal, Bihar, NWFP, Punjab
+								</td>
+								<td>
+									<mark class="g">Syed Ahmed Barelvi</mark>,
+									<mark class="g">Titu Mir</mark>
+								</td>
+								<td>
+									Islamic revivalism with anti-British
+									objectives
+								</td>
+								<td>
+									Military suppression of Wahabi cells; spread
+									anti-colonial ideology, influenced future
+									freedom movements
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Satara Revolt</b><br /><mark class="b"
+										>1840</mark
+									>, Maharashtra
+								</td>
+								<td>
+									<mark class="g">Dhar Rao Pawar</mark>,
+									<mark class="g"
+										>Narasingh/Narsingh Petkar</mark
+									>
+								</td>
+								<td>
+									Deposition of Chhatrapati
+									<mark class="g">Pratapsingh</mark> by the
+									British
+								</td>
+								<td>Suppressed; fuelled Maratha resentment</td>
+							</tr>
+							<tr>
+								<td>
+									<b>Gadkari Revolt</b><br /><mark class="b"
+										>1844–45</mark
+									>, Maharashtra (Kolhapur)
+								</td>
+								<td>
+									Gadkari community — hereditary
+									fort-servants/garrison men of Maratha forts
+								</td>
+								<td>
+									Dismissed from traditional fort service
+									under British administrative changes; lands
+									brought under Mamlatdar control
+								</td>
+								<td>
+									Suppressed by British; extended British
+									control over Marathas
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Sanyasi Revolt — extended detail</h3>
+						<ul>
+							<li>
+								Participants:
+								<mark class="y">landless peasants</mark>,
+								displaced zamindars, disbanded soldiers,
+								impoverished masses, plus active
+								<mark class="g">Sanyasis and Fakirs</mark>.
+							</li>
+							<li>
+								Character: attacks on British factories, seizing
+								goods, cash, arms and ammunition — a unified
+								Hindu-Muslim monastic resistance.
+							</li>
+							<li>
+								<mark class="y">"Vande Mataram"</mark> is
+								derived from <i>Anandamath</i> by
+								<mark class="g">Bankim Chandra Chatterjee</mark
+								>, whose plot is based on the Sanyasi Revolt; it
+								was
+								<mark class="b"
+									>first sung at the Calcutta Congress session
+									of 1896</mark
+								>
+								(primarily by Rabindranath Tagore, per one
+								account).
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Wahabi Movement — extended detail</h3>
+						<ul>
+							<li>
+								Proponent:
+								<mark class="g">Syed Ahmad Barelvi</mark> of Rae
+								Bareli — inspired by
+								<mark class="g">Abdul Wahab</mark> of Arabia,
+								but in India the movement was chiefly inspired
+								by <mark class="g">Shah Waliullah</mark> of
+								Delhi.
+							</li>
+							<li>
+								Spread to the North-West Frontier Provinces,
+								Bengal, Bihar, Kabul and Central Provinces.
+							</li>
+							<li>
+								Captured <mark class="g">Peshawar</mark> in
+								<mark class="b">1830</mark>, issued coins in his
+								own name; killed at the
+								<mark class="b">Battle of Balakot (1831)</mark>.
+							</li>
+							<li>
+								After his death, leadership passed to
+								<mark class="g"
+									>Maulavi Qasim, Vilayat Ali, Inayat Ali,
+									Ahmadullah</mark
+								>; <mark class="g">Patna</mark> became the
+								movement's chief centre, later branches in
+								Hyderabad, Madras, Bengal, UP and Bombay.
+							</li>
+						</ul>
+						<div class="trap">
+							<span class="lbl">Trap</span>Chief centre of the
+							Wahabi Movement in the 19th century was
+							<mark class="g">Patna</mark>, not Lahore, Amritsar
+							or Pune (UPPCS 1994).
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>
+							Namdhari / Kuka Movement — socio-religious reform
+							among Sikhs
+						</h3>
+						<ul>
+							<li>
+								Initiated by
+								<mark class="g"
+									>Bhagat Jawahar Mal (Sai Sahib)</mark
+								>
+								and <mark class="g">Baba Balak Singh</mark> —
+								devotion to one God, spiritual purity, revival
+								of Sikh values.
+							</li>
+							<li>
+								Developed under
+								<mark class="g">Baba Ram Singh (1816–1885)</mark
+								>, who organised the Namdhari sect; movement
+								called "Kuka" because followers shouted ecstatic
+								cries ("Kuk") during devotion.
+							</li>
+							<li>
+								Baba Ram Singh preached monotheism, Naam Simran,
+								moral discipline; opposed caste system, female
+								infanticide, early marriage, exchange of
+								daughters in marriage; popularised inexpensive
+								<mark class="y">Anand marriages</mark>.
+							</li>
+							<li>
+								The <mark class="b">1872 Kuka uprising</mark> in
+								Punjab against cow slaughter &amp; British
+								authority was severely suppressed; Ram Singh
+								died in <mark class="b">1885</mark> in exile as
+								a state prisoner at Mergui, Burma (Myanmar),
+								where he had been held since 1872.
+							</li>
+						</ul>
+						<div class="trap">
+							<span class="lbl">Trap</span>Kuka Movement was
+							founded/organised by
+							<mark class="g">Guru Ram Singh</mark> — not Guru Ram
+							Das, Guru Nanak, or Guru Gobind Singh (45th BPSC
+							2001). It originated in
+							<mark class="g">Punjab</mark>, not Bengal, Bihar or
+							Maharashtra.
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>Pagal Panth &amp; the Faraizis</h3>
+						<ul>
+							<li>
+								<b>Pagal Panth</b>: semi-religious group founded
+								by <mark class="g">Karim/Karam Shah</mark>; son
+								<mark class="g">Tipu Shah</mark> (leader from
+								<mark class="b">1813</mark> after his father's
+								death, formally from
+								<mark class="b">1852</mark>) organised tribal
+								peasants (of the
+								<mark class="g">Garo</mark> tribe) against
+								zamindar oppression in
+								<mark class="y">Sherpur</mark> (Mymensingh,
+								earlier Bengal),
+								<mark class="b">1825–1833</mark>.
+							</li>
+							<li>
+								Tipu Shah declared land belonged equally to all
+								as God's creation; with his mother
+								<mark class="g">Chandi Bibi (Pir-Mata)</mark>,
+								established an independent administration at
+								<mark class="g">Gar-jaripa</mark> (a mud fort)
+								for over two years, appointing a judge,
+								magistrate and collector.
+							</li>
+							<li>
+								Cause worsened after the
+								<mark class="b">1820</mark> division of Sherpur
+								zamindari — litigation and Company financial
+								pressure raised tax burdens.
+							</li>
+							<li>
+								Tipu Shah arrested multiple times (Dec 1824–Jan
+								1825), tried and imprisoned; leaders
+								<mark class="g">Janku Pathor</mark> and
+								<mark class="g">Dubraj Pathor</mark> continued
+								the movement afterward.
+							</li>
+							<li>
+								Government eventually responded with rent
+								reduction/concessions; the movement divided and
+								subsided.
+							</li>
+							<li>
+								<b>Faraizis</b>: followers of
+								<mark class="g">Haji Shariatullah</mark> of
+								Faridpur, Eastern Bengal — radical religious,
+								social, political change. Son
+								<mark class="g">Dudu Miyan</mark> organised
+								followers against oppressive landlords and
+								Indigo planters; revolt ran
+								<mark class="b">1818–1862</mark>, later merging
+								into the Wahabi Movement.
+							</li>
+						</ul>
+						<div class="trap">
+							<span class="lbl">Trap</span>Pagalpanthi rebellion
+							belonged to the <mark class="g">Garo</mark> tribe —
+							not Bhils, Gonds or Koliyas (UPPCS 1999).
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>
+							Vasudev Balwant Phadke &amp; the (later) Ramosi
+							Uprising
+						</h3>
+						<ul>
+							<li>
+								<mark class="g"
+									>Vasudev Balwant Phadke (1845–83)</mark
+								>
+								— one of the earliest Indian revolutionaries;
+								organised the
+								<mark class="g">Ramoshi</mark> tribes into a
+								fighting force and founded the
+								<mark class="y"
+									>Ramosi Krishak Jatha / Ramoshi farmers'
+									group</mark
+								>
+								(39th BPSC 1994).
+							</li>
+							<li>
+								Protested the British government's oppressive
+								land-tax policies and its neglect during the
+								<mark class="b">Deccan famine of 1876–1878</mark
+								>.
+							</li>
+							<li>
+								Lacking funds, turned to raiding government
+								treasuries — first raid at
+								<mark class="g">Dhamari</mark> (Pune district)
+								targeting stored income tax; further treasury
+								raids at <mark class="g">Shirur</mark> and
+								<mark class="g">Khed</mark> talukas to support
+								starving villagers; strategically disabled
+								British communication lines.
+							</li>
+							<li>
+								Uprising weakened when British forces ambushed
+								and shot a leader, <mark class="g">Naik</mark>;
+								Phadke was eventually arrested, sentenced to
+								life, and died in
+								<mark class="b">1883</mark> after a hunger
+								strike against colonial rule in the Andamans
+								(Kala Pani).
+							</li>
+						</ul>
+						<div class="ctx">
+							<span class="lbl"
+								>Context — distinguish from the earlier tribal
+								Ramosi Uprising</span
+							>A separate, earlier
+							<b>tribal Ramosi Uprising (1822–1829)</b> in the
+							<mark class="g">Western Ghats</mark>
+							(Karnataka/Maharashtra/MP) was led by
+							<mark class="g">Chittur/Chittar Singh</mark>,
+							<mark class="g">Umaji Naik</mark> and
+							<mark class="g">Bapu Trimbakji Sawant</mark> —
+							former Maratha soldiers resisting British annexation
+							of Satara (see Ch. 3). Phadke's 1877–87 movement is
+							a distinct, later event with the same community
+							name.
+						</div>
+						<div class="trap">
+							<span class="lbl">Trap</span>Geographical location
+							of the (tribal) Ramosi Uprising was the
+							<mark class="g">Western Ghats</mark> — not Eastern
+							Ghats, Eastern India or Western India (56th–59th
+							BPSC 2015).
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>
+							Chronological ordering — pre-1857 revolts
+							(high-yield PYQ pattern)
+						</h3>
+						<div class="trap">
+							<span class="lbl"
+								>Trap — correct chronological order</span
+							>
+							<ul>
+								<li>
+									<mark class="b"
+										>Bengal Sepoy Mutiny (1764)</mark
+									>
+									→
+									<mark class="b">Vellore Mutiny (1806)</mark>
+									→
+									<mark class="b"
+										>Kutch Rebellion (1816–32)</mark
+									>
+									→
+									<mark class="b"
+										>Kol Uprising (1831–32)</mark
+									>
+									→
+									<mark class="b"
+										>Santhal Revolt (1855–56)</mark
+									>
+									(R.A.S./R.T.S. 2013).
+								</li>
+								<li>
+									Revolt sequence —
+									<mark class="b">Sanyasi (1763–1800)</mark> →
+									<mark class="b"
+										>Indigo Revolt (1859–60)</mark
+									>
+									→
+									<mark class="b"
+										>Kuka/Namdhari Rebellion (peak
+										1871–72)</mark
+									>
+									→
+									<mark class="b"
+										>Pabna Movement (1873–76)</mark
+									>
+									(UPPCS 2025).
+								</li>
+								<li>
+									Also:
+									<mark class="b">Sanyasi (1763–1800)</mark> →
+									<mark class="b">Santhal (1855–56)</mark> →
+									<mark class="b"
+										>Indigo Revolt (1859–60)</mark
+									>
+									→
+									<mark class="b">Deccan Riots (1875)</mark> —
+									Indigo Revolt is the one that occurred in
+									Bengal
+									<i>immediately after the Revolt of 1857</i>
+									(IAS Pre 1994).
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<!-- ============ CHAPTER 2 ============ -->
+				<section
+					class="chapter"
+					id="ch2"
+					data-title="Military Uprisings Before 1857"
+				>
+					<div class="chapter-head">
+						<div class="seal">2</div>
+						<h2>Military Uprisings Before 1857</h2>
+					</div>
+					<div class="chapter-sub">
+						Sepoy discontent that foreshadowed the Great Revolt
+					</div>
+
+					<div class="factbox">
+						<span class="lbl">Causes</span>
+						<dl>
+							<dt>Discrimination</dt>
+							<dd>
+								Sepoys faced
+								<mark class="y"
+									>unequal pay and limited promotions</mark
+								>
+								compared to British soldiers.
+							</dd>
+							<dt>Mistreatment</dt>
+							<dd>
+								Frequent abuse by British officials fuelled
+								resentment.
+							</dd>
+							<dt>Foreign Service Allowance</dt>
+							<dd>
+								Sepoys were not compensated when sent on distant
+								postings (denial of allowance).
+							</dd>
+							<dt>Religious concerns</dt>
+							<dd>
+								The
+								<mark class="y"
+									>General Service Enlistment Act (1856)</mark
+								>
+								required sepoys to serve overseas, conflicting
+								with high-caste Hindu beliefs; replacement of
+								the turban with a leather cockade (<mark
+									class="b"
+									>1806</mark
+								>) and orders to cross the sea (loss of caste)
+								were other flashpoints.
+							</dd>
+							<dt>Alignment with civilians</dt>
+							<dd>
+								Sepoys shared the wider population's social,
+								religious and economic discontent.
+							</dd>
+						</dl>
+					</div>
+
+					<table>
+						<caption>
+							Major pre-1857 mutinies
+						</caption>
+						<thead class="red">
+							<tr>
+								<th>Mutiny</th>
+								<th>Year</th>
+								<th>Detail</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Bengal Sepoy Mutiny</td>
+								<td><mark class="b">1764</mark></td>
+								<td>
+									A group of sepoys in
+									<mark class="g">Hector Munro's</mark> army
+									revolted and joined the side of
+									<mark class="g">Mir Qasim</mark> during the
+									<mark class="y">Battle of Buxar</mark>.
+								</td>
+							</tr>
+							<tr>
+								<td>Vellore Mutiny</td>
+								<td><mark class="b">1806</mark></td>
+								<td>
+									Revolt against interference with sepoys'
+									social &amp; religious practices; rebels
+									raised the flag of the Raja of
+									<mark class="g">Mysore</mark>. Occurred
+									during the tenure of Governor-General Sir
+									<mark class="g"
+										>George Barlow (1805–1807)</mark
+									>. British withdrew the offending dress code
+									afterward.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									47th Native Infantry Mutiny / Barrackpur
+									Mutiny
+								</td>
+								<td><mark class="b">November 1824</mark></td>
+								<td>
+									Occurred over forced overseas deployment.
+								</td>
+							</tr>
+							<tr>
+								<td>Grenadier Company Revolt</td>
+								<td><mark class="b">1825</mark>, Assam</td>
+								<td>—</td>
+							</tr>
+							<tr>
+								<td>Sholapur Mutiny</td>
+								<td><mark class="b">1838</mark></td>
+								<td>—</td>
+							</tr>
+							<tr>
+								<td>
+									Mutinies of the 34th, 22nd, 66th &amp; 37th
+									Native Infantry
+								</td>
+								<td><mark class="b">1844–1852</mark></td>
+								<td>
+									Sporadic revolts across different regiments.
+								</td>
+							</tr>
+							<tr>
+								<td>Berhampur Revolt</td>
+								<td><mark class="b">February 1857</mark></td>
+								<td>
+									Immediate precursor of the general 1857
+									revolt.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="trap">
+						<span class="lbl">Trap</span>Vellore Mutiny occurred
+						under Governor
+						<mark class="g">Sir George Barlow</mark> — not
+						Wellesley, Lord Minto or Lord Cornwallis (Chhattisgarh
+						PCS 2016).
+					</div>
+				</section>
+				<div class="part-divider">
+					<span class="plabel">Part II · Tribal Revolts</span>
+					<div class="ptitle">
+						Three phases of tribal resistance, 1795–1947
+					</div>
+					<p class="pdesc">
+						The common factor across every tribal movement:
+						<mark class="y"
+							>complete disruption of the old agrarian order of
+							the tribal communities</mark
+						>
+						(I.A.S. Pre 2011 — correct answer over new land-revenue
+						systems, missionary influence, or moneylender intrusion
+						alone, though all three were contributing symptoms).
+					</p>
+				</div>
+
+				<!-- ============ CHAPTER 3 ============ -->
+				<section
+					class="chapter"
+					id="ch3"
+					data-title="Tribal Revolts — First Phase (1795–1860)"
+				>
+					<div class="chapter-head">
+						<div class="seal">3</div>
+						<h2>Tribal Revolts — First Phase (1795–1860)</h2>
+					</div>
+					<div class="chapter-sub">
+						Resistance to settled agriculture, revenue demands, and
+						outsider intrusion
+					</div>
+
+					<table>
+						<caption>
+							First-phase tribal revolts
+						</caption>
+						<thead class="green">
+							<tr>
+								<th>Revolt</th>
+								<th>Year &amp; Region</th>
+								<th>Leader(s)</th>
+								<th>Cause / Features</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Pahariya Rebellion</td>
+								<td>
+									<mark class="b">1778</mark>, Rajmahal Hills
+								</td>
+								<td><mark class="g">Raja Jagannath</mark></td>
+								<td>
+									Resistance to British-imposed settled
+									agriculture; disruption of traditional
+									raiding/tribute practices; British made
+									concessions to local chiefs.
+								</td>
+							</tr>
+							<tr>
+								<td>Revolt of Tilka Manjhi</td>
+								<td>
+									<mark class="b">1778–1785</mark>, Santhal
+									Pargana
+								</td>
+								<td>
+									<mark class="g"
+										>Tilka Manjhi (Jabra Paharia)</mark
+									>
+								</td>
+								<td>
+									Opposed British undermining of tribal
+									traditions; led guerrilla attacks, looted
+									the British treasury; defeated in
+									<mark class="b">1785</mark> — early symbol
+									of resistance.
+								</td>
+							</tr>
+							<tr>
+								<td>Chuar Uprising (Jungle Mahal Rebellion)</td>
+								<td>
+									<mark class="b">1766–72, 1795–1816</mark>,
+									Bengal
+								</td>
+								<td>
+									<mark class="g"
+										>Durjan Singh, Madhab Singh, Raja Mohan
+										Singh, Lachman Singh, Jagannath
+										Singh</mark
+									>
+								</td>
+								<td>
+									Increased taxes and the
+									<mark class="y">Permanent Settlement</mark>;
+									rebellions across
+									<mark class="g"
+										>Bankura, Midnapore, Manbhum</mark
+									>; suppressed.
+								</td>
+							</tr>
+							<tr>
+								<td>Tamar Revolts (Oraon &amp; Munda)</td>
+								<td>
+									<mark class="b">1798</mark>;
+									<mark class="b">1914–15</mark>, Tamar,
+									Chotanagpur
+								</td>
+								<td>
+									<mark class="g"
+										>Bholanath Sahay (1798–1832)</mark
+									>;
+									<mark class="g"
+										>Jatra Bhagat, Balram Bhagat
+										(1914–15)</mark
+									>
+								</td>
+								<td>
+									Economic exploitation, loss of tribal lands
+									to landlords/moneylenders, cultural
+									interference; violent clashes with British;
+									tribal warriors attacked revenue officials,
+									zamindars, police posts; crushed with
+									leaders arrested/executed.
+								</td>
+							</tr>
+							<tr>
+								<td>Bhil Uprising</td>
+								<td>
+									<mark class="b">1817–19 / 1818–31</mark>,
+									Western Ghats, Khandesh, South Rajasthan
+								</td>
+								<td>
+									<mark class="g">Govind Guru</mark> (also
+									called Lasodhiya; later
+									<mark class="b">1913 Mangarh Massacre</mark
+									>)
+								</td>
+								<td>
+									Resisted British control of mountain routes
+									&amp; tribute systems; economic hardship.
+									Spread across Gujarat, Maharashtra, Madhya
+									Pradesh; suppressed.
+								</td>
+							</tr>
+							<tr>
+								<td>Ahom Revolt</td>
+								<td><mark class="b">1828–1833</mark>, Assam</td>
+								<td>
+									<mark class="g"
+										>Gomadhar Konwar / Gomdhar Kunwar</mark
+									>, <mark class="g">Dhanjay Borgohain</mark>,
+									<mark class="g"
+										>Jairam Khargharia Phukan</mark
+									>
+								</td>
+								<td>
+									Ahom nobility's demand for restoration of
+									Ahom rule; resistance to British
+									administrative integration; suppressed by
+									British military.
+								</td>
+							</tr>
+							<tr>
+								<td>Kol Mutiny</td>
+								<td>
+									<mark class="b">1831–32</mark>, Chotanagpur
+									region
+								</td>
+								<td>
+									<mark class="g">Buddho Bhagat</mark> (66th
+									BPSC) — some sources also credit
+									<mark class="g">Ganga Narayan</mark>
+								</td>
+								<td>
+									Resistance to British revenue policies &amp;
+									land-right exploitation; suppressed.
+								</td>
+							</tr>
+							<tr>
+								<td>Santhal Rebellion</td>
+								<td>
+									<mark class="b">1855–56</mark>, Rajmahal
+									Hills (70th BPSC Re-exam)
+								</td>
+								<td>
+									<mark class="g"
+										>Sidhu Murmu, Kanhu Murmu</mark
+									>
+									(+ brothers Chand, Bhairav)
+								</td>
+								<td>
+									Resistance to land revenue policies &amp;
+									zamindar exploitation; initial territorial
+									success; suppressed but became a symbol of
+									tribal resistance — see full detail below.
+								</td>
+							</tr>
+							<tr>
+								<td>Khond Uprising</td>
+								<td>
+									<mark class="b">1837–56</mark> / doc detail
+									<mark class="b">1846–1855</mark>, Odisha,
+									Andhra Pradesh
+								</td>
+								<td><mark class="g">Chakra Bisoi</mark></td>
+								<td>
+									Opposed abolishing tribal customs, British
+									intrusion in local governance; guerrilla
+									tactics; joined by Ghumsar &amp; Kalahandi
+									tribals; opposed banning of human sacrifice
+									(<mark class="y">Mariah</mark> system) and
+									the new
+									<mark class="y">Mariah Agency</mark>;
+									subdued by British.
+								</td>
+							</tr>
+							<tr>
+								<td>Koli Uprising</td>
+								<td>
+									<mark class="b">1822–29</mark> Maharashtra;
+									<mark class="b">1857</mark> Gujarat
+								</td>
+								<td>
+									<mark class="g"
+										>Ramji Bhangre (1822–29)</mark
+									>;
+									<mark class="g"
+										>Maganlal Bhukhan, Dwarakadas, Jetha
+										Madhavji (1857)</mark
+									>
+								</td>
+								<td>
+									Taxation, land loss, British economic
+									control; uprisings in Maharashtra &amp;
+									Gujarat including during 1857; crushed but
+									indicated widespread discontent (Taranga
+									hills, Mehsana district).
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Santhal Rebellion — full picture</h3>
+						<ul>
+							<li>
+								Took place in the
+								<mark class="y">Damin-e-Koh</mark> area between
+								<mark class="g">Bhagalpur</mark> and the
+								<mark class="g">Rajmahal hills</mark>;
+								moneylenders and the British exploited Santhals
+								together, charging interest ranging from
+								<mark class="b">50 to 500%</mark>.
+							</li>
+							<li>
+								Four brothers —
+								<mark class="g"
+									>Sidhu, Kanhu, Chand, Bhairav</mark
+								>
+								— led the revolt; over
+								<mark class="b">ten thousand Santhals</mark>
+								assembled at
+								<mark class="g">Bhognadih</mark> near Barhait,
+								Sahibganj district, on
+								<mark class="b">30 June 1855</mark>, resolving
+								to fight the "<mark class="y">Dikus</mark>"
+								(corrupt government officials/outsiders), not
+								the "Sahibs" as such.
+							</li>
+							<li>
+								Sidhu reportedly told officials:
+								<mark class="y"
+									>"God said to me that this country is not of
+									bosses. God will fight from our
+									side..."</mark
+								>
+							</li>
+							<li>
+								Santhals defeated a British contingent under
+								<mark class="g">Major Burroughs</mark> at
+								<mark class="g">Pirpainati</mark>;
+								<mark class="g">Gokko</mark> was an important
+								leader of Godda, and
+								<mark class="g">Mahajan Deen Dayal Rai</mark> is
+								another notable name in this context — but
+								Santhals never held sovereignty over the Ganga
+								Valley near Muzaffarpur.
+							</li>
+							<li>
+								Finally suppressed by Commissioner of Bhagalpur
+								<mark class="g">Brown</mark> and
+								<mark class="g">Major General Lloyd</mark>;
+								<mark class="g">Sido</mark> was arrested and
+								hanged, <mark class="g">Kanu</mark> was killed
+								in action.
+							</li>
+							<li>
+								Aftermath: a separate territory called
+								<mark class="y">Santhal Parganas</mark> was
+								created; it became
+								<mark class="y"
+									>illegal for a Santhal to transfer land to a
+									non-Santhal</mark
+								>
+								(Santhal Pargana Tenancy Act) — both measures
+								confirmed (I.A.S. 2018).
+							</li>
+							<li>
+								The Santhal Pargana region was called
+								<mark class="y">Narikhand</mark> in ancient
+								times (also "Kajangala" in Buddhist literature);
+								during the Mahabharata period it was part of
+								<mark class="g">Anga Mahajanapada</mark>.
+							</li>
+						</ul>
+						<div class="trap">
+							<span class="lbl">Trap</span>Chief leader of the
+							Santhal Revolt is usually named as
+							<mark class="g">Sidhu</mark> (also accept
+							Sidhu-Kanhu jointly) — not Birsa Munda, Bhima Nayak
+							or Swami Govindgiri, who belong to different
+							revolts. Santhal Hool took place
+							<mark class="b">1855–56</mark>, not 1857–58.
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>Bhil Uprising — extended detail</h3>
+						<ul>
+							<li>
+								Bhils were concentrated in the hill ranges of
+								<mark class="g">Khandesh</mark> (Deccan table
+								land); British occupation of Khandesh in
+								<mark class="b">1818</mark> enraged them over
+								outsider incursion.
+							</li>
+							<li>
+								Officials blamed
+								<mark class="g">Peshwa Bajirao II</mark> and his
+								representative
+								<mark class="g">Trimbakji Dengle</mark> for
+								inciting the Bhils, but agricultural hardship
+								and fear of the new English government were the
+								real reasons.
+							</li>
+							<li>
+								General insurrection in
+								<mark class="b">1819</mark>; under
+								<mark class="g">Sevaram</mark>, Bhils revolted
+								again in <mark class="b">1825</mark> —
+								ruthlessly suppressed a second time.
+							</li>
+							<li>
+								Later, in the second half of the 19th century,
+								<mark class="g">Surji Bhagat</mark> and
+								<mark class="g">Govind Guru (Lasodhiya)</mark>
+								brought reforms among Bhils of Mewar, Dungarpur,
+								Banswada, Pratapgarh, Sirohi and Pali; Govind
+								Guru established the
+								<mark class="y">Samp Sabha (1883)</mark> to
+								organise Bhils — considered the founder of the
+								<mark class="y">Lasodhiya Movement</mark>.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Chuar &amp; Koli — trap notes</h3>
+						<div class="trap">
+							<span class="lbl">Trap</span>Chuar Revolt belongs to
+							<mark class="g"
+								>Bengal (Bankura &amp; Midnapore)</mark
+							>
+							— <b>not</b> Madhya Pradesh (UPPCS Mains 2015 flags
+							this as the incorrect pairing). Koli revolt
+							correctly pairs with <mark class="g">Gujarat</mark>.
+						</div>
+					</div>
+				</section>
+				<!-- ============ CHAPTER 4 ============ -->
+				<section
+					class="chapter"
+					id="ch4"
+					data-title="Tribal Revolts — Second Phase (1860–1920)"
+				>
+					<div class="chapter-head">
+						<div class="seal">4</div>
+						<h2>Tribal Revolts — Second Phase (1860–1920)</h2>
+					</div>
+					<div class="chapter-sub">
+						Ulgulan, forest-rights movements, and the rise of Birsa
+						Munda
+					</div>
+
+					<table>
+						<caption>
+							Second-phase tribal revolts
+						</caption>
+						<thead class="green">
+							<tr>
+								<th>Revolt</th>
+								<th>Year &amp; Region</th>
+								<th>Leader(s)</th>
+								<th>Cause / Features / Impact</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Naikada Movement</td>
+								<td>
+									<mark class="b">1860s</mark>, MP &amp;
+									Gujarat
+								</td>
+								<td>Unspecified</td>
+								<td>
+									Revolt against British authority and
+									upper-caste Hindus; challenged colonial and
+									caste oppression in tribal areas.
+								</td>
+							</tr>
+							<tr>
+								<td>Kharwar / Khairwar Rebellion</td>
+								<td>
+									<mark class="b">1870s / 1874</mark>, Bihar
+								</td>
+								<td><mark class="g">Bhagirath Manjhi</mark></td>
+								<td>
+									Kharwar tribes asserted traditional rights,
+									resisted British revenue settlement
+									(Jharkhand PCS 2003).
+								</td>
+							</tr>
+							<tr>
+								<td>Bhuyan &amp; Juang Rebellions</td>
+								<td>Late 19th–early 20th c., Odisha</td>
+								<td>
+									<mark class="g">Ratna Nayak</mark>,
+									<mark class="g">Dharni Dhar Nayak</mark>
+								</td>
+								<td>
+									Resistance against British-imposed forest
+									policies; encroachment and restrictive
+									policies on tribal forests.
+								</td>
+							</tr>
+							<tr>
+								<td>Bokta Rising</td>
+								<td>
+									<mark class="b">1858–1895</mark>,
+									Chotanagpur
+								</td>
+								<td>Unspecified</td>
+								<td>
+									Extended revolts by the Bokta community
+									against land exploitation; fought for land
+									rights.
+								</td>
+							</tr>
+							<tr>
+								<td>Koya Rebellion</td>
+								<td>
+									<mark class="b">1879–80</mark>, Eastern
+									Godavari tract (AP) &amp; Malkangiri region
+									(Odisha)
+								</td>
+								<td>
+									<mark class="g">Tomma Dora</mark>; after his
+									death,
+									<mark class="g">Raja Anantayyar</mark>
+									(1886)
+								</td>
+								<td>
+									Erosion of customary forest rights, heavy
+									timber/grazing taxes, police exactions,
+									moneylender exploitation, new toddy excise;
+									Tomma Dora seized a police station, defeated
+									a British contingent, gained the title
+									"King" of Malkangiri.
+								</td>
+							</tr>
+							<tr>
+								<td>Khonda Dora Campaign</td>
+								<td>
+									<mark class="b">1900</mark>, Dabur Region,
+									Visakhapatnam
+								</td>
+								<td><mark class="g">Korra Mallaya</mark></td>
+								<td>
+									Organised the Khonda Doras against British
+									incursions; protected local resources and
+									autonomy.
+								</td>
+							</tr>
+							<tr>
+								<td>Bastar Revolt</td>
+								<td><mark class="b">1910</mark>, Jagdalpur</td>
+								<td>Unspecified</td>
+								<td>
+									Significant tribal uprising against feudal
+									exploitation and forest levies.
+								</td>
+							</tr>
+							<tr>
+								<td>Tana Bhagat Movement</td>
+								<td>
+									<mark class="b">1914–1920</mark>, Oraon
+									tribes, Chotanagpur/Jharkhand
+								</td>
+								<td>
+									<mark class="g"
+										>Jatra Bhagat / Jatra Oraon</mark
+									>, <mark class="g">Balram Bhagat</mark>,
+									<mark class="g"
+										>Devmenia/Devmania Bhagat</mark
+									>
+								</td>
+								<td>
+									Economic exploitation by
+									landlords/moneylenders/British; aimed at
+									Swaraj — liberation from British and local
+									exploitation; eradicated worship of
+									ghosts/spirits/exorcism; used non-violent
+									<mark class="y">satyagraha</mark> methods
+									pre-dating Gandhi's Non-Cooperation
+									Movement; started
+									<mark class="b">1914</mark>; opposed British
+									taxes; 1921 alliance with Congress.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Ho &amp; Munda Revolt — Birsa Munda's Ulgulan</h3>
+						<ul>
+							<li>
+								<mark class="b">1765</mark>: Chotanagpur came
+								under British control as part of Bengal, Bihar
+								&amp; Orissa; the
+								<mark class="g">Raja of Singhbhum</mark> sought
+								British protection in
+								<mark class="b">1767</mark>, acknowledged
+								British feudal control in
+								<mark class="b">1820</mark>.
+							</li>
+							<li>
+								<b>Ho Revolt</b> (<mark class="b">1820–21</mark
+								>): centred in the then Santhal subdivision of
+								Bihar (now Singhbhum district, Jharkhand). Hos,
+								initially British allies, eventually broke away
+								and united with the Mundas, leading to the
+								<mark class="y">Kol Uprising (1831–33)</mark>.
+							</li>
+							<li>
+								Rebellion targeted
+								<mark class="y">dikkus</mark> (non-Adivasi
+								landowners) — burning houses, casualties.
+								British land policies undermined the traditional
+								<mark class="y">Khuntkatti system</mark> (joint
+								tenures); missionary activity undermined
+								traditional culture; moneylender exploitation of
+								land intensified suffering.
+							</li>
+							<li>
+								<b><mark class="g">Birsa Munda</mark></b>
+								(working area <mark class="g">Ranchi</mark>,
+								extending to Bhagalpur, area of influence
+								between Ranchi Khunt and the Singhbhum side
+								including <mark class="g">Chakradharpur</mark>):
+								the earlier agrarian agitation was the
+								<mark class="y"
+									>Sardari fight (Sardari Larai)</mark
+								>; Birsa's later revolt is the
+								<mark class="y"
+									>Munda Rebellion / Ulgulan ("Great
+									Tumult")</mark
+								>, aiming to establish an independent
+								<b>Munda Raj</b> — <i>not</i> a modern state
+								like present-day Jharkhand.
+							</li>
+							<li>
+								In <mark class="b">1895</mark>, Birsa proclaimed
+								himself a prophet/Messenger of God with healing
+								powers; promoted abstinence from alcohol,
+								renunciation of animal sacrifice, wearing the
+								sacred thread, worship of one god
+								<mark class="y">Sing Bonga</mark> in the Sarna
+								groves — a revivalist movement to purge foreign
+								elements from Munda society (also blended
+								Hindu–Christian idioms).
+							</li>
+							<li>
+								Called for tribals to
+								<mark class="y"
+									>"colour this land red with their blood like
+									a Red Flag"</mark
+								>
+								against non-tribals — earned him the title
+								<mark class="g">Jagat Pita / Dharti Aaba</mark>
+								("Father of the Earth").
+							</li>
+							<li>
+								On <mark class="b">Christmas Eve 1899</mark>,
+								Mundas shot arrows and burned churches across
+								six police stations in Ranchi &amp; Singhbhum
+								districts; in January 1900 police stations were
+								targeted; rumours of an attack on Ranchi (8 Jan)
+								caused panic; rebels defeated
+								<mark class="b">9 January 1900</mark>.
+							</li>
+							<li>
+								Birsa was captured while asleep at
+								<mark class="g"
+									>Jamkopai forest, Chakradharpur (West
+									Singhbhum)</mark
+								>
+								on <mark class="b">3 February 1900</mark>; died
+								ambiguously in jail on
+								<mark class="b">9 June 1900</mark>. Nearly
+								<mark class="b">350 Mundas</mark> were tried —
+								<mark class="b"
+									>3 hanged, 44 transported for life</mark
+								>.
+							</li>
+							<li>
+								Impact: the
+								<mark class="y"
+									>Chotanagpur Tenancy Act (1908)</mark
+								>
+								was enacted to protect tribal rights; Birsa is
+								revered as a tribal hero and freedom-struggle
+								symbol.
+							</li>
+							<li>
+								<mark class="g">Thakkar Bapa</mark> (Amritlal
+								Vithaldas Thakkar) — General Secretary of the
+								<mark class="y">Harijan Sevak Sangh</mark> — was
+								the first to use the word
+								<mark class="y">"Adivasi"</mark> for tribal
+								people (I.A.S. 1995), deeply influenced by
+								Gandhi.
+							</li>
+						</ul>
+						<div class="trap">
+							<span class="lbl">Traps</span>
+							<ul>
+								<li>
+									"Ulgulan"/Great Tumult refers to
+									<mark class="g"
+										>Birsa Munda's Revolt (1899–1900)</mark
+									>, not the 1857 Revolt, Mappila Rebellion,
+									or Indigo Revolt (I.A.S. 2020).
+								</li>
+								<li>
+									Working region of Birsa Munda was
+									<mark class="g">Ranchi</mark> — not
+									Champaran or Ballia.
+								</li>
+								<li>
+									Kol Revolt (1831–32) was centred on
+									<mark class="g">Singhbhum</mark> — not
+									Kutch, Western Ghats or Satara (66th BPSC
+									2020).
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>Kol Mutiny — extended detail</h3>
+						<ul>
+							<li>
+								Led by <mark class="g">Buddho Bhagat</mark> in
+								Chotanagpur, region covering
+								<mark class="g"
+									>Ranchi, Singhbhum, Hazaribagh, Palamau,
+									Manbhum</mark
+								>.
+							</li>
+							<li>
+								New land laws (<mark class="b">1831</mark>)
+								brought in outsiders — Hindu, Sikh, Muslim
+								farmers and moneylenders — causing massive
+								exploitation of tribes.
+							</li>
+							<li>
+								Kol rebels killed about
+								<mark class="b">a thousand outsiders</mark>;
+								order restored only after large-scale military
+								operations.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Bhumij Revolt</h3>
+						<ul>
+							<li>
+								Led by <mark class="g">Ganga Narain</mark>;
+								occurred <mark class="b">1832–33</mark> in the
+								Jungle Mahal region of East India, beginning as
+								an inheritance dispute in the
+								<mark class="y">Zamindari of Barabhum</mark>
+								(West Bengal), which snowballed into armed
+								conflict against British rule — persecution of
+								the Bhumij tribe by both the king and
+								exploitative British policies (Jharkhand PCS
+								2021).
+							</li>
+						</ul>
+					</div>
+				</section>
+				<!-- ============ CHAPTER 5 ============ -->
+				<section
+					class="chapter"
+					id="ch5"
+					data-title="Tribal Revolts — Third Phase (1920–1947)"
+				>
+					<div class="chapter-head">
+						<div class="seal">5</div>
+						<h2>Tribal Revolts — Third Phase (1920–1947)</h2>
+					</div>
+					<div class="chapter-sub">
+						Gandhian methods reach the tribal periphery
+					</div>
+
+					<table>
+						<caption>
+							Third-phase tribal revolts
+						</caption>
+						<thead class="green">
+							<tr>
+								<th>Revolt</th>
+								<th>Year &amp; Region</th>
+								<th>Leader(s)</th>
+								<th>Cause / Features / Impact</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Rampa Rebellion (Manyam Rebellion)</td>
+								<td>
+									<mark class="b">1922–1924</mark>, Koyas of
+									Godavari Agency, AP
+								</td>
+								<td>
+									<mark class="g">Alluri Sitarama Raju</mark>
+								</td>
+								<td>
+									Response to forced labour, restrictions on
+									gathering minor forest produce, prohibition
+									of traditional agriculture; Raju captured
+									&amp; executed in
+									<mark class="b">1924</mark> — cemented as a
+									martyr.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Rampa Uprising (earlier, distinct event)
+								</td>
+								<td>
+									<mark class="b">1879–80</mark>, north of the
+									Godavari river, AP
+								</td>
+								<td>Unspecified</td>
+								<td>
+									After the
+									<mark class="y"
+										>1882 Madras Forest Act</mark
+									>
+									restricted free movement in forests, tribals
+									could not continue the traditional
+									<mark class="y">"Podu"</mark>
+									shifting-cultivation system — against
+									exploitation by moneylenders and the Forest
+									Acts.
+								</td>
+							</tr>
+							<tr>
+								<td>Chenchu Tribal Movement</td>
+								<td>
+									<mark class="b">1921–1922</mark>, Nallamalai
+									Forests, AP
+								</td>
+								<td>
+									<mark class="g"
+										>Venkattappaya, K. Hanumanthu</mark
+									>
+								</td>
+								<td>
+									Driven by tribal opposition to British
+									forest control; connected to Gandhi's
+									Non-Cooperation Movement via forest
+									satyagraha; Chenchus let cattle graze freely
+									in defiance of British fees; spread to
+									Palnad, where people declared Swaraj and
+									confronted police.
+								</td>
+							</tr>
+							<tr>
+								<td>Rani Gaidinliu's Naga Movement (Heraka)</td>
+								<td>
+									<mark class="b">1930s</mark>, Zeliangrong
+									Territory, Manipur
+								</td>
+								<td>
+									<mark class="g">Haipou Jadonang</mark>;
+									<mark class="g">Rani Gaidinliu</mark>
+								</td>
+								<td>
+									Heraka movement led by Jadonang —
+									socio-religious, advocated Naga self-rule
+									(Naga Raj), resisted British
+									missionaries/conversion. Gaidinliu,
+									embracing Gandhian principles, initiated
+									open rebellion at age 17; Naga tribes
+									refused taxes and cooperation.
+								</td>
+							</tr>
+							<tr>
+								<td>Gond Uprising</td>
+								<td><mark class="b">1940s</mark></td>
+								<td>Unspecified</td>
+								<td>
+									United followers of Gond Dharma against
+									British rule; tribal unity and religious
+									identity as tools of opposition; part of
+									broader central-India tribal resistance.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="ctx">
+						<span class="lbl"
+							>Context — two different "Rampa" revolts, do not
+							merge</span
+						>
+						<ul>
+							<li>
+								An <b>earlier Rampa Uprising (1879–80)</b> was a
+								forest-rights protest against the 1882 Madras
+								Forest Act's restriction on shifting
+								cultivation.
+							</li>
+							<li>
+								The <b>Rampa/Manyam Rebellion (1922–24)</b> led
+								by
+								<mark class="g">Alluri Sitarama Raju</mark> is a
+								separate, later, better-known event against
+								forced labour and forest-produce restrictions —
+								despite the shared name, PYQs test them as
+								distinct episodes.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Rani Gaidinliu / Jadonang — extended detail</h3>
+						<ul>
+							<li>
+								British authorities, fearful of the Heraka
+								movement's growing influence, arrested and
+								executed <mark class="g">Jadonang</mark> in
+								<mark class="b">1931</mark>;
+								<mark class="g">Gaidinliu</mark> was captured in
+								<mark class="b">1932</mark> and sentenced to
+								life imprisonment.
+							</li>
+							<li>
+								The movement had reformist religious objectives
+								but strong political undertones challenging
+								British rule; lasting cultural and political
+								impact on Naga resistance.
+							</li>
+							<li>
+								<mark class="g">Haipou Jadonang</mark> is
+								credited as the
+								<mark class="y"
+									>first tribal leader inspired by Mahatma
+									Gandhi</mark
+								>
+								and his philosophy — pioneer freedom fighter for
+								the Naga community of Manipur (Jharkhand PCS
+								2013).
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 6 ============ -->
+				<section
+					class="chapter"
+					id="ch6"
+					data-title="Movements in the North-East"
+				>
+					<div class="chapter-head">
+						<div class="seal">6</div>
+						<h2>Movements in the North-East</h2>
+					</div>
+					<div class="chapter-sub">
+						Hill-tribe resistance across Assam, Manipur &amp;
+						Meghalaya
+					</div>
+
+					<table>
+						<caption>
+							North-East tribal/peasant uprisings
+						</caption>
+						<thead class="purple">
+							<tr>
+								<th>Uprising</th>
+								<th>Year, Region, Leader(s)</th>
+								<th>Cause / Features</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Khasi Uprising</td>
+								<td>
+									Up to <mark class="b">1833</mark>, Garo
+									&amp; Jaintia Hills, Meghalaya —
+									<mark class="g">Tirath/Teerat Singh</mark>
+								</td>
+								<td>
+									Resistance to entry of outsiders
+									(Englishmen, Bengali labourers); widespread
+									but suppressed by 1833; involved Khasis,
+									Garos, Khamptis, Singphos (also cited as
+									1829–33).
+								</td>
+							</tr>
+							<tr>
+								<td>Singhphos Rebellion</td>
+								<td>
+									<mark class="b">1830 onwards</mark>, Assam —
+									<mark class="g">Nirang Phidu</mark>
+								</td>
+								<td>
+									Resentment towards British control; notable
+									rebellion in
+									<mark class="b">1839</mark> killing a
+									British political agent; another significant
+									revolt in
+									<mark class="b">1843</mark> attacking a
+									British garrison.
+								</td>
+							</tr>
+							<tr>
+								<td>Kukis Revolt</td>
+								<td>
+									<mark class="b">1917–1919</mark>, Manipur
+								</td>
+								<td>
+									Opposition to British labour-recruitment
+									policies during World War I; widespread
+									revolt resisting exploitation of Kukis for
+									war-related labour.
+								</td>
+							</tr>
+							<tr>
+								<td>Zeliangsong Movement</td>
+								<td>
+									<mark class="b">1920s</mark>, Manipur —
+									Zemi, Liangmei, Rongmei tribes
+								</td>
+								<td>
+									Reaction to British failure to protect them
+									during the Kuki revolt; tribal alliance
+									emphasising unity and rights.
+								</td>
+							</tr>
+							<tr>
+								<td>Naga Movement</td>
+								<td>
+									<mark class="b">1905–1931</mark>, Manipur —
+									<mark class="g">Jadonang</mark>
+								</td>
+								<td>
+									Aimed at establishing an independent "Naga
+									Raj"; promoted political autonomy and
+									cultural preservation.
+								</td>
+							</tr>
+							<tr>
+								<td>Synteng / Jaintia Rebellion</td>
+								<td>
+									<mark class="b">1860–62 / 1860–63</mark>,
+									Jaintia Hills
+								</td>
+								<td>
+									Armed resistance against British
+									interference in the Jaintia Hills.
+								</td>
+							</tr>
+							<tr>
+								<td>Phulaguri Peasant Rebellion</td>
+								<td><mark class="b">1861</mark>, Assam</td>
+								<td>
+									Revolt against exploitative British policies
+									— one of the earliest anti-British peasant
+									uprisings in Assam.
+								</td>
+							</tr>
+							<tr>
+								<td>Revolt of the Saflas</td>
+								<td><mark class="b">1872–73</mark>, Assam</td>
+								<td>
+									Uprising against British-imposed forest and
+									revenue policies.
+								</td>
+							</tr>
+							<tr>
+								<td>Kacha Naga Uprising</td>
+								<td><mark class="b">1882</mark>, Cachhar</td>
+								<td>
+									Protested colonial exploitation &amp;
+									encroachment into tribal lands.
+								</td>
+							</tr>
+							<tr>
+								<td>Khampti Rebellion</td>
+								<td><mark class="b">1839–1842</mark>, Assam</td>
+								<td>
+									Resistance against British dominance and
+									disruption of local governance.
+								</td>
+							</tr>
+							<tr>
+								<td>Lushais Revolt</td>
+								<td>
+									<mark class="b">1842–1844</mark>, Manipur
+								</td>
+								<td>
+									Reaction to British alliances and
+									exploitation; multiple attacks on
+									British-allied villages.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="note">
+						Barrackpur Mutiny (Nov 1824) and Berhampur Revolt (Feb
+						1857) appear in Ch. 2's pre-1857 military-uprisings list
+						— cross-refer, not duplicated here.
+					</div>
+				</section>
+				<div class="part-divider">
+					<span class="plabel">Part III · Peasant Movements</span>
+					<div class="ptitle">
+						From scattered agrarian revolt to organised Kisan Sabhas
+					</div>
+					<p class="pdesc">
+						Peasant movements surged due to economic hardship and
+						rising political awareness, focused on tenancy rights,
+						fair rents, and debt relief.
+					</p>
+				</div>
+
+				<!-- ============ CHAPTER 7 ============ -->
+				<section
+					class="chapter"
+					id="ch7"
+					data-title="Peasant Movements — First Phase (Before 1857)"
+				>
+					<div class="chapter-head">
+						<div class="seal">7</div>
+						<h2>Peasant Movements — First Phase (Before 1857)</h2>
+					</div>
+					<div class="chapter-sub">
+						Sanyasis, Faraizis, and the Pagal Panthis
+					</div>
+
+					<div class="factbox">
+						<span class="lbl"
+							>Structural factors behind colonial-era peasant
+							movements</span
+						>
+						<dl>
+							<dt>Agricultural stagnation</dt>
+							<dd>
+								No investment, neglected irrigation, lack of
+								modern techniques → low productivity.
+							</dd>
+							<dt>Land Revenue Policies</dt>
+							<dd>
+								<mark class="y">Zamindari (1793)</mark> — high
+								fixed revenue, exploited peasants;
+								<mark class="y">Mahalwari (1819)</mark> —
+								village-based revenue, community responsibility;
+								<mark class="y">Ryotwari (1820)</mark> — direct
+								peasant-government link, high rent.
+							</dd>
+							<dt>Commercialization of Agriculture</dt>
+							<dd>
+								Shift to cash crops (cotton, jute) → food
+								insecurity, landless labourers, uneven benefits.
+							</dd>
+							<dt>Indebtedness</dt>
+							<dd>
+								Heavy taxes → forced loans from moneylenders at
+								high interest → land loss, tenant status.
+							</dd>
+							<dt>Famines</dt>
+							<dd>
+								Recurrent famines and economic depression →
+								uprisings.
+							</dd>
+							<dt>Social Inequality</dt>
+							<dd>
+								Caste-based discrimination; exploitation of
+								lower castes.
+							</dd>
+							<dt>Rise of INC &amp; leaders</dt>
+							<dd>
+								INC and charismatic leaders (Gandhi, Gaidinliu,
+								Birsa Munda) inspired peasant mobilisation.
+							</dd>
+						</dl>
+					</div>
+
+					<table>
+						<caption>
+							First-phase peasant movements (before 1857)
+						</caption>
+						<thead class="blue">
+							<tr>
+								<th>Movement</th>
+								<th>Year &amp; Region</th>
+								<th>Leader(s)</th>
+								<th>Cause / Consequences</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Sanyasi Revolt</td>
+								<td>
+									<mark class="b">1763–1800</mark>, Bengal
+								</td>
+								<td>
+									<mark class="g">Maznoom/Majnum Shah</mark>,
+									<mark class="g">Bhawani Pathak</mark>,
+									<mark class="g">Devi Choudhurani</mark>
+								</td>
+								<td>
+									British restrictions on pilgrimage to sacred
+									sites; the
+									<mark class="b">1770 Bengal Famine</mark>
+									sparked discontent; landless peasants,
+									displaced zamindars, disbanded soldiers,
+									Sanyasis &amp; Fakirs attacked British
+									factories.
+									<i
+										>(See Ch.1 for full detail — same event,
+										cross-referenced here as the earliest
+										peasant movement.)</i
+									>
+								</td>
+							</tr>
+							<tr>
+								<td>Narkelberia Uprising</td>
+								<td>
+									<mark class="b">1782–1831</mark>, West
+									Bengal
+								</td>
+								<td>
+									<mark class="g"
+										>Mir Nithar Ali (Titu Mir)</mark
+									>
+								</td>
+								<td>
+									Muslim tenants resisted a
+									<mark class="y">beard tax</mark> imposed by
+									Hindu landlords on Faraizis, plus opposition
+									to British Indigo planters. Considered the
+									<mark class="y"
+										>first peasant revolt against the
+										British</mark
+									>; armed uprising that evolved into a
+									religious conflict, eventually merging with
+									the Wahabi Movement.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Pagal Panthis (Hajong &amp; Garo tribes)
+								</td>
+								<td>
+									<mark class="b">1825–1833</mark>, Mymensingh
+									(earlier Bengal)
+								</td>
+								<td>
+									<mark class="g">Karam Shah</mark>,
+									<mark class="g">Tipu Shah</mark>
+								</td>
+								<td>
+									Resistance to zamindar oppression &amp;
+									unjust rent claims; semi-religious uprising
+									led by mendicants. Government responded with
+									rent reduction/concessions; movement
+									divided; Tipu Shah &amp; insurgents
+									apprehended, tried.
+									<i>(Full detail in Ch.1.)</i>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+				<!-- ============ CHAPTER 8 ============ -->
+				<section
+					class="chapter"
+					id="ch8"
+					data-title="Peasant Movements — Second Phase (After 1857)"
+				>
+					<div class="chapter-head">
+						<div class="seal">8</div>
+						<h2>Peasant Movements — Second Phase (After 1857)</h2>
+					</div>
+					<div class="chapter-sub">
+						From Indigo to Tebhaga — the long organised struggle
+					</div>
+
+					<div class="event">
+						<h3>Indigo Revolt (1859–60), Nadia, Bengal</h3>
+						<ul>
+							<li>
+								Leaders:
+								<mark class="g">Bishnucharan Biswas</mark> &amp;
+								<mark class="g">Digambar Biswas</mark> (the
+								"Biswas brothers") of Nadia — two former
+								employees of an indigo producer; also
+								<mark class="g">Rafique Mondal</mark> of Malda
+								and <mark class="g">Kader Molla</mark> of Pabna.
+							</li>
+							<li>
+								Began at
+								<mark class="g">Govindpur village</mark>, Nadia
+								district, West Bengal; peasants resisted coerced
+								indigo cultivation for European planters under
+								fraudulent contracts, coercion and threats.
+							</li>
+							<li>
+								In
+								<mark class="b">September 1859</mark>
+								cultivators revolted against landlords; peasants
+								attacked indigo factories with spears and
+								swords, staged rent strikes; movement spread to
+								<mark class="g"
+									>Nadia, Pabna, Khulna, Dhaka, Malda,
+									Dinajpur</mark
+								>; all indigo factories shut down.
+							</li>
+							<li>
+								Bengal's intelligentsia supported the movement
+								through public meetings, journals and newspaper
+								articles;
+								<mark class="g">Harishchandra Mukherjee</mark>,
+								editor of <i>Hindu Patriot</i>, played a major
+								role.
+							</li>
+							<li>
+								<mark class="g">Dinabandhu Mitra's</mark> play
+								<i>Neel Darpan</i> (1858–59/1860) visualised the
+								atrocities of indigo planters on farmers.
+							</li>
+							<li>
+								British response: the
+								<mark class="y">Indigo Commission (1860)</mark>
+								addressed abuses — a victory for peasants, as
+								indigo cultivation declined by 1860, and further
+								declined by the early 20th century due to its
+								<mark class="y"
+									>unprofitability in the world market from
+									new (synthetic-dye) inventions</mark
+								>
+								— not primarily due to peasant resistance,
+								national leaders' opposition, or government
+								control (I.A.S. 2020).
+							</li>
+						</ul>
+						<div class="trap">
+							<span class="lbl">Traps</span>
+							<ul>
+								<li>
+									The Indigo Rebellion was fundamentally about
+									peasants
+									<mark class="g"
+										>not wanting to grow indigo but being
+										forced to grow it at an unacceptable
+										price</mark
+									>
+									— not a simple refusal, not a flag-colour
+									protest (B.P.S.C. 2018).
+								</li>
+								<li>
+									<i>Neel Darpan</i> was written by
+									<mark class="g">Dinabandhu Mitra</mark> —
+									not Bankim Chandra Chatterjee, Rabindranath
+									Tagore, Sharat Chandra Chatterji, or Akshay
+									Kumar Datta (tested repeatedly: UK PCS 2024,
+									42nd/66th BPSC, UPPCS 2015).
+								</li>
+								<li>
+									The Indigo Revolt occurred in Bengal
+									<mark class="g"
+										>immediately after the Revolt of
+										1857</mark
+									>
+									— not the Santhal Rebellion or Pabna
+									Disturbances (I.A.S. 1994).
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>
+							Deccan Peasants' Uprising (1875), Poona, Satara
+							&amp; Ahmednagar (64th BPSC)
+						</h3>
+						<ul>
+							<li>
+								Leaders:
+								<mark class="g">Maratha Peasants</mark> (no
+								single named leader).
+							</li>
+							<li>
+								The
+								<mark class="y">Ryotwari system</mark> favoured
+								moneylenders (<mark class="g">Vanis</mark>) over
+								cultivators (<mark class="g">Kunbis</mark>);
+								high taxation, increased land revenue,
+								cotton-price collapse and poor harvests
+								compounded the hardship.
+							</li>
+							<li>
+								Nature: social boycott of moneylenders
+								(particularly
+								<mark class="g">Marwari &amp; Gujarati</mark>
+								outsiders); violent attacks on moneylenders'
+								homes/shops; destruction of debt bonds; spread
+								across
+								<mark class="g"
+									>Poona, Ahmednagar, Sholapur, Satara</mark
+								>.
+							</li>
+							<li>
+								Outcome: the
+								<mark class="y"
+									>Deccan Agriculturists Relief Act
+									(1879)</mark
+								>; support from Maharashtra's intelligentsia.
+							</li>
+						</ul>
+						<div class="trap">
+							<span class="lbl">Trap</span>The immediate cause of
+							the Deccan Riots of 1875 was
+							<mark class="g">both</mark> the shadow of famine
+							<mark class="g">and</mark> high interest rates
+							charged by Mahajans — a "more than one of the above"
+							answer, not any single option alone (64th BPSC
+							2018).
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>Pabna Movement (1873–1885), Pabna, East Bengal</h3>
+						<ul>
+							<li>
+								Leaders:
+								<mark class="g">Shah Chandra Roy</mark>,
+								<mark class="g">Shambhu Nath Pal</mark>,
+								<mark class="g">Khodi Mollah</mark>.
+							</li>
+							<li>
+								Illegal property seizure, arbitrary rent hikes,
+								coercive eviction despite
+								<mark class="y">Act X of 1859</mark> (which
+								granted immunity from eviction); oppression via
+								forcible evictions, crop seizures, prolonged
+								litigation.
+							</li>
+							<li>
+								Formation of the
+								<mark class="y">Agrarian League (1873)</mark> in
+								Yusufshahi Pargana — organised rent strikes,
+								raised funds for legal battles, held mass
+								meetings; armed resistance plus legal
+								challenges.
+							</li>
+							<li>
+								Movement mainly intense
+								<mark class="b">1873–1876</mark> against
+								zamindari oppression, illegal
+								<mark class="y">abwabs</mark> (forced levies),
+								and rent enhancement.
+							</li>
+							<li>
+								Outcome: the
+								<mark class="y">Bengal Tenancy Act (1885)</mark>
+								clarified tenant rights on land — after this,
+								the movement became mainly a legal dispute;
+								intellectual support came from
+								<mark class="g">Bankim Chandra Chatterjee</mark
+								>, <mark class="g">R.C. Dutt</mark>, and the
+								<mark class="g">Indian Association</mark> under
+								<mark class="g">Surendra Nath Banerjee</mark>.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>
+							Ramosi Uprising (1877–87), Maharashtra — Vasudev
+							Balwant Phadke
+						</h3>
+						<p>
+							See Ch.1 for full detail (Dhamari/Shirur/Khed raids,
+							disabled communication lines, death by hunger strike
+							1883). Listed here as the peasant-movement dimension
+							of the same 1877–87 episode — protest against
+							oppressive land tax and neglect during the Deccan
+							famine of 1876–78.
+						</p>
+					</div>
+
+					<div class="event">
+						<h3>
+							Punjab Peasants' Revolt (last decade of 19th c.,
+							Punjab)
+						</h3>
+						<ul>
+							<li>
+								The
+								<mark class="y"
+									>Punjab Land Alienation Act (1900)</mark
+								>
+								(63rd BPSC) aimed to restrict land-ownership
+								transfers, especially targeting alienation of
+								land from peasants to non-agricultural classes.
+							</li>
+							<li>
+								Imposed a
+								<mark class="b">15-year limit</mark> on land
+								transactions, prohibiting urban professionals
+								and traders from buying land from peasants.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Champaran Satyagraha (1917), Champaran, Bihar</h3>
+						<ul>
+							<li>
+								Leaders: <mark class="g">Mahatma Gandhi</mark>,
+								<mark class="g">J.B. Kripalani</mark>,
+								<mark class="g">Babu Brajkishore Prasad</mark>,
+								<mark class="g">Babu Rajendra Prasad</mark>.
+							</li>
+							<li>
+								The
+								<mark class="y">"Teen Kathia" system</mark>
+								forced tenant farmers to cultivate indigo on
+								three-twentieths of a bigha of their land for
+								British planters, causing severe financial
+								losses; peasants could endure the system or pay
+								higher rent to abandon indigo cultivation.
+							</li>
+							<li>
+								Gandhi initiated satyagraha (peaceful civil
+								disobedience); the government invited Gandhi for
+								talks and appointed him to a committee, whose
+								findings led to
+								<mark class="y"
+									>abolition of the Teen Kathia system</mark
+								>.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Kheda Satyagraha (1918), Kheda, Gujarat</h3>
+						<ul>
+							<li>
+								Leaders: <mark class="g">Mahatma Gandhi</mark>,
+								<mark class="g">Sardar Vallabhbhai Patel</mark>,
+								<mark class="g">Mohanlal Pandya</mark>.
+							</li>
+							<li>
+								Poor harvests in 1917–18 and rising prices of
+								essential goods worsened peasants' economic
+								strain; revenue-remission demands were ignored
+								by the colonial government.
+							</li>
+							<li>
+								Local leaders such as
+								<mark class="g">Mohanlal Kameshwar Pandya</mark>
+								were arrested for defying government orders.
+							</li>
+							<li>
+								Outcome: government instructed restraint in
+								revenue collection and refrained from land
+								confiscation — relief for peasants, recognising
+								the need for Indian support during British war
+								efforts.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>The Kisan Sabha Movement (1918–1921)</h3>
+						<ul>
+							<li>
+								Background: after 1857, Awadh taluqdars regained
+								control and imposed high rents and oppressive
+								practices; the Home Rule Movement and activists
+								<mark class="g">Gauri Shankar Mishra</mark> and
+								<mark class="g">Indra Narayan Dwivedi</mark> led
+								formation of Kisan Sabhas in UP.
+							</li>
+							<li>
+								The
+								<mark class="y"
+									>United Provinces Kisan Sabha</mark
+								>
+								was established in
+								<mark class="b">February 1918</mark>, with
+								support from
+								<mark class="g">Madan Mohan Malaviya</mark>; by
+								<mark class="b">June 1919</mark>, it had
+								expanded to <mark class="b">450 branches</mark>.
+							</li>
+							<li>
+								<mark class="y">Awadh Kisan Sabha (1920)</mark>:
+								urged peasants to refuse
+								<mark class="y">till bedakhali</mark> land, not
+								offer unpaid labour, resolve disputes through
+								panchayats. Repression by government led to
+								decline; the
+								<mark class="y"
+									>Awadh Rent (Amendment) Act</mark
+								>
+								further contributed to its end.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Eka Movement (1921), Awadh, UP</h3>
+						<ul>
+							<li>
+								Leaders: <mark class="g">Madari Pasi</mark> and
+								<mark class="g">Baba Ramchandra</mark> (68th
+								BPSC).
+							</li>
+							<li>
+								Economic distress from high rents, forced
+								labour, corruption by intermediary
+								<mark class="y">thekedars</mark>; sparked by
+								drought, food shortages, and the effects of the
+								Spanish flu.
+							</li>
+							<li>
+								Started by farmers of
+								<mark class="g"
+									>Hardoi, Behraich/Bahraich, Sitapur</mark
+								>
+								and other UP districts; the movement's main
+								contention was the collection of
+								<mark class="b">50% more tax</mark> than the
+								accepted rate.
+							</li>
+							<li>
+								Initially aligned with Congress &amp; Khilafat
+								campaigns, followed Gandhian methods (social
+								boycotts, picketing, peaceful protest); as it
+								grew more militant, Congress and Khilafat
+								leaders distanced themselves and it became
+								independent.
+							</li>
+							<li>
+								Outcome: repression led to the movement's
+								collapse by <mark class="b">March 1922</mark>.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>
+							Mappila / Moplah Uprising (1921), Malabar region,
+							Kerala
+						</h3>
+						<ul>
+							<li>
+								Leaders:
+								<mark class="g">Mappila tenants</mark> (no
+								single named leader identified).
+							</li>
+							<li>
+								Oppression by upper-caste Hindu landlords and
+								British land laws stripped Mappilas of customary
+								land rights — high rents, oppressive fees,
+								insecure tenures; the
+								<mark class="y">Khilafat movement</mark> and
+								Congress support for tenants' grievances laid
+								the groundwork.
+							</li>
+							<li>
+								Mappila tenants were predominantly Muslim;
+								Hindus were zamindars — centred at
+								<mark class="g">Tirurangadi</mark>.
+							</li>
+							<li>
+								Initially anti-government and anti-landlord, the
+								rebellion evolved into a communal conflict after
+								the arrest of key leaders like
+								<mark class="g">Ali Musaliar</mark>, becoming
+								increasingly violent, targeting Hindus perceived
+								as supporting authorities.
+							</li>
+							<li>
+								British imposed martial law and created the
+								<mark class="y">Malabar Special Police</mark>;
+								by <mark class="b">December 1921</mark> the
+								movement ended, marked by its communal turn.
+							</li>
+						</ul>
+						<div class="trap">
+							<span class="lbl">Trap</span>Moplah Revolt (1921)
+							took place in
+							<mark class="g">Malabar, Kerala</mark> — not
+							Telangana, Vidarbha, Marathwada, Kashmir, Assam or
+							the B.N.W.F.P.
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>
+							Bardoli Satyagraha (1928), Surat, Gujarat (67th BPSC
+							Re-exam)
+						</h3>
+						<ul>
+							<li>
+								Leaders:
+								<mark class="g">Vallabhbhai Patel</mark>,
+								<mark class="g">Chunnilal Mehta</mark> and the
+								Mehta brothers.
+							</li>
+							<li>
+								Cause: peasant protest against a
+								<mark class="b">30% tax hike</mark> imposed by
+								the Bombay Presidency amid famine and flood;
+								demands — an independent tribunal for fresh
+								assessment, acceptance of the previous tax as
+								full payment.
+							</li>
+							<li>
+								<mark class="b">January 1926</mark>: authorities
+								proposed the 30% revenue increase, provoking
+								unrest. <mark class="b">February 1926</mark>:
+								<mark class="g">Vallabhbhai Patel</mark> took
+								charge, earning the title
+								<mark class="y">"Sardar"</mark> from Bardoli's
+								women.
+							</li>
+							<li>
+								Formation of the
+								<mark class="y">Bardoli Inquiry Committee</mark
+								>, publication of the
+								<i>Bardoli Satyagraha Patrika</i>, worker's
+								camps, social boycotts of opponents; women's
+								role was significant — bhajan mandalis, holy
+								imagery, communication with Adivasis.
+							</li>
+							<li>
+								Political support:
+								<mark class="g">K.M. Munshi</mark> and
+								<mark class="g">Lalji Naranji</mark> resigned
+								from the Bombay Legislative Council in
+								solidarity.
+							</li>
+							<li>
+								Outcome: by <mark class="b">June 1928</mark>, a
+								settlement mediated by
+								<mark class="g">Chunnilal Mehta</mark> saw the
+								government commit to a smaller tax increase of
+								<mark class="b">6.03%</mark>.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>
+							All India Kisan Sabha (1936) — Lucknow Session of
+							INC (60th–62nd BPSC)
+						</h3>
+						<ul>
+							<li>
+								Leader:
+								<mark class="g"
+									>Swami Sahajananda Saraswati</mark
+								>.
+							</li>
+							<li>
+								Formed at the
+								<mark class="y">Lucknow Session</mark>
+								(61st–62nd BPSC) to protect tenants' rights and
+								advocate abolition of zamindari.
+							</li>
+							<li>
+								Manifesto called for abolition of zamindari and
+								recognition of tenants' occupancy rights.
+							</li>
+							<li>
+								Impact: nationwide agrarian reforms after the
+								1937 elections — fixing interest rates, reducing
+								rent increases, granting tenant status in UP,
+								restoring <mark class="y">bakhast</mark> lands
+								in Bihar.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Bakasht Movement (1936), Bihar</h3>
+						<ul>
+							<li>
+								Leader:
+								<mark class="g"
+									>Swami Sahajananda Saraswati</mark
+								>.
+							</li>
+							<li>
+								Resistance against forced displacement of
+								tenants from
+								<mark class="y">Bakasht lands</mark> (lands
+								previously settled by peasants) and oppressive
+								landlords.
+							</li>
+							<li>
+								<mark class="b">1938</mark>: the Bihar
+								Provincial Kisan Sabha passed a resolution at
+								its annual conference at
+								<mark class="g">Waini</mark> protesting
+								zamindars.
+							</li>
+							<li>
+								Impact: the
+								<mark class="y">Bihar Tenancy Act</mark> and
+								<mark class="y">Bakasht Land Tax</mark> were
+								enacted; Sahajanand Saraswati published the
+								newspaper <i>"Lok Sangraha"</i> to raise
+								awareness and mobilise peasants (70th BPSC).
+							</li>
+							<li>
+								The
+								<mark class="y">Barhiyataal resistance</mark> in
+								Munger had the specific purpose of demanding
+								<mark class="y"
+									>restoration of Bakasht land</mark
+								>
+								(39th BPSC 1994) — not abolition of zamindari
+								custom, protecting Muslim peasants, or class
+								struggle per se.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Tebhaga Movement (1946–47), Bengal</h3>
+						<ul>
+							<li>
+								Participants: poor peasants, tenants, and
+								<mark class="g">bargadars</mark>/share-croppers
+								(66th BPSC Re-Exam); prominent leaders
+								<mark class="g">Kampram Singh</mark> and
+								<mark class="g">Bhuvan Singh</mark>.
+							</li>
+							<li>
+								Demand: a two-thirds share of the harvest for
+								sharecroppers, one-third for landlords, based on
+								the
+								<mark class="y">Flood Commission report</mark>;
+								started under the leadership of the
+								<mark class="y"
+									>Bengal Provincial Kisan Sabha</mark
+								>
+								(66th BPSC Re-Exam 2020).
+							</li>
+							<li>
+								Slogan:
+								<mark class="y">"Nij khamare dhan tolo"</mark>
+								("Take your produce to your own threshing
+								floor").
+							</li>
+							<li>
+								Widespread participation, especially among
+								<mark class="g">Rajbanshis</mark> (a low-caste
+								tribal group) and Muslims in Bengal.
+							</li>
+							<li>
+								Outcome: <mark class="b">40%</mark> of peasants
+								gained the two-thirds share; faced repression
+								and limited success in East Bengal.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Telangana Insurrection (1946–51), Hyderabad</h3>
+						<ul>
+							<li>
+								Leadership:
+								<mark class="g">Communist Party of India</mark>.
+							</li>
+							<li>
+								Exploitation of peasants by
+								<mark class="y">Jagirdars</mark> and
+								<mark class="y">Deshmukhs</mark> under the
+								Nizam's rule; oppressive forced labour (<mark
+									class="y"
+									>Vetti</mark
+								>) and high taxes.
+							</li>
+							<li>
+								<mark class="b">1940</mark>: formation of
+								<mark class="y">Jagir Ryotu Sangham</mark>;
+								<mark class="b">1946</mark>: guerrilla-style
+								armed struggle emerged, supported by the CPI,
+								attacking landlords and
+								<mark class="g">Razakars</mark> (the Nizam's
+								stormtroopers).
+							</li>
+							<li>
+								Outcomes: abolition of Vetti, land distribution,
+								and debt settlement.
+							</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>
+							Peasant mobilisation across Indian provinces
+						</caption>
+						<thead class="blue">
+							<tr>
+								<th>Region</th>
+								<th>Key Organisations &amp; Leaders</th>
+								<th>Major Campaigns / Impact</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Kerala</td>
+								<td>
+									<mark class="g"
+										>Congress Socialist Party</mark
+									>, <mark class="g">Karshak Sanghams</mark>
+								</td>
+								<td>
+									In <mark class="b">1938</mark>, peasants
+									advocated amending the
+									<mark class="y"
+										>Malabar Tenancy Act (1929)</mark
+									>
+									for better tenant protections.
+								</td>
+							</tr>
+							<tr>
+								<td>Andhra Pradesh</td>
+								<td>
+									<mark class="g"
+										>India Peasants' Institute</mark
+									>
+									(founded
+									<mark class="g">N.G. Ranga, 1933</mark>);
+									Summer Schools by
+									<mark class="g"
+										>P.C. Joshi, Ajoy Ghosh, R.D.
+										Bhardwaj</mark
+									>
+								</td>
+								<td>
+									Summer Schools for peasant
+									economic/political education; electoral
+									defeats of zamindars aided mobilisation.
+								</td>
+							</tr>
+							<tr>
+								<td>Bihar</td>
+								<td>
+									<mark class="g">Bihar Kisan Sabha</mark> —
+									<mark class="g"
+										>Swami Sahajanand Saraswati, Karyanand
+										Sharma, Yadunandan Sharma, Rahul
+										Sankritayan, Panchanan Sharma, Jamun
+										Karjiti</mark
+									>
+								</td>
+								<td>
+									Provincial Kisan Conference (<mark class="b"
+										>1935</mark
+									>) adopted anti-zamindari slogans; Bakasht
+									land issue created a rift with Congress;
+									lost momentum by
+									<mark class="b">August 1939</mark> but laid
+									foundation for future struggles.
+								</td>
+							</tr>
+							<tr>
+								<td>Punjab</td>
+								<td>
+									<mark class="g">Kirti Kisan Party</mark>,
+									<mark class="g"
+										>Punjab Naujawan Bharat Sabha</mark
+									>, <mark class="g">Akalis</mark>,
+									<mark class="g"
+										>Punjab Kisan Committee</mark
+									>
+								</td>
+								<td>
+									Land-revenue issues in Amritsar/Lahore;
+									protests against water-rate hikes in canal
+									colonies (Montgomery, Multan); successful
+									strikes led to concessions; mobilisation in
+									Shekhupura, Jullundur, Amritsar, Hoshiarpur,
+									Lyallpur.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="ctx">
+						<span class="lbl"
+							>Context — AIKS split &amp; organisational
+							history</span
+						>
+						<ul>
+							<li>
+								The <mark class="y">AIKS Split</mark> — leaders
+								<mark class="g"
+									>Swami Sahajanand, Indulal Yagnik, N.G.
+									Ranga</mark
+								>
+								— occurred due to a
+								<mark class="y">pro-war stance during WWII</mark
+								>; the Kisan Sabha continued nonetheless,
+								including relief work during the
+								<mark class="b">1943 famine</mark>.
+							</li>
+							<li>
+								From <mark class="b">1922 to 1927</mark>,
+								several organisations formed to support peasants
+								and workers:
+								<mark class="g"
+									>Labour Swaraj Party (Bengal)</mark
+								>,
+								<mark class="g"
+									>Congress Labour Party (Bombay)</mark
+								>,
+								<mark class="g"
+									>Kirti Kisan Party (Punjab)</mark
+								>
+								and
+								<mark class="g"
+									>Labour Kisan Party of Hindustan
+									(Madras)</mark
+								>. This era saw about
+								<mark class="b">200 strikes</mark> in the early
+								1920s, with journals like <i>Gana Vaani</i> and
+								<i>Mehnatkash</i> mobilising support.
+							</li>
+						</ul>
+					</div>
+				</section>
+				<div class="part-divider">
+					<span class="plabel">Part IV · Working-Class Movement</span>
+					<div class="ptitle">From mill hands to the AITUC</div>
+					<p class="pdesc">
+						The late 19th-century rise of modern industry created
+						India's working class — coal, cotton, jute — whose
+						struggle intertwined with the fight for independence.
+					</p>
+				</div>
+
+				<!-- ============ CHAPTER 9 ============ -->
+				<section
+					class="chapter"
+					id="ch9"
+					data-title="Working-Class / Labour Movements"
+				>
+					<div class="chapter-head">
+						<div class="seal">9</div>
+						<h2>Working-Class / Labour Movements</h2>
+					</div>
+					<div class="chapter-sub">
+						Factory Acts, trade unions, and the AITUC
+					</div>
+
+					<div class="event">
+						<h3>Foundation of modern industries (1850–1870)</h3>
+						<ul>
+							<li>
+								<mark class="y">Railway Minute of 1853</mark>:
+								machinery introduced, developing railways, coal,
+								cotton, jute, tea industries.
+							</li>
+							<li>
+								First <mark class="g">Cotton Mill</mark>:
+								Bombay, <mark class="b">1854</mark>; first
+								<mark class="g">Jute Mill</mark>: Calcutta,
+								<mark class="b">1855</mark>.
+							</li>
+							<li>
+								By <mark class="b">1901</mark>,
+								<mark class="b">584,000</mark> factory workers
+								in India.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Early initiatives to improve working conditions</h3>
+						<ul>
+							<li>
+								<mark class="g">Sasipada Banerjee (1870)</mark>:
+								founded the
+								<mark class="y">Bharat Shramjeevi</mark> and a
+								workingmen's club to advocate for labour rights.
+							</li>
+							<li>
+								<mark class="g"
+									>Sorabjee Shapoorji Bengalee (1878)</mark
+								>: proposed a bill in the Bombay Legislative
+								Council to improve working conditions.
+							</li>
+							<li>
+								<mark class="g"
+									>Narayan Meghajee Lokhande (1880)</mark
+								>
+								— full name Narayanji Meghaji Lokhande
+								(1848–1897) — founded the
+								<i>Deenbandhu</i> newspaper and the
+								<mark class="y"
+									>Bombay Mill and Millhands Association</mark
+								>; considered the
+								<mark class="y"
+									>first leader to organise the labour
+									movement in India</mark
+								>
+								(M.P. PCS 2017).
+							</li>
+							<li>
+								<mark class="y"
+									>Great Indian Peninsular Railways Strike
+									(1899)</mark
+								>: workers struck, receiving strong support from
+								nationalist newspapers — Tilak's
+								<i>Kesari</i> and <i>Maharatta</i>.
+							</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>
+							Major Factory Acts under British rule
+						</caption>
+						<thead class="red">
+							<tr>
+								<th>Act</th>
+								<th>Provisions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><b>Factory Act of 1881</b></td>
+								<td>
+									Max working hours
+									<mark class="b">11 hrs/day</mark> for
+									children; prohibited employment under
+									<mark class="b">age 7</mark>, minimum age
+									raised to <mark class="b">12</mark>;
+									dangerous machinery required fencing;
+									<mark class="b">13-hour</mark> rest period
+									between shifts for women/children;
+									inspections and employment records
+									mandatory.
+								</td>
+							</tr>
+							<tr>
+								<td><b>Factory Act of 1891</b></td>
+								<td>
+									Children's hours cut to
+									<mark class="b">7 hrs/day</mark>, minimum
+									working age <mark class="b">9</mark>,
+									maximum <mark class="b">14</mark>;
+									women/children workday capped at
+									<mark class="b">11 hrs</mark>; overtime
+									compensation mandated; night work for
+									children banned; safety standards &amp;
+									inspection system established.
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b
+										>Factory Acts for the Jute Industry
+										(1909 &amp; 1911)</b
+									>
+								</td>
+								<td>
+									Regulated working hours and improved safety
+									standards specifically in jute mills.
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Emergence of political consciousness</h3>
+						<ul>
+							<li>
+								<mark class="y"
+									>1908 Political Strike, Bombay</mark
+								>: workers organised a nearly week-long
+								political strike in response to the conviction
+								and imprisonment of
+								<mark class="g">Lokamanya Tilak</mark>;
+								attracted attention from
+								<mark class="g">Lenin</mark>, who recognised the
+								Indian proletariat's class-consciousness and
+								potential for mass political struggle.
+							</li>
+							<li>
+								During the
+								<mark class="y">Swadeshi Movement</mark>:
+								leaders
+								<mark class="g"
+									>Ashwini Coomar Banerjea, Prabhat Kumar Roy
+									Chaudhuri, Premtosh Bose, Apurba Kumar
+									Ghosh</mark
+								>
+								organised strikes in government printing
+								presses, railways and jute — linked to broader
+								nationalist objectives; early trade unions
+								formed with limited initial success.
+							</li>
+							<li>
+								<mark class="g">Subramaniya Siva</mark> and
+								<mark class="g">Chidambaram Pillai</mark> led
+								significant strikes in
+								<mark class="g">Tuticorin</mark> and
+								<mark class="g">Tirunelveli</mark>; both were
+								arrested for their activism.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Building the trade-union movement</h3>
+						<ul>
+							<li>
+								<mark class="y"
+									>Chennai Labour Union (1918)</mark
+								>: established by
+								<mark class="g">B.P. Wadia</mark> — first Indian
+								trade union operating on modern lines.
+							</li>
+							<li>
+								<mark class="y"
+									>All-India Trade Union Congress
+									(AITUC)</mark
+								>
+								founded <mark class="b">31 October 1920</mark>,
+								to organise growing worker discontent;
+								<mark class="g">Lala Lajpat Rai</mark>
+								(President of INC) became its first president,
+								emphasising the link between capitalism and
+								imperialism;
+								<mark class="g">Dewan Chaman Lal</mark> was the
+								first general secretary.
+							</li>
+							<li>
+								Influential leaders across AITUC sessions:
+								<mark class="g"
+									>C.R. Das, V.V. Giri, Sarojini Naidu, J.L.
+									Nehru, Subhas Chandra Bose</mark
+								>.
+							</li>
+							<li>
+								Early orientation: initially influenced by the
+								British Labour Party's
+								<mark class="y">social democratic</mark> ideals
+								— <mark class="g">N.M. Joshi</mark> advocated
+								economic improvement over political activity.
+								Over time,
+								<mark class="y">Gandhian</mark> philosophy
+								(non-violence, trusteeship, class collaboration)
+								shaped the movement toward fewer strikes and
+								more cooperative efforts.
+							</li>
+							<li>
+								Gandhi organised the
+								<mark class="y"
+									>Ahmedabad Textile Labour Association
+									(1918)</mark
+								>, securing a <mark class="b">27.5%</mark> wage
+								increase (later raised to
+								<mark class="b">35%</mark>).
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Key developments &amp; legislative history</h3>
+						<ul>
+							<li>
+								<mark class="y"
+									>Gaya Congress Session (1922)</mark
+								>: Congress welcomed formation of AITUC, forming
+								a support committee.
+							</li>
+							<li>
+								<mark class="g">C.R. Das</mark> argued Congress
+								should include workers and peasants in the
+								freedom struggle to prevent their alienation;
+								C.R. Das authored
+								<i>"India for Indians"</i> (65th BPSC).
+							</li>
+							<li>
+								<mark class="y">Trade Union Act of 1926</mark>:
+								legalised trade unions with
+								recognition/regulation; required minimum
+								<mark class="b">7 members</mark> for
+								registration; granted immunity from civil &amp;
+								criminal liability for legitimate actions;
+								allowed unions to own property — but restricted
+								funds from political purposes, limiting activity
+								to economic grievances.
+							</li>
+							<li>
+								Late 1920s — communist influence: the
+								<mark class="g">Girni Kamgar Union</mark> led a
+								six-month strike at the
+								<mark class="y"
+									>Bombay Textile Mills (1928)</mark
+								>; key communist figures
+								<mark class="g"
+									>Sohan Singh Joshi, P.C. Joshi, Muzaffar
+									Ahmed, S.A. Dange</mark
+								>; the 4th Congress of the Communist
+								International urged AITUC to move beyond wage
+								demands to overthrowing capitalism/imperialism;
+								AITUC affiliated with the Pan-Pacific
+								Secretariat and the Third International in
+								Moscow.
+							</li>
+							<li>
+								Moderate response:
+								<mark class="g">N.M. Joshi</mark> formed the
+								<mark class="y"
+									>All India Trade Union Federation (AITUF),
+									1931</mark
+								>, withdrawing from AITUC.
+							</li>
+							<li>
+								Government legislative restrictions:
+								<mark class="y"
+									>Trade Disputes Act (TDA), 1929</mark
+								>
+								— compulsory Courts of Inquiry &amp;
+								Consultation Boards; illegal strikes in public
+								utilities unless one-month notice given;
+								prohibited coercive/political and sympathetic
+								strikes.
+								<mark class="y"
+									>Public Safety Ordinance (1929)</mark
+								>
+								— introduced 1928, enacted 1929, provided for
+								tribunals and a strike ban.
+							</li>
+							<li>
+								<mark class="b">1935</mark>: communists rejoined
+								AITUC; the left front now included communists,
+								Congress socialists and leftist nationalists
+								like <mark class="g">Nehru</mark> and
+								<mark class="g">Bose</mark>; AITUC supported
+								Congress candidates in the
+								<mark class="b">1937 elections</mark>.
+							</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>
+							Trade unions under Congress ministries (1937–1947)
+						</h3>
+						<ul>
+							<li>
+								<mark class="b">296 unions</mark> by
+								<mark class="b">1938</mark>.
+							</li>
+							<li>
+								<mark class="y"
+									>Kanpur Workers' Strike (1937)</mark
+								>: <mark class="b">10,000 workers</mark>, a
+								<mark class="b">55-day strike</mark>.
+							</li>
+							<li>
+								<mark class="y">Labour Enquiry Committee</mark>
+								chaired by
+								<mark class="g">Babu Rajendra Prasad</mark>.
+							</li>
+							<li>
+								Legislative reforms:
+								<mark class="y"
+									>Bombay Industrial Disputes Act (1938)</mark
+								>,
+								<mark class="y"
+									>Bombay Shop Assistants Act (1939)</mark
+								>,
+								<mark class="y">C.P. Maternity Act (1939)</mark
+								>; Congress-led provincial governments were
+								generally sympathetic to workers' demands.
+							</li>
+						</ul>
+					</div>
+
+					<div class="factbox">
+						<span class="lbl"
+							>The Bombay Plan (1944) — 70th BPSC</span
+						>
+						<dl>
+							<dt>What</dt>
+							<dd>
+								A blueprint for India's economic development
+								proposed by prominent Indian industrialists,
+								presenting a vision for post-independence
+								progress focused on industrialisation,
+								infrastructure and active state involvement in
+								economic planning.
+							</dd>
+							<dt>Main contributors</dt>
+							<dd>
+								<mark class="g">J.R.D. Tata</mark>,
+								<mark class="g">G.D. Birla</mark>,
+								<mark class="g">Lala Sri Ram</mark>
+							</dd>
+							<dt>Other contributors</dt>
+							<dd>
+								<mark class="g">Purshottamdas Thakurdas</mark>,
+								<mark class="g">Kasturbhai Lalbhai</mark>,
+								<mark class="g">Ardeshir Dalal</mark>
+							</dd>
+						</dl>
+					</div>
+
+					<div class="event">
+						<h3>Second World War &amp; post-Independence</h3>
+						<ul>
+							<li>
+								Workers initially opposed the war; communist
+								support shifted after Russia's involvement.
+							</li>
+							<li>
+								Communists did not support the
+								<mark class="y">Quit India Movement</mark>,
+								advocating a policy of industrial peace instead.
+							</li>
+							<li>
+								Workers participated in post-war national
+								upsurges: in <mark class="b">1945</mark>, dock
+								workers of <mark class="g">Bombay</mark> and
+								<mark class="g">Calcutta</mark> refused to load
+								ships carrying supplies to warring troops in
+								Indonesia; they went on strike in support of the
+								<mark class="y">Naval Ratings in 1946</mark>.
+							</li>
+						</ul>
+					</div>
+				</section>
+			</div>
+			<!-- /chapters -->
+			<!-- ============ MASTER TABLE ============ -->
+			<section class="master-section" id="master-table">
+				<div class="master-inner">
+					<div class="master-eyebrow">
+						BPSC Prelims · Final Revision
+					</div>
+					<h2>Master Table — Chronological Date Bank</h2>
+					<p class="master-sub">
+						Every dated event collected from this dossier's civil
+						rebellions, tribal revolts, sepoy mutinies, peasant
+						movements and labour movement — for rapid Prelims
+						revision.
+					</p>
+					<div class="master-table-wrap">
+						<table class="master-table">
+							<thead>
+								<tr>
+									<th>Date</th>
+									<th>Event</th>
+									<th>Why it matters</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1764</td>
+									<td>Bengal Sepoy Mutiny</td>
+									<td>
+										Sepoys under Hector Munro joined Mir
+										Qasim at the Battle of Buxar; earliest
+										listed pre-1857 mutiny.
+									</td>
+								</tr>
+								<tr>
+									<td>1763–1800</td>
+									<td>Sanyasi Revolt (Bengal &amp; Bihar)</td>
+									<td>
+										Inspired Anandamath &amp; Vande Mataram;
+										suppressed by Warren Hastings.
+									</td>
+								</tr>
+								<tr>
+									<td>1766–74</td>
+									<td>Midnapore &amp; Dhalbhum Revolt</td>
+									<td>
+										Resentment against new revenue system.
+									</td>
+								</tr>
+								<tr>
+									<td>1766–72, 1795–1816</td>
+									<td>Chuar Uprising (Jungle Mahal)</td>
+									<td>Bengal, not MP — common trap.</td>
+								</tr>
+								<tr>
+									<td>1769–1799</td>
+									<td>Moamarias Revolt (Assam)</td>
+									<td>Led to weakening of Ahom kingdom.</td>
+								</tr>
+								<tr>
+									<td>1778</td>
+									<td>Pahariya Rebellion</td>
+									<td>Resistance to settled agriculture.</td>
+								</tr>
+								<tr>
+									<td>1778–1785</td>
+									<td>Revolt of Tilka Manjhi</td>
+									<td>
+										Early guerrilla resistance, Santhal
+										Pargana.
+									</td>
+								</tr>
+								<tr>
+									<td>1781</td>
+									<td>Gorakhpur &amp; Basti Uprisings</td>
+									<td>
+										Ended Izara system, Hannay dismissed.
+									</td>
+								</tr>
+								<tr>
+									<td>1794</td>
+									<td>Vizianagaram Rebellion</td>
+									<td>
+										Raja killed; direct British control.
+									</td>
+								</tr>
+								<tr>
+									<td>1795–1805</td>
+									<td>Poligars' Revolt (Tamil Nadu)</td>
+									<td>
+										Kattaboman Nayakan executed, became
+										regional hero.
+									</td>
+								</tr>
+								<tr>
+									<td>1797–1805</td>
+									<td>Pazhassi Raja Revolt (Kerala)</td>
+									<td>
+										Attack on British camp in Wayanad, 1802.
+									</td>
+								</tr>
+								<tr>
+									<td>1798; 1914–15</td>
+									<td>Tamar Revolts</td>
+									<td>
+										Two separate leaders across nearly
+										identical dates — Bholanath Sahay, then
+										Jatra/Balram Bhagat.
+									</td>
+								</tr>
+								<tr>
+									<td>1799</td>
+									<td>Awadh Civil Rebellion</td>
+									<td>
+										British interference in Awadh
+										administration.
+									</td>
+								</tr>
+								<tr>
+									<td>1800–1805</td>
+									<td>Ganjam Revolt</td>
+									<td>Led by Dhananjay.</td>
+								</tr>
+								<tr>
+									<td>1800–02</td>
+									<td>Palamau Uprisings</td>
+									<td>
+										Strengthened British control over
+										Chhotanagpur.
+									</td>
+								</tr>
+								<tr>
+									<td>1803 onwards</td>
+									<td>Haryana Uprisings (Bhiwani)</td>
+									<td>After Treaty of Surji-Arjungaon.</td>
+								</tr>
+								<tr>
+									<td>1805</td>
+									<td>
+										Travancore subsidiary alliance imposed
+										(Wellesley)
+									</td>
+									<td>Triggered the Velu Thambi Revolt.</td>
+								</tr>
+								<tr>
+									<td>1806</td>
+									<td>Vellore Mutiny</td>
+									<td>
+										Rebels raised the Mysore flag; occurred
+										under Governor Sir George Barlow.
+									</td>
+								</tr>
+								<tr>
+									<td>1808–09</td>
+									<td>
+										Dewan Velu Thambi Revolt (Travancore)
+									</td>
+									<td>Supported by Nair troops.</td>
+								</tr>
+								<tr>
+									<td>1808–12</td>
+									<td>Bundelkhand Disturbances</td>
+									<td>Over Ikarnamahs.</td>
+								</tr>
+								<tr>
+									<td>1808–1837</td>
+									<td>Gumsur Uprising</td>
+									<td>
+										Shrikar Bhanja, then son Dhananjay
+										Bhanja II.
+									</td>
+								</tr>
+								<tr>
+									<td>1813–34</td>
+									<td>Parlakimedi Uprising (Odisha)</td>
+									<td>
+										Led by Narayan Deo &amp; Gajpati Deo.
+									</td>
+								</tr>
+								<tr>
+									<td>1816</td>
+									<td>Bareilly Rising</td>
+									<td>
+										Mufti Muhammad Aiwaz opposed the police
+										tax.
+									</td>
+								</tr>
+								<tr>
+									<td>1816–1832</td>
+									<td>Kutch Rebellion</td>
+									<td>
+										Maharaja Bharamal II; part of a key
+										chronology MCQ.
+									</td>
+								</tr>
+								<tr>
+									<td>1817</td>
+									<td>Paika Rebellion (Khordha, Odisha)</td>
+									<td>
+										Led by Bakshi Jagabandhu Bidyadhar
+										Mahapatra.
+									</td>
+								</tr>
+								<tr>
+									<td>1817–19 / 1818–31</td>
+									<td>Bhil Uprising</td>
+									<td>
+										Blamed on Trimbakji Dengle; real causes
+										agricultural hardship &amp; fear of new
+										govt.
+									</td>
+								</tr>
+								<tr>
+									<td>1818–1862</td>
+									<td>Faraizi Movement</td>
+									<td>
+										Haji Shariatullah, later Dudu Miyan;
+										merged into Wahabi Movement.
+									</td>
+								</tr>
+								<tr>
+									<td>1818–1820</td>
+									<td>
+										Waghera Rising (Okhamandal, Gujarat)
+									</td>
+									<td>Ended by peace treaty, 1820.</td>
+								</tr>
+								<tr>
+									<td>1820–21</td>
+									<td>Ho Revolt</td>
+									<td>
+										Centred in Singhbhum; led eventually to
+										Kol Uprising alliance.
+									</td>
+								</tr>
+								<tr>
+									<td>1820</td>
+									<td>Ryotwari System introduced</td>
+									<td>
+										Direct peasant-government revenue link,
+										high rent.
+									</td>
+								</tr>
+								<tr>
+									<td>1822–29</td>
+									<td>Koli Uprising (Maharashtra)</td>
+									<td>Led by Ramji Bhangre.</td>
+								</tr>
+								<tr>
+									<td>1822–1829</td>
+									<td>
+										(Tribal) Ramosi Uprising (Western Ghats)
+									</td>
+									<td>
+										Chittur Singh, Umaji Naik, Bapu
+										Trimbakji Sawant — distinct from
+										Phadke's later Ramosi movement.
+									</td>
+								</tr>
+								<tr>
+									<td>1825–1833</td>
+									<td>Pagal Panthis (Sherpur, Mymensingh)</td>
+									<td>Karam Shah, then Tipu Shah.</td>
+								</tr>
+								<tr>
+									<td>1828–1833</td>
+									<td>Ahom Revolt</td>
+									<td>
+										Led by Gomadhar Konwar/Gomdhar Kunwar.
+									</td>
+								</tr>
+								<tr>
+									<td>1829–1833</td>
+									<td>Khasi Uprising</td>
+									<td>Led by Tirath/Teerat Singh.</td>
+								</tr>
+								<tr>
+									<td>1830–1861</td>
+									<td>Wahabi Movement</td>
+									<td>
+										Syed Ahmed Barelvi, Titu Mir; centred at
+										Patna after 1831.
+									</td>
+								</tr>
+								<tr>
+									<td>1830 onwards</td>
+									<td>Singhphos Rebellion (Assam)</td>
+									<td>
+										Led by Nirang Phidu; killed a British
+										agent in 1839.
+									</td>
+								</tr>
+								<tr>
+									<td>1831 (Battle of Balakot)</td>
+									<td>Syed Ahmad Barelvi killed</td>
+									<td>
+										Wahabi Movement's centre shifts to
+										Patna.
+									</td>
+								</tr>
+								<tr>
+									<td>1831–32</td>
+									<td>Kol Mutiny (Chotanagpur)</td>
+									<td>
+										Led by Buddho Bhagat; ~1,000 outsiders
+										killed.
+									</td>
+								</tr>
+								<tr>
+									<td>1832–33</td>
+									<td>Bhumij Revolt</td>
+									<td>
+										Led by Ganga Narain, Jungle Mahal,
+										Zamindari of Barabhum.
+									</td>
+								</tr>
+								<tr>
+									<td>1837–56 / 1846–55</td>
+									<td>Khond Uprising</td>
+									<td>
+										Chakra Bisoi; opposed banning of Mariah
+										(human sacrifice).
+									</td>
+								</tr>
+								<tr>
+									<td>1838</td>
+									<td>Sholapur Mutiny</td>
+									<td>Pre-1857 sepoy discontent.</td>
+								</tr>
+								<tr>
+									<td>1839–1842</td>
+									<td>Khampti Rebellion (Assam)</td>
+									<td>Resistance to British dominance.</td>
+								</tr>
+								<tr>
+									<td>1840</td>
+									<td>Satara Revolt</td>
+									<td>
+										Over deposition of Chhatrapati
+										Pratapsingh.
+									</td>
+								</tr>
+								<tr>
+									<td>1842–1844</td>
+									<td>Lushais Revolt (Manipur)</td>
+									<td>
+										Reaction to British alliances &amp;
+										exploitation.
+									</td>
+								</tr>
+								<tr>
+									<td>1844–1852</td>
+									<td>
+										Mutinies of 34th, 22nd, 66th, 37th
+										Native Infantry
+									</td>
+									<td>Sporadic pre-1857 revolts.</td>
+								</tr>
+								<tr>
+									<td>1844–45</td>
+									<td>Gadkari Revolt (Kolhapur)</td>
+									<td>
+										Hereditary fort-servants dismissed from
+										service.
+									</td>
+								</tr>
+								<tr>
+									<td>1853</td>
+									<td>Railway Minute</td>
+									<td>
+										Machinery introduced; foundation of
+										modern industry.
+									</td>
+								</tr>
+								<tr>
+									<td>1854 / 1855</td>
+									<td>
+										First Cotton Mill (Bombay) / First Jute
+										Mill (Calcutta)
+									</td>
+									<td>Birth of organised factory labour.</td>
+								</tr>
+								<tr>
+									<td>1855–56</td>
+									<td>Santhal Rebellion (Hool)</td>
+									<td>
+										Sidhu, Kanhu, Chand, Bhairav; Santhal
+										Parganas created afterward.
+									</td>
+								</tr>
+								<tr>
+									<td>1856</td>
+									<td>General Service Enlistment Act</td>
+									<td>
+										Required overseas service, a key cause
+										of pre-1857 discontent.
+									</td>
+								</tr>
+								<tr>
+									<td>1857 (Feb)</td>
+									<td>Berhampur Revolt</td>
+									<td>
+										Immediate precursor to the general
+										revolt.
+									</td>
+								</tr>
+								<tr>
+									<td>1859–60</td>
+									<td>Indigo Revolt (Nadia, Bengal)</td>
+									<td>
+										Biswas brothers; occurred immediately
+										after 1857; Indigo Commission 1860.
+									</td>
+								</tr>
+								<tr>
+									<td>1860</td>
+									<td><i>Neel Darpan</i> published</td>
+									<td>
+										By Dinabandhu Mitra — frequently
+										mismatched to other authors in MCQs.
+									</td>
+								</tr>
+								<tr>
+									<td>1860–62/63</td>
+									<td>Synteng/Jaintia Rebellion</td>
+									<td>
+										Armed resistance to British
+										interference.
+									</td>
+								</tr>
+								<tr>
+									<td>1861</td>
+									<td>Phulaguri Peasant Rebellion (Assam)</td>
+									<td>
+										One of Assam's earliest anti-British
+										peasant uprisings.
+									</td>
+								</tr>
+								<tr>
+									<td>1862</td>
+									<td>Surendra Sai surrenders (Sambalpur)</td>
+									<td>
+										Led anti-British revolt in Sambalpur.
+									</td>
+								</tr>
+								<tr>
+									<td>1870</td>
+									<td>
+										Sasipada Banerjee founds Bharat
+										Shramjeevi
+									</td>
+									<td>Early labour-rights initiative.</td>
+								</tr>
+								<tr>
+									<td>1870s / 1874</td>
+									<td>Kharwar/Khairwar Rebellion (Bihar)</td>
+									<td>Led by Bhagirath Manjhi.</td>
+								</tr>
+								<tr>
+									<td>1872</td>
+									<td>Kuka uprising against cow slaughter</td>
+									<td>
+										Severely suppressed; Ram Singh exiled to
+										Mergui, Burma.
+									</td>
+								</tr>
+								<tr>
+									<td>1872–73</td>
+									<td>Revolt of the Saflas (Assam)</td>
+									<td>
+										Against forest &amp; revenue policies.
+									</td>
+								</tr>
+								<tr>
+									<td>1873–1885 (intense 1873–76)</td>
+									<td>Pabna Movement (East Bengal)</td>
+									<td>
+										Agrarian League 1873; Bengal Tenancy Act
+										1885.
+									</td>
+								</tr>
+								<tr>
+									<td>1875</td>
+									<td>Deccan Peasants' Uprising</td>
+									<td>
+										Deccan Agriculturists Relief Act 1879.
+									</td>
+								</tr>
+								<tr>
+									<td>1877–87</td>
+									<td>Ramosi Uprising / Phadke's revolt</td>
+									<td>
+										Treasury raids at Dhamari, Shirur, Khed.
+									</td>
+								</tr>
+								<tr>
+									<td>1878</td>
+									<td>
+										Sorabjee Shapoorji Bengalee's labour
+										bill
+									</td>
+									<td>Bombay Legislative Council.</td>
+								</tr>
+								<tr>
+									<td>1879–80</td>
+									<td>
+										Rampa Uprising (earlier, forest-rights)
+									</td>
+									<td>
+										Against 1882 Madras Forest Act's
+										predecessor pressures on "Podu"
+										cultivation.
+									</td>
+								</tr>
+								<tr>
+									<td>1879–80</td>
+									<td>Koya Rebellion</td>
+									<td>
+										Tomma Dora seized a police station,
+										titled "King" of Malkangiri.
+									</td>
+								</tr>
+								<tr>
+									<td>1880</td>
+									<td>
+										Bombay Mill and Millhands Association
+										founded
+									</td>
+									<td>
+										N.M. Lokhande — first labour-movement
+										organiser in India.
+									</td>
+								</tr>
+								<tr>
+									<td>1881</td>
+									<td>Factory Act of 1881</td>
+									<td>
+										First major British factory legislation.
+									</td>
+								</tr>
+								<tr>
+									<td>1882</td>
+									<td>Kacha Naga Uprising (Cachhar)</td>
+									<td>
+										Protest against colonial land
+										encroachment.
+									</td>
+								</tr>
+								<tr>
+									<td>1882</td>
+									<td>Madras Forest Act</td>
+									<td>
+										Restricted "Podu" shifting cultivation,
+										root cause of later Rampa unrest.
+									</td>
+								</tr>
+								<tr>
+									<td>1883</td>
+									<td>Govind Guru establishes Samp Sabha</td>
+									<td>
+										Bhil social reform, Lasodhiya Movement.
+									</td>
+								</tr>
+								<tr>
+									<td>1883</td>
+									<td>Vasudev Balwant Phadke dies</td>
+									<td>
+										Hunger strike in the Andamans (Kala
+										Pani).
+									</td>
+								</tr>
+								<tr>
+									<td>1891</td>
+									<td>Factory Act of 1891</td>
+									<td>
+										Raised minimum age, cut children's
+										hours.
+									</td>
+								</tr>
+								<tr>
+									<td>1895–1900</td>
+									<td>Birsa Munda's Ulgulan</td>
+									<td>
+										Chotanagpur Tenancy Act 1908 followed.
+									</td>
+								</tr>
+								<tr>
+									<td>1899</td>
+									<td>
+										Great Indian Peninsular Railways Strike
+									</td>
+									<td>
+										Supported by Tilak's Kesari &amp;
+										Maharatta.
+									</td>
+								</tr>
+								<tr>
+									<td>1899–1900</td>
+									<td>Munda Rebellion</td>
+									<td>
+										Birsa Munda captured 3 Feb 1900, died in
+										jail 9 June 1900.
+									</td>
+								</tr>
+								<tr>
+									<td>1900</td>
+									<td>Punjab Land Alienation Act</td>
+									<td>15-year limit on land transactions.</td>
+								</tr>
+								<tr>
+									<td>1900</td>
+									<td>Khonda Dora Campaign</td>
+									<td>Led by Korra Mallaya.</td>
+								</tr>
+								<tr>
+									<td>1901</td>
+									<td>
+										584,000 factory workers recorded in
+										India
+									</td>
+									<td>Scale of industrial labour force.</td>
+								</tr>
+								<tr>
+									<td>1905–1931</td>
+									<td>Naga Movement (Manipur)</td>
+									<td>
+										Led by Jadonang, aimed at independent
+										Naga Raj.
+									</td>
+								</tr>
+								<tr>
+									<td>1908</td>
+									<td>Political Strike, Bombay</td>
+									<td>
+										Response to Tilak's conviction; drew
+										Lenin's attention.
+									</td>
+								</tr>
+								<tr>
+									<td>1908</td>
+									<td>Chotanagpur Tenancy Act</td>
+									<td>
+										Protected tribal land rights
+										post-Ulgulan.
+									</td>
+								</tr>
+								<tr>
+									<td>1909 &amp; 1911</td>
+									<td>Factory Acts for the Jute Industry</td>
+									<td>Hours &amp; safety in jute mills.</td>
+								</tr>
+								<tr>
+									<td>1910</td>
+									<td>Bastar Revolt (Jagdalpur)</td>
+									<td>
+										Against feudal exploitation &amp; forest
+										levies.
+									</td>
+								</tr>
+								<tr>
+									<td>1913</td>
+									<td>Mangarh Massacre</td>
+									<td>
+										Associated with Govind Guru's Bhil
+										movement.
+									</td>
+								</tr>
+								<tr>
+									<td>1914–1920</td>
+									<td>Tana Bhagat Movement</td>
+									<td>
+										Jatra Bhagat; satyagraha methods
+										pre-dating Gandhi's Non-Cooperation.
+									</td>
+								</tr>
+								<tr>
+									<td>1917</td>
+									<td>Champaran Satyagraha</td>
+									<td>Ended the Teen Kathia system.</td>
+								</tr>
+								<tr>
+									<td>1917–1919</td>
+									<td>Kukis Revolt (Manipur)</td>
+									<td>Opposed WWI labour recruitment.</td>
+								</tr>
+								<tr>
+									<td>1918</td>
+									<td>Kheda Satyagraha</td>
+									<td>Gandhi, Patel, Mohanlal Pandya.</td>
+								</tr>
+								<tr>
+									<td>1918</td>
+									<td>
+										United Provinces Kisan Sabha established
+									</td>
+									<td>450 branches by June 1919.</td>
+								</tr>
+								<tr>
+									<td>1918</td>
+									<td>
+										Ahmedabad Textile Labour Association
+									</td>
+									<td>
+										Gandhi secures 27.5% (later 35%) wage
+										rise.
+									</td>
+								</tr>
+								<tr>
+									<td>1918</td>
+									<td>Chennai Labour Union founded</td>
+									<td>
+										B.P. Wadia — first modern Indian trade
+										union.
+									</td>
+								</tr>
+								<tr>
+									<td>1920</td>
+									<td>AITUC founded (31 Oct)</td>
+									<td>
+										Lala Lajpat Rai first president, Dewan
+										Chaman Lal first general secretary.
+									</td>
+								</tr>
+								<tr>
+									<td>1920</td>
+									<td>Awadh Kisan Sabha</td>
+									<td>
+										Refuse-labour &amp;
+										panchayat-dispute-resolution campaign.
+									</td>
+								</tr>
+								<tr>
+									<td>1920s</td>
+									<td>Zeliangsong Movement (Manipur)</td>
+									<td>
+										Reaction to British failure during Kuki
+										revolt.
+									</td>
+								</tr>
+								<tr>
+									<td>1921</td>
+									<td>Eka Movement (Awadh, UP)</td>
+									<td>
+										Madari Pasi, Baba Ramchandra; collapsed
+										March 1922.
+									</td>
+								</tr>
+								<tr>
+									<td>1921</td>
+									<td>Mappila/Moplah Uprising (Malabar)</td>
+									<td>
+										Turned communal after Ali Musaliar's
+										arrest.
+									</td>
+								</tr>
+								<tr>
+									<td>1921–1922</td>
+									<td>Chenchu Tribal Movement</td>
+									<td>
+										Venkattappaya, K. Hanumanthu; forest
+										satyagraha.
+									</td>
+								</tr>
+								<tr>
+									<td>1922</td>
+									<td>Gaya Congress Session</td>
+									<td>Congress welcomed AITUC formation.</td>
+								</tr>
+								<tr>
+									<td>1922–1927</td>
+									<td>
+										Peasant/labour organisations founded
+									</td>
+									<td>
+										Labour Swaraj Party, Congress Labour
+										Party, Kirti Kisan Party, Labour Kisan
+										Party of Hindustan.
+									</td>
+								</tr>
+								<tr>
+									<td>1922–1924</td>
+									<td>Rampa/Manyam Rebellion</td>
+									<td>
+										Alluri Sitarama Raju captured &amp;
+										executed 1924.
+									</td>
+								</tr>
+								<tr>
+									<td>1926</td>
+									<td>Trade Union Act</td>
+									<td>
+										Legalised unions; barred political use
+										of funds.
+									</td>
+								</tr>
+								<tr>
+									<td>1926 (Jan–Feb)</td>
+									<td>
+										Bardoli tax hike proposed / Patel takes
+										charge
+									</td>
+									<td>Patel earns the title "Sardar."</td>
+								</tr>
+								<tr>
+									<td>1928</td>
+									<td>
+										Girni Kamgar Union strike, Bombay
+										Textile Mills
+									</td>
+									<td>
+										Six-month strike; communist-influenced
+										militancy.
+									</td>
+								</tr>
+								<tr>
+									<td>1928</td>
+									<td>Bardoli Satyagraha settled (June)</td>
+									<td>Tax increase reduced to 6.03%.</td>
+								</tr>
+								<tr>
+									<td>1929</td>
+									<td>
+										Trade Disputes Act &amp; Public Safety
+										Ordinance
+									</td>
+									<td>
+										Restricted political/sympathetic
+										strikes.
+									</td>
+								</tr>
+								<tr>
+									<td>1930s</td>
+									<td>
+										Rani Gaidinliu's Naga (Heraka) Movement
+									</td>
+									<td>
+										Jadonang executed 1931; Gaidinliu
+										captured 1932.
+									</td>
+								</tr>
+								<tr>
+									<td>1931</td>
+									<td>AITUF formed</td>
+									<td>N.M. Joshi withdraws from AITUC.</td>
+								</tr>
+								<tr>
+									<td>1933</td>
+									<td>
+										India Peasants' Institute founded (N.G.
+										Ranga)
+									</td>
+									<td>
+										Andhra Pradesh peasant mobilisation.
+									</td>
+								</tr>
+								<tr>
+									<td>1935</td>
+									<td>Communists rejoin AITUC</td>
+									<td>
+										Left-front consolidation ahead of 1937
+										elections.
+									</td>
+								</tr>
+								<tr>
+									<td>1935</td>
+									<td>Bihar Provincial Kisan Conference</td>
+									<td>Adopted anti-zamindari slogans.</td>
+								</tr>
+								<tr>
+									<td>1936</td>
+									<td>
+										All India Kisan Sabha formed (Lucknow)
+									</td>
+									<td>Swami Sahajananda Saraswati.</td>
+								</tr>
+								<tr>
+									<td>1936</td>
+									<td>Bakasht Movement (Bihar)</td>
+									<td>
+										Bihar Tenancy Act &amp; Bakasht Land Tax
+										followed.
+									</td>
+								</tr>
+								<tr>
+									<td>1937</td>
+									<td>Kanpur Workers' Strike</td>
+									<td>10,000 workers, 55-day strike.</td>
+								</tr>
+								<tr>
+									<td>1937–1947</td>
+									<td>
+										Trade unions under Congress ministries
+									</td>
+									<td>
+										296 unions by 1938; favourable labour
+										legislation.
+									</td>
+								</tr>
+								<tr>
+									<td>1938</td>
+									<td>
+										Malabar Tenancy Act amendment push
+										(Kerala)
+									</td>
+									<td>
+										Congress Socialist Party, Karshak
+										Sanghams.
+									</td>
+								</tr>
+								<tr>
+									<td>1938</td>
+									<td>
+										Bihar Provincial Kisan Sabha conference,
+										Waini
+									</td>
+									<td>
+										Protest against zamindars over Bakasht
+										lands.
+									</td>
+								</tr>
+								<tr>
+									<td>1939 (Aug)</td>
+									<td>Bihar Kisan Sabha loses momentum</td>
+									<td>
+										Precursor to future agrarian struggles.
+									</td>
+								</tr>
+								<tr>
+									<td>1940s</td>
+									<td>Gond Uprising</td>
+									<td>
+										United followers of Gond Dharma against
+										British rule.
+									</td>
+								</tr>
+								<tr>
+									<td>1940</td>
+									<td>Jagir Ryotu Sangham formed</td>
+									<td>
+										Foundation of Telangana peasant
+										organisation.
+									</td>
+								</tr>
+								<tr>
+									<td>1943</td>
+									<td>
+										Bengal famine relief work by Kisan Sabha
+									</td>
+									<td>
+										Continued despite the AIKS/pro-war
+										split.
+									</td>
+								</tr>
+								<tr>
+									<td>1944</td>
+									<td>Bombay Plan proposed</td>
+									<td>
+										Tata, Birla, Lala Sri Ram, and other
+										industrialists.
+									</td>
+								</tr>
+								<tr>
+									<td>1945</td>
+									<td>
+										Bombay &amp; Calcutta dock workers'
+										refusal
+									</td>
+									<td>
+										Refused to load supply ships for
+										Indonesia-bound troops.
+									</td>
+								</tr>
+								<tr>
+									<td>1946</td>
+									<td>
+										Strikes in support of the Naval Ratings
+									</td>
+									<td>Post-war working-class upsurge.</td>
+								</tr>
+								<tr>
+									<td>1946–47</td>
+									<td>Tebhaga Movement (Bengal)</td>
+									<td>
+										Slogan "Nij khamare dhan tolo"; 40% of
+										peasants gained the two-thirds share.
+									</td>
+								</tr>
+								<tr>
+									<td>1946–51</td>
+									<td>Telangana Insurrection</td>
+									<td>
+										CPI-led guerrilla struggle vs.
+										Jagirdars/Deshmukhs/Razakars.
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+			<div class="footer">
+				Compiled from theory notes and PYQ (Ghatnachakra-style)
+				explanations · marker-coded per canonical study format ·
+				cross-verify years before the exam
+			</div>
+		</div>
+		<!-- /main -->
+		<script>
+			const chapters = document.querySelectorAll(".chapter");
+			const toc = document.getElementById("toc");
+			chapters.forEach((ch, i) => {
+				const a = document.createElement("a");
+				a.href = "#" + ch.id;
+				a.innerHTML =
+					'<span class="num">' +
+					String(i + 1).padStart(2, "0") +
+					"</span><span>" +
+					ch.dataset.title +
+					"</span>";
+				a.dataset.target = ch.id;
+				toc.appendChild(a);
+			});
+			const links = toc.querySelectorAll("a");
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							links.forEach((l) => l.classList.remove("active"));
+							const active = toc.querySelector(
+								'a[data-target="' + entry.target.id + '"]',
+							);
+							if (active) active.classList.add("active");
+						}
+					});
+				},
+				{ rootMargin: "-10% 0px -75% 0px", threshold: 0 },
+			);
+			chapters.forEach((ch) => observer.observe(ch));
+			const menuBtn = document.getElementById("menu-btn");
+			const sidebar = document.getElementById("sidebar");
+			menuBtn.addEventListener("click", () =>
+				sidebar.classList.toggle("open"),
+			);
+			links.forEach((l) =>
+				l.addEventListener("click", () =>
+					sidebar.classList.remove("open"),
+				),
+			);
+		</script>
+	</body>
+</html>

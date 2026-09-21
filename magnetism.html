@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Laws and Equations</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- MathJax CDN configuration and script -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen py-10 px-4 sm:px-6 lg:px-8 tex2jax_process">
+
+    <main class="max-w-5xl mx-auto space-y-8">
+        
+        <!-- Header -->
+        <header class="text-center bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                Fundamental Physics Laws & Equations
+            </h1>
+            <p class="mt-3 text-slate-600 max-w-2xl mx-auto">
+                Exact mathematical formulas for physics textbooks and competitive exams, formatted with full vector calculus and differential/integral representations.
+            </p>
+        </header>
+
+        <!-- Section 1: Maxwell's Equations -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+            <h2 class="text-2xl font-bold text-indigo-700 pb-3 border-b border-slate-200">
+                1. Maxwell's Equations
+            </h2>
+            <p class="mt-4 text-slate-700 leading-relaxed">
+                Maxwell's equations can be written in two forms: <strong>Integral Form</strong> (calculating over lines, surfaces, and volumes) and <strong>Differential Form</strong> (calculating at a specific point).
+            </p>
+
+            <!-- Table -->
+            <div class="mt-6 overflow-x-auto">
+                <table class="w-full text-left border-collapse border border-slate-200 rounded-lg overflow-hidden">
+                    <thead>
+                        <tr class="bg-indigo-50 text-indigo-900 font-semibold text-sm">
+                            <th class="p-4 border-b border-slate-200">Equation Name</th>
+                            <th class="p-4 border-b border-slate-200">Integral Form</th>
+                            <th class="p-4 border-b border-slate-200">Differential Form</th>
+                            <th class="p-4 border-b border-slate-200">What it Means Mathematically</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-sm sm:text-base">
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-4 font-semibold text-slate-900">Gauss's Law for Electricity</td>
+                            <td class="p-4 text-indigo-900">$\oint \vec{E} \cdot d\vec{A} = \frac{Q_{\text{enclosed}}}{\varepsilon_0}$</td>
+                            <td class="p-4 text-indigo-900">$\nabla \cdot \vec{E} = \frac{\rho}{\varepsilon_0}$</td>
+                            <td class="p-4 text-slate-600">The total electric flux through a closed surface depends on the enclosed charge ($Q$).</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-4 font-semibold text-slate-900">Gauss's Law for Magnetism</td>
+                            <td class="p-4 text-indigo-900">$\oint \vec{B} \cdot d\vec{A} = 0$</td>
+                            <td class="p-4 text-indigo-900">$\nabla \cdot \vec{B} = 0$</td>
+                            <td class="p-4 text-slate-600">The total magnetic flux through any closed surface is zero (no isolated magnetic poles).</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-4 font-semibold text-slate-900">Faraday's Law of Induction</td>
+                            <td class="p-4 text-indigo-900">$\oint \vec{E} \cdot d\vec{\ell} = -\frac{d\Phi_B}{dt}$</td>
+                            <td class="p-4 text-indigo-900">$\nabla \times \vec{E} = -\frac{\partial \vec{B}}{\partial t}$</td>
+                            <td class="p-4 text-slate-600">A time-varying magnetic field ($\Phi_B$) induces an electromotive force or electric field.</td>
+                        </tr>
+                        <tr class="hover:bg-slate-50 transition-colors">
+                            <td class="p-4 font-semibold text-slate-900">Ampere-Maxwell Law</td>
+                            <td class="p-4 text-indigo-900">$\oint \vec{B} \cdot d\vec{\ell} = \mu_0 \left( I + \varepsilon_0 \frac{d\Phi_E}{dt} \right)$</td>
+                            <td class="p-4 text-indigo-900">$\nabla \times \vec{B} = \mu_0 \left( \vec{J} + \varepsilon_0 \frac{\partial \vec{E}}{\partial t} \right)$</td>
+                            <td class="p-4 text-slate-600">Magnetic fields are generated by electric currents ($I$) and changing electric fields ($\Phi_E$).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Variables Guide -->
+            <div class="mt-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <h3 class="font-semibold text-slate-900 mb-2">Variables Guide:</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm text-slate-700">
+                    <div>$\vec{E}$ = Electric field</div>
+                    <div>$\vec{B}$ = Magnetic field</div>
+                    <div>$\varepsilon_0$ = Permittivity of free space</div>
+                    <div>$\mu_0$ = Permeability of free space</div>
+                    <div>$\rho$ = Charge density</div>
+                    <div>$\vec{J}$ = Current density</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Ampere's Circuital Law -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+            <h2 class="text-2xl font-bold text-indigo-700 pb-3 border-b border-slate-200">
+                2. Ampere's Circuital Law
+            </h2>
+            <p class="mt-4 text-slate-700 leading-relaxed">
+                For a regular straight wire carrying current, the simplified formula derived from Ampere's Law to find the magnetic field ($B$) at a distance ($r$) is:
+            </p>
+
+            <div class="my-6 p-4 bg-indigo-50 border-l-4 border-indigo-600 text-center text-xl text-indigo-950 rounded-r-lg">
+                $$B = \frac{\mu_0 I}{2\pi r}$$
+            </div>
+
+            <ul class="space-y-2 text-slate-700 list-disc list-inside">
+                <li><strong>$B$</strong> = Magnetic field strength (Tesla, T)</li>
+                <li><strong>$\mu_0$</strong> = Permeability of free space ($4\pi \times 10^{-7} \, \text{T}\cdot\text{m/A}$)</li>
+                <li><strong>$I$</strong> = Current flowing through the wire (Amperes, A)</li>
+                <li><strong>$r$</strong> = Distance from the wire (meters, m)</li>
+            </ul>
+        </section>
+
+        <!-- Section 3: Lenz's Law -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+            <h2 class="text-2xl font-bold text-indigo-700 pb-3 border-b border-slate-200">
+                3. Lenz's Law
+            </h2>
+            <p class="mt-4 text-slate-700 leading-relaxed">
+                Lenz's law is represented mathematically as the negative sign in Faraday's Law of Induction. It determines the induced electromotive force ($e$ or $\mathcal{E}$) in a coil with $N$ turns:
+            </p>
+
+            <div class="my-6 p-4 bg-indigo-50 border-l-4 border-indigo-600 text-center text-xl text-indigo-950 rounded-r-lg">
+                $$e = -N \frac{d\Phi_B}{dt}$$
+            </div>
+
+            <ul class="space-y-2 text-slate-700 list-disc list-inside">
+                <li><strong>$e$</strong> = Induced electromotive force (Volts, V)</li>
+                <li><strong>$N$</strong> = Number of turns in the coil</li>
+                <li><strong>$\frac{d\Phi_B}{dt}$</strong> = Rate of change of magnetic flux over time</li>
+            </ul>
+
+            <p class="mt-4 italic text-slate-600 bg-amber-50 p-3 rounded-lg border border-amber-200">
+                Note: The $(-)$ sign is Lenz's law, indicating that the induced EMF opposes the change in flux.
+            </p>
+        </section>
+
+        <!-- Section 4: Ohm's Law -->
+        <section class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8">
+            <h2 class="text-2xl font-bold text-indigo-700 pb-3 border-b border-slate-200">
+                4. Ohm's Law
+            </h2>
+            <p class="mt-4 text-slate-700 leading-relaxed">
+                The standard macroscopic formula for an electrical circuit component is:
+            </p>
+
+            <div class="my-6 p-4 bg-indigo-50 border-l-4 border-indigo-600 text-center text-xl text-indigo-950 rounded-r-lg">
+                $$V = I \cdot R$$
+            </div>
+
+            <ul class="space-y-2 text-slate-700 list-disc list-inside">
+                <li><strong>$V$</strong> = Potential difference / Voltage (Volts, V)</li>
+                <li><strong>$I$</strong> = Current (Amperes, A)</li>
+                <li><strong>$R$</strong> = Resistance (Ohms, $\Omega$)</li>
+            </ul>
+
+            <p class="mt-4 text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-200">
+                <em>Note: In vector calculus form, Ohm's law is written as $\vec{J} = \sigma \vec{E}$, where $\vec{J}$ is current density and $\sigma$ is electrical conductivity.</em>
+            </p>
+        </section>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,4725 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>The Heat Ledger — Thermal Physics for Prelims</title>
+		<script>
+			window.MathJax = {
+				tex: {
+					inlineMath: [
+						["\\(", "\\)"],
+						["$", "$"]
+					],
+					displayMath: [
+						["\\[", "\\]"],
+						["$$", "$$"]
+					]
+				},
+				options: { skipHtmlTags: ["script", "noscript", "style", "textarea", "pre"] },
+				svg: { fontCache: "global" }
+			};
+		</script>
+		<script
+			id="MathJax-script"
+			async
+			src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"
+		></script>
+		<style>
+			:root {
+				--ink: #2b2114;
+				--paper: #f6ecd4;
+				--paper-2: #efe1bd;
+				--sidebar: #171c2b;
+				--sidebar-2: #232a3f;
+				--sidebar-text: #cfd6e8;
+				--accent: #8a3b26;
+				--yellow: #e0a712;
+				--yellow-bg: #fbe08a;
+				--blue: #1f6fa8;
+				--blue-bg: #a9d3ef;
+				--green: #2f7d3f;
+				--green-bg: #a9dcac;
+				--red: #c23b2c;
+				--red-bg: #f3a89e;
+				--purple: #6a3f9c;
+				--purple-bg: #d3bdef;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			html {
+				-webkit-text-size-adjust: 100%;
+			}
+			body {
+				margin: 0;
+				font-family: "Georgia", "Cambria", serif;
+				color: var(--ink);
+				background: var(--sidebar);
+				font-size: 16px;
+				line-height: 1.7;
+			}
+			mark {
+				color: var(--ink);
+				font-weight: 700;
+				padding: 3px 7px;
+				border-radius: 4px;
+				box-decoration-break: clone;
+				-webkit-box-decoration-break: clone;
+				line-height: 2;
+				display: inline;
+				unicode-bidi: isolate;
+			}
+			mark.concept {
+				background: var(--yellow-bg);
+				box-shadow: inset 0 0 0 1.5px var(--yellow);
+			}
+			mark.fact {
+				background: var(--blue-bg);
+				box-shadow: inset 0 0 0 1.5px var(--blue);
+				color: #12324a;
+			}
+			mark.person {
+				background: var(--green-bg);
+				box-shadow: inset 0 0 0 1.5px var(--green);
+				color: #123a1a;
+			}
+			mark.trap {
+				background: var(--red-bg);
+				box-shadow: inset 0 0 0 1.5px var(--red);
+				color: #4a0f08;
+			}
+			mark.rule {
+				background: var(--purple-bg);
+				box-shadow: inset 0 0 0 1.5px var(--purple);
+				color: #2a1740;
+			}
+			p,
+			li,
+			td,
+			.card p,
+			.boxsub,
+			.arrowbox,
+			.branchnode,
+			.flowstep .ftext p {
+				line-height: 2.05;
+			}
+
+			/* ===== Layout ===== */
+			.app {
+				display: flex;
+				min-height: 100vh;
+			}
+			.sidebar {
+				width: 270px;
+				background: linear-gradient(
+					180deg,
+					var(--sidebar),
+					var(--sidebar-2)
+				);
+				color: var(--sidebar-text);
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				overflow-y: auto;
+				padding: 22px 16px 40px;
+				z-index: 50;
+				transition: transform 0.25s ease;
+			}
+			.sidebar h1 {
+				font-size: 17px;
+				color: #f4e6bd;
+				letter-spacing: 0.5px;
+				margin: 0 0 4px;
+				border-bottom: 2px solid #4b567a;
+				padding-bottom: 12px;
+			}
+			.sidebar .sub {
+				font-size: 11px;
+				color: #8a93b3;
+				margin-bottom: 18px;
+			}
+			.tabbtn {
+				display: block;
+				width: 100%;
+				text-align: left;
+				background: none;
+				border: none;
+				color: var(--sidebar-text);
+				font-family: inherit;
+				font-size: 14.5px;
+				padding: 11px 12px;
+				border-radius: 8px;
+				cursor: pointer;
+				margin-bottom: 6px;
+				border-left: 3px solid transparent;
+				transition: 0.15s;
+			}
+			.tabbtn:hover {
+				background: #2c3552;
+			}
+			.tabbtn.active {
+				background: #31406b;
+				color: #ffe9a8;
+				border-left: 3px solid var(--yellow);
+				font-weight: 700;
+			}
+			.navgroup {
+				margin-top: 16px;
+			}
+			.navgroup .navtitle {
+				font-size: 10.5px;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				color: #7480a3;
+				margin: 16px 4px 8px;
+			}
+			.navlink {
+				display: block;
+				font-size: 12.5px;
+				color: #aab4d1;
+				padding: 6px 10px;
+				border-radius: 6px;
+				text-decoration: none;
+				margin-bottom: 2px;
+			}
+			.navlink:hover {
+				background: #2c3552;
+				color: #fff;
+			}
+			.hamburger {
+				display: none;
+				position: fixed;
+				top: 14px;
+				left: 14px;
+				z-index: 60;
+				background: var(--sidebar);
+				color: #f4e6bd;
+				border: none;
+				font-size: 20px;
+				padding: 8px 12px;
+				border-radius: 8px;
+				cursor: pointer;
+			}
+
+			.content {
+				margin-left: 270px;
+				flex: 1;
+				background: radial-gradient(
+					ellipse at top,
+					#fbf2d9,
+					var(--paper)
+				);
+				min-height: 100vh;
+				padding: 34px 42px 80px;
+			}
+			.panel {
+				display: none;
+			}
+			.panel.active {
+				display: block;
+				animation: fade 0.3s ease;
+			}
+			@keyframes fade {
+				from {
+					opacity: 0;
+					transform: translateY(6px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.pagehead {
+				border-bottom: 3px double var(--accent);
+				padding-bottom: 12px;
+				margin-bottom: 26px;
+			}
+			.pagehead h2 {
+				font-size: 26px;
+				margin: 0;
+				color: #3a2a15;
+			}
+			.pagehead p {
+				margin: 6px 0 0;
+				color: #6b5a3f;
+				font-size: 13.5px;
+			}
+
+			section.block {
+				margin-bottom: 34px;
+			}
+			h3.secttl {
+				font-size: 18px;
+				background: var(--sidebar);
+				color: #f4e6bd;
+				display: inline-block;
+				padding: 6px 18px;
+				border-radius: 4px 14px 4px 14px;
+				margin-bottom: 16px;
+				box-shadow: 2px 2px 0 var(--accent);
+			}
+			h4.subttl {
+				font-size: 14.5px;
+				color: var(--accent);
+				border-bottom: 1.5px solid var(--accent);
+				display: inline-block;
+				padding-bottom: 2px;
+				margin: 18px 0 10px;
+			}
+
+			/* ===== Cards ===== */
+			.cardgrid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+				gap: 14px;
+				margin-bottom: 14px;
+			}
+			.card {
+				background: #fffaf0;
+				border: 1.5px solid #d8c69a;
+				border-radius: 10px;
+				padding: 16px 18px;
+				box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.05);
+			}
+			.card h5 {
+				margin: 0 0 10px;
+				font-size: 16px;
+				color: var(--accent);
+			}
+			.card p {
+				margin: 8px 0;
+				font-size: 15px;
+			}
+			.card.g-blue {
+				border-left: 5px solid var(--blue);
+			}
+			.card.g-green {
+				border-left: 5px solid var(--green);
+			}
+			.card.g-yellow {
+				border-left: 5px solid var(--yellow);
+			}
+			.card.g-red {
+				border-left: 5px solid var(--red);
+			}
+			.card.g-purple {
+				border-left: 5px solid var(--purple);
+			}
+
+			/* ===== Tables ===== */
+			.tablewrap {
+				overflow-x: auto;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-bottom: 18px;
+				font-size: 14.5px;
+				background: #fffdf6;
+			}
+			th,
+			td {
+				border: 1px solid #cbb989;
+				padding: 11px 12px;
+				text-align: left;
+				vertical-align: top;
+				line-height: 1.7;
+			}
+			th {
+				background: var(--sidebar);
+				color: #f4e6bd;
+				font-size: 13.5px;
+			}
+			.tbl-pastel td:nth-child(1) {
+				background: #eaf3fb;
+			}
+			.tbl-pastel td:nth-child(2) {
+				background: #fbf3e0;
+			}
+			.tbl-pastel td:nth-child(3) {
+				background: #eaf7ec;
+			}
+			.tbl-pastel td:nth-child(4) {
+				background: #fbe9e6;
+			}
+			.tbl-pastel td:nth-child(5) {
+				background: #f1e7fa;
+			}
+			tr:nth-child(even) td {
+				filter: brightness(0.98);
+			}
+
+			/* ===== Callout boxes ===== */
+			.trapbox {
+				background: #fdeceb;
+				border: 2px dashed var(--red);
+				border-radius: 8px;
+				padding: 20px 18px 16px;
+				margin: 20px 0 24px;
+				position: relative;
+			}
+			.trapbox::before {
+				content: "⚠ MCQ TRAP";
+				position: absolute;
+				top: -13px;
+				left: 14px;
+				background: var(--red);
+				color: #fff;
+				font-size: 11.5px;
+				padding: 3px 12px;
+				border-radius: 10px;
+				letter-spacing: 0.5px;
+			}
+			.trapbox p {
+				margin: 8px 0;
+				font-size: 15px;
+			}
+			.trapbox ul {
+				margin: 8px 0 0;
+				padding-left: 20px;
+				font-size: 15px;
+			}
+			.trapbox li {
+				margin-bottom: 6px;
+			}
+
+			.notebox {
+				background: #eaf3fb;
+				border: 2px solid var(--blue);
+				border-radius: 8px;
+				padding: 20px 18px 16px;
+				margin: 20px 0 24px;
+				position: relative;
+			}
+			.notebox::before {
+				content: "📌 NOTE";
+				position: absolute;
+				top: -13px;
+				left: 14px;
+				background: var(--blue);
+				color: #fff;
+				font-size: 11.5px;
+				padding: 3px 12px;
+				border-radius: 10px;
+			}
+			.notebox p {
+				margin: 8px 0;
+				font-size: 15px;
+			}
+			.notebox ul,
+			.trapbox ul {
+				line-height: 2;
+			}
+
+			.lifebox {
+				background: #eafbea;
+				border: 2px solid var(--green);
+				border-radius: 8px;
+				padding: 20px 18px 16px;
+				margin: 20px 0 24px;
+				position: relative;
+			}
+			.lifebox::before {
+				content: "🌍 EVERYDAY LIFE";
+				position: absolute;
+				top: -13px;
+				left: 14px;
+				background: var(--green);
+				color: #fff;
+				font-size: 11.5px;
+				padding: 3px 12px;
+				border-radius: 10px;
+			}
+			.lifebox ul {
+				margin: 8px 0 0;
+				padding-left: 20px;
+				font-size: 15px;
+				line-height: 2;
+			}
+			.lifebox li {
+				margin-bottom: 8px;
+			}
+
+			/* ===== Formula blocks ===== */
+			.formulagrid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+				gap: 14px;
+				margin-bottom: 16px;
+			}
+			.fblock {
+				border-radius: 10px;
+				padding: 16px;
+				color: #fff;
+				box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.15);
+				overflow-x: auto;
+			}
+			.fblock h5 {
+				margin: 0 0 4px;
+				font-size: 13.5px;
+				opacity: 0.92;
+			}
+			.fblock .short {
+				font-size: 19px;
+				font-weight: 800;
+				margin: 10px 0;
+				color: #fff;
+			}
+			.fblock .short mjx-container,
+			.fblock .short .MathJax {
+				color: #fff !important;
+			}
+			.fblock .full {
+				font-size: 12.5px;
+				opacity: 0.95;
+				line-height: 1.55;
+			}
+			.fblock.rd {
+				background: linear-gradient(135deg, #1f6fa8, #123a5c);
+			}
+			.fblock.fd {
+				background: linear-gradient(135deg, #c23b2c, #7a2016);
+			}
+			.fblock.pd {
+				background: linear-gradient(135deg, #2f7d3f, #164821);
+			}
+			.fblock.erd {
+				background: linear-gradient(135deg, #6a3f9c, #3d2261);
+			}
+			.fblock.gy {
+				background: linear-gradient(135deg, #b58208, #6d4c00);
+			}
+			.fblock.nk {
+				background: linear-gradient(135deg, #2b3350, #141827);
+			}
+			.mathline {
+				background: #fffdf6;
+				border: 1.5px solid #d8c69a;
+				border-left: 5px solid var(--purple);
+				border-radius: 8px;
+				padding: 10px 16px;
+				margin: 14px 0;
+				overflow-x: auto;
+			}
+
+			/* ===== Tree / Mind map ===== */
+			.tree {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				margin: 24px 0;
+			}
+			.tree .root {
+				background: var(--sidebar);
+				color: #f4e6bd;
+				padding: 12px 24px;
+				border-radius: 8px;
+				font-weight: 700;
+				font-size: 15.5px;
+				margin-bottom: 10px;
+				text-align: center;
+			}
+			.tree .branches {
+				display: flex;
+				gap: 16px;
+				flex-wrap: wrap;
+				justify-content: center;
+				position: relative;
+				padding-top: 26px;
+				row-gap: 30px;
+			}
+			.tree .branches::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 10%;
+				right: 10%;
+				height: 2px;
+				background: #8a6b34;
+			}
+			.branchnode {
+				background: #fffaf0;
+				border: 1.5px solid #8a6b34;
+				border-radius: 8px;
+				padding: 12px 16px;
+				font-size: 14px;
+				max-width: 210px;
+				position: relative;
+				text-align: center;
+				line-height: 1.6;
+			}
+			.branchnode::before {
+				content: "";
+				position: absolute;
+				top: -26px;
+				left: 50%;
+				width: 2px;
+				height: 26px;
+				background: #8a6b34;
+			}
+			.branchnode b {
+				display: block;
+				font-size: 14.5px;
+				margin-bottom: 5px;
+				color: var(--accent);
+			}
+
+			.flow {
+				display: flex;
+				flex-direction: column;
+				gap: 0;
+			}
+			.flowstep {
+				display: flex;
+				align-items: flex-start;
+				gap: 14px;
+				padding: 14px 0;
+				border-left: 3px solid var(--accent);
+				margin-left: 18px;
+				padding-left: 22px;
+				position: relative;
+			}
+			.flowstep::before {
+				content: attr(data-n);
+				position: absolute;
+				left: -19px;
+				top: 14px;
+				background: var(--accent);
+				color: #fff;
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 14px;
+				font-weight: 700;
+			}
+			.flowstep .ftext b {
+				color: var(--accent);
+				font-size: 15.5px;
+				line-height: 1.6;
+			}
+			.flowstep .ftext p {
+				margin: 6px 0 0;
+				font-size: 14.5px;
+			}
+
+			.hierlist {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.hierlist li {
+				background: #fffaf0;
+				border: 1px solid #d8c69a;
+				border-radius: 8px;
+				padding: 13px 16px;
+				margin-bottom: 10px;
+				font-size: 15px;
+				position: relative;
+				padding-left: 44px;
+				line-height: 1.6;
+			}
+			.hierlist li::before {
+				content: attr(data-rank);
+				position: absolute;
+				left: 10px;
+				top: 50%;
+				transform: translateY(-50%);
+				background: var(--yellow);
+				color: #3a2a00;
+				font-weight: 800;
+				font-size: 13px;
+				width: 24px;
+				height: 24px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.boxdiagram {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 18px;
+				margin: 20px 0;
+			}
+			.boxcol {
+				border: 2px solid var(--sidebar);
+				border-radius: 10px;
+				padding: 14px;
+				background: #fffdf6;
+			}
+			.boxcol h5 {
+				text-align: center;
+				background: var(--sidebar);
+				color: #f4e6bd;
+				margin: -14px -14px 12px;
+				padding: 10px;
+				border-radius: 8px 8px 0 0;
+				font-size: 15px;
+			}
+			.boxsub {
+				border: 1.5px dashed #8a6b34;
+				border-radius: 8px;
+				padding: 10px 12px;
+				margin-bottom: 10px;
+				font-size: 14px;
+				line-height: 1.7;
+			}
+			.boxsub b {
+				color: var(--accent);
+				display: block;
+				margin-bottom: 5px;
+				font-size: 14.5px;
+			}
+
+			.arrowflow {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				flex-wrap: wrap;
+				margin: 20px 0;
+			}
+			.arrowbox {
+				background: #fffaf0;
+				border: 2px solid var(--sidebar);
+				border-radius: 8px;
+				padding: 14px 18px;
+				font-size: 14.5px;
+				text-align: center;
+				min-width: 150px;
+				line-height: 1.6;
+			}
+			.arrowbox b {
+				display: block;
+				color: var(--accent);
+				font-size: 15px;
+				margin-bottom: 5px;
+			}
+			.arrow {
+				font-size: 22px;
+				color: var(--accent);
+				font-weight: 700;
+			}
+
+			/* ===== MCQ ===== */
+			.mcq {
+				background: #fffaf0;
+				border: 1.5px solid #d8c69a;
+				border-radius: 10px;
+				padding: 16px 18px;
+				margin-bottom: 16px;
+				box-shadow: 2px 3px 0 rgba(0, 0, 0, 0.05);
+			}
+			.mcq .src {
+				display: inline-block;
+				font-size: 11.5px;
+				background: var(--sidebar);
+				color: #f4e6bd;
+				padding: 2px 10px;
+				border-radius: 10px;
+				margin-bottom: 8px;
+				letter-spacing: 0.3px;
+			}
+			.mcq .qtext {
+				font-size: 15.5px;
+				font-weight: 700;
+				margin: 0 0 10px;
+				line-height: 1.7;
+				color: #2b2114;
+			}
+			.mcq .options {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 8px 14px;
+				font-size: 14.5px;
+				margin-bottom: 10px;
+				line-height: 1.6;
+			}
+			.mcq .optbtn {
+				display: block;
+				width: 100%;
+				text-align: left;
+				font-family: inherit;
+				font-size: 14.5px;
+				line-height: 1.6;
+				color: var(--ink);
+				background: #fffdf6;
+				border: 1.5px solid #d8c69a;
+				border-radius: 8px;
+				padding: 9px 12px;
+				cursor: pointer;
+				transition: 0.15s;
+			}
+			.mcq .optbtn:hover:not(:disabled) {
+				background: #fbf0d6;
+				border-color: var(--accent);
+			}
+			.mcq .optbtn:disabled {
+				cursor: default;
+			}
+			.mcq .optbtn.opt-correct {
+				background: #dff3e0;
+				border-color: var(--green);
+				color: #123a1a;
+				font-weight: 700;
+			}
+			.mcq .optbtn.opt-incorrect {
+				background: #fbe1de;
+				border-color: var(--red);
+				color: #4a0f08;
+				font-weight: 700;
+			}
+			.mcq .pickmsg {
+				display: inline-block;
+				margin: 2px 0 8px;
+				font-size: 13px;
+				font-weight: 700;
+				padding: 4px 12px;
+				border-radius: 12px;
+			}
+			.mcq .pickmsg.right {
+				background: #dff3e0;
+				color: #164821;
+			}
+			.mcq .pickmsg.wrong {
+				background: #fbe1de;
+				color: #4a0f08;
+			}
+			.mcq details {
+				margin-top: 8px;
+			}
+			.mcq summary {
+				cursor: pointer;
+				font-size: 13.5px;
+				color: #fff;
+				background: var(--accent);
+				display: inline-block;
+				padding: 6px 14px;
+				border-radius: 14px;
+				font-weight: 700;
+				list-style: none;
+			}
+			.mcq summary::-webkit-details-marker {
+				display: none;
+			}
+			.mcq details[open] summary {
+				background: var(--sidebar);
+			}
+			.mcq .ans {
+				margin-top: 10px;
+				padding: 10px 14px;
+				background: #eafbea;
+				border-left: 4px solid var(--green);
+				border-radius: 6px;
+				font-size: 14.5px;
+				line-height: 1.7;
+			}
+
+			@media (max-width: 900px) {
+				.sidebar {
+					transform: translateX(-100%);
+					width: 82%;
+					max-width: 300px;
+				}
+				.sidebar.open {
+					transform: translateX(0);
+				}
+				.hamburger {
+					display: block;
+				}
+				.content {
+					margin-left: 0;
+					padding: 70px 14px 60px;
+				}
+				.boxdiagram {
+					grid-template-columns: 1fr;
+				}
+				.cardgrid {
+					grid-template-columns: 1fr;
+					gap: 16px;
+				}
+				.formulagrid {
+					grid-template-columns: 1fr;
+					gap: 16px;
+				}
+				.tree .branches {
+					gap: 22px;
+					row-gap: 34px;
+				}
+				.branchnode {
+					margin-top: 4px;
+				}
+				mark {
+					line-height: 2.1;
+					display: inline-block;
+					margin: 2px 0;
+				}
+				p,
+				li,
+				td,
+				.card p {
+					line-height: 2.15;
+				}
+				table {
+					font-size: 13.5px;
+				}
+				th,
+				td {
+					padding: 9px 8px;
+				}
+				.mcq .options {
+					grid-template-columns: 1fr;
+				}
+				h3.secttl {
+					font-size: 16px;
+					padding: 6px 14px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<button
+			class="hamburger"
+			onclick="document.querySelector('.sidebar').classList.toggle('open')"
+		>
+			☰
+		</button>
+		<div class="app">
+			<nav class="sidebar">
+				<h1>🔥 THE HEAT LEDGER</h1>
+				<div class="sub">BPSC Prelims · General Science Dossier</div>
+				<button class="tabbtn active" onclick="showTab('t1', this)">
+					I. Heat, Temperature &amp; Scales
+				</button>
+				<button class="tabbtn" onclick="showTab('t2', this)">
+					II. Thermometers &amp; Expansion
+				</button>
+				<button class="tabbtn" onclick="showTab('t3', this)">
+					III. Specific &amp; Latent Heat
+				</button>
+				<button class="tabbtn" onclick="showTab('t4', this)">
+					IV. Boiling, Evaporation &amp; Humidity
+				</button>
+				<button class="tabbtn" onclick="showTab('t5', this)">
+					V. Heat Transfer &amp; Thermodynamics
+				</button>
+
+				<div class="navgroup" id="nav1">
+					<div class="navtitle">Tab I Sections</div>
+					<a class="navlink" href="#s1">What Exactly Is Temperature?</a>
+					<a class="navlink" href="#s2">Heat vs Temperature</a>
+					<a class="navlink" href="#s3">Thermal Equilibrium</a>
+					<a class="navlink" href="#s4">Temperature Scales</a>
+					<a class="navlink" href="#s5">Conversion Formulas</a>
+					<a class="navlink" href="#s6">Coincidence Points</a>
+					<a class="navlink" href="#s7">Important Temperatures</a>
+					<a class="navlink" href="#s8">Absolute Zero</a>
+				</div>
+				<div class="navgroup" id="nav2" style="display: none">
+					<div class="navtitle">Tab II Sections</div>
+					<a class="navlink" href="#e1">Types of Thermometers</a>
+					<a class="navlink" href="#e2">Mercury vs Alcohol</a>
+					<a class="navlink" href="#e3">Mercury Poisoning Table</a>
+					<a class="navlink" href="#e4">The Thermostat</a>
+					<a class="navlink" href="#e5">Thermal Expansion — 3 Types</a>
+					<a class="navlink" href="#e6">Golden Ratio 1:2:3</a>
+					<a class="navlink" href="#e7">Anomalous Expansion of Water</a>
+				</div>
+				<div class="navgroup" id="nav3" style="display: none">
+					<div class="navtitle">Tab III Sections</div>
+					<a class="navlink" href="#h1">Specific Heat</a>
+					<a class="navlink" href="#h2">Thermal Capacity</a>
+					<a class="navlink" href="#h3">Molar Specific Heat of Gases</a>
+					<a class="navlink" href="#h4">Principle of Calorimetry</a>
+					<a class="navlink" href="#h5">Change of State</a>
+					<a class="navlink" href="#h6">Triple Point</a>
+					<a class="navlink" href="#h7">Latent Heat</a>
+					<a class="navlink" href="#h8">Numerical Drill</a>
+				</div>
+				<div class="navgroup" id="nav4" style="display: none">
+					<div class="navtitle">Tab IV Sections</div>
+					<a class="navlink" href="#v1">Pressure &amp; Boiling Point</a>
+					<a class="navlink" href="#v2">Boiling at High Altitude</a>
+					<a class="navlink" href="#v3">Dissolved Salt</a>
+					<a class="navlink" href="#v4">The Pressure Cooker</a>
+					<a class="navlink" href="#v5">Evaporation vs Boiling</a>
+					<a class="navlink" href="#v6">Cooling by Evaporation</a>
+					<a class="navlink" href="#v7">Humidity</a>
+					<a class="navlink" href="#v8">Heat Wave Thresholds</a>
+				</div>
+				<div class="navgroup" id="nav5" style="display: none">
+					<div class="navtitle">Tab V Sections</div>
+					<a class="navlink" href="#c1">Three Modes of Transfer</a>
+					<a class="navlink" href="#c2">Conduction</a>
+					<a class="navlink" href="#c3">Convection</a>
+					<a class="navlink" href="#c4">Radiation &amp; Its 3 Laws</a>
+					<a class="navlink" href="#c5">Newton's Law of Cooling</a>
+					<a class="navlink" href="#c6">Thermos, AC, Cooler, Fridge</a>
+					<a class="navlink" href="#c7">Zeroth &amp; First Law</a>
+					<a class="navlink" href="#c8">Thermodynamic Processes</a>
+					<a class="navlink" href="#c9">Second Law</a>
+				</div>
+			</nav>
+
+			<main class="content">
+				<!-- ================= TAB 1 ================= -->
+				<div class="panel active" id="t1">
+					<div class="pagehead">
+						<h2>Heat, Temperature &amp; Temperature Scales</h2>
+						<p>
+							🟨 Concept &nbsp; 🟦 Fact/Number &nbsp; 🟩
+							Person/Institution &nbsp; 🟥 MCQ Trap &nbsp; 🟪
+							Rule/Formula
+						</p>
+					</div>
+
+					<section class="block" id="s1">
+						<h3 class="secttl">1. What Exactly Is Temperature?</h3>
+						<p>
+							If heat is energy on the move, temperature is the
+							property that decides
+							<mark class="concept">which way it will move</mark>.
+							Temperature is a measure of the
+							<mark class="concept"
+								>degree of hotness or coldness</mark
+							>
+							of a body, and at the microscopic level it is a
+							measure of the
+							<mark class="concept"
+								>average kinetic energy of the random motion of
+								the particles</mark
+							>.
+						</p>
+						<div class="formulagrid">
+							<div class="fblock rd">
+								<h5>AVERAGE KINETIC ENERGY PER MOLECULE</h5>
+								<div class="short">
+									\(\overline{KE} = \dfrac{3}{2}\,k\,T\)
+								</div>
+								<div class="full">
+									\(k\) = Boltzmann's constant, \(T\) =
+									absolute temperature. Note that no property
+									of the gas — mass, size, chemical nature —
+									appears here. Only \(T\).
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="s2">
+						<h3 class="secttl">
+							2. The One-Line Distinction You Must Never Forget
+						</h3>
+						<div class="boxdiagram">
+							<div class="boxcol">
+								<h5>🔥 HEAT</h5>
+								<div class="boxsub">
+									<b>What it is</b>The
+									<mark class="concept"
+										>total energy transferred</mark
+									>; energy in transit.
+								</div>
+								<div class="boxsub">
+									<b>Depends on</b>Mass, material, and
+									temperature change.
+								</div>
+								<div class="boxsub">
+									<b>Measured in</b
+									><mark class="fact"
+										>Joules or calories</mark
+									>
+								</div>
+							</div>
+							<div class="boxcol">
+								<h5>🌡 TEMPERATURE</h5>
+								<div class="boxsub">
+									<b>What it is</b
+									><mark class="concept"
+										>Average kinetic energy per
+										particle</mark
+									>.
+								</div>
+								<div class="boxsub">
+									<b>Depends on</b
+									><mark class="trap"
+										>Does NOT depend on mass</mark
+									>.
+								</div>
+								<div class="boxsub">
+									<b>Measured in</b
+									><mark class="fact">°C, °F or K</mark>
+								</div>
+							</div>
+						</div>
+						<div class="notebox">
+							<p>
+								<mark class="rule"
+									>Temperature decides the direction of heat
+									flow.</mark
+								>
+								Heat flows hot → cold,
+								<mark class="trap">always</mark>.
+							</p>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NDA (II) 2024</span>
+							<p class="qtext">
+								Q1. Which one of the following statements best
+								defines the concept of heat?
+							</p>
+							<div class="options">
+								(a) The transformation of energy from one form
+								to another &nbsp; (b) The conversion of energy
+								into mass and vice-versa due to temperature
+								difference<br />(c) The transfer of energy due
+								to temperature difference &nbsp; (d) The change
+								in volume of a substance with temperature
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) The transfer of energy due to
+									temperature difference.</b> Heat is defined
+									strictly as
+									<mark class="concept"
+										>energy in transit</mark
+									>.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NCERT Exemplar, Class XI, Ch. 11</span>
+							<p class="qtext">
+								Q2. Heat is associated with
+							</p>
+							<div class="options">
+								(a) kinetic energy of random motion of molecules
+								&nbsp; (b) kinetic energy of orderly motion of
+								molecules<br />(c) total kinetic energy of
+								random and orderly motion of molecules &nbsp;
+								(d) kinetic energy of random motion in some
+								cases and orderly motion in others
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) kinetic energy of random motion of
+									molecules.</b>
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">CDS 2015</span>
+							<p class="qtext">
+								Q3. Which one of the following physical
+								quantities is the same for molecules of all
+								gases at a given temperature?
+							</p>
+							<div class="options">
+								(a) Speed &nbsp; (b) Mass<br />(c) Kinetic
+								energy &nbsp; (d) Momentum
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Kinetic energy.</b> From kinetic
+									theory, \(\overline{KE} = \frac{3}{2}kT\) —
+									only \(T\) appears, so at a given
+									temperature every gas has the same average
+									KE per molecule.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="s3">
+						<h3 class="secttl">
+							3. Understanding Thermal Equilibrium
+						</h3>
+						<p>
+							If two objects with different temperatures touch,
+							energy migrates from the warmer to the cooler one.
+							As the hotter body loses heat and the colder one
+							gains it, they eventually settle at the
+							<mark class="concept">same thermal state</mark>.
+							Once this occurs, all overall energy transfer
+							ceases, and the system is described as being in
+							<mark class="concept">thermal equilibrium</mark>.
+						</p>
+						<div class="notebox">
+							<p>
+								The defining concept is
+								<mark class="rule">net flow</mark>. Even at this
+								balanced state, microscopic energy exchanges
+								persist; but because the rate of giving and
+								receiving is identical, there is
+								<mark class="trap">no net heat flow</mark>.
+							</p>
+						</div>
+
+						<div class="mcq">
+							<span class="src">EPFO (AO/EO) 2017</span>
+							<p class="qtext">
+								Q4. <b>Statement I:</b> It is a common
+								observation that if we place a glass of
+								ice-water on a table at room temperature, the
+								ice-water will get warmer.
+								<b>Statement II:</b> Heat is energy that flows
+								between a system and its environment because of
+								a temperature difference between them.
+							</p>
+							<div class="options">
+								(a) Both statements are individually true and
+								Statement II is the correct explanation of
+								Statement I &nbsp; (b) Both statements are
+								individually true but Statement II is not the
+								correct explanation of Statement I<br />(c)
+								Statement I is true but Statement II is false
+								&nbsp; (d) Statement I is false but Statement II
+								is true
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a).</b> Both are true, and Statement II
+									(heat flows because of a temperature
+									difference) is exactly why the colder
+									ice-water warms up towards room temperature.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="s4">
+						<h3 class="secttl">4. Temperature Scales</h3>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>(i) Celsius Scale (°C)</h5>
+								<p>
+									Ice point
+									<mark class="fact">0°C</mark>, steam point
+									<mark class="fact">100°C</mark>; the gap
+									divided into
+									<mark class="fact">100 equal parts</mark>.
+								</p>
+							</div>
+							<div class="card g-red">
+								<h5>(ii) Fahrenheit Scale (°F)</h5>
+								<p>
+									Ice point
+									<mark class="fact">32°F</mark>, steam point
+									<mark class="fact">212°F</mark>; gap divided
+									into <mark class="fact">180 equal parts</mark>.
+								</p>
+								<p>
+									Designed by
+									<mark class="person"
+										>Gabriel Fahrenheit</mark
+									>
+									in <mark class="fact">1717</mark>.
+								</p>
+							</div>
+							<div class="card g-purple">
+								<h5>(iii) Kelvin Scale (K)</h5>
+								<p>
+									Ice point
+									<mark class="fact">273 K</mark> (exactly
+									273.15 K), steam point
+									<mark class="fact">373 K</mark> (373.15 K).
+								</p>
+								<p>
+									This is the
+									<mark class="concept">absolute scale</mark>:
+									its zero is the theoretically lowest
+									temperature in the universe, so Kelvin
+									<mark class="trap"
+										>never takes a negative value</mark
+									>.
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>(iv) Reaumur Scale (°R)</h5>
+								<p>
+									Ice point
+									<mark class="fact">0°R</mark>, steam point
+									<mark class="fact">80°R</mark>, i.e.
+									<mark class="fact">80 equal divisions</mark>.
+								</p>
+								<p>
+									One degree Reaumur = the 80th part of the
+									interval between the fixed points. Designed
+									by
+									<mark class="person">R. A. Reaumur</mark> in
+									<mark class="fact">1730</mark>.
+								</p>
+							</div>
+							<div class="card g-yellow">
+								<h5>(v) Rankine Scale (°Ra)</h5>
+								<p>
+									Ice point
+									<mark class="fact">460°Ra</mark>, steam
+									point <mark class="fact">672°Ra</mark>;
+									1°Ra = the 212th part of the difference
+									between the two fixed points.
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="s5">
+						<h3 class="secttl">5. Conversion Formulas</h3>
+						<div class="formulagrid">
+							<div class="fblock rd">
+								<h5>CELSIUS ↔ FAHRENHEIT</h5>
+								<div class="short">
+									\(\dfrac{C}{5} = \dfrac{F-32}{9}\)
+								</div>
+								<div class="full">
+									Rearranged: \(F = \frac{9}{5}C + 32\) and
+									\(C = \frac{5}{9}(F-32)\).
+								</div>
+							</div>
+							<div class="fblock pd">
+								<h5>CELSIUS ↔ REAUMUR</h5>
+								<div class="short">
+									\(\dfrac{C}{5} = \dfrac{R}{4}\)
+								</div>
+								<div class="full">
+									Combined master relation:
+									\(\dfrac{C}{5}=\dfrac{F-32}{9}=\dfrac{R}{4}=\dfrac{K-273}{5}\).
+								</div>
+							</div>
+							<div class="fblock erd">
+								<h5>CELSIUS ↔ KELVIN</h5>
+								<div class="short">
+									\(K = C + 273.15\)
+								</div>
+								<div class="full">
+									The Kelvin degree and the Celsius degree are
+									the <b>same size</b>; only the zero differs.
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="s6">
+						<h3 class="secttl">
+							6. Coincidence Points — Where Two Scales Read the
+							Same
+						</h3>
+						<div class="tablewrap">
+							<table class="tbl-pastel">
+								<tr>
+									<th>Reading</th>
+									<th>What happens there</th>
+								</tr>
+								<tr>
+									<td><mark class="fact">−40°</mark></td>
+									<td>
+										Celsius and Fahrenheit thermometers read
+										the <b>same</b>
+									</td>
+								</tr>
+								<tr>
+									<td><mark class="fact">574.25°</mark></td>
+									<td>
+										Fahrenheit and Kelvin scales read the
+										<b>same</b>
+									</td>
+								</tr>
+								<tr>
+									<td><mark class="fact">−25.6°</mark></td>
+									<td>
+										Fahrenheit and Reaumur scales read the
+										<b>same</b>
+									</td>
+								</tr>
+								<tr>
+									<td><mark class="fact">0°</mark></td>
+									<td>
+										Celsius and Reaumur scales read the
+										<b>same</b>
+									</td>
+								</tr>
+								<tr>
+									<td><mark class="fact">160°C</mark></td>
+									<td>
+										Fahrenheit reading is
+										<mark class="trap"
+											>exactly double</mark
+										>
+										the Celsius reading (320°F)
+									</td>
+								</tr>
+							</table>
+						</div>
+
+						<div class="mcq">
+							<span class="src">RAS/RTS (Pre) 2007</span>
+							<p class="qtext">
+								Q5. At what point is the Fahrenheit temperature
+								double the Centigrade temperature?
+							</p>
+							<div class="options">
+								(a) −6.7°C &nbsp; (b) −12.3°C<br />(c) 12.3°C
+								&nbsp; (d) 160°C
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(d) 160°C.</b> Put \(F = 2C\) into
+									\(\frac{C}{5}=\frac{F-32}{9}\):
+									\(9C = 5(2C-32) \Rightarrow 9C = 10C-160
+									\Rightarrow C = 160\). So 160°C = 320°F.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NDA (I) 2010</span>
+							<p class="qtext">
+								Q6. Which one among the following denotes the
+								smallest temperature interval?
+							</p>
+							<div class="options">
+								(a) 1° on the Celsius scale &nbsp; (b) 1° on the
+								Kelvin scale<br />(c) 1° on the Fahrenheit scale
+								&nbsp; (d) 1° on the Reaumur scale
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) 1° on the Fahrenheit scale.</b> The
+									same ice-to-steam gap is split into 180
+									Fahrenheit parts but only 100 Celsius/Kelvin
+									parts and 80 Reaumur parts. More divisions
+									means each division is smaller.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="s7">
+						<h3 class="secttl">
+							7. Some Important Temperatures on Various Scales
+						</h3>
+						<div class="tablewrap">
+							<table class="tbl-pastel">
+								<tr>
+									<th>Temperature</th>
+									<th>Celsius (°C)</th>
+									<th>Fahrenheit (°F)</th>
+									<th>Kelvin (K)</th>
+								</tr>
+								<tr>
+									<td>Freezing point of water</td>
+									<td><mark class="fact">0°C</mark></td>
+									<td><mark class="fact">32°F</mark></td>
+									<td><mark class="fact">273 K</mark></td>
+								</tr>
+								<tr>
+									<td>Normal temperature of the room</td>
+									<td><mark class="fact">27°C</mark></td>
+									<td><mark class="fact">80.6°F</mark></td>
+									<td><mark class="fact">300 K</mark></td>
+								</tr>
+								<tr>
+									<td>
+										Normal temperature of the human body
+									</td>
+									<td><mark class="fact">37°C</mark></td>
+									<td><mark class="fact">98.6°F</mark></td>
+									<td><mark class="fact">310 K</mark></td>
+								</tr>
+								<tr>
+									<td>Boiling point of water</td>
+									<td><mark class="fact">100°C</mark></td>
+									<td><mark class="fact">212°F</mark></td>
+									<td><mark class="fact">373 K</mark></td>
+								</tr>
+							</table>
+						</div>
+					</section>
+
+					<section class="block" id="s8">
+						<h3 class="secttl">8. Absolute Zero</h3>
+						<p>
+							At this point the volume would theoretically become
+							zero and all molecular motion would cease. This is
+							<mark class="concept">absolute zero</mark> — the
+							theoretically lowest possible temperature, which can
+							be <mark class="trap">approached but never
+							actually attained</mark>. It is the zero of the
+							Kelvin scale.
+						</p>
+						<div class="mathline">
+							\[0\ \text{K} = -273.15^\circ\text{C}\]
+						</div>
+
+						<div class="mcq">
+							<span class="src">Jharkhand PCS (Pre) 2010</span>
+							<p class="qtext">
+								Q7. What is absolute zero temperature?
+							</p>
+							<div class="options">
+								(a) The starting point of any temperature scale
+								&nbsp; (b) Theoretically lowest possible
+								temperature<br />(c) The temperature at which
+								the vapour of any liquid substance is condensed
+								&nbsp; (d) The temperature at which all
+								materials are in vapour form
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) Theoretically lowest possible
+									temperature.</b>
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">UP RO/ARO (Pre) 2017</span>
+							<p class="qtext">
+								Q8. Which one of the following scales of
+								temperature does not have a negative value?
+							</p>
+							<div class="options">
+								(a) Celsius &nbsp; (b) Fahrenheit<br />(c)
+								Kelvin &nbsp; (d) Reaumur
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Kelvin.</b> Its zero is absolute
+									zero, below which nothing can go.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">CDS (I) 2013</span>
+							<p class="qtext">
+								Q9. The Celsius temperature is a/an
+							</p>
+							<div class="options">
+								(a) relative temperature &nbsp; (b) absolute
+								temperature<br />(c) specific temperature &nbsp;
+								(d) approximate temperature
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) relative temperature.</b> The zero of
+									the Celsius scale is not a true physical zero
+									— it is simply the melting point of ice, a
+									convenient reference chosen by human beings.
+									The Kelvin scale, whose zero is absolute
+									zero, gives an
+									<mark class="concept"
+										>absolute temperature</mark
+									>.
+								</div>
+							</details>
+						</div>
+					</section>
+				</div>
+
+				<!-- ================= TAB 2 ================= -->
+				<div class="panel" id="t2">
+					<div class="pagehead">
+						<h2>
+							Thermometers, Thermal Control &amp; Thermal
+							Expansion
+						</h2>
+						<p>
+							Chapters 3–4 · Measuring instruments, the liquid
+							choice, and how matter grows with heat
+						</p>
+					</div>
+
+					<section class="block" id="e1">
+						<h3 class="secttl">1. Types of Thermometers</h3>
+						<div class="cardgrid">
+							<div class="card g-red">
+								<h5>(i) Clinical Thermometer</h5>
+								<p>
+									A
+									<mark class="concept"
+										>mercury-in-glass</mark
+									>
+									thermometer for human body temperature.
+									Because body temperature varies over a short
+									range, its scale is marked only from
+									<mark class="fact">96°F to 110°F</mark>
+									(or <mark class="fact">35°C to 42°C</mark>).
+								</p>
+								<p>
+									Placed under the tongue, mercury expands and
+									is pushed past the
+									<mark class="concept">constriction</mark>.
+								</p>
+								<p>
+									<mark class="trap"
+										>Never sterilise it in hot water</mark
+									>
+									— the mercury would expand too much and
+									shatter the glass.
+								</p>
+							</div>
+							<div class="card g-blue">
+								<h5>(ii) Electronic Thermometer</h5>
+								<p>
+									Uses the fact that
+									<mark class="concept"
+										>electrical resistance of a conductor
+										depends on its temperature</mark
+									>. The key component is a
+									<mark class="concept"
+										>thermoresistor / thermistor</mark
+									>; a circuit measures that resistance and
+									converts it into a digital temperature
+									display.
+								</p>
+							</div>
+							<div class="card g-yellow">
+								<h5>(iii) Optical Pyrometer</h5>
+								<p>
+									For very high temperatures — a blast
+									furnace, molten metal, a star — no liquid
+									thermometer can survive contact.
+								</p>
+								<p>
+									It measures temperature
+									<mark class="concept">from a distance</mark>
+									by comparing the brightness and colour of
+									radiation emitted by the hot body with a
+									calibrated filament. Used for
+									<mark class="fact"
+										>1000°C and above</mark
+									>.
+								</p>
+							</div>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NDA (I) 2009</span>
+							<p class="qtext">
+								Q10. Which one of the following thermometers is
+								preferred for measuring temperature around
+								1250°C?
+							</p>
+							<div class="options">
+								(a) Mercury thermometer &nbsp; (b) Constant
+								volume gas thermometer<br />(c) Optical
+								pyrometer &nbsp; (d) Platinum resistance
+								thermometer
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Optical pyrometer.</b> Mercury boils
+									at about 357°C, so it is nowhere near
+									usable; the pyrometer works without contact.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="e2">
+						<h3 class="secttl">
+							2. Choosing the Liquid: Mercury versus Alcohol
+						</h3>
+						<div class="tablewrap">
+							<table class="tbl-pastel">
+								<tr>
+									<th>Property</th>
+									<th>Mercury</th>
+									<th>Alcohol</th>
+								</tr>
+								<tr>
+									<td>Freezing point</td>
+									<td>about <mark class="fact">−39°C</mark></td>
+									<td>about <mark class="fact">−112°C</mark></td>
+								</tr>
+								<tr>
+									<td>Boiling point</td>
+									<td>about <mark class="fact">357°C</mark></td>
+									<td>about <mark class="fact">78°C</mark></td>
+								</tr>
+								<tr>
+									<td>Expansion on heating</td>
+									<td>Small and very uniform</td>
+									<td>
+										Large (about
+										<mark class="fact">6 times</mark>
+										mercury)
+									</td>
+								</tr>
+								<tr>
+									<td>Wets the glass?</td>
+									<td>
+										<mark class="trap">No</mark> — does not
+										stick to the tube
+									</td>
+									<td>
+										<mark class="trap">Yes</mark> — clings
+										to the tube
+									</td>
+								</tr>
+								<tr>
+									<td>Visibility</td>
+									<td>Shiny, easily seen</td>
+									<td>Colourless, must be dyed</td>
+								</tr>
+								<tr>
+									<td>Best used for</td>
+									<td>Ordinary and high temperatures</td>
+									<td>Extremely cold regions</td>
+								</tr>
+							</table>
+						</div>
+						<div class="notebox">
+							<p><b>Why alcohol in cold countries?</b></p>
+							<ul>
+								<li>
+									Mercury freezes at about −39°C. In polar or
+									high-altitude regions the air can be colder
+									than this, so a mercury thermometer would
+									simply be a
+									<mark class="trap">solid lump</mark> and
+									would read nothing.
+								</li>
+								<li>
+									Alcohol stays liquid down to about −112°C,
+									so it can record extremely low temperatures.
+								</li>
+								<li>
+									Alcohol also expands far more than mercury
+									for the same temperature rise, giving a
+									longer, more easily read column.
+								</li>
+							</ul>
+						</div>
+
+						<div class="mcq">
+							<span class="src">CAPF (AC) 2010</span>
+							<p class="qtext">
+								Q11. Which of the following are reasons behind
+								using Mercury in thermometers? 1. Mercury does
+								not wet the inner sides of the thermometer. 2.
+								It can be seen easily in a thin capillary tube.
+								3. It is a good conductor of heat. 4. It is
+								non-toxic.
+							</p>
+							<div class="options">
+								(a) 1 only &nbsp; (b) 1 and 2 only<br />(c) 1, 2
+								and 3 &nbsp; (d) 3 and 4
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) 1, 2 and 3.</b> Statement 4 is the
+									trap — mercury is
+									<mark class="trap">highly toxic</mark>, which
+									is precisely why it causes Minamata disease.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="e3">
+						<h3 class="secttl">
+							3. Elements &amp; Associated Diseases (Mercury
+							Spin-off Table)
+						</h3>
+						<div class="tablewrap">
+							<table class="tbl-pastel">
+								<tr>
+									<th>Element</th>
+									<th>Disease</th>
+									<th>Key Point</th>
+								</tr>
+								<tr>
+									<td>Mercury (Hg)</td>
+									<td>
+										<mark class="trap"
+											>Minamata Disease</mark
+										>
+									</td>
+									<td>
+										Methylmercury poisoning from
+										contaminated fish
+									</td>
+								</tr>
+								<tr>
+									<td>Cadmium (Cd)</td>
+									<td>
+										<mark class="trap"
+											>Itai-Itai Disease</mark
+										>
+									</td>
+									<td>
+										Bone deformities and kidney damage
+									</td>
+								</tr>
+								<tr>
+									<td>Lead (Pb)</td>
+									<td>Plumbism (Lead Poisoning)</td>
+									<td>
+										Affects nervous system, especially in
+										children
+									</td>
+								</tr>
+								<tr>
+									<td>Arsenic (As)</td>
+									<td>Arsenicosis</td>
+									<td>
+										Skin lesions, cancer risk due to
+										contaminated groundwater
+									</td>
+								</tr>
+								<tr>
+									<td>Fluoride (F)</td>
+									<td>Fluorosis</td>
+									<td>
+										Excess fluoride causes dental and
+										skeletal fluorosis
+									</td>
+								</tr>
+								<tr>
+									<td>Iodine (I)</td>
+									<td>Goitre</td>
+									<td>
+										<b>Deficiency</b> enlarges the thyroid
+										gland
+									</td>
+								</tr>
+								<tr>
+									<td>Iron (Fe)</td>
+									<td>Anaemia</td>
+									<td>
+										<b>Deficiency</b> reduces haemoglobin
+										levels
+									</td>
+								</tr>
+								<tr>
+									<td>Calcium + Vitamin D</td>
+									<td>
+										Rickets (children), Osteomalacia
+										(adults)
+									</td>
+									<td>Weak and soft bones</td>
+								</tr>
+								<tr>
+									<td>Selenium (Se)</td>
+									<td>Keshan Disease</td>
+									<td>
+										<b>Deficiency</b> causes cardiomyopathy
+									</td>
+								</tr>
+								<tr>
+									<td>Copper (Cu)</td>
+									<td>Wilson's Disease</td>
+									<td>
+										Genetic disorder causing copper
+										accumulation
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="trapbox">
+							<p>
+								Sort them by mechanism:
+								<mark class="trap">excess</mark> causes Minamata,
+								Itai-Itai, Plumbism, Arsenicosis, Fluorosis,
+								Wilson's; <mark class="trap">deficiency</mark>
+								causes Goitre, Anaemia, Rickets, Keshan.
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="e4">
+						<h3 class="secttl">4. The Thermostat</h3>
+						<p>
+							A thermostat is
+							<mark class="trap">not a measuring device</mark> —
+							it is a
+							<mark class="concept">controlling device</mark>. It
+							automatically senses temperature and switches a
+							heating or cooling appliance on and off so the
+							temperature stays within a set range. Refrigerators,
+							air conditioners, geysers, electric irons and ovens
+							all contain one. Its function is to
+							<mark class="concept"
+								>maintain a constant temperature</mark
+							>, and in doing so it also saves energy.
+						</p>
+
+						<div class="mcq">
+							<span class="src">MPPCS (Pre) 2005</span>
+							<p class="qtext">
+								Q12. What is the use of a thermostat?
+							</p>
+							<div class="options">
+								(a) To measure the temperature &nbsp; (b) To
+								increase the temperature<br />(c) To maintain
+								the temperature &nbsp; (d) To convert heat into
+								electricity
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) To maintain the temperature.</b>
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">UPPCS (Pre) 2007</span>
+							<p class="qtext">
+								Q13. Thermostat is a device which
+							</p>
+							<div class="options">
+								(a) Measures heat &nbsp; (b) Measures
+								temperature<br />(c) Automatically regulates the
+								temperature of a system &nbsp; (d)
+								Automatically regulates pressure of a system
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Automatically regulates the
+									temperature of a system.</b> Note the
+									careful wording — it regulates temperature,
+									it does not measure it.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="e5">
+						<h3 class="secttl">
+							5. Thermal Expansion of Solids — Three Types
+						</h3>
+						<div class="formulagrid">
+							<div class="fblock rd">
+								<h5>1. LINEAR EXPANSION — increase in length</h5>
+								<div class="short">
+									\(\alpha = \dfrac{\Delta L}{L_0 \,\Delta
+									T}\)
+								</div>
+								<div class="full">
+									Change in length per unit original length
+									per °C rise. Unit: \(^\circ\text{C}^{-1}\)
+									or \(\text{K}^{-1}\).
+								</div>
+							</div>
+							<div class="fblock pd">
+								<h5>2. SUPERFICIAL EXPANSION — increase in area</h5>
+								<div class="short">
+									\(\beta = \dfrac{\Delta A}{A_0 \,\Delta
+									T}\)
+								</div>
+								<div class="full">
+									Change in area per unit original area per
+									°C. Also called areal expansion.
+								</div>
+							</div>
+							<div class="fblock erd">
+								<h5>3. CUBICAL EXPANSION — increase in volume</h5>
+								<div class="short">
+									\(\gamma = \dfrac{\Delta V}{V_0 \,\Delta
+									T}\)
+								</div>
+								<div class="full">
+									Change in volume per unit original volume
+									per °C.
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="e6">
+						<h3 class="secttl">6. The Golden Ratio 1 : 2 : 3</h3>
+						<div class="formulagrid">
+							<div class="fblock gy">
+								<h5>FOR THE SAME MATERIAL</h5>
+								<div class="short">
+									\(\alpha : \beta : \gamma = 1 : 2 : 3\)
+								</div>
+								<div class="full">
+									Equivalently \(\beta = 2\alpha\) and
+									\(\gamma = 3\alpha = \tfrac{3}{2}\beta\).
+									This single line solves most numerical MCQs
+									on expansion.
+								</div>
+							</div>
+						</div>
+						<div class="notebox">
+							<p>
+								At ordinary temperatures,
+								<mark class="rule"
+									>gases expand far more than liquids and
+									solids</mark
+								>.
+							</p>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NDA 2018</span>
+							<p class="qtext">
+								Q14. The coefficient of areal expansion of a
+								material is 1.6 × 10⁻⁵ K⁻¹. Which one of the
+								following gives the value of its coefficient of
+								volume expansion?
+							</p>
+							<div class="options">
+								(a) 0.8 × 10⁻⁵ K⁻¹ &nbsp; (b) 2.4 × 10⁻⁵ K⁻¹<br />(c)
+								3.2 × 10⁻⁵ K⁻¹ &nbsp; (d) 4.8 × 10⁻⁵ K⁻¹
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) 2.4 × 10⁻⁵ K⁻¹.</b> Using \(\beta :
+									\gamma = 2 : 3\), \(\gamma =
+									\frac{3}{2}\beta = 1.5 \times 1.6\times
+									10^{-5} = 2.4 \times 10^{-5}\
+									\text{K}^{-1}\).
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">UPPCS (Pre) 2006</span>
+							<p class="qtext">
+								Q15. Expansion during heating
+							</p>
+							<div class="options">
+								(a) occurs only in solids &nbsp; (b) increases
+								the weight of a material<br />(c) decreases the
+								density of a material &nbsp; (d) occurs at the
+								same rate for all liquids and solids
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) decreases the density of a material.</b>
+									Mass stays the same while volume rises, and
+									\(\rho = m/V\), so density falls.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NCERT Exemplar, Class XI, Ch. 11</span>
+							<p class="qtext">
+								Q16. A bimetallic strip is made of aluminium and
+								steel (α_Al &gt; α_steel). On heating, the strip
+								will
+							</p>
+							<div class="options">
+								(a) remain straight &nbsp; (b) get twisted<br />(c)
+								bend with aluminium on the concave side &nbsp;
+								(d) bend with steel on the concave side
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(d) bend with steel on the concave side.</b>
+									Two metals riveted along their length cannot
+									slide apart, so unequal expansion forces a
+									curve. Aluminium becomes longer, so it must
+									lie on the
+									<mark class="concept"
+										>outside (convex) side</mark
+									>; the shorter steel lies on the
+									<mark class="concept"
+										>inside (concave) side</mark
+									>.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NCERT Exemplar, Class XI, Ch. 11</span>
+							<p class="qtext">
+								Q17. A uniform metallic rod rotates about its
+								perpendicular bisector with constant angular
+								speed. If it is heated uniformly to raise its
+								temperature slightly, then
+							</p>
+							<div class="options">
+								(a) its speed of rotation increases &nbsp; (b)
+								its speed of rotation decreases<br />(c) its
+								speed of rotation remains the same &nbsp; (d)
+								its speed increases because its moment of
+								inertia increases
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) its speed of rotation decreases.</b>
+									Heating lengthens the rod, so its moment of
+									inertia \(I\) rises. With no external torque,
+									angular momentum \(L = I\omega\) is
+									conserved, so \(\omega\) must fall.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NCERT Exemplar, Class XI, Ch. 11</span>
+							<p class="qtext">
+								Q18. As the temperature is increased, the time
+								period of a pendulum
+							</p>
+							<div class="options">
+								(a) increases as its effective length increases,
+								even though its centre of mass still remains at
+								the centre of the bob &nbsp; (b) decreases as
+								its effective length increases, even though its
+								centre of mass still remains at the centre of
+								the bob<br />(c) increases as its effective
+								length increases due to shifting of centre of
+								mass below the centre of the bob &nbsp; (d)
+								decreases as its effective length remains the
+								same but the centre of mass shifts above the
+								centre of the bob
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a).</b> For a simple pendulum \(T = 2\pi
+									\sqrt{L/g}\) — the period depends on the
+									square root of the length, and heating
+									lengthens the suspension.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">UPPCS (Pre) 1994</span>
+							<p class="qtext">
+								Q19. When a glass rod is placed in steam, its
+								length increases but its width
+							</p>
+							<div class="options">
+								(a) Remains unchanged &nbsp; (b) Decreases<br />(c)
+								Increases &nbsp; (d) Becomes irregular
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Increases.</b> Thermal expansion is
+									<mark class="concept"
+										>three-dimensional</mark
+									>.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">IAS (Pre) 1993</span>
+							<p class="qtext">
+								Q20. A metal ball can just pass through the hole
+								of a metal ring. When the ball is heated it gets
+								stuck. But when the ring (metal) is heated —
+							</p>
+							<div class="options">
+								(a) The ball can still pass through the ring as
+								the diameter expands on heating &nbsp; (b) The
+								ball gets stuck because the diameter of the hole
+								decreases on expansion<br />(c) The ball will
+								still pass through because the hole diameter does
+								not change &nbsp; (d) The ball will pass through
+								because there is no change in the ring
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a).</b> A hole in a heated solid expands
+									exactly as if it were made of the same
+									material — the hole gets
+									<mark class="trap">bigger, not smaller</mark>.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="e7">
+						<h3 class="secttl">
+							7. Anomalous Expansion of Water — A Special Case
+						</h3>
+						<p>
+							Water refuses to follow the ordinary rule. Watch
+							what happens as water is warmed from 0°C:
+						</p>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>0°C → 4°C</h5>
+								<p>
+									The volume of water
+									<mark class="trap"
+										>decreases instead of increasing</mark
+									>.
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>Beyond 4°C</h5>
+								<p>
+									The volume increases normally with
+									temperature.
+								</p>
+							</div>
+							<div class="card g-yellow">
+								<h5>Consequence</h5>
+								<p>
+									The density of water is
+									<mark class="fact">maximum at 4°C</mark> —
+									one of the reasons aquatic life survives on
+									this planet.
+								</p>
+							</div>
+						</div>
+						<div class="notebox">
+							<p><b>Water also expands on freezing.</b></p>
+							<ul>
+								<li>
+									When water turns to ice, the molecules lock
+									into an
+									<mark class="concept"
+										>open hexagonal lattice</mark
+									>
+									with wide gaps. The volume increases by about
+									<mark class="fact">9%</mark>, which is why
+									ice is less dense than water and floats.
+								</li>
+								<li>
+									The reverse is equally true: when ice melts,
+									its volume <b>decreases</b>.
+								</li>
+								<li>
+									This is why a sealed water bottle bursts in
+									the freezer, and why metal water pipes crack
+									in a hard winter.
+								</li>
+							</ul>
+						</div>
+
+						<div class="mcq">
+							<span class="src">RAS/RTS (Pre) 2007</span>
+							<p class="qtext">
+								Q21. When a piece of ice floating in a glass of
+								water melts, the level of water will
+							</p>
+							<div class="options">
+								(a) Fall &nbsp; (b) Rise<br />(c) Remain the
+								same &nbsp; (d) Fall or rise depending on the
+								temperature of water
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Remain the same.</b> A floating ice
+									cube displaces exactly its own weight of
+									water; on melting it produces exactly that
+									weight of water, filling precisely the
+									volume it had displaced.
+								</div>
+							</details>
+						</div>
+					</section>
+				</div>
+
+				<!-- ================= TAB 3 ================= -->
+				<div class="panel" id="t3">
+					<div class="pagehead">
+						<h2>
+							Specific Heat, Thermal Capacity, Calorimetry &amp;
+							Latent Heat
+						</h2>
+						<p>
+							Chapters 5–6 · The two heats: one that raises
+							temperature, one that hides from the thermometer
+						</p>
+					</div>
+
+					<section class="block" id="h1">
+						<h3 class="secttl">1. Specific Heat</h3>
+						<p>
+							Specific heat \(s\) is the amount of heat required to
+							raise the temperature of
+							<mark class="concept">unit mass</mark> of a
+							substance through
+							<mark class="concept">1°C</mark>.
+						</p>
+						<div class="formulagrid">
+							<div class="fblock rd">
+								<h5>SPECIFIC HEAT</h5>
+								<div class="short">
+									\(s = \dfrac{Q}{m\,\Delta t} \quad
+									\Longleftrightarrow \quad Q = m\,s\,\Delta
+									t\)
+								</div>
+								<div class="full">
+									\(Q\) = heat supplied, \(m\) = mass, \(\Delta
+									t\) = rise in temperature. SI unit: \(\text{J
+									kg}^{-1}\,^\circ\text{C}^{-1}\).
+								</div>
+							</div>
+						</div>
+						<div class="notebox">
+							<p><b>Key facts about specific heat</b></p>
+							<ul>
+								<li>
+									It is a property of the
+									<mark class="concept">material alone</mark>
+									— completely independent of the
+									<mark class="trap"
+										>mass and shape</mark
+									>
+									of the body.
+								</li>
+								<li>
+									Specific heat of water at 15°C is
+									<mark class="fact"
+										>4200 J kg⁻¹ °C⁻¹</mark
+									>
+									(i.e. <mark class="fact">1 cal/g°C</mark>) —
+									remarkably high compared with almost every
+									other common substance.
+								</li>
+							</ul>
+						</div>
+						<div class="lifebox">
+							<ul>
+								<li>
+									<b>Car radiators use water as coolant</b>,
+									because a given mass of water can carry away
+									a large quantity of heat from the engine.
+								</li>
+								<li>
+									<b>Deserts are scorching by day and
+									freezing at night</b>, because sand has a
+									very low specific heat — it absorbs heat
+									readily and its temperature shoots up during
+									the day, then radiates it away just as
+									readily at night.
+								</li>
+								<li>
+									<b>Oceans moderate climate.</b> Because of
+									water's high specific heat, the sea warms up
+									much more slowly than land in summer and
+									cools much more slowly in winter. The
+									temperature contrast between continents and
+									oceans is therefore
+									<mark class="trap"
+										>greater in summer than in winter</mark
+									>.
+								</li>
+							</ul>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NDA (I) 2018</span>
+							<p class="qtext">
+								Q22. Which statement about specific heat of a
+								body is correct? I. It depends upon mass and
+								shape of the body. II. It is independent of mass
+								and shape of the body. III. It depends only upon
+								the temperature of the body.
+							</p>
+							<div class="options">
+								(a) Only I &nbsp; (b) II and III<br />(c) I and
+								III &nbsp; (d) Only II
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(d) Only II.</b> Specific heat is a
+									material property; it is not fixed by
+									temperature alone either, so III fails too.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NDA (I) 2012</span>
+							<p class="qtext">
+								Q23. Body A of mass 2 kg and body B of mass 4 kg,
+								of the same material, are kept in the same
+								sunshine for some interval of time. If the rise
+								in temperature is equal for both bodies, which
+								statement is correct?
+							</p>
+							<div class="options">
+								(a) Heat absorbed by B is double because its mass
+								is double &nbsp; (b) Heat absorbed by A is double
+								because its mass is half<br />(c) Heat absorbed
+								by both is equal because heat absorbed does not
+								depend upon mass &nbsp; (d) Heat absorbed by B is
+								four times that by A because heat absorbed is
+								proportional to the square of the mass
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a).</b> Use \(Q = m\,s\,\Delta t\). Same
+									material means same \(s\); equal
+									temperature rise means same \(\Delta t\).
+									So \(Q \propto m\) alone.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="h2">
+						<h3 class="secttl">
+							2. Heat Capacity (Thermal Capacity)
+						</h3>
+						<p>
+							Thermal capacity is the heat required to raise the
+							temperature of a
+							<mark class="concept">given amount</mark> of a
+							substance through 1°C or 1 K. Unlike specific heat,
+							it <mark class="trap">does depend on how much
+							substance you have</mark>.
+						</p>
+						<div class="formulagrid">
+							<div class="fblock pd">
+								<h5>THERMAL CAPACITY</h5>
+								<div class="short">
+									\(C = m \times s\)
+								</div>
+								<div class="full">
+									Unit: \(\text{J K}^{-1}\) or \(\text{cal
+									}^\circ\text{C}^{-1}\). Depends on both the
+									nature of the body and its mass.
+								</div>
+							</div>
+						</div>
+						<div class="trapbox">
+							<p>
+								<mark class="trap">Specific heat</mark> =
+								material property, mass-independent.
+								<mark class="trap">Thermal capacity</mark> =
+								body property, mass-dependent. Examiners swap
+								these two constantly.
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="h3">
+						<h3 class="secttl">
+							3. Molar Specific Heat of Gases
+						</h3>
+						<p>
+							For gases we count in moles rather than grams. Molar
+							specific heat is the heat required to raise the
+							temperature of 1 mole of gas by 1°C. Because a gas
+							can be heated in two very different ways, there are
+							two such values.
+						</p>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>C_V — at constant volume</h5>
+								<p>
+									Heat needed to raise 1 mole through 1°C while
+									volume is held fixed. The gas cannot expand,
+									so it does
+									<mark class="concept">no work</mark>, and
+									all the heat goes into
+									<mark class="concept">internal energy</mark>.
+								</p>
+							</div>
+							<div class="card g-red">
+								<h5>C_P — at constant pressure</h5>
+								<p>
+									Heat needed to raise 1 mole through 1°C while
+									pressure is held fixed. Here the gas expands
+									and does
+									<mark class="concept">external work</mark>,
+									so extra heat is needed. Hence
+									<mark class="trap"
+										>C_P is always greater than C_V</mark
+									>.
+								</p>
+							</div>
+						</div>
+						<div class="formulagrid">
+							<div class="fblock erd">
+								<h5>MAYER'S FORMULA</h5>
+								<div class="short">
+									\(C_P - C_V = R\)
+								</div>
+								<div class="full">
+									\(R\) = universal gas constant \(\approx
+									1.99 \approx 2\ \text{cal mol}^{-1}\text{
+									K}^{-1}\).
+								</div>
+							</div>
+							<div class="fblock gy">
+								<h5>RATIO OF SPECIFIC HEAT CAPACITIES</h5>
+								<div class="short">
+									\(\gamma = \dfrac{C_P}{C_V}\)
+								</div>
+								<div class="full">
+									Always greater than 1, since \(C_P &gt;
+									C_V\).
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="h4">
+						<h3 class="secttl">4. Principle of Calorimetry</h3>
+						<p>
+							Calorimetry is the practical method of determining
+							specific heat. The instrument is a
+							<mark class="concept">calorimeter</mark> — a
+							cylindrical
+							<mark class="fact">copper</mark> vessel fitted with a
+							stirrer and a lid.
+						</p>
+						<p>
+							When two substances at different temperatures are
+							brought into contact, heat flows from the hotter to
+							the colder until both reach a common temperature.
+							Assuming no heat escapes to the surroundings:
+						</p>
+						<div class="formulagrid">
+							<div class="fblock fd">
+								<h5>PRINCIPLE OF CALORIMETRY</h5>
+								<div class="short">
+									\(Q_{\text{lost}} = Q_{\text{gained}}\)
+								</div>
+								<div class="full">
+									Heat lost by the hotter substance = heat
+									gained by the colder substance. Valid
+									<b>only when there is no change of
+									state</b>.
+								</div>
+							</div>
+						</div>
+
+						<div class="mcq">
+							<span class="src">CISF-LDC 2018</span>
+							<p class="qtext">
+								Q24. Which one of the following statements about
+								the Principle of Calorimetry is correct?
+							</p>
+							<div class="options">
+								(a) It is always valid &nbsp; (b) It is valid
+								when temperature is constant<br />(c) It is valid
+								only when there is no change of state &nbsp; (d)
+								It is valid only under equilibrium condition
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) It is valid only when there is no
+									change of state.</b>
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NCERT Exemplar, Class XI, Ch. 12</span>
+							<p class="qtext">
+								Q25. Three copper blocks of masses M₁, M₂ and M₃
+								are brought into thermal contact till they reach
+								equilibrium. Before contact they were at T₁, T₂,
+								T₃ (T₁ &gt; T₂ &gt; T₃). With no heat loss to the
+								surroundings, the equilibrium temperature T is
+								(s = specific heat of copper)
+							</p>
+							<div class="options">
+								(a) T = (T₁ + T₂ + T₃)/3 &nbsp; (b) T = (M₁T₁ +
+								M₂T₂ + M₃T₃)/(M₁ + M₂ + M₃)<br />(c) T = (M₁T₁ +
+								M₂T₂ + M₃T₃)/[3(M₁ + M₂ + M₃)] &nbsp; (d) T =
+								(M₁T₁s + M₂T₂s + M₃T₃s)/(M₁ + M₂ + M₃)
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b).</b> Net heat exchanged is zero:
+									\[M_1 s(T_1-T) + M_2 s(T_2-T) + M_3 s(T_3-T)
+									= 0\] All three blocks are copper, so the
+									same \(s\) appears in every term and cancels:
+									\[T = \frac{M_1T_1 + M_2T_2 +
+									M_3T_3}{M_1+M_2+M_3}\] Option (a) is a plain
+									average, valid only if all three masses were
+									equal. Option (d) wrongly leaves \(s\) in the
+									numerator only.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="h5">
+						<h3 class="secttl">5. Change of State</h3>
+						<div class="tablewrap">
+							<table class="tbl-pastel">
+								<tr>
+									<th>Process</th>
+									<th>Change</th>
+									<th>Heat is</th>
+								</tr>
+								<tr>
+									<td>Melting (Fusion)</td>
+									<td>Solid → Liquid</td>
+									<td>
+										<mark class="fact">Absorbed</mark>
+									</td>
+								</tr>
+								<tr>
+									<td>Freezing (Solidification)</td>
+									<td>Liquid → Solid</td>
+									<td>
+										<mark class="trap">Released</mark>
+									</td>
+								</tr>
+								<tr>
+									<td>Boiling / Vaporisation</td>
+									<td>Liquid → Gas</td>
+									<td>
+										<mark class="fact">Absorbed</mark>
+									</td>
+								</tr>
+								<tr>
+									<td>Condensation</td>
+									<td>Gas → Liquid</td>
+									<td>
+										<mark class="trap">Released</mark>
+									</td>
+								</tr>
+								<tr>
+									<td>Sublimation</td>
+									<td>Solid → Gas directly</td>
+									<td>
+										<mark class="fact">Absorbed</mark>
+									</td>
+								</tr>
+								<tr>
+									<td>Deposition</td>
+									<td>Gas → Solid directly</td>
+									<td>
+										<mark class="trap">Released</mark>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>Melting Point</h5>
+								<p>
+									Temperature at which a solid turns liquid at
+									a given pressure. Ice
+									<mark class="fact">0°C</mark>, wax about
+									<mark class="fact">60°C</mark>, iron about
+									<mark class="fact">1538°C</mark>.
+								</p>
+							</div>
+							<div class="card g-red">
+								<h5>Boiling Point</h5>
+								<p>
+									Liquid turns to vapour
+									<mark class="concept"
+										>throughout the bulk</mark
+									>. Ethanol
+									<mark class="fact">78°C</mark>, water
+									<mark class="fact">100°C</mark>, mercury
+									<mark class="fact">357°C</mark>.
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>Freezing Point</h5>
+								<p>
+									For a pure substance, the freezing point of
+									the liquid and the melting point of the solid
+									are
+									<mark class="trap"
+										>exactly the same temperature</mark
+									>
+									— water freezes at 0°C and ice melts at 0°C.
+								</p>
+							</div>
+							<div class="card g-yellow">
+								<h5>Sublimation</h5>
+								<p>
+									Some solids skip the liquid stage entirely:
+									<mark class="fact"
+										>ammonium chloride, iodine, camphor,
+										naphthalene (moth balls)</mark
+									>. The reverse is
+									<mark class="concept">deposition</mark>.
+								</p>
+							</div>
+							<div class="card g-purple">
+								<h5>Supercooling</h5>
+								<p>
+									Cooling a liquid
+									<mark class="concept"
+										>below its freezing point without it
+										actually solidifying</mark
+									>.
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="h6">
+						<h3 class="secttl">6. The Triple Point</h3>
+						<p>
+							There is one unique combination of temperature and
+							pressure at which the solid, liquid and gaseous
+							phases of a substance can all
+							<mark class="concept">coexist in equilibrium</mark>.
+							That point is called the triple point.
+						</p>
+						<div class="notebox">
+							<p>
+								By international agreement the triple point of
+								water is fixed at
+								<mark class="fact">273.16 K (0.01°C)</mark> at a
+								partial vapour pressure of
+								<mark class="fact">611.657 pascals</mark>
+								(about 0.006 atm). This point was formerly used
+								to define the
+								<mark class="concept">kelvin</mark>, the SI base
+								unit of thermodynamic temperature.
+							</p>
+						</div>
+						<div class="trapbox">
+							<p>
+								Do not confuse
+								<mark class="trap">273.15 K</mark> (ice point,
+								0°C) with
+								<mark class="trap">273.16 K</mark> (triple point,
+								0.01°C).
+							</p>
+						</div>
+					</section>
+
+					<section class="block" id="h7">
+						<h3 class="secttl">
+							7. Latent Heat — Heat That Does Not Raise
+							Temperature
+						</h3>
+						<p>
+							Latent heat is the heat absorbed or released per
+							unit mass during a change of state,
+							<mark class="concept">at constant temperature</mark>.
+							The word <i>latent</i> means "hidden" — the heat is
+							hidden from the thermometer.
+						</p>
+						<div class="formulagrid">
+							<div class="fblock nk">
+								<h5>LATENT HEAT</h5>
+								<div class="short">\(Q = m\,L\)</div>
+								<div class="full">
+									\(L\) = latent heat. Unit: cal/g or J/kg.
+								</div>
+							</div>
+							<div class="fblock rd">
+								<h5>LATENT HEAT OF FUSION (ICE)</h5>
+								<div class="short">
+									\(L_f = 80\ \text{cal/g}\)
+								</div>
+								<div class="full">
+									\(= 3.34 \times 10^{5}\ \text{J/kg}\). Heat
+									to change unit mass of solid into liquid at
+									constant temperature.
+								</div>
+							</div>
+							<div class="fblock fd">
+								<h5>LATENT HEAT OF VAPORISATION (WATER)</h5>
+								<div class="short">
+									\(L_v = 536 \approx 540\ \text{cal/g}\)
+								</div>
+								<div class="full">
+									\(= 22.6 \times 10^{5}\ \text{J/kg}\) at
+									100°C. Heat to change unit mass of liquid
+									into vapour at constant temperature.
+								</div>
+							</div>
+						</div>
+						<div class="notebox">
+							<p><b>Points examiners love</b></p>
+							<ul>
+								<li>
+									Latent heat is
+									<mark class="concept">fixed</mark> at a given
+									temperature for a given substance, and is
+									<mark class="trap"
+										>independent of the volume</mark
+									>
+									of the substance.
+								</li>
+								<li>
+									It <b>does</b> depend on the temperature
+									(and hence on pressure) at which the change
+									of state occurs.
+								</li>
+								<li>
+									\(L_f\) of ice (80 cal/g) is
+									<mark class="trap">NOT equal</mark> to
+									\(L_v\) of water (540 cal/g) — a favourite
+									trap in statement-based questions.
+								</li>
+								<li>
+									On a temperature-versus-heat graph, latent
+									heat shows up as the
+									<mark class="concept"
+										>flat, horizontal portions</mark
+									>
+									of the curve — temperature constant while
+									heat is being supplied.
+								</li>
+							</ul>
+						</div>
+
+						<h4 class="subttl">
+							Why steam burns are worse than boiling-water burns
+						</h4>
+						<div class="arrowflow">
+							<div class="arrowbox">
+								<b>Steam at 100°C</b>touches the skin
+							</div>
+							<div class="arrow">→</div>
+							<div class="arrowbox">
+								<b>Condenses first</b>releases
+								<mark class="fact">540 cal/g</mark> of latent
+								heat
+							</div>
+							<div class="arrow">→</div>
+							<div class="arrowbox">
+								<b>Then cools</b>the resulting 100°C water
+								releases further heat
+							</div>
+						</div>
+						<div class="trapbox">
+							<p>
+								A gram of steam delivers roughly
+								<mark class="trap">540 calories more</mark> heat
+								to the skin than a gram of boiling water at the
+								same temperature.
+							</p>
+						</div>
+
+						<div class="mcq">
+							<span class="src">IAS (Pre) 2003</span>
+							<p class="qtext">
+								Q26. Consider the following statements: 1. Steam
+								at 100°C and boiling water at 100°C contain the
+								same amount of heat. 2. Latent heat of fusion of
+								ice is equal to the latent heat of vaporisation
+								of water. 3. In an air-conditioner, heat is
+								extracted from the room air at the evaporator
+								coils and is ejected out at the condenser coils.
+								Which of these statements is/are correct?
+							</p>
+							<div class="options">
+								(a) 1 and 2 &nbsp; (b) 2 and 3<br />(c) Only 2
+								&nbsp; (d) Only 3
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(d) Only 3.</b> Statement 1 is wrong —
+									steam contains about 540 cal/g more heat
+									because of stored latent heat of
+									vaporisation. Statement 2 is wrong — 80
+									cal/g versus 540 cal/g, nowhere near equal.
+									Statement 3 is correct — the refrigerant
+									evaporates inside the room absorbing heat,
+									then condenses outside rejecting it.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="h8">
+						<h3 class="secttl">
+							8. Numerical Drill — The Staged Method
+						</h3>
+						<div class="notebox">
+							<p>
+								Every mixed-state numerical is just
+								<mark class="rule"
+									>stages added together</mark
+								>: sloping stages use \(Q = ms\Delta t\), flat
+								stages use \(Q = mL\). Remember specific heat of
+								<b>ice = 0.5 cal/g°C</b> and of
+								<b>water = 1 cal/g°C</b>.
+							</p>
+						</div>
+
+						<div class="mcq">
+							<span class="src">Uttarakhand Lower Sub. (Pre) 2010</span>
+							<p class="qtext">
+								Q27. The heat required in calories to convert one
+								gram of ice at 0°C to steam at 100°C is
+								approximately
+							</p>
+							<div class="options">
+								(a) 80 &nbsp; (b) 336<br />(c) 720 &nbsp; (d) 620
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) 720 calories.</b> Three stages:<br />
+									Stage 1 — melt the ice at 0°C: \(Q_1 = mL_f =
+									1 \times 80 = 80\) cal.<br />
+									Stage 2 — heat water 0°C → 100°C: \(Q_2 = ms
+									\Delta t = 1 \times 1 \times 100 = 100\)
+									cal.<br />
+									Stage 3 — convert water to steam: \(Q_3 =
+									mL_v = 1 \times 540 = 540\) cal.<br />
+									Total \(= 80 + 100 + 540 = 720\) cal. Notice
+									the shape: two flat latent-heat stages with a
+									sloping specific-heat stage in between.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NDA (I) 2009</span>
+							<p class="qtext">
+								Q28. What is the amount of heat given up when 20
+								g of steam at 100°C is condensed and cooled to
+								20°C?
+							</p>
+							<div class="options">
+								(a) 10000 cal &nbsp; (b) 11400 cal<br />(c) 12400
+								cal &nbsp; (d) 13600 cal
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) 12400 cal.</b><br />
+									Stage 1 — condense at 100°C: \(Q_1 = mL = 20
+									\times 540 = 10800\) cal.<br />
+									Stage 2 — cool water 100°C → 20°C: \(Q_2 =
+									ms\Delta t = 20 \times 1 \times 80 = 1600\)
+									cal.<br />
+									Total \(= 10800 + 1600 = 12400\) cal.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">CDS (I) 2016</span>
+							<p class="qtext">
+								Q29. A piece of ice, 100 g in mass, is kept at
+								0°C. The amount of heat required to melt it at
+								0°C is (latent heat of melting of ice = 333.6
+								J/g)
+							</p>
+							<div class="options">
+								(a) 750.6 J &nbsp; (b) 83.4 J<br />(c) 33360 J
+								&nbsp; (d) 3.336 J
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) 33360 J.</b> The ice is already at its
+									melting point, so no heat is needed to warm
+									it — only latent heat. \(Q = mL = 100 \times
+									333.6 = 33360\) J.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NDA (II) 2019</span>
+							<p class="qtext">
+								Q30. 10 g of ice at −10°C is mixed with 10 g of
+								water at 0°C. The amount of heat required to
+								raise the temperature of the mixture to 10°C is
+							</p>
+							<div class="options">
+								(a) 400 cal &nbsp; (b) 550 cal<br />(c) 1050 cal
+								&nbsp; (d) 1200 cal
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) 1050 cal.</b><br />
+									Stage 1 — warm 10 g ice from −10°C to 0°C:
+									\(Q_1 = 10 \times 0.5 \times 10 = 50\)
+									cal.<br />
+									Stage 2 — melt the 10 g of ice at 0°C: \(Q_2 =
+									10 \times 80 = 800\) cal.<br />
+									Stage 3 — warm all the water (10 g melt-water
+									+ original 10 g = 20 g) from 0°C to 10°C:
+									\(Q_3 = 20 \times 1 \times 10 = 200\)
+									cal.<br />
+									Total \(= 50 + 800 + 200 = 1050\) cal.
+								</div>
+							</details>
+						</div>
+					</section>
+				</div>
+
+				<!-- ================= TAB 4 ================= -->
+				<div class="panel" id="t4">
+					<div class="pagehead">
+						<h2>
+							Boiling Point &amp; Pressure, Evaporation, Humidity
+							and Cooling
+						</h2>
+						<p>
+							Chapters 7–8 · Why cookers work, why sweat cools,
+							and why a cooler fails in the monsoon
+						</p>
+					</div>
+
+					<section class="block" id="v1">
+						<h3 class="secttl">
+							1. Why Pressure Controls the Boiling Point
+						</h3>
+						<div class="notebox">
+							<p>
+								A liquid boils when
+								<mark class="rule"
+									>the pressure of the vapour escaping from it
+									becomes equal to the pressure of the
+									atmosphere pressing down on it</mark
+								>. This single sentence explains everything in
+								this unit.
+							</p>
+						</div>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>External pressure reduced</h5>
+								<p>
+									The vapour needs to reach only a smaller
+									pressure to escape, so the liquid boils at a
+									<mark class="trap">lower temperature</mark>.
+								</p>
+							</div>
+							<div class="card g-red">
+								<h5>External pressure increased</h5>
+								<p>
+									The vapour has to work harder to escape, so
+									the liquid boils at a
+									<mark class="trap">higher temperature</mark>.
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="v2">
+						<h3 class="secttl">2. Boiling at High Altitudes</h3>
+						<p>
+							As you climb a mountain, the column of air above you
+							gets shorter and thinner, so atmospheric pressure
+							falls. Consequently water boils
+							<mark class="fact">below 100°C</mark> — perhaps 90°C
+							or less at a high hill station.
+						</p>
+						<p>
+							This creates a practical problem. Cooking depends on
+							<mark class="concept">temperature</mark>, not on the
+							mere fact of boiling. Water at 90°C simply cannot
+							cook rice or pulses properly, so food takes far
+							longer at high altitudes — or never cooks at all.
+							Two remedies are used:
+						</p>
+						<div class="cardgrid">
+							<div class="card g-yellow">
+								<h5>Add salt to the water</h5>
+								<p>
+									A dissolved solute
+									<mark class="concept"
+										>raises the boiling point</mark
+									>
+									(elevation of boiling point), so the water
+									gets hotter before it boils.
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>Use a pressure cooker</h5>
+								<p>
+									This is why pressure cookers are far more
+									common in
+									<mark class="fact">mountain households</mark>.
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<section class="block" id="v3">
+						<h3 class="secttl">
+							3. Effect of Dissolved Salt in Water
+						</h3>
+						<div class="arrowflow">
+							<div class="arrowbox">
+								<b>Boiling point ↑</b>Elevation of boiling point
+								— dissolved salt lowers the vapour pressure of
+								the solution, so a higher temperature is needed
+								to match atmospheric pressure
+							</div>
+							<div class="arrowbox">
+								<b>Freezing point ↓</b>Depression of freezing
+								point — dissolved particles interfere with the
+								formation of the ice crystal lattice, so the
+								solution must be cooled further before it
+								freezes
+							</div>
+						</div>
+						<div class="trapbox">
+							<p>
+								Summary in four words:
+								<mark class="trap"
+									>boiling point up, freezing point
+									down</mark
+								>.
+							</p>
+						</div>
+
+						<div class="mcq">
+							<span class="src">RAS/RTS (Pre) 2008</span>
+							<p class="qtext">
+								Q31. Which one of the following changes occurs
+								when salt is added into water?
+							</p>
+							<div class="options">
+								(a) Boiling point is increased and freezing point
+								decreased &nbsp; (b) Boiling point is decreased
+								and freezing point is increased<br />(c) Both
+								boiling point and freezing point are decreased
+								&nbsp; (d) Both boiling point and freezing point
+								are increased
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) Boiling point is increased and
+									freezing point decreased.</b>
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="v4">
+						<h3 class="secttl">4. The Pressure Cooker</h3>
+						<p>
+							A pressure cooker is a
+							<mark class="concept">sealed vessel</mark>. As the
+							water inside boils, the steam produced cannot escape,
+							so it accumulates and the pressure inside rises well
+							above one atmosphere. Because the pressure is higher,
+							the boiling point of the water rises to about
+							<mark class="fact">120°C</mark>. Food therefore cooks
+							at 120°C instead of 100°C, and cooking is much
+							faster.
+						</p>
+						<div class="trapbox">
+							<p>
+								Note the exact logic — it is
+								<mark class="trap"
+									>not that "steam cooks faster"</mark
+								>, but that the
+								<mark class="concept"
+									>boiling point of water is raised</mark
+								>.
+							</p>
+						</div>
+						<div class="notebox">
+							<p>
+								Atmospheric pressure is measured by a
+								<mark class="concept">barometer</mark>.
+							</p>
+						</div>
+
+						<div class="mcq">
+							<span class="src">Uttarakhand PCS (Pre) 2012</span>
+							<p class="qtext">
+								Q32. <b>Assertion (A):</b> The handle of a
+								pressure cooker is made up of ebonite.
+								<b>Reason (R):</b> Ebonite is a hard material.
+							</p>
+							<div class="options">
+								(a) Both A and R are true, and R is the correct
+								explanation of A &nbsp; (b) Both A and R are
+								true, but R is not the correct explanation of
+								A<br />(c) A is true, but R is false &nbsp; (d) A
+								is false, but R is true
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b).</b> Cooker handles are indeed made of
+									ebonite (hard vulcanised rubber), and ebonite
+									is indeed hard. But hardness is not why it is
+									chosen — the real reason is that ebonite is an
+									excellent
+									<mark class="concept"
+										>thermal insulator</mark
+									>, stopping heat from travelling to the hand.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">UPPCS (Pre) 2010</span>
+							<p class="qtext">
+								Q33. The atmosphere exerts enormous pressure on
+								us. But we do not feel it because
+							</p>
+							<div class="options">
+								(a) Our blood exerts a pressure slightly more
+								than that of the atmosphere &nbsp; (b) We are
+								used to it<br />(c) Our bones are very strong and
+								can withstand the pressure &nbsp; (d) The surface
+								area of our head is very small
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) Our blood exerts a pressure slightly
+									more than that of the atmosphere.</b>
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="v5">
+						<h3 class="secttl">5. Evaporation versus Boiling</h3>
+						<div class="tablewrap">
+							<table class="tbl-pastel">
+								<tr>
+									<th>Evaporation</th>
+									<th>Boiling</th>
+								</tr>
+								<tr>
+									<td>
+										Occurs at
+										<mark class="concept"
+											>any temperature</mark
+										>, even room temperature
+									</td>
+									<td>
+										Occurs only at
+										<mark class="concept"
+											>one fixed temperature</mark
+										>
+										— the boiling point
+									</td>
+								</tr>
+								<tr>
+									<td>
+										A
+										<mark class="trap"
+											>surface phenomenon</mark
+										>
+										— only molecules at the surface escape
+									</td>
+									<td>
+										A
+										<mark class="trap"
+											>bulk phenomenon</mark
+										>
+										— bubbles form throughout the liquid
+									</td>
+								</tr>
+								<tr>
+									<td>A slow, quiet process</td>
+									<td>A rapid, vigorous process</td>
+								</tr>
+								<tr>
+									<td>
+										Causes
+										<b>cooling of the remaining liquid</b>
+									</td>
+									<td>
+										Temperature
+										<b>stays constant</b> during boiling
+									</td>
+								</tr>
+							</table>
+						</div>
+						<h4 class="subttl">What makes evaporation faster?</h4>
+						<ol class="hierlist">
+							<li data-rank="1">
+								<b>Higher temperature</b> — molecules move faster
+								and more of them have enough energy to escape.
+							</li>
+							<li data-rank="2">
+								<b>Lower humidity</b> — dry air can accept more
+								water vapour, so evaporation is rapid. In humid
+								air the rate falls sharply.
+							</li>
+							<li data-rank="3">
+								<b>More wind / moving air</b> — the vapour is
+								carried away instead of accumulating above the
+								liquid.
+							</li>
+							<li data-rank="4">
+								<b>Larger surface area</b> — more molecules are
+								exposed at the surface.
+							</li>
+						</ol>
+					</section>
+
+					<section class="block" id="v6">
+						<h3 class="secttl">6. Cooling by Evaporation</h3>
+						<p>
+							This is the single most productive idea in the unit.
+							When a liquid evaporates, the molecules that escape
+							are the
+							<mark class="concept">most energetic ones</mark>.
+							They take their energy — the latent heat of
+							vaporisation — away with them, drawing it from the
+							liquid and from whatever surface the liquid is
+							sitting on. The result is that evaporation
+							<mark class="rule">always produces cooling</mark>.
+							Evaporation of sweat is therefore an
+							<mark class="concept">endothermic process</mark> —
+							heat is absorbed from the body.
+						</p>
+						<div class="lifebox">
+							<ul>
+								<li>
+									<b>Sweating.</b> Sweat evaporates by
+									absorbing latent heat from the skin and the
+									blood beneath it, so body temperature falls.
+									This is the body's chief
+									temperature-regulating mechanism.
+								</li>
+								<li>
+									<b>A fan makes you comfortable.</b> The fan
+									does not supply cold air — it simply moves air
+									across the skin, which makes the sweat
+									evaporate faster, and faster evaporation
+									produces more cooling.
+								</li>
+								<li>
+									<b>The earthen pot (surahi).</b> The pot wall
+									has countless tiny pores. Water seeps through
+									them and evaporates from the outer surface,
+									drawing the latent heat needed from the water
+									still inside. The water in the pot therefore
+									becomes cool.
+								</li>
+								<li>
+									<b>Desert (evaporative) cooler.</b> Air is
+									drawn through wet pads; the evaporating water
+									cools the air. It works best on
+									<b>hot, dry</b> days, because high temperature
+									and low humidity both speed up evaporation. It
+									is <b>useless in humid weather</b>.
+								</li>
+								<li>
+									<b>Cotton clothes in summer.</b> Cotton
+									absorbs sweat readily and exposes it for easy
+									evaporation. Synthetics such as polyester do
+									not absorb sweat, so they give no cooling.
+								</li>
+							</ul>
+						</div>
+
+						<div class="mcq">
+							<span class="src">UPPCS (Pre) 2012</span>
+							<p class="qtext">
+								Q34. In an earthen pitcher, the water remains
+								cold due to the process of
+							</p>
+							<div class="options">
+								(a) Condensation &nbsp; (b) Evaporation<br />(c)
+								Sublimation &nbsp; (d) None of the above
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) Evaporation.</b>
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">Uttarakhand PCS (Pre) 2010</span>
+							<p class="qtext">
+								Q35. Which of the following actions is related
+								with the evaporation of sweat?
+							</p>
+							<div class="options">
+								(a) Exothermic Action &nbsp; (b) Endothermic
+								Action<br />(c) Chemical Action &nbsp; (d) Salty
+								Reaction
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) Endothermic Action</b> — heat is
+									absorbed from the body.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">UP BEO (Pre) 2019</span>
+							<p class="qtext">
+								Q36. Loss of water from the body through
+								perspiration depends on
+							</p>
+							<div class="options">
+								(a) Atmospheric temperature only &nbsp; (b)
+								Atmospheric humidity only<br />(c) Both
+								atmospheric temperature and humidity &nbsp; (d)
+								Neither temperature nor humidity
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) Both.</b> Temperature and humidity are
+									two of the four factors governing the rate of
+									evaporation.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">RAS/RTS (Pre) 1994-95</span>
+							<p class="qtext">
+								Q37. The most important function of perspiration
+								is to
+							</p>
+							<div class="options">
+								(a) Regulate body temperature &nbsp; (b) Regulate
+								body water supply<br />(c) Get rid of body poison
+								&nbsp; (d) Keep the skin pores clear of dirt
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) Regulate body temperature.</b>
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="v7">
+						<h3 class="secttl">7. Humidity</h3>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>Absolute Humidity</h5>
+								<p>
+									The
+									<mark class="concept"
+										>actual amount of water vapour</mark
+									>
+									present in a unit volume of air. Measured in
+									<mark class="fact">grams per cubic metre
+									(g m⁻³)</mark
+									>.
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>Relative Humidity</h5>
+								<p>
+									The ratio of the vapour actually present in a
+									given volume of air at a given temperature to
+									the amount required to
+									<mark class="concept">saturate</mark> that
+									same volume at that same temperature.
+									Expressed as a
+									<mark class="fact">percentage</mark>.
+								</p>
+							</div>
+						</div>
+						<div class="notebox">
+							<p>
+								<b>Why relative humidity falls when temperature
+								rises:</b> warmer air can hold more vapour, so
+								the denominator of the ratio grows. If the actual
+								vapour content (the numerator) does not change,
+								the ratio must fall.
+							</p>
+						</div>
+
+						<div class="mcq">
+							<span class="src">UP RO/ARO (Pre) 2014</span>
+							<p class="qtext">
+								Q38. Xeric condition refers to
+							</p>
+							<div class="options">
+								(a) low temperature &nbsp; (b) low humidity<br />(c)
+								high evaporation &nbsp; (d) extreme temperature
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) low humidity.</b> The prefix
+									<i>xeric</i> comes from the Greek
+									<i>xeros</i>, meaning dry. Xeric conditions
+									are those of inadequate water supply and low
+									humidity.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">IAS (Pre) 2003</span>
+							<p class="qtext">
+								Q39. Which one of the following statements is NOT
+								correct?
+							</p>
+							<div class="options">
+								(a) The velocity of sound in air increases with
+								the increase of temperature &nbsp; (b) The
+								velocity of sound in air is independent of
+								pressure<br />(c) The velocity of sound in air
+								decreases as the humidity increases &nbsp; (d)
+								The velocity of sound in air is not affected by
+								change in amplitude and frequency
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) is the incorrect statement, hence the
+									answer.</b> As humidity rises, light
+									water-vapour molecules replace heavier
+									nitrogen and oxygen molecules, so air density
+									decreases. Since \(v \propto 1/\sqrt{\rho}\),
+									the speed of sound
+									<mark class="trap">increases</mark> with
+									humidity.<br />
+									(a) is correct — higher temperature means
+									faster-moving molecules.<br />
+									(b) is correct — at constant temperature, a
+									pressure rise raises density in the same
+									proportion, so the two effects cancel.<br />
+									(d) is correct — speed is a property of the
+									medium; amplitude affects loudness and
+									frequency affects pitch, not speed.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="v8">
+						<h3 class="secttl">
+							8. Threshold Temperatures for Declaring a Heat Wave
+						</h3>
+						<div class="cardgrid">
+							<div class="card g-red">
+								<h5>Plains</h5>
+								<p>
+									Heat wave considered when the station's
+									maximum temperature reaches at least
+									<mark class="fact">40°C or more</mark>.
+								</p>
+							</div>
+							<div class="card g-blue">
+								<h5>Hilly regions</h5>
+								<p>
+									Threshold is lower — at least
+									<mark class="fact">30°C or more</mark>.
+								</p>
+							</div>
+						</div>
+					</section>
+				</div>
+
+				<!-- ================= TAB 5 ================= -->
+				<div class="panel" id="t5">
+					<div class="pagehead">
+						<h2>
+							Transmission of Heat &amp; Thermodynamics
+						</h2>
+						<p>
+							Chapters 9–10 · Conduction, convection, radiation —
+							and the four laws that govern them
+						</p>
+					</div>
+
+					<section class="block" id="c1">
+						<h3 class="secttl">
+							1. The Three Modes of Heat Transfer
+						</h3>
+						<div class="tablewrap">
+							<table class="tbl-pastel">
+								<tr>
+									<th>Mode</th>
+									<th>What moves</th>
+									<th>Medium needed?</th>
+									<th>Occurs mainly in</th>
+								</tr>
+								<tr>
+									<td><b>Conduction</b></td>
+									<td>
+										Energy passes molecule to molecule;
+										particles stay in place
+									</td>
+									<td><mark class="fact">Yes</mark></td>
+									<td>Solids</td>
+								</tr>
+								<tr>
+									<td><b>Convection</b></td>
+									<td>
+										The heated particles themselves move in
+										bulk
+									</td>
+									<td><mark class="fact">Yes</mark></td>
+									<td>Liquids and gases</td>
+								</tr>
+								<tr>
+									<td><b>Radiation</b></td>
+									<td>Electromagnetic waves</td>
+									<td><mark class="trap">No</mark></td>
+									<td>All — even vacuum</td>
+								</tr>
+							</table>
+						</div>
+					</section>
+
+					<section class="block" id="c2">
+						<h3 class="secttl">2. Conduction</h3>
+						<p>
+							In a solid, the molecules are locked into fixed
+							positions. When one end is heated, those molecules
+							vibrate more vigorously and pass the extra energy on
+							to their neighbours by collision, which pass it on
+							further, and so on down the line.
+							<mark class="concept"
+								>Energy travels along the rod, but the molecules
+								themselves do not move from their positions.</mark
+							>
+							Everyday proof: heat one end of a metal rod and the
+							other end soon becomes hot.
+						</p>
+						<h4 class="subttl">Thermal Conductivity</h4>
+						<p>
+							Thermal conductivity measures how well a solid
+							conducts heat through it.
+							<mark class="fact">Copper and silver</mark> are
+							excellent conductors;
+							<mark class="fact"
+								>wood, glass, cork, air and saw dust</mark
+							>
+							are poor conductors (insulators).
+						</p>
+						<div class="mathline">
+							\[\text{Steel} \;&gt;\; \text{Water} \;&gt;\;
+							\text{Wood} \qquad \text{(order of thermal
+							conductivity)}\]
+						</div>
+						<div class="lifebox">
+							<p>
+								<b
+									>Why air is the secret ingredient in every
+									winter garment</b
+								>
+							</p>
+							<ul>
+								<li>
+									Air is a very poor conductor of heat.
+									Trapping a layer of
+									<b>still air</b> around the body is the most
+									effective way to stop body heat escaping.
+								</li>
+								<li>
+									<b>Woollen clothes</b> keep us warm because
+									wool fibres have large spaces between them in
+									which air is trapped. (The wool protein is
+									itself a poor conductor too, but trapped air
+									is the main reason.)
+								</li>
+								<li>
+									A <b>new quilt</b> is warmer than an old one
+									because it encloses a larger amount of air.
+								</li>
+								<li>
+									<b>Two thin blankets</b> are warmer than one
+									thick blanket of the same total thickness,
+									because a layer of air is trapped between the
+									two.
+								</li>
+								<li>
+									<b>Birds swell their feathers</b> in winter to
+									trap a thicker layer of air between body and
+									feathers.
+								</li>
+								<li>
+									<b>Saw dust</b> conducts worse than the wood
+									it came from, because of air trapped between
+									the particles — which is why ice is packed in
+									saw dust.
+								</li>
+							</ul>
+						</div>
+						<div class="notebox">
+							<p>
+								<b>Why iron feels colder than wood in winter:</b>
+								both are at exactly the same room temperature — a
+								thermometer would read the same for each. In
+								winter the body is warmer than the room. Iron is
+								a good conductor, so it
+								<mark class="concept"
+									>rapidly draws heat away from your hand</mark
+								>, and you register that rapid loss as "cold".
+								Wood is a bad conductor, so it takes heat away
+								only slowly and feels far less cold.
+							</p>
+						</div>
+
+						<div class="mcq">
+							<span class="src">Objective Set</span>
+							<p class="qtext">
+								Q40. The coefficient of thermal conductivity
+								depends upon
+							</p>
+							<div class="options">
+								(a) temperature difference of two surfaces &nbsp;
+								(b) area of the plate<br />(c) thickness of the
+								plate &nbsp; (d) material of the plate
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(d) material of the plate.</b> Area,
+									thickness and temperature difference affect
+									the <i>rate of heat flow</i>, not the
+									coefficient itself.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">IAS (Pre) 2001</span>
+							<p class="qtext">
+								Q41. <b>Assertion (A):</b> A piece of copper and
+								a piece of glass are heated to the same
+								temperature. When touched thereafter, the copper
+								piece appears hotter than the glass piece.
+								<b>Reason (R):</b> The density of copper is more
+								than that of glass.
+							</p>
+							<div class="options">
+								(a) Both A and R are true and R is the correct
+								explanation of A &nbsp; (b) Both A and R are true
+								but R is not a correct explanation of A<br />(c) A
+								is true but R is false &nbsp; (d) A is false but R
+								is true
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b).</b> Copper does feel hotter, and
+									copper (about 8920–8960 kg/m³) is indeed
+									denser than common glass (about 2400–2800
+									kg/m³). But the real cause is copper's far
+									higher
+									<mark class="concept"
+										>thermal conductivity</mark
+									>, not its density.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">SSC 2018</span>
+							<p class="qtext">
+								Q42. A wooden spoon is dipped in a cup of
+								ice-cream. Its other end will
+							</p>
+							<div class="options">
+								(a) become cold by the process of conduction
+								&nbsp; (b) become cold by the process of
+								convection<br />(c) become cold by the process of
+								radiation &nbsp; (d) not become cold
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(d) not become cold.</b> Wood is a very
+									poor conductor, so the far end stays at room
+									temperature. Had the spoon been metal, the
+									answer would have been (a).
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">Objective Set</span>
+							<p class="qtext">
+								Q43. Transfer of heat energy from a heater coil
+								to the food in a cooking vessel takes place
+								through the process of
+							</p>
+							<div class="options">
+								(a) convection only &nbsp; (b) conduction and
+								convection only<br />(c) radiation and convection
+								only &nbsp; (d) convection, conduction and
+								radiation
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) conduction and convection only.</b>
+									Trace the path: from the hot coil the energy
+									first passes into the metal base of the vessel
+									and up through its walls (conduction through a
+									solid), then circulates through the food and
+									liquid (convection).
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="c3">
+						<h3 class="secttl">3. Convection</h3>
+						<p>
+							In a liquid or a gas the particles are free to move
+							about. When a portion of the fluid is heated, it
+							expands, becomes less dense, and rises; colder,
+							denser fluid sinks to take its place. The
+							<mark class="concept"
+								>heated particles themselves physically carry
+								the energy</mark
+							>
+							from one part of the medium to another.
+						</p>
+						<div class="tree">
+							<div class="root">APPLICATIONS OF CONVECTION</div>
+							<div class="branches">
+								<div class="branchnode">
+									<b>Sea Breeze</b>Formation of land and sea
+									breezes
+								</div>
+								<div class="branchnode">
+									<b>Trade Winds</b>Global circulation driven
+									by unequal heating
+								</div>
+								<div class="branchnode">
+									<b>Ventilation</b>Warm stale air rises and
+									escapes through high openings
+								</div>
+							</div>
+						</div>
+
+						<div class="mcq">
+							<span class="src">SSC Junior Engineer (Civil) 2018</span>
+							<p class="qtext">
+								Q44. In liquids and gases, transmission of heat
+								takes place by
+							</p>
+							<div class="options">
+								(a) conduction &nbsp; (b) convection<br />(c)
+								absorption &nbsp; (d) advection
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) convection.</b>
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">CDS (II) 2024</span>
+							<p class="qtext">
+								Q45. Which one of the following heat transfers is
+								an example of convection?
+							</p>
+							<div class="options">
+								(a) Heating of food in a microwave oven &nbsp;
+								(b) Boiling water in a pot on a gas stove<br />(c)
+								Feeling the warmth in the sun &nbsp; (d) Heating a
+								brass rod at one end and observing the temperature
+								rise at the other end
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) Boiling water in a pot on a gas
+									stove.</b> Water at the bottom is heated,
+									expands, rises, and cooler water sinks to
+									replace it — a circulating current of moving
+									fluid.<br />
+									(a) is radiation by microwaves; (c) is
+									radiation across the vacuum of space; (d) is
+									conduction along a solid.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">CSE 2010</span>
+							<p class="qtext">
+								Q46. What is the principle by which a cooling
+								system (radiator) in a motor car works?
+							</p>
+							<div class="options">
+								(a) Conduction only &nbsp; (b) Convection<br />(c)
+								Radiation only &nbsp; (d) Both conduction and
+								radiation
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) Convection.</b> Coolant absorbs heat
+									from the engine block, is pumped to the
+									radiator, gives up heat to the air rushing
+									past, and returns — bodily transport of the
+									heated fluid.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">CDS 2018</span>
+							<p class="qtext">
+								Q47. In which of the following is heat loss
+								primarily NOT due to convection?
+							</p>
+							<div class="options">
+								(a) Boiling water &nbsp; (b) Land and sea
+								breeze<br />(c) Circulation of air around a blast
+								furnace &nbsp; (d) Heating of the glass surface of
+								a bulb due to current in the filament
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(d).</b> The bulb's glass is heated by
+									<mark class="concept">radiation</mark> from
+									the filament across the evacuated or
+									gas-filled interior.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="c4">
+						<h3 class="secttl">4. Radiation and Its Three Laws</h3>
+						<p>
+							Radiation is the transfer of heat from one body to
+							another
+							<mark class="concept"
+								>without any actual movement of the particles
+								involved and without heating the intervening
+								medium</mark
+							>. Because it is electromagnetic in nature, radiation
+							needs <mark class="trap">no medium at all</mark> — it
+							travels perfectly well through a vacuum. This is how
+							the sun's energy reaches the earth across 150 million
+							kilometres of empty space. It travels in a
+							<mark class="fact">straight line</mark> and at the
+							<mark class="fact">speed of light</mark>.
+						</p>
+						<div class="notebox">
+							<p>
+								Thermal radiations belong to the
+								<mark class="concept">infrared region</mark> of
+								the electromagnetic spectrum, and are therefore
+								also called
+								<mark class="concept">infrared radiations</mark>.
+							</p>
+						</div>
+
+						<div class="formulagrid">
+							<div class="fblock rd">
+								<h5>(i) KIRCHHOFF'S LAW</h5>
+								<div class="short">
+									\(\dfrac{e_\lambda}{a_\lambda} = E_\lambda\)
+								</div>
+								<div class="full">
+									At a given temperature and wavelength, the
+									ratio of emissive power to absorptive power is
+									the same for all substances and equals the
+									emissive power of a perfectly black body. In
+									plain language: <b>a good absorber is a good
+									emitter</b>, and a poor absorber is a poor
+									emitter.
+								</div>
+							</div>
+							<div class="fblock fd">
+								<h5>(ii) STEFAN'S LAW</h5>
+								<div class="short">
+									\(E \propto T^{4} \quad \Rightarrow \quad E =
+									\sigma T^{4}\)
+								</div>
+								<div class="full">
+									Heat radiated by unit area of a surface in one
+									second is directly proportional to the
+									<b>fourth power</b> of the absolute
+									temperature of the body.
+								</div>
+							</div>
+							<div class="fblock erd">
+								<h5>(iii) WIEN'S DISPLACEMENT LAW</h5>
+								<div class="short">
+									\(\lambda_m \times T = b\)
+								</div>
+								<div class="full">
+									\(b = 2.9 \times 10^{-3}\ \text{m·K}\). At a
+									given absolute temperature of a black body,
+									the product of the wavelength of maximum
+									emission and \(T\) is constant.
+								</div>
+							</div>
+						</div>
+						<div class="notebox">
+							<p>
+								<b>Kirchhoff's law in action:</b> the silvered
+								surface of a thermos flask is a bad absorber, so
+								ice inside does not melt easily. By Kirchhoff's
+								law it is also a bad emitter/radiator, which is
+								why hot liquids inside do not cool quickly.
+							</p>
+							<p>
+								<b>Wien's law in action:</b> hotter objects glow
+								at shorter wavelengths — a cool star is red, a
+								hotter one white, a very hot one blue. Wien's law
+								is used to compute the temperature of the sun and
+								the stars.
+							</p>
+						</div>
+						<div class="lifebox">
+							<ul>
+								<li>
+									<b>White and light-coloured clothes</b> are
+									good reflectors and therefore poor absorbers
+									of heat. They reflect most of the radiation
+									falling on them, so we stay cooler — hence
+									white clothes in summer.
+								</li>
+								<li>
+									<b>Black and dark-coloured clothes</b> are
+									good absorbers of heat, so they are preferred
+									in winter.
+								</li>
+							</ul>
+						</div>
+
+						<div class="mcq">
+							<span class="src">UPPCS (Pre) 2007</span>
+							<p class="qtext">
+								Q48. It is more comfortable to wear white cloth in
+								summer because
+							</p>
+							<div class="options">
+								(a) They reflect all the heat falling on them
+								&nbsp; (b) They radiate heat transferred from the
+								body<br />(c) They absorb perspiration &nbsp; (d)
+								They are soothing to the eye
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) They reflect all the heat falling on
+									them.</b>
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NDA 2016</span>
+							<p class="qtext">
+								Q49. The brightness of a star depends on its
+							</p>
+							<div class="options">
+								(a) size and temperature &nbsp; (b) size and
+								distance from the earth<br />(c) size, temperature
+								and mass &nbsp; (d) size, temperature and distance
+								from the earth
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) size and temperature.</b> By Stefan's
+									law the power radiated per unit area goes as
+									\(T^4\), and the total surface area depends on
+									the star's radius. So intrinsic brightness is
+									fixed by size and surface temperature.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="c5">
+						<h3 class="secttl">5. Newton's Law of Cooling</h3>
+						<div class="formulagrid">
+							<div class="fblock pd">
+								<h5>NEWTON'S LAW OF COOLING</h5>
+								<div class="short">
+									\(-\dfrac{dQ}{dt} \propto (T_{\text{body}} -
+									T_{\text{surroundings}})\)
+								</div>
+								<div class="full">
+									The rate of cooling of a body is directly
+									proportional to the temperature difference
+									between the body and its surroundings.
+								</div>
+							</div>
+						</div>
+						<p>
+							The practical meaning is that a hot body cools
+							quickly at first and then more and more slowly as it
+							approaches the temperature of its surroundings. The
+							temperature therefore falls off
+							<mark class="trap">exponentially with time, not
+							linearly</mark>.
+						</p>
+
+						<div class="mcq">
+							<span class="src">SSC CAPFs 2016</span>
+							<p class="qtext">
+								Q50. When the temperature difference between a
+								liquid and its surroundings is doubled, the rate
+								of loss of heat will
+							</p>
+							<div class="options">
+								(a) remain the same &nbsp; (b) double<br />(c)
+								become three times &nbsp; (d) become four times
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) double.</b> The rate is
+									<i>directly</i> proportional to the
+									temperature difference — the fourth power
+									belongs to Stefan's law, not Newton's.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NDA (II) 2024</span>
+							<p class="qtext">
+								Q51. In which of the following is Newton's Law of
+								Cooling applicable? 1. Ice melting in a glass full
+								of water. 2. Water boiling in an open container.
+								3. A metal rod heated in a furnace. 4. A cup of
+								coffee allowed to cool on a table.
+							</p>
+							<div class="options">
+								(a) 1 only &nbsp; (b) 4 only<br />(c) 1 and 4 only
+								&nbsp; (d) 1, 2 and 3
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) 4 only.</b> The law describes a body
+									<i>cooling</i> towards its surroundings with
+									no change of state and no external heating.
+									Cases 1 and 2 involve a change of state; case 3
+									involves heating, not cooling.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="c6">
+						<h3 class="secttl">
+							6. Thermos Flask, Air Conditioner, Cooler &amp;
+							Refrigerator
+						</h3>
+						<h4 class="subttl">The Thermos Flask</h4>
+						<div class="tablewrap">
+							<table class="tbl-pastel">
+								<tr>
+									<th>Feature of the flask</th>
+									<th>Which mode it blocks</th>
+								</tr>
+								<tr>
+									<td>
+										Double glass walls with a vacuum between
+										them
+									</td>
+									<td>
+										<b>Conduction and convection</b> — no
+										medium to carry heat
+									</td>
+								</tr>
+								<tr>
+									<td>
+										Silvered (shiny) inner and outer surfaces
+									</td>
+									<td>
+										<b>Radiation</b> — a shiny surface is a
+										poor absorber and a poor emitter
+									</td>
+								</tr>
+								<tr>
+									<td>Cork or plastic stopper and supports</td>
+									<td>
+										<b>Conduction</b> — cork is a poor
+										conductor
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="trapbox">
+							<p>
+								One line to remember:
+								<mark class="trap"
+									>vacuum kills conduction and convection;
+									silvering kills radiation</mark
+								>.
+							</p>
+						</div>
+
+						<h4 class="subttl">
+							Air Conditioner versus Air Cooler
+						</h4>
+						<div class="tablewrap">
+							<table class="tbl-pastel">
+								<tr>
+									<th></th>
+									<th>Air Conditioner</th>
+									<th>Air Cooler (Desert Cooler)</th>
+								</tr>
+								<tr>
+									<td>Controls temperature?</td>
+									<td><mark class="fact">Yes</mark></td>
+									<td><mark class="fact">Yes</mark></td>
+								</tr>
+								<tr>
+									<td>Controls humidity?</td>
+									<td>
+										<mark class="fact">Yes</mark> — it
+										dehumidifies the air
+									</td>
+									<td>
+										<mark class="trap">No</mark> — it adds
+										moisture
+									</td>
+								</tr>
+								<tr>
+									<td>Controls air motion?</td>
+									<td><mark class="fact">Yes</mark></td>
+									<td><mark class="fact">Yes</mark></td>
+								</tr>
+								<tr>
+									<td>Works best in</td>
+									<td>Any weather, humid or dry</td>
+									<td>Hot and dry weather only</td>
+								</tr>
+								<tr>
+									<td>Principle</td>
+									<td>Refrigeration cycle</td>
+									<td>Evaporative cooling</td>
+								</tr>
+							</table>
+						</div>
+
+						<div class="mcq">
+							<span class="src">UPPCS (Pre) 2007</span>
+							<p class="qtext">
+								Q52. Which of the following statements is NOT
+								true?
+							</p>
+							<div class="options">
+								(a) Air-Conditioner and Air-Cooler both maintain
+								temperature &nbsp; (b) Air-Conditioner and
+								Air-Cooler both maintain humidity<br />(c)
+								Air-Conditioner maintains humidity but Air-Cooler
+								does not &nbsp; (d) Both control motion of air
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b).</b> An air cooler cannot control
+									humidity — in fact it
+									<mark class="trap">adds moisture</mark> to the
+									air, since it works by evaporating water.
+								</div>
+							</details>
+						</div>
+
+						<h4 class="subttl">The Refrigerator</h4>
+						<p>
+							A refrigerator does not "make cold". It
+							<mark class="concept"
+								>removes heat from inside the cabinet and dumps
+								that heat into the room</mark
+							>, by circulating a refrigerant through a closed loop.
+						</p>
+						<div class="flow">
+							<div class="flowstep" data-n="1">
+								<div class="ftext">
+									<b>Evaporator coils (inside the cabinet)</b>
+									<p>
+										The liquid refrigerant evaporates,
+										absorbing latent heat from the food and
+										air inside. This is what makes the inside
+										cold.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="2">
+								<div class="ftext">
+									<b>Compressor</b>
+									<p>
+										The vapour is compressed, which raises its
+										temperature.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="3">
+								<div class="ftext">
+									<b>Condenser coils (black grille at the back)</b>
+									<p>
+										The hot vapour condenses back to liquid,
+										releasing that heat into the room.
+									</p>
+								</div>
+							</div>
+							<div class="flowstep" data-n="4">
+								<div class="ftext">
+									<b>Expansion valve</b>
+									<p>
+										The liquid passes through and the cycle
+										repeats. A thermostat switches the
+										compressor on and off to hold the interior
+										at a constant temperature.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="notebox">
+							<p>
+								Cooling is therefore produced by the
+								<mark class="concept"
+									>evaporation and expansion of a compressed
+									gas</mark
+								>.
+							</p>
+						</div>
+						<div class="trapbox">
+							<p><b>The open-door paradox</b></p>
+							<ul>
+								<li>
+									If you leave the refrigerator door open in a
+									closed room, the room does
+									<mark class="trap">not get cooler</mark> — it
+									gets slightly warmer.
+								</li>
+								<li>
+									The fridge takes heat from the air in front of
+									it and throws that heat out of the condenser at
+									the back. Those two cancel out.
+								</li>
+								<li>
+									But the compressor motor is also consuming
+									electrical energy, and that energy ends up as
+									heat in the room. So the room
+									<b>gains</b> heat overall.
+								</li>
+								<li>
+									Safest temperature for keeping food fresh:
+									about
+									<mark class="fact">4°C</mark> (roughly
+									36–38°F) — slows bacterial growth without
+									freezing the food.
+								</li>
+							</ul>
+						</div>
+						<div class="cardgrid">
+							<div class="card g-blue">
+								<h5>Antifreeze</h5>
+								<p>
+									In cold countries, water in a car radiator
+									would freeze and burst the engine block.
+									<mark class="concept"
+										>Ethylene glycol</mark
+									>
+									is added as antifreeze — a mixture of
+									<mark class="fact"
+										>60% ethylene glycol and 40% water</mark
+									>
+									freezes only at about
+									<mark class="fact">−45°C</mark>.
+								</p>
+							</div>
+							<div class="card g-green">
+								<h5>Cold Storage of Food</h5>
+								<p>
+									Even after harvesting, fruits continue to
+									<mark class="concept">respire</mark>, which
+									ripens and eventually spoils them.
+									Respiration, like all biochemical processes,
+									slows at lower temperature — so cold storage
+									decreases the rate of respiration and extends
+									storage life.
+								</p>
+							</div>
+						</div>
+
+						<div class="mcq">
+							<span class="src">IAS (Pre) 2000</span>
+							<p class="qtext">
+								Q53. <b>Assertion (A):</b> Large cold storage
+								plants use ammonia as refrigerant while domestic
+								refrigerators use chlorofluorocarbons.
+								<b>Reason (R):</b> Ammonia can be liquefied at
+								ambient temperatures at low pressures.
+							</p>
+							<div class="options">
+								(a) Both A and R are true, and R is the correct
+								explanation of A &nbsp; (b) Both A and R are
+								true, but R is not the correct explanation of
+								A<br />(c) A is true, but R is false &nbsp; (d) A
+								is false, but R is true
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(c) A is true, but R is false.</b>
+									Industrial cold storages do use ammonia while
+									household refrigerators traditionally used
+									CFCs (ammonia being toxic and unsuitable for
+									domestic use). But ammonia can be liquefied at
+									ambient temperature only at
+									<mark class="trap">high pressure</mark>, not
+									low.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="c7">
+						<h3 class="secttl">
+							7. Thermodynamics — Zeroth and First Law
+						</h3>
+						<div class="formulagrid">
+							<div class="fblock nk">
+								<h5>ZEROTH LAW OF THERMODYNAMICS</h5>
+								<div class="short">
+									\(T_A = T_C,\; T_B = T_C \;\Rightarrow\; T_A
+									= T_B\)
+								</div>
+								<div class="full">
+									If two bodies A and B are separately in
+									thermal equilibrium with a third body C, then
+									A and B will be in thermal equilibrium with
+									each other. This is what makes a thermometer
+									meaningful.
+								</div>
+							</div>
+							<div class="fblock fd">
+								<h5>FIRST LAW OF THERMODYNAMICS</h5>
+								<div class="short">
+									\(\Delta Q = \Delta U + \Delta W\)
+								</div>
+								<div class="full">
+									\(\Delta Q\) = heat supplied to the system,
+									\(\Delta U\) = change in internal energy,
+									\(\Delta W\) = work done by the system. Heat
+									given to a system is used up in two ways:
+									raising internal energy, and enabling external
+									work.
+								</div>
+							</div>
+						</div>
+
+						<div class="mcq">
+							<span class="src">SSC CAPFs 2017</span>
+							<p class="qtext">
+								Q54. The first law of thermodynamics is related to
+								conservation of which one of the following?
+							</p>
+							<div class="options">
+								(a) Energy &nbsp; (b) Number of molecules<br />(c)
+								Number of moles &nbsp; (d) Temperature
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a) Energy.</b> \(\Delta Q = \Delta U +
+									\Delta W\) — the heat supplied is exactly
+									accounted for by the increase in internal
+									energy plus the work done. Nothing is lost and
+									nothing appears from nowhere.
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NDA 2019</span>
+							<p class="qtext">
+								Q55. If the work done on the system or by the
+								system is zero, then which one of the following
+								statements for a gas kept at a certain temperature
+								is correct?
+							</p>
+							<div class="options">
+								(a) Change in internal energy of the system is
+								equal to flow of the heat in or out of the system
+								&nbsp; (b) Change in internal energy of the system
+								is less than heat transferred<br />(c) Change in
+								internal energy of the system is more than the
+								heat flow &nbsp; (d) Cannot be determined
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(a).</b> With \(\Delta W = 0\), the first
+									law reduces to \(\Delta Q = \Delta U\).
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="c8">
+						<h3 class="secttl">
+							8. The Four Thermodynamic Processes
+						</h3>
+						<div class="tablewrap">
+							<table class="tbl-pastel">
+								<tr>
+									<th>Process</th>
+									<th>What is constant</th>
+									<th>Key relation</th>
+								</tr>
+								<tr>
+									<td><b>Isothermal</b></td>
+									<td>Temperature</td>
+									<td>
+										\(\Delta U = 0\), so \(\Delta Q = \Delta
+										W\)
+									</td>
+								</tr>
+								<tr>
+									<td><b>Adiabatic</b></td>
+									<td>
+										Heat content (\(\Delta Q = 0\))
+									</td>
+									<td>\(\Delta W = -\Delta U\)</td>
+								</tr>
+								<tr>
+									<td><b>Isobaric</b></td>
+									<td>Pressure</td>
+									<td>\(\Delta W = P\,\Delta V\)</td>
+								</tr>
+								<tr>
+									<td><b>Isochoric</b></td>
+									<td>Volume</td>
+									<td>
+										\(\Delta W = 0\), so \(\Delta Q = \Delta
+										U\)
+									</td>
+								</tr>
+							</table>
+						</div>
+
+						<div class="mcq">
+							<span class="src">NDA (II) 2014</span>
+							<p class="qtext">
+								Q56. A thermodynamic process where no heat is
+								exchanged with the surroundings is
+							</p>
+							<div class="options">
+								(a) isothermal &nbsp; (b) adiabatic<br />(c)
+								isobaric &nbsp; (d) isotropic
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) adiabatic.</b>
+								</div>
+							</details>
+						</div>
+
+						<div class="mcq">
+							<span class="src">SSC CHSL 2015</span>
+							<p class="qtext">
+								Q57. A cycle tyre bursts suddenly. This represents
+								an
+							</p>
+							<div class="options">
+								(a) isothermal process &nbsp; (b) adiabatic
+								process<br />(c) isochoric process &nbsp; (d)
+								isobaric process
+							</div>
+							<details>
+								<summary>Show Answer</summary>
+								<div class="ans">
+									<b>(b) adiabatic process.</b> The key word is
+									<i>suddenly</i> — there is no time whatsoever
+									for heat exchange, so \(\Delta Q = 0\). The air
+									expands rapidly, doing work against the
+									atmosphere at the expense of its own internal
+									energy, so it cools sharply. This is why air
+									escaping from a punctured tyre feels cold.
+								</div>
+							</details>
+						</div>
+					</section>
+
+					<section class="block" id="c9">
+						<h3 class="secttl">9. The Second Law</h3>
+						<p>
+							The first law tells you that energy is conserved, but
+							it says nothing about
+							<mark class="concept">direction</mark>. It would be
+							perfectly happy with a cup of tea spontaneously
+							growing hotter while the room grows colder — energy
+							would still be conserved. Hence a second law is
+							needed.
+						</p>
+						<div class="cardgrid">
+							<div class="card g-red">
+								<h5>(i) Kelvin–Planck Statement</h5>
+								<p>
+									It is impossible for an engine operating in a
+									cyclic process to extract heat from a
+									reservoir and convert it
+									<mark class="trap">completely</mark> into
+									work. Some heat must always be rejected to a
+									sink.
+								</p>
+								<p>
+									<mark class="concept">Air conditioning</mark>
+									is based on this statement.
+								</p>
+							</div>
+							<div class="card g-blue">
+								<h5>(ii) Clausius Statement</h5>
+								<p>
+									It is impossible for a self-acting machine,
+									unaided by any external agency, to transfer
+									heat from a colder to a hotter reservoir.
+								</p>
+								<p>
+									The
+									<mark class="concept">refrigerator</mark> is
+									based on this — it does move heat from cold to
+									hot, but only because external work is
+									supplied by the compressor.
+								</p>
+							</div>
+						</div>
+						<div class="notebox">
+							<p><b>The second law in one sentence each</b></p>
+							<ul>
+								<li>
+									<b>Kelvin–Planck:</b> you cannot build an
+									engine that is 100% efficient.
+								</li>
+								<li>
+									<b>Clausius:</b> heat will not flow uphill on
+									its own.
+								</li>
+								<li>
+									Every energy transformation dissipates some
+									energy in a less useful form. This is why, in
+									an ecosystem, only about
+									<mark class="fact">10%</mark> of energy passes
+									from one trophic level to the next — the rest
+									is lost as metabolic heat.
+								</li>
+							</ul>
+						</div>
+					</section>
+				</div>
+			</main>
+		</div>
+
+		<script>
+			function showTab(id, btn) {
+				document
+					.querySelectorAll(".panel")
+					.forEach((p) => p.classList.remove("active"));
+				document.getElementById(id).classList.add("active");
+				document
+					.querySelectorAll(".tabbtn")
+					.forEach((b) => b.classList.remove("active"));
+				btn.classList.add("active");
+				for (var i = 1; i <= 5; i++) {
+					var nav = document.getElementById("nav" + i);
+					if (nav)
+						nav.style.display =
+							id === "t" + i ? "block" : "none";
+				}
+				document.querySelector(".sidebar").classList.remove("open");
+				window.scrollTo(0, 0);
+			}
+
+			function makeMcqInteractive(mcq) {
+				const optionsDiv = mcq.querySelector(".options");
+				const details = mcq.querySelector("details");
+				const ansDiv = mcq.querySelector(".ans");
+				if (!optionsDiv || !details || !ansDiv) return;
+
+				const raw = optionsDiv.innerHTML;
+				const regex = /\(([a-d])\)\s*([\s\S]*?)(?=\([a-d]\)|$)/g;
+				const opts = [];
+				let m;
+				while ((m = regex.exec(raw)) !== null) {
+					let text = m[2]
+						.replace(/<br\s*\/?>/gi, "")
+						.replace(/&nbsp;/gi, "")
+						.trim();
+					if (text) opts.push({ letter: m[1], text: text });
+				}
+				if (opts.length < 2) return;
+
+				const ansMatch = ansDiv.innerHTML.match(/\(([a-d])\)/i);
+				const correctLetter = ansMatch
+					? ansMatch[1].toLowerCase()
+					: null;
+				if (!correctLetter) return;
+
+				optionsDiv.innerHTML = "";
+				const msg = document.createElement("div");
+				msg.className = "pickmsg";
+				msg.style.display = "none";
+				msg.style.gridColumn = "1 / -1";
+
+				opts.forEach((opt) => {
+					const btn = document.createElement("button");
+					btn.type = "button";
+					btn.className = "optbtn";
+					btn.dataset.letter = opt.letter;
+					btn.innerHTML = "(" + opt.letter + ") " + opt.text;
+					btn.addEventListener("click", function () {
+						if (optionsDiv.classList.contains("answered")) return;
+						optionsDiv.classList.add("answered");
+						const chosen = btn.dataset.letter;
+						optionsDiv.querySelectorAll(".optbtn").forEach((b) => {
+							b.disabled = true;
+							if (b.dataset.letter === correctLetter) {
+								b.classList.add("opt-correct");
+							} else if (b.dataset.letter === chosen) {
+								b.classList.add("opt-incorrect");
+							}
+						});
+						msg.style.display = "inline-block";
+						if (chosen === correctLetter) {
+							msg.textContent = "✔ Correct!";
+							msg.className = "pickmsg right";
+						} else {
+							msg.textContent =
+								"✘ Incorrect — correct answer is (" +
+								correctLetter +
+								")";
+							msg.className = "pickmsg wrong";
+						}
+						details.open = true;
+					});
+					optionsDiv.appendChild(btn);
+				});
+				optionsDiv.appendChild(msg);
+			}
+
+			document.querySelectorAll(".mcq").forEach(makeMcqInteractive);
+		</script>
+	</body>
+</html>
