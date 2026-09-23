@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Geography</title>
+<style>
+:root{--bg:#131314;--fg:#e3e3e6;--mut:#a9a9b0;--line:#2a2a2e;--ac:#8ab4f8;--pill:#1e1f22}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 "Inter","Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+header{max-width:1000px;margin:0 auto;padding:48px 24px 8px}
+h1{font-size:28px;font-weight:600;letter-spacing:-.01em;margin:0 0 4px}
+header p{margin:0;color:var(--mut)}
+nav{position:sticky;top:0;z-index:5;background:rgba(19,19,20,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav div{max-width:1000px;margin:0 auto;padding:12px 24px;display:flex;gap:8px;overflow-x:auto}
+nav button{flex:none;background:var(--pill);color:var(--mut);border:1px solid transparent;border-radius:999px;padding:7px 16px;font:inherit;font-size:14px;cursor:pointer}
+nav button:hover{color:var(--fg)}
+nav button[aria-selected=true]{color:#0b0b0c;background:var(--ac)}
+nav button:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+main{max-width:1000px;margin:0 auto;padding:8px 24px 80px}
+h2{font-size:18px;font-weight:600;margin:44px 0 8px}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+th{text-align:left;font-weight:500;color:var(--mut);font-size:13px;padding:10px 12px 10px 0;border-bottom:1px solid var(--line)}
+td{vertical-align:top;padding:16px 12px 16px 0;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{width:26%}
+td:first-child{color:var(--fg)}
+td:last-child{color:#c4c4ca;padding-right:0}
+@media(max-width:640px){td:first-child,th:first-child{width:34%}body{font-size:14px}}
+.g{margin:0 0 12px}.g:last-child{margin:0}.s{position:relative;margin:0 0 4px}.s:last-child{margin:0}.l{display:block;padding:1px 0}.l.i{padding-left:18px;color:#b4b4bb}.s.n{padding-left:18px}.s.n::before{content:"→";position:absolute;left:0;top:1px;color:#6d6d75}
+td:last-child{line-height:1.55}
+</style>
+</head>
+<body>
+<header><h1>World Geography</h1><p>Chained facts and one-liners across six continents</p></header>
+<nav><div id="tabs" role="tablist"></div></nav>
+<main id="out"></main>
+<script>
+(()=>{
+const D={
+"Asia":[
+["Overview, Boundaries & Political Geography",[
+["Ural Mountains","Natural boundary separating Europe and Asia → West is Russia (Europe) with Moscow, East is Asian Russia → Note: Kazakhstan does NOT touch the Urals (“नहीं Touch karta”)."],
+["Caucasus Mountains","Natural boundary separating Europe and Asia → Contains Mt. Elbrus (highest peak in Russia & Europe)."],
+["Siberian Population","Eastern Russia / Northern Pacific zone has very low population density (“इधर काफी कम आबादी रहती hai”)."],
+["Kamchatka Peninsula","Large peninsula in easternmost Russia → Extends towards Northern Pacific."],
+["Sakhalin & Kuril Islands","Sakhalin Island sits north of Japan → Kuril Islands are disputed between Japan & Russia → Administered by Russia as part of Sakhalin."],
+["Middle East / West Asia","Sinai Peninsula belongs to Egypt → Israel / Palestine: Haifa and Tel Aviv are major ports, Jerusalem sits east → Syria claims Golan Heights, but under Israel military control → Gaza Strip: Controlled by Hamas, Rafah Crossing (South of Gaza) is the only opening into Egypt → Key choking point."],
+["Gaza & Red Sea Mnemonics","SEJL (Sejal): Syria, Egypt, Jordan, Lebanon (bordering Israel/Palestine zone) ¶ DESSEY: Djibouti, Eritrea, Sudan, Saudi Arabia, Egypt, Yemen (around Red Sea) ¶ + IJ: Israel, Jordan border Red Sea via Gulf of Aqaba."],
+["Persian Gulf States (KBQU)","Kuwait, Bahrain, Qatar, UAE (arranged North-to-South) → Saudi Arabia’s capital is Riyadh → Socotra Island belongs to Yemen."],
+["Central & Southeast Asian Nations","Kyrgyzstan: Known as the “Land of 40 tribes” → Laos: The only landlocked country in Southeast Asia → Papua New Guinea: Capital Port Moresby, shares New Guinea island with West Papua (Indonesia)."],
+["Japan Overview","Known as “Land of Rising Sun” / Nippon / “Morning Calm” (often paired with South Korea) → Largest country without land borders."],
+["Japan Islands (North-to-South)","Hokkaido → Honshu → Shikoku → Kyushu → Mnemonic for size: Hong → HOKK → S → K (Honshu > Hokkaido > Kyushu > Shikoku) → Senkaku / Diaoyu Islands disputed between Japan and China."],
+["Japan Key Cities","Honshu: Tokyo (Capital), Nagoya, Kyoto, Hiroshima, Sendai, Osaka (“Manchester of East” / Textiles) → Kyushu: Nagasaki → Hokkaido: Sinnoh region reference."]
+]],
+["Ocean Currents, Seas, Bays & Straits",[
+["Red Sea & Gulf Openings","Gulf of Suez (West) and Gulf of Aqaba (East) flank Sinai → Suez Canal connects Red Sea to Mediterranean Sea (Port Said) → Israel & Jordan open into Red Sea via Gulf of Aqaba."],
+["ARSP Mnemonic","Flow sequence: Africa → Red Sea → Saudi Arabia → Persian Gulf."],
+["Bab-at-Mandeb","“Gate of Tears” → Separates Asia and Africa → Connects Red Sea to the Gulf of Aden."],
+["Strait of Hormuz","Connects Persian Gulf to the Gulf of Oman."],
+["Black Sea Bordering Countries","Kala Chai (Tea) → Turkey | BuRGUR: Bulgaria, Russia, Georgia, Ukraine, Romania."],
+["Caspian Sea Bordering Countries","TARIK Mnemonic: Turkmenistan, Azerbaijan (Baku), Russia, Iran, Kazakhstan → Not an actual sea (largest lake/salty body) → Pian Mnemonic: Iran → Pian → Caspian (Iraq does NOT touch)."],
+["Aral Sea Bordering Countries","KAZU Mnemonic: Kazakhstan & Uzbekistan."],
+["Dead Sea","Hyper-saline lake → Touched by JIP (Jordan, Israel, Palestine)."],
+["Russian Arctic Seas (BKL)","Sequence West to East (“BKL Supreme Court”): Barents Sea → Kara Sea → Laptev Sea → East Siberian Sea → Chukchi Sea."],
+["North Pacific Seas (North to South)","Bering Sea → Sea of Okhotsk → Sea of Japan → Yellow Sea → East China Sea → South China Sea."],
+["Tatar Strait","Separates Asian Mainland from Sakhalin Island."],
+["Soya Strait (La Perouse)","Separates Sakhalin from Hokkaido (Connects Sea of Okhotsk & Sea of Japan)."],
+["Tsugaru Strait","Separates Hokkaido and Honshu."],
+["Kanmon Strait","Separates Honshu and Kyushu/Shikoku."],
+["Tsushima / Korean Strait (KK)","Connects Sea of Japan & East China Sea → Separates Korea & Kyushu."],
+["Formosa (Taiwan) Strait","Connects East China Sea & South China Sea → Separates China & Taiwan."],
+["Luzon Strait","Separates Taiwan and Luzon (Philippines)."],
+["Johor Strait","Separates Malaysia and Singapore."],
+["Strait of Malacca","Littoral states SIM (Singapore, Indonesia [Sumatra], Malaysia)."],
+["Sunda, Lombok & Makassar Straits","Sunda Strait: Between Sumatra and Java | Lombok Strait: Between Bali and Lombok | Makassar Strait: Between Borneo and Sulawesi."]
+]],
+["Rivers, Lakes, Deserts & Plateaus",[
+["Russian Rivers","Ob River → Lena River (originates near Lake Baikal / Verkhoyansk range) → Amur River (forms natural border between China and Russia)."],
+["Central Asian & Mesopotamian Rivers","Syr Darya & Amu Darya: Flow into the Aral Sea → Tigris & Euphrates: Historic Mesopotamia region → Basra Port → Drains into Persian Gulf."],
+["Chinese Rivers","Huang-Ho (Yellow River): Known as “Sorrow of China” → Drains into Yellow Sea. ¶ Yangtze River: Longest river in Asia → Site of Three Gorges Dam → Wuhan sits on tributary Han → Drains into East China Sea. ¶ Pearl River: Major southern Chinese river."],
+["Southeast Asian Rivers","Irrawaddy: Major river of Myanmar (site of Myitsone Dam) → Salween River: Flows through Myanmar / Shan Plateau → Chao Phraya: Main river of Thailand (Bangkok on its banks) → Red River: Flows past Hanoi (Vietnam). ¶ Mekong River: Transboundary river passing 6 nations (C M LT CV: China, Myanmar, Laos, Thailand, Cambodia, Vietnam) → Capital Phnom Penh sits on Mekong → Drains into South China Sea."],
+["Asian Deserts & Basins","Gobi Desert: Cold desert in Mongolia & Northern China → Taklamakan Desert: Tarim Basin, China → Kizil Kum: Uzbekistan → Kara Kum: Turkmenistan. ¶ Middle Eastern Deserts: An Nefud (North) → Dasht-e-Kavir & Dasht-e-Lut (Iran) → Rub-al-Khali (Saudi Arabia, largest continuous sand desert)."],
+["Mountains, Knots & Peaks","Pamir Knot: Called “Roof of the World” / “3rd Pole” → Junction for Tien Shan, Altun Shan, Kunlun Shan, Hindu Kush, Sulaiman, Kirthar ranges. ¶ Altai Mountains: Border region near Mongolia/China → Taurus Mountains: Turkey → Zagros & Elburz Mountains: Iran. ¶ Arakan Yoma & Pegu Yoma: Mountain ranges in Myanmar."],
+["Lakes & Islands","Lake Baikal: Deepest freshwater lake (Russia) → Lake Balkhash: Kazakhstan → Lake Toba: Volcanic lake in Sumatra, Indonesia."]
+]],
+["Economic Geography, Minerals & Industrial Hubs",[
+["Gold & Mineral Hubs","Beijing: World’s Largest Gold Market → Anshan: Major Iron Ore center in China."],
+["Saffron & Agriculture","Iran: Maximum production of Saffron globally → China produces Mulberry Silk & Wool."],
+["Shanghai","Located on Yangtze River estuary → Largest seaport in the world."],
+["Southeast Asia Energy & Minerals","Pegu Yoma (Myanmar): Rich reserves of Oil + Natural Gas → Kinta Valley (Malaysia): World-famous for Tin mining."],
+["Rubber & Volcanism","Thailand: Leading producer of Natural Rubber (रबर) → Volcanism releases Sulphur (&lt;5%)."],
+["Active Volcanoes & Features","Mt. Pinatubo: Philippines → Mt. Sinabung: Active volcano in Sumatra, Indonesia."],
+["Maldives","Smallest Asian nation by area → Entirely of Coral origin."],
+["Sri Lanka Coastal Landmarks","Jaffna Peninsula (North) → Elephant Pass (Connects Jaffna with mainland Sri Lanka) → Trincomalee (Tricon Mali) Port → Colombo & Hambantota (“Pearl of Indian Ocean”)."]
+]]
+],
+"Australia & Oceania":[
+["Overview, Boundaries & Political Geography",[
+["Australia Overview","Recognized as the “Smallest continent” → also categorized as an “Island continent”."],
+["Western Australia","Capital Perth is situated on the Swan River (स्वान नदी)."],
+["Australian Capital Territory","Canberra is the capital → NOT a coastal city (“coastal city नहीं है”)."],
+["Queensland","Contains the coastal city of Brisbane."],
+["Other Key Coastal Cities","Darwin (Northern Territory) → Adelaide (South Australia) → Sydney (New South Wales) → Melbourne (Victoria) → Hobart (Tasmania)."],
+["New Zealand Overview","Famous for Dairy Products → Indigenous population is the Maori (माओरी) tribe."],
+["NZ North & South Islands","Divided by the Cook Strait → Capital Wellington and Auckland are on the North Island."],
+["Stewart Island","Located south of NZ’s South Island → Separated by the Foveaux Strait."],
+["Constitutional Borrowings (CTI)","Mnemonic for features India borrowed from Australia: Concurrent list → Trade (Interstate trade) → Joint sitting → International treaty."]
+]],
+["Oceania Sub-Regions (Micronesia, Melanesia, Polynesia)",[
+["Oceania Concept","Not a continent → Merely a geographical/cultural grouping of Pacific islands."],
+["Micronesia","“Mar-Mar-Ke” (मर मर के) Mnemonic: Marshall Islands, Mariana Islands, Caroline Islands, Kiribati (Also includes Palau)."],
+["Melanesia","“VaNaSFi” Mnemonic: Vanuatu, New Guinea / West Papua, Solomon Islands, Fiji (Also includes Bismarck Archipelago & New Caledonia)."],
+["Polynesia","NZ + Everything except Micro & Mela: Includes Hawaii, Samoa, Tonga, Tuvalu, Tokelau, Cook Is., Society Is., Marquesas Is., Tuamotu, Easter Island."]
+]],
+["Ocean Currents, Bays & Straits",[
+["Torres Strait","Located in the north → Separates Australia from landmasses above the Cape York Peninsula."],
+["Bass Strait","Located in the south → Separates mainland Australia from the island of Tasmania."],
+["Gulf of Carpentaria","Large gulf located in northern Australia."],
+["Great Australian Bight","Large open bay in southern Australia → Described in notes as a “Sort of Bay”."],
+["Coral Sea (कोरल सागर)","Located off the northeast coast → Contains the famous Great Barrier Reef."]
+]],
+["Mountains, Peaks & Ranges",[
+["Great Dividing Range","Major mountain range running continuously along the eastern coast of Australia."],
+["Mt. Kosciuszko","Highest mountain peak in Australia → Located in the southeast portion of the Great Dividing Range."],
+["Australian Plateaus & Ranges","Kimberley Plateau (Northwest) → Darling Range (Southwest) → MacDonnell Range (Central)."],
+["Hamersley Range","Located in Western Australia → Contains Mt. Newman and Mt. Whaleback."],
+["Southern Alps","Mountain range located on New Zealand’s South Island."],
+["Mt. Cook","Highest peak in New Zealand → Located within the Southern Alps."],
+["“Asli Alps” (European Alps)","Comparison note: Real Alps cover 8 countries in Europe → Highest point is Mt. Blanc (France + Italy)."],
+["Absentee Alps (SHE Mnemonic)","Countries without the Alps: Slovakia (Slovenia has them, Slovakia does not) → Hungary → England."]
+]],
+["Rivers, Lakes, Deserts & Grasslands",[
+["Australian Deserts Mnemonic","Arranged North to South / West to East: ST → SGS → V."],
+["ST (North)","Great Sandy Desert → Tanami (तनामी) Desert."],
+["SGS (Central)","Little Sandy Desert → Gibson Desert → Simpson Desert."],
+["V (South)","Great Victoria Desert."],
+["Murray-Darling Basin","Darling River flows into the Murray → Entire system drains into Lake Alexandria."],
+["Darling River (BCD Mnemonic)","Formed by the confluence of two rivers: Barwon + Culgoa = Darling."],
+["Victoria River","Major river located in northwestern Australia."],
+["Australian Lakes","Lake Woods (North) → Lake Disappointment (West) → Lake Eyre (South-central)."],
+["Australian Grasslands","Australian Savanna (North) → Downs (East)."],
+["Downs Mnemonic (DD)","Downs are similar to the Veld grasslands in Africa."],
+["New Zealand Rivers","Waikato River (Longest river in NZ) → Whanganui River (“1st living river entirely”)."],
+["New Zealand Lakes & Plains","Lake Taupo (North Island) → Canterbury Plains (South Island)."]
+]],
+["Economic Geography, Minerals & Industrial Hubs",[
+["Hamersley Range","Major mining region in Western Australia → Famous for Iron Ore."],
+["Kalgoorlie","Famous mining town in Western Australia → Major center for Gold (सोना)."],
+["Great Artesian Basin","Located mainly in Queensland → Noted as the “Largest freshwater underground source”."],
+["Global Uranium Leaders","Australia has the maximum reserves of Uranium → Kazakhstan has the maximum production."],
+["Uranium Isotopes","Fertile: Th-232, U-238 → Fissile: U-233, U-235, Pu-239."],
+["Natural Uranium Composition","Made up of 99.3% U-238 and 0.7% U-235."],
+["Uranium Enrichment","BIJLI (Electricity): Requires 3–5% enrichment → Destructive Usage: Requires 20% or more enrichment."],
+["Atomic Bomb Cores","Little Boy used U-235 → Fat Man used Pu-239."]
+]]
+],
+"North America":[
+["Overview, Boundaries & Political Geography",[
+["Continent Overview","North America is surrounded by 3 oceans (Arctic, Pacific, Atlantic) → Contains no landlocked countries."],
+["Canada","Has the longest coastline of any country in the world."],
+["49th Parallel","Forms the international boundary between Canada and the USA → (Compared with the 38th Parallel separating North & South Korea)."],
+["Alaska","Territory purchased by the USA from Russia in 1867."],
+["Tropic of Cancer (23½°N)","Passes through Baja California Peninsula → Mexico → Gulf of Mexico → The Bahamas."],
+["Baja California Peninsula","Located in western Mexico → Separated from mainland Mexico by the Gulf of California."],
+["Cuba","Island nation in the Caribbean Sea → Famously known as the “Sugar Bowl of the World”."],
+["Isthmus of Panama","Narrow land bridge connecting North America to South America → Divides the Caribbean Sea/Atlantic from the Pacific Ocean."]
+]],
+["Ocean Currents, Bays & Straits",[
+["Newfoundland","Collision of cold Labrador Current and warm Gulf Stream → Creates nutrient-rich water → Phytoplankton bloom → Forms Grand Banks (one of the world’s most productive fishing grounds)."],
+["Hudson Bay","Has the largest coastline of any bay in the world → Opens southward into James Bay."],
+["Gulf of Mexico","Largest gulf in the world → (Note: A widened gulf forms a bay)."],
+["Gulf of Fundy","Located off eastern Canada → Known for the world’s maximum tidal potential / highest tides."],
+["Bering Strait","Connects Bering Sea (Pacific Ocean) to Chukchi Sea (Arctic Ocean) → Separates Asia (Russia) from North America (Alaska)."],
+["Florida Strait","Connects Gulf of Mexico to the Atlantic Ocean → Separates Florida (USA) from Cuba → Key site for rocket and satellite launches."],
+["Davis Strait","Waterway located between Baffin Island and Greenland."]
+]],
+["Great Lakes, Waterfalls & Canals",[
+["Great Lakes System","5 freshwater lakes (West to East): Superior → Huron → Michigan → Erie → Ontario (smallest)."],
+["Lake Michigan","The only Great Lake located entirely (“पूर्णतः”) within the USA → Chicago is situated on its shore."],
+["Soo Canal","Navigation canal connecting Lake Superior and Lake Huron."],
+["Mesabi Range","Located near Lake Superior → Major regional reserve for Iron Ore."],
+["Niagara Falls","Famous waterfall located between Lake Erie and Lake Ontario."],
+["Key Industrial Cities","Detroit (Automobile capital) near Lake Erie → Toronto located on Lake Ontario."]
+]],
+["Rivers, Dams & Environmental Protocols",[
+["Mississippi River System","Originates at Lake Itasca → Confluence at St. Louis → Flows past New Orleans → Drains as a Bird-foot delta into Gulf of Mexico → 4th largest river system globally (Nile > Amazon > Yangtze > Mississippi-Missouri)."],
+["Mississippi Tributaries","Missouri River → Ohio River → Tennessee River (Tennessee meets Ohio → Ohio joins Mississippi) → Kentucky region known as the “Bluegrass State”."],
+["Colorado River","Flows through southwestern USA → Site of the Hoover Dam → Drains into the Gulf of California."],
+["Yukon River","Major river flowing through Alaska → Drains into the Bering Sea."],
+["Mackenzie River","Longest river system in Canada → Drains northward into the Beaufort Sea."],
+["Columbia & Fraser Rivers","Flow through the Pacific Northwest → Snake River is the main tributary of the Columbia River."],
+["St. Lawrence River","Drains the Great Lakes → Flows past Ottawa (Capital of Canada) and Montreal → Empties into the Gulf of St. Lawrence."],
+["Montreal Protocol (1987)","Signed in Montreal, Canada → Aimed at protecting lower stratospheric Ozone (O₃) by phasing out CFCs and HCFCs (where Cl breaks O₃ → O₂) → Replaced them with HFCs."],
+["Kigali Amendment (2016)","Phased down HFCs because they don’t harm ozone but have high Global Warming Potential (GWP) → Eco-replacements: Ammonia (NH₃ via Haber’s Process) and Hydrocarbons (HC like R-32, R-7)."],
+["Industrial Processes (Notes)","Contact Process → Manufacturing of H₂SO₄ | Ostwald Process → Manufacturing of HNO₃."],
+["Amazon River Fact","Side comparison note: Amazon River has NO dams constructed across it."]
+]],
+["Mountains, Peaks & Ranges",[
+["American Cordillera","Continuous sequence of mountain chains forming the western backbone of North and South America."],
+["Alaska Range","Location of Mt. McKinley / Mt. Denali → Highest peak in North America → Region inhabited by the Koyukon tribe / Eskimos."],
+["Brooks Range","Mountain range situated in northern Alaska."],
+["Mt. Logan","Highest peak in Canada → 2nd highest peak in North America (Note: Not part of the Rockies)."],
+["Mt. Robson","Highest peak specifically within the Canadian Rockies."],
+["Cascade Range","Volcanic mountain range formed by subduction of the underground Juan de Fuca Plate → Contains Mt. Rainier (active stratovolcano)."],
+["Sierra Nevada","Famous Block Mountain range in California → Home to Mt. Whitney (highest peak in mainland USA)."],
+["Rocky Mountains","Young fold mountains formed by Oceanic Plate ↑ Continental Plate subduction → Highest peak: Mt. Elbert (USA)."],
+["Appalachian Mountains","Old fold mountains in eastern USA → Highest peak: Mt. Mitchell / Mt. Black → (Comparisons: Alps Mt. Blanc in France/Italy, Black Forest in Germany, Aravalli in India)."]
+]],
+["Lakes, Deserts & Grasslands",[
+["Canadian Lakes","Major freshwater lakes from North to South: Great Bear Lake → Great Slave Lake → Lake Reindeer → Lake Winnipeg."],
+["Great Salt Lake","Endorheic salt lake located in the Utah region, USA."],
+["Prairies","Extensive temperate grasslands of North America located in the Mississippi River basin."],
+["“Big Four” Deserts (GMSC)","Sequence from North to South: Great Basin Desert → Mojave Desert → Sonoran Desert → Chihuahuan Desert."],
+["Mojave Desert","Home to Death Valley National Park → Features salt flats (“Namak chadar”) and the Devil’s Golf Course."],
+["Chihuahuan Desert","Southernmost of the four deserts → Extends into Mexico."]
+]],
+["Economic Geography, Minerals & Industrial Hubs",[
+["Port Radium","Located in northern Canada → Major historical hub for Uranium mining."],
+["Calgary","Major industrial city in Alberta, Canada → Key center for Mining and Petroleum."],
+["Pittsburgh","Located in Pennsylvania, USA → World-renowned center for Iron and Steel production."],
+["Silicon Valley","Located around San Francisco, California → Global hub for high-tech innovation and software."],
+["Texas","Largest state by area in contiguous USA → Leading hub for Petroleum production."],
+["Florida / Miami","Primary region for USA satellite and space rocket launches (Cape Canaveral)."],
+["Mexico","Ranked #1 globally as the maximum producer of Silver."]
+]]
+],
+"South America":[
+["Geography, Boundaries & Waterways",[
+["Galapagos Islands","1st UNESCO World Heritage Site → Belongs to Ecuador → Home to Isabela Island."],
+["Equator (0° Latitude)","Passes through 3 South American countries: Ecuador, Colombia, and Brazil."],
+["Tropic of Capricorn","Passes through 4 South American countries: Chile, Argentina, Paraguay, Brazil (Mnemonic: CAP Brazil)."],
+["Landlocked Countries","South America has only 2 landlocked countries: Bolivia and Paraguay."],
+["Double Landlocked Nations","Global facts: Only 2 exist (Uzbekistan & Liechtenstein) → All Central Asian “-stan” countries except Pakistan are landlocked."],
+["Isthmus of Panama","Narrow strip of land connecting North America and South America."],
+["Strait of Magellan","Natural sea passage connecting the Atlantic Ocean and Pacific Ocean."],
+["Falkland Islands","Island territory owned by the United Kingdom (UK) in the South Atlantic Ocean."],
+["Rio Grande","River forming the international boundary between USA and Mexico."],
+["La Paz","Capital of Bolivia → Highest capital city in the world."]
+]],
+["Mountains, Peaks & Volcanoes",[
+["Andes Mountain Range","Longest fold mountain range above sea level → Starts in Venezuela and ends in Argentina."],
+["Mt. Aconcagua","Extinct volcano → Highest peak in the Andes range → Located in Argentina."],
+["Ojos del Salado","Located in the Andes → Highest active volcano in the world."],
+["Guyana Highlands","Plateau/mountain region situated in northern South America."],
+["Mid-Oceanic Ridge","Longest mountain range below sea level → Located in the Atlantic Ocean."],
+["Highest Mountains (Classification)","Above Sea Level = Mt. Everest → Below Sea Level (Base-to-Peak) = Mt. Kea (in Hawaii, North Pacific)."],
+["Hawaiian Volcanoes","Mauna Loa = World’s largest active volcano → Kilauea = World’s most active volcano."]
+]],
+["Lakes, Deserts & Ocean Currents",[
+["Lake Maracaibo","Located in Venezuela (Capital: Caracas) → Joined by River Catatumbo → Drains into Caribbean Sea."],
+["Lake Titicaca","Highest navigable lake in the world → Landlocked between 2 countries (Peru and Bolivia)."],
+["Lake Poopó","Landlocked saline lake located in Bolivia."],
+["Lake Patos","Large coastal lagoon/lake located in Brazil."],
+["Atacama Desert","Driest non-polar place on Earth → Formed along Peru/Chile coast due to the cold Peruvian / Humboldt Current (South Pacific)."],
+["Patagonian Desert","Cold desert in Argentina/Chile → Formed due to the cold Falkland Current (South Atlantic) and lying on the leeward side of the Andes."]
+]],
+["Rivers, Waterfalls & Dams",[
+["Amazon River","2nd longest river globally (Nile > Amazon) → Largest tributaries: Juruá, Negro, Madeira → Drains at Macapá (mouth) into Atlantic."],
+["Selvas Rainforest","Dense tropical rainforest of Amazon basin → Largest tropical rainforest in world (2nd largest is Congo basin)."],
+["Orinoco River","Major river flowing through Venezuela → Surrounded by tropical Llanos grasslands."],
+["Angel Falls","Highest waterfall in the world → Located in Venezuela → Water flows from Churun River → Caroni River → Tributary of Orinoco River."],
+["Magdalena River","Principal river of Colombia → Drains into the Caribbean Sea."],
+["Rio Paraná","Major river system → Site of Itaipu Dam at the tri-junction (ABP) of Argentina, Brazil, and Paraguay."],
+["Onyx River","Longest river in Antarctica."]
+]],
+["Minerals, Economy & Agriculture",[
+["Carajás Mine","Located in Brazil → Largest iron ore mine in the world."],
+["Chile (Copper)","Major copper producer → Famous for Chuquicamata (Chiquakamata) copper mines."],
+["Lithium Triangle","Lithium-rich salt flats area forming a triangle (A-B-C) across Argentina, Bolivia, and Chile."],
+["Peru (Minerals)","Major regional source of Saltpetre and Phosphate deposits."],
+["Port Santos","Located in Brazil → World’s premier Coffee Port."],
+["Coffee Varieties & Facts","Major types: Arabica, Robusta, Liberica → Indian production: 1st Karnataka, 2nd Kerala → “Coffee Blossom Wind” associated with Kerala."]
+]],
+["Grasslands & Ecosystems",[
+["Llanos","Tropical grassland ecosystem found in Venezuela and Colombia."],
+["Caatinga, Campos, Cerrados","Tropical grasslands and scrubland regions located across Brazil."],
+["Gran Chaco","Hot and semi-arid lowland region spanning Bolivia, Paraguay, and Argentina."],
+["Pampas","Fertile temperate grassland in Argentina → Famous for protein-rich Alfa-Alfa (Alfalfa) grass."]
+]]
+],
+"Africa":[
+["Mountains & Peaks",[
+["Atlas Mountains","A fold mountain range in the Maghreb region that separates the Sahara Desert from the Mediterranean Sea."],
+["Mount Toubkal","The marked peak of the Atlas Mountains, located in Morocco."],
+["Mount Kilimanjaro","Africa’s highest peak and a dormant volcano located in Tanzania."],
+["Drakensberg","A major mountain range located in southeastern Africa near South Africa and Lesotho."],
+["Valley of Kings","A historical valley marked centrally in Egypt."]
+]],
+["Lakes",[
+["Lake Faguibine","A dried-up (“sukh”) lake located in Mali."],
+["Lake Nasser","Located on the Nile River between Egypt and Sudan, containing water from the Aswan Dam."],
+["Lake Tana","Located in Ethiopia and serves as the source for the Blue Nile."],
+["Lake Victoria","Africa’s largest freshwater lake, bordered by Kenya, Uganda, and Tanzania (mnemonic: KUT), and surrounded by the Masai tribe."],
+["Lake Tanganyika","The world’s longest freshwater lake and the second deepest globally by volume (after Lake Baikal)."],
+["Lake Tanganyika Borders","Democratic Republic of Congo (DRC), Burundi, Tanzania, and Zambia (mnemonic: DBT to Zambia)."],
+["Global Lake Facts","The largest global freshwater lakes by area are Superior, Victoria, Huron, and Michigan; the Caspian Sea is the largest overall but is saline."]
+]],
+["Rivers & Water Bodies",[
+["Nile River Origins","The White Nile originates from Lake Victoria, and the Blue Nile originates from Lake Tana."],
+["Nile River Confluence","The White and Blue Nile converge at Khartoum, the capital of Sudan."],
+["Nile Delta","The river flows past the Aswan Dam, Lake Nasser, and Cairo, eventually forming a fertile delta that empties into the Mediterranean near Alexandria and Port Said."],
+["Niger River","Flows through Guinea, Mali, Niger, and Nigeria before draining into the Gulf of Guinea."],
+["Congo (Zaire) River Basin","Home to the Pygmy tribe and the world’s second-largest tropical rainforest (after the Amazon)."],
+["Congo River Waterfalls","Features the Inga (“Igna”) Falls and Boyoma Falls."],
+["Zambezi River","Features Victoria Falls and Lake Kariba, ultimately draining into the Indian Ocean."],
+["Limpopo River","Crosses the Tropic of Capricorn twice, forms the border of South Africa with Botswana and Zimbabwe, and drains near Maputo, the capital of Mozambique."],
+["Orange River","Flows westward across South Africa."],
+["Okavango Swamp","The world’s largest inland delta, located in Botswana (contrasted in the notes with the Sundarbans, the largest coastal delta)."]
+]],
+["Deserts",[
+["Sahara Desert","A massive desert spanning North Africa that includes the Nubian Desert in Sudan as a sub-region."],
+["Namib Desert","A coastal desert in Namibia featuring the “Skeletal Coast”."],
+["Kalahari Desert","Spans Namibia, Botswana, and South Africa (mnemonic: NBS) and is home to the Bushmen tribe."]
+]],
+["Minerals & Agriculture",[
+["Niger","Marked for Uranium resources."],
+["Chad","Marked for Petrol (oil) resources."],
+["Côte d’Ivoire (Ivory Coast)","The world’s maximum producer of cocoa (1st), followed closely by Ghana (2nd)."],
+["Benin","Associated with cotton production (noted as “bunna” or weaving)."],
+["Rwanda Region","Marked heavily for Coffee production, with Kigali as the capital."],
+["DRC and Zambia","Recognized together as a major regional belt for Copper."],
+["Johannesburg","Located in South Africa and famous for Gold and Diamond mining."],
+["Kimberley","A key historical mining location marked just south of Johannesburg."],
+["Postmasburg","Located in the Kalahari region of South Africa, noted for Manganese (Mn) and Iron (Fe)."]
+]],
+["Basic Info, Tribes & Key Locations",[
+["Red Sea","The body of water that separates the continents of Africa and Asia."],
+["Horn of Africa","Comprises Somalia, Eritrea, Ethiopia, and Djibouti (mnemonic: SEED)."],
+["Madagascar","The largest island in the Indian Ocean."],
+["Global Island Rankings","The world’s largest islands are Greenland (1st), Papua New Guinea (2nd), and Borneo (3rd, which is Asia’s largest)."],
+["Strait of Gibraltar","Connects the Atlantic Ocean to the Alboran Sea and the broader Mediterranean."],
+["Cape Agulhas","The southernmost tip of the African continent."],
+["Cape Verde","An island nation off the west coast with Praia as its marked capital."],
+["Tribes","The Zulu tribe is located in eastern South Africa near the Drakensberg, the Masai reside near Lake Victoria, the Pygmy are in the Congo Basin, and the Bushmen are in the Kalahari Desert."],
+["Cities & Regions","Kampala is marked in Uganda, Kinshasa in the DRC, and Benguela in Angola."],
+["Sun City","Marked in South Africa, alongside a separate geographical trivia note stating the “Land of Rising Sun” is Japan."]
+]]
+],
+"Europe":[
+["Overview, Boundaries & Political Geography",[
+["Europe Continent Overview","Possesses the maximum percentage of plains → Popularly known as the “Peninsula of Peninsulas”."],
+["Scandinavian Nations (NSD)","Comprises Norway, Sweden, Denmark."],
+["Nordic Nations","Comprises Norway, Sweden, Finland (NSF) + Denmark + Iceland."],
+["Jutland Peninsula","Comprises Denmark."],
+["Iberian Peninsula","Comprises Spain and Portugal."],
+["Britain (SEW)","Comprises Scotland, England, Wales."],
+["United Kingdom (UK)","Comprises Britain + Northern Ireland."],
+["British Isles","Comprises the UK + Southern Ireland."],
+["Maginot Line","International boundary between France and Germany."],
+["Hindenberg Line","International boundary between Germany and Poland."],
+["Baltic Nations","Comprises Estonia, Latvia, and Lithuania."]
+]],
+["Ocean Currents, Seas, Bays & Straits",[
+["Kiel Canal","Navigation canal connecting the North Sea and the Baltic Sea."],
+["Baltic Sea Gulfs","Gulf of Bothnia (between Sweden and Finland) → Gulf of Finland → Gulf of Riga."],
+["Bay of Biscay","Water body located west of France."],
+["Gulf of Lions","Water body located south of France."],
+["Balearic & Alboran Seas","Mediterranean sub-seas located near Spain."],
+["Seas Around Italy","Arranged sequence around the peninsula: Ligurian Sea → Tyrrhenian Sea → Ionian Sea → Adriatic Sea."],
+["Dover Strait","Connects to the English Channel → Separates UK and France."],
+["Gibraltar Strait","Connects Atlantic Ocean to Mediterranean Sea → Located south of Spain."],
+["Bonifacio Strait","Separates Corsica (France) and Sardinia (Italy)."],
+["Messina Strait","Separates mainland Italy and Sicily."],
+["Bosphorus Strait","Connects the Black Sea to the Sea of Marmara."],
+["Dardanelles Strait","Connects the Sea of Marmara to the Aegean Sea."],
+["Black Sea Borders (BURGR Turkey)","Bordering countries: Bulgaria, Ukraine, Russia, Georgia, Romania, Turkey."]
+]],
+["Mountains, Peaks & Volcanoes",[
+["Mt. Elbrus","Located in Caucasus range, Russia → Highest peak in Europe."],
+["Mt. Blanc","Located on France/Italy border → Highest peak of the Alps."],
+["The Alps System","Young fold mountain chain across France, Italy, Germany, Austria, and Switzerland."],
+["Absentee Alps (SHE)","Mnemonic for nations NOT containing the Alps: Slovakia, Hungary, England."],
+["Pennines","Old Fold mountains running North to South in the UK."],
+["Appenines","Young Fold mountains made of limestone hills in Italy."],
+["Jura Mountains","Fold mountain range → Switzerland is situated between Jura and the Alps."],
+["Harz & Black Forest","Block mountain ranges located in Germany."],
+["Vosges Mountains","Block mountain range located in France."],
+["Ural Mountains","Natural boundary range separating Europe and Russia."],
+["Pyrenees Mountains","Natural boundary range separating Spain and France."],
+["Kjolen Mountains","Old residual mountain range in Scandinavia."],
+["Pindos Mountains","Mountain range located in Greece."],
+["Dinaric Alps","Mountain range located in the Croatia region."],
+["Mt. Etna","Active volcano located on the island of Sicily (Italy)."],
+["Stromboli","Active volcano famously known as the “lighthouse” of the Mediterranean."],
+["Vesuvius","Active volcano located on mainland Italy."]
+]],
+["Rivers, Lakes & Plains",[
+["Lake Ladoga","Located in Russia → Largest freshwater lake in Europe."],
+["Lake Onega","Major lake located in Russia."],
+["Volga River","Originates at Valdai Hills → Longest river in Europe → Drains into Caspian Sea."],
+["Ural River","Flows south through Russia → Drains into Caspian Sea."],
+["Rhine River","Flows through a Rift Valley → Drains into North Sea → City of Bonn situated on it."],
+["Weser River","River in Germany → Drains into North Sea."],
+["Elbe River","River in Central Europe → Drains into North Sea."],
+["Oder River","Acts as natural boundary between Poland and Germany → Drains into Baltic Sea."],
+["Vistula River","Flows through Warsaw (Poland) → Drains into Baltic Sea."],
+["Danube River","Flows through 10 countries → Drains into Black Sea → Vienna situated on it → Absentee SIP: Does NOT flow through Slovenia, Italy, or Poland."],
+["Seine (Sienne) River","Flows past Paris → Drains into the English Channel."],
+["Tagus & Ebro Rivers","Major river systems located in Spain and Portugal."],
+["Rhone River","Major river flowing through Switzerland and France into Mediterranean Sea."],
+["Thames River","River in UK → Capital London is situated on its banks."],
+["Tiber River","River in Italy → Capital Rome is situated on its banks."],
+["Spree River","River in Germany → Capital Berlin is situated on its banks."],
+["Moskwa River","River in Russia → Capital Moscow is situated on its banks."]
+]],
+["Economic Geography, Minerals & Industrial Hubs",[
+["Burgundy, Champagne & Alsace","Form the famous “Daru circuit” (Wine production circuit in France)."],
+["Lorraine Basin","Major industrial center for Coal production in France."],
+["Turin","Italian city famously known as the “Detroit of Italy” due to automobile manufacturing."],
+["Lombardi Plains","Agricultural and industrial plain in northern Italy → Formed by Po River."],
+["“Volga se Ganga”","Famous literary book written by Rahul Sankrityayan → Associated with Ghummakar shashtra."]
+]]
+]};
+const tabs=document.getElementById('tabs'),out=document.getElementById('out');
+const amp=t=>t.replace(/&(?!lt;)/g,'&amp;');
+function splitTop(t,f){const o=[];let d=0,c='';for(let i=0;i<t.length;i++){const ch=t[i];if('([{“'.includes(ch))d++;if(')]}”'.includes(ch))d--;if(d<=0&&f(t,i)){o.push(c.trim());c=''}else c+=ch}o.push(c.trim());return o.filter(Boolean)}
+const arrows=t=>splitTop(t,(s,i)=>s[i]==='→');
+const items=t=>splitTop(t,(s,i)=>s[i]===','||(s[i]==='+'&&s[i-1]===' '&&s[i+1]===' ')).map(x=>x.replace(/^(and|\+)\s+/i,''));
+const sp=z=>'<span class="l">'+z+'</span>';
+function step(x,i){
+  let m=x.match(/^([^:,]{1,48}):\s+(.+)$/)||x.match(/^(Comprises|Includes)\s+(.+)$/);
+  let h;
+  if(m){const it=items(m[2]);h=it.length>1?sp(m[1]+(x.includes(':')?':':''))+it.map(z=>'<span class="l i">'+z+'</span>').join(''):sp(x)}
+  else h=items(x).map(sp).join('');
+  return '<div class="s'+(i?' n':'')+'">'+h+'</div>';
+}
+const fmt=t=>amp(t).split(/¶|\s\|\s/).map(g=>'<div class="g">'+arrows(g).map(step).join('')+'</div>').join('');
+const esc=fmt;
+function show(name){
+  [...tabs.children].forEach(b=>b.setAttribute('aria-selected',b.dataset.n===name));
+  out.innerHTML=D[name].map(([h,rows])=>'<h2>'+h+'</h2><div class="tw"><table><thead><tr><th>Entity / Region</th><th>Chained Facts &amp; One-Liners</th></tr></thead><tbody>'+rows.map(r=>'<tr><td>'+amp(r[0])+'</td><td>'+esc(r[1])+'</td></tr>').join('')+'</tbody></table></div>').join('');
+  try{scrollTo(0,0)}catch(e){}
+}
+Object.keys(D).forEach(n=>{const b=document.createElement('button');b.textContent=n;b.dataset.n=n;b.role='tab';b.onclick=()=>show(n);tabs.appendChild(b)});
+show('Asia');
+})();
+</script>
+</body>
+</html>

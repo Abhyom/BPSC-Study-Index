@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waterline — Physical Geography Recall</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1716; --bg-alt:#081211;
+    --surface:#122522; --surface-2:#17302c;
+    --border:#22423b; --border-soft:#1b332e;
+    --text:#eaf3ef; --text-dim:#93aca5; --text-faint:#5f7a73;
+    --jade:#7fd9bd; --jade-dim:#3f6b5d;
+    --gold:#e7b968; --gold-dim:#6b552c;
+    --coral:#e17a63; --coral-dim:#6b3a2e;
+    --radius-lg:22px; --radius-md:14px; --radius-sm:9px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{ background:var(--bg); color:var(--text); font-family:'Inter',sans-serif; min-height:100vh; position:relative; overflow-x:hidden; }
+
+  .backdrop{ position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 60% 40% at 15% -5%, rgba(127,217,189,0.08), transparent 60%),
+      radial-gradient(ellipse 50% 35% at 100% 10%, rgba(231,185,104,0.05), transparent 60%),
+      linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 40%);
+  }
+  .backdrop svg{ position:absolute; bottom:0; left:0; width:100%; height:220px; opacity:0.5; }
+  @media (prefers-reduced-motion: no-preference){ .wave-path{ animation: drift 22s ease-in-out infinite alternate; } }
+  @keyframes drift{ from{ transform: translateX(0); } to{ transform: translateX(-40px); } }
+
+  .app{ position:relative; z-index:1; max-width:700px; margin:0 auto; padding:36px 20px 60px; display:flex; flex-direction:column; gap:22px; }
+
+  header.top{ display:flex; flex-direction:column; gap:4px; }
+  .wordmark{ font-family:'Fraunces',serif; font-size:2rem; font-weight:600; letter-spacing:-0.01em; display:flex; align-items:baseline; gap:10px; }
+  .wordmark .mark{ color:var(--jade); font-style:italic; font-weight:500; }
+  .tagline{ color:var(--text-dim); font-size:0.92rem; max-width:56ch; }
+
+  /* topic tab bar - scrollable chip row */
+  .tabbar{
+    display:flex; gap:7px; overflow-x:auto; padding:3px 2px 8px;
+    scrollbar-width:thin;
+  }
+  .tabbar::-webkit-scrollbar{ height:5px; }
+  .tabbar::-webkit-scrollbar-thumb{ background:var(--border); border-radius:4px; }
+  .tabbar button{
+    flex:0 0 auto;
+    background:var(--surface);
+    border:1px solid var(--border-soft);
+    color:var(--text-dim);
+    font-family:'Inter',sans-serif; font-weight:600; font-size:0.82rem;
+    padding:9px 15px; border-radius:999px; cursor:pointer;
+    white-space:nowrap;
+    transition:all 0.2s ease;
+  }
+  .tabbar button.active{ background:var(--surface-2); border-color:var(--jade-dim); color:var(--jade); }
+  .tabbar button.special{ border-style:dashed; }
+
+  /* mix builder panel */
+  .mixer{ display:none; flex-direction:column; gap:14px; background:var(--surface); border:1px solid var(--border-soft); border-radius:var(--radius-md); padding:16px 16px 18px; }
+  .mixer.open{ display:flex; }
+  .mixer .row-label{ font-size:0.72rem; color:var(--text-faint); margin-bottom:7px; }
+  .presets{ display:flex; flex-wrap:wrap; gap:7px; }
+  .presets button{
+    background:var(--surface-2); border:1px solid var(--border); color:var(--jade);
+    font-size:0.78rem; font-weight:600; padding:7px 12px; border-radius:999px; cursor:pointer;
+    transition:border-color .2s ease, transform .12s ease;
+  }
+  .presets button:hover{ border-color:var(--jade-dim); }
+  .presets button:active{ transform:scale(0.97); }
+
+  .chip-group{ display:flex; flex-wrap:wrap; gap:6px; max-height:140px; overflow-y:auto; padding-right:2px; }
+  .chip{
+    background:transparent; border:1px solid var(--border-soft); color:var(--text-dim);
+    font-size:0.76rem; font-weight:500; padding:6px 11px; border-radius:999px; cursor:pointer;
+    transition:all .18s ease;
+  }
+  .chip:hover{ border-color:var(--border); color:var(--text); }
+  .chip.on{ background:var(--jade-dim); border-color:var(--jade); color:#eafff8; }
+  .chip.on.region{ background:var(--gold-dim); border-color:var(--gold); color:#fff6e6; }
+  .chip.on.state{ background:var(--coral-dim); border-color:var(--coral); color:#fff0ec; }
+
+  .mixer-meta{ display:flex; justify-content:space-between; align-items:center; font-size:0.78rem; color:var(--text-faint); border-top:1px dashed var(--border-soft); padding-top:10px; }
+  .mixer-meta button{ background:none; border:none; color:var(--coral); font-size:0.76rem; cursor:pointer; text-decoration:underline; text-underline-offset:2px; }
+
+  .stats{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+  .stat{ background:var(--surface); border:1px solid var(--border-soft); border-radius:var(--radius-sm); padding:12px 10px; text-align:center; }
+  .stat .n{ font-family:'Inter',sans-serif; font-variant-numeric: tabular-nums; font-size:1.35rem; font-weight:700; line-height:1.1; }
+  .stat .l{ font-size:0.68rem; color:var(--text-faint); margin-top:3px; letter-spacing:0.02em; }
+  .stat.due .n{ color:var(--gold); }
+  .stat.weak .n{ color:var(--coral); }
+  .stat.strong .n{ color:var(--jade); }
+
+  .filters{ display:flex; gap:8px; flex-wrap:wrap; }
+  .filters button{
+    background:transparent; border:1px solid var(--border-soft); color:var(--text-dim);
+    font-family:'Inter',sans-serif; font-size:0.82rem; font-weight:500; padding:7px 14px; border-radius:999px; cursor:pointer;
+    transition:all 0.2s ease;
+  }
+  .filters button:hover{ border-color:var(--border); color:var(--text); }
+  .filters button.active{ background:var(--surface-2); border-color:var(--jade-dim); color:var(--jade); }
+
+  .progress-track{ height:3px; background:var(--border-soft); border-radius:3px; overflow:hidden; }
+  .progress-fill{ height:100%; background:linear-gradient(90deg, var(--jade-dim), var(--jade)); width:0%; transition:width 0.4s ease; }
+  .progress-label{ display:flex; justify-content:space-between; font-size:0.75rem; color:var(--text-faint); }
+
+  .stage{ perspective:1600px; min-height:340px; display:flex; align-items:stretch; }
+  .card{ flex:1; position:relative; transform-style:preserve-3d; transition:transform 0.55s cubic-bezier(.65,0,.35,1); cursor:pointer; min-height:340px; }
+  .card.flipped{ transform:rotateY(180deg); }
+  .face{
+    position:absolute; inset:0; backface-visibility:hidden;
+    border-radius:var(--radius-lg); border:1px solid var(--border);
+    background:linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
+    padding:32px 28px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+    box-shadow:0 20px 50px -25px rgba(0,0,0,0.6);
+  }
+  .face.back{ transform:rotateY(180deg); justify-content:flex-start; align-items:flex-start; text-align:left; gap:14px; overflow-y:auto; }
+  .face .status-edge{ position:absolute; left:0; top:18px; bottom:18px; width:4px; border-radius:0 4px 4px 0; background:var(--border); }
+  .face.status-weak .status-edge{ background:var(--coral); }
+  .face.status-learning .status-edge{ background:var(--gold); }
+  .face.status-strong .status-edge{ background:var(--jade); }
+  .face.status-new .status-edge{ background:var(--text-faint); }
+
+  .kicker{ font-size:0.72rem; color:var(--text-faint); margin-bottom:14px; }
+  .kicker .tag{ color:var(--jade); }
+  .card-name{ font-family:'Fraunces',serif; font-size:1.75rem; font-weight:600; line-height:1.3; }
+  .card-name.long{ font-size:1.28rem; }
+  .card-hint{ margin-top:16px; font-size:0.82rem; color:var(--text-faint); }
+
+  .back .river-line{ font-family:'Fraunces',serif; font-style:italic; font-size:1.1rem; color:var(--jade); }
+  .back .river-line b{ font-style:normal; color:var(--text); font-weight:600; }
+  .back .details{ font-size:0.95rem; line-height:1.55; color:var(--text); }
+  .back .details b{ color:var(--gold); }
+  .back .name-recap{ font-size:0.78rem; color:var(--text-faint); letter-spacing:0.02em; display:flex; gap:8px; align-items:center; }
+  .back .name-recap .type-badge{
+    font-size:0.65rem; background:var(--surface-2); border:1px solid var(--border); padding:2px 8px; border-radius:999px; color:var(--text-dim);
+  }
+
+  .ratings{ display:grid; grid-template-columns:repeat(4,1fr); gap:9px; }
+  .ratings button{
+    padding:13px 6px; border-radius:var(--radius-sm); border:1px solid var(--border);
+    background:var(--surface); color:var(--text);
+    font-family:'Inter',sans-serif; font-weight:600; font-size:0.85rem; cursor:pointer;
+    transition:transform 0.12s ease, border-color 0.2s ease, background 0.2s ease;
+    display:flex; flex-direction:column; gap:3px; align-items:center;
+  }
+  .ratings button .sub{ font-size:0.68rem; color:var(--text-faint); font-weight:400;}
+  .ratings button:active{ transform:scale(0.96); }
+  .ratings button:disabled{ opacity:0.35; cursor:default; }
+  .r-again:hover:not(:disabled){ border-color:var(--coral); color:var(--coral); }
+  .r-hard:hover:not(:disabled){ border-color:var(--gold); color:var(--gold); }
+  .r-good:hover:not(:disabled){ border-color:var(--jade); color:var(--jade); }
+  .r-easy:hover:not(:disabled){ border-color:var(--jade); color:var(--jade); background:var(--surface-2); }
+
+  .flip-hint{ text-align:center; color:var(--text-faint); font-size:0.8rem; }
+
+  .empty-state{
+    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+    border:1px dashed var(--border); border-radius:var(--radius-lg); padding:40px 20px; text-align:center; color:var(--text-dim);
+  }
+  .empty-state .big{ font-family:'Fraunces',serif; font-size:1.4rem; color:var(--text); }
+  .empty-state button{
+    margin-top:6px; background:var(--surface-2); border:1px solid var(--jade-dim); color:var(--jade);
+    padding:9px 18px; border-radius:999px; font-weight:600; font-size:0.85rem; cursor:pointer;
+  }
+
+  footer.foot{
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+    font-size:0.75rem; color:var(--text-faint); padding-top:6px; border-top:1px solid var(--border-soft); flex-wrap:wrap;
+  }
+  footer.foot button{ background:none; border:none; color:var(--text-faint); font-size:0.75rem; cursor:pointer; text-decoration:underline; text-underline-offset:2px; }
+  footer.foot button:hover{ color:var(--coral); }
+
+  @media (max-width:480px){
+    .card-name{ font-size:1.4rem; }
+    .card-name.long{ font-size:1.08rem; }
+    .stats{ grid-template-columns:repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="backdrop">
+  <svg viewBox="0 0 1440 220" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path class="wave-path" fill="#7fd9bd" fill-opacity="0.05" d="M0,120 C240,180 480,60 720,110 C960,160 1200,80 1440,130 L1440,220 L0,220 Z"/>
+    <path class="wave-path" fill="#e7b968" fill-opacity="0.04" d="M0,150 C300,90 600,190 900,140 C1100,110 1300,150 1440,120 L1440,220 L0,220 Z"/>
+  </svg>
+</div>
+
+<div class="app">
+
+  <header class="top">
+    <div class="wordmark">Waterline <span class="mark">for BPSC</span></div>
+    <div class="tagline">Recall drills for Indian physical geography — lakes, waterfalls, mountains, coasts & islands — spaced so the weak ones surface first.</div>
+  </header>
+
+  <nav class="tabbar" id="tabs"></nav>
+
+  <div class="mixer" id="mixer">
+    <div>
+      <div class="row-label">Quick mixes</div>
+      <div class="presets" id="presets"></div>
+    </div>
+    <div>
+      <div class="row-label">Include topics</div>
+      <div class="chip-group" id="topicChips"></div>
+    </div>
+    <div>
+      <div class="row-label">Region (zone)</div>
+      <div class="chip-group" id="regionChips"></div>
+    </div>
+    <div>
+      <div class="row-label">State / area</div>
+      <div class="chip-group" id="stateChips"></div>
+    </div>
+    <div class="mixer-meta">
+      <span id="mixCount">0 cards match</span>
+      <button id="mixClear">Clear selection</button>
+    </div>
+  </div>
+
+  <div class="stats" id="stats">
+    <div class="stat due"><div class="n" id="statDue">0</div><div class="l">due today</div></div>
+    <div class="stat weak"><div class="n" id="statWeak">0</div><div class="l">weak</div></div>
+    <div class="stat strong"><div class="n" id="statStrong">0</div><div class="l">strong</div></div>
+    <div class="stat"><div class="n" id="statTotal">0</div><div class="l">total</div></div>
+  </div>
+
+  <div class="filters" id="filters">
+    <button data-filter="due" class="active">Due today</button>
+    <button data-filter="weak">Weak</button>
+    <button data-filter="strong">Strong</button>
+    <button data-filter="all">All cards</button>
+  </div>
+
+  <div class="progress-label">
+    <span id="progressText">Card 0 / 0</span>
+    <span id="deckLabel">Waterfalls</span>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+  <div class="stage" id="stage"></div>
+
+  <div class="ratings" id="ratings">
+    <button class="r-again" data-r="again">Again<span class="sub">forgot it</span></button>
+    <button class="r-hard" data-r="hard">Hard<span class="sub">shaky</span></button>
+    <button class="r-good" data-r="good">Good<span class="sub">recalled</span></button>
+    <button class="r-easy" data-r="easy">Easy<span class="sub">instant</span></button>
+  </div>
+
+  <div class="flip-hint">Tap the card to flip &middot; space bar also works</div>
+
+  <footer class="foot">
+    <span id="footHint">Progress saves automatically to this browser.</span>
+    <button id="resetBtn">Reset this deck's progress</button>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+
+  /* ================= DATA ================= */
+  function slugify(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,''); }
+
+  function buildGeneric(rows, topic){
+    return rows.map(([front, tagLabel, tagValue, body, state, region]) => ({
+      id: topic + ':' + slugify(front),
+      topic, front, tagLabel: tagLabel || null, tagValue: tagValue || null, body, state, region
+    }));
+  }
+
+  const WATERFALLS_RAW = [
+    ["Jog (Gersoppa) Falls","Sharavati River","Famous major plunge waterfall; also known as Gersoppa.","Karnataka","South"],
+    ["Sivasamundram Falls","Kaveri (Cauvery) River","Historic riverine island waterfall; frequent exam topic.","Karnataka","South"],
+    ["Gokak Falls","Ghatprabha River","Horseshoe-shaped waterfall in Belagavi district.","Karnataka","South"],
+    ["Barkana Falls","Seetha River","Located in the Western Ghats (Shimoga region).","Karnataka","South"],
+    ["Kunchikal Falls","Varahi River","Highest overall cascading waterfall in India.","Karnataka","South"],
+    ["Unchalli (Iby) Falls","Aghanashini River","A Western Ghats waterfall in Uttara Kannada.","Karnataka","South"],
+    ["Dudhsagar Falls","Mandovi / Mhadei River","Located in Mollem NP; known as the \u201cSea of Milk\u201d.","Goa\u2013Karnataka Border","South"],
+    ["Dhuandhar Falls","Narmada River","Jabalpur — famous for its misty spray through marble rocks.","Madhya Pradesh","Central"],
+    ["Kapildhara Falls","Narmada River","Amarkantak — located near the origin source of the Narmada.","Madhya Pradesh","Central"],
+    ["Dudh Dhara Falls","Narmada River","Amarkantak — located near Kapildhara along the Narmada River.","Madhya Pradesh","Central"],
+    ["Yenna (Enna) Falls","Yenna / Krishna basin streams","Mahabaleshwar region — high-altitude plateau waterfall.","Maharashtra\u2013MP Border","Central"],
+    ["Chitrakoot Falls","Indravati River","Bastar — widest waterfall in India, popularly called the \u201cNiagara of India\u201d.","Chhattisgarh","Central"],
+    ["Teerthgarh Falls","Kanger River stream","Bastar — located inside Kanger Valley National Park.","Chhattisgarh","Central"],
+    ["Hundru Falls","Subarnarekha River","Ranchi — famous plateau waterfall.","Jharkhand","East"],
+    ["Rajrappa Falls","Confluence of Damodar & Bhairavi (Bhera) Rivers","Ramgarh — site of the famous Maa Chhinnamasta Temple; nearby Ramgarh hosted the 53rd INC Session (1940) chaired by Abul Kalam Azad.","Jharkhand","East"],
+    ["Lodh Falls (Budha Ghagh)","Burha River","Latehar — highest waterfall in Jharkhand (Budha Ghagh).","Jharkhand","East"],
+    ["Duduma Falls","Machkund River","Odisha\u2013Andhra Pradesh border — major hydroelectric power source.","Odisha","East"],
+    ["Barehipani (Banchipani) Falls","Budhabalanga River","Two-tiered waterfall located inside Similipal National Park.","Odisha","East"],
+    ["Khandadhar Falls","Korapani Nala stream","Famous horsetail-type waterfall in Sundargarh/Keonjhar.","Odisha","East"],
+    ["Nohkalikai Falls","Rainfed stream","Cherrapunji — tallest single-drop plunge waterfall in India.","Meghalaya","Northeast"],
+    ["Hogenakkal Falls","Kaveri (Cauvery) River","Dharmapuri — known as the \u201cNiagara of South India\u201d.","Tamil Nadu","South"],
+    ["Palani Falls","Local mountain stream","Kullu region — prominent scenic waterfall in HP.","Himachal Pradesh","North"]
+  ];
+
+  const LAKES_RAW = [
+    ["Wular Lake","Jhelum River (fed by)","Largest freshwater lake in India, near Bandipora; a Ramsar wetland.","Jammu & Kashmir","North"],
+    ["Dal Lake","Fed by mountain streams","Srinagar's iconic shikara lake, an urban lake.","Jammu & Kashmir","North"],
+    ["Chilika Lake","Fed by Mahanadi distributaries","Largest coastal lagoon in India; major Ramsar wetland, winter home to migratory birds.","Odisha","East"],
+    ["Sambhar Lake","Endorheic (no outflow)","Largest inland salt lake in India, near Jaipur.","Rajasthan","West"],
+    ["Vembanad Lake","Fed by Periyar, Pamba, Meenachil rivers","Longest lake in India; core of the Kuttanad backwater system.","Kerala","South"],
+    ["Pulicat Lake","Fed by Arani & Kalangi rivers","Second-largest brackish-water lagoon in India.","Andhra Pradesh\u2013Tamil Nadu Border","South"],
+    ["Loktak Lake","Fed by Manipur River system","Largest freshwater lake in Northeast India; famous for floating phumdis and Keibul Lamjao National Park.","Manipur","Northeast"],
+    ["Renuka Lake","Fed by local springs/streams","Largest lake in Himachal Pradesh; a Ramsar site.","Himachal Pradesh","North"],
+    ["Kolleru Lake","Between Krishna & Godavari deltas","Largest freshwater lake between the Krishna and Godavari rivers.","Andhra Pradesh","South"],
+    ["Nainital Lake","Fed by natural springs","A Kumaon Himalaya freshwater lake, crescent shaped.","Uttarakhand","North"],
+    ["Bhimtal Lake","Fed by natural springs","Largest lake in the Kumaon region.","Uttarakhand","North"],
+    ["Sasthamkotta Lake","Rain-fed, spring-fed","Largest freshwater lake in Kerala; a Ramsar site and Kollam's drinking water source.","Kerala","South"],
+    ["Hussain Sagar Lake","Fed by Musi River (connected)","Heart-shaped man-made lake in Hyderabad, built 1562.","Telangana","South"],
+    ["Ashtamudi Lake","Fed by Kallada River","Second-largest Ramsar wetland in Kerala; backwater gateway near Kollam.","Kerala","South"],
+    ["Pangong Tso","Endorheic, glacier-fed","High-altitude brackish lake extending from India into Tibet (China).","Ladakh","North"],
+    ["Tso Moriri","Endorheic, glacier-fed","High-altitude Ramsar lake in the Changthang plateau.","Ladakh","North"],
+    ["Chandra Taal","Fed by Chandra River region streams","Crescent-shaped Ramsar lake in Lahaul-Spiti.","Himachal Pradesh","North"],
+    ["Kanwar (Kabar) Lake","Oxbow lake, Burhi Gandak basin","Largest freshwater oxbow lake in Asia, in Begusarai district.","Bihar","East"],
+    ["Rudrasagar Lake","Fed by River Gomti (Tripura)","Ramsar site near the Neermahal water palace.","Tripura","Northeast"],
+    ["Barapani (Umiam) Lake","Reservoir on Umiam River","Man-made reservoir near Shillong.","Meghalaya","Northeast"]
+  ];
+
+  const PENINSULAR = [
+    ["Maharashtra's peninsular hill ranges","Mnemonic","GoA SaH Bala Mahan","Gowilgarh, Ajanta, Satmala (peak: Brahmagiri), Harishchandra, Balaghat, Mahabaleshwar.","Maharashtra","West"],
+    ["Karnataka's peninsular hill ranges","Mnemonic","MBBS Kudremukh","Mullayangiri, Brahmagiri, Billirangan, Baba Budan, Shimoga, Kudremukh.","Karnataka","South"],
+    ["Andhra Pradesh's peninsular hill ranges","Mnemonic","VeSPa","Veliconda, Seshachalam, Palkonda — plus Nallamalla and Jindhagodha hills (Araku Valley) with peak Armakonda.","Andhra Pradesh","South"],
+    ["Odisha's peninsular hill ranges",null,null,"Garjhat, Malaigiri, Mahendragiri, Deomali, Mewadi Munda.","Odisha","East"],
+    ["Tamil Nadu\u2013Kerala hill ranges","Mnemonic","Naan Elaichi / VAg","Javadi, Shevroy, Nilgiri, Palani, Annamalai, Cardamom (Elaichi), Varushnad, Agasthyamalai.","Tamil Nadu","South"],
+    ["Which hills mark the meeting point of the Eastern and Western Ghats?",null,null,"The Nilgiri Hills — spanning Tamil Nadu, Karnataka, and Kerala.","Tamil Nadu","South"],
+    ["Highest peak of the Nilgiri Hills?",null,null,"Dodabetta.","Tamil Nadu","South"],
+    ["Which states share the Aravali Range?","Mnemonic","G+R+H+D","Gujarat, Rajasthan, Haryana, Delhi.","Rajasthan","West"],
+    ["How old is the Aravali Range, and what type of mountain is it?",null,null,"Formed about 570 million years ago (Pre-Cambrian); a residual mountain (avashisht parvat) — the oldest mountain range in India.","Rajasthan","West"],
+    ["Gujarat's peninsular hill ranges",null,null,"Mandar Parvat and Girnar Parvat — Girnar is known for its radial drainage pattern.","Gujarat","West"],
+    ["Jharkhand's peninsular hill ranges",null,null,"Parasnath and the Rajmahal Hills.","Jharkhand","East"]
+  ];
+
+  const HIMALAYAN = [
+    ["Trans-Himalayan ranges","Mnemonic","Ka La Za Kir","Karakoram, Ladakh, Zanskar, and the Kailash range.","Ladakh","North"],
+    ["Which Trans-Himalayan range houses K2 and the Siachen Glacier?",null,null,"The Karakoram Range — K2 (Godwin Austen) is the world's second-highest peak.","Ladakh","North"],
+    ["Which range has Rakaposhi, said to be the steepest mountain in the world?",null,null,"The Ladakh Range.","Ladakh","North"],
+    ["Which river flows between the Ladakh and Zanskar ranges?",null,null,"The Indus River.","Ladakh","North"],
+    ["Which Himalayan division formed before the main Himalayan ranges?",null,null,"The Trans-Himalaya.","Ladakh","North"],
+    ["Uttarakhand's Greater Himalayan peaks",null,null,"Banderpunch, Gangotri, Kedarnath, Badrinath, Kamet, and Nanda Devi (the highest peak in Uttarakhand).","Uttarakhand","North"],
+    ["Nepal's major Greater Himalayan peaks","Mnemonic","DAMGEM","Dhaulagiri, Annapurna, Manaslu, Gauri Shankar, Everest (Sagarmatha), Makalu.","Nepal border","North"],
+    ["Which peak is the world's third highest, on the India\u2013Nepal border?",null,null,"Kanchenjunga.","Sikkim","North"],
+    ["What is the deep gorge the Brahmaputra cuts through the Greater Himalaya called?",null,null,"The Dihang Gorge.","Arunachal Pradesh","North"],
+    ["Between which two peaks does the Greater Himalaya extend continuously?",null,null,"From Nanga Parbat to Namcha Barwa.","Jammu & Kashmir","North"],
+    ["Ranges of the Lesser (Middle) Himalaya",null,null,"Pir Panjal, Dhauladhar, Mussoorie, and the Mahabharat Range.","Himachal Pradesh","North"],
+    ["Which two ranges enclose the Kashmir Valley?",null,null,"The Pir Panjal Range and the Zanskar Range.","Jammu & Kashmir","North"],
+    ["Which is the only national park located north of the Himalayas?",null,null,"Hemis National Park.","Ladakh","North"],
+    ["What are high-altitude Himalayan grasslands (like Sonmarg) called?",null,null,"Marg and Bugyal.","Jammu & Kashmir","North"],
+    ["What are the flat valleys between the Shivalik and Lesser Himalaya called?",null,null,"Duns — Dehradun is the largest; Patlidun is another example.","Uttarakhand","North"]
+  ];
+
+  const COASTAL = [
+    ["Western Coast of India — type and nature","Coastline","Continuous, Submergent","Covers the Konkan (Maharashtra + Goa) and Malabar coasts; forms estuaries and rich fishing grounds. Major ports: Mumbai, JNPT, Mormugao, New Mangalore, Cochin.","Multiple (West Coast)","West"],
+    ["Eastern Coast of India — type and nature","Coastline","Discontinuous, Emergent","Covers the Utkal (Northern Circars) and Coromandel coasts; forms deltas. Notable artificial ports: Kamarajar (Ennore), Chennai, V.O. Chidambaranar (Tuticorin).","Multiple (East Coast)","East"],
+    ["Why does the west coast form estuaries while the east coast forms deltas?",null,null,"The west coast is submergent, favouring estuary formation; the east coast is emergent, letting rivers deposit silt and build deltas.","Multiple","Pan-India"]
+  ];
+
+  const ISLANDS = [
+    ["Andaman Islands — North group",null,null,"Narcondam Island and Saddle Peak, the group's highest point.","Andaman & Nicobar","Islands"],
+    ["Andaman Islands — Middle group","Mnemonic","BDB","Barren Island (India's only active volcano), Mt. Diavolo, and Baratang (mud volcano).","Andaman & Nicobar","Islands"],
+    ["Andaman Islands — South group",null,null,"Koyob, Port Blair, and Mt. Harriet (renamed Mt. Manipur).","Andaman & Nicobar","Islands"],
+    ["What separates South Andaman from Little Andaman?",null,null,"The Duncan Passage.","Andaman & Nicobar","Islands"],
+    ["The Andaman Islands formed from the collision of which plates?",null,null,"The Indian Plate and the Burma Minor Plate (part of the Eurasian Plate) — an extension of the Arakan Yoma.","Andaman & Nicobar","Islands"],
+    ["What were Ross, Neil, and Havelock Islands renamed to?",null,null,"Netaji Subhas Chandra Bose Island, Shaheed Island, and Swaraj Island respectively.","Andaman & Nicobar","Islands"],
+    ["Nicobar Islands — key sub-divisions","Mnemonic","College \u2192 CLG","Car Nicobar, Little Nicobar, Greater Nicobar.","Andaman & Nicobar","Islands"],
+    ["Which peak and landmark point are on Greater Nicobar?",null,null,"Mt. Thullier, and Indira Point — India's southernmost point (near the Pygmalion Point area).","Andaman & Nicobar","Islands"],
+    ["Lakshadweep Islands — key facts",null,null,"Amindivi (northernmost), Andrott (largest), Kavaratti, Minicoy (southernmost); coral in origin, formed via Reunion hotspot volcanism, and home to India's only atoll.","Lakshadweep","Islands"],
+    ["Which channel separates Burma from the Andaman Islands?",null,null,"The Coco Channel.","Andaman & Nicobar","Islands"],
+    ["Which channel separates the Andaman and Nicobar Islands?",null,null,"The 10\u00b0 Channel.","Andaman & Nicobar","Islands"],
+    ["Which channel (the Great/Grand Channel) separates Nicobar from Sumatra?",null,null,"The 6\u00b0 Channel.","Andaman & Nicobar","Islands"],
+    ["Which channel separates Kavaratti from Minicoy?",null,null,"The 9\u00b0 Channel.","Lakshadweep","Islands"],
+    ["Which channel separates Minicoy from the Maldives?",null,null,"The 8\u00b0 Channel.","Lakshadweep","Islands"]
+  ];
+
+  const CORALS = [
+    ["Where are India's major coral formations found?",null,null,"Gulf of Kutch, Malvan (Maharashtra), Lakshadweep (atoll), Palk Strait, and the Andaman & Nicobar Islands.","Multiple","Pan-India"],
+    ["Explain the coral\u2013algae symbiotic relationship",null,null,"Coral polyps host zooxanthellae algae; the algae provide food and oxygen via photosynthesis, while the polyps provide shelter and CO2 to the algae.","Multiple","Pan-India"],
+    ["What causes coral bleaching?",null,null,"A breakdown of the coral\u2013algae symbiotic relationship, often triggered by rising sea temperatures.","Multiple","Pan-India"],
+    ["What is a coral polyp, biologically?",null,null,"A tiny, cylindrical marine animal belonging to the phylum Cnidaria.","Multiple","Pan-India"]
+  ];
+
+  const PLATEAUS = [
+    ["What triangle marks the extent of the Peninsular Plateau?",null,null,"A triangle connecting the Gir, Rajmahal, and Cardamom (Elaichi) hills; includes the Marwar, Malwa, Bundelkhand, Baghelkhand, and Dandakaranya plateaus.","Multiple","Pan-India"],
+    ["When and how was the Deccan Trap formed?",null,null,"During the Cretaceous period, through volcanic (basaltic lava) activity.","Maharashtra","West"],
+    ["What does the Malda Fault separate?",null,null,"The Rajmahal Hills from the Karbi Anglong Hills (Assam) and the Meghalaya Plateau (Garo, Khasi, Jaintia hills).","Jharkhand","East"],
+    ["Which are India's two ancient geological shields, and from which era?",null,null,"The Aravali and Chhotanagpur shields, both from the Pre-Cambrian era.","Multiple","Pan-India"],
+    ["Sequence of the Ganga riverine plains, north to south",null,null,"Bhabar (porous, streams disappear underground) \u2192 Terai (marshy) \u2192 Bhangar (older alluvium) \u2192 Khadar (newer alluvium); formed during the Quaternary period.","Bihar","East"]
+  ];
+
+  const CENTRAL = [
+    ["What is the Vindhya Range's key positional fact?",null,null,"Its eastern extension is the Kaimur Hills; the range lies north of the west-flowing Narmada River.","Madhya Pradesh","Central"],
+    ["Satpura Range system — west to east sequence",null,null,"Rajpipla \u2192 Asirgarh/Gawilgarh \u2192 Mahadev (peak: Dhoopgarh) \u2192 Maikal Range (peak: Amarkantak).","Madhya Pradesh","Central"],
+    ["Where do the Vindhya and Satpura ranges meet?",null,null,"At the Maikal Range, near Amarkantak.","Madhya Pradesh","Central"],
+    ["Describe the flow of the Narmada and Tapi rivers",null,null,"Both flow westward; the Narmada flows between the Vindhya and Satpura ranges, while the Tapi flows south of the Rajpipla section of the Satpura Range.","Madhya Pradesh","Central"]
+  ];
+
+  const NORTHEAST = [
+    ["Arunachal Pradesh's hill ranges","Mnemonic","D, M, A, M","Dafla, Miri, Abor, Mishmi hills (arranged west to east), plus the Patkai Bum range on the far eastern border.","Arunachal Pradesh","Northeast"],
+    ["Assam's hill ranges","Mnemonic","Mister Aasan (MR)","Mikir and Rengma hills, plus the Barail Range along southern Assam's border.","Assam","Northeast"],
+    ["Meghalaya's three hill divisions",null,null,"Garo Hills (Nokrek peak), Khasi Hills (Shillong, Cherrapunji, Mawsynram), and Jaintia Hills.","Meghalaya","Northeast"],
+    ["Nagaland's key peak","Mnemonic","NaSha","Saramati.","Nagaland","Northeast"],
+    ["Manipur's key feature","Mnemonic","ManiSho","Mount Iso; the Imphal Basin is classified as a lacustrine plain.","Manipur","Northeast"],
+    ["Mizoram's hill ranges","Mnemonic","BaLMi","Blue Mountain and the Lushai Hills.","Mizoram","Northeast"],
+    ["Tripura's key peak","Mnemonic","Tribute","Bettling peak.","Tripura","Northeast"]
+  ];
+
+  const TOPICS = [
+    {id:'waterfalls', label:'Waterfalls'},
+    {id:'lakes', label:'Lakes'},
+    {id:'peninsular', label:'Peninsular Mtns'},
+    {id:'himalayan', label:'Himalayan Mtns'},
+    {id:'coastal', label:'Coastal Plains'},
+    {id:'islands', label:'Islands & Channels'},
+    {id:'corals', label:'Corals'},
+    {id:'plateaus', label:'Plateaus'},
+    {id:'central', label:'Central Mtns'},
+    {id:'northeast', label:'NE Hills'}
+  ];
+  const ALL_TOPIC_IDS = TOPICS.map(t => t.id);
+  function topicLabel(id){ const t = TOPICS.find(t => t.id === id); return t ? t.label : id; }
+
+  const ALL_CARDS = [
+    ...buildGeneric(WATERFALLS_RAW.map(r => [r[0], 'River / source', r[1], r[2], r[3], r[4]]), 'waterfalls'),
+    ...buildGeneric(LAKES_RAW.map(r => [r[0], 'River / source', r[1], r[2], r[3], r[4]]), 'lakes'),
+    ...buildGeneric(PENINSULAR, 'peninsular'),
+    ...buildGeneric(HIMALAYAN, 'himalayan'),
+    ...buildGeneric(COASTAL, 'coastal'),
+    ...buildGeneric(ISLANDS, 'islands'),
+    ...buildGeneric(CORALS, 'corals'),
+    ...buildGeneric(PLATEAUS, 'plateaus'),
+    ...buildGeneric(CENTRAL, 'central'),
+    ...buildGeneric(NORTHEAST, 'northeast')
+  ];
+
+  const ALL_STATES = [...new Set(ALL_CARDS.map(c => c.state).filter(Boolean))].sort();
+  const ALL_REGIONS = ['North','West','Central','East','South','Northeast','Islands','Pan-India'];
+
+  const PRESETS = [
+    { label:'Karnataka waterfalls', topics:['waterfalls'], states:['Karnataka'], regions:[] },
+    { label:'Northeast lakes', topics:['lakes'], states:[], regions:['Northeast'] },
+    { label:'Himalayan lakes', topics:['lakes'], states:[], regions:['North'] },
+    { label:'Central India falls', topics:['waterfalls'], states:[], regions:['Central'] },
+    { label:'Peninsular mountains only', topics:['peninsular'], states:[], regions:[] },
+    { label:'Himalayan geography (mtns + lakes)', topics:['himalayan','lakes'], states:[], regions:[] },
+    { label:'Islands & coasts', topics:['islands','coastal'], states:[], regions:[] },
+    { label:'Bihar & neighbours', topics: ALL_TOPIC_IDS, states:['Bihar','Jharkhand'], regions:[] },
+    { label:'South India — everything', topics: ALL_TOPIC_IDS, states:[], regions:['South'] },
+    { label:'Grand mix — everything', topics: ALL_TOPIC_IDS, states:[], regions:[] }
+  ];
+
+  /* ================= SRS storage (global, keyed by card id) ================= */
+  const STORE_KEY = 'waterline_srs_v2';
+  let store = {};
+  (function migrate(){
+    try{
+      const raw = localStorage.getItem(STORE_KEY);
+      if(raw){ store = JSON.parse(raw); return; }
+      const old = localStorage.getItem('waterline_srs_v1');
+      if(old){
+        const oldStore = JSON.parse(old);
+        ['waterfalls','lakes'].forEach(deckName=>{
+          const type = deckName === 'lakes' ? 'lake' : 'waterfall';
+          if(oldStore[deckName]){
+            Object.keys(oldStore[deckName]).forEach(cardId=>{
+              store[type + ':' + cardId] = oldStore[deckName][cardId];
+            });
+          }
+        });
+        saveStore();
+      }
+    }catch(e){ store = {}; }
+  })();
+  function saveStore(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(store)); }catch(e){} }
+  function todayNum(){ return Math.floor(Date.now()/86400000); }
+  function getRecord(cardId){
+    if(!store[cardId]) store[cardId] = { ease:2.5, interval:0, reps:0, lapses:0, due:todayNum(), status:'new' };
+    return store[cardId];
+  }
+  function rate(cardId, grade){
+    const rec = getRecord(cardId);
+    const today = todayNum();
+    if(grade === 'again'){
+      rec.lapses += 1; rec.ease = Math.max(1.3, rec.ease - 0.2);
+      rec.interval = 0; rec.reps = 0; rec.status = 'weak';
+    } else if(grade === 'hard'){
+      rec.ease = Math.max(1.3, rec.ease - 0.15);
+      rec.interval = rec.interval < 1 ? 1 : Math.max(1, Math.round(rec.interval * 1.2));
+      rec.reps += 1; rec.status = 'learning';
+    } else if(grade === 'good'){
+      if(rec.reps === 0) rec.interval = 1;
+      else if(rec.reps === 1) rec.interval = 3;
+      else rec.interval = Math.max(1, Math.round(rec.interval * rec.ease));
+      rec.reps += 1; rec.status = rec.interval >= 14 ? 'strong' : 'learning';
+    } else if(grade === 'easy'){
+      rec.ease += 0.15;
+      rec.interval = Math.max(2, Math.round((rec.interval || 1) * rec.ease * 1.3));
+      rec.reps += 1; rec.status = 'strong';
+    }
+    rec.due = today + rec.interval;
+    saveStore();
+  }
+
+  /* ================= app state ================= */
+  let currentDeck = 'waterfalls'; // topic id | 'shuffle' | 'mix'
+  let currentFilter = 'due';
+  let mixTopics = new Set(ALL_TOPIC_IDS);
+  let mixStates = new Set();
+  let mixRegions = new Set();
+  let queue = [];
+  let qIndex = 0;
+  let flipped = false;
+
+  const el = {
+    tabs: document.getElementById('tabs'),
+    mixer: document.getElementById('mixer'),
+    presets: document.getElementById('presets'),
+    topicChips: document.getElementById('topicChips'),
+    regionChips: document.getElementById('regionChips'),
+    stateChips: document.getElementById('stateChips'),
+    mixCount: document.getElementById('mixCount'),
+    mixClear: document.getElementById('mixClear'),
+    filters: document.getElementById('filters'),
+    stage: document.getElementById('stage'),
+    ratings: document.getElementById('ratings'),
+    statDue: document.getElementById('statDue'),
+    statWeak: document.getElementById('statWeak'),
+    statStrong: document.getElementById('statStrong'),
+    statTotal: document.getElementById('statTotal'),
+    progressFill: document.getElementById('progressFill'),
+    progressText: document.getElementById('progressText'),
+    deckLabel: document.getElementById('deckLabel'),
+    resetBtn: document.getElementById('resetBtn')
+  };
+
+  const TAB_LIST = [...TOPICS, {id:'shuffle', label:'Shuffle All \u{1F500}', special:true}, {id:'mix', label:'Mix & Match', special:true}];
+  el.tabs.innerHTML = TAB_LIST.map(t =>
+    `<button data-deck="${t.id}" class="${t.special ? 'special':''}">${t.label}</button>`
+  ).join('');
+
+  function shuffleArr(arr){
+    const a = arr.slice();
+    for(let i = a.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i+1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+
+  function basePool(){
+    if(currentDeck === 'shuffle') return ALL_CARDS.slice();
+    if(currentDeck === 'mix'){
+      return ALL_CARDS.filter(c => {
+        if(!mixTopics.has(c.topic)) return false;
+        if(mixStates.size && !mixStates.has(c.state)) return false;
+        if(mixRegions.size && !mixRegions.has(c.region)) return false;
+        return true;
+      });
+    }
+    return ALL_CARDS.filter(c => c.topic === currentDeck);
+  }
+
+  function classify(cards){
+    const today = todayNum();
+    return cards.map(c => ({ card:c, rec:getRecord(c.id) })).map(x => ({...x, isDue: x.rec.due <= today}));
+  }
+
+  function computeStats(cards){
+    const rows = classify(cards);
+    return {
+      due: rows.filter(r=>r.isDue).length,
+      weak: rows.filter(r=>r.rec.status==='weak').length,
+      strong: rows.filter(r=>r.rec.status==='strong').length,
+      total: cards.length
+    };
+  }
+
+  function buildQueue(){
+    const pool = basePool();
+    const rows = classify(pool);
+    let filtered;
+    if(currentFilter === 'due') filtered = rows.filter(r=>r.isDue);
+    else if(currentFilter === 'weak') filtered = rows.filter(r=>r.rec.status==='weak');
+    else if(currentFilter === 'strong') filtered = rows.filter(r=>r.rec.status==='strong');
+    else filtered = rows;
+
+    if(currentDeck === 'shuffle'){
+      queue = shuffleArr(filtered.map(r => r.card));
+    } else {
+      filtered.sort((a,b) => a.rec.due - b.rec.due);
+      queue = filtered.map(r => r.card);
+    }
+    qIndex = 0;
+    flipped = false;
+  }
+
+  function renderStats(){
+    const pool = basePool();
+    const s = computeStats(pool);
+    el.statDue.textContent = s.due;
+    el.statWeak.textContent = s.weak;
+    el.statStrong.textContent = s.strong;
+    el.statTotal.textContent = s.total;
+    let label;
+    if(currentDeck === 'mix') label = 'Custom mix';
+    else if(currentDeck === 'shuffle') label = 'Shuffle All';
+    else label = topicLabel(currentDeck);
+    el.deckLabel.textContent = label;
+    if(currentDeck === 'mix') el.mixCount.textContent = `${s.total} card${s.total===1?'':'s'} match`;
+  }
+
+  function renderProgress(){
+    const total = queue.length;
+    const pos = total ? Math.min(qIndex+1, total) : 0;
+    el.progressText.textContent = `Card ${pos} / ${total}`;
+    el.progressFill.style.width = total ? `${(qIndex/total)*100}%` : '0%';
+  }
+
+  function renderCard(){
+    if(!queue.length){
+      const noPool = currentDeck === 'mix' && basePool().length === 0;
+      el.stage.innerHTML = `
+        <div class="empty-state">
+          <div class="big">${noPool ? 'Pick something to mix' : (currentFilter === 'due' ? 'All caught up' : 'Nothing here yet')}</div>
+          <div>${noPool
+            ? 'Choose a region, state, or a quick preset above to build a custom deck.'
+            : (currentFilter === 'due'
+              ? 'No cards are due right now. Come back later, or review ahead.'
+              : 'No cards match this filter yet.')}</div>
+          ${noPool ? '' : '<button id="reviewAllBtn">Review all cards instead</button>'}
+        </div>`;
+      if(!noPool){
+        document.getElementById('reviewAllBtn').addEventListener('click', () => setFilter('all'));
+      }
+      setRatingsEnabled(false);
+      renderProgress();
+      return;
+    }
+
+    const card = queue[qIndex];
+    const rec = getRecord(card.id);
+    const isNamedTopic = card.topic === 'waterfalls' || card.topic === 'lakes';
+    const hintSuffix = isNamedTopic ? 'recall the river & location' : 'tap to reveal the answer';
+    const nameClass = card.front.length > 46 ? 'card-name long' : 'card-name';
+    el.stage.innerHTML = `
+      <div class="card ${flipped ? 'flipped':''}" id="flipCard">
+        <div class="face front status-${rec.status}">
+          <div class="status-edge"></div>
+          <div class="kicker"><span class="tag">${topicLabel(card.topic)}</span> &middot; ${hintSuffix}</div>
+          <div class="${nameClass}">${card.front}</div>
+          <div class="card-hint">Tap to reveal</div>
+        </div>
+        <div class="face back status-${rec.status}">
+          <div class="status-edge"></div>
+          <div class="name-recap"><span class="type-badge">${topicLabel(card.topic)}${card.state ? ' &middot; ' + card.state : ''}</span></div>
+          ${card.tagValue ? `<div class="river-line"><b>${card.tagLabel}:</b> ${card.tagValue}</div>` : ''}
+          <div class="details">${card.body}</div>
+        </div>
+      </div>`;
+    document.getElementById('flipCard').addEventListener('click', toggleFlip);
+    setRatingsEnabled(true);
+    renderProgress();
+  }
+
+  function toggleFlip(){
+    flipped = !flipped;
+    const cardEl = document.getElementById('flipCard');
+    if(cardEl) cardEl.classList.toggle('flipped', flipped);
+  }
+
+  function setRatingsEnabled(on){
+    [...el.ratings.querySelectorAll('button')].forEach(b => b.disabled = !on);
+  }
+
+  function nextCard(grade){
+    if(!queue.length) return;
+    const card = queue[qIndex];
+    rate(card.id, grade);
+    flipped = false;
+    if(qIndex < queue.length - 1){
+      qIndex += 1;
+    } else {
+      buildQueue();
+    }
+    renderStats();
+    renderCard();
+  }
+
+  function setFilter(f){
+    currentFilter = f;
+    [...el.filters.querySelectorAll('button')].forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+    buildQueue();
+    renderStats();
+    renderCard();
+  }
+
+  function renderMixChips(){
+    el.topicChips.innerHTML = TOPICS.map(t =>
+      `<button class="chip ${mixTopics.has(t.id)?'on':''}" data-topic="${t.id}">${t.label}</button>`
+    ).join('');
+    el.regionChips.innerHTML = ALL_REGIONS.map(r =>
+      `<button class="chip region ${mixRegions.has(r)?'on':''}" data-region="${r}">${r}</button>`
+    ).join('');
+    el.stateChips.innerHTML = ALL_STATES.map(s =>
+      `<button class="chip state ${mixStates.has(s)?'on':''}" data-state="${s}">${s}</button>`
+    ).join('');
+  }
+
+  function applyMixAndRefresh(){
+    renderMixChips();
+    setFilter(currentFilter);
+  }
+
+  el.topicChips.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-topic]');
+    if(!btn) return;
+    const t = btn.dataset.topic;
+    if(mixTopics.has(t)){ if(mixTopics.size > 1) mixTopics.delete(t); }
+    else mixTopics.add(t);
+    applyMixAndRefresh();
+  });
+  el.regionChips.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-region]');
+    if(!btn) return;
+    const r = btn.dataset.region;
+    mixRegions.has(r) ? mixRegions.delete(r) : mixRegions.add(r);
+    applyMixAndRefresh();
+  });
+  el.stateChips.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-state]');
+    if(!btn) return;
+    const s = btn.dataset.state;
+    mixStates.has(s) ? mixStates.delete(s) : mixStates.add(s);
+    applyMixAndRefresh();
+  });
+  el.mixClear.addEventListener('click', () => {
+    mixTopics = new Set(ALL_TOPIC_IDS);
+    mixStates = new Set();
+    mixRegions = new Set();
+    applyMixAndRefresh();
+  });
+
+  el.presets.innerHTML = PRESETS.map((p,i) => `<button data-preset="${i}">${p.label}</button>`).join('');
+  el.presets.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-preset]');
+    if(!btn) return;
+    const p = PRESETS[+btn.dataset.preset];
+    mixTopics = new Set(p.topics);
+    mixStates = new Set(p.states);
+    mixRegions = new Set(p.regions);
+    applyMixAndRefresh();
+  });
+
+  function setDeck(name){
+    currentDeck = name;
+    [...el.tabs.querySelectorAll('button')].forEach(b => b.classList.toggle('active', b.dataset.deck === name));
+    el.mixer.classList.toggle('open', name === 'mix');
+    if(name === 'mix') renderMixChips();
+    setFilter(currentFilter);
+  }
+
+  el.tabs.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-deck]');
+    if(btn) setDeck(btn.dataset.deck);
+  });
+  el.filters.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-filter]');
+    if(btn) setFilter(btn.dataset.filter);
+  });
+  el.ratings.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-r]');
+    if(btn && !btn.disabled) nextCard(btn.dataset.r);
+  });
+  el.resetBtn.addEventListener('click', () => {
+    const pool = basePool();
+    let label;
+    if(currentDeck === 'mix') label = 'this custom mix';
+    else if(currentDeck === 'shuffle') label = 'ALL cards (every topic)';
+    else label = topicLabel(currentDeck);
+    if(confirm(`Reset spaced-repetition progress for ${label}? This can't be undone.`)){
+      pool.forEach(c => { delete store[c.id]; });
+      saveStore();
+      setFilter(currentFilter);
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if(e.code === 'Space'){ e.preventDefault(); toggleFlip(); }
+    if(flipped){
+      if(e.key === '1') nextCard('again');
+      if(e.key === '2') nextCard('hard');
+      if(e.key === '3') nextCard('good');
+      if(e.key === '4') nextCard('easy');
+    }
+  });
+
+  /* ================= init ================= */
+  setDeck('waterfalls');
+
+})();
+</script>
+</body>
+</html>
