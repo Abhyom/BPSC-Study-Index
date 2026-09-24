@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timed Practice Test</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --parchment:#F3EEE1;
+    --parchment-deep:#EAE2CE;
+    --paper:#FBF8F1;
+    --navy:#1F2D4A;
+    --navy-deep:#141E33;
+    --gold:#B08A2E;
+    --gold-soft:#E4C77A;
+    --maroon:#7A2A2A;
+    --green:#3C6E3C;
+    --ink:#26241F;
+    --ink-soft:#5B5749;
+    --line:#D8CDAE;
+    --radius:10px;
+    --shadow: 0 2px 10px rgba(31,45,74,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.5;
+    min-height:100vh;
+  }
+  h1,h2,h3,.serif{font-family:'Playfair Display', serif;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  button{font-family:inherit;cursor:pointer;}
+
+  /* ---------- Layout shells ---------- */
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  .center-wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:48px 24px 80px;
+  }
+
+  /* ---------- Start screen ---------- */
+  .start-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:40px 36px;
+    box-shadow:var(--shadow);
+  }
+  .start-card h1{
+    font-size:2rem;
+    color:var(--navy);
+    margin:0 0 6px;
+  }
+  .start-card .subtitle{
+    color:var(--ink-soft);
+    margin:0 0 28px;
+    font-size:1rem;
+  }
+  .meta-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-bottom:28px;
+  }
+  .meta-box{
+    background:var(--parchment-deep);
+    border-radius:8px;
+    padding:14px 12px;
+    text-align:center;
+  }
+  .meta-box .num{
+    font-family:'Playfair Display', serif;
+    font-size:1.5rem;
+    color:var(--navy);
+    font-weight:700;
+    display:block;
+  }
+  .meta-box .lbl{
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+  }
+  .rules{
+    background:var(--parchment-deep);
+    border-left:3px solid var(--gold);
+    border-radius:6px;
+    padding:16px 18px;
+    margin-bottom:28px;
+    font-size:0.92rem;
+    color:var(--ink);
+  }
+  .rules li{margin-bottom:6px;}
+  .rules li:last-child{margin-bottom:0;}
+  .btn-primary{
+    display:inline-block;
+    width:100%;
+    background:var(--navy);
+    color:var(--parchment);
+    border:none;
+    border-radius:8px;
+    padding:15px 20px;
+    font-size:1.02rem;
+    font-weight:600;
+    text-align:center;
+    transition:background .15s ease;
+  }
+  .btn-primary:hover{background:var(--navy-deep);}
+  .btn-secondary{
+    display:inline-block;
+    background:transparent;
+    color:var(--navy);
+    border:1.5px solid var(--navy);
+    border-radius:8px;
+    padding:12px 18px;
+    font-size:0.92rem;
+    font-weight:600;
+    text-align:center;
+  }
+  .btn-secondary:hover{background:var(--navy);color:var(--parchment);}
+  .btn-ghost{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    border-radius:6px;
+    padding:8px 14px;
+    font-size:0.85rem;
+  }
+  .btn-ghost:hover{border-color:var(--navy);color:var(--navy);}
+
+  .history-toggle{
+    text-align:center;
+    margin-top:18px;
+  }
+
+  /* ---------- Test screen ---------- */
+  #testScreen{background:var(--parchment);}
+  .test-topbar{
+    position:sticky;top:0;z-index:50;
+    background:var(--navy);
+    color:var(--parchment);
+    padding:10px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  }
+  .topbar-left{display:flex;align-items:center;gap:14px;}
+  .topbar-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;}
+  .progress-pill{
+    font-size:0.78rem;
+    color:var(--gold-soft);
+    background:rgba(255,255,255,0.08);
+    padding:4px 10px;
+    border-radius:20px;
+  }
+  .timer-box{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    font-size:1.15rem;
+    background:rgba(255,255,255,0.1);
+    padding:6px 14px;
+    border-radius:8px;
+    letter-spacing:0.02em;
+  }
+  .timer-box.low{background:var(--maroon);color:#fff;animation:pulse 1s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.65;}}
+  .topbar-actions{display:flex;align-items:center;gap:10px;}
+  .icon-btn{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);
+    color:var(--parchment);
+    border-radius:6px;
+    padding:8px 12px;
+    font-size:0.82rem;
+    font-weight:500;
+  }
+  .icon-btn:hover{background:rgba(255,255,255,0.18);}
+  .submit-btn{
+    background:var(--gold);
+    color:var(--navy-deep);
+    border:none;
+    border-radius:6px;
+    padding:8px 16px;
+    font-weight:700;
+    font-size:0.85rem;
+  }
+  .submit-btn:hover{background:var(--gold-soft);}
+
+  .test-body{
+    display:flex;
+    max-width:1400px;
+    margin:0 auto;
+    align-items:flex-start;
+  }
+  .questions-col{
+    flex:1;
+    min-width:0;
+    padding:28px 24px 120px;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .qcard{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 22px 18px;
+    margin-bottom:18px;
+    scroll-margin-top:80px;
+  }
+  .qcard.answered{border-left:4px solid var(--green);}
+  .qcard.flagged{border-left:4px solid var(--gold);}
+  .qhead{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .qnum{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    color:var(--navy);
+    background:var(--parchment-deep);
+    border-radius:6px;
+    padding:2px 9px;
+    font-size:0.82rem;
+    flex-shrink:0;
+  }
+  .flag-btn{
+    background:none;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:3px 10px;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+  }
+  .flag-btn.on{background:var(--gold-soft);border-color:var(--gold);color:var(--navy-deep);}
+  .qstem{
+    white-space:pre-line;
+    font-size:1rem;
+    margin-bottom:14px;
+    color:var(--ink);
+  }
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .opt{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--parchment);
+    transition:border-color .12s ease, background .12s ease;
+  }
+  .opt:hover{border-color:var(--gold);}
+  .opt input{margin-top:3px;accent-color:var(--navy);flex-shrink:0;}
+  .opt.selected{
+    border-color:var(--navy);
+    background:#EDE7D6;
+  }
+  .opt-key{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    color:var(--navy);
+    flex-shrink:0;
+  }
+  .opt-text{font-size:0.95rem;}
+
+  /* palette sidebar */
+  .palette-col{
+    width:260px;
+    flex-shrink:0;
+    position:sticky;
+    top:64px;
+    max-height:calc(100vh - 80px);
+    overflow-y:auto;
+    padding:24px 20px 40px 0;
+  }
+  .palette-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px;
+  }
+  .palette-card h3{
+    margin:0 0 10px;
+    font-size:0.95rem;
+    color:var(--navy);
+  }
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:0.72rem;color:var(--ink-soft);}
+  .legend span{display:flex;align-items:center;gap:4px;}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  .dot.answered{background:var(--green);}
+  .dot.flagged{background:var(--gold);}
+  .dot.empty{background:var(--line);}
+  .grid150{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:6px;
+  }
+  .pnum{
+    aspect-ratio:1;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:5px;
+    border:1px solid var(--line);
+    background:var(--parchment);
+    font-size:0.72rem;
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--ink-soft);
+  }
+  .pnum.answered{background:var(--green);color:#fff;border-color:var(--green);}
+  .pnum.flagged{box-shadow:inset 0 0 0 2px var(--gold);}
+  .pnum:hover{border-color:var(--navy);}
+
+  .palette-toggle-mobile{display:none;}
+
+  /* ---------- Results screen ---------- */
+  .results-wrap{max-width:920px;margin:0 auto;padding:36px 24px 100px;}
+  .results-summary{
+    background:var(--navy);
+    color:var(--parchment);
+    border-radius:var(--radius);
+    padding:32px 30px;
+    margin-bottom:24px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:24px;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .score-big{
+    font-family:'Playfair Display',serif;
+    font-size:2.6rem;
+    font-weight:700;
+    color:var(--gold-soft);
+  }
+  .score-label{font-size:0.85rem;color:#C9CEDA;margin-top:2px;}
+  .stat-row{display:flex;gap:26px;flex-wrap:wrap;}
+  .stat{text-align:center;}
+  .stat .n{font-family:'IBM Plex Mono',monospace;font-size:1.3rem;font-weight:600;}
+  .stat .l{font-size:0.72rem;color:#C9CEDA;text-transform:uppercase;letter-spacing:0.03em;}
+  .stat.correct .n{color:#8FD19E;}
+  .stat.incorrect .n{color:#E39A9A;}
+  .stat.unattempted .n{color:#D9D2B8;}
+
+  .tabs{
+    display:flex;
+    gap:6px;
+    margin-bottom:18px;
+    border-bottom:2px solid var(--line);
+  }
+  .tab-btn{
+    background:none;border:none;
+    padding:10px 18px;
+    font-weight:600;
+    font-size:0.9rem;
+    color:var(--ink-soft);
+    border-bottom:2px solid transparent;
+    margin-bottom:-2px;
+  }
+  .tab-btn.active{color:var(--navy);border-bottom-color:var(--navy);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  .review-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    margin-bottom:16px;
+  }
+  .review-card.correct{border-left:4px solid var(--green);}
+  .review-card.incorrect{border-left:4px solid var(--maroon);}
+  .review-card.unattempted{border-left:4px solid var(--ink-soft);}
+  .review-tag{
+    display:inline-block;
+    font-size:0.68rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    padding:2px 9px;
+    border-radius:10px;
+    margin-bottom:8px;
+  }
+  .review-tag.correct{background:#DDEDDD;color:var(--green);}
+  .review-tag.incorrect{background:#F2DEDE;color:var(--maroon);}
+  .review-tag.unattempted{background:#E8E4D6;color:var(--ink-soft);}
+  .review-opt{
+    display:flex;gap:10px;padding:7px 10px;border-radius:6px;font-size:0.92rem;margin-bottom:4px;
+  }
+  .review-opt .opt-key{font-family:'IBM Plex Mono',monospace;font-weight:600;}
+  .review-opt.your-wrong{background:#F2DEDE;}
+  .review-opt.correct-answer{background:#DDEDDD;}
+  .explanation{
+    margin-top:12px;
+    padding:12px 14px;
+    background:var(--parchment-deep);
+    border-radius:8px;
+    font-size:0.9rem;
+    color:var(--ink);
+  }
+  .explanation .exlabel{
+    font-weight:700;color:var(--navy);font-size:0.75rem;text-transform:uppercase;
+    letter-spacing:0.03em;display:block;margin-bottom:4px;
+  }
+  .results-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
+
+  /* ---------- History screen ---------- */
+  .history-list{display:flex;flex-direction:column;gap:12px;margin-top:20px;}
+  .history-item{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .history-item .hdate{font-size:0.82rem;color:var(--ink-soft);}
+  .history-item .hscore{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);font-size:1.2rem;}
+  .empty-note{color:var(--ink-soft);font-style:italic;padding:20px 0;text-align:center;}
+
+  /* ---------- Modal ---------- */
+  .modal-overlay{
+    display:none;position:fixed;inset:0;background:rgba(20,30,51,0.55);
+    align-items:center;justify-content:center;z-index:100;padding:20px;
+  }
+  .modal-overlay.active{display:flex;}
+  .modal-box{
+    background:var(--paper);border-radius:var(--radius);padding:28px 26px;max-width:400px;width:100%;
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
+  }
+  .modal-box h3{margin:0 0 10px;color:var(--navy);}
+  .modal-box p{font-size:0.92rem;color:var(--ink-soft);margin-bottom:20px;}
+  .modal-actions{display:flex;gap:10px;justify-content:flex-end;}
+
+  footer.credit{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:0.72rem;
+    padding:20px;
+  }
+
+  @media (max-width:920px){
+    .palette-col{
+      display:none;
+      position:fixed;
+      top:0;right:0;bottom:0;
+      width:min(85vw,320px);
+      max-height:none;
+      background:var(--parchment);
+      z-index:90;
+      box-shadow:-4px 0 20px rgba(0,0,0,0.2);
+      padding:20px;
+      overflow-y:auto;
+    }
+    .palette-col.open{display:block;}
+    .palette-toggle-mobile{
+      display:inline-block;
+    }
+    .test-body{display:block;}
+    .questions-col{padding:20px 14px 120px;max-width:100%;}
+    .topbar-title{display:none;}
+    .meta-grid{grid-template-columns:repeat(3,1fr);}
+    .results-summary{flex-direction:column;align-items:flex-start;}
+  }
+  @media (max-width:480px){
+    .grid150{grid-template-columns:repeat(5,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ START SCREEN ============ -->
+<section id="startScreen" class="screen active">
+  <div class="center-wrap">
+    <div class="start-card">
+      <h1>Timed Practice Test</h1>
+      <p class="subtitle">150 questions · Full-length simulation · Single attempt sitting</p>
+
+      <div class="meta-grid">
+        <div class="meta-box"><span class="num">150</span><span class="lbl">Questions</span></div>
+        <div class="meta-box"><span class="num">2.5</span><span class="lbl">Hours</span></div>
+        <div class="meta-box"><span class="num">MCQ</span><span class="lbl">Format</span></div>
+      </div>
+
+      <ul class="rules">
+        <li>The timer starts the moment you click <strong>Start Test</strong> and runs for 2 hours 30 minutes.</li>
+        <li>All 150 questions appear together on one scrollable page — jump between them using the number palette.</li>
+        <li>The test auto-submits when time runs out; you can also submit manually at any time.</li>
+        <li>Your progress is saved automatically, so a refresh will not lose your answers.</li>
+        <li>After submitting, you'll get a full review — correct, incorrect, and explanations for each question.</li>
+        <li>Every attempt is stored on this device so you can cross-reference it later.</li>
+      </ul>
+
+      <button class="btn-primary" id="startBtn">Start Test</button>
+      <div class="history-toggle">
+        <button class="btn-ghost" id="viewHistoryBtn">View past attempts →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEST SCREEN ============ -->
+<section id="testScreen" class="screen">
+  <div class="test-topbar">
+    <div class="topbar-left">
+      <span class="topbar-title">Practice Test</span>
+      <span class="progress-pill" id="progressPill">0 / 150 answered</span>
+    </div>
+    <div class="topbar-actions">
+      <div class="timer-box" id="timerBox">02:30:00</div>
+      <button class="icon-btn palette-toggle-mobile" id="paletteToggleBtn">Questions</button>
+      <button class="submit-btn" id="submitBtn">Submit</button>
+    </div>
+  </div>
+
+  <div class="test-body">
+    <div class="questions-col" id="questionsCol"></div>
+    <div class="palette-col" id="paletteCol">
+      <div class="palette-card">
+        <h3>Question Palette</h3>
+        <div class="legend">
+          <span><span class="dot answered"></span>Answered</span>
+          <span><span class="dot empty"></span>Unanswered</span>
+          <span><span class="dot" style="box-shadow:inset 0 0 0 2px var(--gold);background:transparent;"></span>Flagged</span>
+        </div>
+        <div class="grid150" id="paletteGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS SCREEN ============ -->
+<section id="resultsScreen" class="screen">
+  <div class="results-wrap">
+    <div class="results-summary">
+      <div>
+        <div class="score-big" id="scoreBig">0 / 150</div>
+        <div class="score-label" id="scoreDate">—</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat correct"><div class="n" id="statCorrect">0</div><div class="l">Correct</div></div>
+        <div class="stat incorrect"><div class="n" id="statIncorrect">0</div><div class="l">Incorrect</div></div>
+        <div class="stat unattempted"><div class="n" id="statUnattempted">0</div><div class="l">Unattempted</div></div>
+        <div class="stat"><div class="n" id="statAccuracy">0%</div><div class="l">Accuracy</div></div>
+        <div class="stat"><div class="n" id="statTime">—</div><div class="l">Time used</div></div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="all">All (150)</button>
+      <button class="tab-btn" data-tab="correct">Correct</button>
+      <button class="tab-btn" data-tab="incorrect">Incorrect</button>
+      <button class="tab-btn" data-tab="unattempted">Unattempted</button>
+    </div>
+
+    <div class="tab-panel active" id="panel-all"></div>
+    <div class="tab-panel" id="panel-correct"></div>
+    <div class="tab-panel" id="panel-incorrect"></div>
+    <div class="tab-panel" id="panel-unattempted"></div>
+
+    <div class="results-actions">
+      <button class="btn-secondary" id="backToStartBtn">Back to start</button>
+      <button class="btn-secondary" id="toHistoryFromResultsBtn">View all attempts</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HISTORY SCREEN ============ -->
+<section id="historyScreen" class="screen">
+  <div class="results-wrap">
+    <h1 class="serif" style="color:var(--navy);margin-bottom:4px;">Past Attempts</h1>
+    <p style="color:var(--ink-soft);margin-top:0;">Stored locally on this device for cross-reference. Click an attempt to reopen its full review.</p>
+    <div class="history-list" id="historyList"></div>
+    <div class="results-actions">
+      <button class="btn-secondary" id="backToStartFromHistoryBtn">Back to start</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONFIRM SUBMIT MODAL ============ -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box">
+    <h3 id="confirmTitle">Submit test?</h3>
+    <p id="confirmText">You still have unanswered questions. Are you sure you want to submit now? This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="cancelSubmitBtn">Cancel</button>
+      <button class="btn-primary" style="width:auto;" id="confirmSubmitBtn">Submit anyway</button>
+    </div>
+  </div>
+</div>
+
+<footer class="credit">Stored locally in your browser — clearing site data will remove saved attempts.</footer>
+
+<script>
+const QUESTIONS = [{"id": 1, "stem": "The Gupta era, beginning in 319-20 C.E., was founded by:", "options": [{"key": "a", "text": "Chandragupta II"}, {"key": "b", "text": "Chandragupta I"}, {"key": "c", "text": "Samudragupta"}, {"key": "d", "text": "Sri Gupta"}], "correct": "b", "explanation": "Chandragupta I was the first Gupta ruler to assume the title Maharajadhiraja; the Gupta era is reckoned from his accession in 319-20 CE. Sri Gupta and Ghatotkacha bore only the modest title Maharaja. Chandragupta I strengthened his position by marrying the Licchavi princess Kumaradevi."}, {"id": 2, "stem": "The Allahabad Pillar Inscription, which records the conquests of Samudragupta, was composed by:", "options": [{"key": "a", "text": "Ravikirti"}, {"key": "b", "text": "Banabhatta"}, {"key": "c", "text": "Harisena"}, {"key": "d", "text": "Vasula"}], "correct": "c", "explanation": "Harisena, a minister and military officer of Samudragupta, composed the prashasti in mixed verse and prose on the same pillar carrying an Ashokan edict. Ravikirti composed the Aihole inscription; Banabhatta wrote the Harshacharita."}, {"id": 3, "stem": "Consider the following statements about Samudragupta:\n1.  He is described in the Allahabad Pillar Inscription as having uprooted rulers of Aryavarta.\n2.  He followed a policy of tribute and reinstatement towards the rulers of Dakshinapatha.\n3.  He performed the Ashvamedha sacrifice.\n4.  He is popularly known as Vikramaditya.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "1, 3 and 4 only"}, {"key": "d", "text": "2, 3 and 4 only"}], "correct": "a", "explanation": "Statement 4 is wrong: the title Vikramaditya belongs to his son Chandragupta II, not Samudragupta. The inscription shows extermination in the north and a tribute-and-reinstatement policy in the south (Dakshinapatha); he revived the Ashvamedha sacrifice."}, {"id": 4, "stem": "The Chinese pilgrim Fa-Hien visited India during the reign of:", "options": [{"key": "a", "text": "Samudragupta"}, {"key": "b", "text": "Kanishka"}, {"key": "c", "text": "Harshavardhana"}, {"key": "d", "text": "Chandragupta II"}], "correct": "d", "explanation": "Fa-Hien visited in search of Buddhist texts during the reign of Chandragupta II Vikramaditya and describes a prosperous, peaceful society. Hiuen Tsang visited later, under Harshavardhana."}, {"id": 5, "stem": "Chandragupta II earned the title Shakari, the enemy of the Shakas, by conquering:", "options": [{"key": "a", "text": "The Hunas of Central Asia"}, {"key": "b", "text": "The Western Kshatrapas of Malwa and Gujarat"}, {"key": "c", "text": "The Vakatakas of the Deccan"}, {"key": "d", "text": "The Kushanas of the north-west"}], "correct": "b", "explanation": "Chandragupta II destroyed the Shaka Kshatrapas of Malwa and Gujarat, gaining access to Arabian Sea ports and western trade; Ujjain became a second capital. He also allied with the Vakatakas by marriage."}, {"id": 6, "stem": "Match the scholars of the Gupta age in List I with their works in List II:\nA. Aryabhata -- 1. Aryabhatiya\nB. Varahamihira -- 2. Panchatantra\nC. Kalidasa -- 3. Meghaduta\nD. Vishnusharma -- 4. Brihat Samhita", "options": [{"key": "a", "text": "A-1, B-3, C-4, D-2"}, {"key": "b", "text": "A-1, B-4, C-2, D-3"}, {"key": "c", "text": "A-1, B-4, C-3, D-2"}, {"key": "d", "text": "A-2, B-3, C-4, D-1"}], "correct": "c", "explanation": "Aryabhata wrote the Aryabhatiya (astronomy/maths); Varahamihira wrote the Brihat Samhita; Kalidasa wrote Meghaduta; Vishnusharma is credited with the Panchatantra fables. So A-1, B-4, C-3, D-2."}, {"id": 7, "stem": "Assertion (A): The Gupta period is often described as the classical age of ancient India. Reason (R): Gold coins of the Gupta rulers were known as dinaras.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "b", "explanation": "Both true, but R doesn't explain A. The 'classical age' label rests on flowering literature, sculpture, science and political stability -- not on the name of the gold coin (dinara, borrowed from the Roman denarius)."}, {"id": 8, "stem": "The Bhitari Pillar Inscription records the success of which Gupta ruler against the Hunas?", "options": [{"key": "a", "text": "Chandragupta II"}, {"key": "b", "text": "Skandagupta"}, {"key": "c", "text": "Purugupta"}, {"key": "d", "text": "Kumaragupta I"}], "correct": "b", "explanation": "The Bhitari Pillar Inscription and the Junagadh rock inscription record Skandagupta repelling the first Huna invasions; these wars are thought to have strained the empire before later Huna pressure under Toramana and Mihirakula."}, {"id": 9, "stem": "Nalanda Mahavihara, the great centre of Buddhist learning, is traditionally held to have been founded by:", "options": [{"key": "a", "text": "Samudragupta"}, {"key": "b", "text": "Dharmapala"}, {"key": "c", "text": "Harshavardhana"}, {"key": "d", "text": "Kumaragupta I"}], "correct": "d", "explanation": "Nalanda in Bihar was founded under Kumaragupta I and later patronised by Harshavardhana and the Palas. Hiuen Tsang studied there. Dharmapala (Pala) founded Vikramashila, not Nalanda."}, {"id": 10, "stem": "Consider the following statements about Harshavardhana:\n1.  He belonged to the Pushyabhuti or Vardhana dynasty.\n2.  He shifted his capital from Thanesar to Kanauj.\n3.  He was defeated by the Chalukya ruler Pulakeshin II.\n4.  His court poet Banabhatta wrote the Harshacharita.", "options": [{"key": "a", "text": "1, 2 and 4 only"}, {"key": "b", "text": "1, 3 and 4 only"}, {"key": "c", "text": "2, 3 and 4 only"}, {"key": "d", "text": "1, 2, 3 and 4"}], "correct": "d", "explanation": "All four statements are correct: Harsha belonged to the Pushyabhuti/Vardhana dynasty, moved his capital from Thanesar to Kanauj, was checked by Pulakeshin II, and his court poet Banabhatta wrote the Harshacharita."}, {"id": 11, "stem": "Harshavardhana is known to have convened a great religious assembly at Kanauj and a quinquennial distribution of charity at:", "options": [{"key": "a", "text": "Pataliputra"}, {"key": "b", "text": "Prayag"}, {"key": "c", "text": "Vaishali"}, {"key": "d", "text": "Ujjain"}], "correct": "b", "explanation": "Hiuen Tsang describes both the Kanauj assembly (honouring Mahayana Buddhism) and the quinquennial charity distribution at Prayag, where Harsha gave away his accumulated wealth, even his own clothing."}, {"id": 12, "stem": "Consider the following features of the Gupta administration and economy:\n1.  The practice of granting land to Brahmanas and officials increased.\n2.  Such grants often carried the transfer of administrative and revenue rights.\n3.  The number of gold coins in circulation declined in the later Gupta period.\n4.  The Guptas maintained a highly centralised administration on the Mauryan model.", "options": [{"key": "a", "text": "3 and 4 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "1, 2 and 4 only"}, {"key": "d", "text": "1, 3 and 4 only"}], "correct": "b", "explanation": "Statement 4 is wrong -- Gupta administration was less centralised than the Mauryan model; feudatories enjoyed autonomy. Land grants (often with administrative/revenue rights) increased, seen as the start of Indian feudalism, and gold coinage declined later."}, {"id": 13, "stem": "Match the styles of temple architecture in List I with their characteristic features in List II:\nA. Nagara -- 1. Curvilinear shikhara, common in northern India\nB. Dravida -- 2. Pyramidal vimana with a gopuram gateway, common in the south\nC. Vesara -- 3. A hemispherical dome raised over relics\nD. Stupa -- 4. A hybrid style combining features of both, found in the Deccan", "options": [{"key": "a", "text": "A-1, B-2, C-4, D-3"}, {"key": "b", "text": "A-2, B-1, C-4, D-3"}, {"key": "c", "text": "A-2, B-4, C-1, D-3"}, {"key": "d", "text": "A-3, B-2, C-4, D-1"}], "correct": "a", "explanation": "Nagara = curvilinear shikhara (north); Dravida = pyramidal vimana with gopuram (south); Vesara = hybrid Deccan style; Stupa = hemispherical relic mound, not a temple type at all. So A-1, B-2, C-4, D-3."}, {"id": 14, "stem": "Consider the following statements about the Kailasa temple at Ellora:\n1.  It was excavated from a single rock from the top downwards.\n2.  It is dedicated to Shiva.\n3.  It was built under the patronage of the Rashtrakuta ruler Krishna I.\n4.  It is a structural temple built by placing stone upon stone.", "options": [{"key": "a", "text": "2 and 3 only"}, {"key": "b", "text": "2 and 4 only"}, {"key": "c", "text": "3 and 4 only"}, {"key": "d", "text": "1, 2 and 3 only"}], "correct": "d", "explanation": "Statement 4 contradicts statement 1 and is wrong -- Kailasa is monolithic, carved top-down from a single rock, not built stone-on-stone. It is Shaiva, built under Rashtrakuta king Krishna I; Ellora also has Buddhist and Jain caves."}, {"id": 15, "stem": "Match the parts of a stupa in List I with their descriptions in List II:\nA. Anda -- 1. The balcony-like railing above the dome\nB. Harmika -- 2. The raised drum or base of the mound\nC. Chhatra -- 3. The hemispherical mound\nD. Medhi -- 4. The umbrella or parasol at the summit", "options": [{"key": "a", "text": "A-1, B-3, C-4, D-2"}, {"key": "b", "text": "A-3, B-1, C-2, D-4"}, {"key": "c", "text": "A-3, B-1, C-4, D-2"}, {"key": "d", "text": "A-3, B-2, C-4, D-1"}], "correct": "c", "explanation": "Anda = the solid hemispherical dome; Harmika = the square railing above it; Chhatra = the umbrella at the summit; Medhi = the raised terrace/base carrying the pradakshina path. So A-3, B-1, C-4, D-2."}, {"id": 16, "stem": "The elaborately carved gateways of the Great Stupa at Sanchi were added under the:", "options": [{"key": "a", "text": "Guptas"}, {"key": "b", "text": "Satavahanas"}, {"key": "c", "text": "Kushanas"}, {"key": "d", "text": "Mauryas"}], "correct": "b", "explanation": "The original brick stupa at Sanchi dates to Ashoka's time and was later enlarged in stone, but the four richly carved gateways (toranas) belong to the Satavahana period, narrating Jataka stories via the early aniconic convention."}, {"id": 17, "stem": "The Dashavatara temple at Deogarh, one of the earliest surviving structural temples in India, belongs to the:", "options": [{"key": "a", "text": "Gupta period"}, {"key": "b", "text": "Rashtrakuta period"}, {"key": "c", "text": "Maurya period"}, {"key": "d", "text": "Chola period"}], "correct": "a", "explanation": "The Dashavatara temple at Deogarh (UP) is a Gupta-period structural temple, notable for the Sheshashayi Vishnu panel; along with the brick Bhitargaon temple, it marks the start of the structural temple tradition."}, {"id": 18, "stem": "Consider the following statements about the monuments at Mahabalipuram:\n1.  The monolithic rathas were excavated under Pallava patronage.\n2.  The Shore Temple is a structural temple.\n3.  The great open-air relief there is variously identified as the Descent of the Ganga or Arjuna's Penance.\n4.  The monuments were built by the Chola rulers of Thanjavur.", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "3 and 4 only"}, {"key": "c", "text": "1, 2 and 3 only"}, {"key": "d", "text": "1, 2 and 4 only"}], "correct": "c", "explanation": "Statement 4 is wrong -- Mahabalipuram is a Pallava, not Chola, site. The monolithic rathas were Pallava excavations, the Shore Temple is structural, and the great relief is identified as either the Descent of the Ganga or Arjuna's Penance."}, {"id": 19, "stem": "Match the parts of a temple in List I with their meanings in List II:\nA. Garbhagriha -- 1. The sanctum housing the principal image\nB. Shikhara -- 2. The tower rising above the sanctum\nC. Mandapa -- 3. The gateway tower of the enclosure wall\nD. Gopuram -- 4. The pillared hall in front of the sanctum", "options": [{"key": "a", "text": "A-1, B-2, C-4, D-3"}, {"key": "b", "text": "A-1, B-3, C-2, D-4"}, {"key": "c", "text": "A-3, B-2, C-1, D-4"}, {"key": "d", "text": "A-4, B-3, C-1, D-2"}], "correct": "a", "explanation": "Garbhagriha = sanctum with the main image; Shikhara = tower over the sanctum; Mandapa = pillared hall in front; Gopuram = gateway tower of the enclosure wall (south Indian temples). So A-1, B-2, C-4, D-3."}, {"id": 20, "stem": "Assertion (A): The rock-cut caves at Ellora are of exceptional interest among Indian monuments. Reason (R): They contain Buddhist, Hindu and Jain excavations at the same site.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "a", "explanation": "Both true and R explains A: Ellora's caves span Buddhist, Hindu (Brahmanical) and Jain excavations at one site over roughly four centuries, evidence of religious coexistence -- unlike Ajanta (entirely Buddhist)."}, {"id": 21, "stem": "Match the Sangam kingdoms in List I with their royal emblems in List II:\nA. Chera -- 1. Bow\nB. Chola -- 2. Fish\nC. Pandya -- 3. Bull\nD. Pallava -- 4. Tiger", "options": [{"key": "a", "text": "A-1, B-3, C-2, D-4"}, {"key": "b", "text": "A-1, B-4, C-2, D-3"}, {"key": "c", "text": "A-1, B-4, C-3, D-2"}, {"key": "d", "text": "A-3, B-4, C-1, D-2"}], "correct": "b", "explanation": "The three crowned Tamil kingdoms used: Chera - bow, Chola - tiger, Pandya - fish; the later Pallavas (Kanchipuram) used the bull. So A-1, B-4, C-2, D-3."}, {"id": 22, "stem": "The Brihadeshwara temple at Thanjavur, also called the Rajarajeshwara temple, was built by:", "options": [{"key": "a", "text": "Karikala"}, {"key": "b", "text": "Rajendra I"}, {"key": "c", "text": "Kulottunga I"}, {"key": "d", "text": "Rajaraja I"}], "correct": "d", "explanation": "Rajaraja I completed the Brihadeshwara (Rajarajeshwara) temple at Thanjavur in the early 11th century; his son Rajendra I later built a similar temple at his new capital, Gangaikondacholapuram."}, {"id": 23, "stem": "Consider the following statements about Rajendra I:\n1.  He led an expedition to the Ganga and assumed the title Gangaikonda.\n2.  He sent a naval expedition against the kingdom of Sri Vijaya.\n3.  He founded a new capital called Gangaikondacholapuram.\n4.  He was the father of Rajaraja I.", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "1, 3 and 4 only"}, {"key": "d", "text": "2, 3 and 4 only"}], "correct": "a", "explanation": "Statement 4 is wrong -- Rajendra I was the SON of Rajaraja I, not his father. Rajendra I marched to the Ganga (title Gangaikonda), sent a naval expedition against Sri Vijaya, and founded Gangaikondacholapuram."}, {"id": 24, "stem": "The Uttaramerur inscription is an important source for our knowledge of:", "options": [{"key": "a", "text": "The system of village assemblies under the Cholas"}, {"key": "b", "text": "The naval organisation of the Pandyas"}, {"key": "c", "text": "The temple architecture of the Chalukyas"}, {"key": "d", "text": "The land revenue system of the Pallavas"}], "correct": "a", "explanation": "The Uttaramerur inscription (reign of Parantaka I) details qualifications for sabha membership, its committees (variyams), and the kudavolai lottery method -- the classic evidence for Chola village self-government."}, {"id": 25, "stem": "The Pallava ruler Narasimhavarman I assumed the title Vatapikonda after defeating:", "options": [{"key": "a", "text": "Rajaraja I"}, {"key": "b", "text": "Mahendravarman I"}, {"key": "c", "text": "Dantidurga"}, {"key": "d", "text": "Pulakeshin II"}], "correct": "d", "explanation": "Narasimhavarman I avenged his father Mahendravarman I's earlier defeat by invading the Chalukya kingdom, capturing Vatapi (Badami) and killing Pulakeshin II, earning the title Vatapikonda."}, {"id": 26, "stem": "The Aihole inscription, which records the achievements of Pulakeshin II, was composed by his court poet:", "options": [{"key": "a", "text": "Ravikirti"}, {"key": "b", "text": "Harisena"}, {"key": "c", "text": "Nannaya"}, {"key": "d", "text": "Ilango Adigal"}], "correct": "a", "explanation": "Ravikirti, court poet of Pulakeshin II, composed the Aihole prashasti in Sanskrit, the principal source for his reign including the victory over Harshavardhana on the Narmada; it is dated in the Shaka era."}, {"id": 27, "stem": "Match the dynasties in List I with their capitals in List II:\nA. Cholas -- 1. Kanchipuram\nB. Pallavas -- 2. Vatapi\nC. Chalukyas of Badami -- 3. Thanjavur\nD. Pandyas -- 4. Madurai", "options": [{"key": "a", "text": "A-2, B-1, C-3, D-4"}, {"key": "b", "text": "A-3, B-1, C-2, D-4"}, {"key": "c", "text": "A-3, B-1, C-4, D-2"}, {"key": "d", "text": "A-3, B-4, C-1, D-2"}], "correct": "b", "explanation": "Cholas ruled from Thanjavur (later Gangaikondacholapuram), Pallavas from Kanchipuram, Chalukyas of Badami from Vatapi, and Pandyas from Madurai. So A-3, B-1, C-2, D-4."}, {"id": 28, "stem": "Consider the following statements about Chola administration:\n1.  The empire was divided into mandalams, which were subdivided into valanadus and nadus.\n2.  Village assemblies enjoyed a large measure of autonomy.\n3.  Land revenue and trade were the chief sources of income.\n4.  The village assemblies were nominated by the king and had no elected element.", "options": [{"key": "a", "text": "2 and 3 only"}, {"key": "b", "text": "2 and 4 only"}, {"key": "c", "text": "3 and 4 only"}, {"key": "d", "text": "1, 2 and 3 only"}], "correct": "d", "explanation": "Statement 4 is wrong -- the Uttaramerur inscription shows members chosen by lot from qualified candidates, i.e. an elected/selected element existed. The empire was divided into mandalams/valanadus/nadus with autonomous village assemblies, funded by land revenue and trade."}, {"id": 29, "stem": "Assertion (A): Sangam literature is an important source for the early history of South India. Reason (R): The Sangam assemblies are traditionally said to have been held under the patronage of the Pandya rulers of Madurai.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "b", "explanation": "Both true but R does not explain A. Sangam works are valuable because they describe polity, society, trade and warfare (corroborated by Roman coin finds); the Pandya-patronage tradition concerns the assemblies' origin, not the texts' historical value."}, {"id": 30, "stem": "The chief deity worshipped by the Tamils of the Sangam age, associated with hills and with war, was:", "options": [{"key": "a", "text": "Varuna"}, {"key": "b", "text": "Indra"}, {"key": "c", "text": "Murugan"}, {"key": "d", "text": "Kubera"}], "correct": "c", "explanation": "Murugan (also Seyon) was the presiding deity of the hilly Kurinji region and the Tamils' favourite god. Sangam poetry assigns deities to five tinais: Mayon (Mullai), Indra (Marutam), Varuna (Neytal), Korravai (Palai)."}, {"id": 31, "stem": "The office of the Governor-General of Bengal was created by:", "options": [{"key": "a", "text": "Pitt's India Act, 1784"}, {"key": "b", "text": "The Charter Act, 1833"}, {"key": "c", "text": "The Government of India Act, 1858"}, {"key": "d", "text": "The Regulating Act, 1773"}], "correct": "d", "explanation": "The Regulating Act, 1773 designated the Governor of Bengal as Governor-General of Bengal (Warren Hastings first), with a council of four, and set up the Calcutta Supreme Court (1774). The Charter Act of 1833 later made it Governor-General of India."}, {"id": 32, "stem": "The system of dual government, under which a Board of Control was created to supervise the political affairs of the Company, was introduced by:", "options": [{"key": "a", "text": "The Indian Councils Act, 1861"}, {"key": "b", "text": "The Regulating Act, 1773"}, {"key": "c", "text": "Pitt's India Act, 1784"}, {"key": "d", "text": "The Charter Act, 1813"}], "correct": "c", "explanation": "Pitt's India Act, 1784 separated commercial functions (Court of Directors) from political functions (new Board of Control representing the Crown) -- this dual government lasted till 1858, and first called Indian possessions 'British possessions in India'."}, {"id": 33, "stem": "Match the enactments in List I with their provisions in List II:\nA. Charter Act, 1813 -- 1. Abolished the Company and transferred power to the Crown\nB. Charter Act, 1833 -- 2. Ended the trade monopoly of the Company except in tea and trade with China\nC. Charter Act, 1853 -- 3. Made the Governor-General of Bengal the Governor-General of India\nD. Government of India Act, 1858 -- 4. Introduced open competition for the civil service", "options": [{"key": "a", "text": "A-1, B-4, C-3, D-2"}, {"key": "b", "text": "A-2, B-1, C-3, D-4"}, {"key": "c", "text": "A-2, B-3, C-1, D-4"}, {"key": "d", "text": "A-2, B-3, C-4, D-1"}], "correct": "d", "explanation": "1813 Act ended trade monopoly except tea/China trade; 1833 Act made Bengal's Governor-General the Governor-General of India; 1853 Act introduced open competition for civil service; 1858 Act abolished the Company, transferring power to the Crown. So A-2, B-3, C-4, D-1."}, {"id": 34, "stem": "Separate electorates for Muslims were introduced by which enactment?", "options": [{"key": "a", "text": "The Government of India Act, 1935"}, {"key": "b", "text": "The Indian Councils Act, 1892"}, {"key": "c", "text": "The Indian Councils Act, 1909"}, {"key": "d", "text": "The Government of India Act, 1919"}], "correct": "c", "explanation": "The Indian Councils Act, 1909 (Morley-Minto Reforms) legalised communal representation via separate electorates for Muslims -- Lord Minto is often called the father of communal electorates."}, {"id": 35, "stem": "Consider the following statements about the Government of India Act, 1919:\n1.  It introduced dyarchy in the provinces by dividing subjects into transferred and reserved.\n2.  It separated provincial budgets from the central budget for the first time.\n3.  It provided for the establishment of a Public Service Commission.\n4.  It introduced provincial autonomy and abolished dyarchy in the provinces.", "options": [{"key": "a", "text": "3 and 4 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "1, 2 and 4 only"}, {"key": "d", "text": "1, 3 and 4 only"}], "correct": "b", "explanation": "Statement 4 belongs to the 1935 Act (provincial autonomy replaced dyarchy). The 1919 Act (Montagu-Chelmsford Reforms) introduced provincial dyarchy, separated provincial from central budgets, and provided for a Public Service Commission (set up 1926)."}, {"id": 36, "stem": "Consider the following statements about the Government of India Act, 1935:\n1.  It provided for an All India Federation of provinces and princely states.\n2.  It divided powers between the Centre and the provinces into three lists.\n3.  It provided for the establishment of a Reserve Bank of India.\n4.  The federation envisaged by the Act came into existence in 1937.", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "1, 3 and 4 only"}, {"key": "d", "text": "2, 3 and 4 only"}], "correct": "a", "explanation": "Statement 4 is wrong -- the All India Federation never came into being since princely states didn't accede (though provincial autonomy started in 1937). The Act divided powers into Federal/Provincial/Concurrent Lists and provided for the RBI and a Federal Court (1937)."}, {"id": 37, "stem": "Consider the following statements about the Constituent Assembly of India:\n1.  It was constituted under the scheme formulated by the Cabinet Mission.\n2.  Dr. Rajendra Prasad was elected its permanent Chairman.\n3.  Dr. B. R. Ambedkar was the Chairman of the Drafting Committee.\n4.  It was elected directly by the people of India on the basis of universal adult franchise.", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "3 and 4 only"}, {"key": "c", "text": "1, 2 and 3 only"}, {"key": "d", "text": "1, 2 and 4 only"}], "correct": "c", "explanation": "Statement 4 is wrong -- members were chosen indirectly by provincial legislatures via proportional representation, not direct election. It followed the Cabinet Mission scheme; Rajendra Prasad was permanent Chairman; Ambedkar chaired the 7-member Drafting Committee."}, {"id": 38, "stem": "Article 1 of the Constitution describes India as:", "options": [{"key": "a", "text": "A Federation of States"}, {"key": "b", "text": "A Confederation of States"}, {"key": "c", "text": "A Union of States"}, {"key": "d", "text": "A Federal Republic"}], "correct": "c", "explanation": "Article 1 declares India, that is Bharat, 'a Union of States' -- Ambedkar explained this conveys that the federation isn't from an agreement among states and states have no right to secede. The word 'federation' appears nowhere in the Constitution."}, {"id": 39, "stem": "With reference to the formation of new states, consider the following statements:\n1.  A bill for this purpose can be introduced in Parliament only on the prior recommendation of the President.\n2.  The President must refer the bill to the legislature of the state concerned for its views.\n3.  Parliament is not bound by the views expressed by the state legislature.\n4.  Such a bill must be passed by a special majority of Parliament.", "options": [{"key": "a", "text": "3 and 4 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "1, 2 and 4 only"}, {"key": "d", "text": "1, 3 and 4 only"}], "correct": "b", "explanation": "Statement 4 is wrong -- an Article 3 bill needs only a simple majority and is expressly not an amendment under Article 368. The President refers the bill to the state legislature, but its views don't bind Parliament (evidence of unitary bias)."}, {"id": 40, "stem": "Which Article of the Constitution empowers Parliament to admit into the Union, or establish, new states?", "options": [{"key": "a", "text": "Article 3"}, {"key": "b", "text": "Article 2"}, {"key": "c", "text": "Article 1"}, {"key": "d", "text": "Article 4"}], "correct": "b", "explanation": "Article 2 covers admission/establishment of NEW states not already part of the Union, with full Parliamentary discretion. Article 3 deals with internal readjustment (formation of new states, altering boundaries/names) of existing territory."}, {"id": 41, "stem": "The States Reorganisation Act of 1956, which redrew the political map of India on a linguistic basis, followed the report of the commission headed by:", "options": [{"key": "a", "text": "Justice Wanchoo"}, {"key": "b", "text": "J. V. P. Committee"}, {"key": "c", "text": "Fazl Ali"}, {"key": "d", "text": "S. K. Dhar"}], "correct": "c", "explanation": "The States Reorganisation Commission (1953), chaired by Fazl Ali with K.M. Panikkar and H.N. Kunzru, led to the 1956 Act and 7th Amendment, abolishing Parts A/B/C/D states and creating 14 states + 6 UTs (Andhra was already created in 1953)."}, {"id": 42, "stem": "The provisions relating to citizenship are contained in which Part of the Constitution?", "options": [{"key": "a", "text": "Part II, Articles 5 to 11"}, {"key": "b", "text": "Part I, Articles 1 to 4"}, {"key": "c", "text": "Part III, Articles 12 to 35"}, {"key": "d", "text": "Part IV, Articles 36 to 51"}], "correct": "a", "explanation": "Part II (Articles 5-11) covers citizenship at the Constitution's commencement -- domicile, migrants to/from Pakistan, persons of Indian origin abroad. Article 11 lets Parliament regulate citizenship by law (leading to the Citizenship Act, 1955)."}, {"id": 43, "stem": "Under the Citizenship Act, 1955, citizenship may be acquired by which of the following modes?\n1.  By birth\n2.  By descent\n3.  By registration\n4.  By naturalisation", "options": [{"key": "a", "text": "1, 2 and 4 only"}, {"key": "b", "text": "1, 3 and 4 only"}, {"key": "c", "text": "2, 3 and 4 only"}, {"key": "d", "text": "1, 2, 3 and 4"}], "correct": "d", "explanation": "All four modes apply (birth, descent, registration, naturalisation), plus a fifth -- incorporation of territory. Citizenship can be lost by renunciation, termination (voluntarily acquiring another citizenship), or deprivation (compulsory)."}, {"id": 44, "stem": "Assertion (A): The Constitution of India provides for single citizenship. Reason (R): Every Indian is a citizen both of the Union and of the state in which he resides.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "c", "explanation": "A is true (India has single citizenship, British model) but R is false -- it describes the opposite (US-style dual/state citizenship), which India does NOT have. Every citizen has uniform rights throughout India, with a few Part XXI exceptions."}, {"id": 45, "stem": "Consider the following statements about the Overseas Citizen of India scheme:\n1.  It does not amount to dual citizenship.\n2.  An Overseas Citizen of India is not entitled to vote in Indian elections.\n3.  An Overseas Citizen of India cannot hold constitutional posts in India.\n4.  An Overseas Citizen of India enjoys the right to contest elections to Parliament.", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "3 and 4 only"}, {"key": "c", "text": "1, 2 and 3 only"}, {"key": "d", "text": "1, 2 and 4 only"}], "correct": "c", "explanation": "Statement 4 is wrong and contradicts 2 & 3 -- OCI confers a lifelong visa and economic/educational parity with NRIs but no political rights: cannot vote, hold public office, or acquire agricultural land. It is not dual citizenship."}, {"id": 46, "stem": "Consider the following statements about the electoral college for the election of the President:\n1.  It consists of the elected members of both Houses of Parliament.\n2.  It consists of the elected members of the legislative assemblies of the states.\n3.  It includes the elected members of the legislative assemblies of Delhi and Puducherry.\n4.  It includes the members of the legislative councils of the states.", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "1, 3 and 4 only"}, {"key": "d", "text": "2, 3 and 4 only"}], "correct": "a", "explanation": "Statement 4 is wrong -- legislative council members are excluded (as are nominated members), since the President is elected only by elected representatives. Delhi and Puducherry's elected assembly members were included by the 70th Amendment."}, {"id": 47, "stem": "The President of India is elected in accordance with the system of:", "options": [{"key": "a", "text": "A simple majority of the electoral college"}, {"key": "b", "text": "Proportional representation by means of the single transferable vote"}, {"key": "c", "text": "The first past the post system"}, {"key": "d", "text": "Cumulative voting"}], "correct": "b", "explanation": "Article 55 lays down proportional representation by single transferable vote, secret ballot -- a candidate needs a quota, counted via transfer of preferences. The same system is used for Vice-President and Rajya Sabha elections."}, {"id": 48, "stem": "Consider the following qualifications for election as President of India:\n1.  He must be a citizen of India.\n2.  He must have completed thirty-five years of age.\n3.  He must be qualified for election as a member of the House of the People.\n4.  He must be a member of either House of Parliament at the time of election.", "options": [{"key": "a", "text": "2 and 3 only"}, {"key": "b", "text": "2 and 4 only"}, {"key": "c", "text": "3 and 4 only"}, {"key": "d", "text": "1, 2 and 3 only"}], "correct": "d", "explanation": "Statement 4 is wrong -- Article 58 requires the OPPOSITE: a sitting MP/MLA elected President is deemed to vacate that seat. He must be a citizen, 35+, qualified for Lok Sabha election, and hold no office of profit."}, {"id": 49, "stem": "With reference to the impeachment of the President, consider the following statements:\n1.  The charge may be preferred by either House of Parliament.\n2.  The resolution must be passed by a majority of not less than two-thirds of the total membership of the House.\n3.  The nominated members of Parliament may participate in the impeachment.\n4.  The elected members of the state legislative assemblies participate in the impeachment.", "options": [{"key": "a", "text": "3 and 4 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "1, 2 and 4 only"}, {"key": "d", "text": "1, 3 and 4 only"}], "correct": "b", "explanation": "Statement 4 is wrong -- state legislatures elect the President but play no role in impeaching him (the electoral college and impeachment body differ). Nominated MPs may participate despite not voting in the election. Charge needs 14 days' notice by 1/4 of members."}, {"id": 50, "stem": "An ordinance promulgated by the President under Article 123 must be laid before Parliament and ceases to operate at the expiration of:", "options": [{"key": "a", "text": "Six weeks from the reassembly of Parliament"}, {"key": "b", "text": "Six months from the date of promulgation"}, {"key": "c", "text": "Three months from the reassembly of Parliament"}, {"key": "d", "text": "One year from the date of promulgation"}], "correct": "a", "explanation": "An Article 123 ordinance must be laid before Parliament and expires 6 weeks after Parliament's reassembly unless approved earlier (or immediately if both Houses disapprove it). Governors have a similar power under Article 213."}, {"id": 51, "stem": "With reference to the veto power of the President over bills, consider the following statements:\n1.  He may withhold assent to a bill absolutely.\n2.  He may return a bill, other than a money bill, for reconsideration.\n3.  If the bill is passed again by Parliament with or without amendment, he must give his assent.\n4.  He may return a money bill to Parliament for reconsideration.", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "1, 3 and 4 only"}, {"key": "d", "text": "2, 3 and 4 only"}], "correct": "a", "explanation": "Statement 4 is wrong -- a money bill (introduced only with the President's prior recommendation) cannot be returned for reconsideration. He may withhold assent absolutely, return a non-money bill once, and must assent if Parliament re-passes it (pocket veto also possible, e.g. 1986)."}, {"id": 52, "stem": "With reference to the pardoning power of the President under Article 72, consider the following statements:\n1.  It extends to punishment inflicted by a court martial.\n2.  It extends to all cases where the sentence is one of death.\n3.  The power includes granting pardon, reprieve, respite, remission and commutation.\n4.  The Governor of a state also enjoys the power to pardon a sentence of death.", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "3 and 4 only"}, {"key": "c", "text": "1, 2 and 3 only"}, {"key": "d", "text": "1, 2 and 4 only"}], "correct": "c", "explanation": "Statement 4 is wrong -- under Article 161 the Governor can suspend/remit/commute (not pardon) a death sentence and has no power over court-martial sentences; both belong exclusively to the President under Article 72. Pardon absolves both sentence and conviction."}, {"id": 53, "stem": "All doubts and disputes arising out of the election of the President are enquired into and decided by:", "options": [{"key": "a", "text": "A joint committee of both Houses of Parliament"}, {"key": "b", "text": "The Supreme Court"}, {"key": "c", "text": "The Attorney General of India"}, {"key": "d", "text": "The Election Commission"}], "correct": "b", "explanation": "Article 71 vests exclusive jurisdiction over Presidential election disputes in the Supreme Court, whose decision is final; acts done by the President before such a decision remain valid. A vacancy must be filled within six months."}, {"id": 54, "stem": "Assertion (A): The President of India is the nominal executive head of the Union. Reason (R): Article 74 requires that there shall be a Council of Ministers with the Prime Minister at the head to aid and advise the President, who shall act in accordance with such advice.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "a", "explanation": "Both true and R explains A: Article 74's Council of Ministers (headed by PM) aids/advises the President, whose real power is nominal since the 42nd/44th Amendments made the advice binding (with one reconsideration option)."}, {"id": 55, "stem": "The resignation of the President of India is addressed to:", "options": [{"key": "a", "text": "The Speaker of the Lok Sabha"}, {"key": "b", "text": "The Prime Minister"}, {"key": "c", "text": "The Chief Justice of India"}, {"key": "d", "text": "The Vice-President"}], "correct": "d", "explanation": "The President resigns by writing addressed to the Vice-President, who must forthwith inform the Speaker of the Lok Sabha. (The Vice-President in turn resigns to the President.) The President's term is 5 years, and he's eligible for re-election."}, {"id": 56, "stem": "The procedure for the amendment of the Constitution is laid down in:", "options": [{"key": "a", "text": "Article 356"}, {"key": "b", "text": "Article 360"}, {"key": "c", "text": "Article 368"}, {"key": "d", "text": "Article 352"}], "correct": "c", "explanation": "Article 368 (Part XX) lays down the amendment procedure: special majority alone, or special majority plus ratification by half the states for federal provisions. A third category is alterable by simple majority outside Article 368 entirely."}, {"id": 57, "stem": "Amendment of which of the following requires ratification by the legislatures of not less than one-half of the states?\n1.  The manner of election of the President\n2.  The extent of the executive power of the Union and the states\n3.  The Seventh Schedule\n4.  The Directive Principles of State Policy", "options": [{"key": "a", "text": "3 and 4 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "1, 2 and 4 only"}, {"key": "d", "text": "1, 3 and 4 only"}], "correct": "b", "explanation": "Statement 4 is wrong -- DPSPs are amended by special majority alone. Ratification by half the states is needed for federal-structure provisions: President's election, executive powers of Union/states, and the Seventh Schedule (among others)."}, {"id": 58, "stem": "Consider the following statements about the procedure for amendment under Article 368:\n1.  An amendment bill may be introduced in either House of Parliament.\n2.  It may be introduced by a private member.\n3.  There is no provision for a joint sitting in case of disagreement between the two Houses.\n4.  The prior recommendation of the President is required for its introduction.", "options": [{"key": "a", "text": "2 and 3 only"}, {"key": "b", "text": "2 and 4 only"}, {"key": "c", "text": "3 and 4 only"}, {"key": "d", "text": "1, 2 and 3 only"}], "correct": "d", "explanation": "Statement 4 is wrong -- no prior Presidential recommendation is needed to introduce an amendment bill. It can start in either House, even by a private member; there's no joint sitting for disagreement, so a stalemate kills the bill; post-24th Amendment, Presidential assent is compulsory."}, {"id": 59, "stem": "Which of the following can be altered by a simple majority of Parliament, outside the scope of Article 368?\n1.  The formation of new states and alteration of their boundaries\n2.  Citizenship\n3.  The Fifth and Sixth Schedules\n4.  The election of the President", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "3 and 4 only"}, {"key": "c", "text": "1, 2 and 3 only"}, {"key": "d", "text": "1, 2 and 4 only"}], "correct": "c", "explanation": "Statement 4 is wrong -- the President's election needs special majority + state ratification (entrenched). Simple-majority changes (outside Art. 368) include: formation of new states, citizenship, and the Fifth/Sixth Schedules, among others."}, {"id": 60, "stem": "Assertion (A): The power of Parliament to amend the Constitution is not unlimited. Reason (R): The Supreme Court has held that Parliament cannot amend the Constitution so as to damage or destroy its basic structure.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "a", "explanation": "Both true and R explains A: the Kesavananda Bharati case (1973) established the basic structure doctrine, later used to strike down offending amendments -- features like supremacy of the Constitution, secularism, judicial review, and free elections are among those held 'basic'."}, {"id": 61, "stem": "The Constitution of India provides for how many methods of amendment?", "options": [{"key": "a", "text": "Four"}, {"key": "b", "text": "Two"}, {"key": "c", "text": "One"}, {"key": "d", "text": "Three"}], "correct": "d", "explanation": "Three methods exist: simple majority (for some provisions), special majority (for most), and special majority + state ratification (for federal provisions). Borrowed from South Africa's Constitution; makes India's Constitution 'partly rigid, partly flexible'."}, {"id": 62, "stem": "The Supreme Court of India was inaugurated in the year:", "options": [{"key": "a", "text": "1937"}, {"key": "b", "text": "1935"}, {"key": "c", "text": "1947"}, {"key": "d", "text": "1950"}], "correct": "d", "explanation": "The Supreme Court began functioning on 28 January 1950, succeeding the Federal Court (set up under the 1935 Act, functioning from 1937). Articles 124-147 (Part V) cover it; it originally had a CJI + 7 judges."}, {"id": 63, "stem": "Consider the following qualifications for appointment as a judge of the Supreme Court:\n1.  He must be a citizen of India.\n2.  He must have been a judge of a High Court for at least five years.\n3.  He must have been an advocate of a High Court for at least ten years.\n4.  He must have been a district judge for at least ten years.", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "1, 3 and 4 only"}, {"key": "d", "text": "2, 3 and 4 only"}], "correct": "a", "explanation": "Statement 4 is wrong -- district-judge service alone isn't a Supreme Court qualification (though it partly qualifies for a High Court). Alternatives are: 5 years as HC judge, 10 years as HC advocate, or 'distinguished jurist' in the President's opinion. No minimum age is set."}, {"id": 64, "stem": "A dispute between the Government of India and a state falls within which jurisdiction of the Supreme Court?", "options": [{"key": "a", "text": "Appellate jurisdiction under Article 132"}, {"key": "b", "text": "Writ jurisdiction under Article 32"}, {"key": "c", "text": "Original jurisdiction under Article 131"}, {"key": "d", "text": "Advisory jurisdiction under Article 143"}], "correct": "c", "explanation": "Article 131 gives the Supreme Court exclusive ORIGINAL jurisdiction over federal disputes (Centre-state or inter-state) involving a legal right -- distinct from the (non-exclusive) writ jurisdiction under Article 32, and excludes pre-Constitution treaty disputes."}, {"id": 65, "stem": "With reference to the advisory jurisdiction of the Supreme Court, consider the following statements:\n1.  The President may refer to it a question of law or fact of public importance.\n2.  The Court is not bound to give its opinion on such a reference.\n3.  The opinion given by the Court is not binding on the President.\n4.  The Court must give its opinion on a reference relating to a pre-Constitution treaty or agreement.", "options": [{"key": "a", "text": "1, 2 and 4 only"}, {"key": "b", "text": "1, 3 and 4 only"}, {"key": "c", "text": "2, 3 and 4 only"}, {"key": "d", "text": "1, 2, 3 and 4"}], "correct": "d", "explanation": "All four are correct. Article 143 has two reference types: on public-importance questions of law/fact the Court may decline to opine; on pre-Constitution treaties/agreements it MUST opine. Either way, the opinion is advisory, not binding on the President."}, {"id": 66, "stem": "The Supreme Court is a court of record, which means that:", "options": [{"key": "a", "text": "It maintains a record of all cases filed in the country"}, {"key": "b", "text": "It records the recommendations of the collegium"}, {"key": "c", "text": "Its proceedings must be recorded in writing and published"}, {"key": "d", "text": "Its judgments are recognised as legal precedents and it has the power to punish for contempt of court"}], "correct": "d", "explanation": "Article 129 makes the Supreme Court a court of record: its records are admissible evidence and unquestionable elsewhere, and it can punish for contempt of court (imprisonment/fine). High Courts have the same status under Article 215."}, {"id": 67, "stem": "Consider the following statements about the removal of a judge of the Supreme Court:\n1.  He can be removed by the President only on an address by both Houses of Parliament.\n2.  The address must be supported by a special majority in each House.\n3.  The grounds of removal are proved misbehaviour or incapacity.\n4.  The Chief Justice of India may recommend his removal directly to the President.", "options": [{"key": "a", "text": "3 and 4 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "1, 2 and 4 only"}, {"key": "d", "text": "1, 3 and 4 only"}], "correct": "b", "explanation": "Statement 4 is wrong -- the CJI has no power to directly recommend a judge's removal. A judge can be removed only by Presidential order after an address by both Houses (special majority: majority of total membership + 2/3 present and voting), governed by the Judges Enquiry Act; no SC judge has been removed this way."}, {"id": 68, "stem": "Under Article 127, a judge appointed temporarily to sit in the Supreme Court when there is a shortage of quorum is known as:", "options": [{"key": "a", "text": "An acting Chief Justice"}, {"key": "b", "text": "An ad hoc judge"}, {"key": "c", "text": "A retired judge"}, {"key": "d", "text": "An additional judge"}], "correct": "b", "explanation": "An ad hoc judge (Article 127) is a qualified High Court judge requested to sit at the Supreme Court when quorum is short. Article 128 lets the CJI request retired judges too. Additional judges belong to High Courts, not the Supreme Court."}, {"id": 69, "stem": "The first High Courts in India were established in 1862 at:", "options": [{"key": "a", "text": "Bombay, Madras and Allahabad"}, {"key": "b", "text": "Calcutta, Bombay and Allahabad"}, {"key": "c", "text": "Calcutta, Bombay and Madras"}, {"key": "d", "text": "Calcutta, Delhi and Madras"}], "correct": "c", "explanation": "The Indian High Courts Act, 1861 created the first three High Courts at Calcutta, Bombay and Madras (1862), replacing the Supreme Courts/Sadar Adalats in the presidency towns; Allahabad followed in 1866. Part VI, Articles 214-231 cover High Courts."}, {"id": 70, "stem": "Assertion (A): The writ jurisdiction of a High Court is wider than that of the Supreme Court. Reason (R): A High Court may issue writs not only for the enforcement of Fundamental Rights but also for any other purpose.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "a", "explanation": "Both true and R explains A: Article 32 lets the Supreme Court issue writs only for Fundamental Rights, while Article 226 lets a High Court do so for Fundamental Rights AND any other legal right -- making Article 32 itself a Fundamental Right, unlike the discretionary Article 226 remedy."}, {"id": 71, "stem": "The power of superintendence of a High Court over all courts and tribunals within its territorial jurisdiction is conferred by:", "options": [{"key": "a", "text": "Article 235"}, {"key": "b", "text": "Article 227"}, {"key": "c", "text": "Article 226"}, {"key": "d", "text": "Article 217"}], "correct": "b", "explanation": "Article 227 gives the High Court judicial and administrative superintendence over all courts/tribunals in its territory (calling for returns, framing rules, etc.), except armed-forces tribunals. Article 235 separately covers control over the subordinate judiciary."}, {"id": 72, "stem": "Consider the following qualifications for appointment as a judge of a High Court:\n1.  He must be a citizen of India.\n2.  He must have held a judicial office in the territory of India for at least ten years.\n3.  He must have been an advocate of a High Court for at least ten years.\n4.  He may be appointed if he is, in the opinion of the President, a distinguished jurist.", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "1, 3 and 4 only"}, {"key": "d", "text": "2, 3 and 4 only"}], "correct": "a", "explanation": "Statement 4 is wrong -- the 'distinguished jurist' route (Article 124) applies only to the Supreme Court, with no High Court counterpart under Article 217. HC judges retire at 62 (SC judges at 65); age disputes are decided by the President after consulting the CJI."}, {"id": 73, "stem": "The Constitution provides that Parliament may by law establish a common High Court for two or more states under:", "options": [{"key": "a", "text": "Article 231"}, {"key": "b", "text": "Article 230"}, {"key": "c", "text": "Article 226"}, {"key": "d", "text": "Article 214"}], "correct": "a", "explanation": "Article 214 requires a High Court per state, but Article 231 allows Parliament to establish a common High Court for two or more states (or a state + UT). Article 230 lets Parliament extend/exclude a High Court's jurisdiction over a UT."}, {"id": 74, "stem": "Consider the following statements about the Attorney General of India:\n1.  He is appointed by the President under Article 76.\n2.  He must be qualified to be appointed a judge of the Supreme Court.\n3.  He has the right to speak in the proceedings of both Houses of Parliament.\n4.  He has the right to vote in the proceedings of Parliament.", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "3 and 4 only"}, {"key": "c", "text": "1, 2 and 3 only"}, {"key": "d", "text": "1, 2 and 4 only"}], "correct": "c", "explanation": "Statement 4 is wrong -- the Attorney General (Article 76) may speak/participate in either House, joint sittings, or committees he's a member of, but cannot VOTE. He must be qualified as a SC judge, holds office at the President's pleasure, and isn't a Cabinet member."}, {"id": 75, "stem": "The Advocate General of a state is appointed by:", "options": [{"key": "a", "text": "The Chief Minister"}, {"key": "b", "text": "The Chief Justice of the High Court"}, {"key": "c", "text": "The Governor"}, {"key": "d", "text": "The President"}], "correct": "c", "explanation": "Article 165: the Advocate General, the state's highest law officer, is appointed by the Governor from among those qualified to be a High Court judge, holds office at the Governor's pleasure, and may speak (not vote) in the state legislature -- paralleling the Attorney General."}, {"id": 76, "stem": "Which one of the following law officers is NOT mentioned in the Constitution of India?", "options": [{"key": "a", "text": "The Advocate General of a state"}, {"key": "b", "text": "None of the above"}, {"key": "c", "text": "The Attorney General of India"}, {"key": "d", "text": "The Solicitor General of India"}], "correct": "d", "explanation": "The Solicitor General (and Additional Solicitors General) assist the Attorney General but are NOT constitutional posts -- governed instead by government rules of business. Only the Attorney General (Art. 76) and Advocate General (Art. 165) are constitutionally created law officers."}, {"id": 77, "stem": "The Comptroller and Auditor General of India is appointed under which Article?", "options": [{"key": "a", "text": "Article 149"}, {"key": "b", "text": "Article 151"}, {"key": "c", "text": "Article 148"}, {"key": "d", "text": "Article 280"}], "correct": "c", "explanation": "Article 148 creates the CAG's office and secures independence (Presidential warrant appointment). Article 149 sets duties/powers, Article 150 form of accounts, Article 151 report submission. Salary is charged on the Consolidated Fund, outside Parliament's vote."}, {"id": 78, "stem": "Consider the following statements about the Comptroller and Auditor General of India:\n1.  He holds office for a term of six years or until the age of sixty-five years, whichever is earlier.\n2.  He can be removed in the same manner and on the same grounds as a judge of the Supreme Court.\n3.  He is not eligible for any further office under the Government of India or of any state after ceasing to hold office.\n4.  He is a member of the Public Accounts Committee of Parliament.", "options": [{"key": "a", "text": "3 and 4 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "1, 2 and 4 only"}, {"key": "d", "text": "1, 3 and 4 only"}], "correct": "b", "explanation": "Statement 4 is wrong -- the CAG is NOT a PAC member, though PAC's work is based on his reports (he's called its 'guide, friend and philosopher'). He serves 6 years/age 65 (earlier), is removable like an SC judge, and is barred from further government office after -- all to secure independence."}, {"id": 79, "stem": "The reports of the Comptroller and Auditor General relating to the accounts of the Union are submitted to:", "options": [{"key": "a", "text": "The Prime Minister"}, {"key": "b", "text": "The President, who causes them to be laid before Parliament"}, {"key": "c", "text": "Parliament directly"}, {"key": "d", "text": "The Ministry of Finance"}], "correct": "b", "explanation": "Article 151: Union-account reports go to the President, who lays them before Parliament (state-account reports go to the Governor, laid before the state legislature). In Parliament, the Public Accounts Committee examines them and reports its findings."}, {"id": 80, "stem": "Assertion (A): The Comptroller and Auditor General of India is in practice more an Auditor General than a Comptroller. Reason (R): The salary and conditions of service of the Comptroller and Auditor General are charged on the Consolidated Fund of India.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "b", "explanation": "Both true but R doesn't explain A. He's called only an 'Auditor General' in effect because he has no control over money issued FROM the Consolidated Fund (audits only after expenditure) -- unlike his British counterpart. His charged salary is merely an independence safeguard, unrelated to that scope."}, {"id": 81, "stem": "Consider the following statements about the National Anthem of India:\n1.  It was composed originally in Bengali by Rabindranath Tagore.\n2.  It was adopted by the Constituent Assembly on 24 January 1950.\n3.  The playing time of the full version is approximately fifty-two seconds.\n4.  It was first sung at the Calcutta session of the Indian National Congress in 1911.", "options": [{"key": "a", "text": "1, 2 and 4 only"}, {"key": "b", "text": "1, 3 and 4 only"}, {"key": "c", "text": "2, 3 and 4 only"}, {"key": "d", "text": "1, 2, 3 and 4"}], "correct": "d", "explanation": "All four correct: composed in Bengali by Tagore, first sung at Congress's Calcutta session (27 Dec 1911), the Hindi first-stanza version adopted 24 Jan 1950, full version plays ~52 seconds (a shorter ~20-second version also exists)."}, {"id": 82, "stem": "The National Song, Vande Mataram, was taken from which literary work?", "options": [{"key": "a", "text": "Anandamath"}, {"key": "b", "text": "Gora"}, {"key": "c", "text": "Gitanjali"}, {"key": "d", "text": "Devi Chaudhurani"}], "correct": "a", "explanation": "Vande Mataram, composed in Sanskrit by Bankim Chandra Chatterji, appeared in his 1882 novel Anandamath and was first sung at Congress's 1896 Calcutta session. The Constituent Assembly gave it equal status with the National Anthem."}, {"id": 83, "stem": "Consider the following statements about the National Flag of India:\n1.  It was adopted by the Constituent Assembly on 22 July 1947.\n2.  The ratio of its width to its length is two to three.\n3.  The wheel in the centre is taken from the abacus of the Sarnath Lion Capital and has twenty-four spokes.\n4.  The wheel in the centre was originally the spinning wheel of the Congress flag and was retained unchanged.", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "3 and 4 only"}, {"key": "c", "text": "1, 2 and 3 only"}, {"key": "d", "text": "1, 2 and 4 only"}], "correct": "c", "explanation": "Statement 4 is wrong -- the Congress flag's charkha (spinning wheel) was REPLACED by the Ashoka Chakra (wheel of law, 24 spokes, from the Sarnath Lion Capital abacus). Flag ratio is 2:3, adopted 22 July 1947; saffron-white-green tricolour in equal bands."}, {"id": 84, "stem": "The three-tier structure of Panchayati Raj was first recommended by the committee headed by:", "options": [{"key": "a", "text": "Balwant Rai Mehta"}, {"key": "b", "text": "L. M. Singhvi"}, {"key": "c", "text": "Ashok Mehta"}, {"key": "d", "text": "G. V. K. Rao"}], "correct": "a", "explanation": "The Balwant Rai Mehta Committee (1957) recommended the three-tier Panchayati Raj (village panchayat, panchayat samiti, zila parishad) via democratic decentralisation. Ashok Mehta (1977) proposed a two-tier system; G.V.K. Rao covered rural development admin; L.M. Singhvi recommended constitutional status."}, {"id": 85, "stem": "Panchayati Raj was first inaugurated in India on 2 October 1959 in the state of:", "options": [{"key": "a", "text": "Gujarat"}, {"key": "b", "text": "Andhra Pradesh"}, {"key": "c", "text": "Rajasthan"}, {"key": "d", "text": "Maharashtra"}], "correct": "c", "explanation": "Nehru inaugurated Panchayati Raj at Nagaur, Rajasthan on 2 October 1959 -- the first state to adopt it (Andhra Pradesh followed soon after), based on the Balwant Rai Mehta Committee's recommendations."}, {"id": 86, "stem": "Consider the following statements about the 73rd Constitutional Amendment Act:\n1.  It added Part IX to the Constitution.\n2.  It inserted Articles 243 to 243-O.\n3.  It came into force on 24 April 1993.\n4.  It made the establishment of panchayats optional for the states.", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "1, 3 and 4 only"}, {"key": "d", "text": "2, 3 and 4 only"}], "correct": "a", "explanation": "Statement 4 is wrong -- the 73rd Amendment made much of the scheme COMPULSORY (three-tier structure, regular elections, reservations, finance commissions), leaving only some matters (like OBC reservation) discretionary. It added Part IX (Arts. 243-243O), effective 24 April 1993."}, {"id": 87, "stem": "Under Part IX of the Constitution, the Gram Sabha consists of:", "options": [{"key": "a", "text": "The heads of all households in a village"}, {"key": "b", "text": "The elected members of the village panchayat"}, {"key": "c", "text": "All residents of a village above the age of eighteen"}, {"key": "d", "text": "Persons registered in the electoral rolls of a village within the area of a panchayat"}], "correct": "d", "explanation": "Article 243A defines the Gram Sabha as ALL persons registered in the electoral rolls of a village within a panchayat's area -- the only unelected body in the Panchayati Raj structure, with powers left to state legislatures."}, {"id": 88, "stem": "Consider the following statements about reservation in panchayats:\n1.  Seats are reserved for the Scheduled Castes and Scheduled Tribes in proportion to their population.\n2.  Not less than one-third of the total seats are reserved for women.\n3.  The reservation for women applies also to the offices of chairpersons.\n4.  Reservation for backward classes is mandatory under the Constitution.", "options": [{"key": "a", "text": "2 and 3 only"}, {"key": "b", "text": "2 and 4 only"}, {"key": "c", "text": "3 and 4 only"}, {"key": "d", "text": "1, 2 and 3 only"}], "correct": "d", "explanation": "Statement 4 is wrong -- Article 243D leaves backward-class reservation to state discretion. SC/ST seat reservation is proportional to population; women get a minimum one-third reservation (including SC/ST women), applying to chairperson offices too; several states raised it to half."}, {"id": 89, "stem": "Consider the following statements about the duration of panchayats:\n1.  Every panchayat continues for five years from the date appointed for its first meeting.\n2.  Fresh elections must be completed before the expiry of its duration.\n3.  If a panchayat is dissolved earlier, elections must be held within six months of its dissolution.\n4.  A panchayat reconstituted after premature dissolution enjoys a full term of five years.", "options": [{"key": "a", "text": "3 and 4 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "1, 2 and 4 only"}, {"key": "d", "text": "1, 3 and 4 only"}], "correct": "b", "explanation": "Statement 4 is wrong -- a panchayat reconstituted after premature dissolution serves only the REMAINDER of the original 5-year term (no fresh full term); no election is needed if under 6 months remain. Otherwise: 5-year term, fresh elections before expiry, and reconstitution within 6 months of dissolution."}, {"id": 90, "stem": "Match the Articles in List I with their subject matter in List II:\nA. Article 243A -- 1. Superintendence of elections by a State Election Commission\nB. Article 243D -- 2. Gram Sabha\nC. Article 243I -- 3. Reservation of seats\nD. Article 243K -- 4. Constitution of a State Finance Commission", "options": [{"key": "a", "text": "A-1, B-4, C-3, D-2"}, {"key": "b", "text": "A-2, B-3, C-4, D-1"}, {"key": "c", "text": "A-2, B-4, C-3, D-1"}, {"key": "d", "text": "A-3, B-4, C-2, D-1"}], "correct": "b", "explanation": "Article 243A = Gram Sabha; Article 243D = reservation of seats; Article 243I = State Finance Commission; Article 243K = State Election Commission's superintendence of elections. So A-2, B-3, C-4, D-1."}, {"id": 91, "stem": "Consider the following statements about the 74th Constitutional Amendment Act:\n1.  It added Part IXA to the Constitution.\n2.  It provides for three types of municipalities.\n3.  It came into force on 1 June 1993.\n4.  It abolished the office of the mayor in municipal corporations.", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "1, 3 and 4 only"}, {"key": "d", "text": "2, 3 and 4 only"}], "correct": "a", "explanation": "Statement 4 is wrong -- the Act made no such provision about mayors. It added Part IXA (Arts. 243P-243ZG) with three municipality types: nagar panchayat (transitional), municipal council (smaller urban area), municipal corporation (larger urban area), classified by the Governor; effective 1 June 1993."}, {"id": 92, "stem": "The Constitution requires the constitution of Ward Committees within the territorial area of a municipality having a population of:", "options": [{"key": "a", "text": "Ten lakh or more"}, {"key": "b", "text": "One lakh or more"}, {"key": "c", "text": "Three lakh or more"}, {"key": "d", "text": "Five lakh or more"}], "correct": "c", "explanation": "Article 243S makes Ward Committees compulsory in municipalities of 3 lakh population or more, to bring administration closer to citizens. (District Planning Committees under 243ZD and Metropolitan Planning Committees under 243ZE for 10-lakh+ areas are related bodies.)"}, {"id": 93, "stem": "The first municipal corporation in India was established in 1688 at:", "options": [{"key": "a", "text": "Calcutta"}, {"key": "b", "text": "Madras"}, {"key": "c", "text": "Bombay"}, {"key": "d", "text": "Surat"}], "correct": "b", "explanation": "The Madras Municipal Corporation was set up in 1688 -- the first in India; Bombay and Calcutta followed in 1726. Lord Ripon's 1882 Resolution (elected local boards, non-official chairmen) earned him the title 'father of local self-government in India'."}, {"id": 94, "stem": "Consider the following statements about the NITI Aayog:\n1.  It was established on 1 January 2015 in place of the Planning Commission.\n2.  It was created by an executive resolution of the Union Government.\n3.  The Prime Minister is its Chairperson.\n4.  It is a constitutional body.", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "3 and 4 only"}, {"key": "c", "text": "1, 2 and 3 only"}, {"key": "d", "text": "1, 2 and 4 only"}], "correct": "c", "explanation": "Statement 4 is wrong -- like the Planning Commission before it, NITI Aayog is neither constitutional nor statutory, created by a Cabinet resolution (1 Jan 2015). It's a think-tank offering policy inputs, chaired by the PM, rather than allocating funds."}, {"id": 95, "stem": "The Governing Council of the NITI Aayog comprises:", "options": [{"key": "a", "text": "Only the Chief Ministers of states"}, {"key": "b", "text": "The Chief Ministers of all states and the Lieutenant Governors of union territories"}, {"key": "c", "text": "The Union Cabinet Ministers"}, {"key": "d", "text": "The Chief Justices of the High Courts"}], "correct": "b", "explanation": "NITI Aayog's Governing Council (chaired by the PM) comprises all state Chief Ministers, CMs of UTs with legislatures, and Lieutenant Governors of other UTs -- reflecting its cooperative-federalism emphasis, unlike the Planning Commission's centralised fund allocation."}, {"id": 96, "stem": "Assertion (A): The NITI Aayog does not allocate funds to the states. Reason (R): The Planning Commission, which it replaced, was set up in 1950 by a resolution of the Government of India.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "b", "explanation": "Both true but R doesn't explain A. NITI Aayog doesn't allocate funds because that role now belongs to the Finance Ministry (via Finance Commission recommendations), replacing the Planning Commission's plan-assistance disbursement -- unrelated to when the Planning Commission itself was set up."}, {"id": 97, "stem": "Consider the following statements about the National Development Council:\n1.  It was set up in 1952 by an executive resolution.\n2.  It is presided over by the Prime Minister.\n3.  It is neither a constitutional nor a statutory body.\n4.  It was established under Article 263 of the Constitution.", "options": [{"key": "a", "text": "3 and 4 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "1, 2 and 4 only"}, {"key": "d", "text": "1, 3 and 4 only"}], "correct": "b", "explanation": "Statement 4 is wrong -- Article 263 established a different body, the Inter-State Council (1990, on the Sarkaria Commission's recommendation). The NDC was created by a 1952 Cabinet resolution, chaired by the PM, to involve states in plan formulation/approval; it's neither constitutional nor statutory."}, {"id": 98, "stem": "Which one of the following is NOT a member of the National Development Council?", "options": [{"key": "a", "text": "The Prime Minister"}, {"key": "b", "text": "The Chief Ministers of the states"}, {"key": "c", "text": "The Chief Justice of India"}, {"key": "d", "text": "The Union Cabinet Ministers"}], "correct": "c", "explanation": "The NDC comprises the PM (chairman), all Union Cabinet Ministers, all state Chief Ministers, UT administrators, and former Planning Commission members -- the judiciary (including the CJI) has no place on it, since its role is purely executive."}, {"id": 99, "stem": "Consider the following statements about the Union Public Service Commission:\n1.  Its Chairman and members are appointed by the President.\n2.  They hold office for six years or until the age of sixty-five years, whichever is earlier.\n3.  They can be removed by the President on the ground of misbehaviour only after an enquiry by the Supreme Court.\n4.  The Commission is a constitutional body established under Article 315.", "options": [{"key": "a", "text": "1, 2 and 4 only"}, {"key": "b", "text": "1, 3 and 4 only"}, {"key": "c", "text": "2, 3 and 4 only"}, {"key": "d", "text": "1, 2, 3 and 4"}], "correct": "d", "explanation": "All four correct: UPSC Chairman/members are appointed by the President under Article 315 (a constitutional body); they serve 6 years or till age 65 (earlier); removal for misbehaviour requires a binding Supreme Court enquiry on Presidential reference; half the members must have 10+ years of prior government service."}, {"id": 100, "stem": "Consider the following statements about a State Public Service Commission:\n1.  Its Chairman and members are appointed by the Governor.\n2.  They can be removed only by the President and not by the Governor.\n3.  They hold office for six years or until the age of sixty-two years, whichever is earlier.\n4.  Its annual report is submitted to the President.", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "3 and 4 only"}, {"key": "c", "text": "1, 2 and 3 only"}, {"key": "d", "text": "1, 2 and 4 only"}], "correct": "c", "explanation": "Statement 4 is wrong -- a State PSC's annual report goes to the GOVERNOR (who lays it before the state legislature), not the President. Appointment is by the Governor, but removal is by the President only (an independence safeguard), and the retiring age is 62."}, {"id": 101, "stem": "A Joint State Public Service Commission for two or more states can be created by:", "options": [{"key": "a", "text": "Parliament, on a request made by the legislatures of the states concerned"}, {"key": "b", "text": "The Governors of the states concerned acting together"}, {"key": "c", "text": "The Union Public Service Commission"}, {"key": "d", "text": "The President, on the advice of the Union Council of Ministers"}], "correct": "a", "explanation": "Article 315 lets Parliament create a Joint State PSC if two or more state legislatures pass resolutions requesting it. Its Chairman/members, appointed by the President, hold office at his pleasure and report to each state's Governor."}, {"id": 102, "stem": "After ceasing to hold office, the Chairman of the Union Public Service Commission is:", "options": [{"key": "a", "text": "Not eligible for any further employment under the Government of India or of a state"}, {"key": "b", "text": "Eligible for reappointment as Chairman of the Union Public Service Commission"}, {"key": "c", "text": "Eligible for appointment as a Governor"}, {"key": "d", "text": "Eligible for appointment as Chairman of a State Public Service Commission"}], "correct": "a", "explanation": "The UPSC Chairman faces an absolute bar on any further government employment (Union or state) after ceasing office -- meant to remove any hope of future favour. (A mere UPSC member, or a State PSC Chairman, faces lesser restrictions and can move between commissions.)"}, {"id": 103, "stem": "The Election Commission of India is established under which Article of the Constitution?", "options": [{"key": "a", "text": "Article 148"}, {"key": "b", "text": "Article 315"}, {"key": "c", "text": "Article 280"}, {"key": "d", "text": "Article 324"}], "correct": "d", "explanation": "Article 324 vests the Election Commission with superintendence, direction and control over preparing electoral rolls and conducting elections to Parliament, state legislatures, and the offices of President/Vice-President. Panchayat/municipal polls are separately handled by State Election Commissions (Article 243K)."}, {"id": 104, "stem": "Consider the following statements about the composition of the Election Commission of India:\n1.  It consists of the Chief Election Commissioner and such number of other Election Commissioners as the President may fix.\n2.  It has functioned as a multi-member body continuously since 1993.\n3.  All Election Commissioners have equal powers in the decision-making of the Commission.\n4.  The Constitution fixes the number of Election Commissioners at three.", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "1, 3 and 4 only"}, {"key": "d", "text": "2, 3 and 4 only"}], "correct": "a", "explanation": "Statement 4 is wrong -- the Constitution leaves the Commission's strength to the President's discretion, not fixed at 3. It was mostly single-member historically, briefly multi-member in 1989, and continuously multi-member since 1993; differences are settled by majority vote."}, {"id": 105, "stem": "Consider the following statements about the removal of Election Commissioners:\n1.  The Chief Election Commissioner can be removed in the same manner as a judge of the Supreme Court.\n2.  Other Election Commissioners cannot be removed except on the recommendation of the Chief Election Commissioner.\n3.  The conditions of service of the Chief Election Commissioner cannot be varied to his disadvantage after his appointment.\n4.  The Chief Election Commissioner can be removed by the President at his pleasure.", "options": [{"key": "a", "text": "2 and 3 only"}, {"key": "b", "text": "2 and 4 only"}, {"key": "c", "text": "3 and 4 only"}, {"key": "d", "text": "1, 2 and 3 only"}], "correct": "d", "explanation": "Statement 4 contradicts statement 1 and is wrong -- the CEC is removable ONLY like a Supreme Court judge (not at the President's pleasure), the key guarantee of Commission independence; his service conditions also can't be worsened after appointment. Other ECs need the CEC's recommendation to be removed."}, {"id": 106, "stem": "Elections to the panchayats and municipalities in a state are conducted by:", "options": [{"key": "a", "text": "The Election Commission of India"}, {"key": "b", "text": "The State Election Commission"}, {"key": "c", "text": "The State Government"}, {"key": "d", "text": "The District Collector"}], "correct": "b", "explanation": "Articles 243K and 243ZA vest superintendence/direction/control of panchayat and municipal elections in a State Election Commission (State Election Commissioner appointed by the Governor), removable only like a High Court judge, with protected service conditions."}, {"id": 107, "stem": "Articles 371 to 371J of the Constitution of India deal with:", "options": [{"key": "a", "text": "Relations between the Union and the states"}, {"key": "b", "text": "Special provisions with respect to certain states"}, {"key": "c", "text": "Services under the Union and the states"}, {"key": "d", "text": "The proclamation of emergency"}], "correct": "b", "explanation": "Part XXI's Articles 371-371J make 'special provisions with respect to certain states' -- mostly inserted later to address particular regional circumstances, backward-region aspirations, or tribal cultural/economic protection."}, {"id": 108, "stem": "Match the Articles in List I with the states to which they relate in List II:\nA. Article 371A -- 1. Goa\nB. Article 371F -- 2. Sikkim\nC. Article 371G -- 3. Nagaland\nD. Article 371I -- 4. Mizoram", "options": [{"key": "a", "text": "A-3, B-2, C-4, D-1"}, {"key": "b", "text": "A-3, B-4, C-1, D-2"}, {"key": "c", "text": "A-4, B-2, C-1, D-3"}, {"key": "d", "text": "A-4, B-2, C-3, D-1"}], "correct": "a", "explanation": "Article 371A = Nagaland (Naga customs/land); Article 371F = Sikkim (added when it became a state, 1975); Article 371G = Mizoram (Mizo customs, parallel to 371A); Article 371I = Goa (legislative assembly size). So A-3, B-2, C-4, D-1."}, {"id": 109, "stem": "Assertion (A): The Constitution of India treats all the states alike and makes no special provision for any of them. Reason (R): Special arrangements may be needed to meet the aspirations of backward regions and to protect the cultural and economic interests of tribal groups.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "d", "explanation": "The assertion is FALSE (Part XXI's Articles 371-371J DO make special provisions for specific states, so states aren't treated uniformly), while the reason is TRUE and justifies such classification, which doesn't violate equality given reasonable historical/social grounds (cf. the Fifth/Sixth Schedules)."}, {"id": 110, "stem": "The voting age for elections to the Lok Sabha and the state legislative assemblies was reduced from twenty-one to eighteen years by:", "options": [{"key": "a", "text": "The 61st Amendment Act, 1989"}, {"key": "b", "text": "The 44th Amendment Act, 1978"}, {"key": "c", "text": "The 73rd Amendment Act, 1992"}, {"key": "d", "text": "The 52nd Amendment Act, 1985"}], "correct": "a", "explanation": "The 61st Amendment Act, 1989 amended Article 326 to lower the voting age from 21 to 18 for Lok Sabha and state assembly elections, to give India's youth a voice in the political process."}, {"id": 111, "stem": "Which Constitutional Amendment Act made it obligatory for the President to give his assent to a Constitution Amendment Bill?", "options": [{"key": "a", "text": "The 1st Amendment Act, 1951"}, {"key": "b", "text": "The 24th Amendment Act, 1971"}, {"key": "c", "text": "The 44th Amendment Act, 1978"}, {"key": "d", "text": "The 42nd Amendment Act, 1976"}], "correct": "b", "explanation": "The 24th Amendment Act, 1971 (a response to the Golaknath judgment) affirmed Parliament's power to amend any part of the Constitution including Fundamental Rights, inserted Article 13(4), and made the President's assent to amendment bills COMPULSORY."}, {"id": 112, "stem": "The Seventh Constitutional Amendment Act, 1956 is associated with:", "options": [{"key": "a", "text": "The abolition of privy purses"}, {"key": "b", "text": "The right to education"}, {"key": "c", "text": "The reorganisation of states on a linguistic basis"}, {"key": "d", "text": "The introduction of Panchayati Raj"}], "correct": "c", "explanation": "The 7th Amendment, 1956 implemented the States Reorganisation Act -- abolishing the Part A/B/C/D classification, creating 14 states + 6 UTs, and enabling common High Courts and additional/acting HC judges."}, {"id": 113, "stem": "Delhi was given the special status of the National Capital Territory by:", "options": [{"key": "a", "text": "The 74th Amendment Act, 1992"}, {"key": "b", "text": "The 69th Amendment Act, 1991"}, {"key": "c", "text": "The 65th Amendment Act, 1990"}, {"key": "d", "text": "The 70th Amendment Act, 1992"}], "correct": "b", "explanation": "The 69th Amendment, 1991 inserted Articles 239AA and 239AB, giving Delhi a legislative assembly and council of ministers (with public order, police, land retained by the Union). The 70th Amendment separately added Delhi/Puducherry's elected assembly members to the Presidential electoral college."}, {"id": 114, "stem": "The Goods and Services Tax was introduced by which Constitutional Amendment Act?", "options": [{"key": "a", "text": "The 101st Amendment Act, 2016"}, {"key": "b", "text": "The 102nd Amendment Act, 2018"}, {"key": "c", "text": "The 100th Amendment Act, 2015"}, {"key": "d", "text": "The 103rd Amendment Act, 2019"}], "correct": "a", "explanation": "The 101st Amendment, 2016 introduced GST -- inserting Article 246A (concurrent GST powers for Union and states), Article 269A (inter-state supply levy), and Article 279A (GST Council). The 100th Amendment covered the Bangladesh land boundary agreement; the 102nd gave the National Commission for Backward Classes constitutional status."}, {"id": 115, "stem": "Consider the following statements about the official language of the Union:\n1.  Article 343 declares Hindi in the Devanagari script to be the official language of the Union.\n2.  The Constitution provided for the continued use of English for a period of fifteen years from its commencement.\n3.  Parliament was empowered to provide for the continued use of English thereafter.\n4.  Hindi is described in the Constitution as the national language of India.", "options": [{"key": "a", "text": "3 and 4 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "1, 2 and 4 only"}, {"key": "d", "text": "1, 3 and 4 only"}], "correct": "b", "explanation": "Statement 4 is wrong -- the Constitution never calls Hindi the 'national language', only the official language (Article 343, Devanagari script). English's use was to continue for 15 years, with Parliament empowered to extend it further (leading to the Official Languages Act, 1963)."}, {"id": 116, "stem": "The duty of the Union to promote the spread of the Hindi language so that it may serve as a medium of expression for all the elements of the composite culture of India is laid down in:", "options": [{"key": "a", "text": "Article 345"}, {"key": "b", "text": "Article 343"}, {"key": "c", "text": "Article 348"}, {"key": "d", "text": "Article 351"}], "correct": "d", "explanation": "Article 351 directs the Union to promote Hindi's spread, drawing on Hindustani and other Eighth Schedule languages and primarily on Sanskrit vocabulary, so it can serve as a medium of expression for India's composite culture."}, {"id": 117, "stem": "The form of numerals to be used for the official purposes of the Union under Article 343 is:", "options": [{"key": "a", "text": "The international form of Indian numerals"}, {"key": "b", "text": "The Devanagari form of numerals"}, {"key": "c", "text": "As decided by each state"}, {"key": "d", "text": "The Roman form of numerals"}], "correct": "a", "explanation": "Article 343(1) prescribes the international form of Indian numerals (ordinary modern figures) for official Union purposes, alongside Hindi in Devanagari script -- though the President could authorise Devanagari numerals for specified purposes during the transition."}, {"id": 118, "stem": "Consider the following statements about the Lokpal:\n1.  The Lokpal and Lokayuktas Act was enacted in 2013.\n2.  The Lokpal consists of a chairperson and a maximum of eight members.\n3.  Not less than one-half of the members must be judicial members.\n4.  The Lokpal is a constitutional body.", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "1, 3 and 4 only"}, {"key": "d", "text": "2, 3 and 4 only"}], "correct": "a", "explanation": "Statement 4 is wrong -- the Lokpal is a STATUTORY body under the Lokpal and Lokayuktas Act, 2013, with no constitutional status. It has a chairperson plus up to 8 members, of whom at least half must be judicial members (plus separate SC/ST/OBC/minority/women quotas)."}, {"id": 119, "stem": "The institution of the Lokayukta was first established in India by the state of:", "options": [{"key": "a", "text": "Odisha"}, {"key": "b", "text": "Rajasthan"}, {"key": "c", "text": "Bihar"}, {"key": "d", "text": "Maharashtra"}], "correct": "d", "explanation": "Though Odisha legislated earlier, Maharashtra was the first state to actually establish a Lokayukta, in 1972. The Lokpal/Lokayukta idea itself came from the first Administrative Reforms Commission's report on redress of citizens' grievances."}, {"id": 120, "stem": "The first Administrative Reforms Commission, which recommended the creation of the Lokpal and Lokayuktas, was set up in:", "options": [{"key": "a", "text": "1986"}, {"key": "b", "text": "1956"}, {"key": "c", "text": "1976"}, {"key": "d", "text": "1966"}], "correct": "d", "explanation": "The first Administrative Reforms Commission was set up in 1966, initially under Morarji Desai (succeeded by K. Hanumanthaiya). It submitted 20 reports, including one recommending an ombudsman modelled on Scandinavian and British Parliamentary Commissioner institutions."}, {"id": 121, "stem": "Match the industrial gases in List I with their principal constituents in List II:\nA. Water gas -- 1. Carbon monoxide and nitrogen\nB. Producer gas -- 2. Hydrogen, methane and carbon monoxide\nC. Natural gas -- 3. Carbon monoxide and hydrogen\nD. Coal gas -- 4. Methane", "options": [{"key": "a", "text": "A-1, B-4, C-3, D-2"}, {"key": "b", "text": "A-2, B-4, C-1, D-3"}, {"key": "c", "text": "A-3, B-1, C-2, D-4"}, {"key": "d", "text": "A-3, B-1, C-4, D-2"}], "correct": "d", "explanation": "Water gas = CO + hydrogen (from steam over red-hot coke); Producer gas = CO + nitrogen (air over red-hot coke, lower calorific value); Natural gas = mainly methane; Coal gas = hydrogen, methane, CO (from destructive distillation of coal). So A-3, B-1, C-4, D-2."}, {"id": 122, "stem": "Consider the following statements about hydrogen peroxide:\n1.  It is used as a mild antiseptic.\n2.  It is used for bleaching delicate materials such as silk and wool.\n3.  It is stored in coloured bottles kept in the dark.\n4.  It is a stable compound that does not decompose on standing.", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "3 and 4 only"}, {"key": "c", "text": "1, 2 and 3 only"}, {"key": "d", "text": "1, 2 and 4 only"}], "correct": "c", "explanation": "Statement 4 is wrong and contradicts statement 3 -- hydrogen peroxide decomposes slowly (faster with light/heat/dust), hence stored in dark coloured bottles, often stabilised with a trace of acid. It's used as a mild antiseptic and for bleaching delicate fabrics like silk/wool."}, {"id": 123, "stem": "Assertion (A): Hydrogen is placed separately in the modern periodic table and its position is regarded as anomalous. Reason (R): Hydrogen has two electrons in its outermost shell, like the alkaline earth metals.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "c", "explanation": "A is true (hydrogen's position is anomalous) but R is false -- hydrogen has only ONE outer electron (not two), making it resemble alkali metals (one electron) yet also halogens (needing one more electron), fitting neither group fully."}, {"id": 124, "stem": "Hydrogen is regarded as a promising fuel of the future chiefly because:", "options": [{"key": "a", "text": "It is the cheapest fuel available at present"}, {"key": "b", "text": "It can be stored easily at ordinary pressure"}, {"key": "c", "text": "It is obtained directly from the atmosphere"}, {"key": "d", "text": "Its combustion produces only water and no polluting gases"}], "correct": "d", "explanation": "Hydrogen burns to give only water, with no CO2 or sulphur oxides -- a very high calorific value per unit weight. Challenges are manufacturing cost, and safe/economical storage-transport of this light, inflammable gas."}, {"id": 125, "stem": "Sulphuric acid, often called the king of chemicals, is manufactured on a large scale by:", "options": [{"key": "a", "text": "The Haber process"}, {"key": "b", "text": "The Contact process"}, {"key": "c", "text": "The Ostwald process"}, {"key": "d", "text": "The Solvay process"}], "correct": "b", "explanation": "The Contact process oxidises SO2 to SO3 over a vanadium pentoxide catalyst, absorbed to form oleum then diluted to sulphuric acid. (Haber = ammonia; Ostwald = nitric acid from ammonia; Solvay = sodium carbonate.) Sulphuric acid is a strong dehydrating agent, charring sugar/paper."}, {"id": 126, "stem": "Nitric acid is manufactured industrially from ammonia by:", "options": [{"key": "a", "text": "The Contact process"}, {"key": "b", "text": "The Bayer process"}, {"key": "c", "text": "The Bosch process"}, {"key": "d", "text": "The Ostwald process"}], "correct": "d", "explanation": "The Ostwald process catalytically oxidises ammonia over platinum to nitric oxide, further oxidised and absorbed in water to form nitric acid. Concentrated nitric acid passivates iron/aluminium, allowing transport in aluminium containers."}, {"id": 127, "stem": "Consider the following statements about the halogens:\n1.  Fluorine is the most reactive member of the group.\n2.  Iodine sublimes on heating.\n3.  Chlorine is used for the disinfection of drinking water.\n4.  All the halogens are gases at ordinary temperature.", "options": [{"key": "a", "text": "3 and 4 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "1, 2 and 4 only"}, {"key": "d", "text": "1, 3 and 4 only"}], "correct": "b", "explanation": "Statement 4 is wrong -- fluorine and chlorine are gases, bromine is the only liquid non-metal at room temperature, and iodine is a solid that sublimes. Reactivity decreases down the group (F > Cl > Br > I); excess fluoride causes fluorosis; chlorine disinfects drinking water."}, {"id": 128, "stem": "Assertion (A): Chlorine and sulphur dioxide both act as bleaching agents. Reason (R): Both of them bleach materials by the process of oxidation.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "c", "explanation": "A is true but R is false -- chlorine bleaches PERMANENTLY by OXIDATION (moisture-dependent, used for cotton/linen), while sulphur dioxide bleaches TEMPORARILY by REDUCTION (colour returns on air exposure, used for delicate fabrics like silk/wool)."}, {"id": 129, "stem": "Match the inert gases in List I with their uses or properties in List II:\nA. Argon -- 1. Used in powerful lamps and known as the stranger gas\nB. Radon -- 2. A radioactive gas used in the treatment of cancer\nC. Krypton -- 3. Filling of electric bulbs to prevent oxidation of the filament\nD. Xenon -- 4. Used in high-efficiency lamps and in photographic flash lamps", "options": [{"key": "a", "text": "A-1, B-2, C-4, D-3"}, {"key": "b", "text": "A-2, B-3, C-1, D-4"}, {"key": "c", "text": "A-3, B-2, C-4, D-1"}, {"key": "d", "text": "A-3, B-4, C-2, D-1"}], "correct": "c", "explanation": "Argon (most abundant noble gas) protects tungsten filaments from burning (bulb filling); Radon is the only radioactive noble gas, used in cancer treatment; Krypton is used in powerful/'stranger' lamps; Xenon is used in high-efficiency and flash lamps. So A-3, B-2, C-4, D-1."}, {"id": 130, "stem": "Consider the following statements about sulphur dioxide:\n1.  It is used as a preservative for foodstuffs such as jams and squashes.\n2.  It is one of the gases responsible for acid rain.\n3.  It has a pungent and suffocating odour.\n4.  It is a colourless gas that is lighter than air.", "options": [{"key": "a", "text": "2 and 3 only"}, {"key": "b", "text": "2 and 4 only"}, {"key": "c", "text": "3 and 4 only"}, {"key": "d", "text": "1, 2 and 3 only"}], "correct": "d", "explanation": "Statement 4 is wrong -- SO2 is colourless but MORE than twice as dense as air (not lighter). It's used as a food preservative (jams/squashes), dissolves in atmospheric moisture forming acids responsible for acid rain, and has a pungent, suffocating odour."}, {"id": 131, "stem": "Match the classes of hydrocarbons in List I with their general formulae in List II:\nA. Alkanes -- 1. CnH2n+2\nB. Alkenes -- 2. CnH2n-2\nC. Alkynes -- 3. CnH2n\nD. Benzene -- 4. C6H6", "options": [{"key": "a", "text": "A-1, B-3, C-2, D-4"}, {"key": "b", "text": "A-1, B-3, C-4, D-2"}, {"key": "c", "text": "A-3, B-2, C-1, D-4"}, {"key": "d", "text": "A-4, B-3, C-2, D-1"}], "correct": "a", "explanation": "Alkanes (saturated, single bonds) = CnH2n+2; Alkenes (one double bond) = CnH2n; Alkynes (one triple bond) = CnH2n-2; Benzene (aromatic ring) = C6H6. So A-1, B-3, C-2, D-4."}, {"id": 132, "stem": "The chief constituent of compressed natural gas, also known as marsh gas, is:", "options": [{"key": "a", "text": "Ethylene"}, {"key": "b", "text": "Acetylene"}, {"key": "c", "text": "Butane"}, {"key": "d", "text": "Methane"}], "correct": "d", "explanation": "Methane, the first alkane, is called marsh gas because vegetable decay under water in marshes produces it; it's also the main component of biogas and of compressed natural gas (CNG). LPG, by contrast, is mainly butane plus propane, with an odorant added for leak detection."}, {"id": 133, "stem": "Consider the following statements about a homologous series:\n1.  Successive members differ by a CH2 unit.\n2.  All members can be represented by the same general formula.\n3.  The members show similar chemical properties.\n4.  All members of a homologous series have identical physical properties.", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "3 and 4 only"}, {"key": "c", "text": "1, 2 and 3 only"}, {"key": "d", "text": "1, 2 and 4 only"}], "correct": "c", "explanation": "Statement 4 is wrong -- physical properties (melting/boiling point, solubility) change gradually with molecular mass along a homologous series, though chemical behaviour stays similar due to the shared functional group. Successive members differ by a CH2 unit (mass 14) and share a general formula."}, {"id": 134, "stem": "The process by which heavier fractions of petroleum are broken down into lighter and more useful ones such as petrol is called:", "options": [{"key": "a", "text": "Fractional distillation"}, {"key": "b", "text": "Hydrogenation"}, {"key": "c", "text": "Polymerisation"}, {"key": "d", "text": "Cracking"}], "correct": "d", "explanation": "Cracking (heat or catalyst) breaks heavier petroleum fractions into lighter, more useful ones like petrol, increasing petrol yield from crude oil. Fractional distillation is the prior separation step by boiling point (gas, petrol, kerosene, diesel, lubricating oil, bitumen)."}, {"id": 135, "stem": "Assertion (A): Propane exhibits isomerism whereas butane does not. Reason (R): Isomerism in alkanes requires a chain of at least four carbon atoms, so that a branched arrangement becomes possible.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "d", "explanation": "A is false but R is true (and explains why A is wrong): isomerism in alkanes needs at least 4 carbons for a branched arrangement to be possible. BUTANE (C4H10) exhibits isomerism (n-butane/isobutane); PROPANE (C3H8), with only 3 carbons, does not."}, {"id": 136, "stem": "The alcohol present in alcoholic beverages is:", "options": [{"key": "a", "text": "Glycerol"}, {"key": "b", "text": "Propanol"}, {"key": "c", "text": "Ethanol"}, {"key": "d", "text": "Methanol"}], "correct": "c", "explanation": "Ethanol (ethyl/grain alcohol), from fermentation of sugars/starches by yeast enzymes, is the alcohol in alcoholic beverages -- used also as a solvent, antiseptic, and petrol-blend fuel. Consuming methanol is dangerous even in small amounts."}, {"id": 137, "stem": "Assertion (A): Methanol must never be consumed even in small quantities. Reason (R): It is oxidised in the body to substances that attack the optic nerve and can cause blindness or death.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "a", "explanation": "Both true and R explains A: methanol is metabolised in the liver into formaldehyde and formic acid, which damage the optic nerve and cause acidosis, potentially causing blindness or death. Methanol (wood spirit) is also an industrial solvent/raw material."}, {"id": 138, "stem": "Ethanol rendered unfit for drinking by the addition of substances such as methanol and pyridine is known as:", "options": [{"key": "a", "text": "Power alcohol"}, {"key": "b", "text": "Absolute alcohol"}, {"key": "c", "text": "Denatured spirit"}, {"key": "d", "text": "Rectified spirit"}], "correct": "c", "explanation": "Denatured spirit is ethanol made undrinkable by adding substances like methanol and pyridine (often with a warning dye), so it avoids the heavy excise duty on potable alcohol. Rectified spirit (~95% ethanol) and absolute alcohol (near-pure) are drinkable-grade; power alcohol is ethanol-petrol blend fuel."}, {"id": 139, "stem": "Consider the following statements about the fermentation of sugar:\n1.  It is brought about by enzymes present in yeast.\n2.  The chief products are ethanol and carbon dioxide.\n3.  It is used in the making of bread as well as of alcoholic drinks.\n4.  It requires a plentiful supply of oxygen.", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "1, 3 and 4 only"}, {"key": "d", "text": "2, 3 and 4 only"}], "correct": "a", "explanation": "Statement 4 is wrong -- fermentation is ANAEROBIC (proceeds without air). Yeast enzymes (invertase, zymase) convert sugar to ethanol and CO2; used in both alcoholic drinks and bread-making (the escaping CO2 makes dough rise)."}, {"id": 140, "stem": "Match the polymers in List I with their monomers in List II:\nA. Polythene -- 1. Vinyl chloride\nB. Polyvinyl chloride -- 2. Ethene\nC. Teflon -- 3. Isoprene\nD. Natural rubber -- 4. Tetrafluoroethene", "options": [{"key": "a", "text": "A-2, B-1, C-3, D-4"}, {"key": "b", "text": "A-2, B-1, C-4, D-3"}, {"key": "c", "text": "A-4, B-1, C-2, D-3"}, {"key": "d", "text": "A-4, B-2, C-1, D-3"}], "correct": "b", "explanation": "Polythene <- ethene; Polyvinyl chloride <- vinyl chloride; Teflon <- tetrafluoroethene; Natural rubber <- isoprene (from latex). So A-2, B-1, C-4, D-3."}, {"id": 141, "stem": "Consider the following statements about thermoplastic and thermosetting polymers:\n1.  A thermoplastic softens on heating and can be moulded again.\n2.  Polythene and polyvinyl chloride are thermoplastics.\n3.  Bakelite is a thermosetting polymer.\n4.  A thermosetting polymer can be softened and remoulded repeatedly.", "options": [{"key": "a", "text": "2 and 3 only"}, {"key": "b", "text": "2 and 4 only"}, {"key": "c", "text": "3 and 4 only"}, {"key": "d", "text": "1, 2 and 3 only"}], "correct": "d", "explanation": "Statement 4 is wrong -- a thermosetting polymer, once set, CANNOT be softened/remoulded again (chains cross-link into a rigid network) -- e.g. Bakelite. Thermoplastics (polythene, PVC) soften on heating and can be remoulded."}, {"id": 142, "stem": "The process of heating natural rubber with sulphur to improve its strength and elasticity is called:", "options": [{"key": "a", "text": "Saponification"}, {"key": "b", "text": "Polymerisation"}, {"key": "c", "text": "Galvanisation"}, {"key": "d", "text": "Vulcanisation"}], "correct": "d", "explanation": "Vulcanisation (discovered by Charles Goodyear) heats natural rubber with sulphur, creating cross-links between polymer chains, making it harder, more elastic, and less temperature-sensitive than untreated (soft/sticky-in-heat, brittle-in-cold) rubber."}, {"id": 143, "stem": "Rayon, often called artificial silk, is:", "options": [{"key": "a", "text": "A regenerated fibre obtained from cellulose"}, {"key": "b", "text": "A wholly synthetic fibre made from petrochemicals"}, {"key": "c", "text": "A polymer of vinyl chloride"}, {"key": "d", "text": "A natural protein fibre"}], "correct": "a", "explanation": "Rayon (artificial silk) is a REGENERATED cellulose fibre, chemically treated from wood pulp -- neither wholly natural nor wholly synthetic. Nylon was the first fully synthetic fibre (no plant/animal raw material); polyester is another synthetic fibre."}, {"id": 144, "stem": "Assertion (A): Plastics are a serious source of environmental pollution. Reason (R): Most plastics are non-biodegradable and are not decomposed by micro-organisms in the soil.", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "a", "explanation": "Both true and R explains A: most plastics resist microbial decomposition (non-biodegradable), so they persist for very long periods, choke drains, harm animals, and release harmful gases when burned -- remedies include reduce/recycle and biodegradable substitutes."}, {"id": 145, "stem": "The functional group present in all carboxylic acids is:", "options": [{"key": "a", "text": "-CHO"}, {"key": "b", "text": "-CO-"}, {"key": "c", "text": "-COOH"}, {"key": "d", "text": "-OH"}], "correct": "c", "explanation": "The carboxyl group (-COOH), combining carbonyl and hydroxyl groups, defines carboxylic acids and gives them their (weak) acidic character via releasable protons. -OH alone marks alcohols, -CHO marks aldehydes, -CO- marks ketones."}, {"id": 146, "stem": "The reaction of a carboxylic acid with an alcohol in the presence of a little concentrated sulphuric acid produces a sweet-smelling substance known as:", "options": [{"key": "a", "text": "A ketone"}, {"key": "b", "text": "An ether"}, {"key": "c", "text": "An aldehyde"}, {"key": "d", "text": "An ester"}], "correct": "d", "explanation": "Esterification: a carboxylic acid + alcohol with a little concentrated sulphuric acid produces a sweet-smelling ESTER plus water -- responsible for many fruit/flower fragrances, used in perfumes/flavours. Alkaline hydrolysis reverses this (basis of soap-making)."}, {"id": 147, "stem": "Sodium benzoate, widely used as a preservative in food, is the salt of:", "options": [{"key": "a", "text": "Lactic acid"}, {"key": "b", "text": "Acetic acid"}, {"key": "c", "text": "Benzoic acid"}, {"key": "d", "text": "Citric acid"}], "correct": "c", "explanation": "Sodium benzoate, a common food preservative (checks mould/yeast/bacteria growth in acidic foods like juices/jams/pickles), is the sodium salt of benzoic acid -- preferred over benzoic acid itself for its water solubility."}, {"id": 148, "stem": "The explosive commonly known as TNT is:", "options": [{"key": "a", "text": "Trinitrocellulose"}, {"key": "b", "text": "Trinitrotoluene"}, {"key": "c", "text": "Trinitrophenol"}, {"key": "d", "text": "Trinitroglycerine"}], "correct": "b", "explanation": "TNT = Trinitrotoluene, a pale yellow, shock-stable solid needing a detonator (valued as a military explosive). Trinitrophenol is picric acid (used in older munitions and as a dye); RDX (cyclonite) is another well-known high explosive."}, {"id": 149, "stem": "Match the explosives in List I with their descriptions in List II:\nA. Gunpowder -- 1. A mixture of potassium nitrate, charcoal and sulphur\nB. Dynamite -- 2. A high explosive also known as cyclonite\nC. Nitroglycerine -- 3. An oily liquid explosive that is highly sensitive to shock\nD. RDX -- 4. Invented by Alfred Nobel by absorbing a liquid explosive in kieselguhr", "options": [{"key": "a", "text": "A-1, B-2, C-3, D-4"}, {"key": "b", "text": "A-1, B-2, C-4, D-3"}, {"key": "c", "text": "A-1, B-4, C-3, D-2"}, {"key": "d", "text": "A-4, B-1, C-3, D-2"}], "correct": "c", "explanation": "Gunpowder (black powder) = potassium nitrate + charcoal + sulphur, the oldest known explosive; Nitroglycerine = an oily, shock-sensitive liquid explosive (Sobrero); Dynamite = Nobel's invention, absorbing nitroglycerine in kieselguhr for safe transport; RDX = a modern high explosive (cyclonite). So A-1, B-4, C-3, D-2."}, {"id": 150, "stem": "An explosion differs from ordinary combustion chiefly in that it:", "options": [{"key": "a", "text": "Releases a very large volume of gas and heat suddenly, producing a violent increase in pressure"}, {"key": "b", "text": "Occurs only in the absence of oxygen"}, {"key": "c", "text": "Produces no gaseous products"}, {"key": "d", "text": "Absorbs heat from the surroundings"}], "correct": "a", "explanation": "An explosive decomposes very rapidly, releasing a huge volume of hot gas suddenly -- the sudden gas expansion creates the destructive pressure wave. Most explosives carry their own oxygen internally (independent of surrounding air) and react strongly exothermically."}];
+const TOTAL_SECONDS = 150 * 60; // 2.5 hours
+const STORAGE_ACTIVE = 'practiceTestActiveAttempt_v1';
+const STORAGE_HISTORY = 'practiceTestHistory_v1';
+
+let state = {
+  answers: {},      // qid -> 'a'/'b'/'c'/'d'
+  flags: {},         // qid -> true
+  endTime: null,     // epoch ms when timer ends
+  startTime: null,
+  submitted: false
+};
+let timerInterval = null;
+
+// ---------- Utility ----------
+function $(sel){ return document.querySelector(sel); }
+function $all(sel){ return document.querySelectorAll(sel); }
+function showScreen(id){
+  $all('.screen').forEach(s => s.classList.remove('active'));
+  $(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function fmtTime(totalSec){
+  totalSec = Math.max(0, Math.floor(totalSec));
+  const h = String(Math.floor(totalSec/3600)).padStart(2,'0');
+  const m = String(Math.floor((totalSec%3600)/60)).padStart(2,'0');
+  const s = String(totalSec%60).padStart(2,'0');
+  return `${h}:${m}:${s}`;
+}
+function saveActiveAttempt(){
+  localStorage.setItem(STORAGE_ACTIVE, JSON.stringify(state));
+}
+function clearActiveAttempt(){
+  localStorage.removeItem(STORAGE_ACTIVE);
+}
+function loadActiveAttempt(){
+  const raw = localStorage.getItem(STORAGE_ACTIVE);
+  if(!raw) return null;
+  try{ return JSON.parse(raw); }catch(e){ return null; }
+}
+function getHistory(){
+  const raw = localStorage.getItem(STORAGE_HISTORY);
+  if(!raw) return [];
+  try{ return JSON.parse(raw); }catch(e){ return []; }
+}
+function saveHistory(list){
+  localStorage.setItem(STORAGE_HISTORY, JSON.stringify(list));
+}
+
+// ---------- Build test screen ----------
+function buildQuestionCards(){
+  const col = $('#questionsCol');
+  col.innerHTML = '';
+  QUESTIONS.forEach(q => {
+    const card = document.createElement('div');
+    card.className = 'qcard';
+    card.id = 'qcard-' + q.id;
+
+    const head = document.createElement('div');
+    head.className = 'qhead';
+    head.innerHTML = `<span class="qnum">Q${q.id}</span>`;
+    const flagBtn = document.createElement('button');
+    flagBtn.className = 'flag-btn';
+    flagBtn.textContent = 'Flag for review';
+    flagBtn.onclick = () => toggleFlag(q.id, flagBtn, card);
+    head.appendChild(flagBtn);
+    card.appendChild(head);
+
+    const stem = document.createElement('div');
+    stem.className = 'qstem';
+    stem.textContent = q.stem;
+    card.appendChild(stem);
+
+    const opts = document.createElement('div');
+    opts.className = 'options';
+    q.options.forEach(o => {
+      const label = document.createElement('label');
+      label.className = 'opt';
+      label.id = `opt-${q.id}-${o.key}`;
+      label.innerHTML = `
+        <input type="radio" name="q${q.id}" value="${o.key}">
+        <span class="opt-key">(${o.key})</span>
+        <span class="opt-text"></span>
+      `;
+      label.querySelector('.opt-text').textContent = o.text;
+      label.querySelector('input').addEventListener('change', () => selectAnswer(q.id, o.key));
+      opts.appendChild(label);
+    });
+    card.appendChild(opts);
+    col.appendChild(card);
+  });
+}
+
+function toggleFlag(qid, btn, card){
+  if(state.flags[qid]){
+    delete state.flags[qid];
+    btn.classList.remove('on');
+    card.classList.remove('flagged');
+  } else {
+    state.flags[qid] = true;
+    btn.classList.add('on');
+    card.classList.add('flagged');
+  }
+  saveActiveAttempt();
+  renderPalette();
+}
+
+function selectAnswer(qid, key){
+  state.answers[qid] = key;
+  const card = document.getElementById('qcard-' + qid);
+  card.classList.add('answered');
+  card.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+  document.getElementById(`opt-${qid}-${key}`).classList.add('selected');
+  saveActiveAttempt();
+  updateProgress();
+  renderPalette();
+}
+
+function restoreAnswersToDOM(){
+  QUESTIONS.forEach(q => {
+    const card = document.getElementById('qcard-' + q.id);
+    const ans = state.answers[q.id];
+    if(ans){
+      card.classList.add('answered');
+      const input = card.querySelector(`input[value="${ans}"]`);
+      if(input) input.checked = true;
+      const optEl = document.getElementById(`opt-${q.id}-${ans}`);
+      if(optEl) optEl.classList.add('selected');
+    }
+    if(state.flags[q.id]){
+      card.classList.add('flagged');
+      card.querySelector('.flag-btn').classList.add('on');
+    }
+  });
+}
+
+function updateProgress(){
+  const count = Object.keys(state.answers).length;
+  $('#progressPill').textContent = `${count} / 150 answered`;
+}
+
+function renderPalette(){
+  const grid = $('#paletteGrid');
+  grid.innerHTML = '';
+  QUESTIONS.forEach(q => {
+    const btn = document.createElement('button');
+    btn.className = 'pnum';
+    if(state.answers[q.id]) btn.classList.add('answered');
+    if(state.flags[q.id]) btn.classList.add('flagged');
+    btn.textContent = q.id;
+    btn.onclick = () => {
+      document.getElementById('qcard-' + q.id).scrollIntoView({behavior:'smooth', block:'center'});
+      if(window.innerWidth <= 920){ $('#paletteCol').classList.remove('open'); }
+    };
+    grid.appendChild(btn);
+  });
+}
+
+// ---------- Timer ----------
+function startTimerLoop(){
+  if(timerInterval) clearInterval(timerInterval);
+  tickTimer();
+  timerInterval = setInterval(tickTimer, 1000);
+}
+function tickTimer(){
+  const remaining = (state.endTime - Date.now()) / 1000;
+  const box = $('#timerBox');
+  box.textContent = fmtTime(remaining);
+  if(remaining <= 300) box.classList.add('low'); else box.classList.remove('low');
+  if(remaining <= 0){
+    clearInterval(timerInterval);
+    submitTest(true);
+  }
+}
+
+// ---------- Start / resume test ----------
+function beginNewTest(){
+  state = {
+    answers: {},
+    flags: {},
+    startTime: Date.now(),
+    endTime: Date.now() + TOTAL_SECONDS*1000,
+    submitted: false
+  };
+  saveActiveAttempt();
+  buildQuestionCards();
+  renderPalette();
+  updateProgress();
+  showScreen('#testScreen');
+  startTimerLoop();
+}
+
+function resumeTest(saved){
+  state = saved;
+  buildQuestionCards();
+  restoreAnswersToDOM();
+  renderPalette();
+  updateProgress();
+  showScreen('#testScreen');
+  startTimerLoop();
+}
+
+// ---------- Submit & scoring ----------
+function computeResult(){
+  let correct=0, incorrect=0, unattempted=0;
+  const details = QUESTIONS.map(q => {
+    const given = state.answers[q.id] || null;
+    let status;
+    if(!given){ status='unattempted'; unattempted++; }
+    else if(given === q.correct){ status='correct'; correct++; }
+    else { status='incorrect'; incorrect++; }
+    return { id:q.id, stem:q.stem, options:q.options, correct:q.correct, explanation:q.explanation, given, status };
+  });
+  const timeUsedSec = Math.min(TOTAL_SECONDS, Math.round((Date.now() - state.startTime)/1000));
+  return {
+    id: 'attempt_' + Date.now(),
+    date: new Date().toISOString(),
+    correct, incorrect, unattempted,
+    total: QUESTIONS.length,
+    timeUsedSec,
+    details
+  };
+}
+
+function submitTest(auto){
+  if(state.submitted) return;
+  state.submitted = true;
+  if(timerInterval) clearInterval(timerInterval);
+  const result = computeResult();
+  const hist = getHistory();
+  hist.unshift(result);
+  saveHistory(hist);
+  clearActiveAttempt();
+  renderResults(result);
+  showScreen('#resultsScreen');
+}
+
+function confirmSubmit(){
+  const unanswered = QUESTIONS.length - Object.keys(state.answers).length;
+  if(unanswered > 0){
+    $('#confirmText').textContent = `You have ${unanswered} unanswered question(s). Are you sure you want to submit now? This cannot be undone.`;
+  } else {
+    $('#confirmText').textContent = `All questions answered. Submit now? This cannot be undone.`;
+  }
+  $('#confirmModal').classList.add('active');
+}
+
+// ---------- Results rendering ----------
+function renderResults(result){
+  $('#scoreBig').textContent = `${result.correct} / ${result.total}`;
+  $('#scoreDate').textContent = new Date(result.date).toLocaleString();
+  $('#statCorrect').textContent = result.correct;
+  $('#statIncorrect').textContent = result.incorrect;
+  $('#statUnattempted').textContent = result.unattempted;
+  const acc = result.correct + result.incorrect > 0
+    ? Math.round(result.correct / (result.correct + result.incorrect) * 100)
+    : 0;
+  $('#statAccuracy').textContent = acc + '%';
+  $('#statTime').textContent = fmtTime(result.timeUsedSec);
+
+  const panels = { all: [], correct: [], incorrect: [], unattempted: [] };
+  result.details.forEach(d => {
+    const el = buildReviewCard(d);
+    panels.all.push(el);
+    panels[d.status].push(el.cloneNode(true));
+  });
+
+  ['all','correct','incorrect','unattempted'].forEach(key => {
+    const panel = document.getElementById('panel-' + key);
+    panel.innerHTML = '';
+    if(panels[key].length === 0){
+      const p = document.createElement('p');
+      p.className = 'empty-note';
+      p.textContent = 'Nothing to show here.';
+      panel.appendChild(p);
+    } else {
+      panels[key].forEach(el => panel.appendChild(el));
+    }
+  });
+
+  $all('.tab-btn').forEach(b => b.classList.remove('active'));
+  $('.tab-btn[data-tab="all"]').classList.add('active');
+  $all('.tab-panel').forEach(p => p.classList.remove('active'));
+  $('#panel-all').classList.add('active');
+}
+
+function buildReviewCard(d){
+  const card = document.createElement('div');
+  card.className = 'review-card ' + d.status;
+
+  const tag = document.createElement('span');
+  tag.className = 'review-tag ' + d.status;
+  tag.textContent = d.status === 'correct' ? 'Correct' : d.status === 'incorrect' ? 'Incorrect' : 'Unattempted';
+  card.appendChild(tag);
+
+  const num = document.createElement('div');
+  num.className = 'qnum';
+  num.style.marginLeft = '8px';
+  num.style.display = 'inline-block';
+  num.textContent = 'Q' + d.id;
+  card.appendChild(num);
+
+  const stem = document.createElement('div');
+  stem.className = 'qstem';
+  stem.style.marginTop = '8px';
+  stem.textContent = d.stem;
+  card.appendChild(stem);
+
+  const optsWrap = document.createElement('div');
+  d.options.forEach(o => {
+    const row = document.createElement('div');
+    let cls = 'review-opt';
+    if(o.key === d.correct) cls += ' correct-answer';
+    else if(o.key === d.given && d.status === 'incorrect') cls += ' your-wrong';
+    row.className = cls;
+    let suffix = '';
+    if(o.key === d.correct) suffix = '  ✓ Correct answer';
+    if(o.key === d.given && d.status !== 'correct') suffix += '  (your answer)';
+    if(o.key === d.given && d.status === 'correct') suffix = '  ✓ Your answer — correct';
+    row.innerHTML = `<span class="opt-key">(${o.key})</span><span>${escapeHtml(o.text)}${suffix}</span>`;
+    optsWrap.appendChild(row);
+  });
+  card.appendChild(optsWrap);
+
+  const exp = document.createElement('div');
+  exp.className = 'explanation';
+  exp.innerHTML = `<span class="exlabel">Explanation</span>${escapeHtml(d.explanation)}`;
+  card.appendChild(exp);
+
+  return card;
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// ---------- History screen ----------
+function renderHistory(){
+  const list = getHistory();
+  const wrap = $('#historyList');
+  wrap.innerHTML = '';
+  if(list.length === 0){
+    wrap.innerHTML = '<p class="empty-note">No attempts saved yet. Complete a test to see it here.</p>';
+    return;
+  }
+  list.forEach(r => {
+    const item = document.createElement('div');
+    item.className = 'history-item';
+    const acc = r.correct + r.incorrect > 0 ? Math.round(r.correct/(r.correct+r.incorrect)*100) : 0;
+    item.innerHTML = `
+      <div>
+        <div class="hscore">${r.correct} / ${r.total}</div>
+        <div class="hdate">${new Date(r.date).toLocaleString()} · ${acc}% accuracy · ${fmtTime(r.timeUsedSec)} used</div>
+      </div>
+      <button class="btn-secondary" style="width:auto;">Open review</button>
+    `;
+    item.querySelector('button').onclick = () => {
+      renderResults(r);
+      showScreen('#resultsScreen');
+    };
+    wrap.appendChild(item);
+  });
+}
+
+// ---------- Event wiring ----------
+window.addEventListener('DOMContentLoaded', () => {
+  const active = loadActiveAttempt();
+  if(active && !active.submitted && active.endTime > Date.now()){
+    // silently offer resume via start screen note
+    $('#startBtn').textContent = 'Resume Test';
+  }
+
+  $('#startBtn').addEventListener('click', () => {
+    const active2 = loadActiveAttempt();
+    if(active2 && !active2.submitted && active2.endTime > Date.now()){
+      resumeTest(active2);
+    } else {
+      beginNewTest();
+    }
+  });
+
+  $('#viewHistoryBtn').addEventListener('click', () => {
+    renderHistory();
+    showScreen('#historyScreen');
+  });
+  $('#backToStartFromHistoryBtn').addEventListener('click', () => showScreen('#startScreen'));
+  $('#backToStartBtn').addEventListener('click', () => showScreen('#startScreen'));
+  $('#toHistoryFromResultsBtn').addEventListener('click', () => {
+    renderHistory();
+    showScreen('#historyScreen');
+  });
+
+  $('#submitBtn').addEventListener('click', confirmSubmit);
+  $('#cancelSubmitBtn').addEventListener('click', () => $('#confirmModal').classList.remove('active'));
+  $('#confirmSubmitBtn').addEventListener('click', () => {
+    $('#confirmModal').classList.remove('active');
+    submitTest(false);
+  });
+
+  $('#paletteToggleBtn').addEventListener('click', () => {
+    $('#paletteCol').classList.toggle('open');
+  });
+
+  $all('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $all('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      $all('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      window.scrollTo(0, document.querySelector('.tabs').offsetTop - 20);
+    });
+  });
+
+  window.addEventListener('beforeunload', () => {
+    if(!state.submitted && state.startTime) saveActiveAttempt();
+  });
+});
+</script>
+</body>
+</html>

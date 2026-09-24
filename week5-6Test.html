@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Timed Practice Test — Weeks 5 & 6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --parchment:#F3EEE1;
+    --parchment-deep:#EAE2CE;
+    --paper:#FBF8F1;
+    --navy:#1F2D4A;
+    --navy-deep:#141E33;
+    --gold:#B08A2E;
+    --gold-soft:#E4C77A;
+    --maroon:#7A2A2A;
+    --green:#3C6E3C;
+    --ink:#26241F;
+    --ink-soft:#5B5749;
+    --line:#D8CDAE;
+    --radius:10px;
+    --shadow: 0 2px 10px rgba(31,45,74,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.5;
+    min-height:100vh;
+  }
+  h1,h2,h3,.serif{font-family:'Playfair Display', serif;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  button{font-family:inherit;cursor:pointer;}
+
+  /* ---------- Layout shells ---------- */
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  .center-wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:48px 24px 80px;
+  }
+
+  /* ---------- Start screen ---------- */
+  .start-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:40px 36px;
+    box-shadow:var(--shadow);
+  }
+  .start-card h1{
+    font-size:2rem;
+    color:var(--navy);
+    margin:0 0 6px;
+  }
+  .start-card .subtitle{
+    color:var(--ink-soft);
+    margin:0 0 28px;
+    font-size:1rem;
+  }
+  .meta-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-bottom:28px;
+  }
+  .meta-box{
+    background:var(--parchment-deep);
+    border-radius:8px;
+    padding:14px 12px;
+    text-align:center;
+  }
+  .meta-box .num{
+    font-family:'Playfair Display', serif;
+    font-size:1.5rem;
+    color:var(--navy);
+    font-weight:700;
+    display:block;
+  }
+  .meta-box .lbl{
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+  }
+  .rules{
+    background:var(--parchment-deep);
+    border-left:3px solid var(--gold);
+    border-radius:6px;
+    padding:16px 18px;
+    margin-bottom:28px;
+    font-size:0.92rem;
+    color:var(--ink);
+  }
+  .rules li{margin-bottom:6px;}
+  .rules li:last-child{margin-bottom:0;}
+  .btn-primary{
+    display:inline-block;
+    width:100%;
+    background:var(--navy);
+    color:var(--parchment);
+    border:none;
+    border-radius:8px;
+    padding:15px 20px;
+    font-size:1.02rem;
+    font-weight:600;
+    text-align:center;
+    transition:background .15s ease;
+  }
+  .btn-primary:hover{background:var(--navy-deep);}
+  .btn-secondary{
+    display:inline-block;
+    background:transparent;
+    color:var(--navy);
+    border:1.5px solid var(--navy);
+    border-radius:8px;
+    padding:12px 18px;
+    font-size:0.92rem;
+    font-weight:600;
+    text-align:center;
+  }
+  .btn-secondary:hover{background:var(--navy);color:var(--parchment);}
+  .btn-ghost{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    border-radius:6px;
+    padding:8px 14px;
+    font-size:0.85rem;
+  }
+  .btn-ghost:hover{border-color:var(--navy);color:var(--navy);}
+
+  .history-toggle{
+    text-align:center;
+    margin-top:18px;
+  }
+
+  /* ---------- Test screen ---------- */
+  #testScreen{background:var(--parchment);}
+  .test-topbar{
+    position:sticky;top:0;z-index:50;
+    background:var(--navy);
+    color:var(--parchment);
+    padding:10px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  }
+  .topbar-left{display:flex;align-items:center;gap:14px;}
+  .topbar-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;}
+  .progress-pill{
+    font-size:0.78rem;
+    color:var(--gold-soft);
+    background:rgba(255,255,255,0.08);
+    padding:4px 10px;
+    border-radius:20px;
+  }
+  .timer-box{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    font-size:1.15rem;
+    background:rgba(255,255,255,0.1);
+    padding:6px 14px;
+    border-radius:8px;
+    letter-spacing:0.02em;
+  }
+  .timer-box.low{background:var(--maroon);color:#fff;animation:pulse 1s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.65;}}
+  .topbar-actions{display:flex;align-items:center;gap:10px;}
+  .icon-btn{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);
+    color:var(--parchment);
+    border-radius:6px;
+    padding:8px 12px;
+    font-size:0.82rem;
+    font-weight:500;
+  }
+  .icon-btn:hover{background:rgba(255,255,255,0.18);}
+  .submit-btn{
+    background:var(--gold);
+    color:var(--navy-deep);
+    border:none;
+    border-radius:6px;
+    padding:8px 16px;
+    font-weight:700;
+    font-size:0.85rem;
+  }
+  .submit-btn:hover{background:var(--gold-soft);}
+
+  .test-body{
+    display:flex;
+    max-width:1400px;
+    margin:0 auto;
+    align-items:flex-start;
+  }
+  .questions-col{
+    flex:1;
+    min-width:0;
+    padding:28px 24px 120px;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .qcard{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 22px 18px;
+    margin-bottom:18px;
+    scroll-margin-top:80px;
+  }
+  .qcard.answered{border-left:4px solid var(--green);}
+  .qcard.flagged{border-left:4px solid var(--gold);}
+  .qhead{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .qnum{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    color:var(--navy);
+    background:var(--parchment-deep);
+    border-radius:6px;
+    padding:2px 9px;
+    font-size:0.82rem;
+    flex-shrink:0;
+  }
+  .flag-btn{
+    background:none;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:3px 10px;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+  }
+  .flag-btn.on{background:var(--gold-soft);border-color:var(--gold);color:var(--navy-deep);}
+  .qstem{
+    white-space:pre-line;
+    font-size:1rem;
+    margin-bottom:14px;
+    color:var(--ink);
+  }
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .opt{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--parchment);
+    transition:border-color .12s ease, background .12s ease;
+  }
+  .opt:hover{border-color:var(--gold);}
+  .opt input{margin-top:3px;accent-color:var(--navy);flex-shrink:0;}
+  .opt.selected{
+    border-color:var(--navy);
+    background:#EDE7D6;
+  }
+  .opt-key{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    color:var(--navy);
+    flex-shrink:0;
+  }
+  .opt-text{font-size:0.95rem;}
+
+  /* palette sidebar */
+  .palette-col{
+    width:260px;
+    flex-shrink:0;
+    position:sticky;
+    top:64px;
+    max-height:calc(100vh - 80px);
+    overflow-y:auto;
+    padding:24px 20px 40px 0;
+  }
+  .palette-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px;
+  }
+  .palette-card h3{
+    margin:0 0 10px;
+    font-size:0.95rem;
+    color:var(--navy);
+  }
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:0.72rem;color:var(--ink-soft);}
+  .legend span{display:flex;align-items:center;gap:4px;}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  .dot.answered{background:var(--green);}
+  .dot.flagged{background:var(--gold);}
+  .dot.empty{background:var(--line);}
+  .grid150{
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    gap:6px;
+  }
+  .pnum{
+    aspect-ratio:1;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:5px;
+    border:1px solid var(--line);
+    background:var(--parchment);
+    font-size:0.72rem;
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--ink-soft);
+  }
+  .pnum.answered{background:var(--green);color:#fff;border-color:var(--green);}
+  .pnum.flagged{box-shadow:inset 0 0 0 2px var(--gold);}
+  .pnum:hover{border-color:var(--navy);}
+
+  .palette-toggle-mobile{display:none;}
+
+  /* ---------- Results screen ---------- */
+  .results-wrap{max-width:920px;margin:0 auto;padding:36px 24px 100px;}
+  .results-summary{
+    background:var(--navy);
+    color:var(--parchment);
+    border-radius:var(--radius);
+    padding:32px 30px;
+    margin-bottom:24px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:24px;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .score-big{
+    font-family:'Playfair Display',serif;
+    font-size:2.6rem;
+    font-weight:700;
+    color:var(--gold-soft);
+  }
+  .score-label{font-size:0.85rem;color:#C9CEDA;margin-top:2px;}
+  .stat-row{display:flex;gap:26px;flex-wrap:wrap;}
+  .stat{text-align:center;}
+  .stat .n{font-family:'IBM Plex Mono',monospace;font-size:1.3rem;font-weight:600;}
+  .stat .l{font-size:0.72rem;color:#C9CEDA;text-transform:uppercase;letter-spacing:0.03em;}
+  .stat.correct .n{color:#8FD19E;}
+  .stat.incorrect .n{color:#E39A9A;}
+  .stat.unattempted .n{color:#D9D2B8;}
+
+  .tabs{
+    display:flex;
+    gap:6px;
+    margin-bottom:18px;
+    border-bottom:2px solid var(--line);
+  }
+  .tab-btn{
+    background:none;border:none;
+    padding:10px 18px;
+    font-weight:600;
+    font-size:0.9rem;
+    color:var(--ink-soft);
+    border-bottom:2px solid transparent;
+    margin-bottom:-2px;
+  }
+  .tab-btn.active{color:var(--navy);border-bottom-color:var(--navy);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  .review-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    margin-bottom:16px;
+  }
+  .review-card.correct{border-left:4px solid var(--green);}
+  .review-card.incorrect{border-left:4px solid var(--maroon);}
+  .review-card.unattempted{border-left:4px solid var(--ink-soft);}
+  .review-tag{
+    display:inline-block;
+    font-size:0.68rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    padding:2px 9px;
+    border-radius:10px;
+    margin-bottom:8px;
+  }
+  .review-tag.correct{background:#DDEDDD;color:var(--green);}
+  .review-tag.incorrect{background:#F2DEDE;color:var(--maroon);}
+  .review-tag.unattempted{background:#E8E4D6;color:var(--ink-soft);}
+  .review-opt{
+    display:flex;gap:10px;padding:7px 10px;border-radius:6px;font-size:0.92rem;margin-bottom:4px;
+  }
+  .review-opt .opt-key{font-family:'IBM Plex Mono',monospace;font-weight:600;}
+  .review-opt.your-wrong{background:#F2DEDE;}
+  .review-opt.correct-answer{background:#DDEDDD;}
+  .explanation{
+    margin-top:12px;
+    padding:12px 14px;
+    background:var(--parchment-deep);
+    border-radius:8px;
+    font-size:0.9rem;
+    color:var(--ink);
+  }
+  .explanation .exlabel{
+    font-weight:700;color:var(--navy);font-size:0.75rem;text-transform:uppercase;
+    letter-spacing:0.03em;display:block;margin-bottom:4px;
+  }
+  .results-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
+
+  /* ---------- History screen ---------- */
+  .history-list{display:flex;flex-direction:column;gap:12px;margin-top:20px;}
+  .history-item{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .history-item .hdate{font-size:0.82rem;color:var(--ink-soft);}
+  .history-item .hscore{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);font-size:1.2rem;}
+  .empty-note{color:var(--ink-soft);font-style:italic;padding:20px 0;text-align:center;}
+
+  /* ---------- Modal ---------- */
+  .modal-overlay{
+    display:none;position:fixed;inset:0;background:rgba(20,30,51,0.55);
+    align-items:center;justify-content:center;z-index:100;padding:20px;
+  }
+  .modal-overlay.active{display:flex;}
+  .modal-box{
+    background:var(--paper);border-radius:var(--radius);padding:28px 26px;max-width:400px;width:100%;
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
+  }
+  .modal-box h3{margin:0 0 10px;color:var(--navy);}
+  .modal-box p{font-size:0.92rem;color:var(--ink-soft);margin-bottom:20px;}
+  .modal-actions{display:flex;gap:10px;justify-content:flex-end;}
+
+  footer.credit{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:0.72rem;
+    padding:20px;
+  }
+
+  @media (max-width:920px){
+    .palette-col{
+      display:none;
+      position:fixed;
+      top:0;right:0;bottom:0;
+      width:min(85vw,320px);
+      max-height:none;
+      background:var(--parchment);
+      z-index:90;
+      box-shadow:-4px 0 20px rgba(0,0,0,0.2);
+      padding:20px;
+      overflow-y:auto;
+    }
+    .palette-col.open{display:block;}
+    .palette-toggle-mobile{
+      display:inline-block;
+    }
+    .test-body{display:block;}
+    .questions-col{padding:20px 14px 120px;max-width:100%;}
+    .topbar-title{display:none;}
+    .meta-grid{grid-template-columns:repeat(3,1fr);}
+    .results-summary{flex-direction:column;align-items:flex-start;}
+  }
+  @media (max-width:480px){
+    .grid150{grid-template-columns:repeat(5,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ START SCREEN ============ -->
+<section id="startScreen" class="screen active">
+  <div class="center-wrap">
+    <div class="start-card">
+      <h1>Timed Practice Test — Weeks 5 &amp; 6</h1>
+      <p class="subtitle">150 questions · Full-length simulation · Single attempt sitting</p>
+
+      <div class="meta-grid">
+        <div class="meta-box"><span class="num">150</span><span class="lbl">Questions</span></div>
+        <div class="meta-box"><span class="num">2.5</span><span class="lbl">Hours</span></div>
+        <div class="meta-box"><span class="num">MCQ</span><span class="lbl">Format</span></div>
+      </div>
+
+      <ul class="rules">
+        <li>The timer starts the moment you click <strong>Start Test</strong> and runs for 2 hours 30 minutes.</li>
+        <li>All 150 questions appear together on one scrollable page — jump between them using the number palette.</li>
+        <li>Marking scheme: <strong>+1</strong> for each correct answer, <strong>−⅓</strong> for each incorrect answer, <strong>0</strong> for unattempted questions.</li>
+        <li>The test auto-submits when time runs out; you can also submit manually at any time.</li>
+        <li>Your progress is saved automatically, so a refresh will not lose your answers.</li>
+        <li>After submitting, you'll get a full review — correct, incorrect, and explanations for each question.</li>
+        <li>Every attempt is stored on this device so you can cross-reference it later.</li>
+      </ul>
+
+      <button class="btn-primary" id="startBtn">Start Test</button>
+      <div class="history-toggle">
+        <button class="btn-ghost" id="viewHistoryBtn">View past attempts →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEST SCREEN ============ -->
+<section id="testScreen" class="screen">
+  <div class="test-topbar">
+    <div class="topbar-left">
+      <span class="topbar-title">Practice Test</span>
+      <span class="progress-pill" id="progressPill">0 / 150 answered</span>
+    </div>
+    <div class="topbar-actions">
+      <div class="timer-box" id="timerBox">02:30:00</div>
+      <button class="icon-btn palette-toggle-mobile" id="paletteToggleBtn">Questions</button>
+      <button class="submit-btn" id="submitBtn">Submit</button>
+    </div>
+  </div>
+
+  <div class="test-body">
+    <div class="questions-col" id="questionsCol"></div>
+    <div class="palette-col" id="paletteCol">
+      <div class="palette-card">
+        <h3>Question Palette</h3>
+        <div class="legend">
+          <span><span class="dot answered"></span>Answered</span>
+          <span><span class="dot empty"></span>Unanswered</span>
+          <span><span class="dot" style="box-shadow:inset 0 0 0 2px var(--gold);background:transparent;"></span>Flagged</span>
+        </div>
+        <div class="grid150" id="paletteGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS SCREEN ============ -->
+<section id="resultsScreen" class="screen">
+  <div class="results-wrap">
+    <div class="results-summary">
+      <div>
+        <div class="score-big" id="scoreBig">0 / 150</div>
+        <div class="score-label" id="scoreDate">—</div>
+        <div class="score-label" style="margin-top:2px;">Marking: +1 correct · −⅓ incorrect · 0 unattempted</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat correct"><div class="n" id="statCorrect">0</div><div class="l">Correct</div></div>
+        <div class="stat incorrect"><div class="n" id="statIncorrect">0</div><div class="l">Incorrect</div></div>
+        <div class="stat unattempted"><div class="n" id="statUnattempted">0</div><div class="l">Unattempted</div></div>
+        <div class="stat"><div class="n" id="statAccuracy">0%</div><div class="l">Accuracy</div></div>
+        <div class="stat"><div class="n" id="statTime">—</div><div class="l">Time used</div></div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="all">All (150)</button>
+      <button class="tab-btn" data-tab="correct">Correct</button>
+      <button class="tab-btn" data-tab="incorrect">Incorrect</button>
+      <button class="tab-btn" data-tab="unattempted">Unattempted</button>
+    </div>
+
+    <div class="tab-panel active" id="panel-all"></div>
+    <div class="tab-panel" id="panel-correct"></div>
+    <div class="tab-panel" id="panel-incorrect"></div>
+    <div class="tab-panel" id="panel-unattempted"></div>
+
+    <div class="results-actions">
+      <button class="btn-secondary" id="backToStartBtn">Back to start</button>
+      <button class="btn-secondary" id="toHistoryFromResultsBtn">View all attempts</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HISTORY SCREEN ============ -->
+<section id="historyScreen" class="screen">
+  <div class="results-wrap">
+    <h1 class="serif" style="color:var(--navy);margin-bottom:4px;">Past Attempts</h1>
+    <p style="color:var(--ink-soft);margin-top:0;">Stored locally on this device for cross-reference. Click an attempt to reopen its full review.</p>
+    <div class="history-list" id="historyList"></div>
+    <div class="results-actions">
+      <button class="btn-secondary" id="backToStartFromHistoryBtn">Back to start</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONFIRM SUBMIT MODAL ============ -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box">
+    <h3 id="confirmTitle">Submit test?</h3>
+    <p id="confirmText">You still have unanswered questions. Are you sure you want to submit now? This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="cancelSubmitBtn">Cancel</button>
+      <button class="btn-primary" style="width:auto;" id="confirmSubmitBtn">Submit anyway</button>
+    </div>
+  </div>
+</div>
+
+<footer class="credit">Stored locally in your browser — clearing site data will remove saved attempts.</footer>
+
+<script>
+const QUESTIONS = [{"id": 1, "stem": "Which one of the following pairs is NOT correctly matched?", "options": [{"key": "a", "text": "William Bentinck — Doctrine of Lapse"}, {"key": "b", "text": "Wellesley — Subsidiary Alliance"}, {"key": "c", "text": "Dalhousie — Annexation of Awadh"}, {"key": "d", "text": "Cornwallis — Permanent Settlement"}], "correct": "a", "explanation": "The Doctrine of Lapse belongs to Dalhousie, not Bentinck, who is remembered instead for abolishing sati, suppressing thuggee and adopting English as the medium of higher education."}, {"id": 2, "stem": "Consider the following statements about Lord Curzon:\n1. He created the North-West Frontier Province.\n2. He passed the Indian Universities Act of 1914.\n3. He enacted the Ancient Monuments Preservation Act.\n4. He repealed the Vernacular Press Act.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "b", "explanation": "Only 1 and 3 are correct. The Universities Act was passed in 1904, not 1914; and the Vernacular Press Act (Lytton, 1878) was repealed by Ripon in 1882, before Curzon's time."}, {"id": 3, "stem": "Arrange the following in correct chronological order:\n1. Abolition of Sati\n2. Charter Act permitting missionaries into India\n3. Widow Remarriage Act\n4. Abolition of slavery in India", "options": [{"key": "a", "text": "2 – 1 – 3 – 4"}, {"key": "b", "text": "1 – 2 – 3 – 4"}, {"key": "c", "text": "1 – 4 – 2 – 3"}, {"key": "d", "text": "2 – 1 – 4 – 3"}], "correct": "d", "explanation": "Charter Act 1813 opened India to missionaries; Sati was abolished 1829; slavery abolished 1843; Widow Remarriage Act came in 1856."}, {"id": 4, "stem": "Match List I with List II:\nA. Lord Lytton -- 1. First Factory Act\nB. Lord Ripon -- 2. Rowlatt Act\nC. Lord Hardinge II -- 3. Vernacular Press Act\nD. Lord Chelmsford -- 4. Annulment of the Partition of Bengal", "options": [{"key": "a", "text": "A-3, B-1, C-4, D-2"}, {"key": "b", "text": "A-2, B-1, C-4, D-3"}, {"key": "c", "text": "A-3, B-2, C-1, D-4"}, {"key": "d", "text": "A-3, B-1, C-2, D-4"}], "correct": "a", "explanation": "Lytton passed the Vernacular Press Act (1878); Ripon passed the first Factory Act (1881); Hardinge II announced annulment of the Partition of Bengal (1911); the Rowlatt Act (1919) came under Chelmsford."}, {"id": 5, "stem": "With reference to the Permanent Settlement, consider the following statements:\n1. It was introduced in Bengal, Bihar and Odisha.\n2. The zamindar had to pay a fixed sum irrespective of the actual harvest.\n3. It covered roughly half of British India by area.\n4. The Sunset Law provided that an estate could be auctioned on default.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "2 and 3 only"}, {"key": "b", "text": "All four"}, {"key": "c", "text": "1, 2 and 4 only"}, {"key": "d", "text": "3 only"}], "correct": "c", "explanation": "Statement 3 is wrong -- the Permanent Settlement covered about 19% of British India, not half. Introduced by Cornwallis (1793) in Bengal, Bihar and Odisha, it fixed revenue in perpetuity and the Sunset Law allowed auction on default."}, {"id": 6, "stem": "Match List I with List II:\nA. First Governor-General of Bengal -- 1. Warren Hastings\nB. First Governor-General of India -- 2. C. Rajagopalachari\nC. First Viceroy of India -- 3. Lord Canning\nD. Last Governor-General of India -- 4. William Bentinck", "options": [{"key": "a", "text": "A-1, B-2, C-3, D-4"}, {"key": "b", "text": "A-4, B-1, C-3, D-2"}, {"key": "c", "text": "A-2, B-4, C-3, D-1"}, {"key": "d", "text": "A-1, B-4, C-3, D-2"}], "correct": "d", "explanation": "Warren Hastings was first Governor-General of Bengal (1773); William Bentinck became first Governor-General of India (1833); Canning was simultaneously last GG and first Viceroy (1858); C. Rajagopalachari was the last Governor-General."}, {"id": 7, "stem": "The Doctrine of Lapse was NOT applied to which of the following states?", "options": [{"key": "a", "text": "Jhansi"}, {"key": "b", "text": "Punjab"}, {"key": "c", "text": "Nagpur"}, {"key": "d", "text": "Satara"}], "correct": "b", "explanation": "Punjab was annexed in 1849 after the Second Anglo-Sikh War, by conquest, not under the Doctrine of Lapse. Satara, Jhansi and Nagpur were all annexed under the doctrine."}, {"id": 8, "stem": "Consider the following statements about the Revolt of 1857:\n1. It began at Meerut on 10 May 1857.\n2. Bahadur Shah II was proclaimed the Emperor of Hindustan.\n3. The revolt was declared over on 8 July 1858.\n4. The Governor-General at the time was Lord Dalhousie.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "2 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "1 and 4 only"}, {"key": "d", "text": "All four"}], "correct": "b", "explanation": "Statement 4 is wrong -- Dalhousie had left India in 1856; Canning was Governor-General during the revolt, and declared peace on 8 July 1858."}, {"id": 9, "stem": "Match the centres of the Revolt of 1857 with their leaders:\nA. Kanpur -- 1. Khan Bahadur Khan\nB. Lucknow -- 2. Begum Hazrat Mahal\nC. Bareilly -- 3. Nana Saheb\nD. Faizabad -- 4. Maulvi Ahmadullah Shah", "options": [{"key": "a", "text": "A-3, B-2, C-1, D-4"}, {"key": "b", "text": "A-2, B-4, C-1, D-3"}, {"key": "c", "text": "A-2, B-1, C-3, D-4"}, {"key": "d", "text": "A-4, B-3, C-1, D-2"}], "correct": "a", "explanation": "Nana Saheb led Kanpur; Begum Hazrat Mahal led Lucknow; Khan Bahadur Khan led Bareilly; Maulvi Ahmadullah Shah led Faizabad."}, {"id": 10, "stem": "Consider the following statements about the Government of India Act, 1858:\n1. It abolished the East India Company.\n2. It created the office of Secretary of State for India, assisted by a Council of India of ten members.\n3. The Secretary of State was a member of the British Cabinet.\n4. It abolished the office of the Governor-General.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "b", "explanation": "Only 1 and 3 are correct. The Council of India had fifteen members, not ten, and the office of Governor-General was not abolished -- the holder additionally became Viceroy."}, {"id": 11, "stem": "Consider the following statements about Lord Mayo:\n1. He introduced financial decentralisation through the Resolution of 1882.\n2. The first synchronous census of India was conducted during his Viceroyalty.\n3. He established the Department of Agriculture, Revenue and Commerce.\n4. He was assassinated while on a visit to the Andaman Islands.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "b", "explanation": "Only 3 and 4 are correct. Financial decentralisation was Mayo's Resolution of 1870 (not 1882, which was Ripon's); the first synchronous census came in 1881 under Ripon, not under Mayo."}, {"id": 12, "stem": "Consider the following statements about the Indian Councils Act, 1861:\n1. It restored legislative powers to the Bombay and Madras presidencies.\n2. It provided for the nomination of some Indians as non-official members.\n3. It gave the legislative council the power to discuss the budget.\n4. It empowered the Viceroy to issue ordinances.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "1 and 3 only"}, {"key": "b", "text": "2 only"}, {"key": "c", "text": "1, 2 and 4 only"}, {"key": "d", "text": "All four"}], "correct": "c", "explanation": "Statement 3 is wrong -- the right to discuss the budget came only with the Indian Councils Act of 1892. The 1861 Act restored legislative powers to Bombay/Madras, allowed nomination of Indians, and empowered ordinance-making."}, {"id": 13, "stem": "Which one of the following pairs is NOT correctly matched?", "options": [{"key": "a", "text": "Tattvabodhini Sabha — Keshab Chandra Sen"}, {"key": "b", "text": "Dharma Sabha — Radhakanta Deb"}, {"key": "c", "text": "Radhaswami Satsang — Shiv Dayal Saheb"}, {"key": "d", "text": "Deva Samaj — Shiv Narayan Agnihotri"}], "correct": "a", "explanation": "The Tattvabodhini Sabha (1839) was founded by Debendranath Tagore, not Keshab Chandra Sen, who joined the Brahmo Samaj later."}, {"id": 14, "stem": "Consider the following statements about the Arya Samaj:\n1. It was founded at Bombay but its headquarters were later established at Lahore.\n2. After the founder's death it split into the College faction and the Gurukul faction.\n3. The Gurukul faction was led by Lala Hansraj.\n4. The Shuddhi movement was intended to reconvert those who had left the Hindu fold.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "2 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "3 only"}, {"key": "d", "text": "All four"}], "correct": "b", "explanation": "Statement 3 reverses the leaders -- Lala Hansraj led the College faction while Munshi Ram (Swami Shraddhanand) led the Gurukul faction. Dayanand founded the Samaj at Bombay in 1875; headquarters moved to Lahore in 1877."}, {"id": 15, "stem": "Consider the following statements about the Young Bengal Movement:\n1. Its inspiration was a teacher of Hindu College.\n2. Its members brought out a journal called the Parthenon.\n3. Its leading figure was dismissed from his post in 1831.\n4. The movement struck deep roots among the peasantry of Bengal.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "c", "explanation": "Three are correct. Henry Derozio inspired the movement, dismissed in 1831; it brought out the Parthenon; but it remained confined to a small urban educated group and never reached the peasantry."}, {"id": 16, "stem": "Match List I with List II:\nA. Satyashodhak Samaj -- 1. E. V. Ramaswami Naicker\nB. Self-Respect Movement -- 2. Syed Ahmad Khan\nC. Aligarh Movement -- 3. Jyotiba Phule\nD. Servants of India Society -- 4. Gopal Krishna Gokhale", "options": [{"key": "a", "text": "A-3, B-1, C-2, D-4"}, {"key": "b", "text": "A-3, B-2, C-1, D-4"}, {"key": "c", "text": "A-2, B-1, C-3, D-4"}, {"key": "d", "text": "A-3, B-2, C-4, D-1"}], "correct": "a", "explanation": "Jyotiba Phule founded the Satyashodhak Samaj (1873); E. V. Ramaswami Naicker (Periyar) led the Self-Respect Movement; Syed Ahmad Khan founded the Aligarh Movement; Gokhale founded the Servants of India Society (1905)."}, {"id": 17, "stem": "Consider the following statements about the foundation of the Indian National Congress:\n1. It was founded in 1885 at Calcutta.\n2. Its first session was presided over by W. C. Bonnerjee.\n3. A. O. Hume was its first President.\n4. Its first session was attended by 100 delegates.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "a", "explanation": "Only statement 2 is correct. The first session met at Bombay (not Calcutta) with 72 delegates (not 100); Hume was the first General Secretary, not President."}, {"id": 18, "stem": "With reference to the economic critique of colonial rule, consider the following statements:\n1. Dadabhai Naoroji elaborated the drain theory in Poverty and Un-British Rule in India.\n2. R. C. Dutt examined the effects of colonial policy in The Economic History of India.\n3. The early nationalists held that the drain took place chiefly through the export of Indian capital.\n4. The Home Charges were regarded as an important channel of the drain.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "4 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "All four"}, {"key": "d", "text": "1 and 3 only"}], "correct": "b", "explanation": "Statement 3 inverts the argument -- nationalists held the drain occurred through unrequited exports, not export of capital. The Home Charges were seen as the principal channel."}, {"id": 19, "stem": "Match List I with List II:\nA. First President of the Indian National Congress -- 1. Badruddin Tyabji\nB. First Muslim President of the Congress -- 2. Sarojini Naidu\nC. First woman President of the Congress -- 3. W. C. Bonnerjee\nD. First Indian woman President of the Congress -- 4. Annie Besant", "options": [{"key": "a", "text": "A-4, B-3, C-1, D-2"}, {"key": "b", "text": "A-3, B-4, C-1, D-2"}, {"key": "c", "text": "A-3, B-1, C-4, D-2"}, {"key": "d", "text": "A-4, B-1, C-2, D-3"}], "correct": "c", "explanation": "W. C. Bonnerjee presided over the first session; Badruddin Tyabji was first Muslim President (1887); Annie Besant was first woman President (1917); Sarojini Naidu was first Indian woman President (1925)."}, {"id": 20, "stem": "Consider the following statements about the Surat Split of 1907:\n1. The session was presided over by Rash Behari Ghosh.\n2. The immediate cause was a disagreement over the venue of the session.\n3. The Moderates and Extremists reunited at the Lucknow session.\n4. Gopal Krishna Gokhale led the Extremists.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "b", "explanation": "Only 1 and 3 are correct. The immediate cause was a dispute over the presidentship (Extremists wanted Lajpat Rai), not the venue; Gokhale led the Moderates, while Tilak, Pal and Lajpat Rai led the Extremists."}, {"id": 21, "stem": "Arrange the following events in correct chronological order:\n1. Partition of Bengal\n2. Formation of the Muslim League\n3. Surat Split\n4. Morley-Minto Reforms", "options": [{"key": "a", "text": "2 – 1 – 3 – 4"}, {"key": "b", "text": "1 – 2 – 3 – 4"}, {"key": "c", "text": "1 – 3 – 2 – 4"}, {"key": "d", "text": "1 – 2 – 4 – 3"}], "correct": "b", "explanation": "Partition of Bengal (1905), Muslim League formed (1906), Surat Split (1907), Morley-Minto Reforms (1909)."}, {"id": 22, "stem": "Consider the following statements about the Swadeshi and Boycott Movement:\n1. The day the Partition of Bengal took effect was observed as a day of mourning.\n2. Rabindranath Tagore suggested that people tie rakhis on one another's wrists that day.\n3. The movement developed the technique of national education and of samitis.\n4. The Congress adopted the boycott resolution at its Surat session.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "All four"}, {"key": "c", "text": "4 only"}, {"key": "d", "text": "2 and 4 only"}], "correct": "a", "explanation": "Statement 4 is wrong -- the Congress adopted the swadeshi and boycott resolution at its Calcutta session of 1906, not at Surat, where it split the following year."}, {"id": 23, "stem": "Match List I with List II:\nA. Anushilan Samiti -- 1. Nasik\nB. Abhinav Bharat -- 2. London\nC. India House -- 3. Calcutta\nD. Ghadar Party -- 4. San Francisco", "options": [{"key": "a", "text": "A-3, B-1, C-2, D-4"}, {"key": "b", "text": "A-4, B-3, C-2, D-1"}, {"key": "c", "text": "A-3, B-2, C-1, D-4"}, {"key": "d", "text": "A-3, B-1, C-4, D-2"}], "correct": "a", "explanation": "Anushilan Samiti was founded at Calcutta (1902); Abhinav Bharat at Nasik (1904); India House at London (1905); Ghadar Party at San Francisco (1913)."}, {"id": 24, "stem": "Consider the following statements about the Home Rule Movement:\n1. Two Home Rule Leagues were started in 1916.\n2. Annie Besant's League worked in Madras and the rest of India outside Tilak's area.\n3. Tilak's League was confined to Maharashtra, Karnataka, Central Provinces and Berar.\n4. The movement demanded complete independence.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "1 and 4 only"}, {"key": "b", "text": "All four"}, {"key": "c", "text": "4 only"}, {"key": "d", "text": "1, 2 and 3 only"}], "correct": "d", "explanation": "Statement 4 is wrong -- the demand was for self-government within the British Empire on the dominion model, not complete independence, which the Congress adopted only in 1929."}, {"id": 25, "stem": "Consider the following statements about the Lucknow Pact:\n1. It was concluded in the same year in which the two Home Rule Leagues were founded.\n2. By it the Congress accepted the principle of separate electorates.\n3. Tilak and Jinnah were prominent in bringing it about.\n4. It marked the reunion of the Moderates and the Extremists within the Congress.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "d", "explanation": "All four are correct -- 1916 saw both the Home Rule Leagues and the Lucknow Pact/session, at which the Congress accepted separate electorates and the Moderates and Extremists reunited."}, {"id": 26, "stem": "Consider the following statements about the Rowlatt Act:\n1. It was based on the recommendations of the Hunter Committee.\n2. It permitted detention without trial.\n3. Gandhiji supported the Act as a necessary wartime measure.\n4. It was welcomed by the Indian members of the Imperial Legislative Council.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "a", "explanation": "Only statement 2 is correct. The Act followed the Rowlatt (Sedition) Committee, not Hunter; Gandhiji opposed it and called a hartal; every Indian member of the Council opposed it."}, {"id": 27, "stem": "Consider the following statements about the aftermath of the Jallianwala Bagh massacre:\n1. Rabindranath Tagore renounced his knighthood.\n2. Gandhiji returned the Kaiser-i-Hind medal.\n3. Sir Shankaran Nair resigned from the Viceroy's Executive Council.\n4. The official committee of enquiry recommended the prosecution of General Dyer.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "All four"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "3 only"}, {"key": "d", "text": "1 and 4 only"}], "correct": "b", "explanation": "Statement 4 is wrong -- the Hunter Committee censured Dyer but did not recommend prosecution; he was merely relieved of command."}, {"id": 28, "stem": "Which of the following were among the causes for the withdrawal of the Non-Cooperation Movement?\n1. The Chauri Chaura incident\n2. The signing of the Gandhi-Irwin Pact\n3. Gandhiji's fear that the movement was turning violent\n4. The arrest of Jawaharlal Nehru\nSelect the correct answer:", "options": [{"key": "a", "text": "1 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "2 only"}, {"key": "d", "text": "All four"}], "correct": "a", "explanation": "The Gandhi-Irwin Pact (1931) belongs to Civil Disobedience, not Non-Cooperation. Chauri Chaura (Feb 1922) and Gandhiji's fear of violence led to withdrawal."}, {"id": 29, "stem": "Arrange the following in correct chronological order:\n1. Rowlatt Act\n2. Jallianwala Bagh massacre\n3. Launching of the Non-Cooperation Movement\n4. Chauri Chaura incident", "options": [{"key": "a", "text": "2 – 1 – 3 – 4"}, {"key": "b", "text": "1 – 3 – 2 – 4"}, {"key": "c", "text": "2 – 3 – 1 – 4"}, {"key": "d", "text": "1 – 2 – 3 – 4"}], "correct": "d", "explanation": "Rowlatt Act (March 1919), Jallianwala Bagh (April 1919), Non-Cooperation launched (1920), Chauri Chaura (Feb 1922)."}, {"id": 30, "stem": "Consider the following statements about the Swaraj Party:\n1. It was formed after the Nagpur session of the Congress.\n2. C. R. Das was its Secretary and Motilal Nehru its President.\n3. Its members contested the elections to the legislatures.\n4. The party won an absolute majority in the Central Legislative Assembly.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "a", "explanation": "Only statement 3 is correct. The party formed after the Gaya session (1922), not Nagpur; C. R. Das was President and Motilal Nehru Secretary (reversed in the statement); it never won an absolute majority."}, {"id": 31, "stem": "Consider the following statements about the Simon Commission:\n1. It was appointed in 1927.\n2. It had no Indian member.\n3. It was boycotted by all sections of Indian opinion.\n4. Lala Lajpat Rai was injured in a lathi charge during the protest against it.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "All four"}, {"key": "b", "text": "2 only"}, {"key": "c", "text": "1, 2 and 4 only"}, {"key": "d", "text": "1 and 3 only"}], "correct": "c", "explanation": "Statement 3 is too sweeping -- the Justice Party, the Punjab Unionists and a section led by Ambedkar cooperated with the Commission, which was wholly British and provoked 'Simon Go Back'."}, {"id": 32, "stem": "Consider the following statements about the Nehru Report:\n1. The committee that drew it up was chaired by Motilal Nehru.\n2. It recommended Dominion Status as the form of government.\n3. It rejected separate electorates and proposed joint electorates with reservation of seats.\n4. Jinnah's Fourteen Points were formulated in response to it.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "1 only"}, {"key": "c", "text": "2 and 3 only"}, {"key": "d", "text": "All four"}], "correct": "d", "explanation": "All four are correct. The 1928 report, chaired by Motilal Nehru, recommended Dominion Status and joint electorates; Jinnah's Fourteen Points (1929) responded to it."}, {"id": 33, "stem": "Match List I with List II:\nA. Kakori Conspiracy -- 1. Ram Prasad Bismil\nB. Central Assembly Bomb Case -- 2. Surya Sen\nC. Lahore Conspiracy Case -- 3. Bhagat Singh, Sukhdev and Rajguru\nD. Chittagong Armoury Raid -- 4. Bhagat Singh and Batukeshwar Dutt", "options": [{"key": "a", "text": "A-4, B-1, C-2, D-3"}, {"key": "b", "text": "A-1, B-4, C-3, D-2"}, {"key": "c", "text": "A-2, B-4, C-3, D-1"}, {"key": "d", "text": "A-1, B-3, C-4, D-2"}], "correct": "b", "explanation": "Kakori (1925) -- Ram Prasad Bismil; Central Assembly Bomb Case (1929) -- Bhagat Singh and Batukeshwar Dutt; Lahore Conspiracy Case -- Bhagat Singh, Sukhdev, Rajguru; Chittagong Armoury Raid (1930) -- Surya Sen."}, {"id": 34, "stem": "Consider the following statements about the Civil Disobedience Movement:\n1. It began with the Dandi March.\n2. The Dandi March covered a distance of about 385 km.\n3. Sarojini Naidu led the raid on the Dharasana Salt Works.\n4. The movement was formally launched from the Lahore session.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "c", "explanation": "Three are correct. The Lahore session (1929) adopted Purna Swaraj but did not launch Civil Disobedience -- that began with the Dandi March (12 March-6 April 1930), after which Sarojini Naidu led the Dharasana raid."}, {"id": 35, "stem": "The Poona Pact of 1932 was signed by:", "options": [{"key": "a", "text": "Dr. B. R. Ambedkar and Madan Mohan Malaviya"}, {"key": "b", "text": "Dr. B. R. Ambedkar and Mahatma Gandhi"}, {"key": "c", "text": "Mahatma Gandhi and Madan Mohan Malaviya"}, {"key": "d", "text": "Dr. B. R. Ambedkar and Ramsay MacDonald"}], "correct": "a", "explanation": "Ambedkar signed for the Depressed Classes and Malaviya for the caste Hindus; Gandhiji was the occasion of the fast that led to it but not a signatory."}, {"id": 36, "stem": "Which one of the following statements about the Communal Award is NOT correct?", "options": [{"key": "a", "text": "It led to Gandhiji's fast unto death at Yerwada jail"}, {"key": "b", "text": "It granted separate electorates to the Depressed Classes"}, {"key": "c", "text": "It was announced by Ramsay MacDonald in 1932"}, {"key": "d", "text": "It was accepted by Gandhiji without protest"}], "correct": "d", "explanation": "Gandhiji strongly opposed the Award and began a fast unto death (20 September 1932), ending only with the Poona Pact."}, {"id": 37, "stem": "Arrange the following Round Table Conferences and related events in correct chronological order:\n1. First Round Table Conference\n2. Gandhi-Irwin Pact\n3. Second Round Table Conference\n4. Communal Award", "options": [{"key": "a", "text": "1 – 2 – 3 – 4"}, {"key": "b", "text": "1 – 3 – 2 – 4"}, {"key": "c", "text": "2 – 3 – 1 – 4"}, {"key": "d", "text": "2 – 1 – 3 – 4"}], "correct": "a", "explanation": "First RTC (Nov 1930), Gandhi-Irwin Pact (March 1931), Second RTC (Sept 1931), Communal Award (Aug 1932)."}, {"id": 38, "stem": "Consider the following statements about the Lahore session of 1929:\n1. It was presided over by Jawaharlal Nehru.\n2. It adopted the resolution on Purna Swaraj.\n3. It resolved that 26 January should be observed as Independence Day.\n4. The tricolour was hoisted on the banks of the Ravi.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "d", "explanation": "All four statements are correct -- Nehru presided, complete independence was adopted as the goal, the tricolour was hoisted on the Ravi, and 26 January 1930 was declared Independence Day."}, {"id": 39, "stem": "Consider the following statements about the Karachi session of 1931:\n1. It was presided over by Sardar Vallabhbhai Patel.\n2. It passed a resolution on Fundamental Rights and the National Economic Programme.\n3. It endorsed the Gandhi-Irwin Pact.\n4. It was held shortly after the execution of Bhagat Singh.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "All four"}, {"key": "d", "text": "3 only"}], "correct": "c", "explanation": "All four are correct. The session met in March 1931, days after Bhagat Singh's execution, endorsed the Gandhi-Irwin Pact, and passed the Fundamental Rights and National Economic Programme resolution drafted largely by Nehru."}, {"id": 40, "stem": "Which of the following tribal revolts is NOT correctly matched with its leader?", "options": [{"key": "a", "text": "Santhal Rebellion — Sidhu and Kanhu"}, {"key": "b", "text": "Kol Uprising — Tirot Sing"}, {"key": "c", "text": "Rampa Rebellion — Alluri Sitarama Raju"}, {"key": "d", "text": "Munda Rebellion — Birsa Munda"}], "correct": "b", "explanation": "Tirot Sing led the Khasi revolt, not the Kol uprising, which was led by Buddho Bhagat in Chhotanagpur (1831)."}, {"id": 41, "stem": "Match the peasant movements in List I with their regions in List II:\nA. Eka Movement -- 1. Gujarat\nB. Bardoli Satyagraha -- 2. Bengal\nC. Tebhaga Movement -- 3. Travancore\nD. Punnapra-Vayalar -- 4. Awadh", "options": [{"key": "a", "text": "A-1, B-3, C-2, D-4"}, {"key": "b", "text": "A-1, B-4, C-2, D-3"}, {"key": "c", "text": "A-4, B-1, C-3, D-2"}, {"key": "d", "text": "A-4, B-1, C-2, D-3"}], "correct": "d", "explanation": "Eka Movement (1921) -- Awadh; Bardoli Satyagraha (1928) -- Gujarat; Tebhaga Movement (1946) -- Bengal; Punnapra-Vayalar (1946) -- Travancore."}, {"id": 42, "stem": "Consider the following statements about the All India Trade Union Congress:\n1. It was founded in 1930.\n2. Lala Lajpat Rai was its first President.\n3. It was founded at Calcutta.\n4. N. M. Joshi was its first General Secretary.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "a", "explanation": "Only statement 2 is correct. AITUC was founded in October 1920 (not 1930) at Bombay (not Calcutta); its first General Secretary was Dewan Chaman Lal, not N. M. Joshi."}, {"id": 43, "stem": "Match List I with List II:\nA. Kesari -- 1. Sisir Kumar Ghosh\nB. Amrit Bazar Patrika -- 2. Bal Gangadhar Tilak\nC. The Hindu -- 3. Abul Kalam Azad\nD. Al-Hilal -- 4. G. Subramania Iyer", "options": [{"key": "a", "text": "A-2, B-3, C-1, D-4"}, {"key": "b", "text": "A-2, B-1, C-4, D-3"}, {"key": "c", "text": "A-1, B-2, C-3, D-4"}, {"key": "d", "text": "A-2, B-4, C-3, D-1"}], "correct": "b", "explanation": "Tilak brought out Kesari; Sisir Kumar Ghosh founded the Amrit Bazar Patrika; G. Subramania Iyer started The Hindu; Abul Kalam Azad started Al-Hilal."}, {"id": 44, "stem": "Consider the following statements about the Quit India Movement:\n1. The resolution was passed at Bombay in August 1942.\n2. Gandhiji gave the slogan Do or Die.\n3. The entire Congress leadership was arrested within hours.\n4. The movement received the support of the Muslim League.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "4 only"}, {"key": "b", "text": "1 and 4 only"}, {"key": "c", "text": "1, 2 and 3 only"}, {"key": "d", "text": "All four"}], "correct": "c", "explanation": "Statement 4 is wrong -- the Muslim League stayed away; Jinnah opposed the movement. The resolution was passed at Gowalia Tank on 8 August 1942 with the 'Do or Die' call, and leaders were arrested within hours under Operation Zero Hour."}, {"id": 45, "stem": "Consider the following statements about the Cripps Mission:\n1. Stafford Cripps was a member of the British War Cabinet.\n2. It offered Dominion Status after the conclusion of the war.\n3. It conceded the right of a province not to join the proposed Indian Union.\n4. It offered an immediate transfer of defence to Indian hands.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "All four"}, {"key": "c", "text": "1 and 4 only"}, {"key": "d", "text": "2 only"}], "correct": "a", "explanation": "Statement 4 is wrong -- refusal to transfer defence was precisely why the talks failed; Gandhiji called the offer 'a post-dated cheque'."}, {"id": 46, "stem": "Which one of the following is NOT a feature of the Cabinet Mission Plan?", "options": [{"key": "a", "text": "Immediate grant of Dominion Status"}, {"key": "b", "text": "Grouping of provinces into three sections"}, {"key": "c", "text": "Formation of a Constituent Assembly"}, {"key": "d", "text": "Rejection of the demand for a separate Pakistan"}], "correct": "a", "explanation": "The Cabinet Mission Plan (1946) made no offer of immediate Dominion Status; it proposed an interim government, a Constituent Assembly, and grouping of provinces into Sections A, B and C."}, {"id": 47, "stem": "Arrange the following in correct chronological order:\n1. Cripps Mission\n2. Cabinet Mission\n3. Wavell Plan\n4. Mountbatten Plan", "options": [{"key": "a", "text": "2 – 1 – 3 – 4"}, {"key": "b", "text": "3 – 1 – 2 – 4"}, {"key": "c", "text": "1 – 3 – 2 – 4"}, {"key": "d", "text": "1 – 2 – 3 – 4"}], "correct": "c", "explanation": "Cripps Mission (1942), Wavell Plan/Simla Conference (1945), Cabinet Mission (1946), Mountbatten Plan (3 June 1947)."}, {"id": 48, "stem": "Consider the following statements about the Indian National Army:\n1. It was first formed under Mohan Singh.\n2. Subhas Chandra Bose took over its leadership in 1943.\n3. The Rani Jhansi Regiment was its women's wing.\n4. The INA trials were held at the Red Fort.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "d", "explanation": "All four are correct. Mohan Singh first organised the INA; Bose took command in 1943; the Rani Jhansi Regiment (Captain Lakshmi Sahgal) was its women's wing; the trials of INA officers were held at the Red Fort in 1945."}, {"id": 49, "stem": "Assertion (A): The Congress accepted the partition of India in 1947.\nReason (R): The Congress had always held that the Muslim League represented the whole of Muslim opinion in India.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "c", "explanation": "A is true, but R is false -- the Congress consistently denied that the League spoke for all Indian Muslims; acceptance of partition came from other causes, such as the 1946 communal violence and the unworkability of the interim government."}, {"id": 50, "stem": "The Indian Independence Act, 1947 provided for all of the following EXCEPT:", "options": [{"key": "a", "text": "The office of Governor-General for each dominion"}, {"key": "b", "text": "The lapse of British paramountcy over the princely states"}, {"key": "c", "text": "The immediate framing of a common constitution for both dominions"}, {"key": "d", "text": "The creation of two independent dominions"}], "correct": "c", "explanation": "The Act provided the opposite -- each dominion was to frame its own constitution through its own Constituent Assembly, not a common one."}, {"id": 51, "stem": "A truck of mass 1,200 kg travelling at 54 km/h is brought to rest in 5 seconds by applying brakes. The retarding force exerted by the brakes is:", "options": [{"key": "a", "text": "18,000 N"}, {"key": "b", "text": "3,600 N"}, {"key": "c", "text": "240 N"}, {"key": "d", "text": "300 N"}], "correct": "b", "explanation": "u = 54 km/h = 15 m/s, v = 0, t = 5 s, so a = -3 m/s². F = ma = 1200 x 3 = 3,600 N."}, {"id": 52, "stem": "A gun of mass 4 kg fires a bullet of mass 20 g with a muzzle velocity of 400 m/s. Assuming no external force acts on the system, the recoil velocity of the gun is:", "options": [{"key": "a", "text": "0.5 m/s"}, {"key": "b", "text": "20 m/s"}, {"key": "c", "text": "4 m/s"}, {"key": "d", "text": "2 m/s"}], "correct": "d", "explanation": "By conservation of momentum, MV = -mv, so V = -(0.02 x 400)/4 = -2 m/s; the recoil speed is 2 m/s."}, {"id": 53, "stem": "A man drags a suitcase through a distance of 20 m on a level platform by pulling its handle with a force of 100 N, the handle making an angle of 60° with the horizontal. The work done by him is:", "options": [{"key": "a", "text": "500 J"}, {"key": "b", "text": "1,732 J"}, {"key": "c", "text": "1,000 J"}, {"key": "d", "text": "2,000 J"}], "correct": "c", "explanation": "W = Fs cos(theta) = 100 x 20 x cos60° = 100 x 20 x 0.5 = 1,000 J."}, {"id": 54, "stem": "A water pump raises 300 kg of water from a well to an overhead tank 15 m above it in 30 seconds. Taking g = 10 m/s², the power of the pump is:", "options": [{"key": "a", "text": "150 W"}, {"key": "b", "text": "4.5 kW"}, {"key": "c", "text": "15 kW"}, {"key": "d", "text": "1.5 kW"}], "correct": "d", "explanation": "W = mgh = 300 x 10 x 15 = 45,000 J; P = W/t = 45,000/30 = 1,500 W = 1.5 kW."}, {"id": 55, "stem": "A stone of mass 4 kg thrown by a boy is found to possess a kinetic energy of 200 J at the instant it leaves his hand. The speed with which it was thrown is:", "options": [{"key": "a", "text": "25 m/s"}, {"key": "b", "text": "10 m/s"}, {"key": "c", "text": "50 m/s"}, {"key": "d", "text": "100 m/s"}], "correct": "b", "explanation": "K = ½mv² -> 200 = ½ x 4 x v² -> v² = 100 -> v = 10 m/s."}, {"id": 56, "stem": "A ball is released from the top of a tower 45 m high. Taking g = 10 m/s² and neglecting air resistance, the speed with which it strikes the ground is:", "options": [{"key": "a", "text": "90 m/s"}, {"key": "b", "text": "30 m/s"}, {"key": "c", "text": "15 m/s"}, {"key": "d", "text": "45 m/s"}], "correct": "b", "explanation": "v² = u² + 2as = 0 + 2 x 10 x 45 = 900, so v = 30 m/s (mass cancels out, so this holds for any released body)."}, {"id": 57, "stem": "An astronaut and his equipment together weigh 720 N on the surface of the earth. On the surface of the moon, where the acceleration due to gravity is one-sixth of its value on the earth, their weight will be:", "options": [{"key": "a", "text": "720 N"}, {"key": "b", "text": "4,320 N"}, {"key": "c", "text": "120 N"}, {"key": "d", "text": "72 N"}], "correct": "c", "explanation": "Weight is proportional to g, and mass is unchanged, so W(moon) = 720/6 = 120 N."}, {"id": 58, "stem": "Two metallic spheres of masses 50 kg and 100 kg are placed with their centres 5 m apart. Taking G = 6.67 x 10⁻¹¹ N m²/kg², the gravitational force of attraction between them is:", "options": [{"key": "a", "text": "6.67 x 10⁻⁹ N"}, {"key": "b", "text": "1.334 x 10⁻⁸ N"}, {"key": "c", "text": "3.335 x 10⁻⁸ N"}, {"key": "d", "text": "1.334 x 10⁻⁹ N"}], "correct": "b", "explanation": "F = Gm1m2/r² = (6.67x10⁻¹¹ x 50 x 100)/25 = 1.334 x 10⁻⁸ N."}, {"id": 59, "stem": "The pendulum of a clock is 1 m long. If the acceleration due to gravity at that place is π² m/s², the time taken by the pendulum to complete one full oscillation is:", "options": [{"key": "a", "text": "π s"}, {"key": "b", "text": "1 s"}, {"key": "c", "text": "4 s"}, {"key": "d", "text": "2 s"}], "correct": "d", "explanation": "T = 2π√(l/g) = 2π√(1/π²) = 2π/π = 2 s."}, {"id": 60, "stem": "A car travelling at 20 m/s is brought to rest by applying brakes which produce a uniform retardation of 5 m/s². The distance covered by the car before it stops is:", "options": [{"key": "a", "text": "4 m"}, {"key": "b", "text": "80 m"}, {"key": "c", "text": "20 m"}, {"key": "d", "text": "40 m"}], "correct": "d", "explanation": "v² = u² + 2as -> 0 = 400 - 10s -> s = 40 m. Stopping distance is proportional to the square of the initial speed."}, {"id": 61, "stem": "A man standing at some distance from a cliff fires a gun and hears the echo 3 seconds later. Taking the speed of sound in air as 340 m/s, the cliff is at a distance of:", "options": [{"key": "a", "text": "510 m"}, {"key": "b", "text": "113.3 m"}, {"key": "c", "text": "1,020 m"}, {"key": "d", "text": "340 m"}], "correct": "a", "explanation": "Total distance travelled there and back = 340 x 3 = 1,020 m, so the cliff is 1,020/2 = 510 m away."}, {"id": 62, "stem": "A tuning fork vibrating at 660 Hz produces a sound wave whose wavelength in air is found to be 0.5 m. The speed of sound in air under these conditions is:", "options": [{"key": "a", "text": "165 m/s"}, {"key": "b", "text": "1,320 m/s"}, {"key": "c", "text": "330 m/s"}, {"key": "d", "text": "660 m/s"}], "correct": "c", "explanation": "v = f x lambda = 660 x 0.5 = 330 m/s."}, {"id": 63, "stem": "A metal block of weight 500 N rests on a horizontal floor, its base measuring 0.5 m by 0.5 m. The pressure exerted by the block on the floor is:", "options": [{"key": "a", "text": "2,000 Pa"}, {"key": "b", "text": "20,000 Pa"}, {"key": "c", "text": "500 Pa"}, {"key": "d", "text": "125 Pa"}], "correct": "a", "explanation": "Area = 0.5 x 0.5 = 0.25 m²; P = F/A = 500/0.25 = 2,000 Pa."}, {"id": 64, "stem": "A candle is placed 30 cm in front of a concave mirror whose focal length is 20 cm. The image of the candle is formed:", "options": [{"key": "a", "text": "60 cm behind the mirror"}, {"key": "b", "text": "60 cm in front of the mirror"}, {"key": "c", "text": "12 cm in front of the mirror"}, {"key": "d", "text": "15 cm in front of the mirror"}], "correct": "b", "explanation": "Using 1/v + 1/u = 1/f with u=-30, f=-20: 1/v = -1/20+1/30 = -1/60, so v = -60 cm -- real, inverted, 60 cm in front of the mirror."}, {"id": 65, "stem": "An object is placed 15 cm from a convex lens of focal length 10 cm. The image is formed:", "options": [{"key": "a", "text": "25 cm from the lens, on the side opposite to the object"}, {"key": "b", "text": "30 cm from the lens, on the same side as the object"}, {"key": "c", "text": "6 cm from the lens, on the side opposite to the object"}, {"key": "d", "text": "30 cm from the lens, on the side opposite to the object"}], "correct": "d", "explanation": "1/v = 1/f + 1/u = 1/10 - 1/15 = 1/30, so v = +30 cm: real, inverted, on the far side of the lens."}, {"id": 66, "stem": "An object 4 cm high is placed 20 cm from a lens, and its image is formed 60 cm from the lens on the opposite side. The height of the image is:", "options": [{"key": "a", "text": "1.33 cm"}, {"key": "b", "text": "60 cm"}, {"key": "c", "text": "12 cm"}, {"key": "d", "text": "4 cm"}], "correct": "c", "explanation": "Magnification m = v/u = 60/20 = 3; image height = 3 x 4 = 12 cm."}, {"id": 67, "stem": "A spectacle lens prescribed for a patient has a focal length of 25 cm and is convex in nature. Its power is:", "options": [{"key": "a", "text": "+0.25 D"}, {"key": "b", "text": "–4 D"}, {"key": "c", "text": "+4 D"}, {"key": "d", "text": "+25 D"}], "correct": "c", "explanation": "P = 1/f (in metres) = 1/0.25 = +4 D (positive since it is a convex/converging lens)."}, {"id": 68, "stem": "Light travels through a certain transparent medium with a speed of 1.5 x 10⁸ m/s. Taking its speed in vacuum as 3 x 10⁸ m/s, the refractive index of the medium is:", "options": [{"key": "a", "text": "0.5"}, {"key": "b", "text": "2.0"}, {"key": "c", "text": "4.5"}, {"key": "d", "text": "1.5"}], "correct": "b", "explanation": "n = c/v = (3x10⁸)/(1.5x10⁸) = 2.0."}, {"id": 69, "stem": "An electric appliance of resistance 110 Ω is connected to the domestic supply of 220 V. The current drawn by the appliance is:", "options": [{"key": "a", "text": "22 A"}, {"key": "b", "text": "110 A"}, {"key": "c", "text": "2 A"}, {"key": "d", "text": "0.5 A"}], "correct": "c", "explanation": "By Ohm's law, I = V/R = 220/110 = 2 A."}, {"id": 70, "stem": "In a circuit, two resistors of 6 Ω each are joined in parallel and this combination is connected in series with a resistor of 2 Ω. The equivalent resistance of the whole arrangement is:", "options": [{"key": "a", "text": "5 Ω"}, {"key": "b", "text": "14 Ω"}, {"key": "c", "text": "8 Ω"}, {"key": "d", "text": "3 Ω"}], "correct": "a", "explanation": "Parallel combination of two 6 Ω resistors = 3 Ω; in series with 2 Ω gives 3+2 = 5 Ω."}, {"id": 71, "stem": "A current of 3 A flows through a resistor of 20 Ω for 2 minutes. The quantity of heat produced in the resistor is:", "options": [{"key": "a", "text": "3,600 J"}, {"key": "b", "text": "7,200 J"}, {"key": "c", "text": "1,800 J"}, {"key": "d", "text": "21,600 J"}], "correct": "d", "explanation": "H = I²Rt = 9 x 20 x 120 (2 min = 120 s) = 21,600 J."}, {"id": 72, "stem": "An air conditioner rated at 1,500 W is used for 8 hours a day for 30 days. If the charge for electricity is ₹7 per unit, the amount payable for running it is:", "options": [{"key": "a", "text": "₹252"}, {"key": "b", "text": "₹360"}, {"key": "c", "text": "₹2,520"}, {"key": "d", "text": "₹1,800"}], "correct": "c", "explanation": "Energy = 1.5 kW x 240 h = 360 units; cost = 360 x 7 = ₹2,520."}, {"id": 73, "stem": "A wooden crate of mass 25 kg rests on a horizontal floor for which the coefficient of limiting friction is 0.4. Taking g = 10 m/s², the least horizontal force required to just set the crate in motion is:", "options": [{"key": "a", "text": "10 N"}, {"key": "b", "text": "40 N"}, {"key": "c", "text": "100 N"}, {"key": "d", "text": "250 N"}], "correct": "c", "explanation": "N = mg = 250 N; limiting friction f = μN = 0.4 x 250 = 100 N."}, {"id": 74, "stem": "A block of mass 10 kg lying on a rough horizontal surface is pulled by a horizontal force of 60 N. If the coefficient of friction between the block and the surface is 0.2 and g = 10 m/s², the acceleration of the block is:", "options": [{"key": "a", "text": "4 m/s²"}, {"key": "b", "text": "8 m/s²"}, {"key": "c", "text": "2 m/s²"}, {"key": "d", "text": "6 m/s²"}], "correct": "a", "explanation": "Friction = μmg = 0.2 x 100 = 20 N; net force = 60-20 = 40 N; a = 40/10 = 4 m/s²."}, {"id": 75, "stem": "The quantity of heat required to raise the temperature of 2 kg of water from 20 °C to 70 °C, taking the specific heat capacity of water as 4,200 J/kg °C, is:", "options": [{"key": "a", "text": "4.2 x 10⁴ J"}, {"key": "b", "text": "2.1 x 10⁵ J"}, {"key": "c", "text": "8.4 x 10⁵ J"}, {"key": "d", "text": "4.2 x 10⁵ J"}], "correct": "d", "explanation": "Q = mcΔT = 2 x 4200 x 50 = 420,000 J = 4.2 x 10⁵ J."}, {"id": 76, "stem": "Consider the following statements about the magnetic field of a current-carrying solenoid:\n1. The field inside a long solenoid is nearly uniform.\n2. The strength of the field increases with the number of turns per unit length.\n3. Inserting a soft iron core greatly increases the field strength.\n4. Reversing the direction of the current leaves the direction of the field unchanged.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "All four"}, {"key": "b", "text": "2 and 4 only"}, {"key": "c", "text": "4 only"}, {"key": "d", "text": "1, 2 and 3 only"}], "correct": "d", "explanation": "Statement 4 is wrong -- reversing the current reverses the field direction, per the right-hand thumb rule."}, {"id": 77, "stem": "Soft iron rather than steel is used as the core of an electromagnet because soft iron:", "options": [{"key": "a", "text": "Loses its magnetism as soon as the current is switched off"}, {"key": "b", "text": "Retains its magnetism permanently"}, {"key": "c", "text": "Offers less electrical resistance than steel"}, {"key": "d", "text": "Has a higher melting point than steel"}], "correct": "a", "explanation": "Soft iron is easily magnetised and demagnetised, which suits an electromagnet that must be switched on and off; steel retains magnetism and suits permanent magnets."}, {"id": 78, "stem": "Which one of the following is NOT an illustration of Newton's third law of motion?", "options": [{"key": "a", "text": "A body continues in its state of rest unless acted upon by a force"}, {"key": "b", "text": "The forward motion of a boat when the boatman pushes the bank with a pole"}, {"key": "c", "text": "The recoil of a gun when a bullet is fired"}, {"key": "d", "text": "The upward thrust of a rocket as gases are expelled downwards"}], "correct": "a", "explanation": "That statement is Newton's first law (inertia), not the third law of action-reaction."}, {"id": 79, "stem": "In which of the following cases is the work done by the force equal to zero?\n1. A coolie carrying a load walks on a level platform.\n2. A body moves in a circular path under a centripetal force.\n3. A man pushes a wall that does not move.\n4. A body slides down a frictionless inclined plane.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "c", "explanation": "Three cases give zero work (force perpendicular to displacement, or no displacement at all); on the incline, gravity's component along the plane does produce displacement and hence work."}, {"id": 80, "stem": "Consider the following statements about sound:\n1. Sound waves in air are longitudinal.\n2. Sound cannot travel through vacuum.\n3. The speed of sound is greater in solids than in gases.\n4. The speed of sound in air decreases as the temperature rises.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "All four"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "3 only"}, {"key": "d", "text": "1 and 4 only"}], "correct": "b", "explanation": "Statement 4 is wrong -- the speed of sound in air increases with temperature, by about 0.61 m/s per degree Celsius."}, {"id": 81, "stem": "Match List I with List II:\nA. Infrasonic -- 1. Above 20,000 Hz\nB. Audible range -- 2. 20 Hz to 20,000 Hz\nC. Ultrasonic -- 3. Below 20 Hz\nD. Frequency of a wave -- 4. Measured in hertz", "options": [{"key": "a", "text": "A-2, B-3, C-4, D-1"}, {"key": "b", "text": "A-3, B-2, C-1, D-4"}, {"key": "c", "text": "A-4, B-2, C-1, D-3"}, {"key": "d", "text": "A-1, B-2, C-3, D-4"}], "correct": "b", "explanation": "Infrasonic = below 20 Hz; Audible = 20-20,000 Hz; Ultrasonic = above 20,000 Hz; frequency is measured in hertz."}, {"id": 82, "stem": "The phenomenon of total internal reflection is responsible for:\n1. The formation of a mirage\n2. The sparkle of a diamond\n3. The transmission of signals through optical fibres\n4. The formation of a rainbow\nSelect the correct answer:", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "4 only"}, {"key": "c", "text": "2 and 4 only"}, {"key": "d", "text": "All four"}], "correct": "a", "explanation": "The rainbow is formed by refraction and dispersion, not total internal reflection; mirages, diamond sparkle and optical fibres are classic TIR examples."}, {"id": 83, "stem": "The splitting of white light into its constituent colours on passing through a prism occurs because:", "options": [{"key": "a", "text": "The prism reflects the colours at different angles from its surface"}, {"key": "b", "text": "Different colours travel with different speeds in the prism"}, {"key": "c", "text": "The prism absorbs some colours more than others"}, {"key": "d", "text": "The light undergoes total internal reflection within the prism"}], "correct": "b", "explanation": "Different wavelengths travel at different speeds within the glass and are therefore refracted through different angles (dispersion); violet bends most, red least."}, {"id": 84, "stem": "Which one of the following pairs is NOT correctly matched?", "options": [{"key": "a", "text": "Presbyopia — Corrected by a bifocal lens"}, {"key": "b", "text": "Myopia — Corrected by a concave lens"}, {"key": "c", "text": "Hypermetropia — Corrected by a convex lens"}, {"key": "d", "text": "Astigmatism — Corrected by a convex lens"}], "correct": "d", "explanation": "Astigmatism is corrected by a cylindrical lens, not a convex one; it arises from an irregularly shaped cornea."}, {"id": 85, "stem": "An astronaut inside a satellite orbiting the earth experiences weightlessness because:", "options": [{"key": "a", "text": "There is no gravitational force at that height"}, {"key": "b", "text": "The astronaut and the satellite are both in a state of free fall towards the earth"}, {"key": "c", "text": "The satellite moves with a uniform velocity"}, {"key": "d", "text": "There is no atmosphere in the satellite"}], "correct": "b", "explanation": "Gravity is still present and supplies the centripetal force; both astronaut and satellite fall together, so the astronaut exerts no reaction force on the floor -- hence weightlessness."}, {"id": 86, "stem": "Consider the following statements about escape velocity:\n1. It does not depend on the mass of the body that is projected.\n2. Its value for the earth is about 7.9 km/s.\n3. It depends on the mass and radius of the planet.\n4. It is smaller than the orbital velocity of a satellite close to the earth's surface.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "b", "explanation": "Only 1 and 3 are correct. Escape velocity for earth is about 11.2 km/s (7.9 km/s is orbital velocity), and escape velocity is greater than orbital velocity, not smaller."}, {"id": 87, "stem": "For the same pair of surfaces, which of the following is the correct order?", "options": [{"key": "a", "text": "Static friction > Rolling friction > Sliding friction"}, {"key": "b", "text": "Sliding friction > Static friction > Rolling friction"}, {"key": "c", "text": "Rolling friction > Sliding friction > Static friction"}, {"key": "d", "text": "Static friction > Sliding friction > Rolling friction"}], "correct": "d", "explanation": "Limiting static friction is greatest, sliding friction next, and rolling friction is very much smaller than either."}, {"id": 88, "stem": "Consider the following statements about the domestic electric circuit:\n1. The fuse is connected in the live wire.\n2. The earth wire provides a low-resistance path to the ground.\n3. Appliances in a house are connected in parallel.\n4. A fuse wire should have a high melting point.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "All four"}, {"key": "c", "text": "3 only"}, {"key": "d", "text": "1, 2 and 3 only"}], "correct": "d", "explanation": "Statement 4 is wrong -- a fuse wire must have a LOW melting point, so it melts and breaks the circuit at excessive current."}, {"id": 89, "stem": "Match List I with List II:\nA. Work -- 1. Joule\nB. Power -- 2. Hertz\nC. Pressure -- 3. Watt\nD. Frequency -- 4. Pascal", "options": [{"key": "a", "text": "A-1, B-4, C-3, D-2"}, {"key": "b", "text": "A-1, B-3, C-4, D-2"}, {"key": "c", "text": "A-4, B-3, C-1, D-2"}, {"key": "d", "text": "A-1, B-2, C-4, D-3"}], "correct": "b", "explanation": "Work is measured in joules, power in watts, pressure in pascals, and frequency in hertz."}, {"id": 90, "stem": "Assertion (A): A body dropped from a height and another projected horizontally from the same height reach the ground at the same time.\nReason (R): The horizontal and vertical motions of a projectile are independent of each other.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "a", "explanation": "Both are true and R explains A -- since vertical motion depends only on gravity, both bodies, starting with zero vertical velocity, take the same time to fall regardless of horizontal motion."}, {"id": 91, "stem": "Match the passes in List I with the states in which they are located in List II:\nA. Zoji La -- 1. Arunachal Pradesh\nB. Nathu La -- 2. Sikkim\nC. Bomdi La -- 3. Ladakh\nD. Shipki La -- 4. Himachal Pradesh", "options": [{"key": "a", "text": "A-4, B-3, C-1, D-2"}, {"key": "b", "text": "A-3, B-2, C-1, D-4"}, {"key": "c", "text": "A-1, B-4, C-3, D-2"}, {"key": "d", "text": "A-2, B-3, C-1, D-4"}], "correct": "b", "explanation": "Zoji La is in Ladakh; Nathu La in Sikkim; Bomdi La in Arunachal Pradesh; Shipki La in Himachal Pradesh."}, {"id": 92, "stem": "Consider the following statements about the Himalayan ranges:\n1. The Greater Himalaya is also known as the Himadri.\n2. The Lesser Himalaya lies between the Himadri and the Shiwaliks.\n3. The longitudinal valleys lying between the Lesser Himalaya and the Shiwaliks are called Duns.\n4. The Shiwaliks are the oldest of the three ranges.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "All four"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "2 and 4 only"}, {"key": "d", "text": "4 only"}], "correct": "b", "explanation": "Statement 4 is wrong -- the Shiwaliks are the youngest range, while the Himadri is the oldest and highest."}, {"id": 93, "stem": "Which one of the following passes connects Kalimpong in India with Lhasa in Tibet?", "options": [{"key": "a", "text": "Niti"}, {"key": "b", "text": "Rohtang"}, {"key": "c", "text": "Lipulekh"}, {"key": "d", "text": "Jelep La"}], "correct": "d", "explanation": "Jelep La in Sikkim was historically an important trade route to Tibet via Lhasa."}, {"id": 94, "stem": "Consider the following statements about the Western Ghats:\n1. They are broken and discontinuous, being dissected by rivers draining into the sea.\n2. They are higher than the Eastern Ghats.\n3. Doddabetta is the highest peak of the Western Ghats.\n4. The Palghat gap lies between the Nilgiris and the Anaimalai hills.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "b", "explanation": "Only 2 and 4 are correct. It is the Eastern Ghats that are broken and discontinuous; the highest peak of the Western Ghats is Anaimudi, not Doddabetta."}, {"id": 95, "stem": "Arrange the following peaks from north to south:\n1. Nanda Devi\n2. Anaimudi\n3. Kanchenjunga\n4. Dhupgarh", "options": [{"key": "a", "text": "1 – 3 – 4 – 2"}, {"key": "b", "text": "3 – 1 – 4 – 2"}, {"key": "c", "text": "1 – 3 – 2 – 4"}, {"key": "d", "text": "3 – 1 – 2 – 4"}], "correct": "a", "explanation": "By latitude: Nanda Devi (~30°N), Kanchenjunga (~27°N), Dhupgarh (~22°N), Anaimudi (~10°N)."}, {"id": 96, "stem": "Which one of the following rivers does NOT originate within Indian territory?", "options": [{"key": "a", "text": "Godavari"}, {"key": "b", "text": "Brahmaputra"}, {"key": "c", "text": "Mahanadi"}, {"key": "d", "text": "Narmada"}], "correct": "b", "explanation": "The Brahmaputra rises in Tibet (as the Tsangpo) and enters India in Arunachal Pradesh; the other three all rise within India."}, {"id": 97, "stem": "Match the rivers in List I with their places of origin in List II:\nA. Godavari -- 1. Sihawa\nB. Krishna -- 2. Trimbakeshwar\nC. Kaveri -- 3. Talakaveri\nD. Mahanadi -- 4. Mahabaleshwar", "options": [{"key": "a", "text": "A-2, B-3, C-4, D-1"}, {"key": "b", "text": "A-3, B-4, C-2, D-1"}, {"key": "c", "text": "A-1, B-4, C-3, D-2"}, {"key": "d", "text": "A-2, B-4, C-3, D-1"}], "correct": "d", "explanation": "Godavari rises at Trimbakeshwar; Krishna near Mahabaleshwar; Kaveri at Talakaveri; Mahanadi in the Sihawa area of Chhattisgarh."}, {"id": 98, "stem": "Consider the following statements about peninsular rivers:\n1. The Narmada and the Tapi flow through rift valleys.\n2. They drain into the Arabian Sea.\n3. They do not form deltas.\n4. The Narmada flows between the Vindhya and the Satpura ranges.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "2 and 3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "All four"}, {"key": "d", "text": "3 only"}], "correct": "c", "explanation": "All four statements are correct -- both rivers occupy rift valleys, drain west into the Arabian Sea, form estuaries rather than deltas, and the Narmada runs between the Vindhyas and Satpuras."}, {"id": 99, "stem": "The Indus Waters Treaty allots to India the unrestricted use of the waters of:", "options": [{"key": "a", "text": "Ravi, Beas and Sutlej"}, {"key": "b", "text": "Indus, Ravi and Beas"}, {"key": "c", "text": "Indus, Jhelum and Chenab"}, {"key": "d", "text": "Jhelum, Chenab and Ravi"}], "correct": "a", "explanation": "Under the 1960 treaty, India got the three eastern rivers -- Ravi, Beas and Sutlej -- while the western rivers (Indus, Jhelum, Chenab) went largely to Pakistan."}, {"id": 100, "stem": "Which of the following rivers form estuaries rather than deltas?\n1. Narmada\n2. Tapi\n3. Mahanadi\n4. Krishna\nSelect the correct answer:", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "1 and 2 only"}, {"key": "c", "text": "3 and 4 only"}, {"key": "d", "text": "All four"}], "correct": "b", "explanation": "The Narmada and Tapi, flowing through rift valleys with little silt, form estuaries; the east-flowing Mahanadi and Krishna build deltas."}, {"id": 101, "stem": "The Brahmaputra is known in Tibet as:", "options": [{"key": "a", "text": "Dihang"}, {"key": "b", "text": "Tsangpo"}, {"key": "c", "text": "Jamuna"}, {"key": "d", "text": "Padma"}], "correct": "b", "explanation": "It is called the Tsangpo in Tibet, the Dihang on entering Arunachal Pradesh, and the Jamuna in Bangladesh."}, {"id": 102, "stem": "Consider the following statements about the Indian monsoon:\n1. The south-west monsoon normally reaches the Kerala coast by the first week of June.\n2. The Arabian Sea branch and the Bay of Bengal branch are its two branches.\n3. Tamil Nadu receives most of its rainfall from the retreating monsoon.\n4. The monsoon withdraws from north-west India before it withdraws from the peninsula.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "d", "explanation": "All four are correct -- the monsoon sets in over Kerala around 1 June, advances in two branches, and withdraws first from the north-west, reaching the peninsula last."}, {"id": 103, "stem": "Mawsynram and Cherrapunji receive exceptionally heavy rainfall mainly because:", "options": [{"key": "a", "text": "They lie in the path of the Arabian Sea branch of the monsoon"}, {"key": "b", "text": "They are situated at a very high altitude"}, {"key": "c", "text": "They lie in the funnel-shaped Khasi hills which trap the moisture-laden winds"}, {"key": "d", "text": "They lie close to the Bay of Bengal"}], "correct": "c", "explanation": "The Bay of Bengal branch of the monsoon is funnelled into the horseshoe-shaped Khasi and Jaintia hills, forcing the winds to rise sharply and shed nearly all their moisture."}, {"id": 104, "stem": "The phenomenon of October heat in northern India is associated with:", "options": [{"key": "a", "text": "The western disturbances"}, {"key": "b", "text": "The retreating monsoon season"}, {"key": "c", "text": "The onset of the south-west monsoon"}, {"key": "d", "text": "The cold weather season"}], "correct": "b", "explanation": "During October-November, as the monsoon retreats, high temperature combined with lingering humidity produces oppressive 'October heat'."}, {"id": 105, "stem": "Assertion (A): The Tamil Nadu coast receives rainfall in the months of October and November.\nReason (R): It lies in the rain-shadow region of the Arabian Sea branch of the south-west monsoon.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both A and R are true and R is the correct explanation of A"}, {"key": "b", "text": "Both A and R are true but R is not the correct explanation of A"}, {"key": "c", "text": "A is true but R is false"}, {"key": "d", "text": "A is false but R is true"}], "correct": "c", "explanation": "A is true, but R is inaccurate -- the Coromandel coast gets its rain from the retreating/north-east monsoon crossing the Bay of Bengal, not from a rain-shadow relative to the Arabian Sea branch."}, {"id": 106, "stem": "Which one of the following local winds is NOT correctly matched with its region?", "options": [{"key": "a", "text": "Loo — Northern plains"}, {"key": "b", "text": "Norwester — Coastal Tamil Nadu"}, {"key": "c", "text": "Mango shower — Kerala and Karnataka"}, {"key": "d", "text": "Kalbaisakhi — Bengal and Assam"}], "correct": "b", "explanation": "Norwester is simply another name for the Kalbaisakhi thunderstorm of Bengal and Assam, and has nothing to do with Tamil Nadu."}, {"id": 107, "stem": "Consider the following statements about black soil:\n1. It is also known as regur soil.\n2. It has a high capacity to retain moisture.\n3. It has developed on the Deccan lava plateau.\n4. It is rich in nitrogen and organic matter.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "2 and 4 only"}, {"key": "c", "text": "All four"}, {"key": "d", "text": "4 only"}], "correct": "a", "explanation": "Statement 4 is wrong -- black soil is poor in nitrogen, phosphorus and organic matter, though rich in lime, iron, magnesia and potash."}, {"id": 108, "stem": "Match the soils in List I with their characteristics in List II:\nA. Alluvial soil -- 1. Owes its colour to the presence of iron oxide\nB. Laterite soil -- 2. Saline in nature, with a low humus content\nC. Red soil -- 3. Most widespread soil of India, deposited by rivers\nD. Arid soil -- 4. Formed by intense leaching in areas of heavy rainfall", "options": [{"key": "a", "text": "A-3, B-4, C-2, D-1"}, {"key": "b", "text": "A-2, B-1, C-4, D-3"}, {"key": "c", "text": "A-3, B-2, C-4, D-1"}, {"key": "d", "text": "A-3, B-4, C-1, D-2"}], "correct": "d", "explanation": "Alluvial soil is the most widespread, river-deposited; laterite forms by intense leaching; red soil owes its colour to iron oxide; arid soil is saline with low humus."}, {"id": 109, "stem": "The Tropic of Cancer passes through how many Indian states?", "options": [{"key": "a", "text": "Seven"}, {"key": "b", "text": "Six"}, {"key": "c", "text": "Eight"}, {"key": "d", "text": "Nine"}], "correct": "c", "explanation": "It passes through eight states: Gujarat, Rajasthan, Madhya Pradesh, Chhattisgarh, Jharkhand, West Bengal, Tripura and Mizoram."}, {"id": 110, "stem": "Which of the following Indian states has the longest coastline?", "options": [{"key": "a", "text": "Maharashtra"}, {"key": "b", "text": "Andhra Pradesh"}, {"key": "c", "text": "Tamil Nadu"}, {"key": "d", "text": "Gujarat"}], "correct": "d", "explanation": "Gujarat has the longest coastline among the states, owing to its deeply indented shore and the Gulfs of Kachchh and Khambhat."}, {"id": 111, "stem": "Consider the following statements about the Deccan Plateau:\n1. It is bounded by the Western Ghats on the west and the Eastern Ghats on the east.\n2. It slopes generally from west to east.\n3. It is the oldest landmass of the Indian subcontinent.\n4. It is composed mainly of sedimentary rocks of recent origin.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "c", "explanation": "Three are correct. The Deccan is composed of old crystalline, igneous and metamorphic rocks (and basaltic lava trap), not recent sedimentary rocks."}, {"id": 112, "stem": "Arrange the following from west to east along the Indian coast:\n1. Gulf of Khambhat\n2. Gulf of Mannar\n3. Gulf of Kachchh\n4. Chilika Lake", "options": [{"key": "a", "text": "3 – 1 – 4 – 2"}, {"key": "b", "text": "3 – 1 – 2 – 4"}, {"key": "c", "text": "1 – 3 – 2 – 4"}, {"key": "d", "text": "1 – 3 – 4 – 2"}], "correct": "b", "explanation": "Gulf of Kachchh, then Gulf of Khambhat (both Gujarat), then round the peninsula to Gulf of Mannar (Tamil Nadu), then Chilika Lake (Odisha)."}, {"id": 113, "stem": "Which one of the following is the largest saltwater lake in India?", "options": [{"key": "a", "text": "Kolleru"}, {"key": "b", "text": "Sambhar"}, {"key": "c", "text": "Chilika"}, {"key": "d", "text": "Wular"}], "correct": "c", "explanation": "Chilika (Odisha) is the largest brackish/saltwater lake and coastal lagoon in India; Sambhar is the largest inland saltwater lake; Wular is the largest freshwater lake."}, {"id": 114, "stem": "Consider the following statements about the Andaman and Nicobar Islands:\n1. They are separated from each other by the Ten Degree Channel.\n2. Barren Island, the only active volcano in India, lies in this group.\n3. Indira Point is the southernmost point of India.\n4. The Coco Strait separates the Andamans from Myanmar.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "2 and 4 only"}, {"key": "c", "text": "3 only"}, {"key": "d", "text": "All four"}], "correct": "d", "explanation": "All four are correct -- the Ten Degree Channel separates Andaman from Nicobar, Barren Island is India's only active volcano, Indira Point is India's southernmost point, and the Coco Strait separates the Andamans from Myanmar."}, {"id": 115, "stem": "Match the National Parks in List I with the states in List II:\nA. Kaziranga -- 1. West Bengal\nB. Gir -- 2. Assam\nC. Sundarbans -- 3. Gujarat\nD. Ranthambore -- 4. Rajasthan", "options": [{"key": "a", "text": "A-3, B-2, C-4, D-1"}, {"key": "b", "text": "A-2, B-3, C-1, D-4"}, {"key": "c", "text": "A-1, B-3, C-4, D-2"}, {"key": "d", "text": "A-1, B-2, C-3, D-4"}], "correct": "b", "explanation": "Kaziranga (Assam) -- one-horned rhinoceros; Gir (Gujarat) -- Asiatic lion; Sundarbans (West Bengal) -- mangrove tiger reserve; Ranthambore (Rajasthan) -- tiger reserve."}, {"id": 116, "stem": "Which of the following states does NOT share a border with Nepal?", "options": [{"key": "a", "text": "Himachal Pradesh"}, {"key": "b", "text": "Uttarakhand"}, {"key": "c", "text": "Sikkim"}, {"key": "d", "text": "West Bengal"}], "correct": "a", "explanation": "Five states border Nepal -- Uttarakhand, Uttar Pradesh, Bihar, West Bengal and Sikkim; Himachal Pradesh borders China but not Nepal."}, {"id": 117, "stem": "Consider the following statements about Indian agriculture:\n1. Rice is a kharif crop in most of India.\n2. Wheat is the principal rabi crop of the northern plains.\n3. Zaid crops are grown between the kharif and the rabi seasons.\n4. Jute requires a cool and dry climate.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "b", "explanation": "Only 1 and 2 are correct. Zaid crops are grown between the rabi harvest and kharif sowing, not between kharif and rabi; jute needs a hot, humid climate, not cool and dry."}, {"id": 118, "stem": "The Damodar Valley Corporation was set up on the model of:", "options": [{"key": "a", "text": "The Three Gorges project"}, {"key": "b", "text": "The Aswan High Dam project"}, {"key": "c", "text": "The Hoover Dam project"}, {"key": "d", "text": "The Tennessee Valley Authority"}], "correct": "d", "explanation": "The Damodar Valley Corporation (1948), India's first multipurpose river valley project, was modelled on the US Tennessee Valley Authority."}, {"id": 119, "stem": "Match the multipurpose projects in List I with the rivers in List II:\nA. Bhakra Nangal -- 1. Krishna\nB. Hirakud -- 2. Bhagirathi\nC. Nagarjuna Sagar -- 3. Sutlej\nD. Tehri -- 4. Mahanadi", "options": [{"key": "a", "text": "A-3, B-4, C-2, D-1"}, {"key": "b", "text": "A-2, B-4, C-1, D-3"}, {"key": "c", "text": "A-3, B-4, C-1, D-2"}, {"key": "d", "text": "A-2, B-3, C-1, D-4"}], "correct": "c", "explanation": "Bhakra Nangal is on the Sutlej; Hirakud on the Mahanadi; Nagarjuna Sagar on the Krishna; Tehri on the Bhagirathi."}, {"id": 120, "stem": "Which one of the following statements about the Thar Desert is NOT correct?", "options": [{"key": "a", "text": "It is composed mainly of black cotton soil"}, {"key": "b", "text": "The Luni is the only significant river of the region"}, {"key": "c", "text": "It receives less than 150 mm of rainfall annually"}, {"key": "d", "text": "It lies to the west of the Aravalli hills"}], "correct": "a", "explanation": "The Thar is covered by sandy arid soil, not black cotton soil, which belongs to the Deccan lava region."}, {"id": 121, "stem": "Which of the following countries do NOT share a land border with Afghanistan?\n1. Turkmenistan\n2. Kazakhstan\n3. China\n4. Azerbaijan\nSelect the correct answer:", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "4 only"}, {"key": "c", "text": "2, 3 and 4 only"}, {"key": "d", "text": "1 and 3 only"}], "correct": "a", "explanation": "Afghanistan's six land neighbours are Pakistan, Iran, Turkmenistan, Uzbekistan, Tajikistan and China; Kazakhstan and Azerbaijan are not among them."}, {"id": 122, "stem": "Match the straits in List I with what they separate in List II:\nA. Palk Strait -- 1. India and Sri Lanka\nB. Strait of Malacca -- 2. Persian Gulf and Gulf of Oman\nC. Strait of Hormuz -- 3. Malay Peninsula and Sumatra\nD. Bering Strait -- 4. Asia and North America", "options": [{"key": "a", "text": "A-1, B-4, C-3, D-2"}, {"key": "b", "text": "A-1, B-3, C-4, D-2"}, {"key": "c", "text": "A-1, B-3, C-2, D-4"}, {"key": "d", "text": "A-2, B-4, C-1, D-3"}], "correct": "c", "explanation": "Palk Strait separates India and Sri Lanka; Strait of Malacca separates the Malay Peninsula and Sumatra; Strait of Hormuz links the Persian Gulf and Gulf of Oman; Bering Strait separates Asia and North America."}, {"id": 123, "stem": "Arrange the following straits from west to east:\n1. Strait of Gibraltar\n2. Bab-el-Mandeb\n3. Strait of Malacca\n4. Strait of Hormuz", "options": [{"key": "a", "text": "1 – 4 – 2 – 3"}, {"key": "b", "text": "2 – 1 – 4 – 3"}, {"key": "c", "text": "1 – 2 – 3 – 4"}, {"key": "d", "text": "1 – 2 – 4 – 3"}], "correct": "d", "explanation": "Gibraltar (westernmost), Bab-el-Mandeb, Strait of Hormuz, then Strait of Malacca (easternmost)."}, {"id": 124, "stem": "Which of the following countries share a land border with Iran?\n1. Turkmenistan\n2. Armenia\n3. Iraq\n4. Kuwait\nSelect the correct answer:", "options": [{"key": "a", "text": "1 and 4 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "All four"}, {"key": "d", "text": "3 and 4 only"}], "correct": "b", "explanation": "Iran's land neighbours include Iraq, Turkey, Armenia, Azerbaijan, Turkmenistan, Afghanistan and Pakistan; Kuwait touches Iran only across water, not by land."}, {"id": 125, "stem": "Consider the following statements about the Panama Canal:\n1. It connects the Atlantic Ocean with the Pacific Ocean.\n2. It uses a system of locks.\n3. It is shorter than the Suez Canal.\n4. It is a sea-level canal requiring no locks.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "3 only"}, {"key": "c", "text": "1 and 4 only"}, {"key": "d", "text": "All four"}], "correct": "a", "explanation": "Statement 4 is wrong and contradicts statement 2 -- the Panama Canal must lift ships via locks; it is the Suez Canal that is sea-level and needs no locks."}, {"id": 126, "stem": "The Strait of Hormuz, which has repeatedly been in the news, connects:", "options": [{"key": "a", "text": "The Persian Gulf with the Arabian Sea directly"}, {"key": "b", "text": "The Red Sea with the Gulf of Aden"}, {"key": "c", "text": "The Persian Gulf with the Gulf of Oman"}, {"key": "d", "text": "The Gulf of Oman with the Red Sea"}], "correct": "c", "explanation": "The Strait of Hormuz is the only sea outlet from the Persian Gulf, opening into the Gulf of Oman and thence the Arabian Sea."}, {"id": 127, "stem": "Consider the following statements about the Strait of Hormuz:\n1. Iran lies along its northern shore.\n2. Its southern shore is formed by Oman and the United Arab Emirates.\n3. An exclave of Oman, separated from the rest of that country, lies on the strait.\n4. It is the only sea route by which oil from the Persian Gulf states reaches the open ocean.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "1, 2 and 3 only"}, {"key": "b", "text": "3 only"}, {"key": "c", "text": "2 and 4 only"}, {"key": "d", "text": "All four"}], "correct": "d", "explanation": "All four are correct -- Iran lies to the north, Oman/UAE to the south, Oman's Musandam exclave sits on the strait, and it is the sole maritime outlet for Gulf oil exports."}, {"id": 128, "stem": "Consider the following statements about the Equator:\n1. It passes through Kenya.\n2. It passes through Indonesia.\n3. It passes through Brazil.\n4. It passes through Australia.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "c", "explanation": "Three are correct -- the Equator crosses Kenya, Indonesia and Brazil, but not Australia, which lies entirely in the southern hemisphere."}, {"id": 129, "stem": "Which of the following countries border the Caspian Sea?\n1. Iran\n2. Kazakhstan\n3. Turkey\n4. Azerbaijan\nSelect the correct answer:", "options": [{"key": "a", "text": "3 only"}, {"key": "b", "text": "1, 2 and 4 only"}, {"key": "c", "text": "2 and 3 only"}, {"key": "d", "text": "All four"}], "correct": "b", "explanation": "The five Caspian littoral states are Russia, Kazakhstan, Turkmenistan, Iran and Azerbaijan; Turkey is not among them."}, {"id": 130, "stem": "Which one of the following countries does NOT have a coastline on the Persian Gulf?", "options": [{"key": "a", "text": "Kuwait"}, {"key": "b", "text": "Bahrain"}, {"key": "c", "text": "Qatar"}, {"key": "d", "text": "Oman"}], "correct": "d", "explanation": "Oman faces the Gulf of Oman and Arabian Sea, not the Persian Gulf proper (though its Musandam exclave commands the Strait of Hormuz)."}, {"id": 131, "stem": "Match the rivers in List I with the cities situated on them in List II:\nA. Thames -- 1. London\nB. Danube -- 2. Cairo\nC. Nile -- 3. Baghdad\nD. Tigris -- 4. Vienna", "options": [{"key": "a", "text": "A-1, B-4, C-2, D-3"}, {"key": "b", "text": "A-2, B-4, C-1, D-3"}, {"key": "c", "text": "A-1, B-2, C-3, D-4"}, {"key": "d", "text": "A-1, B-3, C-2, D-4"}], "correct": "a", "explanation": "Thames -- London; Danube -- Vienna; Nile -- Cairo; Tigris -- Baghdad."}, {"id": 132, "stem": "Arrange the following mountain ranges from north to south:\n1. Alps\n2. Atlas\n3. Andes\n4. Ural", "options": [{"key": "a", "text": "1 – 2 – 4 – 3"}, {"key": "b", "text": "1 – 4 – 2 – 3"}, {"key": "c", "text": "4 – 2 – 1 – 3"}, {"key": "d", "text": "4 – 1 – 2 – 3"}], "correct": "d", "explanation": "Urals extend far north, then the Alps (central Europe), then the Atlas (north-west Africa), and the Andes (mostly southern hemisphere) come last."}, {"id": 133, "stem": "Which one of the following is the deepest lake in the world?", "options": [{"key": "a", "text": "Lake Superior"}, {"key": "b", "text": "Lake Tanganyika"}, {"key": "c", "text": "Lake Baikal"}, {"key": "d", "text": "Caspian Sea"}], "correct": "c", "explanation": "Lake Baikal in Siberia is the deepest lake in the world, holding about a fifth of the world's unfrozen fresh water."}, {"id": 134, "stem": "Consider the following statements about the Great Lakes of North America:\n1. Lake Michigan is the largest of them by area.\n2. Lake Michigan lies entirely within the United States.\n3. They are connected to the Pacific Ocean by the St. Lawrence Seaway.\n4. Niagara Falls lies between Lake Superior and Lake Huron.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "a", "explanation": "Only statement 2 is correct. Lake Superior, not Michigan, is the largest; the St. Lawrence Seaway connects the lakes to the Atlantic, not the Pacific; Niagara Falls lies between Lake Erie and Lake Ontario."}, {"id": 135, "stem": "The Tropic of Capricorn passes through which of the following countries?\n1. Australia\n2. Chile\n3. South Africa\n4. Madagascar\nSelect the correct answer:", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "1, 3 and 4 only"}, {"key": "c", "text": "All four"}, {"key": "d", "text": "2 and 3 only"}], "correct": "c", "explanation": "All four are crossed by the Tropic of Capricorn -- Chile, South Africa, Madagascar and Australia."}, {"id": 136, "stem": "Match the water bodies in List I with the countries lying on them in List II:\nA. Gulf of Aden -- 1. Turkmenistan\nB. Caspian Sea -- 2. Yemen\nC. Gulf of Aqaba -- 3. Jordan\nD. Arabian Sea -- 4. Oman", "options": [{"key": "a", "text": "A-1, B-2, C-4, D-3"}, {"key": "b", "text": "A-3, B-1, C-2, D-4"}, {"key": "c", "text": "A-4, B-1, C-2, D-3"}, {"key": "d", "text": "A-2, B-1, C-3, D-4"}], "correct": "d", "explanation": "Gulf of Aden -- Yemen; Caspian Sea -- Turkmenistan; Gulf of Aqaba -- Jordan; Arabian Sea -- Oman."}, {"id": 137, "stem": "Consider the following statements about the Arctic and Antarctic regions:\n1. The Arctic is an ocean surrounded by land.\n2. Antarctica is a continent surrounded by ocean.\n3. The Arctic Circle passes through Norway, Sweden and Finland.\n4. Antarctica has a permanent human population.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "All four"}, {"key": "b", "text": "2 and 4 only"}, {"key": "c", "text": "3 only"}, {"key": "d", "text": "1, 2 and 3 only"}], "correct": "d", "explanation": "Statement 4 is wrong -- Antarctica has no permanent population, only rotating research-station staff; its status is governed by the 1959 Antarctic Treaty."}, {"id": 138, "stem": "Which one of the following pairs of a country and its neighbouring sea or gulf is NOT correctly matched?", "options": [{"key": "a", "text": "Saudi Arabia — Gulf of Aden"}, {"key": "b", "text": "Sweden — Baltic Sea"}, {"key": "c", "text": "Argentina — Atlantic Ocean"}, {"key": "d", "text": "Vietnam — Gulf of Tonkin"}], "correct": "a", "explanation": "Saudi Arabia has coastlines on the Red Sea and the Persian Gulf, but not on the Gulf of Aden, which lies south of Yemen."}, {"id": 139, "stem": "The country that lies between the Red Sea and the Gulf of Aden, occupying the Horn of Africa, is:", "options": [{"key": "a", "text": "Djibouti"}, {"key": "b", "text": "Somalia"}, {"key": "c", "text": "Sudan"}, {"key": "d", "text": "Eritrea"}], "correct": "a", "explanation": "Djibouti occupies the corner where the Red Sea meets the Gulf of Aden, facing Yemen across the Bab-el-Mandeb strait."}, {"id": 140, "stem": "Match the deserts in List I with the continents in List II:\nA. Atacama -- 1. Australia\nB. Gobi -- 2. Africa\nC. Kalahari -- 3. South America\nD. Great Victoria -- 4. Asia", "options": [{"key": "a", "text": "A-4, B-3, C-1, D-2"}, {"key": "b", "text": "A-3, B-2, C-4, D-1"}, {"key": "c", "text": "A-3, B-1, C-2, D-4"}, {"key": "d", "text": "A-3, B-4, C-2, D-1"}], "correct": "d", "explanation": "Atacama -- South America; Gobi -- Asia; Kalahari -- Africa; Great Victoria -- Australia."}, {"id": 141, "stem": "Consider the following statements about the balance of payments:\n1. The current account includes trade in goods and services.\n2. Remittances sent home by Indians working abroad are recorded in the current account.\n3. Foreign direct investment is recorded in the capital account.\n4. A current account deficit necessarily means the overall balance of payments is in deficit.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "All four"}, {"key": "c", "text": "4 only"}, {"key": "d", "text": "1, 2 and 3 only"}], "correct": "d", "explanation": "Statement 4 is wrong -- a current account deficit may be fully offset by capital account inflows such as investment and borrowing, so the overall balance of payments need not be in deficit."}, {"id": 142, "stem": "The difference between the value of a country's merchandise exports and merchandise imports is called:", "options": [{"key": "a", "text": "Invisible balance"}, {"key": "b", "text": "Balance of trade"}, {"key": "c", "text": "Balance of payments"}, {"key": "d", "text": "Current account balance"}], "correct": "b", "explanation": "The balance of trade covers visible goods alone; the current account balance additionally includes invisibles such as services and income."}, {"id": 143, "stem": "Consider the following statements about inflation:\n1. Demand-pull inflation arises when aggregate demand exceeds aggregate supply.\n2. Cost-push inflation arises from a rise in the cost of factors of production.\n3. Stagflation is a situation of high inflation together with stagnant output and high unemployment.\n4. Deflation is a fall in the rate of inflation.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "c", "explanation": "Three are correct. Deflation is a fall in the price level itself, not merely a fall in the rate of inflation (that is disinflation)."}, {"id": 144, "stem": "Which one of the following groups is likely to suffer the most during a period of rising inflation?", "options": [{"key": "a", "text": "Pensioners living on fixed incomes"}, {"key": "b", "text": "Borrowers who have taken long-term loans"}, {"key": "c", "text": "Owners of real assets such as land"}, {"key": "d", "text": "Holders of equity shares"}], "correct": "a", "explanation": "Those with fixed money incomes, like pensioners, lose real purchasing power during inflation; borrowers and owners of real assets tend to gain."}, {"id": 145, "stem": "Match the terms in List I with their meanings in List II:\nA. Devaluation -- 1. A fall in the value of a currency brought about by market forces\nB. Depreciation -- 2. A rise in the value of a currency brought about by market forces\nC. Appreciation -- 3. A deliberate reduction in the value of a currency under a fixed exchange rate system\nD. Revaluation -- 4. A deliberate increase in the value of a currency under a fixed exchange rate system", "options": [{"key": "a", "text": "A-2, B-1, C-4, D-3"}, {"key": "b", "text": "A-3, B-2, C-1, D-4"}, {"key": "c", "text": "A-3, B-1, C-2, D-4"}, {"key": "d", "text": "A-4, B-1, C-2, D-3"}], "correct": "c", "explanation": "Devaluation and revaluation are deliberate policy acts under a fixed exchange rate; depreciation and appreciation are market-driven movements under a floating system."}, {"id": 146, "stem": "If the rupee depreciates against the US dollar, the most likely immediate consequence is that:", "options": [{"key": "a", "text": "Indian exports become cheaper for foreign buyers and imports become costlier"}, {"key": "b", "text": "Indian exports become costlier for foreign buyers and imports become cheaper"}, {"key": "c", "text": "Both exports and imports become cheaper"}, {"key": "d", "text": "There is no effect on either exports or imports"}], "correct": "a", "explanation": "A weaker rupee means foreign buyers get more rupees per dollar (cheaper Indian exports), while Indian importers must pay more rupees per dollar (costlier imports)."}, {"id": 147, "stem": "Consider the following statements about the International Monetary Fund:\n1. It was established as a result of the Bretton Woods Conference.\n2. Its headquarters are at Washington D.C.\n3. Special Drawing Rights are an international reserve asset created by it.\n4. Its principal function is to provide long-term finance for development projects.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "2 and 4 only"}, {"key": "b", "text": "1, 2 and 3 only"}, {"key": "c", "text": "4 only"}, {"key": "d", "text": "All four"}], "correct": "b", "explanation": "Statement 4 describes the World Bank, not the IMF, whose role is short-term balance-of-payments support and exchange rate stability."}, {"id": 148, "stem": "Match the institutions in List I with their headquarters in List II:\nA. World Trade Organization -- 1. Manila\nB. World Bank -- 2. Geneva\nC. Asian Development Bank -- 3. Washington D.C.\nD. Asian Infrastructure Investment Bank -- 4. Beijing", "options": [{"key": "a", "text": "A-2, B-3, C-1, D-4"}, {"key": "b", "text": "A-4, B-3, C-1, D-2"}, {"key": "c", "text": "A-2, B-3, C-4, D-1"}, {"key": "d", "text": "A-3, B-1, C-2, D-4"}], "correct": "a", "explanation": "WTO is at Geneva; World Bank at Washington D.C.; Asian Development Bank at Manila; Asian Infrastructure Investment Bank at Beijing."}, {"id": 149, "stem": "Which one of the following statements about the World Trade Organization is NOT correct?", "options": [{"key": "a", "text": "It functions as a specialised agency of the United Nations"}, {"key": "b", "text": "It replaced the General Agreement on Tariffs and Trade"}, {"key": "c", "text": "Its highest decision-making body is the Ministerial Conference"}, {"key": "d", "text": "It came into existence in 1995"}], "correct": "a", "explanation": "The WTO is NOT a UN specialised agency (unlike the IMF, World Bank or ILO); it is an independent organisation that came into being on 1 January 1995, replacing GATT."}, {"id": 150, "stem": "Consider the following statements about the exchange rate system followed by India:\n1. India follows a managed floating exchange rate system.\n2. The external value of the rupee is determined mainly by demand and supply in the foreign exchange market.\n3. The Reserve Bank of India intervenes in the market to curb excessive volatility.\n4. The Reserve Bank fixes the exchange rate of the rupee at the beginning of every financial year.\nHow many of the statements given above are correct?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "Only three"}, {"key": "d", "text": "All four"}], "correct": "c", "explanation": "Three are correct. The RBI does not fix the rupee's rate at any point -- under the managed float (since 1993), the rate is market-determined, with the RBI intervening only to smooth excessive volatility."}];
+const TOTAL_SECONDS = 150 * 60; // 2.5 hours
+const STORAGE_ACTIVE = 'practiceTestActiveAttempt_v1';
+const STORAGE_HISTORY = 'practiceTestHistory_v1';
+
+let state = {
+  answers: {},      // qid -> 'a'/'b'/'c'/'d'
+  flags: {},         // qid -> true
+  endTime: null,     // epoch ms when timer ends
+  startTime: null,
+  submitted: false
+};
+let timerInterval = null;
+
+// ---------- Utility ----------
+function $(sel){ return document.querySelector(sel); }
+function $all(sel){ return document.querySelectorAll(sel); }
+function showScreen(id){
+  $all('.screen').forEach(s => s.classList.remove('active'));
+  $(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function fmtTime(totalSec){
+  totalSec = Math.max(0, Math.floor(totalSec));
+  const h = String(Math.floor(totalSec/3600)).padStart(2,'0');
+  const m = String(Math.floor((totalSec%3600)/60)).padStart(2,'0');
+  const s = String(totalSec%60).padStart(2,'0');
+  return `${h}:${m}:${s}`;
+}
+function saveActiveAttempt(){
+  localStorage.setItem(STORAGE_ACTIVE, JSON.stringify(state));
+}
+function clearActiveAttempt(){
+  localStorage.removeItem(STORAGE_ACTIVE);
+}
+function loadActiveAttempt(){
+  const raw = localStorage.getItem(STORAGE_ACTIVE);
+  if(!raw) return null;
+  try{ return JSON.parse(raw); }catch(e){ return null; }
+}
+function getHistory(){
+  const raw = localStorage.getItem(STORAGE_HISTORY);
+  if(!raw) return [];
+  try{ return JSON.parse(raw); }catch(e){ return []; }
+}
+function saveHistory(list){
+  localStorage.setItem(STORAGE_HISTORY, JSON.stringify(list));
+}
+
+// ---------- Build test screen ----------
+function buildQuestionCards(){
+  const col = $('#questionsCol');
+  col.innerHTML = '';
+  QUESTIONS.forEach(q => {
+    const card = document.createElement('div');
+    card.className = 'qcard';
+    card.id = 'qcard-' + q.id;
+
+    const head = document.createElement('div');
+    head.className = 'qhead';
+    head.innerHTML = `<span class="qnum">Q${q.id}</span>`;
+    const flagBtn = document.createElement('button');
+    flagBtn.className = 'flag-btn';
+    flagBtn.textContent = 'Flag for review';
+    flagBtn.onclick = () => toggleFlag(q.id, flagBtn, card);
+    head.appendChild(flagBtn);
+    card.appendChild(head);
+
+    const stem = document.createElement('div');
+    stem.className = 'qstem';
+    stem.textContent = q.stem;
+    card.appendChild(stem);
+
+    const opts = document.createElement('div');
+    opts.className = 'options';
+    q.options.forEach(o => {
+      const label = document.createElement('label');
+      label.className = 'opt';
+      label.id = `opt-${q.id}-${o.key}`;
+      label.innerHTML = `
+        <input type="radio" name="q${q.id}" value="${o.key}">
+        <span class="opt-key">(${o.key})</span>
+        <span class="opt-text"></span>
+      `;
+      label.querySelector('.opt-text').textContent = o.text;
+      label.querySelector('input').addEventListener('change', () => selectAnswer(q.id, o.key));
+      opts.appendChild(label);
+    });
+    card.appendChild(opts);
+    col.appendChild(card);
+  });
+}
+
+function toggleFlag(qid, btn, card){
+  if(state.flags[qid]){
+    delete state.flags[qid];
+    btn.classList.remove('on');
+    card.classList.remove('flagged');
+  } else {
+    state.flags[qid] = true;
+    btn.classList.add('on');
+    card.classList.add('flagged');
+  }
+  saveActiveAttempt();
+  renderPalette();
+}
+
+function selectAnswer(qid, key){
+  state.answers[qid] = key;
+  const card = document.getElementById('qcard-' + qid);
+  card.classList.add('answered');
+  card.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+  document.getElementById(`opt-${qid}-${key}`).classList.add('selected');
+  saveActiveAttempt();
+  updateProgress();
+  renderPalette();
+}
+
+function restoreAnswersToDOM(){
+  QUESTIONS.forEach(q => {
+    const card = document.getElementById('qcard-' + q.id);
+    const ans = state.answers[q.id];
+    if(ans){
+      card.classList.add('answered');
+      const input = card.querySelector(`input[value="${ans}"]`);
+      if(input) input.checked = true;
+      const optEl = document.getElementById(`opt-${q.id}-${ans}`);
+      if(optEl) optEl.classList.add('selected');
+    }
+    if(state.flags[q.id]){
+      card.classList.add('flagged');
+      card.querySelector('.flag-btn').classList.add('on');
+    }
+  });
+}
+
+function updateProgress(){
+  const count = Object.keys(state.answers).length;
+  $('#progressPill').textContent = `${count} / 150 answered`;
+}
+
+function renderPalette(){
+  const grid = $('#paletteGrid');
+  grid.innerHTML = '';
+  QUESTIONS.forEach(q => {
+    const btn = document.createElement('button');
+    btn.className = 'pnum';
+    if(state.answers[q.id]) btn.classList.add('answered');
+    if(state.flags[q.id]) btn.classList.add('flagged');
+    btn.textContent = q.id;
+    btn.onclick = () => {
+      document.getElementById('qcard-' + q.id).scrollIntoView({behavior:'smooth', block:'center'});
+      if(window.innerWidth <= 920){ $('#paletteCol').classList.remove('open'); }
+    };
+    grid.appendChild(btn);
+  });
+}
+
+// ---------- Timer ----------
+function startTimerLoop(){
+  if(timerInterval) clearInterval(timerInterval);
+  tickTimer();
+  timerInterval = setInterval(tickTimer, 1000);
+}
+function tickTimer(){
+  const remaining = (state.endTime - Date.now()) / 1000;
+  const box = $('#timerBox');
+  box.textContent = fmtTime(remaining);
+  if(remaining <= 300) box.classList.add('low'); else box.classList.remove('low');
+  if(remaining <= 0){
+    clearInterval(timerInterval);
+    submitTest(true);
+  }
+}
+
+// ---------- Start / resume test ----------
+function beginNewTest(){
+  state = {
+    answers: {},
+    flags: {},
+    startTime: Date.now(),
+    endTime: Date.now() + TOTAL_SECONDS*1000,
+    submitted: false
+  };
+  saveActiveAttempt();
+  buildQuestionCards();
+  renderPalette();
+  updateProgress();
+  showScreen('#testScreen');
+  startTimerLoop();
+}
+
+function resumeTest(saved){
+  state = saved;
+  buildQuestionCards();
+  restoreAnswersToDOM();
+  renderPalette();
+  updateProgress();
+  showScreen('#testScreen');
+  startTimerLoop();
+}
+
+// ---------- Submit & scoring ----------
+function computeResult(){
+  let correct=0, incorrect=0, unattempted=0;
+  const details = QUESTIONS.map(q => {
+    const given = state.answers[q.id] || null;
+    let status;
+    if(!given){ status='unattempted'; unattempted++; }
+    else if(given === q.correct){ status='correct'; correct++; }
+    else { status='incorrect'; incorrect++; }
+    return { id:q.id, stem:q.stem, options:q.options, correct:q.correct, explanation:q.explanation, given, status };
+  });
+  const timeUsedSec = Math.min(TOTAL_SECONDS, Math.round((Date.now() - state.startTime)/1000));
+  const marks = correct * 1 - incorrect * (1/3);
+  return {
+    id: 'attempt_' + Date.now(),
+    date: new Date().toISOString(),
+    correct, incorrect, unattempted,
+    total: QUESTIONS.length,
+    marks,
+    timeUsedSec,
+    details
+  };
+}
+
+function submitTest(auto){
+  if(state.submitted) return;
+  state.submitted = true;
+  if(timerInterval) clearInterval(timerInterval);
+  const result = computeResult();
+  const hist = getHistory();
+  hist.unshift(result);
+  saveHistory(hist);
+  clearActiveAttempt();
+  renderResults(result);
+  showScreen('#resultsScreen');
+}
+
+function confirmSubmit(){
+  const unanswered = QUESTIONS.length - Object.keys(state.answers).length;
+  if(unanswered > 0){
+    $('#confirmText').textContent = `You have ${unanswered} unanswered question(s). Are you sure you want to submit now? This cannot be undone.`;
+  } else {
+    $('#confirmText').textContent = `All questions answered. Submit now? This cannot be undone.`;
+  }
+  $('#confirmModal').classList.add('active');
+}
+
+// ---------- Results rendering ----------
+function renderResults(result){
+  const marksDisplay = (Math.round(result.marks * 100) / 100).toFixed(2).replace(/\.00$/, '');
+  $('#scoreBig').textContent = `${marksDisplay} / ${result.total}`;
+  $('#scoreDate').textContent = new Date(result.date).toLocaleString();
+  $('#statCorrect').textContent = result.correct;
+  $('#statIncorrect').textContent = result.incorrect;
+  $('#statUnattempted').textContent = result.unattempted;
+  const acc = result.correct + result.incorrect > 0
+    ? Math.round(result.correct / (result.correct + result.incorrect) * 100)
+    : 0;
+  $('#statAccuracy').textContent = acc + '%';
+  $('#statTime').textContent = fmtTime(result.timeUsedSec);
+
+  const panels = { all: [], correct: [], incorrect: [], unattempted: [] };
+  result.details.forEach(d => {
+    const el = buildReviewCard(d);
+    panels.all.push(el);
+    panels[d.status].push(el.cloneNode(true));
+  });
+
+  ['all','correct','incorrect','unattempted'].forEach(key => {
+    const panel = document.getElementById('panel-' + key);
+    panel.innerHTML = '';
+    if(panels[key].length === 0){
+      const p = document.createElement('p');
+      p.className = 'empty-note';
+      p.textContent = 'Nothing to show here.';
+      panel.appendChild(p);
+    } else {
+      panels[key].forEach(el => panel.appendChild(el));
+    }
+  });
+
+  $all('.tab-btn').forEach(b => b.classList.remove('active'));
+  $('.tab-btn[data-tab="all"]').classList.add('active');
+  $all('.tab-panel').forEach(p => p.classList.remove('active'));
+  $('#panel-all').classList.add('active');
+}
+
+function buildReviewCard(d){
+  const card = document.createElement('div');
+  card.className = 'review-card ' + d.status;
+
+  const tag = document.createElement('span');
+  tag.className = 'review-tag ' + d.status;
+  tag.textContent = d.status === 'correct' ? 'Correct' : d.status === 'incorrect' ? 'Incorrect' : 'Unattempted';
+  card.appendChild(tag);
+
+  const num = document.createElement('div');
+  num.className = 'qnum';
+  num.style.marginLeft = '8px';
+  num.style.display = 'inline-block';
+  num.textContent = 'Q' + d.id;
+  card.appendChild(num);
+
+  const stem = document.createElement('div');
+  stem.className = 'qstem';
+  stem.style.marginTop = '8px';
+  stem.textContent = d.stem;
+  card.appendChild(stem);
+
+  const optsWrap = document.createElement('div');
+  d.options.forEach(o => {
+    const row = document.createElement('div');
+    let cls = 'review-opt';
+    if(o.key === d.correct) cls += ' correct-answer';
+    else if(o.key === d.given && d.status === 'incorrect') cls += ' your-wrong';
+    row.className = cls;
+    let suffix = '';
+    if(o.key === d.correct) suffix = '  ✓ Correct answer';
+    if(o.key === d.given && d.status !== 'correct') suffix += '  (your answer)';
+    if(o.key === d.given && d.status === 'correct') suffix = '  ✓ Your answer — correct';
+    row.innerHTML = `<span class="opt-key">(${o.key})</span><span>${escapeHtml(o.text)}${suffix}</span>`;
+    optsWrap.appendChild(row);
+  });
+  card.appendChild(optsWrap);
+
+  const exp = document.createElement('div');
+  exp.className = 'explanation';
+  exp.innerHTML = `<span class="exlabel">Explanation</span>${escapeHtml(d.explanation)}`;
+  card.appendChild(exp);
+
+  return card;
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// ---------- History screen ----------
+function renderHistory(){
+  const list = getHistory();
+  const wrap = $('#historyList');
+  wrap.innerHTML = '';
+  if(list.length === 0){
+    wrap.innerHTML = '<p class="empty-note">No attempts saved yet. Complete a test to see it here.</p>';
+    return;
+  }
+  list.forEach(r => {
+    const item = document.createElement('div');
+    item.className = 'history-item';
+    const acc = r.correct + r.incorrect > 0 ? Math.round(r.correct/(r.correct+r.incorrect)*100) : 0;
+    const rMarks = (typeof r.marks === 'number') ? r.marks : (r.correct * 1 - r.incorrect * (1/3));
+    const rMarksDisplay = (Math.round(rMarks * 100) / 100).toFixed(2).replace(/\.00$/, '');
+    item.innerHTML = `
+      <div>
+        <div class="hscore">${rMarksDisplay} / ${r.total}</div>
+        <div class="hdate">${new Date(r.date).toLocaleString()} · ${acc}% accuracy · ${fmtTime(r.timeUsedSec)} used</div>
+      </div>
+      <button class="btn-secondary" style="width:auto;">Open review</button>
+    `;
+    item.querySelector('button').onclick = () => {
+      renderResults(r);
+      showScreen('#resultsScreen');
+    };
+    wrap.appendChild(item);
+  });
+}
+
+// ---------- Event wiring ----------
+window.addEventListener('DOMContentLoaded', () => {
+  const active = loadActiveAttempt();
+  if(active && !active.submitted && active.endTime > Date.now()){
+    // silently offer resume via start screen note
+    $('#startBtn').textContent = 'Resume Test';
+  }
+
+  $('#startBtn').addEventListener('click', () => {
+    const active2 = loadActiveAttempt();
+    if(active2 && !active2.submitted && active2.endTime > Date.now()){
+      resumeTest(active2);
+    } else {
+      beginNewTest();
+    }
+  });
+
+  $('#viewHistoryBtn').addEventListener('click', () => {
+    renderHistory();
+    showScreen('#historyScreen');
+  });
+  $('#backToStartFromHistoryBtn').addEventListener('click', () => showScreen('#startScreen'));
+  $('#backToStartBtn').addEventListener('click', () => showScreen('#startScreen'));
+  $('#toHistoryFromResultsBtn').addEventListener('click', () => {
+    renderHistory();
+    showScreen('#historyScreen');
+  });
+
+  $('#submitBtn').addEventListener('click', confirmSubmit);
+  $('#cancelSubmitBtn').addEventListener('click', () => $('#confirmModal').classList.remove('active'));
+  $('#confirmSubmitBtn').addEventListener('click', () => {
+    $('#confirmModal').classList.remove('active');
+    submitTest(false);
+  });
+
+  $('#paletteToggleBtn').addEventListener('click', () => {
+    $('#paletteCol').classList.toggle('open');
+  });
+
+  $all('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $all('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      $all('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      window.scrollTo(0, document.querySelector('.tabs').offsetTop - 20);
+    });
+  });
+
+  window.addEventListener('beforeunload', () => {
+    if(!state.submitted && state.startTime) saveActiveAttempt();
+  });
+});
+</script>
+</body>
+</html>
