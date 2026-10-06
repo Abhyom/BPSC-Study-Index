@@ -1,0 +1,1027 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Delhi Sultanate</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--ink: #0b1e33;
+				--ink-2: #122a45;
+				--paper: #fbf7ec;
+				--paper-2: #f3ecda;
+				--gold: #c9a227;
+				--gold-2: #e8c766;
+				--teal: #2e6171;
+				--text: #1c2b3a;
+				--muted: #5b6b7a;
+				--hl-y: #f1b400;
+				--hl-b: #1f6fb2;
+				--hl-g: #1e8449;
+				--hl-r: #b03a2e;
+				--trap-bg: #fdedec;
+				--trap-bd: #c0392b;
+				--ctx-bg: #eaf2f6;
+				--ctx-bd: #2e6171;
+				--tbl-head-blue: #1a5276;
+				--tbl-head-red: #7b241c;
+				--tbl-head-green: #145a32;
+				--tbl-head-purple: #5b2c6f;
+			}
+			* { box-sizing: border-box; }
+			html { scroll-behavior: smooth; }
+			body {
+				margin: 0;
+				background: var(--ink);
+				color: var(--text);
+				font-family: "Source Sans 3", sans-serif;
+				font-size: 17.5px;
+				display: flex;
+				min-height: 100vh;
+			}
+			::selection { background: var(--gold-2); color: var(--ink); }
+			#sidebar {
+				width: 290px;
+				flex-shrink: 0;
+				background: linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+				color: #dce6ee;
+				position: fixed;
+				top: 0; left: 0; bottom: 0;
+				overflow-y: auto;
+				padding: 28px 0 40px;
+				border-right: 1px solid rgba(201, 162, 39, 0.25);
+				z-index: 50;
+			}
+			#sidebar::-webkit-scrollbar { width: 6px; }
+			#sidebar::-webkit-scrollbar-thumb { background: rgba(201, 162, 39, 0.4); border-radius: 3px; }
+			.brand { padding: 0 24px 22px; border-bottom: 1px solid rgba(201, 162, 39, 0.25); margin-bottom: 14px; }
+			.brand .stamp {
+				width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--gold);
+				display: flex; align-items: center; justify-content: center;
+				font-family: "Playfair Display", serif; font-weight: 800; color: var(--gold-2);
+				font-size: 12px; letter-spacing: 0.5px; margin-bottom: 10px;
+			}
+			.brand h1 { font-family: "Playfair Display", serif; font-size: 19px; line-height: 1.3; margin: 0 0 4px; font-weight: 700; color: #f4efe1; }
+			.brand p { margin: 0; font-size: 12px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--gold-2); font-family: "IBM Plex Mono", monospace; }
+			nav.toc { padding: 6px 10px; }
+			nav.toc a {
+				display: flex; align-items: baseline; gap: 10px; padding: 10px 14px; margin: 1px 0;
+				border-radius: 6px; color: #b7c6d3; text-decoration: none; font-size: 13.6px; font-weight: 500;
+				border-left: 3px solid transparent; transition: background 0.15s, color 0.15s, border-color 0.15s;
+			}
+			nav.toc a .num { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--gold); flex-shrink: 0; width: 20px; }
+			nav.toc a:hover { background: rgba(201, 162, 39, 0.1); color: #f4efe1; }
+			nav.toc a.active { background: rgba(201, 162, 39, 0.16); color: #f8f1dd; border-left-color: var(--gold); font-weight: 600; }
+			.legend-box { margin: 20px 16px 0; padding: 14px 14px 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(201,162,39,0.22); border-radius: 8px; }
+			.legend-box h3 { margin: 0 0 10px; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-2); font-family: "IBM Plex Mono", monospace; font-weight: 500; }
+			.legend-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; font-size: 12.5px; color: #cbd6df; }
+			.legend-swatch { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+			#main { margin-left: 290px; flex: 1; padding: 0; background: var(--ink); }
+			.cover {
+				padding: 74px 64px 56px;
+				background: radial-gradient(circle at 85% 20%, rgba(201,162,39,0.1), transparent 45%), linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+				color: #efe9d8; border-bottom: 4px double rgba(201,162,39,0.4);
+			}
+			.cover .eyebrow { font-family: "IBM Plex Mono", monospace; letter-spacing: 0.18em; text-transform: uppercase; font-size: 12.5px; color: var(--gold-2); margin-bottom: 16px; }
+			.cover h1 { font-family: "Playfair Display", serif; font-weight: 800; font-size: clamp(32px, 4.2vw, 50px); line-height: 1.12; margin: 0 0 16px; max-width: 820px; }
+			.cover p.sub { font-size: 17px; color: #c9d2db; max-width: 700px; line-height: 1.7; margin: 0 0 22px; }
+			.cover .tags { display: flex; gap: 10px; flex-wrap: wrap; }
+			.cover .tag { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--gold-2); border: 1px solid rgba(201,162,39,0.45); padding: 5px 12px; border-radius: 20px; background: rgba(201,162,39,0.06); }
+			.chapters { background: var(--paper); padding: 10px 0 90px; }
+			.chapter { max-width: 980px; margin: 0 auto; padding: 56px 48px 8px; border-bottom: 1px solid rgba(28,43,58,0.1); scroll-margin-top: 14px; }
+			.chapter:last-child { border-bottom: none; }
+			.chapter-head { display: flex; align-items: center; gap: 18px; margin-bottom: 6px; }
+			.chapter-head .seal {
+				width: 52px; height: 52px; border-radius: 50%; background: var(--ink); color: var(--gold-2);
+				display: flex; align-items: center; justify-content: center; font-family: "Playfair Display", serif;
+				font-weight: 700; font-size: 17px; border: 2px solid var(--gold); flex-shrink: 0;
+			}
+			.chapter-head h2 { font-family: "Playfair Display", serif; font-size: clamp(23px, 2.8vw, 30px); margin: 0; color: var(--ink); font-weight: 700; line-height: 1.25; }
+			.chapter-sub { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin: 6px 0 26px 70px; }
+			.event { margin: 0 0 28px; padding-left: 18px; border-left: 3px solid var(--teal); }
+			.event h3 { font-family: "Playfair Display", serif; font-size: 19px; margin: 0 0 6px; color: var(--ink); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+			.datebox { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--teal); font-weight: 600; margin-bottom: 10px; display: block; }
+			.event p { margin: 0 0 12px; line-height: 1.85; font-size: 16.5px; }
+			.event ul { margin: 8px 0 12px; padding-left: 22px; }
+			.event li { margin-bottom: 11px; line-height: 1.8; font-size: 16.5px; }
+			.event ul ul { margin-top: 6px; }
+			mark { padding: 0.15em 0.42em; border-radius: 4px; font-weight: 700; color: #fff; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+			.y { background: var(--hl-y); color: #1c1200; }
+			.b { background: var(--hl-b); }
+			.g { background: var(--hl-g); }
+			.r { background: var(--hl-r); }
+			.trap { background: var(--trap-bg); border: 1px solid rgba(192,57,43,0.35); border-left: 5px solid var(--trap-bd); padding: 14px 18px; border-radius: 6px; margin: 16px 0 20px; font-size: 16px; line-height: 1.8; }
+			.trap .lbl { font-family: "IBM Plex Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--trap-bd); font-weight: 700; display: block; margin-bottom: 6px; }
+			.trap ul { margin: 6px 0 0; padding-left: 20px; }
+			.trap li { margin-bottom: 8px; }
+			.ctx { background: var(--ctx-bg); border: 1px solid rgba(46,97,113,0.35); border-left: 5px solid var(--ctx-bd); padding: 14px 18px; border-radius: 6px; margin: 16px 0 20px; font-size: 16px; line-height: 1.8; }
+			.ctx .lbl { font-family: "IBM Plex Mono", monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ctx-bd); font-weight: 700; display: block; margin-bottom: 6px; }
+			.ctx ul { margin: 6px 0 0; padding-left: 20px; }
+			.ctx li { margin-bottom: 8px; }
+			table { width: 100%; border-collapse: collapse; margin: 16px 0 26px; font-size: 15.3px; }
+			caption { text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 11.5px; color: var(--muted); margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.06em; }
+			th, td { padding: 11px 13px; text-align: left; border-bottom: 1px solid rgba(28,43,58,0.1); vertical-align: top; line-height: 1.6; }
+			thead.blue th { background: var(--tbl-head-blue); color: #f4efe1; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+			thead.red th { background: var(--tbl-head-red); color: #f4efe1; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+			thead.green th { background: var(--tbl-head-green); color: #f4efe1; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+			thead.purple th { background: var(--tbl-head-purple); color: #f4efe1; font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+			tbody tr:nth-child(even) { background: var(--paper-2); }
+			.factbox { background: var(--paper-2); border: 1px solid rgba(28,43,58,0.12); border-radius: 8px; padding: 18px 20px; margin: 18px 0 24px; }
+			.factbox .lbl { font-family: "IBM Plex Mono", monospace; font-size: 17px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--trap-bd); font-weight: 800; display: block; margin-bottom: 10px; }
+			.factbox dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 18px; }
+			.factbox dt { font-weight: 700; font-size: 15px; color: var(--ink); white-space: nowrap; }
+			.factbox dd { margin: 0; font-size: 15.5px; line-height: 1.7; }
+			.part-divider { max-width: 980px; margin: 0 auto; padding: 40px 48px 0; }
+			.part-divider .plabel { font-family: "IBM Plex Mono", monospace; font-size: 12.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); background: var(--ink); display: inline-block; padding: 8px 18px; border-radius: 20px; }
+			.part-divider .ptitle { font-family: "Playfair Display", serif; font-weight: 700; font-size: 26px; color: var(--ink); margin: 14px 0 2px; }
+			.part-divider .pdesc { color: var(--muted); font-size: 15px; margin: 0 0 6px; }
+			.note { font-size: 14px; color: var(--muted); font-style: italic; margin: 8px 0 16px; }
+			.footer { max-width: 980px; margin: 0 auto; padding: 40px 48px 70px; color: var(--muted); font-size: 13px; font-family: "IBM Plex Mono", monospace; text-align: center; }
+			@media (max-width: 880px) {
+				#sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 260px; transform: translateX(-100%); transition: transform 0.25s ease; }
+				#sidebar.open { transform: translateX(0); }
+				#main { margin-left: 0; }
+				.chapter { padding: 44px 22px 8px; }
+				.cover { padding: 58px 22px 42px; }
+				.chapter-sub { margin-left: 0; margin-top: 2px; }
+				.chapter-head { gap: 12px; }
+				body { font-size: 16.5px; }
+				.part-divider { padding: 30px 22px 0; }
+			}
+			#menu-btn {
+				display: none; position: fixed; top: 16px; left: 16px; z-index: 60; width: 44px; height: 44px;
+				border-radius: 50%; background: var(--ink); border: 2px solid var(--gold); color: var(--gold-2);
+				font-size: 18px; align-items: center; justify-content: center; cursor: pointer;
+			}
+			@media (max-width: 880px) { #menu-btn { display: flex; } }
+			.master-section { background: #212121; color: #ececec; padding: 70px 48px 80px; border-top: 1px solid #3a3a3a; }
+			.master-inner { max-width: 1180px; margin: 0 auto; }
+			.master-section .master-eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.12em; color: #a8a8a8; margin-bottom: 10px; }
+			.master-section h2 { font-family: "Playfair Display", serif; font-size: clamp(26px, 3vw, 34px); color: #f5f5f5; margin: 0 0 8px; line-height: 1.25; }
+			.master-section .master-sub { color: #b8b8b8; font-size: 15px; line-height: 1.7; margin: 0 0 24px; }
+			.master-table-wrap { overflow-x: auto; border: 1px solid #3d3d3d; border-radius: 8px; background: #212121; }
+			.master-table { width: 100%; min-width: 760px; margin: 0; border-collapse: collapse; font-size: 15px; color: #e8e8e8; }
+			.master-table th, .master-table td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid #3a3a3a; line-height: 1.6; }
+			.master-table thead th { background: #2f2f2f; color: #f5f5f5; font-family: "IBM Plex Mono", monospace; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; position: sticky; top: 0; z-index: 2; }
+			.master-table tbody tr:nth-child(even) { background: #292929; }
+			.master-table tbody tr:hover { background: #333333; }
+			.master-table tbody tr:last-child td { border-bottom: none; }
+			.master-table td:first-child { width: 170px; color: #f0f0f0; font-family: "IBM Plex Mono", monospace; font-weight: 600; white-space: nowrap; }
+			.master-table td:nth-child(2) { color: #f0f0f0; font-weight: 600; }
+			.master-table td:nth-child(3) { color: #bdbdbd; }
+			@media (max-width: 880px) { .master-section { padding: 52px 22px 60px; } }
+		</style>
+	</head>
+	<body>
+		<button id="menu-btn" aria-label="Toggle chapter index">☰</button>
+		<aside id="sidebar">
+			<div class="brand">
+				<div class="stamp">1206–1526</div>
+				<h1>Delhi Sultanate</h1>
+				<p>Slave · Khalji · Tughluq · Sayyid · Lodi</p>
+			</div>
+			<nav class="toc" id="toc"></nav>
+			<div class="legend-box">
+				<h3>Marker Key</h3>
+				<div class="legend-row"><span class="legend-swatch" style="background: var(--hl-y)"></span>Core concept / policy / title</div>
+				<div class="legend-row"><span class="legend-swatch" style="background: var(--hl-b)"></span>Hard fact / date / number</div>
+				<div class="legend-row"><span class="legend-swatch" style="background: var(--hl-g)"></span>Person / place / institution</div>
+				<div class="legend-row"><span class="legend-swatch" style="background: var(--hl-r)"></span>MCQ trap / confusion / corrected error</div>
+				<div class="legend-row"><span class="legend-swatch" style="background: var(--ctx-bg); border: 1px solid var(--ctx-bd)"></span>Context box (fills narration gaps)</div>
+			</div>
+		</aside>
+		<div id="main">
+			<section class="cover">
+				<div class="eyebrow">Case File · Slave (Mamluk) Dynasty → Khalji → Tughluq → Sayyid → Lodi — 1206 to 1526 AD</div>
+				<h1>Every ruler, department, coin, tax, building and book of the Delhi Sultanate, in one ledger.</h1>
+				<p class="sub">Theory (standard textbook coverage) fused with every fact buried inside Ghatnachakra-style PYQ explanations — dynasty-wise political history, administration, art &amp; architecture, and literature — sorted topic-wise, tabulated wherever the data allows, with duplicate facts from theory and PYQ merged into single entries.</p>
+				<div class="tags">
+					<span class="tag">Slave / Mamluk Dynasty</span>
+					<span class="tag">Khalji Dynasty</span>
+					<span class="tag">Tughluq Dynasty</span>
+					<span class="tag">Sayyid Dynasty</span>
+					<span class="tag">Lodi Dynasty</span>
+					<span class="tag">Administration · Iqta · Coinage</span>
+					<span class="tag">Art &amp; Architecture</span>
+					<span class="tag">Literature</span>
+				</div>
+			</section>
+			<div class="chapters">
+				<!-- ============ CHAPTER 1 ============ -->
+				<section class="chapter" id="ch1" data-title="Slave (Mamluk) Dynasty">
+					<div class="chapter-head">
+						<div class="seal">1</div>
+						<h2>Slave (Mamluk) Dynasty</h2>
+					</div>
+					<div class="chapter-sub">1206–1290 AD · Aybak → Iltutmish → Raziyya → Balban</div>
+
+					<div class="ctx">
+						<span class="lbl">Naming Note</span>
+						All rulers were <mark class="g">Turks</mark>, but their houses/lines were separate — historians consider it more accurate to call them the <mark class="y">Mamluk Sultans of Delhi</mark> rather than "Slave dynasty" as a single bloodline. Qutbuddin Aybak and all his successors were slaves to their respective predecessors. It was the first of five unrelated dynasties to rule India in the Sultanate period (1206–1526 AD), and it ruled for <mark class="b">84 years</mark> (1206–1290 AD).
+					</div>
+
+					<table>
+						<caption>Master table — Slave Dynasty rulers at a glance</caption>
+						<thead class="blue">
+							<tr><th>Ruler</th><th>Reign</th><th>Key identity</th><th>Signature achievement</th></tr>
+						</thead>
+						<tbody>
+							<tr><td><b>Qutbuddin Aybak</b></td><td><mark class="b">1206–1210 AD</mark></td><td>Turk of Aybak tribe; slave of Muhammad Ghori</td><td>Founder of the dynasty; started Qutub Minar &amp; two mosques; capital at Lahore</td></tr>
+							<tr><td><b>Aram Shah</b></td><td>1210–1211 AD</td><td>Aybak's short-lived successor</td><td>Overthrown by Iltutmish</td></tr>
+							<tr><td><b>Iltutmish</b></td><td>1211–1236 AD</td><td>Ilbari Turk; "slave of a slave" (Aybak's slave)</td><td>Real founder of Delhi Sultanate; shifted capital to Delhi; introduced Iqta &amp; Tanka/Jital coinage</td></tr>
+							<tr><td><b>Rukn-ud-din Firuz</b></td><td>1236 AD</td><td>Son of Iltutmish</td><td>Briefly ruled despite Iltutmish naming Raziyya his successor</td></tr>
+							<tr><td><b>Raziyya Sultan</b></td><td><mark class="b">1236–1240 AD</mark></td><td>First female ruler of Delhi Sultanate / medieval India</td><td>Asserted personal authority over the Chahalgani nobles</td></tr>
+							<tr><td><b>Ghiyasuddin Balban</b></td><td><mark class="b">1266–1287 AD</mark></td><td>Ilbari Turk; original name Baha-ud-din; titled Ulugh Khan</td><td>"Blood and iron" policy; theory of divine kingship (Niyabat-i-Khudai); created Diwan-i-Arz</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Qutbuddin Aybak <span class="datebox">r. 1206–1210 AD · Capital: Lahore</span></h3>
+						<ul>
+							<li>Born in <mark class="g">Turkistan</mark>, of a Turk tribe called <mark class="g">Aybak</mark>; though ugly in appearance, was intelligent and impressive in behaviour.</li>
+							<li>Taken as a prisoner in childhood and sold as a slave to the <mark class="g">Qazi of Nishapur, Fakhruddin Abdul Aziz Kufi</mark>, who educated him and gave him military training; he read the Quran so melodiously he was nicknamed <mark class="y">"Quran Khwan"</mark>.</li>
+							<li>After the Qazi's death, his sons sold Aybak to <mark class="g">Muhammad Ghori</mark> at Ghazni. Well-versed in Islamic theology, horse-riding and swordsmanship, he impressed Ghori and was made commander of a troop, then promoted to <mark class="y">Amir-i-Akhur</mark> (master of the royal stable) on the basis of his talent, passion and honesty.</li>
+							<li>Provided active support to Ghori during the invasion of India; Ghori appointed him governor of the Indian empire.</li>
+							<li>Ghori died in 1206 AD on his way to Ghazni with no son to succeed him; his empire was inherited by his slaves. Aybak, viceroy of the Indian territories, was invited by the <mark class="g">Amirs of Lahore</mark> to assume power. His coronation was held in <mark class="b">June 1206 AD</mark>, three months after Ghori's death.</li>
+							<li>Ghori's nephew <mark class="g">Ghiyasuddin Mahmud</mark> ascended Ghori's own throne at Ghazni after his death.</li>
+							<li>Aybak bestowed on himself only the titles <mark class="y">'Malik'</mark> and <mark class="y">'Sipahsalaar'</mark> — he <mark class="r">never took the title 'Sultan'</mark>. After obtaining a liberation letter from Ghiyasuddin Mahmud, he got rid of slavery in <mark class="b">1208 AD</mark> and ruled as an independent sovereign.</li>
+							<li>Kept his capital at <mark class="g">Lahore</mark> (never Delhi) to frustrate the ambition of <mark class="g">Taj-ud-din Yalduz</mark> (governor of Kirman, who had ascended the throne of Ghazni) to annex Punjab; strengthened his position through matrimonial alliances with rival Turkish chiefs.</li>
+							<li><mark class="g">Nasiruddin Qabacha</mark> of Multan refused to accept Aybak as ruler of the Delhi Sultanate — so Aybak always stayed in Lahore and never got the chance to move to Delhi.</li>
+							<li>Spent most of his brief four-year reign suppressing revolts of nobles like <mark class="g">Taj-ud-din Yalduz</mark>, <mark class="g">Nasir-ud-din Qabacha</mark>, and a few Hindu chiefs; nonetheless established a firm administrative system.</li>
+							<li>Because of his generosity he donated so much money that he was called <mark class="y">'Lakh Bakhsh'</mark> (giver of lakhs); he was the first Muslim ruler who settled in India and actually ruled, unlike earlier Muslim invaders who only raided and plundered.</li>
+							<li>Patronised scholars <mark class="g">Hasan Nizami</mark> and <mark class="g">Fakhr-i-Mudabbir</mark>, both of whom dedicated their works to him.</li>
+							<li>Built the <mark class="y">'Quwwat-ul-Islam' Mosque</mark> near the Raipithora Fort in Delhi and the <mark class="y">'Adhai Din Ka Jhopra'</mark> mosque in Ajmer; started construction of the <mark class="y">Qutub Minar</mark> in Delhi (completed only its basement) — finished later by Iltutmish.</li>
+							<li>Died in <mark class="b">1210 AD</mark> after falling from his horse while playing <mark class="g">Chaugan</mark> (a game like modern polo) — the game of Polo was introduced in India by the Turks. Buried in Lahore, near the Anarkali Bazaar.</li>
+						</ul>
+						<div class="trap">
+							<span class="lbl">MCQ Traps &amp; Corrections</span>
+							<ul>
+								<li>'Adhai Din ka Jhonpra/Zhonpda' = a <mark class="r">mosque</mark>, not a temple, saint's hut, or tower.</li>
+								<li>Quwwat-ul-Islam Mosque is at <mark class="r">Delhi</mark>, Adhai Din Ka Jhonpra is at <mark class="r">Ajmer</mark> — a frequently swapped pair.</li>
+								<li><mark class="r">Ghiyasuddin Tughluq</mark> and <mark class="r">Alauddin Khalji</mark> did NOT contribute to building the Qutub Minar — only Aybak (started it), Iltutmish (completed it) and Firuz Shah Tughluq (rebuilt the lightning-damaged 4th floor and added the 5th floor) did.</li>
+								<li>Qutub Minar is named after the Sufi saint <mark class="g">Qutbuddin Bakhtiar Kaki</mark> — not after Aybak himself.</li>
+								<li>One MCQ statement calling the Minar "180 feet, five storeys" was judged incorrect — its actual height is <mark class="b">238 feet (72.5 m)</mark>, a mix of polygonal/circular shapes, largely red and buff sandstone with marble in the upper storey. (Chand Minar — a different, 15th-century, 210-feet, four-storey tower with chevron patterning and Quranic bands — is a distinct monument, unrelated to Qutub Minar.)</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>Iltutmish <span class="datebox">r. 1211–1236 AD · Capital: Delhi (shifted from Lahore)</span></h3>
+						<ul>
+							<li>An <mark class="g">Ilbari Turk</mark> of the Eurasian Steppe of Turkestan; before becoming Sultan was governor of <mark class="g">Budaun</mark>, appointed in recognition of his services during Muhammad Ghori's 1205–06 AD campaign against the <mark class="g">Khokhar</mark> tribe rebellion — Ghori was so impressed by his courage that he freed him from slavery.</li>
+							<li>Called <mark class="y">'Slave of a slave'</mark> — he was the slave of Qutbuddin Aybak (who was himself a slave); he later married Aybak's daughter and became Sultan. After <mark class="g">Aram Shah's</mark> death (Aybak's immediate, short-lived successor), Iltutmish took control as independent ruler; <mark class="g">Amirali Ismail</mark> invited him for coronation in Delhi with the approval of Turkish nobles. He declared himself Sultan in <mark class="b">1211 AD</mark>.</li>
+							<li>Received approval as Sultan not from any Ghor ruler but directly from the <mark class="g">Khalifa (Caliph) of Baghdad</mark>, who recognised his rule over all won territories and gave him the title <mark class="y">'Sultan-e-Azam'</mark> in <mark class="b">1229 AD</mark> via a certificate of <mark class="y">'Khilat'</mark> — this made him the first legitimate/legally independent Sultan of Delhi and made the Delhi Sultanate theoretically part of <mark class="y">Dar-ul-Islam</mark>, subject to the Caliph.</li>
+							<li>Assumed the title <mark class="y">'Amir-ul-Mommini'</mark> ("Commander of the faithful") and had the Khalifa's name inscribed on his coins — the name of Caliph <mark class="g">Al-Mustansir</mark> appears on his coins.</li>
+							<li>First to shift the Sultanate's capital from <mark class="g">Lahore to Delhi</mark> — the first Sultan to do so, and (per one explanation) the "real founder of the Delhi Sultanate" even though Aybak ruled first, from Lahore. Dr. R.P. Tripathi: history of Muslim sovereignty in India begins with Iltutmish. Dr. Ishwari Prasad: Iltutmish was undoubtedly the founder of the Slave Dynasty.</li>
+							<li><mark class="g">Genghis Khan</mark> (original name <mark class="g">Temujin/Temuchin</mark>) loitered near the Indus river for three months chasing the Khwarazmshah ruler <mark class="g">Jalaluddin Mengubirni</mark>, but never crossed into India during Iltutmish's reign. Mengubirni sought asylum from Iltutmish, who prudently refused it, unwilling to risk inviting so dangerous an invader. Mengubirni's stay in the north-west (departing ~1223–24) still led to Mongol attacks such as the siege of Multan (~1224 AD).</li>
+							<li>Defeated <mark class="g">Ghiyas-ud-din Iwaz (Hisamuddin Awaz)</mark> in the mountains of Rajmahal near <mark class="g">Teliyagarhi</mark> (1225 AD), annexing <mark class="g">Bihar Sharif and Barh</mark> after Awaz had accepted subordination; appointed <mark class="g">Malik-Jani</mark> as the new Subedar of Bihar.</li>
+							<li>First Turk ruler to introduce pure Arabic coins in the Sultanate period; introduced the silver <mark class="y">Tanka</mark> and copper <mark class="y">Jital</mark> (ratio <mark class="b">1:48</mark>), and began the tradition of inscribing the mint's (Tankshal's) name on coins.</li>
+							<li>Per Ibn Battuta's account, set up two marble lion statues in front of his palace, each with a bell that anyone could ring to seek justice from the Sultan; appointed officials <mark class="g">Qazi</mark> and <mark class="g">Amir-i-dad</mark> in all cities.</li>
+							<li>Introduced the <mark class="y">Iqta system</mark> in the Delhi Sultanate (see Administration chapter); also formed the <mark class="y">Chahalgani/Turkan-i-Chahalgani</mark> — the 40 Turkish slave-nobles later abolished by Balban.</li>
+							<li>His main rivals were <mark class="g">Tajuddin Yalduz</mark> (Ghazni), <mark class="g">Nasiruddin Qabacha</mark> (Sindh/Multan) and <mark class="g">Ali Mardan</mark> (Lakhnauti/Bengal).</li>
+						</ul>
+						<div class="trap">
+							<span class="lbl">MCQ Traps &amp; Corrections</span>
+							<ul>
+								<li><mark class="r">Malik Altunia</mark> (Governor of Bhatinda) was NOT a rival of Iltutmish — he was the noble who later led the revolt against Raziyya.</li>
+								<li>The <mark class="r">Iqtadari system</mark> was introduced by Iltutmish, not Balban — a commonly confused attribution.</li>
+								<li>Name of the last Caliph of Baghdad (<mark class="g">Al-Mustasim</mark>, 1242–58 AD) first appeared not on Iltutmish's coins but on those of <mark class="g">Alauddin Masud Shah</mark> (1242–46 AD); it is the earlier Caliph <mark class="g">Al-Mustansir's</mark> name that is on Iltutmish's coins.</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>Raziyya Sultan <span class="datebox">r. 1236–1240 AD</span></h3>
+						<ul>
+							<li>First female ruler of the Delhi Sultanate and of medieval India — Iltutmish had named her his successor, but on his death <mark class="g">Rukn-ud-din</mark> became ruler first (1236 AD) before she took the throne.</li>
+							<li>As an individual, she violated the prevailing gender norms of Islam for the first time in India; politically, she insisted power be held by the Sultan alone rather than divided among the Chiefs (Sardars)/Iqtadars, and tried to exercise real personal authority — this provoked the powerful Turkish slave-nobles, the <mark class="y">Chahalgani</mark> (40 nobles).</li>
+							<li>The Chahalgani played the key role in overthrowing her; nobles under <mark class="g">Malik Altunia</mark>, Governor of Bhatinda, rebelled and overthrew her. It was <mark class="g">Turkish nobles</mark> (not Afghans, Mongols, or Arabs) behind her dethroning.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Ghiyasuddin Balban <span class="datebox">r. 1266–1287 AD · Titled Ulugh Khan, Zil-i-Ilahi</span></h3>
+						<ul>
+							<li>Original name <mark class="g">Baha-ud-din</mark>; an <mark class="g">Ilbari Turk</mark> like Iltutmish; ninth Sultan of the Mamluk dynasty of Delhi.</li>
+							<li>Caught by Mongols in childhood and sold at Ghazni to <mark class="g">Khwaja Jamaluddin</mark> of Basra; brought to Delhi in 1232 AD; bought by <mark class="g">Iltutmish</mark> in 1233 AD after Gwalior's victory, who gave him the title <mark class="y">Khasdaar</mark>.</li>
+							<li>Rose through titles: <mark class="y">Amir-i-Shikar</mark> during Raziyya's reign; <mark class="y">Amir-i-Akhur</mark> after backing the Turkish warlords' conspiracy against Raziyya that made <mark class="g">Bahramshah</mark> Sultan; received the <mark class="g">Jagir of Rewari</mark> through Badruddin Rumi's favour; got the fief of <mark class="g">Hansi</mark> for helping <mark class="g">Alauddin Masudshah</mark> become Sultan.</li>
+							<li>Married his daughter to Sultan <mark class="g">Nasiruddin Mahmud</mark> in <mark class="b">1249 AD</mark>, receiving the title <mark class="y">'Ulugh Khan'</mark> and the post <mark class="y">'Nayab-i-mamlikat'</mark> — he was Wazir and heir of this last Shamsi Sultan before becoming Sultan himself in <mark class="b">1266 AD</mark>.</li>
+							<li>Followed a policy of <mark class="y">'blood and iron'</mark>, built on two ideas: the <mark class="y">divine right of the Sultan</mark> and that the <mark class="y">Sultan had to be autocratic</mark>. His political ideology was inspired by Persian kingship: the King as God's representative on earth — <mark class="y">'Niyabat-i-Khudai'</mark>; he assumed the title <mark class="y">'Zil-i-Ilahi'/'Zille Allah'</mark> ("Shadow of God") — the first Sultan of Delhi to establish a theory of state/kingship akin to the divine right of kings. He told his son <mark class="g">Bughra Khan</mark>: "The post of Sultan is a living symbol of autocracy."</li>
+							<li>Introduced Iranian court rituals: <mark class="y">'Sijada'</mark> (saluting the Sultan prostrate) and <mark class="y">'Paibos'</mark> (kissing the Sultan's feet); began celebrating the Persian festival <mark class="y">'Nawruz'</mark> every year at court.</li>
+							<li>Established the military department <mark class="y">'Diwan-i-Arz'</mark> — separating it from the finance department (Diwan-i-Wizarat) — and made <mark class="g">Imad-ul-Mulk</mark> his Military minister (Arz-i-Mamalik), keeping him free of the Wazir's financial control to ensure his autonomy; redeployed the army across the kingdom to suppress rebellion.</li>
+							<li>After attaining power he abolished the <mark class="y">Turkan-e-Chahalgani</mark> established by Iltutmish; the only revolt of his reign was by the Subedar of Bengal, <mark class="g">Tughril Khan</mark>, in <mark class="b">1279 AD</mark> (protesting the appointment of Amin Khan in Bengal) — Balban quelled it and hanged the rebels.</li>
+							<li>Called himself the <mark class="y">'Helper of a Caliph'</mark> in an inscription on the Mosque at <mark class="g">Garhmukteshwar</mark>. His tomb, in <mark class="g">Mehrauli, New Delhi</mark>, built by himself in rubble masonry (1287 AD), was the <mark class="y">first tomb built in purely Indo-Islamic style</mark> in India, and the first place true arches appeared in India. He also built the <mark class="g">Lal Mahal</mark>.</li>
+						</ul>
+						<div class="trap">
+							<span class="lbl">MCQ Traps &amp; Corrections</span>
+							<ul>
+								<li>The <mark class="r">branding system of horses</mark> was introduced by Alauddin Khalji, not Balban.</li>
+								<li>Assertion–Reason MCQs confirm Balban centralised all authority AND wanted to secure the north-west frontier from Mongols — both true, but the frontier motive is <mark class="r">not the correct explanation</mark> of his centralising policy (his kingship theory was the deeper driver).</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 2 ============ -->
+				<section class="chapter" id="ch2" data-title="Khalji Dynasty">
+					<div class="chapter-head">
+						<div class="seal">2</div>
+						<h2>Khalji Dynasty</h2>
+					</div>
+					<div class="chapter-sub">1290–1320 AD (shortest-ruling dynasty of the Sultanate, 30 years)</div>
+
+					<table>
+						<caption>Master table — Khalji rulers at a glance</caption>
+						<thead class="red">
+							<tr><th>Ruler</th><th>Reign</th><th>Key identity / title</th><th>Signature act</th></tr>
+						</thead>
+						<tbody>
+							<tr><td><b>Jalaluddin Khalji</b></td><td>1290 AD onward</td><td>Founder of Khalji dynasty; believed in benevolent despotism (per Dr. A.L. Srivastava)</td><td>Crowned at the Palace of Kilokhari (Kilugarhi), built by Qaiqubad</td></tr>
+							<tr><td><b>Alauddin Khalji</b></td><td><mark class="b">1296–1316 AD</mark></td><td>'Sikandar-i-Sani' (second Alexander); 'Yamin-ul-Khilafat, Nasir-e-Amir-ul-Mumanin'</td><td>Market-control system, revenue-by-measurement, PDS-like grain system, Deccan conquests</td></tr>
+							<tr><td><b>Qutbuddin Mubarak Khalji</b></td><td>1316–1320 AD</td><td>Declared himself Khalifa: 'Al Imam', 'Ul-Imam', 'Khalifatullah'</td><td>Only Delhi Sultan to assume the title of Caliph himself; renamed Devgiri 'Qutbabad'</td></tr>
+							<tr><td><b>Nasiruddin Khusrau Shah</b></td><td>Apr–Sep 1320</td><td>Converted Muslim from Hinduism; titled 'Paigamber-Ka-Senapati'</td><td>Hindu gods/goddesses worshipped in royal palaces during his reign</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Jalaluddin Khalji <span class="datebox">Founder, 1290 AD</span></h3>
+						<ul>
+							<li>Established the Khalji dynasty in <mark class="b">1290 AD</mark>; crowned at the <mark class="g">Palace of Kilokhari (Kilugarhi)</mark>, which had been built by <mark class="g">Qaiqubad</mark>.</li>
+							<li>According to Dr. A.L. Srivastava, he was the first Turkish Sultan of Delhi who believed in the ideal of <mark class="y">benevolent despotism</mark>.</li>
+							<li>Offered the post <mark class="y">'Amir-i-Tuzuk'</mark> to Alauddin and married his own daughter to him; Alauddin was honoured with the governorship of <mark class="g">Kara-Manikpur</mark> for his role in suppressing the revolt of <mark class="g">Malik Chhajju</mark>.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Alauddin Khalji <span class="datebox">r. 1296–1316 AD</span></h3>
+						<ul>
+							<li>First Sultan of Delhi to establish control of the state over religion; called himself <mark class="y">'Yamin-ul-Khilafat, Nasir-e-Amir-ul-Mumanin'</mark>; remained free from the influence of the Ulema class. Barani said of him: "when he attained Kingship, he was quite independent of rulers and orders of Shariat."</li>
+							<li>An ambitious Sultan who assumed the title <mark class="y">'Sikandar-i-Sani'</mark> (second Alexander), inscribed on his coins; he wanted to launch a new religion but abandoned the idea on the advice of his faithful friend and Kotwal, <mark class="g">Alla-ul-Mulk</mark>.</li>
+							<li>Faced early rebellions and issued <mark class="y">four ordinances</mark> to pre-empt them (see table below).</li>
+							<li>His commander <mark class="g">Zafar Khan</mark> (original name Malik Hizabruddin) — the best and most courageous commander of his time — died fighting the Mongols; Mongols were so impressed by his bravery and the Khalji army's persistence that they retreated 30 miles.</li>
+							<li>His first attempt to conquer <mark class="g">Warangal</mark> (1303 AD) ended in disaster: the Kakatiya king <mark class="g">Prataprudradev II's</mark> army defeated the Khalji force led by Fakhruddin Juna and Malik Chhajju.</li>
+							<li>According to Jayasi, <mark class="g">Padmini</mark> was the wife of <mark class="g">Rana Ratan Singh</mark> of Chittor; she committed <mark class="y">Jauhar</mark> after Rana Ratan Singh's death during Alauddin's invasion of Chittor (capital of Mewar). <mark class="g">Malik Muhammad Jayasi</mark> wrote <i>Padmavat</i>, based on her story, in <mark class="b">1540 AD</mark> — Amir Khusrau had earlier compared Alauddin to Suleman and Padmini to Queen Shaiba in an unrelated love story, which may have inspired Jayasi.</li>
+							<li>Assertion–Reason MCQ conclusion: his <mark class="g">Deccan expeditions</mark> were financial ventures (per Dr. K.S. Lal, driven by greed of wealth and lust of pride) — <mark class="r">not</mark> attempts to annex the southern states, over which he had no wish for direct possession.</li>
+						</ul>
+
+						<table>
+							<caption>Alauddin's four ordinances (to suppress rebellion)</caption>
+							<thead class="purple">
+								<tr><th>Ordinance</th><th>Provision</th></tr>
+							</thead>
+							<tbody>
+								<tr><td>First</td><td>Banned gifts, pensions and land given as donations; officials ordered to collect more taxes</td></tr>
+								<tr><td>Second</td><td>Set up an intelligence (spy) department</td></tr>
+								<tr><td>Third</td><td>Banned intoxicating drinks (alcohol, cannabis etc.) and gambling</td></tr>
+								<tr><td>Fourth</td><td>Banned marital relations and feasts between nobles and Amirs</td></tr>
+							</tbody>
+						</table>
+
+						<table>
+							<caption>Alauddin's Deccan/Devgiri campaigns</caption>
+							<thead class="purple">
+								<tr><th>Year</th><th>Event</th></tr>
+							</thead>
+							<tbody>
+								<tr><td>1296 AD</td><td>First invasion of Devgiri; <mark class="g">Ramchandra Dev</mark> demanded to cede Ellichpur province and its annual income</td></tr>
+								<tr><td>1305/06 AD</td><td>Ramchandra Dev stopped sending the promised tax to Delhi</td></tr>
+								<tr><td>1307 AD</td><td>Alauddin sent an army under <mark class="g">Malik Kafur</mark>; Ramchandra Dev defeated and surrendered, then treated well — given the title <mark class="y">'Rai Rayan'</mark>, 1 lakh Tankas and the district of <mark class="g">Navsari</mark>, and sent home</td></tr>
+								<tr><td>1312/1313 AD</td><td>Malik Kafur campaigned again, this time against Ramchandra's son <mark class="g">Shankerdev</mark></td></tr>
+							</tbody>
+						</table>
+						<ul>
+							<li><mark class="g">Malik Kafur</mark>, also called <mark class="y">'Hazar-Dinari'</mark>, was originally bought as a slave for 1,000 dinars, then forcibly snatched by <mark class="g">Nusrat Khan</mark> during the Gujarat campaign, who later presented him to Alauddin; Alauddin met Kafur during the Gujarat conquest, and Kafur rose to prominence as a skilled military commander.</li>
+							<li>Chronology of Alauddin's conquests: <mark class="g">Gujarat/Jaisalmer</mark> (1299 AD) → <mark class="g">Ranthambor</mark> (1301 AD, ruler Hamirdeva) → <mark class="g">Chittor</mark> (1303 AD, ruler Rana Ratan Singh) → <mark class="g">Warangal</mark> (1309–10 AD). Devgiri's ruler was Raja Rai Ramchandra Dev; Gujarat's ruler was Karnadeva.</li>
+						</ul>
+
+						<div class="ctx">
+							<span class="lbl">Revenue &amp; Market Reforms</span>
+							<ul>
+								<li>First Sultan to start collecting revenue by <mark class="y">measuring the land</mark>; established the department <mark class="y">'Diwan-i-Mustakharaj'</mark> (revenue) to implement it — but this measurement system was limited to Delhi and nearby areas, not applied empire-wide.</li>
+								<li>Took away tax-collection authority and privileges from traditional officers (<mark class="g">Khut, Mukaddam, Chaudhary</mark>), reducing the difference between Khut (zamindar) and Balahar (ordinary farmer); took land granted as <mark class="g">'Milq'</mark> (property/pension) and <mark class="g">'Waqf'</mark> (charitable land), greatly expanding <mark class="g">Khalisa land</mark>.</li>
+								<li>Fixed <mark class="b">50% of yield</mark> as land tax (Kharaj) — first Muslim ruler of India to fix revenue on the land's real income, based on measurement (unlike Muhammad-bin-Tughluq's later Doab demand, which was based on estimate).</li>
+								<li>Initiated a <mark class="y">market/price-control policy</mark> — per Barani, to support a huge standing army against the Mongols and to check potential Hindu rebellion. Appointed <mark class="g">Malik Kabool</mark> as <mark class="y">Shahna-i-Mandi</mark> (market inspector) with cavalry/infantry support; also received daily reports from independent <mark class="g">barids</mark> (intelligence officers) and <mark class="g">munhiyans</mark> (secret spies). Four separate markets were set up in Delhi: grain (Mandi); cloth/groceries; horses/slaves/cattle; miscellaneous goods. The policy was <mark class="g">highly successful</mark>.</li>
+								<li>Started state granaries and price-controlled grain sales — effectively a <mark class="y">Public Distribution System (PDS)</mark>, the first such scheme by a medieval Indian king.</li>
+								<li>Levied two new taxes: <mark class="y">'Ghari' (House) Tax</mark> on houses/huts (first Sultan to do so) and <mark class="y">'Grazing (Charai) Tax'</mark> on milch animals.</li>
+								<li>Established <mark class="y">'Diwan-i-Riyasat'</mark>, the market-control department, and appointed a special army to protect the empire's boundaries; the <mark class="g">Ravi river</mark> became the Delhi–Mongol boundary after 1306 AD (Malik Kafur and Ghazi Malik repelled a Mongol attack under Kabak at the Ravi).</li>
+								<li><mark class="g">Ain-ul-Mulk Multani</mark> served under Alauddin Khalji, Muhammad-bin-Tughluq and Firuz Tughluq — <mark class="r">not</mark> under Iltutmish; he was sent to central India in 1305 AD, where he won Malwa.</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>Qutbuddin Mubarak Khalji <span class="datebox">r. 1316–1320 AD</span></h3>
+						<ul>
+							<li>Imprisoned by Malik Kafur after Alauddin's death; later ascended the throne on release.</li>
+							<li>Declared himself Khalifa, assuming the titles <mark class="y">'Al Imam'</mark>, <mark class="y">'Ul-Imam'</mark>, <mark class="y">'Khalifatullah'</mark> — <mark class="g">the only ruler of the Delhi Sultanate who assumed the title of Caliph himself</mark>.</li>
+							<li>Per Dr. K.A. Nizami, he named Devgiri <mark class="y">'Qutbabad'</mark> (before Muhammad-bin-Tughluq renamed it Daulatabad); the mosque <mark class="g">Ukha Mosque</mark> (Bayana, Rajasthan) was built by Malik Kafur Sultani during his reign.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Nasiruddin Khusrau Shah <span class="datebox">Apr–Sep 1320</span></h3>
+						<ul>
+							<li>A converted Muslim from Hinduism; assumed the title <mark class="y">'Commander of the Prophet' (Paigamber-Ka-Senapati)</mark>; opponents called him "enemy of Islam" with the slogan "Islam is in danger."</li>
+							<li>During his reign, Hindu gods and goddesses were worshipped in the royal palaces of the Delhi Sultanate.</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 3 ============ -->
+				<section class="chapter" id="ch3" data-title="Tughluq Dynasty">
+					<div class="chapter-head">
+						<div class="seal">3</div>
+						<h2>Tughluq Dynasty</h2>
+					</div>
+					<div class="chapter-sub">1320–1412/1414 AD · The longest-ruling dynasty of the Sultanate period (~92 years)</div>
+
+					<table>
+						<caption>Master table — Tughluq rulers at a glance</caption>
+						<thead class="green">
+							<tr><th>Ruler</th><th>Reign</th><th>Key identity</th><th>Signature act</th></tr>
+						</thead>
+						<tbody>
+							<tr><td><b>Ghiyasuddin Tughluq (Ghazi Malik)</b></td><td>1320–1325 AD</td><td>Ex-general of Alauddin; mother a Hindu Jat, father a Qaraunah Turk (Balban's slave)</td><td>Founded Tughluqabad; built canals; defeated Khusrau Shah for the throne</td></tr>
+							<tr><td><b>Muhammad-Bin-Tughluq</b></td><td><mark class="b">1325–1351 AD</mark></td><td>Most learned ruler of the Sultanate (astronomy, mathematics, medicine)</td><td>Capital shift to Daulatabad; token currency; Diwan-i-Amir-i-Kohi</td></tr>
+							<tr><td><b>Firuz Shah Tughluq</b></td><td>1351–1388 AD</td><td>Muhammad-bin-Tughluq's cousin</td><td>Largest canal network of the era; Diwan-i-Khairat; abolished 21 taxes; wrote memoirs</td></tr>
+							<tr><td><b>Nasiruddin Mahmud Shah</b></td><td>1394–1412 AD</td><td>Last ruler of the dynasty</td><td>Dynasty split under Timur's 1398 invasion; Jaunpur breaks away</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Ghiyasuddin Tughluq (Ghazi Malik) <span class="datebox">r. 1320–1325 AD</span></h3>
+						<ul>
+							<li>Among Alauddin's generals, became the first ruler of the new dynasty. His mother was a <mark class="g">Hindu Jat</mark> woman and his father a <mark class="g">Qaraunah Turk</mark> who was a slave of <mark class="g">Balban</mark>.</li>
+							<li>Chief of several important campaigns under Alauddin; appointed governor of <mark class="g">Dipalpur</mark> (and Multan); earned the epithet <mark class="y">'Ghazi Malik'</mark> for repeated frontier fighting against the Mongols — Barani credits him with 20 routs, Ibn Battuta claims 29 victories.</li>
+							<li>Took Delhi's throne by defeating <mark class="g">Khusrau Shah</mark>, becoming Sultan in <mark class="b">1320 AD</mark>; also called Ghazi Beg Tughluq/Ghazi Tughluq — hence his successors and lineage were named 'Tughluq'.</li>
+							<li>Fixed farmer tax at <mark class="b">1/10 or 1/11</mark> of the yield; in famine, land tax was collected with regard to capacity to pay; tax-free jagirs granted to government employees without a revenue share; abolished Alauddin's harsh punishments, though thieves and defaulters were still severely punished. Restored the old rights of Khuts and Muqaddams; credited as the first ruler of the 14th century to build canals for irrigation.</li>
+							<li>Founded the city of <mark class="y">Tughluqabad</mark> in Delhi (built 1320–1325 AD).</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Muhammad-Bin-Tughluq <span class="datebox">r. 1325–1351 AD</span></h3>
+						<ul>
+							<li>Considered the <mark class="y">most learned and educated ruler</mark> among all Sultans of Delhi — well versed in astronomy, mathematics, medicine and other disciplines.</li>
+							<li>Established <mark class="y">'Diwan-i-Amir-i-Kohi'</mark> (also Diwan-i-Kohi) — a new agriculture department to support farmers and bring more land under cultivation; a tract of about <mark class="b">30 karohs × 30 karohs</mark> was chosen for the experiment, with crop rotation attempted.</li>
+							<li>His most significant experiment: shifting the capital from Delhi to <mark class="y">Daulatabad (Devgiri)</mark>. Reasons cited: per Barani, Devgiri was probably central to the empire; per Ibn Battuta, Delhi's people wrote disrespectful letters to the Sultan and he wished to punish them; he was also the first Sultan to attempt administrative/cultural unity of north and south India. (Per Dr. K.A. Nizami, Mubarak Khalji had already renamed Devgiri 'Qutbabad'; Muhammad Tughluq renamed it 'Daulatabad'.)</li>
+							<li>Coins bore the inscription <mark class="y">'Al Sultan Zilli Allah'</mark> ("Sultan is the shadow of God — God is the supporter of Sultan"); his gold coins were called <mark class="y">'Dinar'</mark> by Ibn Battuta.</li>
+							<li>Per <mark class="g">Barani</mark>, five major policies defined his reign: (1) tax increase in the Doab, (2) making Daulatabad the new capital, (3) issuing token currency, (4) a planned Khurasan expedition, (5) the Qarachil expedition.</li>
+							<li><mark class="g">Ibn Battuta</mark> (1304–77 AD), a Moroccan traveller, visited India 1333–42 AD during his reign; was appointed Qazi of Delhi, later sent to China as ambassador (1342 AD); recorded his journey (including details of the postal system) in <i>Kitab-ul-Rihla</i>.</li>
+							<li>Per <mark class="g">Isami</mark>, was the first Delhi Sultan to participate in Hindu festivals, especially Holi; appointed non-Turks and Indian Muslims to government posts — Barani harshly criticised him for promoting "low-born" people (gardener, weaver, barber, cook, etc.).</li>
+							<li>Died <mark class="b">20 March 1351</mark> near Thatta, having chased the Gujarat rebel <mark class="g">Taghi</mark> into Sindh after falling sick on the way; <mark class="g">Badayuni</mark> wrote of his death (in <i>Muntakhab-ut-Tawarikh</i>): <mark class="y">"The king was freed from his people, and the people from their king."</mark></li>
+							<li>Succeeded by his <mark class="g">cousin</mark> Firuz Shah Tughluq.</li>
+						</ul>
+
+						<div class="ctx">
+							<span class="lbl">Token Currency &amp; Land Revenue</span>
+							<ul>
+								<li>First Sultan to introduce <mark class="y">token currency</mark> (copper/bronze coins) in India — inspired by its successful use under <mark class="g">Kublai Khan</mark> in China (an earlier attempt under Gaykhatu in Iran had failed); driven by a worldwide/Indian silver shortage plus his expansionary policy (per Barani) — <mark class="r">not</mark> a scheme to promote trade with West Asia/North Africa.</li>
+								<li>The scheme failed because the state had no real control over minting — many forged mints sprang up, and land revenue (Lagan) began to be paid in counterfeit coin.</li>
+								<li>Raised land revenue on Doab farmers to <mark class="b">half the produce</mark>, but — unlike Alauddin's measurement-based Kharaj — his demand was based on <mark class="g">estimate</mark>, not actual measurement.</li>
+							</ul>
+						</div>
+						<div class="trap">
+							<span class="lbl">Mongol-invasion timeline, disambiguated</span>
+							<ul>
+								<li>The <mark class="r">first</mark> Mongol invasion of India happened during <mark class="g">Iltutmish's</mark> reign (Genghis Khan reaching the Indus), not Jalaluddin Khalji's.</li>
+								<li>During <mark class="g">Alauddin Khalji's</mark> reign, a Mongol force under <mark class="g">Qutlugh Khwaja</mark> marched up to Delhi and besieged the city while Alauddin was encamped at Chittor.</li>
+								<li>During <mark class="g">Muhammad-bin-Tughluq's</mark> reign, <mark class="g">Tarmashirin</mark> led a Mongol attack, temporarily costing him north-western territory, though he recovered by occupying Kalanaur and Peshawar.</li>
+								<li>During <mark class="g">Ghiyasuddin Tughluq's</mark> reign, a Mongol army under <mark class="g">Shir Mughal</mark> crossed the Indus (1325 AD) but was defeated by <mark class="g">Malik Shadi</mark>, Subedar of Samana.</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>Firuz Shah Tughluq <span class="datebox">r. 1351–1388 AD</span></h3>
+						<ul>
+							<li>Launched welfare programmes: opened an <mark class="y">employment office</mark> matching people to posts by qualification/merit; established <mark class="y">'Diwan-i-Khairat'</mark> for financial aid to poor Muslims, orphaned women and widows, and to arrange marriages for poor Muslim girls; first Indian ruler to organise the <mark class="y">Hajj at state expense</mark>; built the charitable/free hospital <mark class="y">'Dar-ul-Shafa/Shifa'</mark> staffed with skilled Hakims.</li>
+							<li>Very fond of slaves — kept about <mark class="b">1,80,000</mark> of them, cared for through a dedicated department, <mark class="y">'Diwan-i-Bandagan'</mark>; each slave paid 10–100 Tankas, sometimes given estates — a "hobby" that historians judge detrimental to the state.</li>
+							<li>Primarily established the <mark class="y">Public Works Department</mark>; built (per theory) 200 new cities — Fatehabad, Hisar, Firozpur, Jaunpur, Firozabad among the prominent ones. Per <mark class="g">Firishta</mark>: 40 mosques, 30 schools, 20 palaces, 100 inns, 200 towns, 100 hospitals, 5 tombs (Makbara), 100 public baths, 10 pillars, 150 bridges. Chief architect: <mark class="g">Malik Ghazi Shahana</mark>. Every building plan was vetted by <mark class="y">'Diwan-i-Wazarat'</mark> against its expenditure estimate before funds were released.</li>
+							<li>Built the <mark class="y">largest canal network in India</mark> of the era — five major canals: Sutlej→Ghaggar (96 mi), Yamuna→Hisar (150 mi), Sirmor Hills→Hansi, Ghaggar→Firozabad, Yamuna→Firozabad; also dug 150 wells. Per Firishta, also built 50 dams and 30 lakes.</li>
+							<li>First Sultan of Delhi to impose the irrigation tax <mark class="y">'Haqq-i-Sharb'</mark> (after consulting the Ulema) — farmers using royal canals paid 1/10 of their produce.</li>
+							<li>Levied <mark class="y">Jizya on Brahmins</mark> — previously exempt from this tax.</li>
+							<li>Keen horticulturist: planted 1,200 new gardens near Delhi, restored 30 of Alauddin's old orchards, and worked to improve fruit quality.</li>
+							<li>Brought two <mark class="g">Ashoka Pillars</mark> to Delhi from Meerut and Topra (Yamuna Nagar district, Haryana) — the Topra pillar re-erected near the mosque/palace at Firozabad; the Meerut pillar re-installed near the present Bara Hindu Rao Hospital, Delhi.</li>
+							<li>Commissioned Sanskrit scholars to translate Sanskrit works into Persian, including some 300 manuscripts collected from the Jawalamukhi temple during the Nagarkot campaign — translated by <mark class="g">Azizuddin Khan</mark>. Established a <mark class="y">Translation Department</mark> to help Hindus and Muslims understand each other's ideas.</li>
+							<li>Wrote his own memoirs, <i><mark class="y">Futuhat-i-Firuz Shahi</mark></i>, to present himself as an ideal Muslim ruler; abolished 21 grievous taxes of his time, including the grain/octroi levy. Under him, the office of <mark class="y">Wazir</mark> reached its peak — the Tughluq period is called the golden age of Indian Muslim Wizarat.</li>
+							<li>Levied taxation per Islamic law, permitting four Quran-sanctioned taxes: <mark class="y">Kharaj, Jizya, Khums, Zakat</mark> (Khums = one-fifth share of war booty). In his time, 4/5 of loot went to soldiers and 1/5 to the treasury — the reverse of the ratio under <mark class="g">Alauddin Khalji</mark> and <mark class="g">Muhammad Tughluq</mark>, who kept 4/5 in the treasury and gave soldiers only 1/5.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Nasiruddin Mahmud Shah <span class="datebox">r. 1394–1412 AD · Last Tughluq ruler</span></h3>
+						<ul>
+							<li>During his reign, <mark class="g">Khwaja Jahan</mark> founded an independent state at <mark class="g">Jaunpur</mark>; another grandson of Firuz, <mark class="g">Nusrat Shah</mark>, challenged him, splitting the dynasty in two — Nasiruddin ruled from Delhi, Nusrat Shah from Firozabad.</li>
+							<li><mark class="g">Timur</mark>, the Turco-Mongol conqueror, invaded India in <mark class="b">1398 AD</mark> during his reign; his own dominion was mocked in the saying, "The sultanate of the Shahanshah extends from Delhi to Palam." Timur's objective was to fight the "Kafirs" and plunder wealth; before leaving, he appointed <mark class="g">Khizr Khan</mark> as subedar of Multan (and later Lahore and Dipalpur).</li>
+							<li>Timur's invasion destroyed Delhi and began the dynasty's fall; it ended with Nasiruddin's death in <mark class="b">1412 AD</mark>. The warlords of Delhi then elected <mark class="g">Daulat Khan</mark> as Sultan (1413 AD), but he was defeated by Khizr Khan, who founded the Sayyid Dynasty.</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 4 ============ -->
+				<section class="chapter" id="ch4" data-title="Sayyid Dynasty">
+					<div class="chapter-head">
+						<div class="seal">4</div>
+						<h2>Sayyid Dynasty</h2>
+					</div>
+					<div class="chapter-sub">1414–1451 AD · Founded by Khizr Khan under Timur's patronage</div>
+
+					<table>
+						<caption>Sayyid Sultans — chronological order</caption>
+						<thead class="blue">
+							<tr><th>Ruler</th><th>Reign</th></tr>
+						</thead>
+						<tbody>
+							<tr><td><b>Khizr Khan</b></td><td>1414–1421 AD</td></tr>
+							<tr><td><b>Mubarak Shah</b></td><td>1421–1434 AD</td></tr>
+							<tr><td><b>Muhammad Shah</b></td><td>1434–1445 AD</td></tr>
+							<tr><td><b>Ala-ud-Din Alam Shah</b></td><td>1445–1451 AD</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Khizr Khan <span class="datebox">Founder, 1414 AD</span></h3>
+						<ul>
+							<li>Was Subedar of Multan, appointed by <mark class="g">Timur</mark> during his 1398 invasion; later also granted control of Lahore and Dipalpur.</li>
+							<li>Defeated <mark class="g">Daulat Khan</mark> (elected Sultan by Delhi's warlords in 1413 AD) and took control of Delhi in <mark class="b">1414 AD</mark>, laying the foundation of the new Sayyid lineage.</li>
+							<li><mark class="r">Did not assume the title of Sultan</mark> himself, ruling as Timur's nominal subordinate.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Mubarak Shah, Muhammad Shah &amp; Ala-ud-Din Alam Shah <span class="datebox">1421–1451 AD</span></h3>
+						<ul>
+							<li>The dynasty ruled a shrunk, weakened kingdom for barely <mark class="b">37 years</mark> (1414–1451 AD) before giving way to the Lodis.</li>
+							<li><mark class="g">Yahiya Bin Ahmad Sarhindi</mark> wrote <i>Tarikh-i-Mubarakshahi</i> — the principal source for the history of the Sayyid rulers, composed under the patronage of Sayyid Mubarakshah.</li>
+						</ul>
+						<div class="ctx">
+							<span class="lbl">A separate Khizr Khan — architecture note</span>
+							The <mark class="g">Jamat Khana Masjid</mark>, the oldest monument in the dargah complex of <mark class="g">Hazrat Nizamuddin Aulia</mark>, was built by a different <mark class="g">Khizr Khan</mark> — son of Sultan <mark class="g">Alauddin Khalji</mark> — not the Sayyid-dynasty founder of the same name. The two men are easily confused in MCQs because of the shared name.
+						</div>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 5 ============ -->
+				<section class="chapter" id="ch5" data-title="Lodi Dynasty">
+					<div class="chapter-head">
+						<div class="seal">5</div>
+						<h2>Lodi Dynasty</h2>
+					</div>
+					<div class="chapter-sub">1451–1526 AD · Of Afghan origin — the last ruling family of the Delhi Sultanate</div>
+
+					<table>
+						<caption>Master table — Lodi rulers at a glance</caption>
+						<thead class="red">
+							<tr><th>Ruler</th><th>Reign</th><th>Key identity</th><th>Signature act</th></tr>
+						</thead>
+						<tbody>
+							<tr><td><b>Bahlul Khan Lodi</b></td><td>1451–1489 AD</td><td>Founder — 'Bahlul Shah Ghazi'</td><td>Victory over Jaunpur; introduced 'Bahlul coin'</td></tr>
+							<tr><td><b>Sikandar Lodi (Nizam Khan)</b></td><td>1489–1517 AD</td><td>Greatest Lodi ruler; pen-name 'Gulrukhi'</td><td>Founded Agra (1504 AD); 'Gaj-i-Sikandari' measurement scale</td></tr>
+							<tr><td><b>Ibrahim Lodi</b></td><td>1517–1526 AD</td><td>Last Sultan of Delhi</td><td>Defeated &amp; killed at the First Battle of Panipat, 21 Apr 1526</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Bahlul Khan Lodi <span class="datebox">Founder, 1451 AD</span></h3>
+						<ul>
+							<li>Established the Lodi Dynasty in <mark class="b">1451 AD</mark>; sat on the Delhi throne as <mark class="y">'Bahlul Shah Ghazi'</mark> with the Khutba proclaimed in his name; his most important victory was over <mark class="g">Jaunpur</mark>.</li>
+							<li>Did not treat Hindus with religious fanaticism — his court included prominent Hindu Sardars: <mark class="g">Rai Karan Singh, Rai Pratap Singh, Rai Nar Singh, Rai Trilokchandra, Rai Dadu</mark>.</li>
+							<li>Introduced the <mark class="y">'Bahlul coin'</mark> — the main medium of exchange prior to Akbar's reign.</li>
+							<li>Appointed his third son <mark class="g">Nizam Khan</mark> as successor despite some chiefs' opposition (his mother, <mark class="g">Jaiband/Bibi Ambha</mark>, was a goldsmith's daughter); Nizam Khan ultimately took the throne with the backing of powerful warlords, becoming Sultan <mark class="y">Sikandarshah</mark> on <mark class="b">17 July 1489 AD</mark>.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Sikandar Lodi <span class="datebox">r. 1489–1517 AD · Greatest of the Lodi rulers</span></h3>
+						<ul>
+							<li>In <mark class="b">1504 AD</mark> founded the city of <mark class="y">Agra</mark> along the Yamuna to command eastern Rajasthan and the routes toward Malwa/Gujarat, making it his capital.</li>
+							<li>Hard-working and generous, but religiously orthodox; worked to advance agriculture and trade; introduced the land-measurement scale <mark class="y">'Gaj-i-Sikandari'</mark>, later adopted by Sher Shah Suri and Akbar; arranged free meals for the poor.</li>
+							<li>Prohibited 'Tazia' during Muharram and banned Muslim women from visiting Peers and Mazaars; maintained a roster of qualified/skilled persons reviewed every six months.</li>
+							<li>An educated, learned man; had an Ayurvedic treatise translated into Persian as <i>'Farhange Sikandari'</i>; the musical masterpiece <i>'Lajjat-i-Sikandarshahi'</i> was composed in his reign; he loved hearing the Shehnai and wrote poetry under the pen-name <mark class="y">'Gulrukhi'</mark>.</li>
+							<li>Abolished the octroi duty on grain and several other grain levies. Built the <mark class="g">Moth Masjid</mark>; his own tomb was later built by his son, Ibrahim Lodi.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Ibrahim Lodi <span class="datebox">r. 1517–1526 AD · Last Sultan of Delhi</span></h3>
+						<ul>
+							<li>Defeated by <mark class="g">Maharana Sanga</mark> at the <mark class="y">Battle of Khatauli/Khatoli</mark> in <mark class="b">1518 AD</mark>.</li>
+							<li>Defeated and killed by <mark class="g">Babur</mark> at the <mark class="y">First Battle of Panipat</mark> on <mark class="b">21 April 1526 AD</mark>, ending both his reign and the Delhi Sultanate. Per <mark class="g">Nayamatullah</mark>, no other Sultan of India besides Ibrahim was ever killed on the battlefield.</li>
+						</ul>
+						<div class="ctx">
+							<span class="lbl">Chronology of Afghan (Lodi) rulers</span>
+							Bahlul Khan Lodi (1451–1489) → Sikandar Shah (1489–1517) → Ibrahim Lodi (1517–1526). The Lodi Dynasty, of Afghan origin, was the last ruling family of the Delhi Sultanate; it ruled 1451–1526 AD.
+						</div>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 6 ============ -->
+				<section class="chapter" id="ch6" data-title="Administration">
+					<div class="chapter-head">
+						<div class="seal">6</div>
+						<h2>Administration</h2>
+					</div>
+					<div class="chapter-sub">Departments (Diwans) · Wizarat · Army · Iqta System · Currency · Village &amp; Revenue Machinery</div>
+
+					<div class="ctx">
+						<span class="lbl">Dynasty timeline (recap)</span>
+						Slave Dynasty <mark class="b">1206–1290 AD</mark> → Khalji <mark class="b">1290–1320 AD</mark> → Tughluq <mark class="b">1320–1412/14 AD</mark> → Sayyid <mark class="b">1414–1451 AD</mark> → Lodi <mark class="b">1451–1526 AD</mark>. The <mark class="y">Tughluq dynasty ruled the longest</mark> (~92 years) of all Sultanate dynasties; the <mark class="y">Khalji dynasty ruled the shortest</mark> (30 years). Most Sultans and Amirs were <mark class="g">Turks</mark>; the Sultan headed the central government, while Amirs — those in influential posts — gained outsized power whenever the Sultan was weak, ineligible, or under-age.
+					</div>
+
+					<table>
+						<caption>Diwans (departments) and their founders</caption>
+						<thead class="blue">
+							<tr><th>Department</th><th>Portfolio</th><th>Founded by</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>Diwan-i-Wizarat</td><td>Finance / revenue — headed by the <mark class="g">Wazir</mark>, the state's prime minister; supervised Lagaan, tax, donations, military spending</td><td>Standard Islamic-administration institution; peaked under the Tughluqs (esp. Firuz Tughluq)</td></tr>
+							<tr><td>Diwan-i-Arz</td><td>Military department / army organisation</td><td><mark class="g">Balban</mark> (split off from Diwan-i-Wizarat)</td></tr>
+							<tr><td>Diwan-i-Risalat</td><td>Religious affairs; oversight of foreign affairs</td><td>—</td></tr>
+							<tr><td>Diwan-i-Insha</td><td>Government correspondence</td><td>—</td></tr>
+							<tr><td>Diwan-i-Mustakhraj / Mustakharaj</td><td>Revenue department (anti-corruption/loot-checking on the revenue system)</td><td><mark class="g">Alauddin Khalji</mark></td></tr>
+							<tr><td>Diwan-i-Riyasat</td><td>Market-control department</td><td><mark class="g">Alauddin Khalji</mark></td></tr>
+							<tr><td>Diwan-i-Amir-i-Kohi</td><td>Agriculture department</td><td><mark class="g">Muhammad-Bin-Tughluq</mark></td></tr>
+							<tr><td>Diwan-i-Khairat</td><td>Charity department</td><td><mark class="g">Firuz Tughluq</mark></td></tr>
+							<tr><td>Diwan-i-Bandagan</td><td>Department of slaves</td><td><mark class="g">Firuz Tughluq</mark></td></tr>
+						</tbody>
+					</table>
+					<div class="trap">
+						<span class="lbl">Diwan mismatches to watch for</span>
+						<ul>
+							<li>Diwan-i-Riyasat = <mark class="r">Alauddin Khalji</mark>, not Balban.</li>
+							<li>Diwan-i-Arz = <mark class="r">Balban</mark>, not Muhammad Tughluq.</li>
+							<li>Diwan-i-Mustakhraj = <mark class="r">Alauddin Khalji</mark>, not Balban.</li>
+							<li>Diwan-i-Kohi = <mark class="r">Muhammad-Bin-Tughluq</mark>, not Alauddin Khalji.</li>
+							<li>The office of <mark class="r">'Mir Bakshi'</mark> is a Mughal-era post (military department, nobility, intelligence) — it did NOT exist under the Khalji Sultans.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Wizarat &amp; the Army</h3>
+						<ul>
+							<li>Wizarat was an institution the Islamic administration recognised generally; the first Wazir was <mark class="g">Abbas Fazal-Bin-Ahmad</mark>, under <mark class="g">Mahmud Ghazni's</mark> (Ghaznavid) administration.</li>
+							<li>Army organisation followed a <mark class="y">decimal system</mark>: <mark class="g">Sarkhel</mark> (head of a troop of horsemen) → <mark class="g">Sipahsalar</mark> (over 10 Sarkhels) → <mark class="g">Amir</mark> (over 10 Sipahsalars) → <mark class="g">Malik</mark> (over 10 Amirs) → <mark class="g">Khan</mark> (over 10 Maliks). The Sultan was Chief Commander of the army.</li>
+							<li>Barani did not consider the Sultanate a "truly Islamic" state, since the majority of the population did not follow Islam.</li>
+							<li>Government of the medieval period was a composite structure — a fusion of <mark class="y">Perso-Arabic, Turko-Mongol (Central Asian), and Indian</mark> elements.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>The Iqta System</h3>
+						<ul>
+							<li>Introduced in Delhi Sultanate India by <mark class="g">Iltutmish</mark>; originally an Islamic-world institution from the <mark class="b">9th century AD</mark>, meant to relieve the state treasury when tax revenue/war booty fell short of what was needed to pay salaries — <mark class="r">not an ancient indigenous Indian institution</mark>.</li>
+							<li>Land was granted to army officials (<mark class="g">Iqtadar/Muqti</mark>) for limited periods in lieu of a regular wage; the Muqti collected revenue and taxes in his Iqta and used it to meet his own administrative and military expenses, maintaining troops for the Sultan's service — revenue from an Iqta was <mark class="r">not</mark> deposited directly in the Sultan's account.</li>
+							<li><i>Siyasatnama</i>, authored by <mark class="g">Abu Ali Hasan Ibn Ali Tusi (Nizam-ul-Mulk)</mark>, is the primary source of information on the original Iqta system.</li>
+							<li>Sultanate territory was broadly divided into <mark class="y">Khalisa</mark> (land under the state's direct control) and <mark class="y">Jagirs/Iqta</mark> (revenue assignments to a Mansabdar/Jagirdar, not under direct state control).</li>
+							<li>'Fawazil' = the excess revenue paid to the exchequer by an Iqtadar over his due share.</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>Administrative-terms glossary</caption>
+						<thead class="green">
+							<tr><th>Term</th><th>Meaning</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>Iqta</td><td>Land revenue (a revenue assignment)</td></tr>
+							<tr><td>Mahrousa</td><td>Protected town</td></tr>
+							<tr><td>Khalisa</td><td>Land under direct state administration</td></tr>
+							<tr><td>Shiq</td><td>A portion of land</td></tr>
+							<tr><td>Muqaddam / Chaudhari</td><td>Village headman — the highest revenue authority in the village (not a mere revenue clerk)</td></tr>
+							<tr><td>Chaudhary</td><td>Supreme rural official of land revenue in the Sultanate period</td></tr>
+							<tr><td>Khut, Patwari</td><td>Other village-level revenue functionaries, coordinating with the Muqti</td></tr>
+							<tr><td>Amil</td><td>In-charge of revenue collection at Pargana/Kasba level</td></tr>
+							<tr><td>Mushrif</td><td>Kept accounts at the Pargana level</td></tr>
+							<tr><td>Khazandar</td><td>In charge of the treasury</td></tr>
+							<tr><td>Zawabits</td><td>State laws (administrative vocabulary)</td></tr>
+							<tr><td>Hadis/Hadith</td><td>Islamic law — collected reports of the Prophet Muhammad's sayings/customs</td></tr>
+							<tr><td>Khareetadar</td><td>Dispatcher of royal decrees</td></tr>
+							<tr><td>Sharb / Haqq-i-Sharb</td><td>Irrigation tax</td></tr>
+							<tr><td>Khums</td><td>One-fifth share of war booty, paid to Caliph/Sultan</td></tr>
+							<tr><td>Kharaj, Ushr, Muktai</td><td>Taxes levied on land produce</td></tr>
+							<tr><td>Dastar-Bandan</td><td>High religious/judicial authorities (Ulema) — named for wearing an official turban</td></tr>
+							<tr><td>Kulah-Daran</td><td>Sayyids specifically, among the Dastar-Bandan, who wore pointed caps</td></tr>
+							<tr><td>Panahi / Upanah</td><td>Shoes</td></tr>
+							<tr><td>Fanam</td><td>Small gold coins (medieval–19th century, South India)</td></tr>
+							<tr><td>Mahattara / Pattakila</td><td>Village headman (regional terms — Gramakuta/Maharashtra, Gavunda/Karnataka, Mahattaka/UP)</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Medieval Administrative Hierarchy &amp; Revenue Terms</h3>
+						<ul>
+							<li>Ascending order of size in medieval administration: <mark class="y">Pargana → Sarkar → Suba</mark> (province). Suba headed by <mark class="g">Subedar</mark>; Sarkar headed by <mark class="g">Fauzdar</mark>; Pargana/Mahal headed by <mark class="g">Shiqdar</mark>. Villages under a Pargana were called <mark class="g">'Mavada'/'Deeha'</mark>; small colonies under a Mavada were <mark class="g">'Nagla'</mark>. Under Shahjahan, a new unit, <mark class="g">'Chakla'</mark>, was formed between Pargana and Sarkar.</li>
+							<li>13th–14th century Indian peasants (per Ibn Battuta) cultivated rice, wheat, sugarcane and cotton (up to three crops a year), and various spices in the south — but <mark class="r">not maize</mark>, which the Portuguese introduced later.</li>
+						</ul>
+					</div>
+
+					<div class="event">
+						<h3>Currency of the Sultanate Period</h3>
+						<ul>
+							<li>Two main currencies: <mark class="y">Jital</mark> (copper) and <mark class="y">Tanka</mark> (silver) — ratio <mark class="b">1:48</mark>. <mark class="g">Iltutmish</mark> was the first Turk ruler to introduce Arabic coins and the first to start these two coins; <mark class="g">Shashgani</mark> was also a silver coin of the period.</li>
+							<li>The name of the last Caliph of Baghdad, <mark class="g">Al-Mustasim (1242–58 AD)</mark>, first appeared on the coins of <mark class="g">Alauddin Masud Shah</mark> (1242–46 AD); the earlier Caliph <mark class="g">Al-Mustansir's</mark> name appears on Iltutmish's coins (r. 1226–1242 AD in this context).</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 7 ============ -->
+				<section class="chapter" id="ch7" data-title="Art & Architecture">
+					<div class="chapter-head">
+						<div class="seal">7</div>
+						<h2>Art &amp; Architecture</h2>
+					</div>
+					<div class="chapter-sub">Mosques, tombs, forts and towers — ruler by ruler</div>
+
+					<table>
+						<caption>Builder — monument master table</caption>
+						<thead class="purple">
+							<tr><th>Ruler</th><th>Monument(s)</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>Qutbuddin Aybak</td><td>Quwwat-ul-Islam Mosque (Delhi, near Raipithora Fort); Adhai Din Ka Jhopra (Ajmer); started Qutub Minar (completed only the basement)</td></tr>
+							<tr><td>Iltutmish</td><td>Completed the Qutub Minar; built Sultangarhi, Hauz-e-Shamsi, Shamsi Eidgaah, Jama Masjid Shamsi (Badayun), Atarkin-ka-Darwaza (Nagaur)</td></tr>
+							<tr><td>Balban</td><td>His own tomb, Mehrauli — first purely Indo-Islamic-style tomb in India, and the first place true arches appeared in India; also built the Lal Mahal</td></tr>
+							<tr><td>Alauddin Khalji</td><td>Alai Darwaza (near Qutub Minar; red sandstone + white marble, completed 1311 AD — first building to introduce the horse-shoe arch); Hazar Sutun and Hauz-e-Alai (Siri fort, Delhi)</td></tr>
+							<tr><td>Mubarakshah Khalji (era)</td><td>Ukha Mosque (Bayana, Rajasthan) — built by Malik Kafur Sultani</td></tr>
+							<tr><td>Ghiyasuddin Tughluq</td><td>Founded the city/fort of Tughluqabad (1320–25 AD)</td></tr>
+							<tr><td>Firuz Shah Tughluq</td><td>200 new cities (Fatehabad, Hisar, Firozpur, Jaunpur, Firozabad); rebuilt Qutub Minar's 4th floor and added the 5th; re-erected two Ashoka pillars (Meerut, Topra) in Delhi</td></tr>
+							<tr><td>Sikandar Lodi</td><td>Moth Masjid; his own tomb was later built by Ibrahim Lodi</td></tr>
+							<tr><td>Lodi Dynasty (era)</td><td>Lodi Garden</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>The Qutub Minar — full construction history</h3>
+						<ul>
+							<li>Started by <mark class="g">Qutbuddin Aybak</mark> (completed only its basement/foundation); completed by <mark class="g">Iltutmish</mark>. Its fourth storey was damaged by lightning and rebuilt by <mark class="g">Firuz Shah Tughluq</mark>, who also added a new fifth floor.</li>
+							<li>Named after the Sufi saint <mark class="g">Qutbuddin Bakhtiar Kaki</mark> — not directly after Aybak.</li>
+							<li>Actual dimensions: <mark class="b">238 feet (72.5 m)</mark> tall, five storeys, a mix of polygonal and circular shapes, largely red/buff sandstone with marble in the upper storey — <mark class="r">the commonly seen "180 feet" figure in some MCQs is incorrect</mark>.</li>
+							<li><mark class="r">Ghiyasuddin Tughluq</mark> and <mark class="r">Alauddin Khalji</mark> made no contribution to its construction.</li>
+						</ul>
+						<div class="ctx">
+							<span class="lbl">Chand Minar — a different, unrelated tower</span>
+							Built in the <mark class="b">15th century</mark>, <mark class="b">210 feet</mark> tall, four storeys, painted peach; its facade once had chevron patterning and bands of Quranic verses in encaustic tile-work.
+						</div>
+					</div>
+
+					<div class="event">
+						<h3>Building–builder pairs frequently tested</h3>
+						<ul>
+							<li>Sultan Garhi — <mark class="g">Iltutmish</mark>; Red Palace — <mark class="g">Balban</mark>; Adhai Din Ka Jhopra — <mark class="g">Qutbuddin Aybak</mark>; Jamat Khana Masjid — <mark class="g">Khizr Khan</mark> (son of Alauddin Khalji, not the Sayyid founder), oldest monument in the dargah complex of Hazrat Nizamuddin Aulia.</li>
+							<li>Lal Mahal — Balban; Lal Darwaja Mosque — Bibi Raje; Hindola Mahal and Jahaz Mahal — Ghiyas-ud-din Khalji (per the answer key used here).</li>
+							<li>Correct site–monument pairs: Delhi — Quwwat-ul-Islam; Jaunpur — Atala Masjid; Malwa — Jahaz Mahal; Gulberga (Kalburgi) — Jama Masjid. (Quwwat-ul-Islam is <mark class="r">not</mark> at Ajmer.)</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>Architectural style ↔ dynasty</caption>
+						<thead class="blue">
+							<tr><th>Feature</th><th>Associated dynasty</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>'Lotus bud' fringe on the underside of the arch</td><td>Khaljis</td></tr>
+							<tr><td>Emergence of the octagonal tomb</td><td>Tughluqs</td></tr>
+							<tr><td>Massive entrance gate with inclined walls</td><td>Sharqis (Jaunpur)</td></tr>
+							<tr><td>Use of 'Bodegoi' in pillars</td><td>Vijayanagara (non-Sultanate, included for contrast)</td></tr>
+						</tbody>
+					</table>
+
+					<div class="event">
+						<h3>Chronology of monuments (mixed Sultanate/Mughal set)</h3>
+						<p>Qutub Minar (Aybak 1206–10, Iltutmish 1211–36) → Tughluqabad fort (Ghiyasuddin Tughluq, 1320–25 AD) → Lodi Garden (Lodi dynasty, 1451–1526 AD) → Fatehpur Sikri (Akbar, 1556–1605 AD, Mughal).</p>
+						<p>First true arch in a Sultanate-era memorial: the <mark class="y">Tomb of Balban</mark> (not Iltutmish's tomb, Alai Darwaza, or the Quwwat-ul-Islam mosque). India's first tomb in Indo-Islamic style: also the <mark class="y">Tomb of Balban</mark> — not Humayun's, Aybak's, or Alauddin's tomb.</p>
+						<p>Use of paper in India is generally dated from the 7th–8th century CE, though written paper documents are attested from around the 11th century CE, and paper was in royal use by the 12th–13th century CE.</p>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 8 ============ -->
+				<section class="chapter" id="ch8" data-title="Literature">
+					<div class="chapter-head">
+						<div class="seal">8</div>
+						<h2>Literature</h2>
+					</div>
+					<div class="chapter-sub">Amir Khusrau · Chroniclers · Author–work matching sets</div>
+
+					<div class="event">
+						<h3>Amir Khusrau <span class="datebox">b. 1253 AD, Patiyali (present-day Kasganj district, UP)</span></h3>
+						<ul>
+							<li>Full name <mark class="g">Abul Hassan Yaminuddin Khusrau</mark>; called <mark class="y">'Tuti-i-Hind'</mark> ("Parrot of India"); referred to himself as a <mark class="y">'Turkish-Indian'</mark>; started composing poems at age <mark class="b">nine</mark>.</li>
+							<li>Court poet specifically of <mark class="g">Alauddin Khalji</mark>, though he was associated across his career with the courts of Nasiruddin Mahmud, Balban, Kaiqubad, Samsuddin Kayumars, Jalaluddin Khalji, Alauddin Khalji, Shihabuddin Umar, Mubarakshah, Ghiyasuddin Tughluq and Muhammad-Bin-Tughluq — he personally witnessed the reign of more than seven Delhi Sultans (as did his teacher, <mark class="g">Shaikh Nizamuddin Auliya</mark>, whose disciple he was).</li>
+							<li>Poet, historian and musician all at once; the first Persian poet to depict the Indian environment in his poetry; a savant of both Hindi (Hindavi) and Persian, and knew Sanskrit too.</li>
+							<li>Originator in India of the early form of <mark class="y">Qawwali</mark>; invented the <mark class="y">Sitar</mark> (combining the Irani Tamboora with the Indian Veena — called the finest example of Hindu-Muslim harmony among instruments) and made the <mark class="y">Tabla</mark> prevalent in the 13th/14th century; introduced new melody styles such as Iman, Zilf, Sajgari.</li>
+							<li>Started the new Persian poetry style <mark class="y">'Sabk-i-Hindi'</mark> (Hindustani style) — "father" of this style; said <i>"Na Lafze Hindiwast aj Farsi Kam"</i> ("the words of Hindi are not less than those of Persian"); also considered the pioneer/"father" of <mark class="y">Khari Boli Hindi</mark>.</li>
+							<li>Works: <i>Khazain-ul-Futuh</i> (aka <i>Tarikh-i-Alai</i>), <i>Miftah-ul-Futuh</i>, <i>Ashika</i>, <i>Nuh Sipihr</i>, <i>Qiran-us-Sadain</i> (his first Masnavi, on a historical subject) and <i>Tughluq-Namah</i> (his last historical Masnavi).</li>
+							<li>Compiled a record of <mark class="g">Shaikh Nizamuddin Auliya's</mark> conversations — actually this compilation, <i>Fawaid-ul-Fawad</i>, was authored by his contemporary <mark class="g">Amir Hassan Sizzi (Al Sizzi)</mark>, not Khusrau himself.</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>Chroniclers and their works</caption>
+						<thead class="green">
+							<tr><th>Author</th><th>Work</th><th>Subject</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>Minhaj-us-Siraj (Minhaj-i-Siraj)</td><td><i>Tabaqat-i-Nasiri</i></td><td>Dedicated to Sultan Nasiruddin Mahmud; 23 volumes; translated by H.G. Raverty into English; describes Muhammad Ghori's victory over India, and the earliest description of Bakhtiyar Khalji's invasion of Bihar (incl. the 1193 sack of Nalanda University)</td></tr>
+							<tr><td>Ziauddin Barani</td><td><i>Tarikh-i-Firuzshahi</i> and <i>Fatwa-i-Jahandari</i></td><td>History of the Delhi Sultanate; political guidance for Muslim rulers per Islamic ideals. (Note: a second, distinct <i>Tarikh-i-Firuz Shahi</i> was separately written by Shams-i-Siraj Afif, same title, different material/approach.)</td></tr>
+							<tr><td>Sadruddin Muhammad Hasan Nizami</td><td><i>Taj-ul-Masir</i></td><td>—</td></tr>
+							<tr><td>Yahiya Bin Ahmad Sarhindi</td><td><i>Tarikh-i-Mubarakshahi</i></td><td>Principal source on the Sayyid rulers, under patronage of Sayyid Mubarakshah</td></tr>
+							<tr><td>Al-Biruni (Abu Rehan)</td><td><i>Kitab-ul-Hind</i> / <i>Tahqiq-i-Hind</i></td><td>Detailed account of India's history, geography and culture, by the 10–11th century Persian scholar</td></tr>
+							<tr><td>Ibn Battuta</td><td><i>Kitab-ul-Rihla</i></td><td>Travelogue incl. the Sultanate's postal system</td></tr>
+							<tr><td>Firuz Shah Tughluq</td><td><i>Futuhat-i-Firuz Shahi</i></td><td>His own memoirs</td></tr>
+							<tr><td>Abdul Malik Isami</td><td><i>Futuh-us-Salatin</i></td><td>—</td></tr>
+							<tr><td>Sadiduddin Muhammad Ibn Muhammad 'Aufi'</td><td><i>Lubab-ul-Albab</i>, <i>Jawami-ul-Hikayat</i></td><td>Latter contains the earliest reference to use of the magnetic compass in Indian seas</td></tr>
+						</tbody>
+					</table>
+
+					<table>
+						<caption>Author–work matching sets (as tested)</caption>
+						<thead class="green">
+							<tr><th>Set</th><th>Correct pairing</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>Mirat-e-Sikandari</td><td>Victory of Gujarat (prosperity of Sultan Mahmud Begada's kingdom; security of trade routes)</td></tr>
+							<tr><td>Burhan-e-Masir</td><td>History of Bahmani's Ahmadnagar</td></tr>
+							<tr><td>Riyaz-us-Salatin</td><td>History of Bengal</td></tr>
+							<tr><td>Riyaz-ul-Insha</td><td>Collection of Mahmood Gawan's letters</td></tr>
+							<tr><td>Haqaiq-i-Hindi</td><td>Abdul Wahid Bilgrami</td></tr>
+							<tr><td>Tahdhibul Akhlaq</td><td>Ibn Miskawayh</td></tr>
+							<tr><td>Kunzal Tijar</td><td>Bailaq-al-Qabayaki</td></tr>
+							<tr><td>Jawamiul Hikayat</td><td>Sadruddin Muhammad "Aufi"</td></tr>
+							<tr><td>Tarikh-e-Hind</td><td>Al-Biruni</td></tr>
+							<tr><td>Tarikh-i-Delhi</td><td>Amir Khusrau</td></tr>
+							<tr><td>Rihla</td><td>Ibn Battuta</td></tr>
+						</tbody>
+					</table>
+
+					<div class="ctx">
+						<span class="lbl">Persian as court language</span>
+						Persian literature in India developed with the advent of Muslim rule; after the Delhi Sultanate's establishment, <mark class="y">Persian was granted status as the official language</mark> — the language patronised by the Delhi Sultans.
+					</div>
+
+					<div class="event">
+						<h3>Non-Sultanate literary figures appearing in the same PYQ set</h3>
+						<ul>
+							<li><mark class="g">Rana Kumbha</mark> (Mewar) — patron of music/literature/art; built <mark class="g">Kirti Stambha</mark> (supervised by <mark class="g">Jaita</mark>; panegyrists Atri and Mahesh composed the <i>Kirti-Stambha Prashasti</i>) to mark his victory over <mark class="g">Mahmud Khalji of Malwa</mark> (1440–48 AD); authored <i>Sangeet Raja</i> (aka <i>Sangita Mimansa</i>).</li>
+							<li><mark class="g">Ibrahim Adil Shah II</mark> of Bijapur wrote <i>Kitab-i-Nauras</i>, songs praising both Hindu deities and Muslim saints; founded the city Nauraspur as his capital.</li>
+							<li><mark class="g">Khwaza Ziya-uddin Nakhshabi</mark> (14th-century Persian physician/Sufi, migrated to Badayun) translated Chintamani Bhatt's Sanskrit <i>Suka Saptati</i> into Persian as <i>Tutinama</i>.</li>
+							<li>'Apabhramsa' — a term in medieval Sanskrit texts for early forms of modern Indian languages (Hindi dialects, Kashmiri, Punjabi, Sindhi, Nepali, Shauryaseni, Marathi, etc.).</li>
+							<li>Music-text pairs: Pandit Bhavbhatta — <i>Anup Sangeet Ratnakar</i>; Ustad Chand Khan — <i>Khayal Gayaki Ka Delhi Gharana</i>; Pundrik Vitthal — <i>Raagmala</i>; Kumbha — <i>Sangitraja</i>; also Rasa Kaumudi — Sri Kantha; Raga Vibodh — Somanath; Chaturdandi Prakashika — Venkatamakhin.</li>
+						</ul>
+					</div>
+				</section>
+
+				<!-- ============ CHAPTER 9 ============ -->
+				<section class="chapter" id="ch9" data-title="Miscellaneous">
+					<div class="chapter-head">
+						<div class="seal">9</div>
+						<h2>Miscellaneous</h2>
+					</div>
+					<div class="chapter-sub">Sports · Social customs · Travellers · Chronology drills · Cross-dynasty odds &amp; ends</div>
+
+					<div class="event">
+						<h3>Sport, Social Custom &amp; Titles</h3>
+						<ul>
+							<li>The game of <mark class="y">Polo (Chaugan)</mark> was introduced in India by the <mark class="g">Turks</mark>; Qutbuddin Aybak was fond of it and died playing it (1210 AD).</li>
+							<li>High religious/judicial authorities (<mark class="g">Ulema</mark>) were collectively called <mark class="y">'Dastar Bandan'</mark>, for wearing an official turban; among them, <mark class="g">Sayyids</mark> specifically, who wore pointed caps, were called <mark class="y">'Kulah-Daran'</mark>.</li>
+							<li><mark class="y">Jauhar</mark> — committed by Rajput women to protect their honour from Muslim invaders, to avoid becoming "booty for the captor" — began specifically during the <mark class="g">Rajput period</mark>, as a direct response to Muslim invasions (unlike Sati and child-marriage, which pre-date this period).</li>
+						</ul>
+					</div>
+
+					<table>
+						<caption>Quick-fire matching corrections</caption>
+						<thead class="red">
+							<tr><th>Item</th><th>Correct fact</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>Balban's introduction at court</td><td>The Persian festival <mark class="g">Nawruz</mark> (see Slave Dynasty chapter)</td></tr>
+							<tr><td>Iltutmish's noble body</td><td>Chahalghani nobles / Turkan-i-Chahalghani</td></tr>
+							<tr><td>Muhammad Tughluq's monetary policy</td><td>Token currency</td></tr>
+							<tr><td>Sher Shah Suri's road</td><td>'Sadak-i-Azam' — Sonargaon (Bengal) to Lahore, an administrative link to remote provinces (Mughal-adjacent, included for contrast)</td></tr>
+							<tr><td>Akbar's revenue system</td><td>Ain-i-Dahsala (Mughal, for contrast)</td></tr>
+							<tr><td>Iltutmish (family)</td><td>Father of Raziyya; his wife was Shah Turkan</td></tr>
+							<tr><td>Hamida Banu Begum</td><td><mark class="r">Wife of Humayun</mark> (Mughal), not of Alauddin Khilji — a commonly set trap</td></tr>
+							<tr><td>Raziyya Sultan</td><td>Ruled from Delhi</td></tr>
+						</tbody>
+					</table>
+
+					<table>
+						<caption>Foreign travellers to India</caption>
+						<thead class="purple">
+							<tr><th>Traveller</th><th>Origin</th><th>Visited during / notes</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>Al-Biruni</td><td>Khiva (ancient Khwarizm)</td><td>Came to India with Mahmud Ghazni during his invasion; wrote <i>Kitab-ul-Hind/Tahqiq-i-Hind</i></td></tr>
+							<tr><td>Ibn Battuta</td><td>Morocco</td><td>1333–1342 AD, during Muhammad-Bin-Tughluq's reign; appointed Qazi of Delhi, later ambassador to China; travelled ~44 countries, ~73,000 miles over ~30 years — the greatest pre-modern traveller by this measure</td></tr>
+							<tr><td>Marco Polo</td><td>Venice, Italy</td><td>Visited India (~24,000 miles over 24 years from 1271) during the rule of Pandya ruler Marvarman Kulshekhara (1268–1310 AD); aided by Kublai Khan in his wider travels</td></tr>
+							<tr><td>Abdur Razzaq</td><td>Persia (Iran)</td><td>Iranian ambassador; visited Vijayanagara under Deva Raya II (1422–46 AD)</td></tr>
+							<tr><td>Nuniz</td><td>Portugal</td><td>Visited Vijayanagara</td></tr>
+							<tr><td>Jean-Baptiste Tavernier</td><td>France</td><td>17th century; gem merchant; six voyages to the East during Shahjahan's period; wrote <i>The Six Voyages of John Baptista Tavernier</i></td></tr>
+							<tr><td>Niccolao Manucci</td><td>Venice, Italy</td><td>1653–1708 AD; served Prince Dara Shukoh as a cannoneer, later a physician; wrote <i>Storia do Mogor</i></td></tr>
+						</tbody>
+					</table>
+					<div class="note">Sequence of arrival: Al-Biruni → Ibn Battuta → Tavernier → Manucci.</div>
+
+					<div class="event">
+						<h3>Chronology Drills</h3>
+						<ul>
+							<li>Rulers in order: <mark class="g">Raziyya Sultan</mark> (1236–1240) → <mark class="g">Alauddin Khalji</mark> (1296–1316) → <mark class="g">Sher Shah</mark> (1540–1545) → <mark class="g">Akbar</mark> (1556–1605).</li>
+							<li>Events in order: Second Battle of Tarain (1192, Prithviraj Chauhan defeated by Muhammad Ghori) → Murder of Jalaluddin Khalji (1296) → Afghanpur conspiracy (Muhammad-bin-Tughluq/Ulugh Khan accused of murdering Ghiyasuddin Tughluq) → Transfer of the capital by Muhammad Tughluq to Daulatabad.</li>
+							<li>Events in order: Construction of Qutub Minar (Aybak→Iltutmish) → Death of Firuz Tughluq (1388 AD) → Arrival of the Portuguese/Vasco da Gama (1498 AD) → Reign of Krishnadeva Raya of Vijayanagara (1509–1529 AD).</li>
+							<li>Battles by year: Battle of Chandawar — 1194; Timur's attack — 1398; Battle of Ghaghra — 1529; Battle of Talikota — 1565.</li>
+							<li>Longest reign among a tested set: <mark class="g">Bahlul Lodi</mark> (1451–1489, 38 yrs) &gt; Muhammad-bin-Tughluq (1325–51, 26 yrs) &gt; Alauddin Khalji (1296–1316, 20 yrs) ≈ Balban (1266–1286, 20 yrs).</li>
+						</ul>
+					</div>
+
+					<div class="ctx">
+						<span class="lbl">Non-Sultanate facts appearing in the same question sets</span>
+						<ul>
+							<li><mark class="g">Yousuf Shah Chak</mark>, last Muslim ruler of Kashmir valley, was exiled to Bihar by Akbar; died at Puri (1592 AD) and was buried at <mark class="g">Nalanda</mark>.</li>
+							<li><mark class="g">Hemachandra Suri</mark>, a Jain scholar, rose to prominence in the Solanki court of Jai Singh Siddharaj, who built a Mandap on Mount Abu and installed statues of Jain Tirthankaras there.</li>
+							<li><mark class="g">Krishnadeva Raya</mark> (Vijayanagara) composed <i>Amuktamalyada</i> in Telugu; Mahendravarman I wrote <i>Mattavilasaprahasana</i>; Bhoja composed <i>Samaranganasutradhara</i>; Someshvara wrote <i>Manasollasa</i>.</li>
+							<li>Chand Bibi was regent of Bijapur and Ahmednagar (daughter of Hussain Nizam Shah-I of Ahmednagar) — <mark class="r">not associated with Oudh</mark>; Bahadur Shah — Gujarat; Baz Bahadur — Malwa.</li>
+						</ul>
+					</div>
+				</section>
+
+			</div>
+			<section class="master-section">
+				<div class="master-inner">
+					<div class="master-eyebrow">Master Reference · Dynasty-by-Dynasty Ruler Ledger</div>
+					<h2>Every ruler of the Delhi Sultanate, 1206–1526 AD</h2>
+					<p class="master-sub">A single scrollable ledger of every ruler across all five dynasties, for last-minute revision.</p>
+					<div class="master-table-wrap">
+						<table class="master-table">
+							<thead>
+								<tr><th>Dynasty</th><th>Ruler</th><th>Reign / Notes</th></tr>
+							</thead>
+							<tbody>
+								<tr><td>Slave</td><td>Qutbuddin Aybak</td><td>1206–1210 AD · Capital Lahore · founder</td></tr>
+								<tr><td>Slave</td><td>Aram Shah</td><td>1210–1211 AD</td></tr>
+								<tr><td>Slave</td><td>Iltutmish</td><td>1211–1236 AD · shifted capital to Delhi</td></tr>
+								<tr><td>Slave</td><td>Rukn-ud-din Firuz</td><td>1236 AD</td></tr>
+								<tr><td>Slave</td><td>Raziyya Sultan</td><td>1236–1240 AD · first female ruler</td></tr>
+								<tr><td>Slave</td><td>(intervening rulers)</td><td>1240–1266 AD</td></tr>
+								<tr><td>Slave</td><td>Ghiyasuddin Balban</td><td>1266–1287 AD</td></tr>
+								<tr><td>Khalji</td><td>Jalaluddin Khalji</td><td>1290 AD onward · founder</td></tr>
+								<tr><td>Khalji</td><td>Alauddin Khalji</td><td>1296–1316 AD</td></tr>
+								<tr><td>Khalji</td><td>Qutbuddin Mubarak Khalji</td><td>1316–1320 AD · only Sultan to self-style Caliph</td></tr>
+								<tr><td>Khalji</td><td>Nasiruddin Khusrau Shah</td><td>Apr–Sep 1320</td></tr>
+								<tr><td>Tughluq</td><td>Ghiyasuddin Tughluq (Ghazi Malik)</td><td>1320–1325 AD · founder</td></tr>
+								<tr><td>Tughluq</td><td>Muhammad-Bin-Tughluq</td><td>1325–1351 AD</td></tr>
+								<tr><td>Tughluq</td><td>Firuz Shah Tughluq</td><td>1351–1388 AD</td></tr>
+								<tr><td>Tughluq</td><td>(successors)</td><td>1388–1394 AD</td></tr>
+								<tr><td>Tughluq</td><td>Nasiruddin Mahmud Shah</td><td>1394–1412 AD · last Tughluq ruler; Timur invades 1398</td></tr>
+								<tr><td>Sayyid</td><td>Khizr Khan</td><td>1414–1421 AD · founder</td></tr>
+								<tr><td>Sayyid</td><td>Mubarak Shah</td><td>1421–1434 AD</td></tr>
+								<tr><td>Sayyid</td><td>Muhammad Shah</td><td>1434–1445 AD</td></tr>
+								<tr><td>Sayyid</td><td>Ala-ud-Din Alam Shah</td><td>1445–1451 AD</td></tr>
+								<tr><td>Lodi</td><td>Bahlul Khan Lodi</td><td>1451–1489 AD · founder</td></tr>
+								<tr><td>Lodi</td><td>Sikandar Lodi</td><td>1489–1517 AD · founded Agra 1504</td></tr>
+								<tr><td>Lodi</td><td>Ibrahim Lodi</td><td>1517–1526 AD · killed at First Battle of Panipat, 21 Apr 1526</td></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+			<div class="footer">
+				Compiled from theory notes and PYQ (Ghatnachakra-style) explanations · marker-coded per canonical study format · duplicate facts from theory &amp; PYQ merged · cross-verify years before the exam
+			</div>
+		</div>
+		<!-- /main -->
+		<script>
+			const chapters = document.querySelectorAll(".chapter");
+			const toc = document.getElementById("toc");
+			chapters.forEach((ch, i) => {
+				const a = document.createElement("a");
+				a.href = "#" + ch.id;
+				a.innerHTML = '<span class="num">' + String(i + 1).padStart(2, "0") + "</span><span>" + ch.dataset.title + "</span>";
+				a.dataset.target = ch.id;
+				toc.appendChild(a);
+			});
+			const links = toc.querySelectorAll("a");
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							links.forEach((l) => l.classList.remove("active"));
+							const active = toc.querySelector('a[data-target="' + entry.target.id + '"]');
+							if (active) active.classList.add("active");
+						}
+					});
+				},
+				{ rootMargin: "-10% 0px -75% 0px", threshold: 0 },
+			);
+			chapters.forEach((ch) => observer.observe(ch));
+			const menuBtn = document.getElementById("menu-btn");
+			const sidebar = document.getElementById("sidebar");
+			menuBtn.addEventListener("click", () => sidebar.classList.toggle("open"));
+			links.forEach((l) => l.addEventListener("click", () => sidebar.classList.remove("open")));
+		</script>
+	</body>
+</html>

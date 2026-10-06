@@ -1,0 +1,2673 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>
+			Vitamins and Nutrition — Vitamins, Nutrients &amp; Diet | BPSC
+			Prelims
+		</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--paper: #f5efe2;
+				--paper-dark: #ece3d0;
+				--ink: #2b2620;
+				--ink-soft: #5c5346;
+				--sidebar: #1f2620;
+				--sidebar-text: #cfd6c9;
+				--sidebar-active: #3a473a;
+				--accent-green: #3d6b4f;
+				--accent-green-deep: #274a34;
+				--gold: #a8792f;
+				--border: #d8ccae;
+				--yellow: #e0a712;
+				--yellow-bg: #fbe08a;
+				--blue: #1f6fa8;
+				--blue-bg: #a9d3ef;
+				--green: #2f7d3f;
+				--green-bg: #a9dcac;
+				--red: #c23b2c;
+				--red-bg: #f3a89e;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			body {
+				margin: 0;
+				font-family: "IBM Plex Sans", sans-serif;
+				background: var(--paper);
+				color: var(--ink);
+				display: flex;
+				min-height: 100vh;
+			}
+			h1,
+			h2,
+			h3,
+			h4 {
+				font-family: "Playfair Display", serif;
+				color: var(--accent-green-deep);
+				margin: 0 0 8px 0;
+			}
+			.sidebar {
+				width: 270px;
+				background: var(--sidebar);
+				color: var(--sidebar-text);
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				overflow-y: auto;
+				padding: 22px 16px 40px 16px;
+				z-index: 20;
+			}
+			.sidebar-title {
+				font-family: "Playfair Display", serif;
+				font-size: 1.25rem;
+				color: #f2ead6;
+				border-bottom: 1px solid #3a473a;
+				padding-bottom: 14px;
+				margin-bottom: 16px;
+				line-height: 1.3;
+			}
+			.sidebar-title .sub {
+				display: block;
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 0.68rem;
+				color: #8fa88e;
+				letter-spacing: 1px;
+				margin-top: 4px;
+				text-transform: uppercase;
+			}
+			.nav-section-label {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 0.65rem;
+				text-transform: uppercase;
+				letter-spacing: 1.2px;
+				color: #7c9279;
+				margin: 16px 0 6px 4px;
+			}
+			.sidebar a {
+				display: block;
+				color: var(--sidebar-text);
+				text-decoration: none;
+				padding: 6px 10px;
+				font-size: 0.83rem;
+				border-radius: 4px;
+				margin-bottom: 2px;
+				border-left: 2px solid transparent;
+				line-height: 1.3;
+			}
+			.sidebar a:hover {
+				background: #2a332a;
+			}
+			.sidebar a.active {
+				background: var(--sidebar-active);
+				border-left: 2px solid var(--gold);
+				color: #fff;
+				font-weight: 600;
+			}
+			.main {
+				margin-left: 270px;
+				flex: 1;
+				padding: 36px 46px 90px 46px;
+				max-width: 1120px;
+			}
+			.hero {
+				border-bottom: 2px solid var(--accent-green);
+				padding-bottom: 18px;
+				margin-bottom: 30px;
+			}
+			.hero h1 {
+				font-size: 2rem;
+			}
+			.hero p {
+				color: var(--ink-soft);
+				font-style: italic;
+				margin: 0;
+			}
+			.legend {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+				margin: 18px 0 34px 0;
+				padding: 14px 16px;
+				background: var(--paper-dark);
+				border: 1px solid var(--border);
+				border-radius: 8px;
+			}
+			.legend span {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 0.72rem;
+				padding: 3px 9px;
+				border-radius: 3px;
+			}
+			.legend .l-concept {
+				background: var(--yellow-bg);
+				border: 1px solid var(--yellow);
+			}
+			.legend .l-fact {
+				background: var(--blue-bg);
+				border: 1px solid var(--blue);
+			}
+			.legend .l-person {
+				background: var(--green-bg);
+				border: 1px solid var(--green);
+			}
+			.legend .l-trap {
+				background: var(--red-bg);
+				border: 1px solid var(--red);
+			}
+			section {
+				margin-bottom: 46px;
+				scroll-margin-top: 20px;
+			}
+			section h2 {
+				font-size: 1.5rem;
+				border-bottom: 2px solid var(--border);
+				padding-bottom: 8px;
+				margin-bottom: 16px;
+			}
+			section h2 .num {
+				color: var(--gold);
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 1rem;
+				margin-right: 8px;
+			}
+			h3.subhead {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 0.85rem;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				color: var(--accent-green-deep);
+				border-left: 4px solid var(--accent-green);
+				padding-left: 10px;
+				margin: 22px 0 10px 0;
+			}
+			mark {
+				color: var(--ink);
+				font-weight: 600;
+				padding: 1px 5px;
+				border-radius: 3px;
+				box-decoration-break: clone;
+				-webkit-box-decoration-break: clone;
+			}
+			mark.concept {
+				background: var(--yellow-bg);
+				box-shadow: inset 0 0 0 1.5px var(--yellow);
+			}
+			mark.fact {
+				background: var(--blue-bg);
+				box-shadow: inset 0 0 0 1.5px var(--blue);
+				color: #12324a;
+			}
+			mark.person {
+				background: var(--green-bg);
+				box-shadow: inset 0 0 0 1.5px var(--green);
+				color: #123a1a;
+			}
+			mark.trap {
+				background: var(--red-bg);
+				box-shadow: inset 0 0 0 1.5px var(--red);
+				color: #5c140b;
+				font-weight: 700;
+			}
+			ul.point-list {
+				padding-left: 20px;
+				margin: 8px 0;
+			}
+			ul.point-list li {
+				margin-bottom: 7px;
+				line-height: 1.55;
+			}
+			.pyq {
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 0.68rem;
+				color: var(--ink-soft);
+				white-space: nowrap;
+			}
+			.callout {
+				border-radius: 8px;
+				padding: 12px 16px;
+				margin: 14px 0;
+				font-size: 0.92rem;
+				line-height: 1.55;
+				border: 1px solid;
+			}
+			.callout.trap {
+				background: var(--red-bg);
+				border-color: var(--red);
+			}
+			.callout.trap .tag {
+				font-family: "IBM Plex Mono", monospace;
+				font-weight: 700;
+				color: #a13a2c;
+				text-transform: uppercase;
+				font-size: 0.72rem;
+				display: block;
+				margin-bottom: 4px;
+			}
+			.callout.fact {
+				background: var(--blue-bg);
+				border-color: var(--blue);
+			}
+			.callout.fact .tag {
+				font-family: "IBM Plex Mono", monospace;
+				font-weight: 700;
+				color: #2a5a7a;
+				text-transform: uppercase;
+				font-size: 0.72rem;
+				display: block;
+				margin-bottom: 4px;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin: 14px 0 24px 0;
+				background: #fffdf7;
+				border: 1px solid var(--border);
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+				font-size: 0.87rem;
+			}
+			table caption {
+				caption-side: top;
+				text-align: left;
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 0.72rem;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				color: var(--gold);
+				padding: 6px 0;
+			}
+			th {
+				background: var(--accent-green-deep);
+				color: #f2ead6;
+				text-align: left;
+				padding: 9px 12px;
+				font-family: "IBM Plex Mono", monospace;
+				font-size: 0.72rem;
+				text-transform: uppercase;
+				letter-spacing: 0.6px;
+			}
+			td {
+				padding: 9px 12px;
+				border-top: 1px solid var(--border);
+				vertical-align: top;
+				line-height: 1.5;
+			}
+			.tablewrap {
+				overflow-x: auto;
+			}
+			table.master-table td {
+				font-weight: 500;
+				border-top: 1px solid #fffdf7;
+			}
+			table.master-table td:nth-child(1) {
+				background: #f9d7de;
+			}
+			table.master-table td:nth-child(2) {
+				background: #d3e6fa;
+			}
+			table.master-table td:nth-child(3) {
+				background: #d6f0d6;
+			}
+			table.master-table td:nth-child(4) {
+				background: #fbecc2;
+			}
+			table.master-table td:nth-child(5) {
+				background: #e6dcf7;
+			}
+			table.master-table tr:hover td {
+				filter: brightness(0.96);
+			}
+			footer {
+				margin-top: 60px;
+				padding-top: 16px;
+				border-top: 1px solid var(--border);
+				color: var(--ink-soft);
+				font-size: 0.78rem;
+				font-family: "IBM Plex Mono", monospace;
+			}
+			.mobile-topbar {
+				display: none;
+			}
+			.hamburger-btn {
+				display: none;
+			}
+			.sidebar-overlay {
+				display: none;
+			}
+			@media (max-width: 860px) {
+				.mobile-topbar {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					position: fixed;
+					top: 0;
+					left: 0;
+					right: 0;
+					height: 56px;
+					background: var(--sidebar);
+					color: #f2ead6;
+					padding: 0 14px;
+					z-index: 40;
+					box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+				}
+				.mobile-topbar .mt-title {
+					font-family: "Playfair Display", serif;
+					font-size: 1.05rem;
+				}
+				.hamburger-btn {
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					gap: 4px;
+					width: 34px;
+					height: 34px;
+					background: transparent;
+					border: 1px solid #3a473a;
+					border-radius: 5px;
+					cursor: pointer;
+					padding: 8px;
+				}
+				.hamburger-btn span {
+					display: block;
+					height: 2px;
+					background: #e8e2cf;
+					border-radius: 2px;
+					transition:
+						transform 0.2s ease,
+						opacity 0.2s ease;
+				}
+				.hamburger-btn.open span:nth-child(1) {
+					transform: translateY(6px) rotate(45deg);
+				}
+				.hamburger-btn.open span:nth-child(2) {
+					opacity: 0;
+				}
+				.hamburger-btn.open span:nth-child(3) {
+					transform: translateY(-6px) rotate(-45deg);
+				}
+				.sidebar {
+					top: 56px;
+					width: 82%;
+					max-width: 320px;
+					height: calc(100vh - 56px);
+					transform: translateX(-105%);
+					transition: transform 0.25s ease;
+					box-shadow: 4px 0 18px rgba(0, 0, 0, 0.25);
+				}
+				.sidebar.open {
+					transform: translateX(0);
+				}
+				.sidebar-overlay {
+					display: block;
+					position: fixed;
+					top: 56px;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					background: rgba(0, 0, 0, 0);
+					pointer-events: none;
+					transition: background 0.25s ease;
+					z-index: 19;
+				}
+				.sidebar-overlay.open {
+					background: rgba(0, 0, 0, 0.4);
+					pointer-events: auto;
+				}
+				.sidebar-title {
+					display: none;
+				}
+				.main {
+					margin-left: 0;
+					padding: 72px 18px 60px 18px;
+					max-width: 100%;
+				}
+				.hero h1 {
+					font-size: 1.5rem;
+				}
+				section h2 {
+					font-size: 1.2rem;
+				}
+				table {
+					font-size: 0.8rem;
+				}
+				th,
+				td {
+					padding: 7px 8px;
+				}
+				.legend {
+					gap: 6px;
+					padding: 10px 12px;
+				}
+				.legend span {
+					font-size: 0.66rem;
+				}
+			}
+			@media (max-width: 480px) {
+				table {
+					font-size: 0.74rem;
+				}
+				.hero h1 {
+					font-size: 1.3rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mobile-topbar">
+			<span class="mt-title">Vitamins and Nutrition</span>
+			<button
+				class="hamburger-btn"
+				id="hamburgerBtn"
+				onclick="toggleSidebar()"
+				aria-label="Toggle menu"
+			>
+				<span></span><span></span><span></span>
+			</button>
+		</div>
+		<div
+			class="sidebar-overlay"
+			id="sidebarOverlay"
+			onclick="closeSidebar()"
+		></div>
+
+		<nav class="sidebar" id="sidebar">
+			<div class="sidebar-title">
+				Vitamins and Nutrition<span class="sub"
+					>BPSC Prelims · General Science</span
+				>
+			</div>
+
+			<div class="nav-section-label">Master Table</div>
+			<a href="#n-master" class="navlink"
+				>All Vitamins — Name, Deficiency, Source</a
+			>
+
+			<div class="nav-section-label">Food &amp; Macronutrients</div>
+			<a href="#n-food" class="navlink">Food &amp; Its Components</a>
+			<a href="#n-carb" class="navlink">Carbohydrates</a>
+			<a href="#n-fats" class="navlink"
+				>Fats, Fatty Acids &amp; Cholesterol</a
+			>
+			<a href="#n-protein" class="navlink">Proteins &amp; Amino Acids</a>
+			<a href="#n-energy" class="navlink"
+				>Energy Values &amp; Requirements</a
+			>
+
+			<div class="nav-section-label">Vitamins</div>
+			<a href="#n-vitbasics" class="navlink"
+				>Vitamins — Basics, Discovery, Storage</a
+			>
+			<a href="#n-fatsol" class="navlink">Fat-Soluble: A · D · E · K</a>
+			<a href="#n-bcomplex" class="navlink">B-Complex Vitamins</a>
+			<a href="#n-vitc" class="navlink">Vitamin C</a>
+
+			<div class="nav-section-label">Minerals &amp; Protective Foods</div>
+			<a href="#n-minerals" class="navlink"
+				>Minerals &amp; Trace Elements</a
+			>
+			<a href="#n-antiox" class="navlink"
+				>Antioxidants, Probiotics, Nutraceuticals</a
+			>
+
+			<div class="nav-section-label">Milk &amp; Dairy</div>
+			<a href="#n-milk" class="navlink"
+				>Milk — Composition &amp; Digestion</a
+			>
+
+			<div class="nav-section-label">Exam Consolidation</div>
+			<a href="#n-malnut" class="navlink"
+				>Malnutrition &amp; Miscellany</a
+			>
+			<a href="#n-match" class="navlink">Match-Lists &amp; MCQ Traps</a>
+		</nav>
+
+		<main class="main">
+			<div class="hero">
+				<h1>Vitamins and Nutrition — The Nutrient Ledger</h1>
+				<p>
+					Every fact from Ghatnachakr theory and 170 solved MCQs,
+					merged topic-wise.
+				</p>
+			</div>
+			<div class="legend">
+				<span class="l-concept">Yellow — Concept</span>
+				<span class="l-fact">Blue — Fact / Number</span>
+				<span class="l-person">Green — Person / Institution</span>
+				<span class="l-trap">Red — MCQ Trap</span>
+			</div>
+
+			<!-- ===================== 00 MASTER ===================== -->
+			<section id="n-master">
+				<h2><span class="num">00</span>All Vitamins — Master Table</h2>
+				<div class="legend">
+					<span style="background: #f9d7de; border: 1px solid #c23b2c"
+						>Col 1 — Vitamin (rose)</span
+					>
+					<span style="background: #d3e6fa; border: 1px solid #1f6fa8"
+						>Col 2 — Chemical Name (sky)</span
+					>
+					<span style="background: #d6f0d6; border: 1px solid #2f7d3f"
+						>Col 3 — Deficiency Disease (mint)</span
+					>
+					<span style="background: #fbecc2; border: 1px solid #e0a712"
+						>Col 4 — Sources (amber)</span
+					>
+					<span style="background: #e6dcf7; border: 1px solid #7a5fb0"
+						>Col 5 — Key Exam Facts (lilac)</span
+					>
+				</div>
+				<div class="tablewrap">
+					<table class="master-table">
+						<caption>
+							Every vitamin in one place — Vitamin · Chemical name
+							· Deficiency · Sources · Key facts
+						</caption>
+						<thead>
+							<tr>
+								<th>Vitamin</th>
+								<th>Chemical Name</th>
+								<th>Deficiency Disease</th>
+								<th>Sources</th>
+								<th>Key Exam Facts</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<mark class="fact">Vitamin A</mark
+									><br />(fat-soluble)
+								</td>
+								<td>
+									<mark class="concept">Retinol</mark>
+									(retinoids: retinol, retinal, retinyl
+									esters)
+								</td>
+								<td>
+									<mark class="trap"
+										>Night blindness (nyctalopia)</mark
+									>, xerophthalmia, keratinization of skin,
+									conjunctivitis, dry scaly skin
+								</td>
+								<td>
+									Carrot, milk, cheese, butter, egg, cod-liver
+									oil; mango, papaya; green vegetables
+									(beta-carotene)
+								</td>
+								<td>
+									Stored in <mark class="trap">liver</mark>;
+									forms rhodopsin with opsin; made from
+									beta-carotene
+								</td>
+							</tr>
+							<tr>
+								<td><mark class="fact">Vitamin B1</mark></td>
+								<td><mark class="concept">Thiamin(e)</mark></td>
+								<td>
+									<mark class="trap">Beri-beri</mark>, growth
+									retardation, Wernicke-Korsakoff syndrome
+								</td>
+								<td>
+									Cereals (rice bran, whole wheat flour),
+									legumes, soyabeans, milk, yeast, eggs, meat,
+									green vegetables; low in orange
+								</td>
+								<td>
+									Needed for carbohydrate &amp; amino-acid
+									metabolism; heart failure in deficiency
+								</td>
+							</tr>
+							<tr>
+								<td><mark class="fact">Vitamin B2</mark></td>
+								<td><mark class="concept">Riboflavin</mark></td>
+								<td>
+									<mark class="trap">Cheilosis</mark>,
+									glossitis, dermatosis, digestive disorders,
+									angular stomatitis (ariboflavinosis)
+								</td>
+								<td>
+									Milk, egg (white), liver, kidney, yeast,
+									meat, green leafy vegetables, mushrooms,
+									almonds
+								</td>
+								<td>
+									<mark class="trap"
+										>NOT in cod-liver oil</mark
+									>; NOT beri-beri
+								</td>
+							</tr>
+							<tr>
+								<td><mark class="fact">Vitamin B3</mark></td>
+								<td><mark class="concept">Niacin</mark></td>
+								<td><mark class="trap">Pellagra</mark></td>
+								<td>
+									Egg, meat, fish, milk, yeast, vegetables,
+									mushroom
+								</td>
+								<td>
+									Made in body from amino acid
+									<mark class="concept">tryptophan</mark>
+								</td>
+							</tr>
+							<tr>
+								<td><mark class="fact">Vitamin B5</mark></td>
+								<td>
+									<mark class="concept"
+										>Pantothenic acid</mark
+									>
+								</td>
+								<td>Paraesthesia, burning sensation</td>
+								<td>Yeast, meat, fish, egg, milk, legumes</td>
+								<td>Also found in papaya</td>
+							</tr>
+							<tr>
+								<td><mark class="fact">Vitamin B6</mark></td>
+								<td><mark class="concept">Pyridoxine</mark></td>
+								<td>
+									Anaemia, skin problem, muscular twisting;
+									<mark class="concept">mental illness</mark>
+								</td>
+								<td>
+									Milk, yeast, cereals, rice bran, egg, grams,
+									yolk
+								</td>
+								<td>
+									Helps keep
+									<mark class="trap">dreams in memory</mark>
+									longer
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<mark class="fact">Vitamin B7 (H)</mark>
+								</td>
+								<td><mark class="concept">Biotin</mark></td>
+								<td>Skin disease, fall of hair</td>
+								<td>Meat, wheat, egg, vegetables, fruits</td>
+								<td>
+									Made by
+									<mark class="trap">gut bacteria</mark>
+								</td>
+							</tr>
+							<tr>
+								<td><mark class="fact">Vitamin B9</mark></td>
+								<td><mark class="concept">Folic acid</mark></td>
+								<td>
+									<mark class="trap">Anaemia</mark>, growth
+									retardation
+								</td>
+								<td>
+									Green vegetables, legumes, yeast, liver;
+									orange
+								</td>
+								<td>
+									Affects dream quality/recall (with B6, B12)
+								</td>
+							</tr>
+							<tr>
+								<td><mark class="fact">Vitamin B12</mark></td>
+								<td>
+									<mark class="concept">Cobalamin</mark>
+									(contains <mark class="trap">cobalt</mark>);
+									cyanocobalamin = manufactured form
+								</td>
+								<td>
+									<mark class="trap">Pernicious anaemia</mark
+									>, nervous-system abnormality
+								</td>
+								<td>
+									Meat, fish, egg, curd, bacteria of intestine
+								</td>
+								<td>
+									<mark class="trap"
+										>Only water-soluble vitamin stored</mark
+									>
+									(liver, 3–5 years); antianaemic factor
+								</td>
+							</tr>
+							<tr>
+								<td><mark class="fact">Vitamin C</mark></td>
+								<td>
+									<mark class="concept">Ascorbic acid</mark>
+								</td>
+								<td>
+									<mark class="trap">Scurvy</mark> (bleeding
+									gums, joint pain)
+								</td>
+								<td>
+									Amla (richest), citrus fruits, orange,
+									lemon, tomato, papaya, peas, chilli, green
+									leafy vegetables, karonda
+								</td>
+								<td>
+									<mark class="trap">Not stored</mark>;
+									antiscorbutic; aids iron absorption &amp;
+									wound healing
+								</td>
+							</tr>
+							<tr>
+								<td><mark class="fact">Vitamin D</mark></td>
+								<td>
+									<mark class="concept">Calciferol</mark> (D2
+									ergocalciferol, D3 cholecalciferol)
+								</td>
+								<td>
+									<mark class="trap">Rickets</mark>
+									(children),
+									<mark class="trap">osteomalacia</mark>
+									(adults), osteoporosis (older adults)
+								</td>
+								<td>
+									Sunlight, cheese, fish, egg yolk, butter,
+									liver, kidney, cod-liver oil
+								</td>
+								<td>
+									Acts as a <mark class="trap">hormone</mark>;
+									active form calcitriol
+								</td>
+							</tr>
+							<tr>
+								<td><mark class="fact">Vitamin E</mark></td>
+								<td><mark class="concept">Tocopherol</mark></td>
+								<td>
+									<mark class="trap">Sterility</mark>,
+									weakening of reproductive organs &amp;
+									muscles
+								</td>
+								<td>
+									Vegetable oils, wheat, soyabean,
+									<mark class="trap"
+										>wheat-germ oil (highest)</mark
+									>, sunflower oil, mango
+								</td>
+								<td>Antisterility factor; antioxidant</td>
+							</tr>
+							<tr>
+								<td><mark class="fact">Vitamin K</mark></td>
+								<td>
+									<mark class="concept">Naphthoquinone</mark>
+								</td>
+								<td>
+									<mark class="trap"
+										>Increased blood clotting time</mark
+									>
+									(slow coagulation)
+								</td>
+								<td>
+									Green leafy vegetables, egg, liver, alfalfa,
+									bacteria of intestine
+								</td>
+								<td>
+									Antihaemorrhagic factor; antidote to
+									anticoagulant poisons
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+
+			<!-- ===================== 01 FOOD ===================== -->
+			<section id="n-food">
+				<h2><span class="num">01</span>Food &amp; Its Components</h2>
+				<ul class="point-list">
+					<li>
+						<mark class="concept">Food</mark> = any substance
+						consumed to provide
+						<mark class="concept">nutritional support</mark> for an
+						organism; usually of
+						<mark class="fact">plant or animal origin</mark>.
+					</li>
+					<li>
+						Contains essential nutrients —
+						<mark class="fact"
+							>carbohydrates, fats, proteins, vitamins,
+							minerals</mark
+						>.
+					</li>
+					<li>
+						Ingested and assimilated by cells to
+						<mark class="concept"
+							>provide energy, maintain life or stimulate
+							growth</mark
+						>.
+					</li>
+					<li>
+						Seven major components of food:
+						<mark class="fact"
+							>(i) Carbohydrates (ii) Fats (iii) Proteins (iv)
+							Minerals/salts (v) Nucleic acids (vi) Vitamins (vii)
+							Water</mark
+						>.
+					</li>
+					<li>
+						<mark class="concept"
+							>Vitamins and minerals = micronutrients</mark
+						>
+						— body needs only tiny amounts; sources: cereals, green
+						vegetables, milk, fruit, meat.
+					</li>
+					<li>
+						Vitamins do
+						<mark class="trap">NOT kill harmful bacteria</mark> —
+						<mark class="person">white blood cells</mark> destroy
+						bacteria; vitamins are "invigorating elements" needed in
+						small amounts for good health.
+					</li>
+					<li>
+						Foods rich in
+						<mark class="concept">protein</mark> supply nutrient for
+						<mark class="fact">growth of new tissues</mark> (cheese
+						is the correct choice over fruit, vegetables, sweets).
+					</li>
+					<li>
+						<mark class="concept"
+							>Water contains zero calories</mark
+						>
+						— no fat, carbohydrate or protein.
+					</li>
+				</ul>
+			</section>
+
+			<!-- ===================== 02 CARBS ===================== -->
+			<section id="n-carb">
+				<h2><span class="num">02</span>Carbohydrates</h2>
+				<h3 class="subhead">Basics &amp; Role</h3>
+				<ul class="point-list">
+					<li>
+						Biomolecule of
+						<mark class="fact"
+							>carbon (C), hydrogen (H), oxygen (O)</mark
+						>, usually with H : O ratio
+						<mark class="fact">2 : 1</mark> → empirical formula
+						<mark class="concept">Cx(H2O)y</mark>.
+					</li>
+					<li>
+						Some carbohydrates also contain
+						<mark class="trap">nitrogen, phosphorus, sulphur</mark>,
+						but
+						<mark class="trap"
+							>nitrogen is NOT an essential constituent</mark
+						>
+						(it IS essential in DNA, RNA, amino acids/proteins,
+						chlorophyll).
+					</li>
+					<li>
+						Main component of food; source of
+						<mark class="concept">immediate energy</mark>; supplies
+						approx.
+						<mark class="fact"
+							>55–75% of total energy requirement</mark
+						>.
+					</li>
+					<li>
+						Carbohydrate is an
+						<mark class="trap">essential constituent of diet</mark>
+						(not starch, glucose or cellulose individually).
+					</li>
+					<li>
+						Stored in
+						<mark class="concept"
+							>liver and skeletal muscles as glycogen</mark
+						>
+						— releases energy on requirement. Fat and
+						starch/glycogen are stored;
+						<mark class="trap">amino acids are NOT stored</mark>.
+					</li>
+					<li>
+						<mark class="concept"
+							>Carbohydrate = major food fuel</mark
+						>
+						during high-intensity, long-duration exercise.
+					</li>
+					<li>
+						<mark class="fact">1 g glucose = 4.5 kcal</mark> on
+						oxidation; carbohydrate gives ~<mark class="fact"
+							>4.0 kcal/g</mark
+						>.
+					</li>
+				</ul>
+				<h3 class="subhead">Sugars &amp; Disaccharides</h3>
+				<ul class="point-list">
+					<li>
+						<mark class="concept">Lactose</mark> = natural
+						<mark class="concept">milk sugar</mark>; responsible for
+						the
+						<mark class="trap">mildly sweet taste of milk</mark>
+						(not sucrose/carotene).
+					</li>
+					<li>
+						Three common <mark class="concept">disaccharides</mark>:
+						<mark class="fact">Sucrose</mark> (table sugar) =
+						glucose + fructose;
+						<mark class="fact">Lactose</mark> (major sugar of milk)
+						= glucose + galactose;
+						<mark class="fact">Maltose</mark> (product of starch
+						digestion) = glucose + glucose.
+					</li>
+					<li>
+						<mark class="concept">Lactobacillus</mark> converts
+						lactose → <mark class="fact">lactic acid</mark>; used in
+						making <mark class="fact">curd and cheese</mark>.
+					</li>
+				</ul>
+				<h3 class="subhead">Starch &amp; Cellulose</h3>
+				<ul class="point-list">
+					<li>
+						<mark class="concept">Starch</mark> =
+						<mark class="trap">polysaccharide</mark> (polymeric
+						carbohydrate of many glucose units joined by glycosidic
+						bonds); plants'
+						<mark class="concept">energy store</mark>.
+					</li>
+					<li>
+						<mark class="concept">Cellulose</mark> = long chain of
+						glucose molecules; found in the
+						<mark class="fact">plant cell wall</mark>.
+					</li>
+					<li>
+						Both starch and cellulose are of plant origin, are
+						polymers, and are made of glucose (C6H12O6).
+					</li>
+					<li>
+						<mark class="concept">Iodine test</mark> detects starch
+						— turns
+						<mark class="fact">intense blue-black</mark> (triiodide
+						ion → intermolecular charge-transfer complex).
+					</li>
+					<li>
+						<mark class="trap"
+							>Cellulose does NOT give colour with iodine</mark
+						>
+						— the false statement in the classic "starch vs
+						cellulose" MCQ.
+					</li>
+				</ul>
+				<h3 class="subhead">Food Sources &amp; Rice Chemistry</h3>
+				<ul class="point-list">
+					<li>
+						<mark class="fact">Rice</mark> has the highest
+						percentage of carbohydrate among wheat, barley, rice,
+						maize (and is the carbohydrate source vs
+						groundnut/apple).
+					</li>
+					<li>
+						Rice has two starches:
+						<mark class="concept">amylose</mark> (long, straight,
+						doesn't gelatinize) and
+						<mark class="concept">amylopectin</mark>.
+					</li>
+					<li>
+						<mark class="fact">Basmati</mark> (long-grain) has the
+						<mark class="trap"
+							>most amylose, least amylopectin</mark
+						>
+						→ grains <mark class="trap">elongate</mark> on cooking,
+						fluffy, least sticky; medium-grain has more amylopectin,
+						short-grain even more (least/no amylose).
+					</li>
+					<li>
+						<mark class="fact">Banana</mark> — family
+						<mark class="concept">Musaceae</mark>,
+						<mark class="concept">Musa balbisiana</mark>, a berry;
+						large carbohydrate content plus fat, protein, minerals,
+						vitamins; ~<mark class="fact">89 kcal/100 g</mark>
+						(nearest option 116 kcal chosen as "most calorie
+						fruit").
+					</li>
+					<li>
+						<mark class="concept">Gluten</mark> = protein composite
+						of wheat — gives dough elasticity, helps it rise and
+						hold shape, gives
+						<mark class="fact">bread-making quality</mark> and chewy
+						texture.
+					</li>
+				</ul>
+			</section>
+
+			<!-- ===================== 03 FATS ===================== -->
+			<section id="n-fats">
+				<h2>
+					<span class="num">03</span>Fats, Fatty Acids &amp;
+					Cholesterol
+				</h2>
+				<h3 class="subhead">Fats — Basics</h3>
+				<ul class="point-list">
+					<li>
+						Compounds of <mark class="fact">C, H and O</mark>; ratio
+						of oxygen to hydrogen is
+						<mark class="trap">less</mark> than in carbohydrates.
+					</li>
+					<li>
+						Formed from
+						<mark class="fact">1 glycerol + 3 fatty acids</mark>;
+						<mark class="concept">triglyceride</mark> = ester of
+						glycerol + three fatty acids, the
+						<mark class="fact">main constituent of body fat</mark>
+						of vertebrates and of vegetable fat; high triglycerides
+						→ obesity and high blood pressure.
+					</li>
+					<li>
+						Source of <mark class="concept">stored energy</mark>;
+						broken into glycerol and fatty acids — glycerol is
+						converted to glucose by the liver.
+					</li>
+					<li>
+						Complete combustion of 1 g fat =
+						<mark class="fact">9.0–9.3 kcal</mark>; provides ~<mark
+							class="fact"
+							>15–20%</mark
+						>
+						of total energy requirement.
+					</li>
+					<li>
+						Healthy man's body fat ≈ <mark class="fact">7%</mark> of
+						body weight.
+					</li>
+					<li>
+						A normal 2200–2400 kcal diet should contain about
+						<mark class="fact">75 g fat/day</mark>.
+					</li>
+					<li>
+						<mark class="concept">Subcutaneous fat</mark> forms a
+						barrier against
+						<mark class="trap">heat loss</mark> (thermal
+						insulation), stores energy, and protects underlying
+						structures from trauma.
+					</li>
+					<li>
+						Fats classified by carbon bonds in fatty acids →
+						<mark class="concept">Saturated</mark> and
+						<mark class="concept">Unsaturated</mark>.
+					</li>
+				</ul>
+				<h3 class="subhead">Saturated Fats</h3>
+				<ul class="point-list">
+					<li>
+						Fatty acid chains with
+						<mark class="fact">all/predominantly single bonds</mark
+						>.
+					</li>
+					<li>
+						Raise
+						<mark class="concept"
+							>blood lipid / plasma cholesterol</mark
+						>; PUFA lowers it → lower heart-disease risk. Worldwide
+						advice: keep saturated intake
+						<mark class="trap">low</mark> (cardiovascular risk).
+					</li>
+					<li>
+						<mark class="trap">Not essential</mark> — body can
+						synthesize them.
+					</li>
+					<li>
+						Examples:
+						<mark class="fact">Butyric acid</mark> (butter);
+						<mark class="fact">Lauric</mark> (coconut oil,
+						palm-kernel oil, breast milk);
+						<mark class="fact">Myristic</mark> (cow's milk, dairy);
+						<mark class="fact">Palmitic</mark> (butter, palm oil,
+						meat); <mark class="fact">Stearic</mark> (meat, cocoa
+						butter).
+					</li>
+					<li>
+						<mark class="concept">Vanaspati ghee</mark> contains
+						saturated/trans fats; doctors recommend cooking in
+						<mark class="trap">oil (unsaturated fats)</mark>
+						instead.
+					</li>
+				</ul>
+				<h3 class="subhead">
+					Unsaturated Fats &amp; Essential Fatty Acids
+				</h3>
+				<ul class="point-list">
+					<li>
+						At least one
+						<mark class="fact">double/triple bond</mark>;
+						<mark class="concept">monounsaturated</mark> = one
+						double bond;
+						<mark class="concept">polyunsaturated (PUFA)</mark> =
+						more than one.
+					</li>
+					<li>
+						Found in
+						<mark class="fact"
+							>fish, corn, walnuts, sunflower seeds, soyabeans,
+							cotton seeds, olive oil, sunflower oil</mark
+						>.
+					</li>
+					<li>
+						Diet high in unsaturated, low in saturated fat →
+						<mark class="concept">low serum cholesterol</mark>;
+						healthier choices lower blood cholesterol and
+						cardiovascular risk (still to be taken in moderation).
+					</li>
+					<li>
+						<mark class="trap">Lower melting point</mark>; most are
+						<mark class="fact">liquid at room temperature</mark>.
+					</li>
+					<li>
+						<mark class="trap">More reactive</mark> than saturated
+						fats — because of double bonds (the reason "only single
+						bonds" is false).
+					</li>
+					<li>
+						Examples:
+						<mark class="fact">Palmitoleic</mark> (macadamia nuts);
+						<mark class="fact">Oleic</mark> (olive, canola);
+						<mark class="fact">Myristoleic</mark> (whale blubber);
+						<mark class="fact">Linoleic</mark> (peanut oil, chicken
+						fat, olive oil);
+						<mark class="fact">Linolenic</mark> (linseed oil).
+					</li>
+					<li>
+						Unsaturated fatty acids
+						<mark class="trap">cannot be synthesized</mark> by the
+						body → <mark class="concept">essential</mark>; primary
+						essential fatty acids in humans:
+						<mark class="fact"
+							>linoleic acid and α-linolenic acid</mark
+						>. Absence of essential FAs → deficiency diseases; cells
+						synthesize most other fatty acids (via acetyl coenzyme A
+						from glucose oxidation).
+					</li>
+					<li>
+						<mark class="fact">Linseed (flaxseed) oil</mark> =
+						richest oilseed source of
+						<mark class="concept"
+							>α-linolenic acid (18-C omega-3)</mark
+						>; also in canola, soyabean, walnut oil. Omega-3
+						<mark class="trap"
+							>prevents fat deposition in blood vessels</mark
+						>.
+					</li>
+					<li>
+						<mark class="concept">Arachidonic acid</mark> =
+						polyunsaturated
+						<mark class="fact">omega-6</mark> essential fatty acid;
+						found in liver, brain, glandular organs; part of
+						phosphatides; formed from dietary linoleic acid;
+						<mark class="concept"
+							>precursor of prostaglandins, thromboxanes,
+							leukotrienes</mark
+						>.
+					</li>
+					<li>
+						<mark class="fact">Sunflower oil</mark> — good-quality
+						edible oil, best for heart patients: high unsaturated
+						FAs (mainly <mark class="fact">linoleic</mark> (PUFA) +
+						<mark class="fact">oleic</mark> (MUFA)), low saturated
+						fat, richest vegetable oil in
+						<mark class="fact">vitamin E</mark>; reduces
+						cardiovascular risk.
+						<span class="pyq"
+							>Sunflower = Helianthus, family Asteraceae</span
+						>
+					</li>
+					<li>
+						<mark class="fact">Fish</mark> flesh is healthier than
+						other animal flesh because of
+						<mark class="trap">polyunsaturated fatty acids</mark>
+						that reduce LDL and lower heart-disease and stroke risk.
+					</li>
+				</ul>
+				<h3 class="subhead">Hydrogenation &amp; Trans Fats</h3>
+				<ul class="point-list">
+					<li>
+						<mark class="concept">Hydrogenation</mark> converts
+						unsaturated vegetable oils into saturated fats with
+						desirable physical properties (melt at ~<mark
+							class="fact"
+							>30–40°C</mark
+						>).
+					</li>
+					<li>
+						<mark class="concept">Trans fats</mark> = mostly
+						artificial; made by
+						<mark class="fact"
+							>adding hydrogen to liquid vegetable oil</mark
+						>
+						to solidify it (hydrogenated oils, plus animal fats/oils
+						are forms of trans fat).
+					</li>
+					<li>
+						Trans fat
+						<mark class="trap"
+							>raises bad LDL and LOWERS good HDL</mark
+						>
+						cholesterol → higher risk of heart disease, stroke, type
+						2 diabetes.
+					</li>
+					<li>
+						"No trans-fat" advertising signals: food is not made of
+						hydrogenated oils, not made of animal fats/oils, oils
+						unlikely to harm cardiovascular health.
+					</li>
+					<li>
+						<mark class="concept">HDL</mark> = "good" cholesterol,
+						scavenges harmful cholesterol from the bloodstream; high
+						HDL lowers heart-disease risk.
+					</li>
+				</ul>
+				<h3 class="subhead">Cholesterol</h3>
+				<ul class="point-list">
+					<li>
+						Belongs to the
+						<mark class="concept">steroid</mark> family of lipids —
+						a <mark class="concept">sterol</mark> (unsaturated
+						alcohol) =
+						<mark class="trap"
+							>fatty alcohol found in animal fat</mark
+						>; NOT a vitamin, enzyme or insecticide.
+					</li>
+					<li>
+						Essential for animal cells — fundamental element of
+						<mark class="fact">cell membranes</mark>; precursor of
+						<mark class="fact"
+							>adrenal &amp; gonadal steroid hormones and bile
+							acids</mark
+						>.
+					</li>
+					<li>
+						Excess →
+						<mark class="trap">atherosclerosis</mark> (arterial
+						plaque narrowing/blocking arteries) → angina, heart
+						attack, stroke. Abnormal level is linked to
+						<mark class="trap">arterial blockage</mark>, not
+						veins/kidney stones/cirrhosis.
+					</li>
+					<li>
+						Fat–oil pairs:
+						<mark class="fact"
+							>animal fats – cholesterol; vegetable fats –
+							phytosterol; mineral oil – petroleum</mark
+						>;
+						<mark class="trap">mustard oil is NOT a lubricant</mark>
+						(wrong pair).
+					</li>
+				</ul>
+			</section>
+
+			<!-- ===================== 04 PROTEINS ===================== -->
+			<section id="n-protein">
+				<h2><span class="num">04</span>Proteins &amp; Amino Acids</h2>
+				<h3 class="subhead">Proteins — Basics</h3>
+				<ul class="point-list">
+					<li>
+						Essential nutrients;
+						<mark class="concept"
+							>building blocks of body tissue</mark
+						>; also a fuel — <mark class="fact">4.0 kcal/g</mark>.
+					</li>
+					<li>
+						Structural unit =
+						<mark class="concept">amino acids</mark>; proteins are
+						polymers of amino acids, contain
+						<mark class="fact">C, H, O, N</mark> (traces of S, I, Fe
+						etc.).
+					</li>
+					<li>
+						Needed for
+						<mark class="trap">growth and repair of tissues</mark>;
+						form structure, function and regulation of tissues &amp;
+						organs; the primary building block of muscle, bone,
+						skin.
+					</li>
+					<li>
+						Proteins ≈ <mark class="fact">17%</mark> of body weight
+						(older text) /
+						<mark class="fact">~20% per NCERT</mark> — the "30%"
+						statement is <mark class="trap">wrong</mark>.
+					</li>
+					<li>
+						After water, proteins are the
+						<mark class="trap"
+							>most abundant constituent of protoplasm</mark
+						>; among organic compounds of living material protein is
+						the most abundant (water is the most abundant overall).
+					</li>
+					<li>
+						<mark class="fact">α-Keratin</mark> = main protein of
+						horn, nail, hoof, hair, skin.
+					</li>
+					<li>
+						<mark class="fact">Gluten</mark> (wheat),
+						<mark class="fact">casein</mark> (milk) are proteins.
+					</li>
+					<li>
+						<mark class="concept">Denaturation</mark>:
+						<mark class="fact"
+							>heat, X-rays, heavy-metal salts</mark
+						>
+						denature protein;
+						<mark class="trap">infrared rays do NOT</mark>.
+					</li>
+					<li>
+						Protein deficiency → slow body growth;
+						<mark class="fact">marasmus and kwashiorkor</mark>
+						(Protein Energy Malnutrition).
+					</li>
+				</ul>
+				<h3 class="subhead">
+					Essential &amp; Non-Essential Amino Acids
+				</h3>
+				<ul class="point-list">
+					<li>
+						20 biologically active amino acids →
+						<mark class="fact">10 essential + 10 non-essential</mark
+						>.
+					</li>
+					<li>
+						<mark class="concept">Essential</mark> (not synthesized;
+						must come from diet):
+						<mark class="fact"
+							>phenylalanine, valine, threonine, tryptophan,
+							methionine, leucine, isoleucine, lysine, histidine,
+							arginine</mark
+						>.
+						<mark class="trap"
+							>Arginine &amp; histidine are essential only for
+							juveniles</mark
+						>
+						(adults synthesize them).
+					</li>
+					<li>
+						<mark class="concept">Non-essential</mark> (synthesized
+						in body):
+						<mark class="fact"
+							>alanine, asparagine, aspartic acid, cysteine,
+							glutamic acid, glutamine, glycine, proline, serine,
+							tyrosine</mark
+						>.
+					</li>
+					<li>
+						Hence a diet need NOT compulsorily contain
+						<mark class="trap">glycine, serine, tyrosine</mark> (A
+						false, R true).
+					</li>
+					<li>
+						<mark class="concept">Tyrosine</mark>: helps form
+						neurotransmitters
+						<mark class="fact"
+							>adrenaline, noradrenaline, dopamine</mark
+						>; boosts physical vigilance/energy, helps with stress
+						and depression; does
+						<mark class="trap"
+							>NOT protect against free radicals/ageing</mark
+						>.
+					</li>
+					<li>
+						<mark class="concept">Complete protein foods</mark> (all
+						essential amino acids): meat, poultry, fish,
+						<mark class="fact"
+							>egg, milk, yogurt, quinoa, soyabean</mark
+						>; <mark class="trap">rice is not</mark>.
+					</li>
+					<li>
+						<mark class="concept">Animal protein</mark> (milk, eggs,
+						cheese, fish, meat) has all essential amino acids;
+						<mark class="concept">vegetable protein</mark> in
+						pulses, cereals, beans, nuts, oilseeds.
+					</li>
+				</ul>
+				<table>
+					<caption>
+						Biological Value (BV) of protein sources — egg is the
+						best source of all essential amino acids
+					</caption>
+					<thead>
+						<tr>
+							<th>Protein Source</th>
+							<th>Biological Value</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Whole egg</td>
+							<td><mark class="fact">94</mark> (highest)</td>
+						</tr>
+						<tr>
+							<td>Milk</td>
+							<td><mark class="fact">90</mark></td>
+						</tr>
+						<tr>
+							<td>Quinoa</td>
+							<td><mark class="fact">83</mark></td>
+						</tr>
+						<tr>
+							<td>Fish</td>
+							<td><mark class="fact">76</mark></td>
+						</tr>
+						<tr>
+							<td>Beef</td>
+							<td><mark class="fact">74</mark></td>
+						</tr>
+						<tr>
+							<td>Soyabeans</td>
+							<td><mark class="fact">73</mark></td>
+						</tr>
+					</tbody>
+				</table>
+				<p>
+					BV measures what % of a nutrient source the body uses —
+					derived from nitrogen uptake vs excretion; high BV when
+					essential amino acids match body requirement; low BV if any
+					are missing/low.
+				</p>
+				<h3 class="subhead">Protein Sources &amp; Content</h3>
+				<ul class="point-list">
+					<li>
+						Main sources:
+						<mark class="fact"
+							>pulses, soyabeans, groundnut, milk, cheese, eggs,
+							foodgrains</mark
+						>.
+					</li>
+					<li>
+						<mark class="concept">Legumes</mark>: highly nutritious
+						due to <mark class="trap">protein</mark>; low in fat, no
+						cholesterol, high in folate, potassium, iron, magnesium;
+						healthy substitute for meat.
+					</li>
+					<li>
+						<mark class="fact">Soyabean</mark> = richest
+						plant-protein source — ~<mark class="fact"
+							>40% protein, 20–23% fat, ~30% carbohydrate</mark
+						>; both an oilseed and a pulse; soya milk resembles
+						cow's milk.
+					</li>
+					<li>
+						<mark class="fact">Groundnut</mark> — rich in both
+						protein and fat:
+						<mark class="fact">25.3% protein, 48.1% fat</mark>;
+						protein ≈
+						<mark class="fact">1.3× meat, 2.5× eggs, 8× fruits</mark
+						>; richest protein among rice/groundnut/apple.
+					</li>
+				</ul>
+				<h3 class="subhead">Daily Requirement</h3>
+				<ul class="point-list">
+					<li>
+						Babies ~<mark class="fact">10 g</mark>; school-age
+						~<mark class="fact">19–34 g</mark>; teen boys up to
+						<mark class="fact">52 g</mark>; teen girls ~<mark
+							class="fact"
+							>46 g</mark
+						>; adult men ~<mark class="fact">56 g</mark>.
+					</li>
+					<li>
+						Adult / moderately active woman ≈
+						<mark class="fact">45–46 g</mark>;
+						<mark class="trap"
+							>pregnant or breast-feeding (nursing/lactating) =
+							65–70 g</mark
+						>
+						(≥65 g).
+					</li>
+					<li>
+						Protein needs of
+						<mark class="trap">elderly are higher</mark> than the
+						young (biological, environmental, social factors).
+					</li>
+				</ul>
+			</section>
+
+			<!-- ===================== 05 ENERGY ===================== -->
+			<section id="n-energy">
+				<h2>
+					<span class="num">05</span>Energy Values &amp; Requirements
+				</h2>
+				<table>
+					<caption>
+						Energy per gram
+					</caption>
+					<thead>
+						<tr>
+							<th>Nutrient</th>
+							<th>Energy</th>
+							<th>Note</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><mark class="fact">Fat</mark></td>
+							<td><mark class="fact">9.0–9.3 kcal/g</mark></td>
+							<td>
+								<mark class="trap"
+									>Highest calories per unit</mark
+								>; maximum energy in metabolism
+							</td>
+						</tr>
+						<tr>
+							<td><mark class="fact">Carbohydrate</mark></td>
+							<td>
+								<mark class="fact">~4.0 kcal/g</mark> (glucose
+								4.5)
+							</td>
+							<td>Immediate energy; 55–75% of requirement</td>
+						</tr>
+						<tr>
+							<td><mark class="fact">Protein</mark></td>
+							<td><mark class="fact">4.0 kcal/g</mark></td>
+							<td>Fuel source when needed</td>
+						</tr>
+						<tr>
+							<td>
+								<mark class="fact"
+									>Water, vitamins, minerals</mark
+								>
+							</td>
+							<td>0</td>
+							<td>No calories (water: zero)</td>
+						</tr>
+					</tbody>
+				</table>
+				<ul class="point-list">
+					<li>
+						Group providing maximum energy:
+						<mark class="fact">Carbohydrate + Fat + Protein</mark>
+						(not vitamins/minerals/water).
+					</li>
+					<li>
+						Energy for a
+						<mark class="concept">hard-working man</mark> ≈
+						<mark class="fact">3500–4000 kcal/day</mark> (answer:
+						4000).
+					</li>
+				</ul>
+			</section>
+
+			<!-- ===================== 06 VITAMIN BASICS ===================== -->
+			<section id="n-vitbasics">
+				<h2>
+					<span class="num">06</span>Vitamins — Basics, Discovery
+					&amp; Storage
+				</h2>
+				<h3 class="subhead">Definition</h3>
+				<ul class="point-list">
+					<li>
+						<mark class="concept">Vitamins</mark> =
+						<mark class="trap">organic compounds</mark> required in
+						<mark class="fact">small amounts</mark>; deficiency
+						causes specific diseases; organism cannot synthesize
+						sufficient quantity so must obtain from diet.
+					</li>
+					<li>
+						Called
+						<mark class="concept"
+							>"accessory dietary / accessory food factors"</mark
+						>
+						and "essential food factors"; they are essential for
+						proper growth.
+					</li>
+					<li>
+						Plants can synthesize almost all vitamins; most vitamins
+						<mark class="trap">cannot be synthesized</mark> in human
+						body — so human body does NOT make all it needs.
+					</li>
+					<li>
+						About
+						<mark class="fact"
+							>30 vitamins, minerals, fatty acids and amino
+							acids</mark
+						>
+						are
+						<mark class="concept">essential micronutrients</mark>
+						(cannot be synthesized at all or in sufficient
+						quantity).
+					</li>
+				</ul>
+				<h3 class="subhead">Discovery</h3>
+				<ul class="point-list">
+					<li>
+						<mark class="person">Kazimierz (Casimir) Funk</mark> —
+						formulated the concept of vitamins; coined
+						<mark class="fact">'vital amines' → vitamines</mark>.
+					</li>
+					<li>
+						<mark class="person">Umetaro Suzuki</mark> — in
+						<mark class="fact">1910</mark> extracted a water-soluble
+						micronutrient complex from
+						<mark class="fact">rice bran</mark>, named
+						<mark class="fact">'aberic acid'</mark>.
+					</li>
+					<li>
+						<mark class="person">Frederick Gowland Hopkins</mark> —
+						first to elucidate the
+						<mark class="concept">'accessory food factor'</mark>
+						(trace essential substances in food).
+					</li>
+					<li>
+						<mark class="person">Elmer Verner McCollum</mark> (with
+						<mark class="person">Marguerite Davis</mark>) —
+						discovered <mark class="fact">Vitamin A</mark>; also
+						helped discover
+						<mark class="fact">vitamins B and D</mark> and studied
+						trace elements. (The spelling "Maculan" in the question
+						is wrong.)
+					</li>
+					<li>
+						<mark class="person">James Lind</mark> (Scottish doctor)
+						— vitamin C; found
+						<mark class="fact">citrus fruits cure scurvy</mark>.
+					</li>
+					<li>
+						<mark class="person">Paul Müller</mark> (Swiss chemist)
+						— NOT linked to vitamin D; discovered
+						<mark class="fact">insecticidal property of DDT</mark>
+						for malaria and yellow-fever vector control.
+					</li>
+				</ul>
+				<h3 class="subhead">Classification &amp; Storage</h3>
+				<ul class="point-list">
+					<li>
+						<mark class="concept">Fat-soluble</mark>:
+						<mark class="fact">A, D, E, K</mark> — stored in
+						<mark class="fact">liver and adipose tissue</mark> (long
+						periods).
+						<mark class="trap"
+							>Vitamin K is fat-soluble, not water-soluble.</mark
+						>
+					</li>
+					<li>
+						<mark class="concept">Water-soluble</mark>:
+						<mark class="fact">B-group and C</mark> — must be
+						supplied regularly; readily
+						<mark class="fact">excreted in urine</mark>;
+						<mark class="trap">cannot be stored except B12</mark>.
+					</li>
+					<li>
+						The
+						<mark class="trap"
+							>liver stores all fat-soluble vitamins (A, D, E, K)
+							AND B12</mark
+						>; it does NOT store vitamin C (so "A, B, C &amp; D" is
+						not correct → option "None of these").
+					</li>
+					<li>
+						Vitamin <mark class="trap">C is not stored</mark> —
+						bonds with water and is flushed out by urine.
+					</li>
+				</ul>
+				<h3 class="subhead">Synthesis in the Body</h3>
+				<ul class="point-list">
+					<li>
+						<mark class="fact">Gut flora</mark> (intestinal
+						microorganisms) make
+						<mark class="concept">vitamin K and B7 (biotin)</mark>;
+						B12 and K both synthesized by intestinal bacteria.
+					</li>
+					<li>
+						<mark class="fact">Vitamin D</mark> synthesized in
+						<mark class="concept">skin cells</mark> by UV light of
+						sunlight.
+					</li>
+					<li>
+						<mark class="fact">Vitamin A</mark> made from
+						<mark class="concept">beta-carotene</mark> (precursor);
+						<mark class="fact">Niacin (B3)</mark> from amino acid
+						<mark class="concept">tryptophan</mark>.
+					</li>
+					<li>
+						Some vitamins act as
+						<mark class="trap">hormones</mark> (vitamin D) — a true
+						statement;
+						<mark class="trap"
+							>vitamin A is classed as "not formed in our
+							body"</mark
+						>
+						in the PYQ key (vs protein, enzyme, hormone, which are).
+					</li>
+				</ul>
+			</section>
+
+			<!-- ===================== 07 FAT SOLUBLE ===================== -->
+			<section id="n-fatsol">
+				<h2>
+					<span class="num">07</span>Fat-Soluble Vitamins — A · D · E
+					· K
+				</h2>
+
+				<h3 class="subhead">Vitamin A (Retinol)</h3>
+				<ul class="point-list">
+					<li>
+						Group of fat-soluble
+						<mark class="concept">retinoids</mark>: retinol,
+						retinal, retinyl esters; roles in
+						<mark class="fact"
+							>immune function, vision, reproduction, cell
+							communication, cell growth/differentiation</mark
+						>; formation &amp; maintenance of heart, lungs, kidneys
+						and other organs.
+					</li>
+					<li>
+						<mark class="concept">Vision</mark>: retinol + protein
+						<mark class="fact">opsin → rhodopsin</mark>
+						(light-absorbing molecule) → needed for
+						<mark class="fact"
+							>low-light (scotopic) and colour vision</mark
+						>; supports conjunctival membranes and
+						<mark class="fact">cornea</mark>.
+					</li>
+					<li>
+						Deficiency:
+						<mark class="trap">night blindness (nyctalopia)</mark> —
+						first sign; severe form →
+						<mark class="concept">xerophthalmia</mark> (dry, damaged
+						cornea → permanent vision loss/blindness); also dry
+						scaly skin, conjunctivitis.
+					</li>
+					<li>
+						Stored mainly in the <mark class="trap">liver</mark>.
+					</li>
+					<li>
+						<mark class="fact">Carrot</mark> = richest vegetable
+						source; <mark class="fact">mango</mark> = richest among
+						apple/papaya/guava/mango (also rich in C and E); papaya,
+						milk, butter, egg, cod-liver oil.
+						<mark class="trap"
+							>Orange is NOT a vitamin A source</mark
+						>
+						(it is C, thiamin, folate, Ca, K).
+					</li>
+					<li>
+						<mark class="concept">Beta-carotene</mark> in green
+						vegetables is converted to A; stopping green vegetables
+						<mark class="trap">may</mark> cause deficiency but not
+						necessarily night blindness (A false, R true).
+					</li>
+					<li>
+						Milk &amp; ghee: carotene in cow's feed → part becomes
+						vitamin A in milk; one PYQ key calls milk
+						<mark class="trap">NOT a natural source</mark> (contains
+						very small amount).
+					</li>
+					<li>
+						Retinol deficiency is
+						<mark class="trap">NOT linked to rheumatism</mark> or
+						colour blindness (colour blindness is genetic,
+						sex-linked).
+					</li>
+				</ul>
+
+				<h3 class="subhead">Vitamin D (Calciferol)</h3>
+				<ul class="point-list">
+					<li>
+						Two forms:
+						<mark class="fact">D2 = ergocalciferol</mark>,
+						<mark class="fact">D3 = cholecalciferol</mark>; both
+						inactive until modified in the body → active form
+						<mark class="fact"
+							>calcitriol (1,25-dihydroxyvitamin D)</mark
+						>; hence considered a <mark class="trap">hormone</mark>.
+					</li>
+					<li>
+						<mark class="trap"
+							>Sunlight (UV) → synthesized in dermal/skin cells →
+							released to blood</mark
+						>; dietary: butter, egg yolk, liver, kidney, cheese,
+						fish, cod-liver oil.
+					</li>
+					<li>
+						Helps absorption of
+						<mark class="fact">calcium and magnesium</mark>.
+					</li>
+					<li>
+						Deficiency:
+						<mark class="trap">rickets (children)</mark>,
+						<mark class="trap">osteomalacia (adults)</mark>; with
+						calcium deficiency →
+						<mark class="fact">osteoporosis in older adults</mark>.
+					</li>
+					<li>
+						<mark class="trap">NOT</mark> the antisterility factor
+						(that is E) and
+						<mark class="trap">not linked to colour blindness</mark>
+						or Paul Müller.
+					</li>
+				</ul>
+
+				<h3 class="subhead">Vitamin E (Tocopherol)</h3>
+				<ul class="point-list">
+					<li>
+						<mark class="concept">Antisterility factor</mark>;
+						deficiency → <mark class="trap">sterility</mark>,
+						weakening of reproductive organs and muscles;
+						fat-soluble <mark class="concept">antioxidant</mark>.
+					</li>
+					<li>
+						<mark class="fact">Wheat-germ oil</mark> has the highest
+						vitamin E (germ is only ~<mark class="fact"
+							>2.5% of kernel weight</mark
+						>); also vegetable oils, wheat, soyabean, sunflower oil,
+						mango.
+					</li>
+					<li>
+						Not related to night blindness or beri-beri (those are A
+						and B1).
+					</li>
+				</ul>
+
+				<h3 class="subhead">Vitamin K (Naphthoquinone)</h3>
+				<ul class="point-list">
+					<li>
+						<mark class="concept"
+							>Blood-clotting / coagulation factor</mark
+						>
+						— <mark class="trap">antihaemorrhagic factor</mark>;
+						deficiency → slow clotting, uncontrolled bleeding,
+						<mark class="trap">increased clotting time</mark>;
+						patients cannot be operated easily (excess bleeding
+						risk).
+					</li>
+					<li>
+						Used as
+						<mark class="trap"
+							>antidote to anticoagulant poisons</mark
+						>.
+					</li>
+					<li>
+						Sources:
+						<mark class="fact"
+							>green leaves, egg, liver, alfalfa, intestinal
+							bacteria</mark
+						>.
+					</li>
+					<li>
+						K deficiency ≠ sterility (E); K is
+						<mark class="trap">fat-soluble</mark>.
+					</li>
+				</ul>
+			</section>
+
+			<!-- ===================== 08 B COMPLEX ===================== -->
+			<section id="n-bcomplex">
+				<h2><span class="num">08</span>B-Complex Vitamins</h2>
+				<h3 class="subhead">Naming Key (Vitamin ↔ Chemical Name)</h3>
+				<ul class="point-list">
+					<li>
+						<mark class="fact"
+							>B1 Thiamin · B2 Riboflavin · B3 Niacin · B5
+							Pantothenic acid · B6 Pyridoxine · B7 Biotin
+							(Vitamin H) · B9 Folic acid · B12 Cobalamin</mark
+						>.
+					</li>
+					<li>
+						<mark class="trap">Thyroxine is a hormone</mark>
+						(thyroid gland — biggest endocrine gland in the neck),
+						<mark class="trap">NOT a vitamin</mark>.
+					</li>
+					<li>
+						PYQ key labels Niacin as "B5" in one answer, but Niacin
+						is <mark class="trap">B3</mark>; B5 is pantothenic acid.
+					</li>
+					<li>
+						<mark class="concept">Thymine</mark> is not a vitamin B1
+						name (decoy in matching).
+					</li>
+				</ul>
+				<h3 class="subhead">Vitamin B1 — Thiamin</h3>
+				<ul class="point-list">
+					<li>
+						Water-soluble; needed for
+						<mark class="fact"
+							>carbohydrate and amino-acid metabolism</mark
+						>; main sources
+						<mark class="fact"
+							>rice bran, whole wheat flour, eggs, yeast,
+							meat</mark
+						>.
+					</li>
+					<li>
+						Deficiency → <mark class="trap">beri-beri</mark>:
+						multiple neuritis (neuritides), general debility,
+						<mark class="fact">heart failure</mark>; also
+						Wernicke-Korsakoff syndrome.
+					</li>
+					<li>
+						<mark class="trap">Orange</mark> is only a low source of
+						B1 (main vitamin C).
+					</li>
+				</ul>
+				<h3 class="subhead">Vitamin B2 — Riboflavin</h3>
+				<ul class="point-list">
+					<li>
+						Deficiency =
+						<mark class="concept">ariboflavinosis</mark>: skin
+						disorders, hyperaemia &amp; oedema of mouth/throat,
+						<mark class="fact"
+							>angular stomatitis, cheilosis (swollen cracked
+							lips)</mark
+						>, hair loss, reproductive problems, sore throat, itchy
+						red eyes, degeneration of liver &amp; nervous system.
+						Often occurs with other nutrient deficiencies.
+					</li>
+					<li>
+						Sources: eggs, green vegetables, milk/dairy, meat,
+						mushrooms, almonds;
+						<mark class="trap">NOT cod-liver oil</mark>.
+					</li>
+					<li>
+						<mark class="trap"
+							>Riboflavin–beri-beri is a wrong pair</mark
+						>.
+					</li>
+				</ul>
+				<h3 class="subhead">Vitamin B3, B6, B9</h3>
+				<ul class="point-list">
+					<li>
+						<mark class="fact">Niacin (B3)</mark> →
+						<mark class="trap">pellagra</mark>; synthesized from
+						tryptophan.
+					</li>
+					<li>
+						<mark class="fact">Pyridoxine (B6)</mark> → mental
+						illness (matching); sources rice bran;
+						<mark class="trap"
+							>B6, B12 and folate may improve quality and recall
+							of dreams</mark
+						>
+						(B6 = keeps dream in memory longer).
+					</li>
+					<li>
+						<mark class="fact">Folic acid (B9)</mark> →
+						<mark class="trap">anaemia</mark>.
+					</li>
+				</ul>
+				<h3 class="subhead">Vitamin B12 — Cobalamin</h3>
+				<ul class="point-list">
+					<li>
+						Water-soluble, contains metal
+						<mark class="trap">cobalt (Co)</mark>; formula
+						<mark class="fact">C63H88CoN14O14P</mark>;
+						<mark class="concept">cyanocobalamin</mark> =
+						manufactured form used to treat B12 deficiency.
+					</li>
+					<li>
+						Co-factor for enzymes in
+						<mark class="fact"
+							>amino-acid and fatty-acid metabolism, DNA
+							synthesis</mark
+						>; needed for new cell synthesis,
+						<mark class="fact"
+							>normal blood formation (maturation of developing
+							RBC in bone marrow)</mark
+						>, and nervous system function via
+						<mark class="fact">myelin synthesis</mark>.
+					</li>
+					<li>
+						Deficiency →
+						<mark class="trap">pernicious anaemia</mark>, nervous
+						system abnormality; called
+						<mark class="concept">antianaemic factor</mark>.
+					</li>
+					<li>
+						<mark class="trap">Stored in liver ~3–5 years</mark>
+						even though water-soluble — but "water-soluble" is NOT
+						the explanation of storage (A true, R true, R not
+						explanation).
+					</li>
+					<li>
+						Made by intestinal bacteria; found in meat, fish, egg,
+						curd.
+					</li>
+				</ul>
+			</section>
+
+			<!-- ===================== 09 VITAMIN C ===================== -->
+			<section id="n-vitc">
+				<h2><span class="num">09</span>Vitamin C (Ascorbic Acid)</h2>
+				<ul class="point-list">
+					<li>
+						Chemical name
+						<mark class="fact">ascorbic acid</mark> (not thiamine,
+						citric acid, tartaric acid); water-soluble;
+						<mark class="concept">antiscorbutic factor</mark>;
+						deficiency → <mark class="trap">scurvy</mark> (bleeding
+						gums, joint pain, loose teeth, skin haemorrhages).
+					</li>
+					<li>
+						Roles: normal growth &amp; development;
+						<mark class="fact">healthy skin</mark>;
+						<mark class="fact">wound healing</mark>;
+						<mark class="fact">collagen formation</mark> (cartilage,
+						joints, skin, blood vessels); healthy immune system;
+						important
+						<mark class="concept">antioxidant</mark> (protects
+						against cancer, heart disease, stress); needed for sperm
+						production.
+					</li>
+					<li>
+						<mark class="trap">Helps absorption of IRON</mark>
+						(vitamin D helps Ca/Mg).
+					</li>
+					<li>
+						<mark class="trap"
+							>Richest source: Indian gooseberry (AMLA)</mark
+						>; other good sources — orange, tomato, lemon, papaya,
+						peas, green leafy vegetables, citrus fruits (lemon,
+						orange). Raw &amp; fresh/citrus fruits are the main
+						source — not milk, ghee, pulses (milk/ghee = fat/vit A;
+						pulses = protein).
+					</li>
+					<li>
+						Among vegetables, <mark class="fact">chilli</mark> has
+						most vitamin C — per 100 g:
+						<mark class="fact"
+							>chilli 143.7 mg, pumpkin 9 mg, pea 40 mg, radish
+							14.8 mg</mark
+						>.
+					</li>
+					<li>
+						<mark class="fact">Papaya</mark> — main vitamin is C;
+						one medium (200 g) papaya ≈
+						<mark class="fact">226 mg</mark> (2–3× recommended daily
+						dose); also folate, fibre, vitamin A, Mg, K, Cu,
+						pantothenic acid; Columbus called it
+						<mark class="person">"fruit of the angel"</mark>.
+					</li>
+					<li>
+						<mark class="fact">Karonda</mark> — rich in iron (used
+						for anaemia) and has vitamin C (antiscorbutic).
+					</li>
+					<li>
+						Scurvy-prone diet: milk + egg + bread only (no C
+						source).
+					</li>
+					<li>
+						<mark class="trap">Orange vs guava/carrot/mango</mark>:
+						the PYQ keys mark orange as "highest" in the option sets
+						given, and "orange" as richest among
+						potato/sugarcane/sugarbeet; but amla is the absolute
+						richest.
+					</li>
+				</ul>
+			</section>
+
+			<!-- ===================== 10 MINERALS ===================== -->
+			<section id="n-minerals">
+				<h2>
+					<span class="num">10</span>Minerals &amp; Trace Elements
+				</h2>
+				<h3 class="subhead">Macro vs Micro</h3>
+				<ul class="point-list">
+					<li>
+						Living organisms need ≥
+						<mark class="fact">27 elements</mark>, of which
+						<mark class="fact">15 are metals</mark>.
+					</li>
+					<li>
+						<mark class="concept"
+							>Macro-minerals / macronutrients</mark
+						>
+						(larger amounts):
+						<mark class="fact"
+							>phosphorus, sulphur, magnesium, potassium, calcium,
+							sodium, chlorine</mark
+						>
+						(plus C, H, O, N). Major metals needed:
+						<mark class="fact">K, Na, Mg, Ca</mark>.
+					</li>
+					<li>
+						<mark class="concept"
+							>Micro-minerals / trace elements</mark
+						>: <mark class="trap">&lt;0.01% of body weight</mark>,
+						needed at ≈ <mark class="fact">1 ppm or less</mark>:
+						<mark class="fact"
+							>iron, zinc, copper, selenium, chromium, manganese,
+							iodine, molybdenum, nickel, cobalt, fluorine, boron,
+							chloride</mark
+						>.
+					</li>
+					<li>
+						<mark class="trap"
+							>Iodine is micro; phosphorus, sulphur, magnesium are
+							macro</mark
+						>;
+						<mark class="trap">sulphur is NOT a micronutrient</mark
+						>.
+					</li>
+					<li>
+						Body content order in a 70-kg man (increasing):
+						<mark class="fact"
+							>Copper &lt; Iron &lt; Sodium &lt; Potassium</mark
+						>.
+					</li>
+				</ul>
+				<h3 class="subhead">Iron</h3>
+				<ul class="point-list">
+					<li>
+						Part of <mark class="fact">haemoglobin</mark> and
+						<mark class="fact">cytochrome enzymes</mark>; transports
+						oxygen; deficiency → <mark class="trap">anaemia</mark>;
+						chronic deficiency → organ failure.
+					</li>
+					<li>
+						<mark class="trap">Green vegetables / spinach</mark> are
+						rich sources; others: liver, sunflower seeds, nuts,
+						beef, lamb, beans, whole grains, dark chocolate, tofu.
+					</li>
+					<li>
+						Spinach: 180 g boiled ≈
+						<mark class="fact">6.43 mg iron</mark> vs 170 g
+						hamburger patty ≈ <mark class="fact">4.42 mg</mark>;
+						also rich in calcium. Carrot ≠ iron; spinach's iron aids
+						haemoglobin and oxygen transport.
+					</li>
+					<li>
+						Vitamin C
+						<mark class="trap">aids iron absorption</mark>;
+						<mark class="fact">karonda</mark> is an iron-rich fruit.
+					</li>
+					<li>
+						<mark class="trap">Milk has only trace iron</mark>;
+						<mark class="trap">mother's milk lacks iron</mark>.
+					</li>
+				</ul>
+				<h3 class="subhead">Other Minerals</h3>
+				<ul class="point-list">
+					<li>
+						<mark class="concept">Potassium</mark> — electrolyte
+						mineral; maintains healthy
+						<mark class="fact">heart rhythm</mark> via muscle
+						action. <mark class="fact">Apples</mark> are valuable
+						for heart patients because they are a rich source of
+						potassium (trees absorb K more than any other nutrient)
+						and phytochemical antioxidants.
+					</li>
+					<li>
+						<mark class="concept">Muscle contraction</mark> needs
+						<mark class="trap">calcium, iron, sodium</mark> (also
+						magnesium, potassium) plus protein and calories.
+					</li>
+					<li>
+						<mark class="trap">Phosphorus</mark> (as phosphate) —
+						PYQ key: maintains
+						<mark class="concept"
+							>acid-base (acidity/alkalinity) balance</mark
+						>
+						in the body.
+					</li>
+					<li>
+						Milk contains
+						<mark class="fact">calcium and potassium</mark> along
+						with proteins and carbohydrates.
+					</li>
+					<li>
+						<mark class="concept">Metal ↔ molecule</mark>:
+						<mark class="fact"
+							>B12 – cobalt; haemoglobin – iron; chlorophyll –
+							magnesium; brass – copper; chalcopyrite – copper
+							ore</mark
+						>.
+					</li>
+				</ul>
+			</section>
+
+			<!-- ===================== 11 ANTIOX ===================== -->
+			<section id="n-antiox">
+				<h2>
+					<span class="num">11</span>Antioxidants, Probiotics &amp;
+					Nutraceuticals
+				</h2>
+				<h3 class="subhead">Antioxidants</h3>
+				<ul class="point-list">
+					<li>
+						Molecule that
+						<mark class="concept"
+							>inhibits oxidation of other molecules</mark
+						>; oxidation reactions produce
+						<mark class="trap">free radicals</mark> that start
+						damaging chain reactions (cell damage/death).
+					</li>
+					<li>
+						Role:
+						<mark class="trap"
+							>neutralize free radicals produced during metabolism
+							/ protect cells</mark
+						>
+						by terminating chain reactions — they are oxidized
+						themselves (<mark class="concept">reducing agents</mark
+						>: thiols, ascorbic acid, polyphenols).
+					</li>
+					<li>
+						NOT: promote vitamin synthesis, prevent oxidation of
+						carbs/fats/proteins "wastage of energy", or activate
+						ageing-delay genes.
+					</li>
+					<li>
+						Good source:
+						<mark class="fact">fresh fruits and vegetables</mark>;
+						apples (phytochemicals), apple known for antioxidants.
+					</li>
+				</ul>
+				<h3 class="subhead">Probiotics</h3>
+				<ul class="point-list">
+					<li>
+						Live microorganisms —
+						<mark class="trap">both bacteria and yeasts</mark> —
+						with health benefits; "good bacteria".
+					</li>
+					<li>
+						Common groups:
+						<mark class="fact">Lactobacillus, Bifidobacterium</mark
+						>; yeast
+						<mark class="fact">Saccharomyces boulardii</mark>.
+					</li>
+					<li>
+						<mark class="trap"
+							>Probiotic organisms DO naturally occur in the human
+							gut</mark
+						>
+						(trillions of microbes; ~500 million "good and bad"
+						bacteria) — so "do not occur naturally in gut" is false.
+					</li>
+					<li>
+						Maintain <mark class="concept">gut flora</mark>, boost
+						immunity, aid absorption of
+						<mark class="fact"
+							>calcium, iron, chromium and vitamins A, D, E,
+							K</mark
+						>.
+					</li>
+					<li>
+						Help <mark class="trap">digest milk sugars</mark>:
+						fermentation with live bacteria yields a lactose form
+						that is easier to digest; many strains produce
+						<mark class="fact">β-galactosidase</mark> (lactase-like
+						enzyme); <mark class="fact">L. acidophilus</mark> breaks
+						lactose → lactic acid.
+					</li>
+				</ul>
+				<h3 class="subhead">Nutraceuticals</h3>
+				<ul class="point-list">
+					<li>
+						Any food/food supplement offering
+						<mark class="trap">nutrient + medicinal effect</mark> —
+						medical/health benefit beyond simple nutrition; may
+						prevent disease or recurrence.
+					</li>
+				</ul>
+			</section>
+
+			<!-- ===================== 12 MILK ===================== -->
+			<section id="n-milk">
+				<h2>
+					<span class="num">12</span>Milk — Composition, Colour &amp;
+					Digestion
+				</h2>
+				<h3 class="subhead">Composition</h3>
+				<ul class="point-list">
+					<li>
+						Water ≈ <mark class="fact">87%</mark>; also fat,
+						proteins, carbohydrate (lactose), calcium, potassium →
+						<mark class="concept">"Complete Diet"</mark>, globally
+						accepted food for all ages; contains vitamin A, B1, B2,
+						B3, B6, B9, B12.
+					</li>
+					<li>
+						<mark class="trap">Milk DOES contain B vitamins</mark>;
+						poor source of <mark class="trap">vitamin C</mark> (very
+						small amounts) and only trace iron.
+					</li>
+					<li>
+						<mark class="fact">Buffalo milk</mark> fat ≈
+						<mark class="fact">7–7.5%</mark>;
+						<mark class="fact">cow milk</mark> fat ≈
+						<mark class="fact">3.5–4.0%</mark>.
+					</li>
+					<li>
+						Milk proteins: <mark class="fact">casein (~80%)</mark>,
+						lactoglobulin, lactalbumin.
+						<mark class="concept">Casein</mark> = phosphoprotein
+						(bound phosphate) — gives milk its
+						<mark class="trap">white colour</mark>.
+					</li>
+					<li>
+						<mark class="trap">Yellow tint of cow milk</mark> =
+						<mark class="concept">carotene</mark> (hydrocarbon C40Hx
+						from hay, grass, green leaves, carrots); cow converts
+						part to vitamin A, rest passes to milk.
+						<mark class="trap">Buffalo milk is whiter</mark> (no
+						carotene). Vitamin A itself imparts no colour. Cow milk
+						= carotene + casein.
+					</li>
+					<li>Milk sweetness = <mark class="fact">lactose</mark>.</li>
+				</ul>
+				<h3 class="subhead">Souring, Curd &amp; Digestion</h3>
+				<ul class="point-list">
+					<li>
+						<mark class="concept">Lactobacillus</mark> spoils milk —
+						uses lactose, makes
+						<mark class="fact">lactic acid</mark> → sour taste; same
+						bacteria convert milk to
+						<mark class="fact">curd, cheese</mark> (bacteria, not
+						enzyme/vitamin); also helps control cholesterol; found
+						in intestinal tract.
+					</li>
+					<li>
+						<mark class="concept">Rennin</mark> digests milk protein
+						— produced by stomach cells of young mammals, secreted
+						in large amounts after birth then declines;
+						<mark class="fact">prorenin activated by HCl</mark> →
+						rennin
+						<mark class="fact"
+							>curdles milk into curds and whey</mark
+						>
+						so it stays in stomach long enough for protein
+						digestion.
+					</li>
+					<li>
+						<mark class="concept">Rennin &amp; lactase</mark> begin
+						disappearing at age
+						<mark class="fact">2–3 years</mark> and fully disappear
+						between <mark class="fact">6–15 years</mark> in most
+						humans →
+						<mark class="trap">lactose intolerance</mark> (official
+						key marked "*"/no single option).
+					</li>
+				</ul>
+				<h3 class="subhead">Mother's Milk &amp; Breast-feeding</h3>
+				<ul class="point-list">
+					<li>
+						Almost complete diet for newborn but
+						<mark class="trap">lacks iron</mark>.
+					</li>
+					<li>
+						Composition: fat <mark class="fact">4.2%</mark>, protein
+						<mark class="fact">1.1%</mark>, carbohydrate
+						<mark class="fact">7.5%</mark>, minerals
+						<mark class="fact">0.2%</mark>; contains zinc, calcium,
+						vitamin A, B6, B12, potassium, magnesium, phosphorus.
+					</li>
+					<li>
+						<mark class="concept">Colostrum</mark> (first days after
+						delivery) — rich in protein and
+						<mark class="fact">antibodies</mark> → passive immunity;
+						helps newborn's digestive system develop.
+					</li>
+					<li>
+						Breast-fed vs bottle-fed baby:
+						<mark class="trap"
+							>less obese, greater disease resistance
+							(antibodies), more vitamins &amp; protein</mark
+						>; abnormal height growth is NOT a feature.
+					</li>
+				</ul>
+			</section>
+
+			<!-- ===================== 13 MALNUTRITION ===================== -->
+			<section id="n-malnut">
+				<h2>
+					<span class="num">13</span>Malnutrition &amp; Miscellany
+				</h2>
+				<ul class="point-list">
+					<li>
+						<mark class="concept">Malnutrition</mark> = too little
+						OR too much of nutrients:
+						<mark class="trap"
+							>overnutrition + undernutrition + imbalanced
+							nutrition</mark
+						>
+						(all three).
+					</li>
+					<li>
+						Protein-energy malnutrition →
+						<mark class="fact">marasmus, kwashiorkor</mark>; lack of
+						essential amino acids from the diet can lead to death.
+					</li>
+					<li>
+						<mark class="concept">Nitrogen</mark> is an essential
+						constituent of DNA, RNA, chlorophyll and proteins — not
+						of simple carbohydrates.
+					</li>
+					<li>
+						<mark class="concept">Amino acids are not stored</mark>
+						(replenish daily); glycogen, fat and tocopherol are
+						stored.
+					</li>
+					<li>
+						Disease/nutrition links:
+						<mark class="fact"
+							>Folic acid–anaemia, Riboflavin–cheilosis,
+							Niacin–pellagra, Cobalamin–pernicious anaemia,
+							Calciferol–osteomalacia</mark
+						>.
+					</li>
+					<li>
+						<mark class="fact">Frozen "role names"</mark>: B12 =
+						antianaemic; C = antiscorbutic; K = antihaemorrhagic; E
+						= antisterility.
+					</li>
+				</ul>
+			</section>
+
+			<!-- ===================== 14 MATCH ===================== -->
+			<section id="n-match">
+				<h2><span class="num">14</span>Match-Lists &amp; MCQ Traps</h2>
+				<table>
+					<caption>
+						Vitamin ↔ rich source (correct matches)
+					</caption>
+					<thead>
+						<tr>
+							<th>Vitamin</th>
+							<th>Source</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Vitamin K</td>
+							<td><mark class="fact">Alfalfa</mark></td>
+						</tr>
+						<tr>
+							<td>Vitamin D</td>
+							<td>
+								<mark class="fact">Cod-liver oil</mark> /
+								sunlight
+							</td>
+						</tr>
+						<tr>
+							<td>Vitamin E</td>
+							<td><mark class="fact">Wheat-germ oil</mark></td>
+						</tr>
+						<tr>
+							<td>Vitamin C</td>
+							<td><mark class="fact">Lemon / amla</mark></td>
+						</tr>
+						<tr>
+							<td>Vitamin B6</td>
+							<td><mark class="fact">Rice bran</mark></td>
+						</tr>
+						<tr>
+							<td>Vitamin A</td>
+							<td>
+								<mark class="fact"
+									>Carrot, mango, milk, butter</mark
+								>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table>
+					<caption>
+						Vitamin ↔ disease / role (correct)
+					</caption>
+					<thead>
+						<tr>
+							<th>Vitamin / Chemical</th>
+							<th>Disease / Role</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>A · Retinol</td>
+							<td>
+								Night blindness · blindness (xerophthalmia) ·
+								conjunctivitis
+							</td>
+						</tr>
+						<tr>
+							<td>B1 · Thiamin</td>
+							<td>Beri-beri</td>
+						</tr>
+						<tr>
+							<td>B3 · Niacin</td>
+							<td>Pellagra</td>
+						</tr>
+						<tr>
+							<td>B6 · Pyridoxine</td>
+							<td>Mental illness</td>
+						</tr>
+						<tr>
+							<td>B9 · Folic acid</td>
+							<td>Anaemia</td>
+						</tr>
+						<tr>
+							<td>B12 · Cyanocobalamin</td>
+							<td>Pernicious anaemia</td>
+						</tr>
+						<tr>
+							<td>C · Ascorbic acid</td>
+							<td>Scurvy (bleeding gums)</td>
+						</tr>
+						<tr>
+							<td>D</td>
+							<td>Rickets, osteomalacia</td>
+						</tr>
+						<tr>
+							<td>E · Tocopherol</td>
+							<td>Sterility</td>
+						</tr>
+						<tr>
+							<td>K</td>
+							<td>Blood clotting</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="callout trap">
+					<span class="tag">MCQ Trap</span>Wrong pairs repeatedly
+					planted: <mark class="trap">Vit D – Paul Müller</mark>,
+					<mark class="trap">Vit K – sterility</mark>,
+					<mark class="trap">Vit D – antisterility</mark>,
+					<mark class="trap">Vit D – colour blindness</mark>,
+					<mark class="trap">Vit E – night blindness / beri-beri</mark
+					>, <mark class="trap">Vit A – rheumatism / orange</mark>,
+					<mark class="trap"
+						>Riboflavin – beri-beri / cod-liver oil</mark
+					>, <mark class="trap">B1 – retinol</mark>,
+					<mark class="trap">B6 – niacin</mark>,
+					<mark class="trap">C – calciferol</mark>,
+					<mark class="trap">Mustard oil – lubricant</mark>.
+				</div>
+				<div class="callout trap">
+					<span class="tag">MCQ Trap</span>Several PYQ answers have
+					<mark class="trap">two correct options</mark> or none: Q15
+					(B &amp; C water-soluble), Q44 (B12 &amp; K by gut
+					bacteria), Q49 (rickets &amp; osteoporosis), Q70 (BPSC 2016
+					— option (e)), Q119 (no listed answer), Q152 (rice excluded;
+					egg/milk/soya all contain all essential amino acids).
+				</div>
+				<div class="callout trap">
+					<span class="tag">MCQ Trap</span>Water-soluble set =
+					<mark class="trap">B and C</mark>; fat-soluble =
+					<mark class="trap">A, D, E, K</mark>. "Which does not get
+					stored?" → <mark class="trap">Vitamin C</mark>. "Stored
+					water-soluble" → <mark class="trap">B12</mark>.
+				</div>
+				<div class="callout trap">
+					<span class="tag">MCQ Trap</span>Trans fat is bad because it
+					<mark class="trap">lowers HDL</mark> (and raises LDL).
+					Unsaturated fat is more reactive because of
+					<mark class="trap">double bonds</mark>. Starch gives
+					blue-black with iodine;
+					<mark class="trap">cellulose doesn't</mark>.
+				</div>
+				<div class="callout trap">
+					<span class="tag">MCQ Trap</span>Assertion–Reason patterns:
+					<mark class="trap"
+						>"Human body synthesizes all vitamins" = false</mark
+					>; "Vitamins kill bacteria" = false reason; "Green-vegetable
+					stoppage → night blindness" = A false; "Human diet must
+					contain glycine, serine, tyrosine" = A false; "Unsaturated
+					fats have only single bonds" = R false; "B12 stored 3–5
+					years because water-soluble" = both true, R not explanation.
+				</div>
+				<div class="callout fact">
+					<span class="tag">Fact</span>Quick ladder — calories:
+					<mark class="fact"
+						>fat 9.3 &gt; carbohydrate/protein 4.0 &gt; water
+						0</mark
+					>. Protein richest plant:
+					<mark class="fact">soyabean (40%)</mark>; highest BV:
+					<mark class="fact">whole egg (94)</mark>; richest vitamin E:
+					<mark class="fact">wheat-germ oil</mark>; richest vitamin C:
+					<mark class="fact">amla</mark>; richest omega-3 oilseed:
+					<mark class="fact">linseed</mark>.
+				</div>
+			</section>
+
+			<footer>
+				Vitamins and Nutrition · compiled from Ghatnachakr General
+				Science (theory + 170 PYQs) for BPSC Prelims
+			</footer>
+		</main>
+
+		<script>
+			function toggleSidebar() {
+				document.getElementById("sidebar").classList.toggle("open");
+				document
+					.getElementById("sidebarOverlay")
+					.classList.toggle("open");
+				document
+					.getElementById("hamburgerBtn")
+					.classList.toggle("open");
+			}
+			function closeSidebar() {
+				document.getElementById("sidebar").classList.remove("open");
+				document
+					.getElementById("sidebarOverlay")
+					.classList.remove("open");
+				document
+					.getElementById("hamburgerBtn")
+					.classList.remove("open");
+			}
+			const navLinks = document.querySelectorAll(".navlink");
+			function onScroll() {
+				let currentId = "";
+				document.querySelectorAll("section").forEach((sec) => {
+					if (sec.getBoundingClientRect().top <= 140)
+						currentId = sec.id;
+				});
+				navLinks.forEach((l) =>
+					l.classList.toggle(
+						"active",
+						l.getAttribute("href") === "#" + currentId,
+					),
+				);
+			}
+			window.addEventListener("scroll", onScroll);
+			navLinks.forEach((link) =>
+				link.addEventListener("click", (e) => {
+					e.preventDefault();
+					const t = document.getElementById(
+						link.getAttribute("href").substring(1),
+					);
+					if (t)
+						t.scrollIntoView({
+							behavior: "smooth",
+							block: "start",
+						});
+					closeSidebar();
+				}),
+			);
+			window.addEventListener("load", onScroll);
+		</script>
+	</body>
+</html>
