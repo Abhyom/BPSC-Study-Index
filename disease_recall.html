@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Disease Memorization Trainer (BPSC / Biology)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden-details {
+            background-color: #1e293b;
+            color: #1e293b;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.2s ease;
+            border-radius: 0.375rem;
+            padding: 0.5rem 1rem;
+            display: inline-block;
+            font-weight: 600;
+            text-align: center;
+            width: 100%;
+        }
+        .hidden-details:hover {
+            background-color: #334155;
+            color: #94a3b8;
+        }
+        .tab-btn {
+            transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            background-color: #0891b2;
+            color: #ffffff;
+            border-color: #06b6d4;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4 sm:p-8">
+
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-6">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-cyan-400 mb-2">Complete Disease Memorization Trainer</h1>
+            <p class="text-slate-400">Click any row to reveal its details. Switch between tabs to practice Infectious, Deficiency/Environmental, and Genetic diseases.</p>
+            
+            <!-- Tabs Navigation -->
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+                <button onclick="switchTab('infectious')" id="btn-infectious" class="tab-btn active bg-slate-800 border border-slate-700 text-slate-300 font-semibold px-6 py-2.5 rounded-lg shadow">🦠 Infectious Diseases</button>
+                <button onclick="switchTab('deficiency')" id="btn-deficiency" class="tab-btn bg-slate-800 border border-slate-700 text-slate-300 font-semibold px-6 py-2.5 rounded-lg shadow">🥗 Deficiency & Lifestyle</button>
+                <button onclick="switchTab('genetic')" id="btn-genetic" class="tab-btn bg-slate-800 border border-slate-700 text-slate-300 font-semibold px-6 py-2.5 rounded-lg shadow">🧬 Genetic & Chromosomal</button>
+            </div>
+
+            <div class="mt-4 flex flex-wrap justify-center gap-4">
+                <button onclick="shuffleCurrentTable()" class="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold px-5 py-2 rounded-lg shadow transition">🔀 Shuffle Order</button>
+                <button onclick="revealAllCurrent()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-5 py-2 rounded-lg shadow transition">👁️ Reveal All Details</button>
+                <button onclick="resetCurrent()" class="bg-rose-600 hover:bg-rose-500 text-white font-semibold px-5 py-2 rounded-lg shadow transition">🔄 Reset All</button>
+            </div>
+        </header>
+
+        <div class="bg-slate-800 rounded-xl shadow-xl overflow-hidden border border-slate-700">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr id="tableHeader" class="bg-slate-700 text-slate-300 uppercase text-xs tracking-wider border-b border-slate-600">
+                            <!-- Populated dynamically based on tab -->
+                        </tr>
+                    </thead>
+                    <tbody id="diseaseTableBody" class="divide-y divide-slate-700 text-sm">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <footer class="text-center mt-8 text-slate-500 text-xs">
+            BPSC High-Yield Biology & General Science Master Revision Table
+        </footer>
+    </div>
+
+    <script>
+        // --- 1. INFECTIOUS DISEASES ---
+        const infectiousData = [
+            // Bacterial
+            { name: "Cholera", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Vibrio cholerae", transmission: "Contaminated water/food", notes: "Infection of small intestine; severe watery diarrhoea, dehydration" },
+            { name: "Plague", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Yersinia (Pasteurella) pestis", transmission: "Flea bite (infected rodents)", notes: "Swollen lymph nodes (buboes) in groin/armpit/neck; can be fatal" },
+            { name: "Leprosy", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Mycobacterium leprae / M. lepromatosis", transmission: "Prolonged close contact", notes: "Skin lesions, peripheral nerve damage, affects eyes & respiratory mucosa" },
+            { name: "Pneumonia", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Streptococcus pneumoniae", transmission: "Airborne droplets", notes: "Chest pain, fever, cough, shortness of breath" },
+            { name: "Typhoid", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Salmonella typhi", transmission: "Contaminated food/water", notes: "High fever, diarrhoea, vomiting; affects intestines" },
+            { name: "Diphtheria", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Corynebacterium diphtheriae", transmission: "Respiratory droplets, contact", notes: "Throat and nose infection" },
+            { name: "Gonorrhoea", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Neisseria gonorrhoeae", transmission: "Sexual contact", notes: "Infection of reproductive organs" },
+            { name: "Syphilis", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Treponema pallidum", transmission: "Sexual contact", notes: "Painless sore on genitals, rectum, or mouth" },
+            { name: "Whooping Cough", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Bordetella / Haemophilus pertussis", transmission: "Highly contagious — airborne", notes: "Severe hacking cough with a high-pitched 'whoop'" },
+            { name: "Tetanus (Lockjaw)", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Clostridium tetani", transmission: "Wound contamination", notes: "Muscle spasm beginning at the jaw, progressing through body" },
+            { name: "Tuberculosis", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Mycobacterium tuberculosis", transmission: "Airborne droplets", notes: "Mainly affects lungs; persistent cough, weight loss, fever" },
+            { name: "Rheumatic Fever", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Streptococcus pyogenes", transmission: "Follows untreated strep throat", notes: "Inflammation of heart, joints, skin, brain" },
+            { name: "Salmonellosis (Food Poisoning)", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Salmonella bacilli (gram-negative)", transmission: "Contaminated food/water", notes: "Intestinal tract infection, diarrhoea, vomiting" },
+            { name: "Botulism", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Clostridium botulinum", transmission: "Contaminated home-canned food; wound; spores", notes: "Toxin attacks nerves — breathing difficulty, muscle paralysis, death" },
+            { name: "Anthrax (Splenic Fever)", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Bacillus anthracis", transmission: "Contact with infected livestock/products", notes: "Sudden fever, lethargy, respiratory/cardiac distress, seizures" },
+            { name: "Dental Caries", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Oral bacteria + carbohydrates", transmission: "Sugar/carbohydrate residue in mouth", notes: "Tooth decay, cavity formation" },
+            { name: "Blackleg", type: "Bacterial", badge: "bg-amber-900 text-amber-200", agent: "Clostridium chauvoei", transmission: "Soil spores / ingestion / wounds in cattle/sheep", notes: "Acute infectious bacterial disease affecting cattle & sheep; muscle swelling, gas gangrene, high mortality" },
+
+            // Viral
+            { name: "Poliomyelitis", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Poliovirus", transmission: "Fecal-oral; contaminated food/water", notes: "Muscle weakness, paralysis — destroys brain & spinal cord motor cells" },
+            { name: "Common Cold", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Rhinovirus", transmission: "Airborne droplets, contact", notes: "Sore throat, runny/congested nose, sneezing, cough, fatigue" },
+            { name: "Hepatitis-B", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Hepatitis-B Virus (HBV)", transmission: "Blood & body fluids, mother-to-child", notes: "Jaundice, fever, fatigue, nausea; cirrhosis / liver cancer risk" },
+            { name: "Mumps", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Mumps virus", transmission: "Saliva, nasal secretions, close contact", notes: "Fever, muscle pain, headache; swollen parotid (salivary) glands" },
+            { name: "Meningitis", type: "Viral / Bacterial", badge: "bg-blue-900 text-blue-200", agent: "Virus (or bacteria/other microbes)", transmission: "Varies by causative organism", notes: "Inflammation of meninges — fever, headache, neck stiffness" },
+            { name: "Herpes", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Herpes Simplex Virus", transmission: "Direct/skin contact", notes: "Sores around mouth, lips and genitals" },
+            { name: "Rabies (Hydrophobia)", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Rabies lyssavirus", transmission: "Bite/scratch from infected dog, cat, bat, fox", notes: "Fever, tingling; fear of water, confusion — nearly always fatal" },
+            { name: "Dengue Fever", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Dengue virus", transmission: "Aedes aegypti (also A. albopictus)", notes: "High fever, headache, joint/muscle pain, rash, low platelets" },
+            { name: "Chikungunya", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Chikungunya virus (CHIKV)", transmission: "Aedes albopictus & A. aegypti", notes: "Fever, severe joint pain, muscle pain, headache" },
+            { name: "Zika Fever", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Zika virus", transmission: "Aedes mosquito; sexual transmission", notes: "Fever, red eyes, joint pain, headache, rash" },
+            { name: "Yellow Fever", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Yellow fever virus", transmission: "Aedes aegypti (also A. albopictus)", notes: "Fever, headache, jaundice, muscle pain, vomiting" },
+            { name: "Japanese Encephalitis", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "JE Virus (JEV)", transmission: "Culex mosquito", notes: "Headache, vomiting, fever, confusion, seizures" },
+            { name: "AIDS", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "HIV (retrovirus)", transmission: "Sexual contact, blood, needles, mother-child", notes: "Weight loss, night sweats, swollen lymph nodes, pneumonia" },
+            { name: "Ebola Virus Disease", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Ebola virus", transmission: "Direct contact with infected animal/person", notes: "Haemorrhagic fever, organ failure; high fatality" },
+            { name: "Nipah Virus Infection", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Nipah virus (NiV)", transmission: "Fruit bats; sick pigs; raw palm sap", notes: "Fever, cough, headache, breathlessness; may lead to coma" },
+            { name: "COVID-19", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "SARS-CoV-2", transmission: "Respiratory droplets, aerosols, contact", notes: "Fever, cough, breathlessness, loss of smell/taste; ARDS" },
+            { name: "Bird Flu", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "H5N1 virus", transmission: "Direct bird contact", notes: "Severe influenza-like illness" },
+            { name: "Swine Flu", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "H1N1 virus", transmission: "Human-to-human via cough/sneeze", notes: "Influenza-like symptoms" },
+            { name: "Rotavirus Diarrhoea", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Rotavirus (dsRNA)", transmission: "Fecal-oral", notes: "Most common cause of severe diarrhoea in infants" },
+            { name: "Foot & Mouth Disease", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Aphthovirus", transmission: "Direct contact among cloven-hoofed animals", notes: "Mouth/foot lesions in cattle, sheep, goat, pig" },
+            { name: "Rinderpest", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Morbillivirus", transmission: "Direct contact among cattle/buffalo", notes: "Cattle plague — eradicated globally in 2011" },
+            { name: "Ranikhet Disease", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Virus", transmission: "Direct contact among poultry", notes: "Highly infectious disease of chicken" },
+            { name: "Smallpox", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Variola virus", transmission: "Infective droplets, close contact", notes: "Fever, red rash/pustules; eradicated globally 1980" },
+            { name: "Measles", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Measles morbillivirus", transmission: "Airborne respiratory droplets", notes: "High fever, cough, runny nose, red watery eyes, characteristic Koplik spots & maculopapular rash" },
+            { name: "Rubella (German Measles)", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Rubella virus", transmission: "Respiratory droplets", notes: "Mild fever, rash, swollen lymph nodes; highly dangerous to developing fetus (congenital rubella syndrome)" },
+            { name: "Chickenpox", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Varicella-Zoster virus (VZV)", transmission: "Airborne droplets, direct contact with blister fluid", notes: "Itchy, blister-like rash, fever, fatigue" },
+            { name: "Cowpox", type: "Viral", badge: "bg-blue-900 text-blue-200", agent: "Cowpox virus (Orthopoxvirus)", transmission: "Contact with infected cow udders", notes: "Mild skin lesions/pustules on hands; historically used by Edward Jenner for smallpox vaccination" },
+
+            // Fungal & Mycotoxic
+            { name: "Aflatoxin Poisoning", type: "Fungal (Toxin)", badge: "bg-purple-900 text-purple-200", agent: "Aspergillus flavus & A. parasiticus", transmission: "Contaminated maize, peanuts, nuts", notes: "DNA damage; liver cancer risk (natural carcinogen)" },
+            { name: "Ergotism (St Anthony's Fire)", type: "Fungal", badge: "bg-purple-900 text-purple-200", agent: "Claviceps purpurea", transmission: "Contaminated rye/cereal grains", notes: "Vasoconstriction/gangrene, nervous & endocrine effects" },
+            { name: "Athlete's Foot (Tinea pedis)", type: "Fungal", badge: "bg-purple-900 text-purple-200", agent: "Trichophyton, Epidermophyton, Microsporum", transmission: "Contaminated floors/towels, sweaty feet", notes: "Scaly, itching, cracking, stinging, burning rash between toes" },
+            { name: "Mucormycosis (Black Fungus)", type: "Fungal", badge: "bg-purple-900 text-purple-200", agent: "Mucormycetes (mold group)", transmission: "Environmental exposure in immunocompromised", notes: "Nose/sinus/eye/brain infection; not zoonotic" },
+            { name: "Aspergillosis", type: "Fungal", badge: "bg-purple-900 text-purple-200", agent: "Aspergillus genus", transmission: "Inhalation of spores", notes: "Respiratory disease; risk higher with TB/COPD" },
+            { name: "Dermatitis / Candidiasis", type: "Fungal", badge: "bg-purple-900 text-purple-200", agent: "Various fungi", transmission: "Direct skin/scalp exposure", notes: "Skin/scalp inflammation, hair loss, related symptoms" },
+            { name: "Mushroom Poisoning", type: "Fungal (Toxin)", badge: "bg-purple-900 text-purple-200", agent: "Amanita species (toxin: α-amantin)", transmission: "Ingestion of toxic wild mushrooms", notes: "~95% of fatal mushroom-poisoning cases; organ toxicity" },
+            { name: "Ringworm (Dermatophytosis)", type: "Fungal", badge: "bg-purple-900 text-purple-200", agent: "Microsporum, Trichophyton, Epidermophyton", transmission: "Direct skin contact or contaminated objects", notes: "Circular, red, itchy, scaly skin lesions with clearer center" },
+            { name: "Scabies", type: "Parasitic (Mites)", badge: "bg-purple-900 text-purple-200", agent: "Sarcoptes scabiei (itch mite)", transmission: "Prolonged direct skin-to-skin contact", notes: "Intense nocturnal itching, pimple-like skin burrows/rashes" },
+            { name: "Baldness (Tinea capitis)", type: "Fungal", badge: "bg-purple-900 text-purple-200", agent: "Trichophyton / Microsporum species", transmission: "Direct contact, combs, contaminated surfaces", notes: "Scalp ringworm causing scaly patches, brittle hair, and localized hair loss/bald spots" },
+            { name: "Asthma (Fungal-triggered)", type: "Fungal (Allergic)", badge: "bg-purple-900 text-purple-200", agent: "Aspergillus fumigatus (spores)", transmission: "Inhalation of airborne spores in damp environments", notes: "Allergic bronchopulmonary aspergillosis; wheezing, coughing, shortness of breath" },
+
+            // Parasitic (Protozoan & Helminthic)
+            { name: "Malaria", type: "Parasitic (Protozoan)", badge: "bg-emerald-900 text-emerald-200", agent: "Plasmodium species", transmission: "Female Anopheles mosquito", notes: "Shaking chills, high fever, sweating, headache; anaemia" },
+            { name: "Kala-azar (Visceral Leishmaniasis)", type: "Parasitic (Protozoan)", badge: "bg-emerald-900 text-emerald-200", agent: "Leishmania", transmission: "Female sandfly Phlebotomus argentipes", notes: "Fever, weight loss, greyish skin, liver/spleen inflammation" },
+            { name: "Sleeping Sickness", type: "Parasitic (Protozoan)", badge: "bg-emerald-900 text-emerald-200", agent: "Trypanosoma gambiense/rhodesiense", transmission: "Tsetse fly (Glossina)", notes: "Fever, headache → lethargy, personality change, coma" },
+            { name: "Amoebiasis", type: "Parasitic (Protozoan)", badge: "bg-emerald-900 text-emerald-200", agent: "Entamoeba histolytica", transmission: "Contaminated food/water (fecal-oral)", notes: "Abdominal pain, diarrhoea, bloody diarrhoea" },
+            { name: "Schistosomiasis (Snail Fever)", type: "Parasitic (Flatworm)", badge: "bg-emerald-900 text-emerald-200", agent: "Schistosoma spp.", transmission: "Contact with infested water (snail host)", notes: "Abdominal pain, diarrhoea, blood in urine/stool" },
+            { name: "Fascioliasis (Liver Rot)", type: "Parasitic (Liver Fluke)", badge: "bg-emerald-900 text-emerald-200", agent: "Fasciola hepatica/gigantica", transmission: "Ingesting raw watercress with larvae", notes: "Fever, sweating, weight loss, abdominal pain" },
+            { name: "Taeniasis / Neurocysticercosis", type: "Parasitic (Tapeworm)", badge: "bg-emerald-900 text-emerald-200", agent: "Taenia solium", transmission: "Undercooked pork; fecal-oral egg ingestion", notes: "Intestinal infection; CNS larvae → seizures, epilepsy" },
+            { name: "Filariasis (Elephantiasis)", type: "Parasitic (Roundworm)", badge: "bg-emerald-900 text-emerald-200", agent: "Wuchereria bancrofti", transmission: "Female Culex mosquito", notes: "Lymph gland swelling; elephantiasis of legs/arms/scrotum" },
+            { name: "Ascariasis", type: "Parasitic (Roundworm)", badge: "bg-emerald-900 text-emerald-200", agent: "Ascaris lumbricoides", transmission: "Ingesting eggs from contaminated soil/food", notes: "Coughing, wheezing, abdominal pain/swelling, malabsorption" },
+            { name: "Guinea Worm Disease", type: "Parasitic (Nematode)", badge: "bg-emerald-900 text-emerald-200", agent: "Dracunculus medinensis", transmission: "Drinking water with infected Cyclops fleas", notes: "Painful skin blister (~1 yr later); eradicated in India 2000" },
+            { name: "Dysentery", type: "Parasitic (Protozoan)", badge: "bg-emerald-900 text-emerald-200", agent: "Entamoeba histolytica", transmission: "Contaminated food and water (fecal-oral route)", notes: "Severe abdominal cramps, frequent stools containing blood and mucus" },
+            { name: "Pyorrhoea", type: "Parasitic (Protozoan)", badge: "bg-emerald-900 text-emerald-200", agent: "Entamoeba gingivalis", transmission: "Poor oral hygiene / direct mouth contact", notes: "Inflammation of gums, loosening of teeth, pus discharge, bleeding gums and bad breath" }
+        ];
+
+        // --- 2. DEFICIENCY & ENVIRONMENTAL DISEASES ---
+        const deficiencyData = [
+            { name: "Anaemia", cause: "Iron deficiency", organ: "Blood", symptoms: "Fatigue, weakness (reduced oxygen-carrying capacity)" },
+            { name: "Goitre", cause: "Iodine deficiency", organ: "Thyroid gland", symptoms: "Abnormal thyroid enlargement, cough, swallow/breathe difficulty" },
+            { name: "Marasmus", cause: "Severe malnutrition / prolonged starvation", organ: "Whole body", symptoms: "Lean, weak body; depressed eyes, wrinkled skin" },
+            { name: "Kwashiorkor", cause: "Protein deficiency", organ: "Whole body", symptoms: "Swelling, appetite loss, muscle/fat wasting, enlarged liver" },
+            { name: "Rickets", cause: "Vitamin D deficiency", organ: "Bones", symptoms: "Defective bone mineralization in children" },
+            { name: "Beriberi", cause: "Vitamin B1 (Thiamine) deficiency", organ: "Heart (wet) / Nerves (dry)", symptoms: "Wet: heart failure risk; Dry: muscle weakness/paralysis" },
+            { name: "Scurvy", cause: "Vitamin C deficiency", organ: "Gums, blood vessels", symptoms: "Spongy/bleeding gums, loose teeth, skin haemorrhages" },
+            { name: "Xerophthalmia / Night Blindness", cause: "Vitamin A deficiency", organ: "Eyes", symptoms: "Dryness, poor vision in low light" },
+            { name: "Khaira Disease", cause: "Zinc deficiency", organ: "Plant/crop (Paddy)", symptoms: "Stunted leaf growth, chlorosis/brown spots in rice paddy" },
+            { name: "Diabetes Mellitus", cause: "Insulin deficiency / resistance", organ: "Pancreas", symptoms: "High blood sugar, frequent urination, thirst, hunger" },
+            { name: "Mad Cow Disease", cause: "Prions (abnormal protein)", organ: "Brain (Cattle)", symptoms: "Neurological degeneration, erratic behavior in cattle" },
+            { name: "Cancer", cause: "Abnormal/uncontrolled cell growth (carcinogens)", organ: "Any organ (metastasis)", symptoms: "Lump, abnormal bleeding, prolonged cough, unexplained weight loss" },
+            { name: "Leukaemia", cause: "Abnormal WBC overproduction", organ: "Bone marrow, blood", symptoms: "Fever, fatigue, infections, weight loss, easy bleeding/bruising" },
+            { name: "Epidemic Dropsy", cause: "Argemone mexicana oil adulteration in mustard oil", organ: "Blood vessels, kidneys", symptoms: "Oedema of extremities, proteinuria, heart failure risk" },
+            { name: "Silicosis", cause: "Inhaled silica dust", organ: "Lungs", symptoms: "Lung fibrosis, severe breathing difficulty" },
+            { name: "Itai-Itai Disease", cause: "Cadmium poisoning", organ: "Bones, kidneys", symptoms: "Severe spine/joint pain ('ouch-ouch'), bone softening, kidney failure" },
+            { name: "Minamata Disease", cause: "Mercury poisoning (methylmercury in fish)", organ: "Nervous system", symptoms: "Ataxia, numbness, muscle weakness, hearing/speech damage" },
+            { name: "Blue Baby Syndrome", cause: "Nitrate in drinking water → methemoglobin", organ: "Blood (oxygen transport)", symptoms: "Blue skin colouration in infants; can be fatal" },
+            { name: "Knock-Knee Syndrome", cause: "Fluoride toxicity", organ: "Bones (knees)", symptoms: "Knees angle inward and touch (genu valgum)" },
+            { name: "Cerebral Palsy", cause: "Brain injury/malformation during development", organ: "Brain, movement control", symptoms: "Poor coordination, stiff/weak muscles, tremors" },
+            { name: "Alzheimer's Disease", cause: "β-amyloid precursor protein accumulation", organ: "Brain", symptoms: "Progressive memory loss, dementia" },
+            { name: "Liver Cirrhosis", cause: "Alcoholism, hepatitis, fatty liver disease", organ: "Liver", symptoms: "Fatigue, itching, leg swelling, yellow skin, fluid in abdomen" },
+            { name: "Jaundice", cause: "Bilirubin buildup in blood", organ: "Liver (bile excretion)", symptoms: "Yellowish skin/eyes; not contagious" },
+            { name: "Oral Submucous Fibrosis (OSF)", cause: "Areca nut / gutkha / tobacco chewing", organ: "Oral cavity", symptoms: "Progressive fibrosis, inability to open mouth fully" },
+            { name: "Lathyrism", cause: "Excess consumption of Khesari dal (Lathyrus sativus)", organ: "Nervous system (lower limbs)", symptoms: "Muscle weakness, spasms, paralysis of lower limbs" }
+        ];
+
+        // --- 3. GENETIC & CHROMOSOMAL DISEASES ---
+        const geneticData = [
+            { name: "Albinism", defect: "Absence/defect of tyrosinase enzyme", pattern: "Autosomal recessive", symptoms: "Absent/partial melanin in skin, hair, eyes; sunburn/skin-cancer susceptibility" },
+            { name: "Phenylketonuria (PKU)", defect: "Lack of phenylalanine hydroxylase", pattern: "Autosomal recessive (inborn error)", symptoms: "Brain damage, severe intellectual disability, seizures" },
+            { name: "Haemophilia", defect: "Defect in blood-clotting factor gene", pattern: "X-linked recessive (males affected, females carriers)", symptoms: "Impaired blood clotting; Bleeder's / Royal Disease" },
+            { name: "Alkaptonuria (AKU)", defect: "Mutation in HGD gene → homogentisic acid buildup", pattern: "Autosomal recessive", symptoms: "Dark urine (turns black on standing); ochronosis, osteoarthropathy" },
+            { name: "Muscular Dystrophy", defect: "Abnormal gene interferes with dystrophin/muscle protein", pattern: "X-linked recessive", symptoms: "Progressive muscle weakness and degeneration" },
+            { name: "SCID (Bubble Baby Disease)", defect: "Numerous genetic mutations affecting T/B cell development", pattern: "Genetic (various forms: X-linked/Autosomal)", symptoms: "No functioning immune system at birth; extreme vulnerability to infections" },
+            { name: "Sickle Cell Disease", defect: "Gene mutation affecting haemoglobin molecule (β-globin)", pattern: "Autosomal recessive inherited disorder", symptoms: "Sickle-shaped RBCs; chronic anaemia, painful vascular occlusion crises" },
+            { name: "Thalassemia", defect: "Deficient alpha or beta globin protein chain synthesis", pattern: "Autosomal recessive inherited blood disorder", symptoms: "Fewer RBCs, low haemoglobin, mild-to-severe anaemia, bone deformities" },
+            { name: "Colour Blindness (Daltonism)", defect: "Defect in one or more colour-sensing cone cell genes", pattern: "X-linked recessive", symptoms: "Decreased ability to distinguish colours (commonly red-green)" },
+            { name: "Down Syndrome", defect: "Trisomy 21 — non-disjunction error", pattern: "Chromosomal aberration (47 chromosomes)", symptoms: "Flat facial features, small head/ears, short neck, poor muscle tone, intellectual disability" },
+            { name: "Turner Syndrome", defect: "Partial/complete loss of one X chromosome", pattern: "Chromosomal aberration (45, XO — affects females)", symptoms: "Short height, webbed neck, low-set ears, sterile ovaries, heart defects" },
+            { name: "Klinefelter Syndrome", defect: "Extra X chromosome in males", pattern: "Chromosomal aberration (47, XXY)", symptoms: "Gynecomastia, less body hair, sterile, longer limbs, wider hips" },
+            { name: "Super Male (Jacob Syndrome)", defect: "Extra Y chromosome", pattern: "Chromosomal aberration (47, XYY)", symptoms: "Often taller than average, mild learning difficulties, speech delay" },
+            { name: "Super Female (Triple X Syndrome)", defect: "Extra X chromosome in females", pattern: "Chromosomal aberration (47, XXX)", symptoms: "Taller stature, increased risk of learning disabilities or speech delay, normal fertility" },
+            { name: "Patau Syndrome", defect: "Trisomy 13 — non-disjunction error", pattern: "Chromosomal aberration (47 chromosomes)", symptoms: "Severe intellectual disability, cleft lip/palate, polydactyly, heart defects (very low survival rate)" },
+            { name: "Edward Syndrome", defect: "Trisomy 18 — non-disjunction error", pattern: "Chromosomal aberration (47 chromosomes)", symptoms: "Severe developmental delays, clenched fists with overlapping fingers, microcephaly, congenital heart disease" }
+        ];
+
+        let currentTab = 'infectious';
+        let currentData = [...infectiousData];
+        let revealedStatus = {};
+
+        function switchTab(tabName) {
+            currentTab = tabName;
+            revealedStatus = {};
+
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${tabName}`).classList.add('active');
+
+            if (tabName === 'infectious') {
+                currentData = [...infectiousData];
+            } else if (tabName === 'deficiency') {
+                currentData = [...deficiencyData];
+            } else if (tabName === 'genetic') {
+                currentData = [...geneticData];
+            }
+
+            renderTable();
+        }
+
+        function renderTable() {
+            const headerTr = document.getElementById('tableHeader');
+            const tbody = document.getElementById('diseaseTableBody');
+            tbody.innerHTML = '';
+
+            if (currentTab === 'infectious') {
+                headerTr.innerHTML = `
+                    <th class="p-4 w-1/5">Disease Name</th>
+                    <th class="p-4 w-1/6">Pathogen Type</th>
+                    <th class="p-4 w-1/5">Causative Agent</th>
+                    <th class="p-4 w-1/5">Transmission</th>
+                    <th class="p-4 w-1/4">Symptoms / Notes</th>
+                `;
+            } else if (currentTab === 'deficiency') {
+                headerTr.innerHTML = `
+                    <th class="p-4 w-1/4">Disease Name</th>
+                    <th class="p-4 w-1/4">Cause / Deficiency</th>
+                    <th class="p-4 w-1/5">Affected Organ / System</th>
+                    <th class="p-4 w-3/10">Key Symptoms</th>
+                `;
+            } else if (currentTab === 'genetic') {
+                headerTr.innerHTML = `
+                    <th class="p-4 w-1/4">Disease / Syndrome Name</th>
+                    <th class="p-4 w-1/3">Genetic Defect / Cause</th>
+                    <th class="p-4 w-1/5">Inheritance / Pattern</th>
+                    <th class="p-4 w-3/10">Key Symptoms</th>
+                `;
+            }
+
+            currentData.forEach((item, index) => {
+                const tr = document.createElement('tr');
+                tr.className = index % 2 === 0 ? 'bg-slate-800' : 'bg-slate-850';
+                
+                const isRevealed = revealedStatus[index] || false;
+
+                if (currentTab === 'infectious') {
+                    if (isRevealed) {
+                        tr.innerHTML = `
+                            <td class="p-4 font-semibold text-cyan-300">${item.name}</td>
+                            <td class="p-4"><span class="px-2.5 py-1 rounded text-xs font-bold ${item.badge}">${item.type}</span></td>
+                            <td class="p-4 text-slate-300 italic">${item.agent}</td>
+                            <td class="p-4 text-slate-300">${item.transmission}</td>
+                            <td class="p-4 text-slate-400 text-xs">${item.notes}</td>
+                        `;
+                    } else {
+                        tr.innerHTML = `
+                            <td class="p-4 font-semibold text-cyan-300">${item.name}</td>
+                            <td colspan="4" class="p-2">
+                                <div class="hidden-details" onclick="revealRow(${index})">Click to Reveal Details</div>
+                            </td>
+                        `;
+                    }
+                } else if (currentTab === 'deficiency') {
+                    if (isRevealed) {
+                        tr.innerHTML = `
+                            <td class="p-4 font-semibold text-cyan-300">${item.name}</td>
+                            <td class="p-4 text-slate-300 font-medium">${item.cause}</td>
+                            <td class="p-4 text-amber-300">${item.organ}</td>
+                            <td class="p-4 text-slate-400 text-xs">${item.symptoms}</td>
+                        `;
+                    } else {
+                        tr.innerHTML = `
+                            <td class="p-4 font-semibold text-cyan-300">${item.name}</td>
+                            <td colspan="3" class="p-2">
+                                <div class="hidden-details" onclick="revealRow(${index})">Click to Reveal Cause & Symptoms</div>
+                            </td>
+                        `;
+                    }
+                } else if (currentTab === 'genetic') {
+                    if (isRevealed) {
+                        tr.innerHTML = `
+                            <td class="p-4 font-semibold text-cyan-300">${item.name}</td>
+                            <td class="p-4 text-slate-300 font-medium">${item.defect}</td>
+                            <td class="p-4 text-purple-300 text-xs font-semibold">${item.pattern}</td>
+                            <td class="p-4 text-slate-400 text-xs">${item.symptoms}</td>
+                        `;
+                    } else {
+                        tr.innerHTML = `
+                            <td class="p-4 font-semibold text-cyan-300">${item.name}</td>
+                            <td colspan="3" class="p-2">
+                                <div class="hidden-details" onclick="revealRow(${index})">Click to Reveal Genetics & Symptoms</div>
+                            </td>
+                        `;
+                    }
+                }
+                tbody.appendChild(tr);
+            });
+        }
+
+        function revealRow(index) {
+            revealedStatus[index] = true;
+            renderTable();
+        }
+
+        function shuffleCurrentTable() {
+            revealedStatus = {};
+            for (let i = currentData.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [currentData[i], currentData[j]] = [currentData[j], currentData[i]];
+            }
+            renderTable();
+        }
+
+        function revealAllCurrent() {
+            currentData.forEach((_, index) => {
+                revealedStatus[index] = true;
+            });
+            renderTable();
+        }
+
+        function resetCurrent() {
+            revealedStatus = {};
+            renderTable();
+        }
+
+        // Initial load
+        window.onload = () => {
+            switchTab('infectious');
+        };
+    </script>
+</body>
+</html>

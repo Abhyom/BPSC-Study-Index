@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>71st BPSC Prelims Mock Test-06 — Chemistry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --parchment:#F3EEE1;
+    --parchment-deep:#EAE2CE;
+    --paper:#FBF8F1;
+    --navy:#1F2D4A;
+    --navy-deep:#141E33;
+    --gold:#B08A2E;
+    --gold-soft:#E4C77A;
+    --maroon:#7A2A2A;
+    --green:#3C6E3C;
+    --ink:#26241F;
+    --ink-soft:#5B5749;
+    --line:#D8CDAE;
+    --radius:10px;
+    --shadow: 0 2px 10px rgba(31,45,74,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.5;
+    min-height:100vh;
+  }
+  h1,h2,h3,.serif{font-family:'Playfair Display', serif;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  button{font-family:inherit;cursor:pointer;}
+
+  /* ---------- Layout shells ---------- */
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  .center-wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:48px 24px 80px;
+  }
+
+  /* ---------- Start screen ---------- */
+  .start-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:40px 36px;
+    box-shadow:var(--shadow);
+  }
+  .start-card h1{
+    font-size:2rem;
+    color:var(--navy);
+    margin:0 0 6px;
+  }
+  .start-card .subtitle{
+    color:var(--ink-soft);
+    margin:0 0 28px;
+    font-size:1rem;
+  }
+  .meta-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-bottom:28px;
+  }
+  .meta-box{
+    background:var(--parchment-deep);
+    border-radius:8px;
+    padding:14px 12px;
+    text-align:center;
+  }
+  .meta-box .num{
+    font-family:'Playfair Display', serif;
+    font-size:1.5rem;
+    color:var(--navy);
+    font-weight:700;
+    display:block;
+  }
+  .meta-box .lbl{
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+  }
+  .rules{
+    background:var(--parchment-deep);
+    border-left:3px solid var(--gold);
+    border-radius:6px;
+    padding:16px 18px;
+    margin-bottom:28px;
+    font-size:0.92rem;
+    color:var(--ink);
+  }
+  .rules li{margin-bottom:6px;}
+  .rules li:last-child{margin-bottom:0;}
+  .btn-primary{
+    display:inline-block;
+    width:100%;
+    background:var(--navy);
+    color:var(--parchment);
+    border:none;
+    border-radius:8px;
+    padding:15px 20px;
+    font-size:1.02rem;
+    font-weight:600;
+    text-align:center;
+    transition:background .15s ease;
+  }
+  .btn-primary:hover{background:var(--navy-deep);}
+  .btn-secondary{
+    display:inline-block;
+    background:transparent;
+    color:var(--navy);
+    border:1.5px solid var(--navy);
+    border-radius:8px;
+    padding:12px 18px;
+    font-size:0.92rem;
+    font-weight:600;
+    text-align:center;
+  }
+  .btn-secondary:hover{background:var(--navy);color:var(--parchment);}
+  .btn-ghost{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    border-radius:6px;
+    padding:8px 14px;
+    font-size:0.85rem;
+  }
+  .btn-ghost:hover{border-color:var(--navy);color:var(--navy);}
+
+  .history-toggle{
+    text-align:center;
+    margin-top:18px;
+  }
+
+  /* ---------- Test screen ---------- */
+  #testScreen{background:var(--parchment);}
+  .test-topbar{
+    position:sticky;top:0;z-index:50;
+    background:var(--navy);
+    color:var(--parchment);
+    padding:10px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  }
+  .topbar-left{display:flex;align-items:center;gap:14px;}
+  .topbar-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;}
+  .progress-pill{
+    font-size:0.78rem;
+    color:var(--gold-soft);
+    background:rgba(255,255,255,0.08);
+    padding:4px 10px;
+    border-radius:20px;
+  }
+  .timer-box{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    font-size:1.15rem;
+    background:rgba(255,255,255,0.1);
+    padding:6px 14px;
+    border-radius:8px;
+    letter-spacing:0.02em;
+  }
+  .timer-box.low{background:var(--maroon);color:#fff;animation:pulse 1s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.65;}}
+  .topbar-actions{display:flex;align-items:center;gap:10px;}
+  .icon-btn{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);
+    color:var(--parchment);
+    border-radius:6px;
+    padding:8px 12px;
+    font-size:0.82rem;
+    font-weight:500;
+  }
+  .icon-btn:hover{background:rgba(255,255,255,0.18);}
+  .submit-btn{
+    background:var(--gold);
+    color:var(--navy-deep);
+    border:none;
+    border-radius:6px;
+    padding:8px 16px;
+    font-weight:700;
+    font-size:0.85rem;
+  }
+  .submit-btn:hover{background:var(--gold-soft);}
+
+  .test-body{
+    display:flex;
+    max-width:1400px;
+    margin:0 auto;
+    align-items:flex-start;
+  }
+  .questions-col{
+    flex:1;
+    min-width:0;
+    padding:28px 24px 120px;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .qcard{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 22px 18px;
+    margin-bottom:18px;
+    scroll-margin-top:80px;
+  }
+  .qcard.answered{border-left:4px solid var(--green);}
+  .qcard.flagged{border-left:4px solid var(--gold);}
+  .qhead{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .qnum{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    color:var(--navy);
+    background:var(--parchment-deep);
+    border-radius:6px;
+    padding:2px 9px;
+    font-size:0.82rem;
+    flex-shrink:0;
+  }
+  .flag-btn{
+    background:none;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:3px 10px;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+  }
+  .flag-btn.on{background:var(--gold-soft);border-color:var(--gold);color:var(--navy-deep);}
+  .qstem{
+    white-space:pre-line;
+    font-size:1rem;
+    margin-bottom:14px;
+    color:var(--ink);
+  }
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .opt{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--parchment);
+    transition:border-color .12s ease, background .12s ease;
+  }
+  .opt:hover{border-color:var(--gold);}
+  .opt input{margin-top:3px;accent-color:var(--navy);flex-shrink:0;}
+  .opt.selected{
+    border-color:var(--navy);
+    background:#EDE7D6;
+  }
+  .opt-key{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    color:var(--navy);
+    flex-shrink:0;
+  }
+  .opt-text{font-size:0.95rem;}
+
+  /* palette sidebar */
+  .palette-col{
+    width:260px;
+    flex-shrink:0;
+    position:sticky;
+    top:64px;
+    max-height:calc(100vh - 80px);
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding:24px 20px 40px 0;
+  }
+  .palette-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px;
+  }
+  .palette-card h3{
+    margin:0 0 10px;
+    font-size:0.95rem;
+    color:var(--navy);
+  }
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:0.72rem;color:var(--ink-soft);}
+  .legend span{display:flex;align-items:center;gap:4px;}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  .dot.answered{background:var(--green);}
+  .dot.flagged{background:var(--gold);}
+  .dot.empty{background:var(--line);}
+  .grid150{
+    display:grid;
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    gap:6px;
+  }
+  .pnum{
+    min-width:0;
+    padding:0;
+    aspect-ratio:1;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:5px;
+    border:1px solid var(--line);
+    background:var(--parchment);
+    font-size:0.72rem;
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--ink-soft);
+  }
+  .pnum.answered{background:var(--green);color:#fff;border-color:var(--green);}
+  .pnum.flagged{box-shadow:inset 0 0 0 2px var(--gold);}
+  .pnum:hover{border-color:var(--navy);}
+
+  .palette-toggle-mobile{display:none;}
+
+  /* ---------- Results screen ---------- */
+  .results-wrap{max-width:920px;margin:0 auto;padding:36px 24px 100px;}
+  .results-summary{
+    background:var(--navy);
+    color:var(--parchment);
+    border-radius:var(--radius);
+    padding:32px 30px;
+    margin-bottom:24px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:24px;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .score-big{
+    font-family:'Playfair Display',serif;
+    font-size:2.6rem;
+    font-weight:700;
+    color:var(--gold-soft);
+  }
+  .score-label{font-size:0.85rem;color:#C9CEDA;margin-top:2px;}
+  .stat-row{display:flex;gap:26px;flex-wrap:wrap;}
+  .stat{text-align:center;}
+  .stat .n{font-family:'IBM Plex Mono',monospace;font-size:1.3rem;font-weight:600;}
+  .stat .l{font-size:0.72rem;color:#C9CEDA;text-transform:uppercase;letter-spacing:0.03em;}
+  .stat.correct .n{color:#8FD19E;}
+  .stat.incorrect .n{color:#E39A9A;}
+  .stat.unattempted .n{color:#D9D2B8;}
+
+  .tabs{
+    display:flex;
+    gap:6px;
+    margin-bottom:18px;
+    border-bottom:2px solid var(--line);
+  }
+  .tab-btn{
+    background:none;border:none;
+    padding:10px 18px;
+    font-weight:600;
+    font-size:0.9rem;
+    color:var(--ink-soft);
+    border-bottom:2px solid transparent;
+    margin-bottom:-2px;
+  }
+  .tab-btn.active{color:var(--navy);border-bottom-color:var(--navy);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  .review-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    margin-bottom:16px;
+  }
+  .review-card.correct{border-left:4px solid var(--green);}
+  .review-card.incorrect{border-left:4px solid var(--maroon);}
+  .review-card.unattempted{border-left:4px solid var(--ink-soft);}
+  .review-tag{
+    display:inline-block;
+    font-size:0.68rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    padding:2px 9px;
+    border-radius:10px;
+    margin-bottom:8px;
+  }
+  .review-tag.correct{background:#DDEDDD;color:var(--green);}
+  .review-tag.incorrect{background:#F2DEDE;color:var(--maroon);}
+  .review-tag.unattempted{background:#E8E4D6;color:var(--ink-soft);}
+  .review-opt{
+    display:flex;gap:10px;padding:7px 10px;border-radius:6px;font-size:0.92rem;margin-bottom:4px;
+  }
+  .review-opt .opt-key{font-family:'IBM Plex Mono',monospace;font-weight:600;}
+  .review-opt.your-wrong{background:#F2DEDE;}
+  .review-opt.correct-answer{background:#DDEDDD;}
+  .ex-first{
+    margin-bottom:5px;
+    line-height:1.55;
+  }
+  .ex-bullet{
+    display:flex;
+    gap:8px;
+    margin-bottom:4px;
+    line-height:1.55;
+  }
+  .ex-dot{
+    flex-shrink:0;
+    color:var(--accent);
+    font-weight:700;
+    margin-top:1px;
+  }
+  .explanation{
+    margin-top:12px;
+    padding:12px 14px;
+    background:var(--parchment-deep);
+    border-radius:8px;
+    font-size:0.9rem;
+    color:var(--ink);
+  }
+  .explanation .exlabel{
+    font-weight:700;color:var(--navy);font-size:0.75rem;text-transform:uppercase;
+    letter-spacing:0.03em;display:block;margin-bottom:4px;
+  }
+  .results-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
+
+  /* ---------- History screen ---------- */
+  .history-list{display:flex;flex-direction:column;gap:12px;margin-top:20px;}
+  .history-item{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .history-item .hdate{font-size:0.82rem;color:var(--ink-soft);}
+  .history-item .hscore{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);font-size:1.2rem;}
+  .empty-note{color:var(--ink-soft);font-style:italic;padding:20px 0;text-align:center;}
+
+  /* ---------- Modal ---------- */
+  .modal-overlay{
+    display:none;position:fixed;inset:0;background:rgba(20,30,51,0.55);
+    align-items:center;justify-content:center;z-index:100;padding:20px;
+  }
+  .modal-overlay.active{display:flex;}
+  .modal-box{
+    background:var(--paper);border-radius:var(--radius);padding:28px 26px;max-width:400px;width:100%;
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
+  }
+  .modal-box h3{margin:0 0 10px;color:var(--navy);}
+  .modal-box p{font-size:0.92rem;color:var(--ink-soft);margin-bottom:20px;}
+  .modal-actions{display:flex;gap:10px;justify-content:flex-end;}
+
+  footer.credit{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:0.72rem;
+    padding:20px;
+  }
+
+  @media (max-width:920px){
+    .palette-col{
+      display:none;
+      position:fixed;
+      top:0;right:0;bottom:0;
+      width:min(85vw,320px);
+      max-height:none;
+      background:var(--parchment);
+      z-index:90;
+      box-shadow:-4px 0 20px rgba(0,0,0,0.2);
+      padding:20px;
+      overflow-y:auto;
+      overflow-x:hidden;
+    }
+    .palette-col.open{display:block;}
+    .palette-toggle-mobile{
+      display:inline-block;
+    }
+    .test-body{display:block;}
+    .questions-col{padding:20px 14px 120px;max-width:100%;}
+    .topbar-title{display:none;}
+    .meta-grid{grid-template-columns:repeat(3,1fr);}
+    .results-summary{flex-direction:column;align-items:flex-start;}
+  }
+  @media (max-width:480px){
+    .grid150{grid-template-columns:repeat(5,minmax(0,1fr));}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ START SCREEN ============ -->
+<section id="startScreen" class="screen active">
+  <div class="center-wrap">
+    <div class="start-card">
+      <h1>71st BPSC Prelims Mock Test-06 — Chemistry</h1>
+      <p class="subtitle">150 questions · Full-length simulation · Single attempt sitting</p>
+
+      <div class="meta-grid">
+        <div class="meta-box"><span class="num">150</span><span class="lbl">Questions</span></div>
+        <div class="meta-box"><span class="num">2</span><span class="lbl">Hours</span></div>
+        <div class="meta-box"><span class="num">MCQ</span><span class="lbl">Format</span></div>
+      </div>
+
+      <ul class="rules">
+        <li>The timer starts the moment you click <strong>Start Test</strong> and runs for 2 hours.</li>
+        <li>All 150 questions appear together on one scrollable page — jump between them using the number palette.</li>
+        <li>Marking scheme: <strong>+1</strong> for each correct answer, <strong>−⅓</strong> for each incorrect answer, <strong>0</strong> for unattempted questions.</li>
+        <li>The test auto-submits when time runs out; you can also submit manually at any time.</li>
+        <li>Your progress is saved automatically, so a refresh will not lose your answers.</li>
+        <li>After submitting, you'll get a full review — correct, incorrect, and explanations for each question.</li>
+        <li>Every attempt is stored on this device so you can cross-reference it later.</li>
+      </ul>
+
+      <button class="btn-primary" id="startBtn">Start Test</button>
+      <div class="history-toggle">
+        <button class="btn-ghost" id="viewHistoryBtn">View past attempts →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEST SCREEN ============ -->
+<section id="testScreen" class="screen">
+  <div class="test-topbar">
+    <div class="topbar-left">
+      <span class="topbar-title">BPSC Chemistry Test-06</span>
+      <span class="progress-pill" id="progressPill">0 / 150 answered</span>
+    </div>
+    <div class="topbar-actions">
+      <div class="timer-box" id="timerBox">02:00:00</div>
+      <button class="icon-btn palette-toggle-mobile" id="paletteToggleBtn">Questions</button>
+      <button class="submit-btn" id="submitBtn">Submit</button>
+    </div>
+  </div>
+
+  <div class="test-body">
+    <div class="questions-col" id="questionsCol"></div>
+    <div class="palette-col" id="paletteCol">
+      <div class="palette-card">
+        <h3>Question Palette</h3>
+        <div class="legend">
+          <span><span class="dot answered"></span>Answered</span>
+          <span><span class="dot empty"></span>Unanswered</span>
+          <span><span class="dot" style="box-shadow:inset 0 0 0 2px var(--gold);background:transparent;"></span>Flagged</span>
+        </div>
+        <div class="grid150" id="paletteGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS SCREEN ============ -->
+<section id="resultsScreen" class="screen">
+  <div class="results-wrap">
+    <div class="results-summary">
+      <div>
+        <div class="score-big" id="scoreBig">0 / 150</div>
+        <div class="score-label" id="scoreDate">—</div>
+        <div class="score-label" style="margin-top:2px;">Marking: +1 correct · −⅓ incorrect · 0 unattempted</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat correct"><div class="n" id="statCorrect">0</div><div class="l">Correct</div></div>
+        <div class="stat incorrect"><div class="n" id="statIncorrect">0</div><div class="l">Incorrect</div></div>
+        <div class="stat unattempted"><div class="n" id="statUnattempted">0</div><div class="l">Unattempted</div></div>
+        <div class="stat"><div class="n" id="statAccuracy">0%</div><div class="l">Accuracy</div></div>
+        <div class="stat"><div class="n" id="statTime">—</div><div class="l">Time used</div></div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="all">All (150)</button>
+      <button class="tab-btn" data-tab="correct">Correct</button>
+      <button class="tab-btn" data-tab="incorrect">Incorrect</button>
+      <button class="tab-btn" data-tab="unattempted">Unattempted</button>
+      <button class="tab-btn" data-tab="flagged">Flagged</button>
+    </div>
+
+    <div class="tab-panel active" id="panel-all"></div>
+    <div class="tab-panel" id="panel-correct"></div>
+    <div class="tab-panel" id="panel-incorrect"></div>
+    <div class="tab-panel" id="panel-unattempted"></div>
+    <div class="tab-panel" id="panel-flagged"></div>
+
+    <div class="results-actions">
+      <button class="btn-secondary" id="backToStartBtn">Back to start</button>
+      <button class="btn-secondary" id="toHistoryFromResultsBtn">View all attempts</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HISTORY SCREEN ============ -->
+<section id="historyScreen" class="screen">
+  <div class="results-wrap">
+    <h1 class="serif" style="color:var(--navy);margin-bottom:4px;">Past Attempts</h1>
+    <p style="color:var(--ink-soft);margin-top:0;">Stored locally on this device for cross-reference. Click an attempt to reopen its full review.</p>
+    <div class="history-list" id="historyList"></div>
+    <div class="results-actions">
+      <button class="btn-secondary" id="backToStartFromHistoryBtn">Back to start</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONFIRM SUBMIT MODAL ============ -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box">
+    <h3 id="confirmTitle">Submit test?</h3>
+    <p id="confirmText">You still have unanswered questions. Are you sure you want to submit now? This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="cancelSubmitBtn">Cancel</button>
+      <button class="btn-primary" style="width:auto;" id="confirmSubmitBtn">Submit anyway</button>
+    </div>
+  </div>
+</div>
+
+<footer class="credit">Stored locally in your browser — clearing site data will remove saved attempts.</footer>
+
+<script>
+const QUESTIONS = [{"id": 1, "stem": "Which of the following statements about isotopes is/are correct?\n1. Isotopes of an element have the same number of protons but different number of neutrons.\n2. Isotopes always have different chemical properties.\n3. Some isotopes are used in medicine and archaeology.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "c", "explanation": "Statement 1 is correct. Isotopes differ in neutron number, which affects their mass but not their atomic number.\n• Statement 2 is incorrect. Chemical properties largely depend on electrons, and isotopes of the same element have identical electronic configurations.\n• Statement 3 is correct. C-14 is used in radiocarbon dating, and I-131 in treating thyroid disorders.\n• Option (a) is wrong due to Statement 2 being incorrect.\n• Option (b) excludes correct Statement 1.\n• Option (d) includes an incorrect statement."}, {"id": 2, "stem": "Which of the following best explains the process of crystallisation?", "options": [{"key": "a", "text": "Conversion of vapours directly into solid"}, {"key": "b", "text": "Evaporation of solution to get pure solid"}, {"key": "c", "text": "Reaction of metal and acid forming crystals"}, {"key": "d", "text": "Solidification of molten metal into rods"}], "correct": "b", "explanation": "Option (a) defines sublimation, not crystallisation.\n• Option (b) is correct. Crystallisation separates pure solids from their solutions by evaporation.\n• Option (c) confuses crystal formation during a reaction with the purification process.\n• Option (d) refers to casting, which is a physical shaping process, not a chemical purification.\n• Hence, only (b) matches the chemical meaning of crystallisation."}, {"id": 3, "stem": "Which one of the following is a mixture?", "options": [{"key": "a", "text": "Air"}, {"key": "b", "text": "Water"}, {"key": "c", "text": "Carbon dioxide"}, {"key": "d", "text": "Sodium chloride"}], "correct": "a", "explanation": "Air is a mixture of gases like nitrogen, oxygen, and others, not chemically bonded.\n• Water is a pure compound formed by fixed-ratio bonding between hydrogen and oxygen.\n• CO₂ is a molecular compound with carbon and oxygen atoms bonded covalently.\n• Sodium chloride is an ionic compound with Na⁺ and Cl⁻ ions.\n• Thus, only air qualifies as a mixture among the options."}, {"id": 4, "stem": "Consider the following statements regarding electrovalent (ionic) bonds:\n1. They involve sharing of electrons.\n2. They are formed between metals and non-metals.\n3. The resulting compounds have high melting points", "options": [{"key": "a", "text": "1 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 2 only"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is false. Electrovalent bonds involve electron transfer, not sharing.\n• Statement 2 is true. Ionic bonds typically form between metals and non-metals like NaCl.\n• Statement 3 is true. Ionic compounds are stable and have high melting/boiling points.\n• Option (a) includes only the incorrect statement.\n• Option (c) wrongly includes Statement 1.\n• Option (d) is invalid due to one false statement."}, {"id": 5, "stem": "Which of the following is NOT correctly matched?", "options": [{"key": "a", "text": "TNT – Explosive"}, {"key": "b", "text": "Rayon – Natural Fibre"}, {"key": "c", "text": "Nylon – Synthetic Polymer"}, {"key": "d", "text": "RDX – Military explosive"}], "correct": "b", "explanation": "TNT is a known explosive used in mining and defense.\n• Rayon, although derived from natural cellulose, is chemically processed and thus considered semi-synthetic.\n• Nylon is a fully synthetic polymer used in textiles and ropes.\n• RDX is a powerful explosive used in military-grade ammunition.\n• Rayon is not a purely natural fibre, making (b) incorrectly matched."}, {"id": 6, "stem": "Which of the following is a correct example of a covalent compound?", "options": [{"key": "a", "text": "Sodium chloride"}, {"key": "b", "text": "Magnesium oxide"}, {"key": "c", "text": "Methane"}, {"key": "d", "text": "Calcium chloride"}], "correct": "c", "explanation": "Sodium chloride is an ionic compound formed by transfer of electrons between Na and Cl.\n• Magnesium oxide is also ionic, with Mg²⁺ and O²⁻ ions forming a strong electrovalent bond.\n• Methane (CH₄) is a covalent compound where carbon shares electrons with four hydrogen atoms.\n• Calcium chloride is an ionic compound made of Ca²⁺ and Cl⁻ ions.\n• Therefore, only methane among the options has covalent bonding through electron sharing."}, {"id": 7, "stem": "Which of the following statements about the pH of a solution is/are correct?\n1. The pH of a neutral solution at 25°C is always 7.\n2. The pH of a solution increases as the concentration of H⁺ ions decreases.\n3. The pH scale is linear with respect to H⁺ ion concentration.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2, and 3"}], "correct": "a", "explanation": "Statement 1 is correct. At 25°C, a neutral solution has [H⁺] = [OH⁻] = 10⁻⁷ M, so pH = 7.\n• Statement 2 is correct. pH = -log[H⁺], so as [H⁺] decreases, pH increases.\n• Statement 3 is incorrect. The pH scale is logarithmic, not linear, with respect to [H⁺]. A change of 1 pH unit corresponds to a tenfold change in [H⁺]."}, {"id": 8, "stem": "Which one of the following is correctly matched regarding types of polymers?", "options": [{"key": "a", "text": "Nylon – Thermosetting"}, {"key": "b", "text": "Bakelite – Thermoplastic"}, {"key": "c", "text": "Polythene – Thermoplastic"}, {"key": "d", "text": "Melamine – Natural polymer"}], "correct": "c", "explanation": "Nylon is a synthetic polymer, but it is not thermosetting; it's thermoplastic.\n• Bakelite is a thermosetting plastic used in switches and electric insulators, so (b) is wrong.\n• Polythene (polyethylene) is a thermoplastic; it can be remoulded on heating. So (c) is correct.\n• Melamine is a synthetic thermosetting polymer, not natural.\n• Thus, only option (c) provides a correct match of polymer and type."}, {"id": 9, "stem": "Which of the following statements are true about colloids?\n1. They are homogeneous mixtures.\n2. They scatter a beam of light.\n3. They show Brownian motion.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is incorrect. Colloids are heterogeneous mixtures, although they appear uniform to the naked eye.\n• Statement 2 is correct. Colloids exhibit the Tyndall effect and scatter light.\n• Statement 3 is correct. Particles in colloids show random motion called Brownian motion."}, {"id": 10, "stem": "What is the purpose of adding limestone in cement manufacture?", "options": [{"key": "a", "text": "Acts as a coloring agent"}, {"key": "b", "text": "Provides silica content"}, {"key": "c", "text": "Acts as a binder"}, {"key": "d", "text": "Provides calcium oxide"}], "correct": "d", "explanation": "Limestone (CaCO₃) is used in cement to supply calcium oxide after thermal decomposition.\n• It does not add color; iron oxide contributes to color (a is wrong).\n• Silica is added separately using clay or sand, not via limestone (b is incorrect).\n• The final product binds due to calcium silicates, but limestone's direct role is CaO supply, not as a binder itself (c is not precise).\n• Therefore, option (d) is the most technically accurate."}, {"id": 11, "stem": "Which of the following statements about the VSEPR theory is/are correct?\n1. The VSEPR theory predicts molecular geometry based on electron pair repulsion.\n2. Lone pairs exert greater repulsion than bonding pairs.\n3. The VSEPR theory can predict the exact bond angles in all molecules.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2, and 3"}], "correct": "a", "explanation": "Statement 1 is correct. VSEPR (Valence Shell Electron Pair Repulsion) theory predicts molecular shapes by minimizing electron pair repulsions.\n• Statement 2 is correct. Lone pairs are closer to the nucleus and exert greater repulsion than bonding pairs.\n• Statement 3 is incorrect. VSEPR provides approximate bond angles; actual angles may vary due to factors like lone pair effects or electronegativity differences (e.g., H₂O has 104.5° instead of the ideal 109.5°)."}, {"id": 12, "stem": "Which of the following metals is extracted by electrolytic reduction?", "options": [{"key": "a", "text": "Iron"}, {"key": "b", "text": "Copper"}, {"key": "c", "text": "Aluminium"}, {"key": "d", "text": "Zinc"}], "correct": "c", "explanation": "Iron is extracted by reduction using carbon in blast furnaces, not by electrolysis.\n• Copper can be refined by electrolysis, but primary extraction involves roasting and reduction.\n• Aluminium is highly reactive and extracted from bauxite by electrolysis using the Hall-Héroult process.\n• Zinc is usually extracted via roasting followed by reduction with carbon or electrolysis of zinc sulfate.\n• Hence, only aluminium is primarily extracted using electrolysis."}, {"id": 13, "stem": "Which of the following statements is/are correct about acids?\n1. Acids turn blue litmus red.\n2. Acids have a pH less than 7.\n3. Acids donate hydroxide ions in solution.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Blue litmus paper turns red in acidic solutions.\n• Statement 2 is correct. Acids have pH values less than 7.\n• Statement 3 is incorrect. Acids donate hydrogen (H⁺) ions in solution, not hydroxide (OH⁻) ions."}, {"id": 14, "stem": "Which of the following correctly describes sublimation?", "options": [{"key": "a", "text": "Solid to gas without becoming liquid"}, {"key": "b", "text": "Gas to solid via a liquid state"}, {"key": "c", "text": "Liquid to gas via boiling"}, {"key": "d", "text": "Solid to liquid without heating"}], "correct": "a", "explanation": "Sublimation is the direct phase change from solid to gas without passing through the liquid state.\n• Option (b) describes deposition, not sublimation.\n• Option (c) is boiling or evaporation, not sublimation.\n• Option (d) is incorrect and physically inaccurate; solids melt to liquids with heating.\n• Therefore, the correct description of sublimation is option (a)."}, {"id": 15, "stem": "Which of the following compounds contains a coordinate bond?", "options": [{"key": "a", "text": "H₂O"}, {"key": "b", "text": "NH₃"}, {"key": "c", "text": "CO"}, {"key": "d", "text": "CH₄"}], "correct": "c", "explanation": "H₂O contains only covalent bonds, where electrons are shared equally.\n• NH₃ also contains covalent bonds. However, in ammonium ion (NH₄⁺), a coordinate bond is present, but not in NH₃ alone.\n• CO has a triple bond, with one being a coordinate bond from oxygen to carbon.\n• CH₄ is a simple covalent molecule with no coordinate bonds.\n• Therefore, carbon monoxide (CO) is the correct answer due to the presence of a coordinate bond."}, {"id": 16, "stem": "Which of the following is/are characteristics of a chemical change?\n1. Formation of a new substance\n2. Reversibility of the process\n3. Change in energy (heat or light may be released or absorbed)", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "1 and 3 only"}, {"key": "c", "text": "2 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is correct. A new substance with different properties is formed during a chemical change.\n• Statement 2 is incorrect. Most chemical changes are irreversible or not easily reversible.\n• Statement 3 is correct. Energy changes are common — for example, heat in combustion or light in fireworks.\n• Option (a) includes a false statement.\n• Option (c) includes incorrect Statement 2.\n• Option (d) includes all three but wrongly adds Statement 2.\n• Therefore, only 1 and 3 are correct."}, {"id": 17, "stem": "Which among the following is a colloidal solution?", "options": [{"key": "a", "text": "Salt solution in water"}, {"key": "b", "text": "Milk"}, {"key": "c", "text": "Sugar dissolved in water"}, {"key": "d", "text": "Distilled water"}], "correct": "b", "explanation": "Salt solution is a true solution, not a colloid, as salt dissolves completely.\n• Milk is a colloidal solution — fats are dispersed in water, showing Tyndall effect.\n• Sugar solution is also a true solution — it doesn't scatter light or show Brownian motion.\n• Distilled water is pure and does not contain dispersed particles at all.\n• Thus, milk is the correct answer as a classic example of colloid."}, {"id": 18, "stem": "What is the main purpose of adding gypsum in the manufacture of cement?", "options": [{"key": "a", "text": "Increases strength"}, {"key": "b", "text": "Acts as a binding agent"}, {"key": "c", "text": "Delays setting time"}, {"key": "d", "text": "Increases water absorption"}], "correct": "c", "explanation": "Gypsum (CaSO₄·2H₂O) is added in small quantities to cement to regulate setting time.\n• It prevents flash setting by slowing down the reaction between cement and water.\n• It does not directly increase strength — that is the role of curing and hydration.\n• It is not a binder; the cement itself is the binding material.\n• Water absorption is related to porosity, not gypsum addition.\n• Therefore, gypsum's primary role is to delay the setting of cement."}, {"id": 19, "stem": "Which of the following is NOT a property of metals?", "options": [{"key": "a", "text": "Ductility"}, {"key": "b", "text": "High electrical conductivity"}, {"key": "c", "text": "Brittleness"}, {"key": "d", "text": "Malleability"}], "correct": "c", "explanation": "Metals are ductile — they can be drawn into wires (like copper).\n• They are excellent conductors of electricity due to free electrons.\n• They are malleable — can be hammered into sheets (like aluminium).\n• Brittleness is a property of non-metals like sulfur or glass; metals bend or stretch instead of breaking easily.\n• So, the correct answer is (c), as brittleness is not typical of metals."}, {"id": 20, "stem": "Which among the following compounds does NOT contain a sigma (σ) bond?", "options": [{"key": "a", "text": "N₂"}, {"key": "b", "text": "O₂"}, {"key": "c", "text": "CO"}, {"key": "d", "text": "None of the above"}], "correct": "d", "explanation": "N₂ has a triple bond: one sigma and two pi bonds.\n• O₂ has a double bond: one sigma and one pi bond.\n• CO has a triple bond including a sigma bond and a coordinate bond.\n• All these molecules contain at least one sigma bond, which is the first bond formed in any covalent interaction.\n• Thus, none of the above compounds lack sigma bonds."}, {"id": 21, "stem": "Which of the following statements about alloys is/are correct?\n1. Alloys are mixtures of two or more elements, at least one of which is a metal.\n2. Alloys always have fixed compositions like compounds.\n3. Alloys often have improved properties over pure metals.", "options": [{"key": "a", "text": "1 and 3 only"}, {"key": "b", "text": "1 and 2 only"}, {"key": "c", "text": "2 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Alloys are solid mixtures, commonly made to improve properties.\n• Statement 2 is incorrect. Alloys do not have fixed chemical formulas; their composition can vary.\n• Statement 3 is correct. Steel, an alloy of iron and carbon, is stronger than pure iron."}, {"id": 22, "stem": "Which of the following statements about Gibbs free energy (ΔG) is/are correct?\n1. A negative ΔG indicates a spontaneous reaction under standard conditions.\n2. ΔG is always zero at equilibrium.\n3. ΔG depends only on the enthalpy change (ΔH) and not on entropy (ΔS).", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2, and 3"}], "correct": "a", "explanation": "Statement 1 is correct. A negative ΔG indicates spontaneity under standard conditions (ΔG° < 0).\n• Statement 2 is correct. At equilibrium, ΔG = 0, as the system is balanced.\n• Statement 3 is incorrect. ΔG = ΔH - TΔS, so it depends on both enthalpy (ΔH) and entropy (ΔS)."}, {"id": 23, "stem": "Which of the following statements about hybridization is/are correct?\n1. Hybridization involves the mixing of atomic orbitals to form new hybrid orbitals.\n2. sp³ hybridization always results in a tetrahedral electron geometry.\n3. Hybridization occurs in all molecules, including those with only sigma bonds.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2, and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Hybridization mixes atomic orbitals to form hybrid orbitals suitable for bonding.\n• Statement 2 is correct. sp³ hybridization results in four equivalent orbitals arranged tetrahedrally (e.g., CH₄).\n• Statement 3 is incorrect. Hybridization is not universal; it depends on the molecule's bonding and geometry (e.g., H₂ has no hybridization)."}, {"id": 24, "stem": "Which of the following is a homogeneous mixture?", "options": [{"key": "a", "text": "Milk"}, {"key": "b", "text": "Air"}, {"key": "c", "text": "Oil and water"}, {"key": "d", "text": "Soil"}], "correct": "b", "explanation": "Milk is a colloid — appears uniform but is heterogeneous.\n• Air is a true homogeneous mixture of gases uniformly distributed.\n• Oil and water form a heterogeneous mixture and separate into layers.\n• Soil contains particles of different sizes and is clearly heterogeneous.\n• So, only air is truly homogeneous."}, {"id": 25, "stem": "Which of the following statements are correct about coordinate bonds?\n1. Both electrons are contributed by one atom.\n2. Coordinate bonds are a type of covalent bond.\n3. Once formed, they are indistinguishable from normal covalent bonds.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "d", "explanation": "Statement 1 is true. In coordinate bonds, one atom donates both electrons for bonding.\n• Statement 2 is correct. Coordinate bonds fall under the covalent bond category.\n• Statement 3 is also true. After formation, coordinate bonds behave like regular covalent bonds.\n• All three statements are correct, so the right choice is (d)."}, {"id": 26, "stem": "Which of the following is NOT a component of water gas?", "options": [{"key": "a", "text": "Hydrogen"}, {"key": "b", "text": "Carbon monoxide"}, {"key": "c", "text": "Methane"}, {"key": "d", "text": "Carbon dioxide"}], "correct": "c", "explanation": "Water gas is a mixture of hydrogen (H₂) and carbon monoxide (CO), used as a fuel.\n• Carbon dioxide may be present in small quantities as an impurity, but it is not a main component.\n• Methane (CH₄) is not a constituent of water gas — it is a major part of natural gas, not water gas.\n• Therefore, methane is the correct answer as it does not belong."}, {"id": 27, "stem": "Which among the following is a suspension?", "options": [{"key": "a", "text": "Blood"}, {"key": "b", "text": "Chalk powder in water"}, {"key": "c", "text": "Salt solution"}, {"key": "d", "text": "Milk"}], "correct": "b", "explanation": "Blood is technically a colloid — plasma with suspended cells but stable in structure.\n• Chalk powder in water is a classic example of suspension — particles settle on standing and can be filtered.\n• Salt solution is a true solution, fully dissolved at the molecular level.\n• Milk is a colloid with fat droplets dispersed in water.\n• Thus, only chalk in water qualifies as a suspension."}, {"id": 28, "stem": "Which of the following statements about electrochemical cells is/are correct?\n1. The anode is the electrode where oxidation occurs.\n2. Electrons flow from the cathode to the anode in the external circuit.\n3. The salt bridge maintains electrical neutrality in the cell.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2, and 3"}], "correct": "c", "explanation": "Statement 1 is correct. Oxidation (loss of electrons) occurs at the anode.\n• Statement 2 is incorrect. Electrons flow from the anode to the cathode in the external circuit.\n• Statement 3 is correct. The salt bridge allows ion flow to maintain charge neutrality in the half-cells."}, {"id": 29, "stem": "Which of the following statements about chemical kinetics is/are correct?\n1. The rate of a reaction is always proportional to the concentration of reactants.\n2. A catalyst increases the rate of reaction by lowering the activation energy.\n3. The rate constant of a reaction is independent of temperature.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2, and 3"}], "correct": "b", "explanation": "Statement 1 is incorrect. The rate depends on the rate law, which may not be directly proportional to reactant concentrations (e.g., zero-order reactions).\n• Statement 2 is correct. Catalysts provide an alternative pathway with lower activation energy.\n• Statement 3 is incorrect. The rate constant (k) varies with temperature, as described by the Arrhenius equation."}, {"id": 30, "stem": "Which of the following statements about isotopes and isobars is/are true?\n1. Isotopes have same atomic number but different mass numbers.\n2. Isobars have same mass number but different atomic numbers.\n3. Isotopes belong to different elements.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "1 and 3 only"}, {"key": "c", "text": "2 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Isotopes are atoms of the same element with different neutron counts.\n• Statement 2 is correct. Isobars like Ar-40 and Ca-40 have same mass but belong to different elements.\n• Statement 3 is incorrect. Isotopes are of the same element, not different ones."}, {"id": 31, "stem": "Which of the following is used in the manufacture of rayon?", "options": [{"key": "a", "text": "Coal tar"}, {"key": "b", "text": "Wood pulp"}, {"key": "c", "text": "Petroleum"}, {"key": "d", "text": "Natural rubber"}], "correct": "b", "explanation": "Rayon is made by processing cellulose extracted from wood pulp, making it a semi-synthetic fiber.\n• Coal tar is used in dyes and medicines, but not for rayon production.\n• Petroleum is used for producing synthetic fibers like polyester, not rayon.\n• Natural rubber is used for making elastomers and not rayon.\n• Therefore, the correct raw material for rayon is wood pulp."}, {"id": 32, "stem": "Which of the following is an endothermic physical change?", "options": [{"key": "a", "text": "Condensation of steam"}, {"key": "b", "text": "Melting of ice"}, {"key": "c", "text": "Burning of coal"}, {"key": "d", "text": "Neutralisation of acid and base"}], "correct": "b", "explanation": "Condensation of steam is exothermic — it releases heat as gas turns to liquid.\n• Melting of ice is endothermic as it absorbs heat to break solid structure into liquid.\n• Burning of coal is a chemical, exothermic reaction.\n• Neutralisation is also a chemical process that releases heat.\n• Hence, among the options, only melting of ice is an endothermic physical change."}, {"id": 33, "stem": "Which of the following is correctly matched with its type of bonding?", "options": [{"key": "a", "text": "Ammonia – Ionic"}, {"key": "b", "text": "Water – Covalent"}, {"key": "c", "text": "Sodium chloride – Coordinate"}, {"key": "d", "text": "Methane – Metallic"}], "correct": "b", "explanation": "Ammonia (NH₃) has covalent bonds, not ionic — sharing of electrons occurs.\n• Water (H₂O) is correctly matched — hydrogen and oxygen form covalent bonds.\n• Sodium chloride (NaCl) involves ionic bonding between Na⁺ and Cl⁻ ions.\n• Methane is a covalent compound, not metallic.\n• So, only water is correctly matched with its bonding type."}, {"id": 34, "stem": "Which of the following statements are true about colloids?\n1. Particles do not settle on standing.\n2. Particles are smaller than in true solutions.\n3. Colloids can scatter light.", "options": [{"key": "a", "text": "1 and 3 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 2 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is true. Colloidal particles remain suspended due to Brownian motion.\n• Statement 2 is false. Colloidal particles are larger than those in true solutions but smaller than in suspensions.\n• Statement 3 is true. Colloids show Tyndall effect, scattering a beam of light.\n• Hence, only 1 and 3 are correct, making option (a) the right choice."}, {"id": 35, "stem": "Which of the following gases is used in the production of urea fertilizer?", "options": [{"key": "a", "text": "Nitrogen"}, {"key": "b", "text": "Carbon monoxide"}, {"key": "c", "text": "Methane"}, {"key": "d", "text": "Carbon dioxide"}], "correct": "d", "explanation": "Urea is produced by reacting ammonia (NH₃) with carbon dioxide (CO₂).\n• Nitrogen is used to make ammonia but not directly for urea synthesis.\n• Carbon monoxide is toxic and not involved in urea formation.\n• Methane is a raw material for making hydrogen and ammonia but not directly for urea.\n• Hence, carbon dioxide is the correct gas used in direct synthesis."}, {"id": 36, "stem": "Which of the following statements regarding acids and bases is/are correct?\n1. Acids are proton donors, and bases are proton acceptors.\n2. Acids have a pH greater than 7.\n3. Bases turn red litmus blue.", "options": [{"key": "a", "text": "1 and 3 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 2 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. According to the Brønsted-Lowry concept, acids donate H⁺ ions and bases accept them.\n• Statement 2 is false. Acids have a pH less than 7, not greater.\n• Statement 3 is correct. Bases turn red litmus paper blue due to their alkaline nature."}, {"id": 37, "stem": "Which of the following is used as a rocket propellant?", "options": [{"key": "a", "text": "Hydrogen peroxide"}, {"key": "b", "text": "Methane"}, {"key": "c", "text": "Kerosene"}, {"key": "d", "text": "Liquid hydrogen and oxygen"}], "correct": "d", "explanation": "Hydrogen peroxide is used in small rockets, but not major launch vehicles.\n• Methane is emerging as a fuel (e.g., in SpaceX's Starship), but not yet widely used.\n• Kerosene is used in some rockets, but not alone — it needs an oxidiser.\n• Liquid hydrogen and liquid oxygen form a high-efficiency propellant combination in many rockets (e.g., NASA's space shuttles).\n• So, option (d) is the best choice for a complete rocket fuel system."}, {"id": 38, "stem": "Which of the following is a double salt?", "options": [{"key": "a", "text": "KNO₃"}, {"key": "b", "text": "NaCl"}, {"key": "c", "text": "FeSO₄·(NH₄)₂SO₄·6H₂O"}, {"key": "d", "text": "CuSO₄"}], "correct": "c", "explanation": "KNO₃ is a simple salt used in fertilizers.\n• NaCl is a common salt with no complex structure.\n• FeSO₄·(NH₄)₂SO₄·6H₂O (Mohr's salt) is a double salt formed by crystallisation of two salts together.\n• CuSO₄ is a single salt (blue vitriol).\n• Therefore, only option (c) represents a double salt."}, {"id": 39, "stem": "Which among the following compounds is used to detect carbon dioxide in a chemical test?", "options": [{"key": "a", "text": "Sodium hydroxide"}, {"key": "b", "text": "Calcium hydroxide"}, {"key": "c", "text": "Ammonium hydroxide"}, {"key": "d", "text": "Magnesium hydroxide"}], "correct": "b", "explanation": "Sodium hydroxide reacts with CO₂ but is not commonly used for detection.\n• Calcium hydroxide (lime water) reacts with CO₂ to form white precipitate of calcium carbonate, confirming its presence.\n• Ammonium hydroxide is weakly basic and not used in CO₂ tests.\n• Magnesium hydroxide does not give a visible test for carbon dioxide.\n• Thus, lime water (calcium hydroxide) is the standard reagent for detecting CO₂."}, {"id": 40, "stem": "Which of the following statements about nuclear chemistry is/are correct?\n1. Alpha particles have a higher penetrating power than beta particles.\n2. Nuclear fusion releases more energy per nucleon than fission.\n3. The half-life of a radioactive isotope is constant and independent of external conditions.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2, and 3"}], "correct": "b", "explanation": "Statement 1 is incorrect. Alpha particles have lower penetrating power than beta particles due to their larger mass and charge.\n• Statement 2 is correct. Fusion releases more energy per nucleon, as seen in stellar processes.\n• Statement 3 is correct. The half-life of a radioactive isotope is a constant property unaffected by temperature or pressure."}, {"id": 41, "stem": "Which of the following statements about Rutherford’s atomic model is/are correct?\n1. The atom has a small, positively charged nucleus.\n2. Electrons revolve in fixed circular orbits around the nucleus.\n3. It could explain the stability of the atom.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Rutherford's gold foil experiment led to the discovery of a small, dense, positively charged nucleus.\n• Statement 2 is correct. He proposed that electrons revolve in circular orbits around the nucleus.\n• Statement 3 is incorrect. His model couldn't explain why electrons don't spiral into the nucleus due to attraction — it failed to explain atomic stability.\n• Thus, only statements 1 and 2 are correct."}, {"id": 42, "stem": "Which of the following substances will not conduct electricity in aqueous solution?", "options": [{"key": "a", "text": "Sodium chloride"}, {"key": "b", "text": "Sulphuric acid"}, {"key": "c", "text": "Glucose"}, {"key": "d", "text": "Potassium hydroxide"}], "correct": "c", "explanation": "Sodium chloride ionizes into Na⁺ and Cl⁻ in water, conducting electricity.\n• Sulphuric acid ionizes to release H⁺ and SO₄²⁻ ions, so it's a strong electrolyte.\n• Glucose dissolves but does not ionize — it's a non-electrolyte and cannot conduct electricity.\n• Potassium hydroxide is a strong base and releases ions in water.\n• Hence, glucose is the correct non-conducting substance."}, {"id": 43, "stem": "Which of the following statements about coordination compounds is/are correct?\n1. Ligands are species that donate electron pairs to the central metal ion.\n2. The coordination number is the number of ligands attached to the central metal.\n3. All coordination compounds are paramagnetic.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2, and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Ligands are Lewis bases that donate electron pairs to the metal.\n• Statement 2 is correct. The coordination number is the number of ligand attachments.\n• Statement 3 is incorrect. Paramagnetism depends on unpaired electrons, and some coordination compounds are diamagnetic (e.g., [Co(NH₃)₆]³⁺)."}, {"id": 44, "stem": "Which of the following statements about gas laws is/are correct?\n1. The ideal gas law assumes no intermolecular forces between gas molecules.\n2. At constant volume, the pressure of a gas is directly proportional to its temperature in Kelvin.\n3. Real gases behave most ideally at low temperatures and high pressures.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2, and 3"}], "correct": "a", "explanation": "Statement 1 is correct. The ideal gas law assumes negligible intermolecular forces.\n• Statement 2 is correct. Gay-Lussac's law states P ∝ T at constant volume.\n• Statement 3 is incorrect. Real gases deviate from ideal behavior at low temperatures and high pressures due to intermolecular forces and molecular volume."}, {"id": 45, "stem": "Which of the following statements is/are true about chemical reactions?\n1. A new substance is formed.\n2. There is always a change in energy.\n3. Only physical properties are affected.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Chemical reactions always result in new substances with different properties.\n• Statement 2 is also correct. Energy is either absorbed or released in all chemical changes.\n• Statement 3 is false. Chemical reactions affect both physical and chemical properties.\n• Hence, only statements 1 and 2 are correct."}, {"id": 46, "stem": "Which of the following statements is/are correct regarding isotopes of hydrogen?\n1. Protium has no neutrons.\n2. Deuterium has one proton and one neutron.\n3. Tritium is a stable isotope.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Protium (¹H) has 1 proton and 0 neutrons.\n• Statement 2 is also correct. Deuterium (²H) has 1 proton and 1 neutron.\n• Statement 3 is incorrect. Tritium (³H) is radioactive and unstable.\n• So, only statements 1 and 2 are correct."}, {"id": 47, "stem": "Which of the following is NOT a property of bases?", "options": [{"key": "a", "text": "Bitter taste"}, {"key": "b", "text": "Turns red litmus blue"}, {"key": "c", "text": "Reacts with acids to form salts"}, {"key": "d", "text": "Corrodes metals"}], "correct": "d", "explanation": "Bases are known for their bitter taste and slippery feel.\n• They turn red litmus blue, indicating alkalinity.\n• They neutralize acids to form salts and water.\n• Corroding metals is generally a property of strong acids, not bases.\n• Hence, the incorrect statement for bases is (d)."}, {"id": 48, "stem": "Which of the following is used to make artificial fertilizer and explosives?", "options": [{"key": "a", "text": "Ammonium nitrate"}, {"key": "b", "text": "Sodium chloride"}, {"key": "c", "text": "Potassium permanganate"}, {"key": "d", "text": "Calcium oxide"}], "correct": "a", "explanation": "Ammonium nitrate is a key component in fertilizers and also used in explosives.\n• Sodium chloride is common salt and not used in either context.\n• Potassium permanganate is an oxidizer used in antiseptics and not for fertilizers or explosives.\n• Calcium oxide is used in construction and cement, not directly in explosives or fertilizers.\n• Thus, only ammonium nitrate fits both uses."}, {"id": 49, "stem": "Which of the following is a polymer used in non-stick cookware?", "options": [{"key": "a", "text": "Nylon"}, {"key": "b", "text": "Teflon"}, {"key": "c", "text": "Bakelite"}, {"key": "d", "text": "PVC"}], "correct": "b", "explanation": "Nylon is used in fabrics and not heat-resistant enough for cookware.\n• Teflon (polytetrafluoroethylene) is chemically inert and heat resistant — ideal for non-stick coating.\n• Bakelite is a thermosetting plastic used in electrical components.\n• PVC is used in pipes and packaging, not for cookware.\n• So, Teflon is the correct polymer."}, {"id": 50, "stem": "Which among the following best defines sublimation?", "options": [{"key": "a", "text": "Conversion of gas into liquid"}, {"key": "b", "text": "Direct change of solid to gas"}, {"key": "c", "text": "Change of solid into liquid"}, {"key": "d", "text": "Condensation of gas"}], "correct": "b", "explanation": "Option (a) refers to condensation.\n• Option (b) is correct — sublimation is the direct phase change from solid to gas without liquid state.\n• Option (c) describes melting.\n• Option (d) again refers to gas turning into liquid.\n• So, the only correct definition of sublimation is (b)."}, {"id": 51, "stem": "Which of the following gases does not contribute to the greenhouse effect?", "options": [{"key": "a", "text": "Methane"}, {"key": "b", "text": "Nitrous oxide"}, {"key": "c", "text": "Oxygen"}, {"key": "d", "text": "Carbon dioxide"}], "correct": "c", "explanation": "Methane is a potent greenhouse gas released from agriculture and landfills.\n• Nitrous oxide is another greenhouse gas emitted from fertilizers and combustion.\n• Oxygen (O₂) does not trap heat in the atmosphere and is not a greenhouse gas.\n• Carbon dioxide is a major contributor to global warming due to fossil fuel combustion.\n• So, oxygen is the correct answer here."}, {"id": 52, "stem": "Which of the following statements about chemical bonding is/are true?\n1. Sigma bonds are formed by end-to-end overlap.\n2. Pi bonds are stronger than sigma bonds.\n3. Pi bonds are formed by sidewise overlap of orbitals.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "1 and 3 only"}, {"key": "c", "text": "2 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is correct. Sigma (σ) bonds result from head-on orbital overlap.\n• Statement 2 is incorrect. Sigma bonds are stronger due to greater orbital overlap.\n• Statement 3 is correct. Pi (π) bonds are formed by sidewise or lateral overlap.\n• Thus, only statements 1 and 3 are correct."}, {"id": 53, "stem": "Which of the following metals is most reactive?", "options": [{"key": "a", "text": "Copper"}, {"key": "b", "text": "Iron"}, {"key": "c", "text": "Potassium"}, {"key": "d", "text": "Silver"}], "correct": "c", "explanation": "Copper is relatively low in the reactivity series.\n• Iron is more reactive than copper but less than potassium.\n• Potassium is highly reactive and reacts violently with water.\n• Silver is a noble metal and very low in reactivity.\n• Hence, potassium is the most reactive among these options."}, {"id": 54, "stem": "Which of the following mixtures can be separated by the process of sublimation?", "options": [{"key": "a", "text": "Salt and water"}, {"key": "b", "text": "Sand and camphor"}, {"key": "c", "text": "Oil and water"}, {"key": "d", "text": "Sugar and salt"}], "correct": "b", "explanation": "Salt and water require evaporation or distillation, not sublimation.\n• Sand and camphor can be separated because camphor sublimes and sand does not.\n• Oil and water are immiscible and separated by a separating funnel.\n• Sugar and salt require crystallisation or chromatography.\n• Therefore, sublimation is applicable only for camphor and sand."}, {"id": 55, "stem": "Which of the following is not a property of non-metals?", "options": [{"key": "a", "text": "Poor conductor of electricity"}, {"key": "b", "text": "High melting and boiling point"}, {"key": "c", "text": "Brittle in solid state"}, {"key": "d", "text": "Forms acidic oxides"}], "correct": "b", "explanation": "Most non-metals do not conduct electricity, with graphite being an exception.\n• They are brittle and break easily in solid state.\n• Non-metals form acidic oxides (e.g., SO₂, CO₂).\n• However, non-metals generally have low melting and boiling points.\n• Thus, the incorrect property is high melting/boiling point."}, {"id": 56, "stem": "Which of the following is used in making bleaching powder?", "options": [{"key": "a", "text": "Lime"}, {"key": "b", "text": "Quicklime"}, {"key": "c", "text": "Slaked lime"}, {"key": "d", "text": "Limestone"}], "correct": "c", "explanation": "Bleaching powder (Ca(OCl)₂) is produced by passing chlorine gas over slaked lime (Ca(OH)₂).\n• Quicklime is CaO and is not directly used in this process.\n• Lime and limestone refer to calcium oxide or carbonate, respectively.\n• Only slaked lime reacts with chlorine to give bleaching powder."}, {"id": 57, "stem": "Which of the following fertilizers is made from ammonia?", "options": [{"key": "a", "text": "Urea"}, {"key": "b", "text": "Potash"}, {"key": "c", "text": "Superphosphate"}, {"key": "d", "text": "Gypsum"}], "correct": "a", "explanation": "Urea (NH₂CONH₂) is synthesized from ammonia and carbon dioxide.\n• Potash is a potassium fertilizer and doesn't involve ammonia.\n• Superphosphate is made by treating rock phosphate with acid.\n• Gypsum is calcium sulfate and is not nitrogen-based.\n• Thus, urea is the ammonia-based fertilizer."}, {"id": 58, "stem": "Which of the following reactions is an example of a displacement reaction?", "options": [{"key": "a", "text": "HCl + NaOH → NaCl + H₂O"}, {"key": "b", "text": "Zn + H₂SO₄ → ZnSO₄ + H₂"}, {"key": "c", "text": "AgNO₃ + NaCl → AgCl + NaNO₃"}, {"key": "d", "text": "CaO + H₂O → Ca(OH)₂"}], "correct": "b", "explanation": "Option (a) is neutralisation.\n• Option (b) is displacement: zinc replaces hydrogen in sulphuric acid.\n• Option (c) is a double displacement (precipitation).\n• Option (d) is a combination reaction.\n• So, only (b) is a clear example of single displacement."}, {"id": 59, "stem": "Which of the following fuels has the lowest calorific value?", "options": [{"key": "a", "text": "Hydrogen"}, {"key": "b", "text": "Coal"}, {"key": "c", "text": "LPG"}, {"key": "d", "text": "Kerosene"}], "correct": "b", "explanation": "Hydrogen has the highest calorific value (~150 kJ/g).\n• LPG and kerosene are high-energy hydrocarbon fuels.\n• Coal, though used widely, has lower calorific value due to impurities and moisture.\n• So, among these, coal ranks lowest in calorific efficiency."}, {"id": 60, "stem": "Which of the following statements about soap and detergent is/are correct?\n1. Soap is biodegradable but not effective in hard water.\n2. Detergents are effective in hard water but are non-biodegradable.\n3. Both are made from fats and oils.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Soap reacts with calcium and magnesium in hard water forming scum.\n• Statement 2 is also correct. Detergents are synthetically made and do not form scum in hard water.\n• Statement 3 is false. Soaps are made from natural oils, but detergents are derived from petrochemicals.\n• Hence, only 1 and 2 are correct."}, {"id": 61, "stem": "Which of the following statements are true about carbon monoxide (CO)?\n1. It is colorless and odorless.\n2. It is heavier than air and settles at the bottom.\n3. It binds with hemoglobin more strongly than oxygen.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "c", "explanation": "Statement 1 is correct. CO is a colorless, odorless, and tasteless gas — making it a silent killer.\n• Statement 2 is incorrect. CO is actually lighter than air and disperses upward in confined spaces.\n• Statement 3 is correct. CO binds with hemoglobin about 200–250 times more strongly than oxygen, reducing oxygen transport.\n• Therefore, only statements 1 and 3 are correct."}, {"id": 62, "stem": "Which among the following is mainly used in dry cleaning?", "options": [{"key": "a", "text": "Acetone"}, {"key": "b", "text": "Chloroform"}, {"key": "c", "text": "Carbon tetrachloride"}, {"key": "d", "text": "Tetrachloroethylene"}], "correct": "d", "explanation": "Acetone is a nail polish remover and not used for dry cleaning.\n• Chloroform is used as a solvent and anesthetic, not for cleaning fabrics.\n• Carbon tetrachloride was used earlier but is now avoided due to toxicity.\n• Tetrachloroethylene (also called perchloroethylene) is the main solvent in modern dry cleaning.\n• So, the correct answer is option (d)."}, {"id": 63, "stem": "Which of the following statements about alloys is/are correct?\n1. Alloys are compounds with fixed chemical formula.\n2. Alloys usually have enhanced properties compared to pure metals.\n3. Brass is an alloy of copper and tin.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 only"}, {"key": "c", "text": "2 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is incorrect. Alloys are mixtures, not compounds — they do not have fixed ratios or formulas.\n• Statement 2 is correct. Alloys like steel, bronze, and duralumin are stronger and more durable than pure metals.\n• Statement 3 is incorrect. Brass is made of copper and zinc, not tin. Bronze is the alloy of copper and tin.\n• So, only statement 2 is correct."}, {"id": 64, "stem": "Which of the following gases is used in the Haber process to produce ammonia?", "options": [{"key": "a", "text": "Hydrogen and nitrogen"}, {"key": "b", "text": "Nitrogen and oxygen"}, {"key": "c", "text": "Carbon dioxide and hydrogen"}, {"key": "d", "text": "Hydrogen and methane"}], "correct": "a", "explanation": "The Haber process synthesizes ammonia (NH₃) from nitrogen (N₂) and hydrogen (H₂) under high pressure and temperature in presence of iron catalyst.\n• Nitrogen and oxygen would produce nitric oxide, not ammonia.\n• Carbon dioxide is not involved in ammonia production — though it plays a role in urea formation.\n• Methane is used to produce hydrogen but is not used directly in the process.\n• Therefore, option (a) is correct."}, {"id": 65, "stem": "Which of the following is a correct statement about polymers?", "options": [{"key": "a", "text": "Polymers are always natural substances."}, {"key": "b", "text": "Thermoplastics can be softened on heating."}, {"key": "c", "text": "Bakelite is a thermoplastic polymer."}, {"key": "d", "text": "Proteins are synthetic polymers."}], "correct": "b", "explanation": "Polymers can be natural (like rubber, proteins) or synthetic (like nylon, polythene).\n• Thermoplastics like polythene and PVC soften on heating and can be reshaped.\n• Bakelite is a thermosetting plastic — it becomes hard and cannot be remelted.\n• Proteins are natural polymers made of amino acids.\n• So, the correct statement is (b)."}, {"id": 66, "stem": "Which of the following statements about water of crystallisation is/are correct?\n1. It is water chemically bonded to the crystal.\n2. It affects the color of some salts.\n3. It can be removed by simple filtration.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Water of crystallisation is part of the chemical structure of some compounds like CuSO₄·5H₂O.\n• Statement 2 is correct. For example, blue color of hydrated copper sulphate disappears on heating due to loss of water.\n• Statement 3 is incorrect. The water is chemically bound and cannot be removed by filtration — only by heating.\n• Hence, only 1 and 2 are true."}, {"id": 67, "stem": "Which one of the following is NOT a colloid?", "options": [{"key": "a", "text": "Milk"}, {"key": "b", "text": "Fog"}, {"key": "c", "text": "Air"}, {"key": "d", "text": "Smoke"}], "correct": "c", "explanation": "Milk is a liquid-liquid colloid (emulsion).\n• Fog is a liquid dispersed in gas — another colloid.\n• Smoke is solid particles in gas — also a colloid.\n• Air is a homogeneous mixture of gases, and not a colloid.\n• Thus, air is the correct answer here."}, {"id": 68, "stem": "Which of the following statements is/are true about covalent compounds?\n1. They have low melting and boiling points.\n2. They conduct electricity in molten state.\n3. They are usually insoluble in water.", "options": [{"key": "a", "text": "1 and 3 only"}, {"key": "b", "text": "1 and 2 only"}, {"key": "c", "text": "2 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Covalent compounds have weak intermolecular forces, resulting in low melting and boiling points.\n• Statement 2 is incorrect. They do not conduct electricity in molten or aqueous state as they lack free ions.\n• Statement 3 is correct. Most covalent compounds are non-polar and don't dissolve in water.\n• Thus, only 1 and 3 are true."}, {"id": 69, "stem": "Which of the following statements about thermodynamics is/are correct?\n1. The entropy of a perfect crystal at 0 K is zero.\n2. The enthalpy change of a reaction is always equal to the heat absorbed at constant volume.\n3. The second law of thermodynamics states that the entropy of an isolated system always increases.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2, and 3"}], "correct": "c", "explanation": "Statement 1 is correct. The third law of thermodynamics states that the entropy of a perfect crystal at absolute zero is zero.\n• Statement 2 is incorrect. Enthalpy change (ΔH) equals heat absorbed at constant pressure, not volume.\n• Statement 3 is correct. For an isolated system, the second law states that entropy increases for spontaneous processes."}, {"id": 70, "stem": "Which of the following statements about organic chemistry is/are correct?\n1. Alkenes undergo electrophilic addition reactions.\n2. Aromatic compounds are less reactive than alkanes due to resonance stabilization.\n3. All alcohols are completely miscible in water.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2, and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Alkenes, with their π-bonds, undergo electrophilic addition (e.g., with Br₂).\n• Statement 2 is correct. Aromatic compounds like benzene are stabilized by resonance, making them less reactive than alkanes.\n• Statement 3 is incorrect. Higher alcohols (e.g., 1-butanol) have limited solubility in water due to the hydrophobic alkyl chain."}, {"id": 71, "stem": "Which of the following statements are correct about the modern periodic table?\n1. Elements are arranged in the order of their atomic numbers.\n2. Elements in the same group have similar chemical properties.\n3. Elements in the same period have the same number of valence electrons.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. The modern periodic table is arranged by increasing atomic number, which reflects the number of protons.\n• Statement 2 is also correct. Elements in a group have the same valence electron configuration, leading to similar properties.\n• Statement 3 is incorrect. Elements in the same period have the same number of shells, not valence electrons.\n• Thus, only statements 1 and 2 are correct."}, {"id": 72, "stem": "What is the oxidation state of sulfur in H₂SO₄?", "options": [{"key": "a", "text": "+4"}, {"key": "b", "text": "+6"}, {"key": "c", "text": "+2"}, {"key": "d", "text": "-2"}], "correct": "b", "explanation": "In H₂SO₄, H is +1, O is -2. Let sulfur's oxidation state be x. The molecule is neutral, so:\n2(+1) + x + 4(-2) = 0 → 2 + x - 8 = 0 → x = +6."}, {"id": 73, "stem": "Which of the following statements are true regarding distillation?\n1. It is used to separate miscible liquids with different boiling points.\n2. It can be used to remove solid impurities from a liquid.\n3. Fractional distillation is used for separating crude oil components.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "c", "explanation": "Statement 1 is correct. Distillation works for separating liquids like ethanol and water.\n• Statement 2 is incorrect. Filtration, not distillation, is generally used to remove solids.\n• Statement 3 is correct. Fractional distillation separates petroleum into petrol, diesel, kerosene, etc.\n• Thus, statements 1 and 3 are correct."}, {"id": 74, "stem": "Which of the following statements is/are true about the electron?\n1. It was discovered by J.J. Thomson.\n2. It carries a unit positive charge.\n3. It has negligible mass compared to proton.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "1 and 3 only"}, {"key": "c", "text": "2 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is correct. J.J. Thomson discovered the electron through cathode ray experiments.\n• Statement 2 is false. Electrons carry a unit negative charge.\n• Statement 3 is correct. Electron's mass is about 1/1836 of that of a proton.\n• So, statements 1 and 3 are correct."}, {"id": 75, "stem": "Which one of the following is used as an antiknock compound in petrol?", "options": [{"key": "a", "text": "Methanol"}, {"key": "b", "text": "Ethanol"}, {"key": "c", "text": "Tetraethyl lead"}, {"key": "d", "text": "Acetone"}], "correct": "c", "explanation": "Methanol and ethanol are alcohols that can be used as fuel additives but not specifically antiknock agents.\n• Tetraethyl lead (TEL) was historically used to reduce engine knocking in petrol.\n• Acetone is a solvent and not used as a fuel additive.\n• Despite environmental concerns, TEL was used for years in fuel.\n• So, the correct answer is (c)."}, {"id": 76, "stem": "Which of the following statements are correct regarding chemical reactions?\n1. They always involve formation of new substances.\n2. Energy is always absorbed in a chemical reaction.\n3. A change in color may indicate a chemical reaction.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "1 and 3 only"}, {"key": "c", "text": "2 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is correct. Chemical reactions lead to the formation of new substances with different properties.\n• Statement 2 is incorrect. Energy may be either absorbed or released during a reaction, depending on whether it is endothermic or exothermic.\n• Statement 3 is correct. Color change is a common indicator of chemical change (e.g., rusting, acid-base reactions).\n• Hence, statements 1 and 3 are true."}, {"id": 77, "stem": "Which of the following is an example of a polymer made from petroleum products?", "options": [{"key": "a", "text": "Silk"}, {"key": "b", "text": "Nylon"}, {"key": "c", "text": "Wool"}, {"key": "d", "text": "Cotton"}], "correct": "b", "explanation": "Silk is a natural protein fiber produced by silkworms.\n• Nylon is a synthetic polymer derived from petrochemicals.\n• Wool is a natural animal fiber.\n• Cotton is a natural cellulose fiber obtained from plants.\n• Thus, only nylon is the correct answer."}, {"id": 78, "stem": "Which of the following compounds contains both ionic and covalent bonds?", "options": [{"key": "a", "text": "NaCl"}, {"key": "b", "text": "NH₄Cl"}, {"key": "c", "text": "CH₄"}, {"key": "d", "text": "H₂O"}], "correct": "b", "explanation": "NaCl is purely ionic.\n• NH₄Cl contains covalent bonds within the ammonium ion (NH₄⁺) and ionic bonding between NH₄⁺ and Cl⁻.\n• CH₄ and H₂O contain only covalent bonds.\n• Therefore, NH₄Cl is the correct compound with both bond types."}, {"id": 79, "stem": "Which of the following is NOT a use of sulfuric acid?", "options": [{"key": "a", "text": "Manufacture of fertilizers"}, {"key": "b", "text": "Car battery electrolyte"}, {"key": "c", "text": "Cleaning of metals"}, {"key": "d", "text": "Antiseptic for wounds"}], "correct": "d", "explanation": "Sulfuric acid is used in manufacturing phosphatic fertilizers.\n• It is the electrolyte in lead-acid car batteries.\n• It is also used for removing oxides from metal surfaces.\n• However, it is highly corrosive and dangerous for direct use on wounds — hence, not an antiseptic.\n• So, option (d) is correct."}, {"id": 80, "stem": "Which gas has the highest rate of effusion under identical conditions?", "options": [{"key": "a", "text": "N₂"}, {"key": "b", "text": "O₂"}, {"key": "c", "text": "CH₄"}, {"key": "d", "text": "CO₂"}], "correct": "c", "explanation": "Graham's law states that the rate of effusion is inversely proportional to the square root of molar mass. CH₄ (16 g/mol) has the lowest molar mass compared to N₂ (28 g/mol), O₂ (32 g/mol), and CO₂ (44 g/mol), so it effuses fastest."}, {"id": 81, "stem": "Which of the following substances is used to remove permanent hardness of water?", "options": [{"key": "a", "text": "Baking soda"}, {"key": "b", "text": "Washing soda"}, {"key": "c", "text": "Common salt"}, {"key": "d", "text": "Slaked lime"}], "correct": "b", "explanation": "Baking soda (sodium bicarbonate) is used for cooking and cleaning, not for hardness removal.\n• Washing soda (sodium carbonate) reacts with calcium and magnesium salts causing hardness, and precipitates them out.\n• Common salt (NaCl) has no such action.\n• Slaked lime is used for softening temporary hardness, not permanent hardness.\n• Hence, washing soda is the correct choice."}, {"id": 82, "stem": "Which of the following statements about hydrogen is/are correct?\n1. It is the lightest element.\n2. It is a diatomic molecule.\n3. It is always found in atomic form in nature.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is true. Hydrogen is the first and lightest element in the periodic table.\n• Statement 2 is also true. It exists naturally as H₂ gas.\n• Statement 3 is false. Hydrogen is rarely found as individual atoms due to its reactivity; it prefers to exist as H₂.\n• So, only statements 1 and 2 are correct."}, {"id": 83, "stem": "Which of the following is an example of a neutralization reaction?", "options": [{"key": "a", "text": "HCl + NaOH → NaCl + H₂O"}, {"key": "b", "text": "Zn + HCl → ZnCl₂ + H₂"}, {"key": "c", "text": "C + O₂ → CO₂"}, {"key": "d", "text": "Fe + CuSO₄ → FeSO₄ + Cu"}], "correct": "a", "explanation": "Option (a) is a neutralization reaction between an acid and a base forming salt and water.\n• Option (b) is a displacement reaction.\n• Option (c) is a combustion reaction.\n• Option (d) is another displacement reaction.\n• Thus, only (a) fits as neutralization."}, {"id": 84, "stem": "Which of the following types of chemical bonds is the strongest?", "options": [{"key": "a", "text": "Ionic bond"}, {"key": "b", "text": "Covalent bond"}, {"key": "c", "text": "Hydrogen bond"}, {"key": "d", "text": "Coordinate bond"}], "correct": "b", "explanation": "Ionic bonds are strong but can be weakened in polar solvents.\n• Covalent bonds involve electron sharing and are among the strongest due to direct orbital overlap.\n• Hydrogen bonds are weak intermolecular forces.\n• Coordinate bonds are similar to covalent but less stable due to shared electron origin.\n• So, covalent bonds are the strongest among the listed options."}, {"id": 85, "stem": "What is the hybridization of the carbon atom in the carbonyl group of formaldehyde (H₂CO)?", "options": [{"key": "a", "text": "sp"}, {"key": "b", "text": "sp²"}, {"key": "c", "text": "sp³"}, {"key": "d", "text": "sp³d"}], "correct": "b", "explanation": "The carbon in H₂CO forms two single bonds (to H) and one double bond (to O). This requires three electron domains, leading to sp² hybridization."}, {"id": 86, "stem": "Which of the following is the best method to separate nitrogen from air?", "options": [{"key": "a", "text": "Filtration"}, {"key": "b", "text": "Sublimation"}, {"key": "c", "text": "Fractional distillation"}, {"key": "d", "text": "Sedimentation"}], "correct": "c", "explanation": "Filtration is for solids from liquids, not for gases.\n• Sublimation applies to solids turning into gases, not applicable here.\n• Fractional distillation of liquefied air is used to separate nitrogen (boiling point −196°C) from oxygen and other gases.\n• Sedimentation works for solids settling in liquids.\n• So, the correct answer is fractional distillation."}, {"id": 87, "stem": "Which of the following gases turns lime water milky?", "options": [{"key": "a", "text": "Oxygen"}, {"key": "b", "text": "Hydrogen"}, {"key": "c", "text": "Carbon dioxide"}, {"key": "d", "text": "Nitrogen"}], "correct": "c", "explanation": "Oxygen does not react with lime water.\n• Hydrogen is an inert gas in this context.\n• CO₂ reacts with calcium hydroxide (lime water) forming insoluble calcium carbonate, turning it milky.\n• Nitrogen is non-reactive and shows no such reaction.\n• So, the answer is carbon dioxide."}, {"id": 88, "stem": "Which of the following is a colligative property?", "options": [{"key": "a", "text": "Viscosity"}, {"key": "b", "text": "Surface tension"}, {"key": "c", "text": "Osmotic pressure"}, {"key": "d", "text": "Refractive index"}], "correct": "c", "explanation": "Colligative properties depend on the number of solute particles, not their nature. Osmotic pressure is a colligative property, unlike viscosity, surface tension, or refractive index."}, {"id": 89, "stem": "Which of the following is a chemical change?", "options": [{"key": "a", "text": "Boiling of water"}, {"key": "b", "text": "Melting of ice"}, {"key": "c", "text": "Rusting of iron"}, {"key": "d", "text": "Evaporation of alcohol"}], "correct": "c", "explanation": "Boiling, melting, and evaporation are physical changes where no new substance is formed.\n• Rusting of iron involves chemical reaction with oxygen and moisture to form iron oxide — a new substance.\n• Thus, rusting is a chemical change."}, {"id": 90, "stem": "What is the conjugate base of H₂PO₄⁻?", "options": [{"key": "a", "text": "H₃PO₄"}, {"key": "b", "text": "HPO₄²⁻"}, {"key": "c", "text": "PO₄³⁻"}, {"key": "d", "text": "H₂PO₄⁺"}], "correct": "b", "explanation": "The conjugate base is formed by removing a proton (H⁺) from the acid. For H₂PO₄⁻, removing H⁺ gives HPO₄²⁻."}, {"id": 91, "stem": "Which of the following is the correct order of reactivity of metals (most to least)?", "options": [{"key": "a", "text": "Sodium > Magnesium > Zinc > Copper"}, {"key": "b", "text": "Copper > Zinc > Magnesium > Sodium"}, {"key": "c", "text": "Zinc > Sodium > Copper > Magnesium"}, {"key": "d", "text": "Magnesium > Sodium > Copper > Zinc"}], "correct": "a", "explanation": "Sodium is highly reactive and placed at the top of the activity series.\n• Magnesium is less reactive than sodium but more than zinc and copper.\n• Zinc reacts moderately and is above copper but below sodium and magnesium.\n• Copper is one of the least reactive common metals.\n• Hence, the correct reactivity order is Sodium > Magnesium > Zinc > Copper."}, {"id": 92, "stem": "Which of the following statements are correct regarding the pH scale?\n1. A solution with pH 7 is neutral.\n2. pH values lower than 7 indicate basicity.\n3. pH above 7 indicates alkalinity.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "1 and 3 only"}, {"key": "c", "text": "2 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is correct. A pH of 7 represents a neutral solution like pure water.\n• Statement 2 is incorrect. pH values below 7 indicate acidity, not basicity.\n• Statement 3 is correct. Alkaline (basic) solutions have pH values greater than 7.\n• So, only statements 1 and 3 are true."}, {"id": 93, "stem": "Which of the following metals does not react with cold water but reacts with steam?", "options": [{"key": "a", "text": "Potassium"}, {"key": "b", "text": "Magnesium"}, {"key": "c", "text": "Calcium"}, {"key": "d", "text": "Sodium"}], "correct": "b", "explanation": "Potassium and sodium react violently with cold water, producing hydrogen.\n• Calcium also reacts with cold water, though less vigorously.\n• Magnesium reacts very slowly with cold water but reacts readily with steam to form magnesium oxide and hydrogen gas.\n• Thus, magnesium fits the condition given in the question."}, {"id": 94, "stem": "Which among the following polymers is used for making ropes and fishing nets?", "options": [{"key": "a", "text": "PVC"}, {"key": "b", "text": "Nylon-6"}, {"key": "c", "text": "Bakelite"}, {"key": "d", "text": "Polyester"}], "correct": "b", "explanation": "PVC is used in pipes and cable insulation, not suitable for ropes.\n• Nylon-6 is strong, flexible, and resistant to wear — perfect for ropes and fishing nets.\n• Bakelite is a hard thermosetting plastic used in electrical applications.\n• Polyester is more commonly used in fabrics and bottles.\n• So, the right polymer for ropes and nets is Nylon-6."}, {"id": 95, "stem": "Which of the following statements about the structure of the atom is/are true?\n1. Electrons revolve in fixed circular paths around the nucleus.\n2. The nucleus contains only protons.\n3. Neutrons are neutral and found in the nucleus.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "c", "explanation": "Statement 1 is partially correct — Bohr's model suggested fixed orbits, though later quantum models changed this. Still acceptable in school-level theory.\n• Statement 2 is incorrect. The nucleus contains both protons and neutrons.\n• Statement 3 is correct. Neutrons are neutral particles found in the nucleus.\n• So, only statements 1 and 3 are correct."}, {"id": 96, "stem": "Which of the following is used to test the presence of starch in a substance?", "options": [{"key": "a", "text": "Benedict’s solution"}, {"key": "b", "text": "Litmus paper"}, {"key": "c", "text": "Iodine solution"}, {"key": "d", "text": "Methyl orange"}], "correct": "c", "explanation": "Benedict's solution is used to test for reducing sugars like glucose.\n• Litmus paper is used to detect acids and bases, not starch.\n• Iodine solution turns blue-black in the presence of starch — a specific and reliable test.\n• Methyl orange is an acid-base indicator, not a starch reagent.\n• Therefore, iodine solution is the correct answer."}, {"id": 97, "stem": "Which of the following statements about allotropes of carbon is/are true?\n1. Diamond is the hardest naturally occurring substance.\n2. Graphite conducts electricity.\n3. Buckminsterfullerene has a spherical shape.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "d", "explanation": "Statement 1 is true. Diamond is extremely hard due to its three-dimensional network of carbon atoms.\n• Statement 2 is true. Graphite has free electrons between layers, allowing conductivity.\n• Statement 3 is also true. Buckminsterfullerene (C₆₀) resembles a soccer ball made of carbon atoms.\n• Hence, all three statements are correct."}, {"id": 98, "stem": "Which of the following substances is added to soap to make it suitable for use in hard water?", "options": [{"key": "a", "text": "Sodium stearate"}, {"key": "b", "text": "Sodium carbonate"}, {"key": "c", "text": "Borax"}, {"key": "d", "text": "Glycerol"}], "correct": "b", "explanation": "Sodium stearate is the soap itself and doesn't improve hard water performance.\n• Sodium carbonate (washing soda) softens hard water by removing calcium and magnesium ions.\n• Borax is used in glass and detergents but not typically added to soaps.\n• Glycerol is a humectant used for moisturizing, not water softening.\n• So, sodium carbonate is the right choice."}, {"id": 99, "stem": "Which element has the highest electronegativity?", "options": [{"key": "a", "text": "Fluorine"}, {"key": "b", "text": "Oxygen"}, {"key": "c", "text": "Chlorine"}, {"key": "d", "text": "Nitrogen"}], "correct": "a", "explanation": "Fluorine is the most electronegative element (electronegativity = 4.0 on the Pauling scale) due to its small size and high nuclear charge."}, {"id": 100, "stem": "Which of the following statements about emulsions is/are correct?\n1. Emulsions are a type of colloid.\n2. Milk is a natural emulsion.\n3. Emulsions are always transparent.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Emulsions are colloids of two immiscible liquids — like oil in water.\n• Statement 2 is also correct. Milk is an emulsion where fat droplets are dispersed in water.\n• Statement 3 is incorrect. Emulsions are often cloudy or opaque, not transparent.\n• Hence, only statements 1 and 2 are correct."}, {"id": 101, "stem": "What is the standard enthalpy change for the formation of 1 mole of NH₃(g) from its elements, given: N₂(g) + 3H₂(g) → 2NH₃(g), ΔH° = -92 kJ/mol?", "options": [{"key": "a", "text": "-92 kJ/mol"}, {"key": "b", "text": "-46 kJ/mol"}, {"key": "c", "text": "+46 kJ/mol"}, {"key": "d", "text": "+92 kJ/mol"}], "correct": "b", "explanation": "The standard enthalpy of formation (ΔH°f) is defined for 1 mole of product. The given reaction forms 2 moles of NH₃ with ΔH° = -92 kJ/mol. For 1 mole: ΔH°f = -92/2 = -46 kJ/mol."}, {"id": 102, "stem": "Which gas is evolved when zinc reacts with dilute hydrochloric acid?", "options": [{"key": "a", "text": "Hydrogen"}, {"key": "b", "text": "Carbon dioxide"}, {"key": "c", "text": "Nitrogen"}, {"key": "d", "text": "Oxygen"}], "correct": "a", "explanation": "Zinc reacts with dilute acids like HCl to produce hydrogen gas and a salt (ZnCl₂).\n• Carbon dioxide evolves during acid-carbonate reactions.\n• Nitrogen is an inert gas and not involved here.\n• Oxygen is released during decomposition or photosynthesis, not in this reaction.\n• So, hydrogen is the correct gas."}, {"id": 103, "stem": "Which of the following substances is used in fire extinguishers and also in baking?", "options": [{"key": "a", "text": "Sodium carbonate"}, {"key": "b", "text": "Calcium hydroxide"}, {"key": "c", "text": "Sodium bicarbonate"}, {"key": "d", "text": "Ammonium chloride"}], "correct": "c", "explanation": "Sodium carbonate is used in glass and soap industries.\n• Calcium hydroxide (slaked lime) is used in whitewashing.\n• Sodium bicarbonate (baking soda) is used in fire extinguishers and baking due to its ability to release CO₂ when heated or reacted with acid.\n• Ammonium chloride is used in dry cells and not suitable for baking or extinguishers.\n• So, the correct answer is sodium bicarbonate."}, {"id": 104, "stem": "Which of the following statements is/are correct about the process of crystallisation?\n1. It is used to purify solid substances.\n2. It can separate volatile liquids from non-volatile solids.\n3. Crystals are formed when a hot saturated solution is cooled.", "options": [{"key": "a", "text": "1 and 3 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 2 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Crystallisation removes impurities from solids by forming pure crystals.\n• Statement 2 is incorrect. That process is called distillation, not crystallisation.\n• Statement 3 is correct. Crystals form when solute comes out of solution on cooling.\n• So, statements 1 and 3 are correct."}, {"id": 105, "stem": "Which of the following is a natural polymer?", "options": [{"key": "a", "text": "Polythene"}, {"key": "b", "text": "Nylon"}, {"key": "c", "text": "Cellulose"}, {"key": "d", "text": "PVC"}], "correct": "c", "explanation": "Polythene and PVC are synthetic polymers made from petrochemicals.\n• Nylon is also synthetic, used in textiles.\n• Cellulose is a natural polymer made from glucose units and found in plant cell walls.\n• So, cellulose is the correct answer."}, {"id": 106, "stem": "Which of the following is used as a raw material for the manufacture of glass?", "options": [{"key": "a", "text": "Sodium hydroxide"}, {"key": "b", "text": "Sodium carbonate"}, {"key": "c", "text": "Calcium chloride"}, {"key": "d", "text": "Potassium nitrate"}], "correct": "b", "explanation": "Sodium hydroxide is a strong base used in soap making, not in glass directly.\n• Sodium carbonate (washing soda) is used in glass production to lower the melting point of silica.\n• Calcium chloride is used as a drying agent, not in glass manufacture.\n• Potassium nitrate is used in explosives and fertilizers.\n• Hence, the correct raw material for glass is sodium carbonate."}, {"id": 107, "stem": "Which of the following statements about noble gases is/are correct?\n1. They are chemically inert.\n2. They have complete octets.\n3. They exist as monoatomic gases.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "d", "explanation": "Statement 1 is correct. Noble gases like helium, neon, argon are inert due to their full outer shells.\n• Statement 2 is also correct. They do not react because of stable electronic configurations (except helium which has a duplet).\n• Statement 3 is correct. Noble gases exist as single atoms (monoatomic) in nature.\n• So, all three statements are true."}, {"id": 108, "stem": "Which of the following compounds exhibits optical isomerism?", "options": [{"key": "a", "text": "CH₃CH₂OH"}, {"key": "b", "text": "CH₃CH(OH)CH₃"}, {"key": "c", "text": "CH₃CHO"}, {"key": "d", "text": "CH₃COCH₃"}], "correct": "b", "explanation": "Optical isomerism requires a chiral center (a carbon with four different groups). In CH₃CH(OH)CH₃, the central carbon is bonded to -H, -OH, -CH₃, and -CH₃, but the molecule is chiral due to the -OH group creating asymmetry."}, {"id": 109, "stem": "Which of the following is formed when calcium reacts with water?", "options": [{"key": "a", "text": "Calcium carbonate"}, {"key": "b", "text": "Calcium oxide"}, {"key": "c", "text": "Calcium hydroxide"}, {"key": "d", "text": "Calcium nitrate"}], "correct": "c", "explanation": "When calcium reacts with water, it forms calcium hydroxide (Ca(OH)₂) and hydrogen gas.\n• Calcium carbonate is formed when calcium reacts with CO₂, not water.\n• Calcium oxide is produced when calcium carbonate is heated.\n• Calcium nitrate forms when calcium reacts with nitric acid.\n• So, the correct answer is calcium hydroxide."}, {"id": 110, "stem": "Which of the following correctly describes a mixture?", "options": [{"key": "a", "text": "Chemically combined substances"}, {"key": "b", "text": "Substances in fixed proportion"}, {"key": "c", "text": "Substances that retain their individual properties"}, {"key": "d", "text": "Only gaseous substances combined"}], "correct": "c", "explanation": "Mixtures are formed by physical combination, not chemical bonding.\n• They do not have fixed proportions; components can vary in quantity.\n• Each substance in a mixture retains its own properties (e.g., air, sand and salt).\n• Mixtures can be of solids, liquids, or gases — not only gases.\n• Thus, (c) correctly defines a mixture."}, {"id": 111, "stem": "Which of the following substances is used in water purification and disinfection?", "options": [{"key": "a", "text": "Sodium bicarbonate"}, {"key": "b", "text": "Potassium permanganate"}, {"key": "c", "text": "Calcium carbonate"}, {"key": "d", "text": "Ammonium chloride"}], "correct": "b", "explanation": "Sodium bicarbonate is used in baking and fire extinguishers, not water purification.\n• Potassium permanganate (KMnO₄) is a strong oxidizer used to disinfect water and remove impurities.\n• Calcium carbonate is used for neutralizing acids but not directly for purification.\n• Ammonium chloride is a salt, not a disinfectant.\n• Therefore, potassium permanganate is the correct answer."}, {"id": 112, "stem": "Which of the following correctly represents the atomic number of an element?", "options": [{"key": "a", "text": "Number of neutrons"}, {"key": "b", "text": "Number of protons"}, {"key": "c", "text": "Number of electrons in nucleus"}, {"key": "d", "text": "Number of nucleons"}], "correct": "b", "explanation": "Atomic number is defined as the number of protons in the nucleus of an atom.\n• Neutrons are neutral particles and not used for atomic number.\n• Electrons are outside the nucleus, not inside.\n• Nucleons include both protons and neutrons — that represents the mass number, not atomic number.\n• So, the correct answer is number of protons."}, {"id": 113, "stem": "What is the cell potential (E°) for the reaction: Zn(s) + Cu²⁺(aq) → Zn²⁺(aq) + Cu(s)?\n(Given: E°(Zn²⁺/Zn) = -0.76 V, E°(Cu²⁺/Cu) = +0.34 V)", "options": [{"key": "a", "text": "+0.42 V"}, {"key": "b", "text": "+1.10 V"}, {"key": "c", "text": "-1.10 V"}, {"key": "d", "text": "-0.42 V"}], "correct": "b", "explanation": "E°cell = E°(cathode) - E°(anode). Cu²⁺ is reduced (cathode, E° = +0.34 V), Zn is oxidized (anode, E° = -0.76 V). E°cell = 0.34 - (-0.76) = 1.10 V."}, {"id": 114, "stem": "Which of the following statements are correct about atoms?\n1. They are the smallest indivisible units of matter.\n2. Atoms of different elements combine to form compounds.\n3. Atoms cannot be created or destroyed in a chemical reaction.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "d", "explanation": "Statement 1 is true in the classical sense, although subatomic particles exist.\n• Statement 2 is correct — atoms form compounds like H₂O, CO₂, etc.\n• Statement 3 is the law of conservation of mass — atoms rearrange but are neither created nor destroyed.\n• So, all three statements are accepted as correct in basic chemistry."}, {"id": 115, "stem": "Which of the following elements is a metalloid?", "options": [{"key": "a", "text": "Phosphorus"}, {"key": "b", "text": "Silicon"}, {"key": "c", "text": "Sulfur"}, {"key": "d", "text": "Chlorine"}], "correct": "b", "explanation": "Phosphorus, sulfur, and chlorine are non-metals.\n• Silicon shows properties of both metals and non-metals and is classified as a metalloid.\n• It is widely used in semiconductors for this reason.\n• Hence, silicon is the correct answer."}, {"id": 116, "stem": "Which of the following gases is commonly used in refrigerators and air conditioners as a coolant?", "options": [{"key": "a", "text": "Oxygen"}, {"key": "b", "text": "Nitrogen"}, {"key": "c", "text": "Freon"}, {"key": "d", "text": "Hydrogen"}], "correct": "c", "explanation": "Freon is a trade name for a group of chlorofluorocarbons (CFCs) and hydrofluorocarbons (HFCs) used as refrigerants in cooling systems.\n• It has ideal properties like low boiling point and chemical stability, making it suitable for transferring heat during evaporation and condensation.\n• Oxygen and nitrogen are atmospheric gases and not used as coolants due to their inert nature.\n• Hydrogen is highly flammable and unsuitable for refrigeration.\n• Although Freon contributes to ozone layer depletion, it was widely used before being regulated.\n• Thus, Freon is the correct answer for conventional cooling systems."}, {"id": 117, "stem": "Which of the following is a chemical property of matter?", "options": [{"key": "a", "text": "Melting point"}, {"key": "b", "text": "Boiling point"}, {"key": "c", "text": "Flammability"}, {"key": "d", "text": "Density"}], "correct": "c", "explanation": "Melting point, boiling point, and density are physical properties — they can be measured without changing the substance's chemical identity.\n• Flammability, on the other hand, describes how easily a substance can catch fire and undergo combustion — a chemical reaction that produces new substances.\n• It involves breaking of chemical bonds and release of energy, typically forming CO₂ and H₂O in organic compounds.\n• Therefore, flammability is a chemical property because it indicates how a substance behaves during a chemical transformation."}, {"id": 118, "stem": "Which of the following is a non-polar molecule?", "options": [{"key": "a", "text": "H₂O"}, {"key": "b", "text": "NH₃"}, {"key": "c", "text": "CO₂"}, {"key": "d", "text": "HCl"}], "correct": "c", "explanation": "CO₂ is linear (O=C=O), and the dipoles cancel out, making it non-polar. H₂O, NH₃, and HCl have net dipoles due to their bent, pyramidal, or linear polar structures."}, {"id": 119, "stem": "Which of the following compounds is used in the manufacture of cement?", "options": [{"key": "a", "text": "Calcium chloride"}, {"key": "b", "text": "Calcium carbonate"}, {"key": "c", "text": "Calcium nitrate"}, {"key": "d", "text": "Calcium sulfate"}], "correct": "b", "explanation": "Cement is primarily made from limestone, which is chemically calcium carbonate (CaCO₃).\n• When heated in a kiln, calcium carbonate decomposes to form calcium oxide (quicklime) and releases CO₂.\n• This calcium oxide reacts with silica, alumina, and iron oxide to produce cement clinker.\n• Calcium chloride and calcium nitrate are used in de-icing or as setting agents, not raw materials.\n• Calcium sulfate is used in small quantities to control setting time but is not the base material.\n• Therefore, calcium carbonate is the principal compound used in cement manufacture."}, {"id": 120, "stem": "What is the order of the reaction with respect to A if the rate doubles when [A] is doubled, assuming all other concentrations are constant?", "options": [{"key": "a", "text": "0"}, {"key": "b", "text": "1"}, {"key": "c", "text": "2"}, {"key": "d", "text": "3"}], "correct": "b", "explanation": "If the rate doubles when [A] doubles, the rate law is rate = k[A]ⁿ, where 2 = 2ⁿ, so n = 1 (first order with respect to A)."}, {"id": 121, "stem": "Which of the following is the strongest reducing agent?", "options": [{"key": "a", "text": "Li"}, {"key": "b", "text": "Na"}, {"key": "c", "text": "K"}, {"key": "d", "text": "Cs"}], "correct": "d", "explanation": "Reducing strength increases down Group 1 due to decreasing ionization energy. Cs, with the lowest ionization energy, is the strongest reducing agent."}, {"id": 122, "stem": "Which of the following indicators turns pink in basic solutions?", "options": [{"key": "a", "text": "Methyl orange"}, {"key": "b", "text": "Litmus"}, {"key": "c", "text": "Phenolphthalein"}, {"key": "d", "text": "Bromothymol blue"}], "correct": "c", "explanation": "Phenolphthalein is colorless in acidic solutions and turns pink in basic (alkaline) solutions, making it ideal for titrations.\n• Methyl orange turns red in acids and yellow in bases, but never pink.\n• Litmus is purple in neutral, blue in base, and red in acid.\n• Bromothymol blue is yellow in acid and blue in base, not pink.\n• Therefore, phenolphthalein is the only one that gives a pink color in base."}, {"id": 123, "stem": "Which of the following statements are correct about the greenhouse effect?\n1. It is caused by trapping of heat by certain gases.\n2. It results in cooling of Earth’s surface.\n3. Carbon dioxide and methane are greenhouse gases.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "c", "explanation": "Statement 1 is correct. Greenhouse effect occurs when gases like CO₂, CH₄, and water vapor trap heat radiated from Earth's surface.\n• Statement 2 is incorrect. The greenhouse effect causes warming, not cooling. It's necessary for life but excessive buildup causes global warming.\n• Statement 3 is correct. Carbon dioxide and methane are significant greenhouse gases, both natural and anthropogenic.\n• Thus, statements 1 and 3 are correct."}, {"id": 124, "stem": "Which of the following gases is responsible for the characteristic smell of rotten eggs?", "options": [{"key": "a", "text": "Methane"}, {"key": "b", "text": "Ammonia"}, {"key": "c", "text": "Hydrogen sulfide"}, {"key": "d", "text": "Sulfur dioxide"}], "correct": "c", "explanation": "Hydrogen sulfide (H₂S) is a colorless, highly toxic gas with the distinct smell of rotten eggs.\n• It is released during the decay of organic matter containing sulfur, such as proteins in eggs.\n• Methane is odorless and is the main component of biogas.\n• Ammonia has a pungent smell but is not associated with rotting.\n• Sulfur dioxide smells like burning matches and is used as a preservative.\n• Therefore, H₂S is responsible for the foul smell."}, {"id": 125, "stem": "Which of the following is true about noble gases?", "options": [{"key": "a", "text": "They are highly reactive."}, {"key": "b", "text": "They form colored compounds with metals."}, {"key": "c", "text": "They exist as diatomic molecules."}, {"key": "d", "text": "They have complete outer electron shells."}], "correct": "d", "explanation": "Noble gases like helium, neon, argon, krypton, xenon, and radon are found in Group 18 of the periodic table.\n• They have full outer electron shells, making them extremely stable and inert under normal conditions.\n• They do not form compounds easily and exist as monoatomic gases.\n• They do not generally form colored compounds — that behavior is typical of transition metals.\n• So, the correct answer is (d) — their chemical inactivity is due to a completely filled valence shell."}, {"id": 126, "stem": "Which of the following substances is responsible for the depletion of the ozone layer?", "options": [{"key": "a", "text": "Methane"}, {"key": "b", "text": "Carbon dioxide"}, {"key": "c", "text": "Chlorofluorocarbons"}, {"key": "d", "text": "Nitrogen"}], "correct": "c", "explanation": "Chlorofluorocarbons (CFCs) are synthetic compounds once used in refrigeration, aerosol sprays, and foam blowing agents.\n• In the upper atmosphere, ultraviolet (UV) radiation breaks CFCs, releasing chlorine atoms that catalytically destroy ozone (O₃) molecules.\n• Methane and carbon dioxide contribute to the greenhouse effect but not ozone depletion.\n• Nitrogen is a major component of air and does not directly affect the ozone layer.\n• Thus, CFCs are primarily responsible for ozone thinning, especially over polar regions."}, {"id": 127, "stem": "Which of the following best explains the term “isobars”?", "options": [{"key": "a", "text": "Elements having same atomic number but different mass number"}, {"key": "b", "text": "Elements having same number of neutrons"}, {"key": "c", "text": "Elements having same mass number but different atomic numbers"}, {"key": "d", "text": "Elements having same physical properties"}], "correct": "c", "explanation": "Isobars are atoms of different elements that have the same mass number (sum of protons and neutrons) but different atomic numbers.\n• For example, argon (Ar-40) and calcium (Ca-40) have the same mass number (40) but different number of protons.\n• They differ chemically because of different electronic configurations but have similar nuclear mass.\n• This distinguishes them from isotopes, which are atoms of the same element with different mass numbers.\n• Therefore, the correct explanation is option (c)."}, {"id": 128, "stem": "Which of the following statements are correct about polymers?\n1. Nylon is a synthetic polymer.\n2. Proteins are natural polymers.\n3. Polymers always have crystalline structures.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Nylon is made from petrochemicals and is one of the first synthetic polymers.\n• Statement 2 is correct. Proteins are polymers of amino acids linked by peptide bonds and occur naturally.\n• Statement 3 is incorrect. Many polymers are amorphous, not crystalline — their long chains may not be perfectly ordered.\n• Hence, only statements 1 and 2 are correct."}, {"id": 129, "stem": "Which of the following acids is produced in the human stomach?", "options": [{"key": "a", "text": "Acetic acid"}, {"key": "b", "text": "Lactic acid"}, {"key": "c", "text": "Hydrochloric acid"}, {"key": "d", "text": "Sulfuric acid"}], "correct": "c", "explanation": "The stomach secretes hydrochloric acid (HCl) which creates an acidic environment (pH ~1.5–3.5) to help digestion and kill harmful microbes.\n• Acetic acid is found in vinegar, lactic acid in curd and muscles, and sulfuric acid is not produced in the body.\n• HCl activates the enzyme pepsin and helps break down food.\n• Hence, the correct answer is hydrochloric acid."}, {"id": 130, "stem": "Which of the following statements is/are true about the process of electrolysis?\n1. It involves chemical decomposition using electricity.\n2. It is used for extraction and purification of metals.\n3. Electrolysis does not involve ion movement.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Electrolysis breaks down ionic compounds using an electric current.\n• Statement 2 is also correct. It's used to extract metals like aluminium from bauxite and to purify copper.\n• Statement 3 is incorrect. Electrolysis depends entirely on ion movement: cations move to the cathode and anions to the anode.\n• Therefore, only statements 1 and 2 are true."}, {"id": 131, "stem": "Which of the following statements are true about catalysts?\n1. Catalysts are consumed in a reaction.\n2. Catalysts speed up the reaction rate.\n3. Enzymes are biological catalysts.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is false. A catalyst remains chemically unchanged at the end of the reaction.\n• Statement 2 is true. Catalysts lower the activation energy, thereby increasing the reaction rate.\n• Statement 3 is also true. Enzymes like amylase, pepsin, and DNA polymerase act as natural biological catalysts.\n• So, only 2 and 3 are correct."}, {"id": 132, "stem": "Which among the following shows both acidic and basic properties?", "options": [{"key": "a", "text": "Sodium oxide"}, {"key": "b", "text": "Magnesium hydroxide"}, {"key": "c", "text": "Aluminium hydroxide"}, {"key": "d", "text": "Calcium carbonate"}], "correct": "c", "explanation": "Aluminium hydroxide (Al(OH)₃) is an amphoteric substance, meaning it reacts with both acids and bases.\n• It forms salts with acids and also reacts with strong bases like NaOH to form aluminates.\n• Sodium oxide is a strong base, magnesium hydroxide is mildly basic, and calcium carbonate is weakly basic — none are amphoteric.\n• Therefore, aluminium hydroxide is the correct answer."}, {"id": 133, "stem": "Which of the following metals is stored under kerosene to prevent reaction with air?", "options": [{"key": "a", "text": "Calcium"}, {"key": "b", "text": "Magnesium"}, {"key": "c", "text": "Potassium"}, {"key": "d", "text": "Aluminium"}], "correct": "c", "explanation": "Potassium is a highly reactive alkali metal that reacts violently with oxygen and moisture.\n• To prevent accidental fires and explosions, it is stored under kerosene oil, which blocks air and water.\n• Calcium is reactive but stored in air-tight containers.\n• Magnesium forms a protective oxide layer and doesn't need kerosene.\n• Aluminium is not stored under oil.\n• Thus, potassium is the correct answer."}, {"id": 134, "stem": "Which of the following statements about rusting is/are correct?\n1. It is a slow oxidation process.\n2. It occurs in presence of water and oxygen.\n3. It increases the strength of iron.", "options": [{"key": "a", "text": "1 and 2 only"}, {"key": "b", "text": "2 and 3 only"}, {"key": "c", "text": "1 and 3 only"}, {"key": "d", "text": "All 1, 2 and 3"}], "correct": "a", "explanation": "Statement 1 is correct. Rusting is a slow chemical reaction between iron, water, and oxygen forming iron oxide (Fe₂O₃·xH₂O).\n• Statement 2 is also correct. Both moisture and oxygen are required for rusting to occur.\n• Statement 3 is incorrect. Rusting weakens iron by corroding its surface and reducing its strength and durability.\n• Thus, only statements 1 and 2 are true."}, {"id": 135, "stem": "Which of the following is a reason for using alloys instead of pure metals?", "options": [{"key": "a", "text": "Alloys are lighter than metals."}, {"key": "b", "text": "Alloys are always cheaper."}, {"key": "c", "text": "Alloys have better properties like strength and resistance."}, {"key": "d", "text": "Alloys are magnetic."}], "correct": "c", "explanation": "Alloys are made by combining two or more elements to enhance properties such as strength, corrosion resistance, or hardness.\n• For example, stainless steel (iron + chromium + nickel) does not rust like pure iron.\n• Not all alloys are lighter or cheaper — some are more expensive (like bronze or titanium alloys).\n• Magnetic property depends on the composition, not the fact that it is an alloy.\n• Therefore, the primary reason to use alloys is improved mechanical and chemical properties."}, {"id": 136, "stem": "Which of the following gases is evolved when dilute sulfuric acid reacts with zinc metal?", "options": [{"key": "a", "text": "Oxygen"}, {"key": "b", "text": "Hydrogen"}, {"key": "c", "text": "Sulfur dioxide"}, {"key": "d", "text": "Carbon dioxide"}], "correct": "b", "explanation": "When zinc reacts with dilute sulfuric acid (H₂SO₄), the products are zinc sulfate (ZnSO₄) and hydrogen gas (H₂).\n• This is a classic example of a single displacement reaction, where zinc displaces hydrogen from the acid.\n• Oxygen and sulfur dioxide are not produced in this reaction; CO₂ would be evolved only if a carbonate was involved.\n• The visible evidence of reaction is the bubbling or effervescence due to hydrogen gas.\n• Hence, the gas evolved is hydrogen."}, {"id": 137, "stem": "Which of the following methods is used for separating oil from water?", "options": [{"key": "a", "text": "Distillation"}, {"key": "b", "text": "Filtration"}, {"key": "c", "text": "Separating funnel"}, {"key": "d", "text": "Chromatography"}], "correct": "c", "explanation": "Oil and water are immiscible liquids, meaning they do not mix and form distinct layers due to differences in density.\n• A separating funnel allows the denser liquid (usually water) to be released first, leaving the lighter liquid (oil) in the funnel.\n• Distillation is used for separating miscible liquids with different boiling points.\n• Filtration separates solids from liquids, and chromatography separates mixtures based on movement through a medium.\n• So, separating funnel is the correct choice."}, {"id": 138, "stem": "Which of the following correctly describes a suspension?", "options": [{"key": "a", "text": "Homogeneous mixture"}, {"key": "b", "text": "Clear and transparent solution"}, {"key": "c", "text": "Particles settle on standing"}, {"key": "d", "text": "Does not scatter light"}], "correct": "c", "explanation": "A suspension is a heterogeneous mixture where solid particles are dispersed in a liquid but are large enough to settle over time.\n• It is cloudy and scatters light (Tyndall effect).\n• Unlike colloids, its particles can be filtered out.\n• So, the correct answer is: particles settle on standing."}, {"id": 139, "stem": "Which of the following acids is found in vinegar?", "options": [{"key": "a", "text": "Lactic acid"}, {"key": "b", "text": "Acetic acid"}, {"key": "c", "text": "Citric acid"}, {"key": "d", "text": "Tartaric acid"}], "correct": "b", "explanation": "Vinegar is a dilute solution of acetic acid (CH₃COOH), usually 4–8% by volume in water.\n• It gives vinegar its sour taste and is used as a preservative and condiment.\n• Lactic acid is found in curd, citric acid in citrus fruits, and tartaric acid in tamarind and grapes.\n• Therefore, the acid in vinegar is acetic acid."}, {"id": 140, "stem": "Which of the following best describes the Tyndall effect?", "options": [{"key": "a", "text": "Reflection of light by mirror"}, {"key": "b", "text": "Refraction of light by water"}, {"key": "c", "text": "Scattering of light by colloidal particles"}, {"key": "d", "text": "Absorption of light by black body"}], "correct": "c", "explanation": "The Tyndall effect is observed when a beam of light passes through a colloidal solution, and the particles in the colloid scatter the light.\n• This makes the path of the light visible, such as sunlight streaming through mist or dust in a room.\n• It is a distinguishing feature of colloids and is not seen in true solutions.\n• Reflection and refraction are optical phenomena in mirrors and lenses, not unique to colloids.\n• Thus, the correct explanation is the scattering of light by colloidal particles."}, {"id": 141, "stem": "Select the option that is related to the third term in the same way as the second term is related to the first term.\nDASHBOARD : EZTGCNBQE :: GOOGLE : ?", "options": [{"key": "a", "text": "HNPHMD"}, {"key": "b", "text": "HPNFMD"}, {"key": "c", "text": "HNPFMD"}, {"key": "d", "text": "HPPFMD"}], "correct": "c", "explanation": "+1, -1 series"}, {"id": 142, "stem": "Select the option that is related to the third term in the same way as the second term is related to the first term.\n17 : 48 :: 23 : ?", "options": [{"key": "a", "text": "65"}, {"key": "b", "text": "63"}, {"key": "c", "text": "7"}, {"key": "d", "text": "5"}], "correct": "d", "explanation": "(1+7)×(7-1) = 48\n(3+2)×(3-2) = 5"}, {"id": 143, "stem": "Select the option in which the numbers share the same relationship as that shared by the given pair of numbers.\n25 : 729", "options": [{"key": "a", "text": "17 : 324"}, {"key": "b", "text": "11 : 121"}, {"key": "c", "text": "21 : 529"}, {"key": "d", "text": "13 : 144"}], "correct": "c", "explanation": "(25+2)² = 729\n(21+2)² = 529"}, {"id": 144, "stem": "Four options have been given out of which three are alike in some manner, while one is different. Choose the odd one.", "options": [{"key": "a", "text": "RAAM – IZZN"}, {"key": "b", "text": "AMIT – ZNRI"}, {"key": "c", "text": "ARUN – ZIFM"}, {"key": "d", "text": "TANU – GZMF"}], "correct": "b", "explanation": "except (b), all other are combination of opposite letters."}, {"id": 145, "stem": "Four options have been given out of which three are alike in some manner, while one is different. Choose the odd one.", "options": [{"key": "a", "text": "68"}, {"key": "b", "text": "120"}, {"key": "c", "text": "350"}, {"key": "d", "text": "222"}], "correct": "b", "explanation": "4³+4 = 68\n5³-5 = 120\n6³+6 = 222\n7³+7 = 350"}, {"id": 146, "stem": "Gurugram Municipal Corporation has a big water tank to supply water in the city. Tank has ‘A’ inlet pipes and ‘B’ outlet pipes. An inlet pipe can fill the tank in 8 hours while an outlet pipe can empty the full tank in 12 hours. If all the pipes are left open simultaneously, it takes 6 hours to fill the empty tank. Choose the correct option?", "options": [{"key": "a", "text": "A : B = 2 : 3"}, {"key": "b", "text": "A : B = 1 : 1"}, {"key": "c", "text": "A : B = 2 : 1"}, {"key": "d", "text": "A : B = 3 : 2"}], "correct": "c", "explanation": "A/8 − B/12 = 1/6. Multiply through: 3A − 2B = 4. Testing A = 2, B = 1: 2/8 − 1/12 = 3/12 − 1/12 = 2/12 = 1/6 ✓. So A : B = 2 : 1."}, {"id": 147, "stem": "The average weight of some students in a class was 57.8 kg. When 11 students whose average weight was 63.2 kg joined the class, then the average weight of all the students increased by 600 gm. The number of students in the class initially was-", "options": [{"key": "a", "text": "99"}, {"key": "b", "text": "88"}, {"key": "c", "text": "77"}, {"key": "d", "text": "66"}], "correct": "b", "explanation": "Let initial students = n. Total weight equation: 57.8n + 11×63.2 = 58.4(n + 11). 57.8n + 695.2 = 58.4n + 640.4. 54.8 = 0.6n. n = 88."}, {"id": 148, "stem": "tan 4θ is equal to-", "options": [{"key": "a", "text": "4 tanθ(1 − tan²θ) / (1 − 6tan²θ + tan⁴θ)"}, {"key": "b", "text": "4 tanθ(1 − tan²θ) / (1 − 6tan²θ + tan³θ)"}, {"key": "c", "text": "4 tanθ(1 − tan²θ) / (1 + 6tan²θ + tan⁴θ)"}, {"key": "d", "text": "None of these"}], "correct": "a", "explanation": "Applying the double-angle formula twice: tan 4θ = 4 tanθ(1 − tan²θ) / (1 − 6tan²θ + tan⁴θ). This matches option (a)."}, {"id": 149, "stem": "Simplify √(12 + 2√12 − 2√15 − 2√20)", "options": [{"key": "a", "text": "1 + √12 − √3"}, {"key": "b", "text": "√3 + √15 − √2"}, {"key": "c", "text": "√3 + √4 − √5"}, {"key": "d", "text": "√3 + √4 + √5"}], "correct": "c", "explanation": "(√3 + √4 − √5)² = 3 + 4 + 5 + 2√12 − 2√15 − 2√20 = 12 + 2√12 − 2√15 − 2√20. So the answer is √3 + √4 − √5."}, {"id": 150, "stem": "The value of 5.2 − (4.8 ÷ 0.8 × 4) + 7 × 2 ÷ 0.7 is :", "options": [{"key": "a", "text": "1.2"}, {"key": "b", "text": "1.5"}, {"key": "c", "text": "1.8"}, {"key": "d", "text": "1.6"}], "correct": "a", "explanation": "5.2 – (4.8 ÷ 0.8 × 4) + 7 × 2 ÷ 0.7\n= 5.2 – (24) + 20\n= 5.2 - 24 + 20 = 1.2"}];
+const TOTAL_SECONDS = 120 * 60; // 2 hours
+const STORAGE_ACTIVE = 'bpscChem06ActiveAttempt_v1';
+const STORAGE_HISTORY = 'bpscChem06History_v1';
+
+let state = {
+  answers: {},      // qid -> 'a'/'b'/'c'/'d'
+  flags: {},         // qid -> true
+  endTime: null,     // epoch ms when timer ends
+  startTime: null,
+  submitted: false
+};
+let timerInterval = null;
+
+// ---------- Utility ----------
+function $(sel){ return document.querySelector(sel); }
+function $all(sel){ return document.querySelectorAll(sel); }
+function showScreen(id){
+  $all('.screen').forEach(s => s.classList.remove('active'));
+  $(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function fmtTime(totalSec){
+  totalSec = Math.max(0, Math.floor(totalSec));
+  const h = String(Math.floor(totalSec/3600)).padStart(2,'0');
+  const m = String(Math.floor((totalSec%3600)/60)).padStart(2,'0');
+  const s = String(totalSec%60).padStart(2,'0');
+  return `${h}:${m}:${s}`;
+}
+function saveActiveAttempt(){
+  localStorage.setItem(STORAGE_ACTIVE, JSON.stringify(state));
+}
+function clearActiveAttempt(){
+  localStorage.removeItem(STORAGE_ACTIVE);
+}
+function loadActiveAttempt(){
+  const raw = localStorage.getItem(STORAGE_ACTIVE);
+  if(!raw) return null;
+  try{ return JSON.parse(raw); }catch(e){ return null; }
+}
+function getHistory(){
+  const raw = localStorage.getItem(STORAGE_HISTORY);
+  if(!raw) return [];
+  try{ return JSON.parse(raw); }catch(e){ return []; }
+}
+function saveHistory(list){
+  localStorage.setItem(STORAGE_HISTORY, JSON.stringify(list));
+}
+
+// ---------- Build test screen ----------
+function buildQuestionCards(){
+  const col = $('#questionsCol');
+  col.innerHTML = '';
+  QUESTIONS.forEach(q => {
+    const card = document.createElement('div');
+    card.className = 'qcard';
+    card.id = 'qcard-' + q.id;
+
+    const head = document.createElement('div');
+    head.className = 'qhead';
+    head.innerHTML = `<span class="qnum">Q${q.id}</span>`;
+    const flagBtn = document.createElement('button');
+    flagBtn.className = 'flag-btn';
+    flagBtn.textContent = 'Flag for review';
+    flagBtn.onclick = () => toggleFlag(q.id, flagBtn, card);
+    head.appendChild(flagBtn);
+    card.appendChild(head);
+
+    const stem = document.createElement('div');
+    stem.className = 'qstem';
+    stem.textContent = q.stem;
+    card.appendChild(stem);
+
+    const opts = document.createElement('div');
+    opts.className = 'options';
+    q.options.forEach(o => {
+      const label = document.createElement('label');
+      label.className = 'opt';
+      label.id = `opt-${q.id}-${o.key}`;
+      label.innerHTML = `
+        <input type="radio" name="q${q.id}" value="${o.key}">
+        <span class="opt-key">(${o.key})</span>
+        <span class="opt-text"></span>
+      `;
+      label.querySelector('.opt-text').textContent = o.text;
+      label.querySelector('input').addEventListener('change', () => selectAnswer(q.id, o.key));
+      opts.appendChild(label);
+    });
+    card.appendChild(opts);
+    col.appendChild(card);
+  });
+}
+
+function toggleFlag(qid, btn, card){
+  if(state.flags[qid]){
+    delete state.flags[qid];
+    btn.classList.remove('on');
+    card.classList.remove('flagged');
+  } else {
+    state.flags[qid] = true;
+    btn.classList.add('on');
+    card.classList.add('flagged');
+  }
+  saveActiveAttempt();
+  renderPalette();
+}
+
+function selectAnswer(qid, key){
+  state.answers[qid] = key;
+  const card = document.getElementById('qcard-' + qid);
+  card.classList.add('answered');
+  card.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+  document.getElementById(`opt-${qid}-${key}`).classList.add('selected');
+  saveActiveAttempt();
+  updateProgress();
+  renderPalette();
+}
+
+function restoreAnswersToDOM(){
+  QUESTIONS.forEach(q => {
+    const card = document.getElementById('qcard-' + q.id);
+    const ans = state.answers[q.id];
+    if(ans){
+      card.classList.add('answered');
+      const input = card.querySelector(`input[value="${ans}"]`);
+      if(input) input.checked = true;
+      const optEl = document.getElementById(`opt-${q.id}-${ans}`);
+      if(optEl) optEl.classList.add('selected');
+    }
+    if(state.flags[q.id]){
+      card.classList.add('flagged');
+      card.querySelector('.flag-btn').classList.add('on');
+    }
+  });
+}
+
+function updateProgress(){
+  const count = Object.keys(state.answers).length;
+  $('#progressPill').textContent = `${count} / 150 answered`;
+}
+
+function renderPalette(){
+  const grid = $('#paletteGrid');
+  grid.innerHTML = '';
+  QUESTIONS.forEach(q => {
+    const btn = document.createElement('button');
+    btn.className = 'pnum';
+    if(state.answers[q.id]) btn.classList.add('answered');
+    if(state.flags[q.id]) btn.classList.add('flagged');
+    btn.textContent = q.id;
+    btn.onclick = () => {
+      document.getElementById('qcard-' + q.id).scrollIntoView({behavior:'smooth', block:'center'});
+      if(window.innerWidth <= 920){ $('#paletteCol').classList.remove('open'); }
+    };
+    grid.appendChild(btn);
+  });
+}
+
+// ---------- Timer ----------
+function startTimerLoop(){
+  if(timerInterval) clearInterval(timerInterval);
+  tickTimer();
+  timerInterval = setInterval(tickTimer, 1000);
+}
+function tickTimer(){
+  const remaining = (state.endTime - Date.now()) / 1000;
+  const box = $('#timerBox');
+  box.textContent = fmtTime(remaining);
+  if(remaining <= 300) box.classList.add('low'); else box.classList.remove('low');
+  if(remaining <= 0){
+    clearInterval(timerInterval);
+    submitTest(true);
+  }
+}
+
+// ---------- Start / resume test ----------
+function beginNewTest(){
+  state = {
+    answers: {},
+    flags: {},
+    startTime: Date.now(),
+    endTime: Date.now() + TOTAL_SECONDS*1000,
+    submitted: false
+  };
+  saveActiveAttempt();
+  buildQuestionCards();
+  renderPalette();
+  updateProgress();
+  showScreen('#testScreen');
+  startTimerLoop();
+}
+
+function resumeTest(saved){
+  state = saved;
+  buildQuestionCards();
+  restoreAnswersToDOM();
+  renderPalette();
+  updateProgress();
+  showScreen('#testScreen');
+  startTimerLoop();
+}
+
+// ---------- Submit & scoring ----------
+function computeResult(){
+  let correct=0, incorrect=0, unattempted=0;
+  const details = QUESTIONS.map(q => {
+    const given = state.answers[q.id] || null;
+    let status;
+    if(!given){ status='unattempted'; unattempted++; }
+    else if(given === q.correct){ status='correct'; correct++; }
+    else { status='incorrect'; incorrect++; }
+    return { id:q.id, stem:q.stem, options:q.options, correct:q.correct, explanation:q.explanation, given, status, flagged: !!state.flags[q.id] };
+  });
+  const timeUsedSec = Math.min(TOTAL_SECONDS, Math.round((Date.now() - state.startTime)/1000));
+  const marks = correct * 1 - incorrect * (1/3);
+  return {
+    id: 'attempt_' + Date.now(),
+    date: new Date().toISOString(),
+    correct, incorrect, unattempted,
+    total: QUESTIONS.length,
+    marks,
+    timeUsedSec,
+    details
+  };
+}
+
+function submitTest(auto){
+  if(state.submitted) return;
+  state.submitted = true;
+  if(timerInterval) clearInterval(timerInterval);
+  const result = computeResult();
+  const hist = getHistory();
+  hist.unshift(result);
+  saveHistory(hist);
+  clearActiveAttempt();
+  renderResults(result);
+  showScreen('#resultsScreen');
+}
+
+function confirmSubmit(){
+  const unanswered = QUESTIONS.length - Object.keys(state.answers).length;
+  if(unanswered > 0){
+    $('#confirmText').textContent = `You have ${unanswered} unanswered question(s). Are you sure you want to submit now? This cannot be undone.`;
+  } else {
+    $('#confirmText').textContent = `All questions answered. Submit now? This cannot be undone.`;
+  }
+  $('#confirmModal').classList.add('active');
+}
+
+// ---------- Results rendering ----------
+function renderResults(result){
+  const marksDisplay = (Math.round(result.marks * 100) / 100).toFixed(2).replace(/\.00$/, '');
+  $('#scoreBig').textContent = `${marksDisplay} / ${result.total}`;
+  $('#scoreDate').textContent = new Date(result.date).toLocaleString();
+  $('#statCorrect').textContent = result.correct;
+  $('#statIncorrect').textContent = result.incorrect;
+  $('#statUnattempted').textContent = result.unattempted;
+  const acc = result.correct + result.incorrect > 0
+    ? Math.round(result.correct / (result.correct + result.incorrect) * 100)
+    : 0;
+  $('#statAccuracy').textContent = acc + '%';
+  $('#statTime').textContent = fmtTime(result.timeUsedSec);
+
+  const panels = { all: [], correct: [], incorrect: [], unattempted: [], flagged: [] };
+  result.details.forEach(d => {
+    const el = buildReviewCard(d);
+    panels.all.push(el);
+    panels[d.status].push(el.cloneNode(true));
+    if(d.flagged) panels.flagged.push(el.cloneNode(true));
+  });
+
+  ['all','correct','incorrect','unattempted','flagged'].forEach(key => {
+    const panel = document.getElementById('panel-' + key);
+    panel.innerHTML = '';
+    if(panels[key].length === 0){
+      const p = document.createElement('p');
+      p.className = 'empty-note';
+      p.textContent = 'Nothing to show here.';
+      panel.appendChild(p);
+    } else {
+      panels[key].forEach(el => panel.appendChild(el));
+    }
+  });
+
+  $all('.tab-btn').forEach(b => b.classList.remove('active'));
+  $('.tab-btn[data-tab="all"]').classList.add('active');
+  $all('.tab-panel').forEach(p => p.classList.remove('active'));
+  $('#panel-all').classList.add('active');
+}
+
+function buildReviewCard(d){
+  const card = document.createElement('div');
+  card.className = 'review-card ' + d.status;
+
+  const tag = document.createElement('span');
+  tag.className = 'review-tag ' + d.status;
+  tag.textContent = d.status === 'correct' ? 'Correct' : d.status === 'incorrect' ? 'Incorrect' : 'Unattempted';
+  card.appendChild(tag);
+
+  if(d.flagged){
+    const ftag = document.createElement('span');
+    ftag.className = 'review-tag';
+    ftag.style.cssText = 'background:var(--gold-soft);color:var(--navy-deep);margin-left:6px;';
+    ftag.textContent = 'Flagged';
+    card.appendChild(ftag);
+  }
+
+  const num = document.createElement('div');
+  num.className = 'qnum';
+  num.style.marginLeft = '8px';
+  num.style.display = 'inline-block';
+  num.textContent = 'Q' + d.id;
+  card.appendChild(num);
+
+  const stem = document.createElement('div');
+  stem.className = 'qstem';
+  stem.style.marginTop = '8px';
+  stem.textContent = d.stem;
+  card.appendChild(stem);
+
+  const optsWrap = document.createElement('div');
+  d.options.forEach(o => {
+    const row = document.createElement('div');
+    let cls = 'review-opt';
+    if(o.key === d.correct) cls += ' correct-answer';
+    else if(o.key === d.given && d.status === 'incorrect') cls += ' your-wrong';
+    row.className = cls;
+    let suffix = '';
+    if(o.key === d.correct) suffix = '  ✓ Correct answer';
+    if(o.key === d.given && d.status !== 'correct') suffix += '  (your answer)';
+    if(o.key === d.given && d.status === 'correct') suffix = '  ✓ Your answer — correct';
+    row.innerHTML = `<span class="opt-key">(${o.key})</span><span>${escapeHtml(o.text)}${suffix}</span>`;
+    optsWrap.appendChild(row);
+  });
+  card.appendChild(optsWrap);
+
+  const exp = document.createElement('div');
+  exp.className = 'explanation';
+  function formatExplanation(text){
+    const lines = text.split('\n');
+    let html = '';
+    lines.forEach((line, i) => {
+      const clean = line.replace(/^•\s*/, '');
+      const escaped = clean.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      if(line.startsWith('•')){
+        html += `<div class="ex-bullet"><span class="ex-dot">•</span><span>${escaped}</span></div>`;
+      } else if(clean.trim() !== ''){
+        html += `<div class="ex-first">${escaped}</div>`;
+      }
+    });
+    return html;
+  }
+  exp.innerHTML = `<span class="exlabel">Explanation</span>${formatExplanation(d.explanation)}`;
+  card.appendChild(exp);
+
+  return card;
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// ---------- History screen ----------
+function renderHistory(){
+  const list = getHistory();
+  const wrap = $('#historyList');
+  wrap.innerHTML = '';
+  if(list.length === 0){
+    wrap.innerHTML = '<p class="empty-note">No attempts saved yet. Complete a test to see it here.</p>';
+    return;
+  }
+  list.forEach(r => {
+    const item = document.createElement('div');
+    item.className = 'history-item';
+    const acc = r.correct + r.incorrect > 0 ? Math.round(r.correct/(r.correct+r.incorrect)*100) : 0;
+    const rMarks = (typeof r.marks === 'number') ? r.marks : (r.correct * 1 - r.incorrect * (1/3));
+    const rMarksDisplay = (Math.round(rMarks * 100) / 100).toFixed(2).replace(/\.00$/, '');
+    item.innerHTML = `
+      <div>
+        <div class="hscore">${rMarksDisplay} / ${r.total}</div>
+        <div class="hdate">${new Date(r.date).toLocaleString()} · ${acc}% accuracy · ${fmtTime(r.timeUsedSec)} used</div>
+      </div>
+      <button class="btn-secondary" style="width:auto;">Open review</button>
+    `;
+    item.querySelector('button').onclick = () => {
+      renderResults(r);
+      showScreen('#resultsScreen');
+    };
+    wrap.appendChild(item);
+  });
+}
+
+// ---------- Event wiring ----------
+window.addEventListener('DOMContentLoaded', () => {
+  const active = loadActiveAttempt();
+  if(active && !active.submitted && active.endTime > Date.now()){
+    // silently offer resume via start screen note
+    $('#startBtn').textContent = 'Resume Test';
+  }
+
+  $('#startBtn').addEventListener('click', () => {
+    const active2 = loadActiveAttempt();
+    if(active2 && !active2.submitted && active2.endTime > Date.now()){
+      resumeTest(active2);
+    } else {
+      beginNewTest();
+    }
+  });
+
+  $('#viewHistoryBtn').addEventListener('click', () => {
+    renderHistory();
+    showScreen('#historyScreen');
+  });
+  $('#backToStartFromHistoryBtn').addEventListener('click', () => showScreen('#startScreen'));
+  $('#backToStartBtn').addEventListener('click', () => showScreen('#startScreen'));
+  $('#toHistoryFromResultsBtn').addEventListener('click', () => {
+    renderHistory();
+    showScreen('#historyScreen');
+  });
+
+  $('#submitBtn').addEventListener('click', confirmSubmit);
+  $('#cancelSubmitBtn').addEventListener('click', () => $('#confirmModal').classList.remove('active'));
+  $('#confirmSubmitBtn').addEventListener('click', () => {
+    $('#confirmModal').classList.remove('active');
+    submitTest(false);
+  });
+
+  $('#paletteToggleBtn').addEventListener('click', () => {
+    $('#paletteCol').classList.toggle('open');
+  });
+
+  $all('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $all('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      $all('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      window.scrollTo(0, document.querySelector('.tabs').offsetTop - 20);
+    });
+  });
+
+  window.addEventListener('beforeunload', () => {
+    if(!state.submitted && state.startTime) saveActiveAttempt();
+  });
+});
+</script>
+</body>
+</html>

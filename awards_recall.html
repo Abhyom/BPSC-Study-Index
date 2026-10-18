@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Awards Recall</title>
+<style>
+:root{--bg:#0f131b;--sf:#171d29;--sf2:#1e2635;--ln:#2a3447;--tx:#e9edf4;--mu:#8b97ab;--ac:#54b8c4;--am:#e9b96e;--rd:#d9708a}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 -apple-system,"Segoe UI",Roboto,sans-serif;padding-bottom:env(safe-area-inset-bottom,0)}
+header{padding:calc(10px + env(safe-area-inset-top,0px)) 12px 0}
+.stick{position:sticky;top:0;z-index:5;background:rgba(15,19,27,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--ln);padding:8px 12px 10px;padding-top:calc(8px + env(safe-area-inset-top,0px))}
+h1{margin:0 0 8px;font:600 20px/1.2 Georgia,"Iowan Old Style",serif;letter-spacing:.2px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tab{border:1px solid var(--ln);background:var(--sf);color:var(--mu);padding:8px 12px;border-radius:10px;font:500 14px/1.2 inherit;font-family:inherit}
+.tab.on{background:var(--ac);color:#08141a;border-color:var(--ac);font-weight:600}
+.bar{display:flex;gap:6px}
+.bar input{flex:1;min-width:0;background:var(--sf);border:1px solid var(--ln);color:var(--tx);border-radius:10px;padding:10px 12px;font:16px inherit;font-family:inherit}
+.bar input:focus,.btn:focus-visible,.tab:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+.btn{flex:none;background:var(--sf2);border:1px solid var(--ln);color:var(--tx);border-radius:10px;padding:0 12px;font:500 14px inherit;font-family:inherit}
+.btn.hide{display:none}
+.meta{color:var(--mu);font-size:13px;padding:8px 2px 0}
+main{padding:8px 8px 40px}
+.grid{display:grid;grid-template-columns:1fr 1fr 1.7fr;gap:0 10px}
+.head{padding:8px 10px;color:var(--mu);font-size:13px;font-weight:600}
+.row{display:contents;cursor:pointer}
+.row>div{background:var(--sf);padding:14px 10px;border-top:1px solid var(--ln);overflow-wrap:anywhere;hyphens:auto}
+.row>div:first-child{border-radius:12px 0 0 12px;border-left:3px solid var(--ac)}
+.row>div:last-child{border-radius:0 12px 12px 0}
+.row:active>div{background:var(--sf2)}
+.aw{font:600 16px/1.35 Georgia,"Iowan Old Style",serif;color:var(--ac)}
+.cat{display:block;margin-top:6px;font:500 12px/1.2 -apple-system,sans-serif;color:var(--mu)}
+.rc{font-size:15px;line-height:1.4;margin-bottom:8px}
+.rc:last-child{margin-bottom:0}
+.rc b{font-weight:600;display:block}
+.rc i{font-style:normal;color:var(--am);font-size:13px}
+.dt{font-size:14.5px;line-height:1.55;color:#cfd6e3}
+.sec{transition:filter .25s,opacity .25s}
+.row:not(.open) .sec{filter:blur(9px);opacity:.55;user-select:none}
+.row.open>div:first-child{border-left-color:var(--am)}
+.row .gap{display:none}
+.empty{padding:40px 10px;text-align:center;color:var(--mu)}
+@media (prefers-reduced-motion:reduce){.sec{transition:none}}
+@media (min-width:700px){main,header>*,.stick>*{max-width:900px;margin-inline:auto}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Awards Recall</h1>
+  <div class="tabs" id="tabs" role="tablist"></div>
+</header>
+<div class="stick">
+  <div class="bar">
+    <input id="q" type="search" placeholder="Search award, person or detail" aria-label="Search">
+    <button class="btn" id="toggle">Reveal all</button>
+    <button class="btn hide" id="shuf">Shuffle</button>
+  </div>
+  <div class="meta" id="meta"></div>
+</div>
+<main><div class="grid" id="grid"></div></main>
+
+<script>
+/* ---------- DATA ----------
+   To add a category: add a new key below with rows shaped
+   [award, [[recipient, country], ...], details].
+   It gets its own tab automatically and joins the shuffled "All awards" tab. */
+const DATA = {
+"Environmental": [
+["The Earth Prize 2026",[["Vivaan Chhawchharia, Ariana Agrawal & Avyana Mehta","India"]],"World's largest environmental prize for teenagers. Awarded for developing a powder from waste tamarind seeds that binds microplastics into visible clumps, enabling easier removal from water."],
+["Goldman Environmental Prize 2026 (“Green Nobel”)",[["Izoro Tanshi","Nigeria"],["Borim Kim","South Korea"],["Sara Finch","UK"],["Theonila Roka Matbob","Papua New Guinea"],["Alanah Akak Hurley","USA"],["Yuvelis Morales Blanco","Colombia"]],"One of the world's highest honours for grassroots environmental activists. Given annually to one environmental leader from each inhabited continent for biodiversity conservation and environmental justice. Known as the “Green Nobel.”"],
+["Whitley Award 2026 (“Green Oscar”)",[["Barkha Subba","India"],["Parveen Shaikh","India"]],"Presented by the Whitley Fund for Nature (UK) for outstanding grassroots conservation leadership. Barkha Subba: Himalayan Salamander & wetland breeding habitats. Parveen Shaikh: conservation of the Indian Skimmer in the Ganga and Chambal river ecosystems. Known as the “Green Oscar.”"],
+["UNEP Champions of the Earth Award 2025",[["Supriya Sahu","India"]],"UNEP's highest environmental honour, recognising exceptional leadership in environmental protection and sustainable development."],
+["UNEP Young Champions of the Earth 2025",[["Jinali Mody","India"]],"Recognises young environmental innovators (18–30 years). Honoured for Banofi Leather, an eco-friendly leather alternative made from banana stem fibres."],
+["WWF Machhli National Award",[["Anita Chaudhary","India"]],"Awarded by WWF-India for outstanding contribution to wildlife rescue and conservation. She serves as a forest guard at Shergarh Wildlife Sanctuary, Rajasthan."],
+["Esmond B. Martin Royal Geographical Society Award 2026",[["Dr. Krithi K. Karanth","India"]],"Awarded for excellence in wildlife conservation. She became the first Indian and first Asian woman to receive this prestigious honour."],
+["Global Humanitarian Award (Global Humane Society)",[["Anant Ambani","India"]],"Honoured for his contribution to animal welfare through Vantara, a major wildlife rescue, rehabilitation and conservation initiative."],
+["PETA India Person of the Year 2025",[["Raveena Tandon","India"]],"Awarded for outstanding advocacy of animal rights, cruelty-free living and animal welfare."],
+["Ramsar Award",[["Jayshree Venkatesan","India"]],"Awarded for outstanding contribution to the wise use and conservation of wetlands. She became the first Indian to receive this honour."],
+["UN FAO Royal Farmer Hero Award",[["Valluvan","India"]],"Given by the FAO for promoting multi-cropping, tree-based farming and sustainable organic agriculture."],
+["World Food Prize 2025",[["Mariangela Hungria","Brazil"]],"Often called the “Nobel Prize for Food and Agriculture.” Honoured for pioneering work on biological nitrogen fixation, reducing dependence on chemical fertilisers."],
+["Agricola Medal (FAO)",[["PM Narendra Modi","India"]],"FAO's prestigious honour recognising political leadership in advancing food security, sustainable agriculture and rural development."],
+["M.S. Swaminathan Award (Global)",[["Dr. Aerenore","Nigeria"]],"Newly launched global award recognising exceptional contributions to food security and peace. First recipient, honoured for efforts to reduce hunger."],
+["Global Green Icon Award",[["Joginipally Santosh Kumar","India"]],"Honoured at the World Climate Leaders Conclave (UK) for leadership in large-scale tree plantation and promoting people's environmental movements."],
+["Golden Peacock Award (CSR)",[["Coal India Limited","India"]],"Awarded for excellence in Corporate Social Responsibility (CSR), especially in education, healthcare and environmental initiatives."],
+["Most Impactful Environmentalist Award 2025",[["Acharya Prashant","India"]],"Conferred by the Green Society of India on World Environment Day (5 June 2025) for spreading environmental awareness and sustainable living."],
+["ISO 50001:2018 Certification (certification, not an award)",[["Bengaluru Water Supply and Sewerage Board (BWSSB)","India"]],"International Energy Management System certification. BWSSB became India's first water supply and sewerage board to receive it, for energy-efficient bulk water pumping and continuous water supply."],
+["SKOCH Order of Merit",[["Bihar Panchayati Raj Department","India"]],"Recognised for effective implementation of the Jal Jeevan Hariyali Mission, promoting water conservation, afforestation and climate resilience in Bihar."]
+],
+"Literary": [
+["Jnanpith Award 2025 (60th)",[["R. Vairamuthu","Tamil"]],"Third Tamil writer to receive the Jnanpith Award. First Tamil poet to be honoured for poetry."],
+["Jnanpith Award 2024 (59th)",[["Vinod Kumar Shukla","Hindi"]],"First writer from Chhattisgarh to receive the Jnanpith Award."],
+["Sahitya Akademi Award 2025 (Main Award)",[["Mamta Kalia","Hindi: ‘Jeete Ji Ilahabad’ (autobiography)"],["Dr. Mahendra Jha","Maithili: ‘Dhatri Paat San Gaam’ (autobiography)"],["Navtej Sarna","English: ‘Crimson Spring’ (novel)"]],"Sahitya Akademi Main Award for 2025, shown here for Hindi, Maithili and English."],
+["Sahitya Akademi Award 2024 (Main Award)",[["Gagan Gill","Hindi: ‘Main Jab Tak Aai Bahar’ (poetry collection)"],["Mahendra Malangia","Maithili: ‘Prabandh Sangrah’ (essay collection)"],["Easterine Kire","English: ‘Spirit Nights’ (novel)"]],"Sahitya Akademi Main Award for 2024, shown here for Hindi, Maithili and English."],
+["Sahitya Akademi Bal Sahitya Puraskar 2025",[["Sushil Shukla","Hindi: ‘Ek Bante Barah’ (story collection)"]],"Children's literature prize of the Sahitya Akademi. Awarded in 24 languages in total."],
+["Sahitya Akademi Yuva Puraskar 2025",[["Parvati Tirkey","Hindi: ‘Phir Ugna’ (poetry collection)"]],"Prize for young writers from the Sahitya Akademi. Awarded in 23 languages in total."],
+["Sahitya Akademi Fellowship",[["Ruskin Bond","India"]],"The highest honour of the Sahitya Akademi."],
+["Saraswati Samman 2025 (35th)",[["Ramkumar Mukhopadhyay","‘Hara Parvati Katha’ (Bangla novel)"]],"Awarded by the K.K. Birla Foundation."],
+["Saraswati Samman 2024 (34th)",[["Mahamahopadhyay Sadhu Bhadreshdas","‘Swaminarayan Siddhant Sudha’ (Sanskrit book)"]],"Awarded by the K.K. Birla Foundation."],
+["Vyas Samman 2024 (34th)",[["Suryabala","Hindi writer: ‘Kaun Des Ko Vasi: Venu Ki Diary’"]],"Awarded by the K.K. Birla Foundation."],
+["International Booker Prize 2026",[["Yang Shuang-zi (Taiwan), translator Lin King","‘Taiwan Travelogue’"]],"The first book originally written in Mandarin (Chinese) to win the International Booker Prize."],
+["International Booker Prize 2025",[["Banu Mushtaq (India), translator Deepa Bhasthi","‘Heart Lamp’ (Kannada story collection)"]],"The first Kannada work chosen for the International Booker Prize."],
+["Booker Prize 2025",[["David Szalay (Hungarian-British)","‘Flesh’"]],"The first Hungarian-British writer to win the Booker Prize."],
+["Booker Prize 2024",[["Samantha Harvey (British)","‘Orbital’"]],"Describes the life of six astronauts living on the ISS."],
+["Children's Booker Prize (new)",[["No winner yet","Newly announced prize"]],"The Booker Prize Foundation announced this new prize. The winner will receive £50,000 (about ₹59 lakh)."],
+["USA National Book Critics Circle Award 2025",[["Arundhati Roy","India"]],"Honoured for her memoir ‘Mother Mary Comes to Me’. Notable work: ‘The God of Small Things’ (Booker Prize 1997 winner)."],
+["British Academy Book Prize 2025",[["Sunil Amrith","India"]],"Indian-origin historian. Honoured for ‘The Burning Earth: An Environmental History of the Last 500 Years’. Other notable works: ‘Crossing the Bay of Bengal’, ‘Unruly Waters’."],
+["British PEN Translate Award",[["Gitanjali Shree","India"]],"Awarded for the English translation of ‘Once Elephants Lived Here’, translated by Daisy Rockwell. Notable work: ‘Ret Samadhi’, translated as ‘Tomb of Sand’ (International Booker Prize 2022)."],
+["Bharatendu Harishchandra Lifetime Achievement Award 2026",[["Namita Gokhale","India"]],"Honoured with the Lifetime Achievement Award. Notable works: ‘Paro: Dreams of Passion’, ‘Things to Leave Behind’. Co-founder of the Jaipur Literature Festival."],
+["12th Vishwa Hindi Samman",[["Dr. Usha Thakur","India"]],"Honoured for her contribution to the promotion of Hindi. Known as a Hindi scholar, author and researcher."],
+["Rashtriya Maithili Sharan Gupt Samman",[["Dr. Neeraja Madhav","India"]],"Conferred by the President of India. Notable work: ‘Yamdeep’ (first Hindi novel focusing on the Kinnar/Transgender community). Fact: Maithili Sharan Gupt wrote ‘Bharat Bharati’."],
+["Lok Nayak Foundation (LNF) Sahityik Puraskar 2025",[["Velamala Simmanna","India"]],"Renowned Telugu litterateur and educationist. Known for Telugu literary criticism, essays and research on Telugu literature."],
+["Vishwa Sahityik Puraskar (World Literary Award)",[["Mamta G. Sagar","India"]],"Eminent Kannada poetess honoured by the World Organization of Writers. Notable works: ‘Kaudi’, ‘The Swing of Desire’ (translated poetry)."]
+]
+};
+
+/* Padma helper: [name, field, state, note] */
+const pad = (lvl, list) => list.map(([n,f,s,note]) => [n,[["Padma "+lvl+" 2026",""]],"Field: "+f+"."+(s?" State: "+s+".":"")+(note?" "+note:"")]);
+const HEADS = {
+  "Padma Vibhushan":["Awardee","Honour","Field & State"],
+  "Padma Bhushan":["Awardee","Honour","Field & State"],
+  "Padma Shri":["Awardee","Honour","Field"],
+  "Padma in Bihar":["Awardee","Place & Field","Contributions"]
+};
+const LABEL = {"Padma Vibhushan":"Padma 2026","Padma Bhushan":"Padma 2026","Padma Shri":"Padma 2026"};
+Object.assign(DATA, {
+"Padma 2026 Facts": [
+["Padma awards first given",[["1954",""]],"The Padma awards were first given in 1954."],
+["Padma awardees announced for 2026",[["131 in total",""]],"Padma Vibhushan 05, Padma Bhushan 13, Padma Shri 113."],
+["Make-up of the 2026 list",[["19 women",""],["06 foreigners/NRIs",""],["16 posthumous",""]],"Breakdown within the 131 Padma awardees for 2026."]
+],
+"Padma Vibhushan": pad("Vibhushan",[
+["Dharmendra Singh Deol (Posthumous)","Art","Maharashtra"],
+["K.T. Thomas","Public Affairs","Kerala","Former Supreme Court judge."],
+["N. Rajam","Art","Uttar Pradesh","Violin maestro who popularised the Gayaki Ang."],
+["P. Narayanan","Literature & Education","Kerala"],
+["V.S. Achuthanandan (Posthumous)","Public Affairs","Kerala","Former Chief Minister."]
+]),
+"Padma Bhushan": pad("Bhushan",[
+["Alka Yagnik","Art","Maharashtra"],
+["Bhagat Singh Koshyari","Public Affairs","Uttarakhand"],
+["Kallippatti Ramasamy Palaniswami","Medicine","Tamil Nadu"],
+["Mammootty","Art","Kerala"],
+["Dr. Nori Dattatreyudu","Medicine","USA"],
+["Piyush Pandey (Posthumous)","Art","Maharashtra"],
+["S.K.M. Mailanandan","Social Work","Tamil Nadu"],
+["Shatavadhani R. Ganesh","Art","Karnataka"],
+["Shibu Soren (Posthumous)","Public Affairs","Jharkhand"],
+["Uday Kotak","Trade & Industry","Maharashtra"],
+["V.K. Malhotra (Posthumous)","Public Affairs","Delhi"],
+["Vellappally Natesan","Public Affairs","Kerala"],
+["Vijay Amritraj","Sports","USA"]
+]),
+"Padma Shri": pad("Shri",[
+["Bharat Singh Bharti","Art"],
+["Brij Lal Bhat","Social Work"],
+["Vishwa Bandhu (Posthumous)","Art"],
+["Harmanpreet Kaur Bhullar","Sports"],
+["Kollakkal Devki Amma","Social Work"],
+["Krishnamurthy Balasubramanyam","Science & Engineering"],
+["Prof. (Dr.) Lars-Christian Koch","Art"],
+["Hemendranath Mishra","Literature & Education"],
+["Prateek Sharma","Medicine"],
+["Praveen Kumar","Sports"],
+["R. Krishnan (Posthumous)","Art"],
+["Ramamurti Sridhar","Radio Broadcasting"],
+["Satish Shah (Posthumous)","Art"],
+["Savita Punia","Sports"],
+["Vladimir Mestvirishvili (Posthumous)","Sports"],
+["Gopal Ji Trivedi","Science & Engineering"],
+["Tripti Mukherjee","Art (kantha embroidery)","","Renowned kantha-embroidery artist from Birbhum district, West Bengal. Honoured for preserving traditional art and empowering rural women."]
+]),
+"Padma in Bihar": [
+["Guru Bishwa Bandhu (Posthumous)",[["Padma Shri 2026 · Danapur, Patna","Art (Folk Dance)"]],"Foremost exponent of Bihar's folk dance traditions. Founded Surangan, a cultural institution offering free training in folk arts. Performed on 6,000+ national and international stages. Choreographed productions blending folk forms with contemporary presentation. Trained several generations of dancers and pioneered institutionalising folk dance education in Bihar. Regarded as a cultural ambassador of Bihar's performing arts."],
+["Bharat Singh Bharti",[["Padma Shri 2026 · Nonaur Village, Ara/Bhojpur","Art (Bhojpuri Folk Music)"]],"Eminent exponent of Bhojpuri folk music. Preserved and popularised Kajri, Chaita, Birha, Sohar, Holi, Bhajan and Devi Geet. Multi-instrumentalist: harmonium, tabla, flute, dholak. Popularised it via Akashvani Patna (AIR) and Doordarshan. Set up music training centres and mentored thousands of young artists. Received the Sangeet Natak Akademi Amrit Award for lifelong contribution to folk music."],
+["Dr. Gopal Ji Trivedi (Posthumous)",[["Padma Shri 2026 · Matlupur Gaon, Muzaffarpur","Science & Engineering (Agricultural Science)"]],"Former Vice-Chancellor of Rajendra Agricultural University, Pusa (now Dr. Rajendra Prasad Central Agricultural University). Developed the Trivedi Scale for the socio-economic status of rural households. Pioneer of integrated farming systems, including fish-based farming. Promoted scientific litchi and makhana cultivation, orchard rejuvenation and sustainable agriculture in Bihar. Strengthened agricultural extension by taking modern technology directly to farmers. His research improved productivity, rural livelihoods and climate-resilient agriculture in eastern India."],
+["Padma Shri awardees from Bihar (2026): exam pointers",[["3 in total",""]],"Posthumous: Guru Bishwa Bandhu and Dr. Gopal Ji Trivedi. Fields represented: Art (2) and Science & Engineering (1)."]
+],
+"Gallantry & Youth": [
+["Ashok Chakra (Republic Day 2026)",[["Group Captain Shubhanshu Shukla","Indian Air Force"]],"Honoured by President Droupadi Murmu. India's highest peacetime gallantry award."],
+["Rashtriya Yuva Puraskar 2025 (National Youth Award)",[["Akarsh Shroff",""]],"National Youth Award for 2025."],
+["Pradhan Mantri Rashtriya Bal Puraskar 2025",[["Vaibhav Suryavanshi","Bihar cricketer"]],"National children's award for 2025, given to the Bihar cricketer."]
+],
+"Parliament & Diaspora": [
+["Sansad Ratna Puraskar 2026",[["10 Lok Sabha MPs and 2 Rajya Sabha MPs",""]],"Recognises outstanding parliamentary performance."],
+["Pravasi Bharatiya Samman",[["27 people, including Christine Carla Kangaloo","President of Trinidad and Tobago"]],"Given during the 18th Pravasi Bharatiya Divas convention. India's highest honour for the overseas Indian diaspora."],
+["43rd Lokmanya Tilak National Award",[["Nitin Gadkari",""]],"Given in Pune."],
+["Rashtriya Atal Puraskar 2025",[["Praveen Singh","Bihar"]],"Given for the achievement of being the youngest best orator."]
+]
+});
+
+/* Film helper: [category, winner, sub, detail] */
+const fa = (p, list) => list.map(([c,w,s,d]) => [p+": "+c,[[w,s||""]],d||"Category winner at the "+p+"."]);
+Object.assign(DATA, {
+"Oscars, Globes & BAFTA": [
+...fa("98th Academy Awards 2026",[
+["Best Film","One Battle After Another"],
+["Best Director","Paul Thomas Anderson","One Battle After Another"],
+["Best Actor","Michael B. Jordan","‘Sinners’"],
+["Best Actress","Jessie Buckley","‘Hamnet’"]]),
+...fa("83rd Golden Globe Awards 2026",[
+["Best Film","Hamnet"],
+["Best Actor","Wagner Moura","‘The Secret Agent’"],
+["Best Actress","Jessie Buckley","‘Hamnet’"],
+["Best Director","Paul Thomas Anderson"]]),
+...fa("79th BAFTA Awards 2026",[
+["Best Film","One Battle After Another"],
+["Best Actor","Robert Aramayo"],
+["Best Actress","Jessie Buckley"],
+["Best Director","Paul Thomas Anderson"],
+["Best Children's & Family Film","Boong","India","The first Indian film to win in this category."]])
+],
+"Festivals & IFFI": [
+["78th Cannes Film Festival 2025: Palme d'Or",[["Jafar Panahi","Iran: ‘It Was Just an Accident’"]],"The festival also screened a 4K version of Satyajit Ray's 1970 film ‘Aranyer Din Ratri’."],
+["78th Locarno Film Festival (Aug 2025): Pardo d'Onore (Golden Leopard)",[["Alexander Payne","USA"]],"Honoured American director, producer and writer."],
+["56th IFFI 2025, Goa: focus and partner countries",[["Japan","Focus country"],["Spain","Partner country"]],"The government's international film festival, held in Goa."],
+["IFFI 2025: Golden Peacock (Best Film)",[["‘Skin of Youth’","Vietnamese film"]],"Top prize at the 56th IFFI."],
+["IFFI 2025: Silver Peacock (Best Director)",[["Santosh Davkhar","‘Gondhal’"]],"Awarded at the 56th IFFI."],
+["IFFI 2025: Best Web Series",[["‘Bandish Bandits’","Season 2"]],"Awarded at the 56th IFFI."],
+["IFFI 2025: Satyajit Ray Lifetime Achievement Award",[["Rajinikanth","India"]],"Honoured on completing 50 years in cinema."],
+["Eurasia International Film Festival 2025",[["‘Bakri’","Haryana short film"]],"Haryana's short film ‘Bakri’ was selected at the festival."]
+],
+"Indian Film Awards": [
+...fa("71st National Film Awards 2025",[
+["Best Film","‘12th Fail’"],
+["Best Actor (shared)","Shah Rukh Khan (‘Jawan’) & Vikrant Massey (‘12th Fail’)"],
+["Best Actress","Rani Mukerji","‘Mrs. Chatterjee vs Norway’"],
+["Best Director","Sudipto Sen","‘The Kerala Story’"],
+["Best Hindi Film","‘Kathal’"]]),
+...fa("70th Filmfare Awards 2025 (Ahmedabad)",[
+["Best Film","‘Laapataa Ladies’"],
+["Best Actor (shared)","Kartik Aaryan (‘Chandu Champion’) & Abhishek Bachchan (‘I Want to Talk’)"],
+["Best Supporting Actor","Ravi Kishan","‘Laapataa Ladies’"],
+["Best Actress","Alia Bhatt","‘Jigra’"],
+["Best Director","Kiran Rao"]]),
+...fa("Dadasaheb Phalke International Film Festival Awards 2026",[
+["Best Film","‘Stree 2’"],
+["Best Director","Kabir Khan"],
+["Best Actor","Kartik Aaryan"],
+["Best Actress","Kriti Sanon"]]),
+["Dadasaheb Phalke Lifetime Achievement Award",[["2023: Mohanlal",""],["2022: Mithun Chakraborty",""]],"The government's highest film honour."]
+],
+"Music & Arts Honours": [
+...fa("68th Grammy Awards 2026",[
+["Album of the Year","Bad Bunny"],
+["Record of the Year","Kendrick Lamar and SZA"],
+["Song of the Year","‘Wildflower’"],
+["Audio Book, Narration & Storytelling Recording","Dalai Lama"]]),
+["Lata Deenanath Mangeshkar Award 2026",[["Kailash Satyarthi","India"]],"Fifth recipient, for his global contribution against child labour and lifelong struggle for children's rights and social justice. Trivia: Nobel Peace Prize laureate (2014)."],
+["Star on the Hollywood Walk of Fame",[["Deepika Padukone","India"]],"The first Indian actress to be honoured with a star on the Hollywood Walk of Fame."],
+["Grammy Awards 2026 nominee who skipped the ceremony",[["Anoushka Shankar","Sitar player"]],"Chose not to attend the ceremony, keeping her mental health in mind."],
+["Women Empowerment Award (UK House of Commons, March 2026)",[["Rituparna Sengupta","India"]],"Honoured for art and culture."],
+["Lifetime Achievement Award (Bridge India, UK House of Commons)",[["Chiranjeevi","India"]],"Given by the Bridge India organization at the UK House of Commons."],
+["Officier de l'Ordre des Arts et des Lettres (France)",[["Payal Kapadia","India"]],"Officer of the Order of Arts and Letters."],
+["Chevalier de l'Ordre des Arts et des Lettres (France)",[["Thota Tharani","India"]],"Knight of the Order of Arts and Letters. Famous Indian art director."],
+["Person of Cultural Merit (Japan)",[["Masako Nozawa","Japan"]],"Japan's first voice actor to be chosen for this honour."],
+["Fred Darrington Award",[["Sudarsan Pattnaik","India"]],"Sand sculptor honoured for excellence in art and culture, for his 10-foot-high sand sculpture of Lord Ganesh. First Indian to receive it."]
+]
+});
+
+Object.assign(DATA, {
+"Beauty Pageants": [
+["72nd Miss World 2025",[["Opal Suchata Chuangsri","Thailand"]],"Held in Hyderabad, Telangana, India. India was represented by Nandini Gupta."],
+["74th Miss Universe 2025",[["Fatima Bosch","Mexico"]],"Held in Thailand. India was represented by Manika Vishwakarma."],
+["Femina Miss India World 2026",[["Sadhvi Satish Sail","Goa"]],"Held in Bhubaneswar, Odisha, India. Represents India at the Miss World competition."],
+["Mrs Universe 2025 (48th Edition)",[["Sheri Singh","India (Uttar Pradesh)"]],"Held in Manila, Philippines. International competition for married women. Sheri Singh (Greater Noida, Uttar Pradesh) became the first Indian woman to win this title."],
+["Mrs World 2025",[["Lego Gelei","Soweto, South Africa"]],"Held in Las Vegas, USA. Soweto's 34-year-old lawyer made history as the first Black woman to win the Mrs World title."],
+["Miss AI (World's First Miss AI)",[["Kenza Layli","Morocco"]],"The world's first Miss AI, honouring a combination of beauty and artificial intelligence."]
+]
+});
+
+Object.assign(DATA, {
+"Peace & Humanitarian": [
+["Indira Gandhi Prize for Peace, Disarmament and Development 2025",[["Graça Machel","Mozambique"]],"Chosen for her contribution to peace, humanitarian causes and social development. She previously received the UN Nansen Refugee Award (1997)."],
+["Sakharov Prize 2025",[["Andrzej Poczobut","Belarus"],["Mzia Amaglobeli","Georgia"]],"The EU's highest honour for human-rights defenders."],
+["Ramon Magsaysay Award 2025",[["Educate Girls (NGO)","India"]],"Works for girls' education in India. Other 2025 awardees: Shahina Ali (Maldives) for environmental work, and Flaviano A. L. Villanueva (Philippines) for work for the poor and marginalised."],
+["Dr. Martin Luther King Jr. Global Peace Award",[["Narendra Modi","India"]],"Honoured for minority upliftment."],
+["World Leader for Peace and Security Award 2025",[["Sri Sri Ravi Shankar","India"]],"Conferred by the Boston Global Forum and the AI World Society."],
+["BRICS International Award 2025",[["Shabbir Hasan","India"]],"Honoured in the field of science and peace."],
+["Israel's Highest Honour",[["Donald Trump","USA"]],"Honoured for his crucial role in ensuring a ceasefire in the Gaza war and the release of Israeli hostages."]
+],
+"UN Honours (Indians)": [
+["UN Military Gender Advocate Award 2025",[["Major Abhilasha Barak","Indian Army"]],"Award for promoting women's inclusion in military operations. Serving as Female Engagement Team Commander in the Indian Battalion of the UN Interim Force in Lebanon. First woman combat helicopter pilot of the Indian Army."],
+["Dag Hammarskjöld Medal (Posthumous)",[["Lance Havildar Harbhajan Singh","Indian Army"],["Naib Subedar Sujit Kumar Pradhan","Indian Army"]],"Harbhajan Singh: supreme sacrifice in the Democratic Republic of the Congo. Sujit Kumar Pradhan: sacrifice during duty in South Sudan."],
+["UN Secretary-General Award 2025",[["Major Swati Shanta Kumar","Indian Army"]],"Currently serving in the UN Mission in South Sudan. Honoured for the ‘Equal Partner, Lasting Peace’ project promoting gender equality."],
+["UN Population Award 2025",[["Varsha Deshpande","Maharashtra, India"]],"Women's-rights activist honoured for efforts to promote gender equality."]
+],
+"Journalism & Prestigious": [
+["Pulitzer Prize 2026: Public Service",[["The Washington Post",""]],"For piercing the veil of secrecy around the Trump administration's chaotic overhaul of federal agencies and chronicling the human impact of the cuts."],
+["Pulitzer Prize 2026: Breaking News Reporting",[["Staff of the Minnesota Star Tribune",""]],"For coverage of a back-to-school Mass at a Catholic school that left 2 children dead and 28 wounded, with stories marked by thoroughness and compassion."],
+["Pulitzer Prize 2026: Investigative Reporting",[["Staff of The New York Times",""]],"For deeply reported stories exposing how President Trump has shattered constraints on conflicts of interest and exploited the moneymaking opportunities that come with power."],
+["Pulitzer Prize 2026: Illustrated Reporting & Commentary",[["Natalie Obiko Pearson","Bloomberg"],["Anand R.K. & Suparna Sharma","‘Project Trapped’"]],"For powerful visual storytelling and illustrated reporting/commentary."],
+["Pritzker Prize 2025 (‘Nobel of Architecture’)",[["Liu Jiakun","China"]],"Honoured for his thoughtful, people-centric architecture."],
+["UNESCO/Guillermo Cano World Press Freedom Prize 2026",[["Sudanese Journalists Union","Sudan"]],"Honoured in May 2026 for defending press freedom in Sudan."],
+["World Press Photo Award 2026",[["Carol Guzy","USA"]],"Her photo ‘Separated by ICE’ won World Press Photo of the Year 2026."],
+["TIME Person of the Year 2025",[["Architects of AI",""]],"Recognised for building the future of Artificial Intelligence."],
+["Ramnath Goenka Excellence in Journalism Awards (20th edition)",[["Sandeep Dighe",""]],"Winner at the 20th Ramnath Goenka Excellence in Journalism Awards."],
+["Barton Award 2026 (Cartoon Journalism)",[["Subhani Shaikh","Deccan Chronicle, Hyderabad"]],"Winner of the Barton Award for cartoon journalism."]
+]
+});
+
+Object.assign(DATA, {
+"Institutional & Education": [
+["Subhash Chandra Bose Aapda Prabandhan Puraskar 2026 (Institutional Category)",[["Sikkim Disaster Management Authority","Sikkim"]],"India's annual Disaster Management award. Awarded in the Institutional category."],
+["Subhash Chandra Bose Aapda Prabandhan Puraskar 2026 (Individual Category)",[["Lieutenant Colonel Seeta Ashok Shelke","Indian Army"]],"India's annual Disaster Management award. Awarded in the Individual category."],
+["Republic Day Tableau Awards 2026 (Best Tableau among States/UTs)",[["Maharashtra",""]],"Results announced by the Government of India. Maharashtra secured 1st place for its tableau ‘Ganeshotsav: A Symbol of Self-Reliance’."],
+["National e-Governance Awards 2026 (Silver/Rajat Award)",[["Consumer Affairs Department","AI-operated e-Jagriti platform"]],"e-Jagriti is an AI-based e-awareness platform. It received the Silver (Rajat) Award."],
+["Digital Transformation Award 2025",[["Reserve Bank of India (RBI)",""]],"Awarded for RBI's digital initiatives Pravaah and Sarathi. Pravaah facilitates regulatory approvals, while Sarathi acts as a guide to streamline internal processes."],
+["Bank of the Year Awards 2025 (The Banker)",[["Bank of Baroda","India"]],"Recognised as India's Best Bank by The Banker magazine."],
+["National Teachers' Award 2025",[["Kumari Nidhi","Kishanganj"],["Dilip Kumar","Supaul"],["Pramod Kumar","Nalanda"]],"Among 45 teachers honoured nationwide. These were the three awardees from Bihar."],
+["Global Teacher Prize 2026",[["Rouble Nagi","India"]],"Indian teacher honoured at the award ceremony held in Dubai."],
+["‘Best Education Minister’ Award",[["Sunil Kumar","Education Minister, Bihar"]],"Conferred at the 46th World Management Congress held in New Delhi."],
+["Bhagwan Birsa Munda Puraskar (new award)",[["Not yet conferred",""]],"A new medical-field award announced by the Union Ministry of Tribal Affairs in collaboration with AIIMS Delhi, for the development of medicines for Sickle-cell Disease."]
+],
+"Corporate & International": [
+["WWF India ECHO National Innovation Summit: Best Project (National)",[["Aleem Yusuf N.","Kerala"]],"Won for developing the AI-based mobile application ‘Neophytell ID’ to detect invasive plant species in Kerala."],
+["Honorary Knighthood (UK)",[["N. Chandrasekaran","Chairman, Tata Sons"]],"Honoured in March 2026 for strengthening trade, investment and economic relations between India and the United Kingdom."],
+["Honorary Knight Commander of the Order of the British Empire (KBE), UK",[["Sunil Bharti Mittal","Founder, Bharti Enterprises"]],"Honoured for strengthening India–UK trade relations."],
+["Italy's Highest Civilian Honour",[["Srinivas Dempo","Industrialist, Goa"]],"Honoured with Italy's highest civilian honour by the Italian Government."],
+["Singapore Honorary Citizen Award",[["Tarun Das","Former CII Chief"]],"Honoured by Singapore President Tharman Shanmugaratnam for strengthening India–Singapore relations."],
+["Grand Order of Mugunghwa",[["Donald Trump","USA"]],"South Korea's highest national honour. He also received a replica of the Cheonmachong golden crown."],
+["WEF Young Global Leaders 2026",[["Jay Shah",""],["Isha Ambani",""]],"Selected by the World Economic Forum under its Young Global Leaders programme for leaders under 40 years of age."],
+["Global Indian of the Year (Canada India Foundation)",[["Sadhguru","Founder, Isha Foundation"]],"Award presented by the Canada India Foundation."],
+["Skytrax World Airport Awards 2026",[["Singapore Changi Airport","Singapore"]],"Chosen as the World's Best Airport."],
+["Airport Service Quality Award 2025",[["Mangaluru International Airport","Karnataka"]],"Award announced by Airports Council International (ACI)."]
+]
+});
+
+const ALL = "All awards";
+const rows = [];
+Object.entries(DATA).forEach(([cat, list]) => list.forEach(r => rows.push({cat, aw:r[0], rc:r[1], dt:r[2], open:false})));
+
+let tab = Object.keys(DATA)[0], order = [], query = "";
+const $ = id => document.getElementById(id);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+function reshuffle(){ order = shuffle(rows.slice()); }
+
+function visible(){
+  let list = tab === ALL ? order : rows.filter(r => r.cat === tab);
+  const q = query.trim().toLowerCase();
+  if(q) list = list.filter(r => (r.aw + " " + r.rc.map(x => x.join(" ")).join(" ") + " " + r.dt).toLowerCase().includes(q));
+  return list;
+}
+
+function render(){
+  const list = visible();
+  const g = $("grid");
+  g.innerHTML = list.length
+    ? (HEADS[tab]||["Award","Recipient","Details"]).map(h=>`<div class="head">${h}</div>`).join("") +
+      list.map((r,i) => `<div class="row${r.open?" open":""}" data-i="${i}" role="button" tabindex="0" aria-expanded="${r.open}">
+        <div><span class="aw">${esc(r.aw)}</span>${tab===ALL?`<span class="cat">${esc(LABEL[r.cat]||r.cat)}</span>`:""}</div>
+        <div><div class="sec">${r.rc.map(x=>`<div class="rc"><b>${esc(x[0])}</b><i>${esc(x[1])}</i></div>`).join("")}</div></div>
+        <div><div class="sec dt">${esc(r.dt)}</div></div></div>`).join("")
+    : `<div class="empty" style="grid-column:1/-1">No awards match your search.</div>`;
+  g._list = list;
+  const n = list.filter(r => r.open).length;
+  $("meta").textContent = `${list.length} awards, ${n} revealed`;
+  $("toggle").textContent = list.length && n === list.length ? "Hide all" : "Reveal all";
+  $("shuf").classList.toggle("hide", tab !== ALL);
+}
+
+function renderTabs(){
+  $("tabs").innerHTML = [...Object.keys(DATA), ALL].map(t =>
+    `<button class="tab${t===tab?" on":""}" role="tab" aria-selected="${t===tab}" data-t="${esc(t)}">${esc(t)}</button>`).join("");
+}
+
+function flip(row){
+  const r = $("grid")._list[row.dataset.i];
+  r.open = !r.open;
+  row.classList.toggle("open", r.open);
+  row.setAttribute("aria-expanded", r.open);
+  const list = $("grid")._list, n = list.filter(x => x.open).length;
+  $("meta").textContent = `${list.length} awards, ${n} revealed`;
+  $("toggle").textContent = n === list.length ? "Hide all" : "Reveal all";
+}
+
+$("grid").addEventListener("click", e => { const row = e.target.closest(".row"); if(row) flip(row); });
+$("grid").addEventListener("keydown", e => { if(e.key==="Enter"||e.key===" "){ const row = e.target.closest(".row"); if(row){ e.preventDefault(); flip(row); } } });
+$("tabs").addEventListener("click", e => {
+  const b = e.target.closest(".tab"); if(!b) return;
+  tab = b.dataset.t; rows.forEach(r => r.open = false);
+  if(tab === ALL) reshuffle();
+  renderTabs(); render(); window.scrollTo(0,0);
+});
+$("q").addEventListener("input", e => { query = e.target.value; render(); });
+$("toggle").addEventListener("click", () => {
+  const list = visible(), all = list.length && list.every(r => r.open);
+  list.forEach(r => r.open = !all); render();
+});
+$("shuf").addEventListener("click", () => { rows.forEach(r => r.open = false); reshuffle(); render(); window.scrollTo(0,0); });
+
+reshuffle(); renderTabs(); render();
+</script>
+</body>
+</html>
