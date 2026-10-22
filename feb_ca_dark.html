@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPSC Prelims - February 2026 Current Affairs Active Recall</title>
+        <meta name="color-scheme" content="dark">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0e1a;
+            --surface: #131a2e;
+            --surface-2: #19223b;
+            --line: #242f4d;
+            --line-2: #35436b;
+            --text: #eef1f9;
+            --text-2: #c9d1e6;
+            --muted: #8e9bbb;
+            --accent: #8fa2ff;
+            --ans: #5eead0;
+            --ans-bg: rgba(94, 234, 208, 0.09);
+            --amber: #fbbf4d;
+            --cols: 56px minmax(0, 1.3fr) minmax(0, 0.9fr) minmax(0, 1.35fr);
+            --display: "Bricolage Grotesque", "Atkinson Hyperlegible Next", "Segoe UI", system-ui, sans-serif;
+            --body: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+        }
+        html { color-scheme: dark; scroll-behavior: smooth; }
+        ::selection { background: rgba(143, 162, 255, 0.35); color: #fff; }
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 8px; border: 3px solid var(--bg); }
+
+        body {
+            font-family: var(--body);
+            font-size: 18px;
+            line-height: 1.6;
+            background: radial-gradient(1100px 480px at 50% -140px, rgba(109, 130, 245, 0.16), transparent 70%) no-repeat, var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 56px 32px 110px;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 1480px; margin: 0 auto; }
+        h1 {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: clamp(2.1rem, 4.2vw, 3.5rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            text-align: left;
+            color: var(--text);
+            margin: 0 0 16px;
+        }
+        p.subtitle {
+            text-align: left;
+            color: var(--muted);
+            font-size: 1.15rem;
+            line-height: 1.6;
+            max-width: 72ch;
+            margin: 0 0 40px;
+        }
+
+        /* Tabs */
+        .tab-container {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-sizing: border-box;
+            padding: 14px 0;
+            margin: 0 0 28px;
+            background: rgba(10, 14, 26, 0.85);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+        .tab-btn {
+            box-sizing: border-box;
+            height: 54px;
+            padding: 0 26px;
+            font-family: var(--body);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--muted);
+            background: transparent;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            cursor: pointer;
+            transition: color .2s, border-color .2s, background .2s;
+        }
+        .tab-btn:hover { color: var(--text); border-color: var(--line-2); }
+        .tab-btn.active {
+            color: #0a0e1a;
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 10px 26px -10px rgba(143, 162, 255, 0.6);
+        }
+        .tab-btn:focus-visible, .btn:focus-visible { outline: 3px solid rgba(143, 162, 255, 0.6); outline-offset: 3px; }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+        .controls > div { display: flex; gap: 10px; }
+        .search-box {
+            box-sizing: border-box;
+            flex: 1 1 380px;
+            max-width: 520px;
+            width: auto;
+            padding: 15px 18px 15px 50px;
+            font-family: var(--body);
+            font-size: 1.05rem;
+            color: var(--text);
+            background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%238e9bbb' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E") no-repeat 18px center;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .search-box::placeholder { color: var(--muted); }
+        .search-box:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(143, 162, 255, 0.18); }
+        .btn {
+            padding: 13px 24px;
+            font-family: var(--body);
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0a0e1a;
+            background: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: filter .2s, background .2s;
+        }
+        .btn:hover { opacity: 1; filter: brightness(1.08); }
+        .btn[style] {
+            background: transparent !important;
+            color: var(--text-2);
+            border-color: var(--line-2);
+        }
+        .btn[style]:hover { background: var(--surface-2) !important; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Table -> spacious rows */
+        .caTable, .caTable thead, .caTable tbody {
+            display: block;
+            width: 100%;
+            background: none;
+            box-shadow: none;
+            border-radius: 0;
+        }
+        .caTable thead {
+            position: sticky;
+            top: 83px;
+            z-index: 10;
+            margin-bottom: 14px;
+        }
+        .caTable tr { display: grid; grid-template-columns: var(--cols); column-gap: 32px; }
+        .caTable thead tr {
+            padding: 16px 30px;
+            background: rgba(15, 20, 36, 0.92);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+        }
+        .caTable th, .caTable td {
+            display: block;
+            width: auto;
+            padding: 0;
+            border: 0;
+            text-align: left;
+            vertical-align: top;
+        }
+        .caTable th {
+            position: static;
+            background: none;
+            color: var(--muted);
+            font-size: 0.98rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .q-row {
+            padding: 30px;
+            margin-bottom: 16px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            cursor: pointer;
+            transition: background .2s, border-color .2s, box-shadow .2s;
+        }
+        .q-row:hover { background: var(--surface-2); border-color: var(--line-2); }
+        .q-row.revealed { box-shadow: inset 4px 0 0 var(--ans); }
+
+        td.sr-no {
+            font-family: var(--display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: #5f6f99;
+            font-variant-numeric: tabular-nums;
+        }
+        td.question-col {
+            font-size: 1.3rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--text);
+        }
+        .click-hint {
+            display: block;
+            margin-top: 14px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            font-style: normal;
+            color: var(--muted);
+            transition: opacity .2s;
+        }
+        .revealed .click-hint { opacity: 0.45; }
+        .badge-bihar {
+            display: inline-block;
+            position: relative;
+            top: -2px;
+            margin-right: 10px;
+            padding: 3px 11px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--amber);
+            background: rgba(251, 191, 77, 0.14);
+            border: 1px solid rgba(251, 191, 77, 0.38);
+            border-radius: 999px;
+            vertical-align: middle;
+        }
+
+        td.answer-col {
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.45;
+            color: var(--ans);
+        }
+        td.answer-col .hidden-content {
+            padding: 14px 18px;
+            background: var(--ans-bg);
+            border: 1px solid rgba(94, 234, 208, 0.24);
+            border-radius: 12px;
+        }
+        td.context-col {
+            font-size: 1.08rem;
+            font-weight: 400;
+            line-height: 1.75;
+            color: var(--text-2);
+        }
+        .context-col div { margin-bottom: 0; }
+        .context-col .hidden-content > div {
+            margin: 0 0 10px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.035);
+            border-left: 3px solid var(--line-2);
+            border-radius: 0 10px 10px 0;
+        }
+        .context-col .hidden-content > div:last-child { margin-bottom: 0; }
+
+        .hidden-content { display: none; }
+        .revealed .hidden-content { display: block; animation: reveal .22s ease-out; }
+        @keyframes reveal { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+        /* Placeholder bars while hidden (active-recall cue, no text) */
+        .q-row:not(.revealed) td.answer-col::after,
+        .q-row:not(.revealed) td.context-col::after {
+            content: "";
+            display: block;
+            margin-top: 8px;
+            background: linear-gradient(var(--line), var(--line)) 0 0 / 62% 12px no-repeat;
+            height: 12px;
+            border-radius: 6px;
+        }
+        .q-row:not(.revealed) td.context-col::after {
+            height: 40px;
+            background:
+                linear-gradient(var(--line), var(--line)) 0 0 / 88% 12px no-repeat,
+                linear-gradient(var(--line), var(--line)) 0 28px / 58% 12px no-repeat;
+        }
+
+        @media (max-width: 1100px) {
+            body { padding: 40px 22px 90px; }
+            .tab-container { position: static; margin-bottom: 24px; }
+            .caTable thead {
+                position: absolute;
+                width: 1px; height: 1px;
+                margin: 0; overflow: hidden;
+                clip: rect(0 0 0 0);
+            }
+            .caTable tr.q-row, .q-row { grid-template-columns: 52px minmax(0, 1fr); column-gap: 20px; }
+            td.sr-no { grid-column: 1; grid-row: 1; }
+            td.question-col { grid-column: 2; grid-row: 1; }
+            td.answer-col { grid-column: 2; grid-row: 2; margin-top: 20px; }
+            td.context-col { grid-column: 2; grid-row: 3; margin-top: 14px; }
+        }
+        @media (max-width: 640px) {
+            body { padding: 28px 14px 70px; font-size: 17px; }
+            .q-row { padding: 22px 18px; border-radius: 16px; }
+            .caTable tr.q-row, .q-row { grid-template-columns: 38px minmax(0, 1fr); column-gap: 14px; }
+            td.sr-no { font-size: 1.2rem; }
+            td.question-col { font-size: 1.15rem; }
+            td.answer-col { font-size: 1.1rem; }
+            td.context-col { font-size: 1.02rem; }
+            .tab-btn { height: 48px; padding: 0 20px; font-size: 1rem; }
+            .search-box { max-width: none; flex-basis: 100%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .revealed .hidden-content { animation: none; }
+            * { transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>February 2026 Current Affairs (BPSC Prelims)</h1>
+    <p class="subtitle">Complete Coverage | Active Recall Mode: Click any row to reveal Answer &amp; Context</p>
+
+    <div class="tab-container">
+        <button class="tab-btn active" onclick="switchTab('national')">National Affairs (105)</button>
+        <button class="tab-btn" onclick="switchTab('international')">International Affairs (43)</button>
+        <button class="tab-btn" onclick="switchTab('scitech')">Science &amp; Technology (39)</button>
+    </div>
+
+    <div class="controls">
+        <input type="text" id="searchInput" class="search-box" placeholder="Search facts, names, places..." onkeyup="filterTable()">
+        <div>
+            <button class="btn" onclick="toggleAll(true)">Reveal All</button>
+            <button class="btn" style="background-color: #475569;" onclick="toggleAll(false)">Hide All</button>
+        </div>
+    </div>
+
+    <div id="national" class="tab-content active">
+        <table class="caTable">
+            <thead>
+                <tr>
+                    <th class="sr-no">#</th>
+                    <th class="question-col">Question</th>
+                    <th class="answer-col">Answer</th>
+                    <th class="context-col">Context &amp; Subpoints</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">1</td>
+                    <td class="question-col">Which district in Andhra Pradesh set a Guinness World Record for the largest 'e-cycle distribution'?</td>
+                    <td class="answer-col"><div class="hidden-content">Chittoor district</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Promotes sustainable transport and clean energy under the 'Green and Healthy Kuppam' initiative.</div>
+                        <div>ii) Record achieved by distributing 5,555 e-cycles within 24 hours.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">2</td>
+                    <td class="question-col">Where is the country's first international-standard Goddess Museum (Shakti Museum) being established?</td>
+                    <td class="answer-col"><div class="hidden-content">Katra, Jammu and Kashmir</div></td>
+                    <td class="context-col"><div class="hidden-content">Announced by the Shri Mata Vaishno Devi Shrine Board.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">3</td>
+                    <td class="question-col">Which river water-sharing dispute was directed to be resolved by a tribunal constituted by the Centre on Supreme Court directions?</td>
+                    <td class="answer-col"><div class="hidden-content">Pennaiyar River (between Tamil Nadu and Karnataka)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">4</td>
+                    <td class="question-col">Which airport was renamed 'Shri Guru Ravidas Maharaj Ji Airport' by Prime Minister Narendra Modi?</td>
+                    <td class="answer-col"><div class="hidden-content">Adampur Airport in Jalandhar</div></td>
+                    <td class="context-col"><div class="hidden-content">PM Modi also inaugurated a new civil terminal at Halwara in Ludhiana.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">5</td>
+                    <td class="question-col">Which state became the first in the country to present a separate 'Senior Citizens' Budget'?</td>
+                    <td class="answer-col"><div class="hidden-content">Kerala</div></td>
+                    <td class="context-col"><div class="hidden-content">Presented by Kerala's Finance Minister K.N. Balagopal.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">6</td>
+                    <td class="question-col">Where was the roadmap for the 'Pulses Self-Reliance Mission' finalized?</td>
+                    <td class="answer-col"><div class="hidden-content">Food Legumes Research Centre in Amlaha, Sehore district, Madhya Pradesh</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">7</td>
+                    <td class="question-col">Which state launched the 'Padhai with AI' digital education initiative?</td>
+                    <td class="answer-col"><div class="hidden-content">Himachal Pradesh</div></td>
+                    <td class="context-col"><div class="hidden-content">Formally launched by CM Sukhvinder Singh Sukhu, initiated by Bilaspur district administration at Barthin.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">8</td>
+                    <td class="question-col">Which state introduced an Automated Property Mutation System to enhance land transaction transparency?</td>
+                    <td class="answer-col"><div class="hidden-content">Karnataka</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">9</td>
+                    <td class="question-col">When and where was the first meeting of BRICS Sherpas and Sous Sherpas held under India's Chairmanship?</td>
+                    <td class="answer-col"><div class="hidden-content">New Delhi (February 9–10, 2026)</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Chaired by India's BRICS Sherpa, Secretary (Economic Relations) Mr. Sudhakar Dalela.</div>
+                        <div>ii) Assisted by Sous Sherpa, Joint Secretary Mr. Shambhu L. Hakki.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">10</td>
+                    <td class="question-col">What was the theme of the first BRICS Sherpas and Sous Sherpas meeting held in New Delhi (February 9–10, 2026) under India's Chairmanship?</td>
+                    <td class="answer-col"><div class="hidden-content">"Building for Resilience, Innovation, Co-operation, and Sustainability"</div></td>
+                    <td class="context-col"><div class="hidden-content">Theme of the first BRICS Sherpas and Sous Sherpas meeting under India's Chairmanship, held in New Delhi on February 9–10, 2026.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">11</td>
+                    <td class="question-col">What agreement was signed between Elon Musk's Starlink and the Gujarat government?</td>
+                    <td class="answer-col"><div class="hidden-content">Letter of Intent (LoI)</div></td>
+                    <td class="context-col"><div class="hidden-content">Objective: To strengthen high-speed satellite internet connectivity in remote, border, and tribal regions of the state under the Digital India initiative.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">12</td>
+                    <td class="question-col">What time limit was mandated by the government for social media platforms to remove AI-generated fake content under amended IT Rules, 2021?</td>
+                    <td class="answer-col"><div class="hidden-content">Within three hours</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">13</td>
+                    <td class="question-col">What is the objective of the Industrial Relations Code (Amendment) Bill, 2026, introduced in the Lok Sabha?</td>
+                    <td class="answer-col"><div class="hidden-content">To clarify the legal status of former labor laws repealed under the Industrial Relations Code, 2020</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">14</td>
+                    <td class="question-col">Which district in Madhya Pradesh was selected as a pilot district under the World's Largest Grain Storage Plan (WLGSP)?</td>
+                    <td class="answer-col"><div class="hidden-content">Balaghat district</div></td>
+                    <td class="context-col"><div class="hidden-content">Selected within the cooperative sector.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">15</td>
+                    <td class="question-col">According to Counterpoint Research (2025), which country ranks second globally in active smartphone users after China?</td>
+                    <td class="answer-col"><div class="hidden-content">India</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">16</td>
+                    <td class="question-col">What is the monthly financial assistance provided under Kerala's 'Sthree Suraksha Scheme' for unemployed women and transwomen?</td>
+                    <td class="answer-col"><div class="hidden-content">₹1,000 per month</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">17</td>
+                    <td class="question-col">Where and by whom were the centenary celebrations of the 'Ol Chiki' script inaugurated?</td>
+                    <td class="answer-col"><div class="hidden-content">New Delhi (Inaugurated by President Droupadi Murmu)</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Organized by the Ministry of Culture.</div>
+                        <div>ii) Created by Pandit Raghunath Murmu in 1925, holding immense significance for Santhal history.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">18</td>
+                    <td class="question-col">Which state announced the 'Meri Rasoi' scheme to provide free food kits to underprivileged families?</td>
+                    <td class="answer-col"><div class="hidden-content">Punjab</div></td>
+                    <td class="context-col"><div class="hidden-content">i) Starting April 2026, free food kits provided on a quarterly basis to 4 million families.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">19</td>
+                    <td class="question-col">What declaration was adopted at the National Roundtable Conference of the Election Commission and State Election Commissioners?</td>
+                    <td class="answer-col"><div class="hidden-content">'National Declaration 2026'</div></td>
+                    <td class="context-col"><div class="hidden-content">Concluded in New Delhi.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">20</td>
+                    <td class="question-col">Where was the 'National Arogya Fair 2026' inaugurated by President Droupadi Murmu?</td>
+                    <td class="answer-col"><div class="hidden-content">Shegaon in the Buldhana district of Maharashtra</div></td>
+                    <td class="context-col"><div class="hidden-content">An initiative of the Ministry of AYUSH.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">21</td>
+                    <td class="question-col">What is the monthly financial assistance provided under West Bengal's 'Banglar Yuva Sathi' scheme for unemployed youth?</td>
+                    <td class="answer-col"><div class="hidden-content">₹1,500 per month</div></td>
+                    <td class="context-col"><div class="hidden-content">For unemployed youth aged between 21 and 40 years.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">22</td>
+                    <td class="question-col">What change was introduced for availing rations under the PMGKAY free food grain scheme?</td>
+                    <td class="answer-col"><div class="hidden-content">Digital food coupons (digital currency) via mobile phones</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Beneficiaries scan a QR code at Fair Price Shops using mobile devices to redeem rations.</div>
+                        <div>ii) Initially implemented as a pilot project in Chandigarh, Puducherry, and three districts of Gujarat.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">23</td>
+                    <td class="question-col">Which institution secured the first position in the TIME Business School Rankings 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">Indian Institute of Foreign Trade (IIFT)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">24</td>
+                    <td class="question-col">Which state initiated the digitization of old handwritten birth and death certificates?</td>
+                    <td class="answer-col"><div class="hidden-content">Nagaland</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">25</td>
+                    <td class="question-col">Where was India's first LNG-diesel dual-fuel DEMU train flagged off?</td>
+                    <td class="answer-col"><div class="hidden-content">Sabarmati (Ahmedabad)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">26</td>
+                    <td class="question-col">Where is Uttar Pradesh's first indoor glass skywalk being constructed?</td>
+                    <td class="answer-col"><div class="hidden-content">Within the Twin Towers in Varanasi</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">27</td>
+                    <td class="question-col">What reservation quota was approved by the Assam Cabinet for tea garden tribes and tribal communities in Class I and Class II government jobs?</td>
+                    <td class="answer-col"><div class="hidden-content">3% reservation quota</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">28</td>
+                    <td class="question-col">Who inaugurated the India AI Impact Summit 2026 at Bharat Mandapam in New Delhi?</td>
+                    <td class="answer-col"><div class="hidden-content">Prime Minister Narendra Modi</div></td>
+                    <td class="context-col"><div class="hidden-content">Attended by French President Emmanuel Macron and UN Secretary-General António Guterres.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">29</td>
+                    <td class="question-col">What does India's comprehensive "MANAV Vision" unveiled at the AI Summit stand for?</td>
+                    <td class="answer-col"><div class="hidden-content">Framework for ethical and inclusive AI</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) M – Moral and Ethical Systems.</div>
+                        <div>ii) A – Accountable Governance.</div>
+                        <div>iii) N – National Sovereignty.</div>
+                        <div>iv) A – Accessible and Inclusive.</div>
+                        <div>v) V – Valid and Legitimate.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">30</td>
+                    <td class="question-col">What world record was set by IndiaAI and Intel India under the 'AI for Responsibility' campaign?</td>
+                    <td class="answer-col"><div class="hidden-content">Receiving over 2.5 million pledges within 24 hours (highest number of pledges)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">31</td>
+                    <td class="question-col">What are 'SAHI' and 'BODH' launched by Union Minister J.P. Nadda at the IndiaAI Summit?</td>
+                    <td class="answer-col"><div class="hidden-content">Healthcare AI initiatives</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) SAHI: Strategy for Artificial Intelligence and Healthcare for India.</div>
+                        <div>ii) BODH: Benchmarking Open Data Platform for Health AI.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">32</td>
+                    <td class="question-col">Where was the one-day session on the theme "Meri Parampara - Meri Virasat" organized?</td>
+                    <td class="answer-col"><div class="hidden-content">Indira Gandhi National Centre for the Arts in New Delhi</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">33</td>
+                    <td class="question-col">Which state declared 'tidal flooding' a "state-specific disaster" due to its impact on coastal communities?</td>
+                    <td class="answer-col"><div class="hidden-content">Kerala</div></td>
+                    <td class="context-col"><div class="hidden-content">Kerala became the first state in India to take this step.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">34</td>
+                    <td class="question-col">Until when has the Supreme Court extended the tenure of the committee headed by Justice Gita Mittal for victims of ethnic violence in Manipur?</td>
+                    <td class="answer-col"><div class="hidden-content">Until July 31, 2026</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Originally constituted in August 2023.</div>
+                        <div>ii) Formed due to severe ethnic conflict between Meitei and Kuki communities.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">35</td>
+                    <td class="question-col">Which airport became India's first international airport to operate a hydrogen bus?</td>
+                    <td class="answer-col"><div class="hidden-content">Cochin International Airport</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">36</td>
+                    <td class="question-col">Where has the establishment of India's first commercial airport drone test corridor been announced?</td>
+                    <td class="answer-col"><div class="hidden-content">Rangeilunda Airport in the Ganjam district of Odisha</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">37</td>
+                    <td class="question-col">Which state secured the first position in the Panchayat Advancement Index 2.0?</td>
+                    <td class="answer-col"><div class="hidden-content">Tripura</div></td>
+                    <td class="context-col"><div class="hidden-content">Compiled by Ministry of Panchayati Raj based on 9 themes (SDGs) and 435 local indicators.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">38</td>
+                    <td class="question-col">Which village committee secured the 1st position nationwide in the Panchayat Advancement Index 2.0, and with what score?</td>
+                    <td class="answer-col"><div class="hidden-content">Jugal Kishore Nagar village committee in Sepahijala district (Score: 88.44)</div></td>
+                    <td class="context-col"><div class="hidden-content">Secured 1st position nationwide among ~2.5 lakh gram panchayats assessed.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">39</td>
+                    <td class="question-col">Where was a 'Digital India AI' workshop focusing on AI organized?</td>
+                    <td class="answer-col"><div class="hidden-content">Gangtok (Sikkim)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">40</td>
+                    <td class="question-col">Which university has become India's first AI-enabled state university?</td>
+                    <td class="answer-col"><div class="hidden-content">Chaudhary Charan Singh University in Meerut</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">41</td>
+                    <td class="question-col">Which state established India's first dedicated Artificial Intelligence (AI) university in partnership with NVIDIA?</td>
+                    <td class="answer-col"><div class="hidden-content">Andhra Pradesh (in Amaravati)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">42</td>
+                    <td class="question-col">What is 'Bharat Taxi', launched by the Union Home Minister at Vigyan Bhawan?</td>
+                    <td class="answer-col"><div class="hidden-content">India's first cooperative-based taxi service / driver-owned cooperative ride-hailing platform</div></td>
+                    <td class="context-col"><div class="hidden-content">Launched in Delhi and the NCR.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">43</td>
+                    <td class="question-col">Who successfully climbed Mount Aconcagua (22,831 feet) in Argentina, South America?</td>
+                    <td class="answer-col"><div class="hidden-content">Kabak Yano</div></td>
+                    <td class="context-col"><div class="hidden-content">She hails from Arunachal Pradesh.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">44</td>
+                    <td class="question-col">Which became the second Indian state, after Kerala, to launch a Bird Atlas?</td>
+                    <td class="answer-col"><div class="hidden-content">Goa</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">45</td>
+                    <td class="question-col">Where was the foundation stone for the 'Quantum Valley' (featuring a 133-qubit quantum computer facility) laid?</td>
+                    <td class="answer-col"><div class="hidden-content">Amaravati, Andhra Pradesh</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Laid by CM Chandrababu Naidu.</div>
+                        <div>ii) IBM, TCS, and L&amp;T are partners.</div>
+                        <div>iii) Focuses on artificial intelligence, cybersecurity, and research.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">46</td>
+                    <td class="question-col">What action was taken by a Supreme Court bench comprising CJI Surya Kant and Justice Joymalya Bagchi regarding UGC Regulations 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">Stayed the regulations</div></td>
+                    <td class="context-col"><div class="hidden-content">Currently, the older UGC Rules, 2012 remain in force.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">47</td>
+                    <td class="question-col">Which state has been ranked first in the 'Deregulation 1.0' report released by the Central Government?</td>
+                    <td class="answer-col"><div class="hidden-content">Uttar Pradesh</div></td>
+                    <td class="context-col"><div class="hidden-content">Focuses on simplifying rules, streamlining processes, and ease of doing business.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">48</td>
+                    <td class="question-col">Which bank became India's first custodian bank to issue fully digital FPI (Foreign Portfolio Investor) licenses?</td>
+                    <td class="answer-col"><div class="hidden-content">Kotak Mahindra Bank</div></td>
+                    <td class="context-col"><div class="hidden-content">First bank to complete account opening using fully electronic signatures.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">49</td>
+                    <td class="question-col">Which state became the first in India to provide free education up to the undergraduate level?</td>
+                    <td class="answer-col"><div class="hidden-content">Kerala</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">50</td>
+                    <td class="question-col">According to a report by the Law Commission, how many judges per million people are there in district courts vs. what the Supreme Court recommends?</td>
+                    <td class="answer-col"><div class="hidden-content">22 judges per million (Law Commission) vs. 50 judges per million recommended (Supreme Court)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">51</td>
+                    <td class="question-col">What approval was given by the Union Cabinet for infrastructure in Assam over the Brahmaputra River?</td>
+                    <td class="answer-col"><div class="hidden-content">India's first underwater rail-cum-road tunnel</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Cost: ₹18,662 crore.</div>
+                        <div>ii) 33.7-km-long project comprising an ~16-km twin-tube tunnel connecting Gohpur (NH-15) and Numaligarh (NH-715).</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">52</td>
+                    <td class="question-col">Which states are the leading producers of wool in India in 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">Rajasthan (1st), followed by Jammu &amp; Kashmir, Karnataka, and Telangana</div></td>
+                    <td class="context-col"><div class="hidden-content">Punjab has become the fastest-growing state in wool production (22%).</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">53</td>
+                    <td class="question-col">Where was India's first musical road built?</td>
+                    <td class="answer-col"><div class="hidden-content">On the Coastal Road in Mumbai</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Inaugurated by CM Devendra Fadnavis and Deputy CM Eknath Shinde.</div>
+                        <div>ii) Plays the tune of "Jai Ho" with rumble strips.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">54</td>
+                    <td class="question-col">What is the doctor-to-population ratio in India as informed to Parliament in 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">1:811</div></td>
+                    <td class="context-col"><div class="hidden-content">Compares favorably against the WHO standard of 1:1000.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">55</td>
+                    <td class="question-col">What new astronomical facilities were approved in Union Budget 2026-27 for Ladakh?</td>
+                    <td class="answer-col"><div class="hidden-content">Installation of two new telescopes and upgrading an existing facility</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) National Large Solar Telescope (NLST).</div>
+                        <div>ii) National Large Optical-Near Infrared Telescope (NLOT).</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">56</td>
+                    <td class="question-col">When is National Women's Day celebrated, and who does it commemorate?</td>
+                    <td class="answer-col"><div class="hidden-content">February 13</div></td>
+                    <td class="context-col"><div class="hidden-content">Celebrated to mark the birth anniversary of Sarojini Naidu.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">57</td>
+                    <td class="question-col">Who organized the World Radio Day Conclave 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">All India Radio, Raipur, in collaboration with UNESCO</div></td>
+                    <td class="context-col"><div class="hidden-content">Theme: "Radio and Artificial Intelligence: AI is a tool, not a voice".</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">58</td>
+                    <td class="question-col">What major change in election procedure was approved by the Karnataka Cabinet?</td>
+                    <td class="answer-col"><div class="hidden-content">Use of paper ballots instead of EVMs for rural and urban elections</div></td>
+                    <td class="context-col"><div class="hidden-content">Passed via 'Karnataka Gram Swaraj and Panchayat Raj (Amendment) Bill, 2026'.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">59</td>
+                    <td class="question-col">Under which Article of the Constitution did the Opposition serve a notice for a no-confidence motion against Lok Sabha Speaker Om Birla?</td>
+                    <td class="answer-col"><div class="hidden-content">Article 94(c)</div></td>
+                    <td class="context-col"><div class="hidden-content">Previous similar motions were introduced in 1954, 1966, and 1987.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">60</td>
+                    <td class="question-col">Which district in Rajasthan became the first in India to achieve 100% insurance coverage under 'Insurance for All by 2047'?</td>
+                    <td class="answer-col"><div class="hidden-content">Alwar district</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">61</td>
+                    <td class="question-col">Who launched the 'National Pulses Revolution' from Amlaha, Sehore district, MP?</td>
+                    <td class="answer-col"><div class="hidden-content">Union Agriculture Minister Shivraj Singh Chouhan</div></td>
+                    <td class="context-col"><div class="hidden-content">Objective: To make India self-reliant in pulses.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">62</td>
+                    <td class="question-col">When was President's Rule lifted from Manipur, and who became the new Chief Minister?</td>
+                    <td class="answer-col"><div class="hidden-content">Lifted on February 4, 2026</div></td>
+                    <td class="context-col"><div class="hidden-content">NDA leader Yumnam Khemchand Singh took oath as Chief Minister.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">63</td>
+                    <td class="question-col">According to Union Home Ministry guidelines, how many stanzas of 'Vande Mataram' must be sung before the National Anthem at official events, and what is the duration?</td>
+                    <td class="answer-col"><div class="hidden-content">All six stanzas</div></td>
+                    <td class="context-col"><div class="hidden-content">Total duration of this rendition is 3 minutes and 10 seconds.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">64</td>
+                    <td class="question-col">Where did PM Modi inaugurate the Northeast's first emergency landing facility?</td>
+                    <td class="answer-col"><div class="hidden-content">Moran in Assam</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">65</td>
+                    <td class="question-col">How many study reports titled 'Scenarios towards Viksit Bharat and Net Zero' were released by NITI Aayog?</td>
+                    <td class="answer-col"><div class="hidden-content">11 study reports</div></td>
+                    <td class="context-col"><div class="hidden-content">Outlines a roadmap to transform India into a developed nation by 2047 and achieve Net-Zero by 2070.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">66</td>
+                    <td class="question-col">Who released the Global Corruption Perception Index 2025?</td>
+                    <td class="answer-col"><div class="hidden-content">Transparency International</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Top 5 least corrupt: Denmark &gt; Finland &gt; Singapore &gt; New Zealand &gt; Norway.</div>
+                        <div>ii) India improved ranking by 5 spots to 91st position (Score: 39/100).</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">67</td>
+                    <td class="question-col">By January 2026, how many Panchayats adopted AI-based Gram Sabha meetings (Sabhasar)?</td>
+                    <td class="answer-col"><div class="hidden-content">More than 111,000 Panchayats</div></td>
+                    <td class="context-col"><div class="hidden-content">Sabhasar initiative launched by Ministry of Panchayati Raj on August 14, 2025.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">68</td>
+                    <td class="question-col">Which port became India's first port to initiate an advanced anti-drone system?</td>
+                    <td class="answer-col"><div class="hidden-content">V.O. Chidambaranar Port Authority (Tamil Nadu)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">69</td>
+                    <td class="question-col">How many people died in an explosion at a 'rat-hole' coal mine in Meghalaya?</td>
+                    <td class="answer-col"><div class="hidden-content">18 people</div></td>
+                    <td class="context-col"><div class="hidden-content">Occurred in East Jaintia Hills district.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">70</td>
+                    <td class="question-col">Who became the first Asian para-swimmer to cross the Cook Strait in New Zealand?</td>
+                    <td class="answer-col"><div class="hidden-content">Satendra Singh Lohia (native of Madhya Pradesh)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">71</td>
+                    <td class="question-col">What architectural inspiration did the new Prime Minister's Office ('Seva Teerth') draw from?</td>
+                    <td class="answer-col"><div class="hidden-content">Chalukya-era temples and Buddhist stupas</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Inaugurated by PM Modi along with Kartavya Bhavan 1 and 2 on Feb 13.</div>
+                        <div>ii) Constructed drawing inspiration from the 12th-century Chennakeshava Temple.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">72</td>
+                    <td class="question-col">What fund was launched by the Central Government for urban infrastructure covering FY 2025-26 through 2030-31?</td>
+                    <td class="answer-col"><div class="hidden-content">'Urban Challenge Fund' worth ₹1 lakh crore</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">73</td>
+                    <td class="question-col">Where will the Government of Andhra Pradesh establish a Data City Center?</td>
+                    <td class="answer-col"><div class="hidden-content">Visakhapatnam</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">74</td>
+                    <td class="question-col">Where will North India's first 'Arya Gurukul Museum' be built?</td>
+                    <td class="answer-col"><div class="hidden-content">Firozabad, Uttar Pradesh</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">75</td>
+                    <td class="question-col">Where is the country's first drone runway being constructed?</td>
+                    <td class="answer-col"><div class="hidden-content">Meerut, Uttar Pradesh (Cost: ₹406 crore)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">76</td>
+                    <td class="question-col">Which bridge was inaugurated by PM Modi over the Brahmaputra River in Guwahati, Assam?</td>
+                    <td class="answer-col"><div class="hidden-content">'Kumar Bhaskar Varma Setu'</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">77</td>
+                    <td class="question-col">Which institution became the first in India to announce a comprehensive face transplant program?</td>
+                    <td class="answer-col"><div class="hidden-content">AIIMS New Delhi</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">78</td>
+                    <td class="question-col">Where will India's first 'National Cow Culture Museum' be established?</td>
+                    <td class="answer-col"><div class="hidden-content">Pandit Deen Dayal Upadhyaya Veterinary Science University in Mathura, UP</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">79</td>
+                    <td class="question-col">Where is India's first private helicopter manufacturing facility located?</td>
+                    <td class="answer-col"><div class="hidden-content">Vemagal, Karnataka</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Produced in partnership between Tata and Airbus.</div>
+                        <div>ii) Produces the H125 helicopter (only helicopter to land on Mt. Everest summit).</div>
+                        <div>iii) Framework of industrial cooperation between India and France.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">80</td>
+                    <td class="question-col">Which apex body passed a resolution to protect the pangolin?</td>
+                    <td class="answer-col"><div class="hidden-content">United Sangtam Likhum Pumji (Nagaland's Sangtam Naga community)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">81</td>
+                    <td class="question-col">Which product from Tamil Nadu was granted a GI tag and what is it made from?</td>
+                    <td class="answer-col"><div class="hidden-content">Salem Sago</div></td>
+                    <td class="context-col"><div class="hidden-content">Made from tapioca (cassava) roots.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">82</td>
+                    <td class="question-col">Under which Article did the Union Cabinet approve renaming Kerala to 'Keralam'?</td>
+                    <td class="answer-col"><div class="hidden-content">Article 3</div></td>
+                    <td class="context-col"><div class="hidden-content">Resolution passed by Kerala Legislative Assembly on June 24, 2024.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">83</td>
+                    <td class="question-col">What is the country's first National Counter-Terrorism Policy launched by the Union Home Minister?</td>
+                    <td class="answer-col"><div class="hidden-content">'PRAHAAR'</div></td>
+                    <td class="context-col"><div class="hidden-content">Emphasizes cross-border terrorism, radicalization, cybercrime, and drone threats.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">84</td>
+                    <td class="question-col">Who launched the Vibrant Villages Programme II, and where?</td>
+                    <td class="answer-col"><div class="hidden-content">Union Home Minister (from Nathampur in Cachar district of Assam) on Feb 20</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">85</td>
+                    <td class="question-col">Who became the youngest keynote speaker at the India AI Impact Summit 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">8-year-old Ranveer Singh Sachdeva</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">86</td>
+                    <td class="question-col">Which village in Maharashtra unanimously passed a resolution declaring itself a 'caste-free village'?</td>
+                    <td class="answer-col"><div class="hidden-content">Soundala village</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">87</td>
+                    <td class="question-col">What plans were announced by 'Waaree Energies'?</td>
+                    <td class="answer-col"><div class="hidden-content">To establish the country's largest integrated lithium-ion battery Gigafactory in Andhra Pradesh</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">88</td>
+                    <td class="question-col">Who has been designated by the UN as the 'Global Champion for Road Safety'?</td>
+                    <td class="answer-col"><div class="hidden-content">Sachin Tendulkar (under #MakeASafetyStatement initiative)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">89</td>
+                    <td class="question-col">Where is Futala Lake located, which was recently in the news for pollution?</td>
+                    <td class="answer-col"><div class="hidden-content">Nagpur (man-made lake)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">90</td>
+                    <td class="question-col">Where has the world's largest Parad Shivling been installed?</td>
+                    <td class="answer-col"><div class="hidden-content">Haridwar (weighing 5,210 kg)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">91</td>
+                    <td class="question-col">What is 'Bhu-Aadhaar' launched by the Delhi government?</td>
+                    <td class="answer-col"><div class="hidden-content">A system assigning a unique 14-digit identification number (ULPIN) to every land parcel</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">92</td>
+                    <td class="question-col">Where was a 21-foot-tall equestrian bronze statue of Chhatrapati Shivaji Maharaj inaugurated by Amit Shah?</td>
+                    <td class="answer-col"><div class="hidden-content">City of Ahmedabad, Gujarat</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">93</td>
+                    <td class="question-col">Which state launched India's first Graphene Policy?</td>
+                    <td class="answer-col"><div class="hidden-content">Kerala</div></td>
+                    <td class="context-col"><div class="hidden-content">Integrates research, pilot production, and innovation to commercialize advanced materials.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">94</td>
+                    <td class="question-col">What initiative is NHAI undertaking along highways to enhance ecological balance?</td>
+                    <td class="answer-col"><div class="hidden-content">Establishing 'Bee Corridors'</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">95</td>
+                    <td class="question-col">Where was India's first AI-powered 'CM Shri School' inaugurated by CM Rekha Gupta?</td>
+                    <td class="answer-col"><div class="hidden-content">Sarojini Nagar area of Delhi</div></td>
+                    <td class="context-col"><div class="hidden-content">Model school for holistic education.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">96</td>
+                    <td class="question-col">What agreement was signed by India in Nairobi regarding its digital locker project?</td>
+                    <td class="answer-col"><div class="hidden-content">Agreement to share infrastructure of its digital locker pilot project with Kenya</div></td>
+                    <td class="context-col"><div class="hidden-content">Enables Kenyan citizens to securely store respective documents.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">97</td>
+                    <td class="question-col">Where did IIT Madras Global Research Foundation (IITM Global) establish its first international center?</td>
+                    <td class="answer-col"><div class="hidden-content">Dubai Commer City (Applied AI Innovation Center)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">98</td>
+                    <td class="question-col">What is 'Vanajeevi Didi' launched in Palamu Tiger Reserve, Jharkhand?</td>
+                    <td class="answer-col"><div class="hidden-content">A women-led initiative</div></td>
+                    <td class="context-col"><div class="hidden-content">Appoints educated local women as ambassadors for forest and wildlife conservation.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">99</td>
+                    <td class="question-col">On February 25, 2026, PM Modi became the first Indian Prime Minister to receive which Israeli honor?</td>
+                    <td class="answer-col"><div class="hidden-content">'Speaker of the Knesset Medal' by the Israeli Parliament</div></td>
+                    <td class="context-col"><div class="hidden-content">PM Modi also addressed the Knesset.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">100</td>
+                    <td class="question-col">Which world leader achieved the milestone of 100 million followers on Instagram?</td>
+                    <td class="answer-col"><div class="hidden-content">Prime Minister Narendra Modi (World's first leader; Trump is 2nd with 43.2 million).</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">101</td>
+                    <td class="question-col">What prominent renaming of places was announced by Rajasthan Chief Minister Bhajanlal Sharma?</td>
+                    <td class="answer-col"><div class="hidden-content">i) Mount Abu → Abu Raj.<br>ii) Jahazpur (Bhilwara) → Yagyapur.<br>iii) Kama (Deeg) → Kamvan.</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">102</td>
+                    <td class="question-col">Which state became the first in India to introduce an AI State Policy?</td>
+                    <td class="answer-col"><div class="hidden-content">Tripura</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">103</td>
+                    <td class="question-col">Where was India's first 'Namo Bharat' RRTS inaugurated by PM Modi?</td>
+                    <td class="answer-col"><div class="hidden-content">Gautam Buddha Nagar district</div></td>
+                    <td class="context-col"><div class="hidden-content">82-km-long Regional Rapid Transit System connecting Sarai Kale Khan in Delhi to Modipuram in Meerut.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">104</td>
+                    <td class="question-col">Who authored the book 'Atal Bihari Vajpayee: The Eternal Statesman', released by VP C.P. Radhakrishnan?</td>
+                    <td class="answer-col"><div class="hidden-content">Vijay Goel</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">105</td>
+                    <td class="question-col">Which village in Bhandara district of Maharashtra became India's first Net-Zero Panchayat?</td>
+                    <td class="answer-col"><div class="hidden-content">Bela Gram Panchayat</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="international" class="tab-content">
+        <table class="caTable">
+            <thead>
+                <tr>
+                    <th class="sr-no">#</th>
+                    <th class="question-col">Question</th>
+                    <th class="answer-col">Answer</th>
+                    <th class="context-col">Context &amp; Subpoints</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">1</td>
+                    <td class="question-col">According to USGBC (U.S. Green Building Council), what position did India achieve globally in LEED-certified green building space in 2025?</td>
+                    <td class="answer-col"><div class="hidden-content">2nd position globally (outside of the US)</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) India has ~16 million GSM (Gross Square Meters) of certified space.</div>
+                        <div>ii) China holds the 1st position (top spot).</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">2</td>
+                    <td class="question-col">Which company recently became the world's first retail company to reach a market capitalization of US$1 trillion?</td>
+                    <td class="answer-col"><div class="hidden-content">Walmart</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">3</td>
+                    <td class="question-col">What is India's rank and score in Global Firepower's (GFP) 2026 report?</td>
+                    <td class="answer-col"><div class="hidden-content">4th most powerful military force (Power Index Score: 0.1346)</div></td>
+                    <td class="context-col"><div class="hidden-content">i) Top 3 ranks: United States (1st, 0.0741), Russia (2nd, 0.0791), China (3rd, 0.0919).</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">4</td>
+                    <td class="question-col">Which country announced a nationwide ban on social media platforms for children under the age of 16?</td>
+                    <td class="answer-col"><div class="hidden-content">Spain (announced by PM Pedro Sanchez)</div></td>
+                    <td class="context-col"><div class="hidden-content">Applies to platforms like TikTok, Instagram, and Facebook.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">5</td>
+                    <td class="question-col">What new clean energy fellowship program was launched by India's Union Department of Science and Technology (DST)?</td>
+                    <td class="answer-col"><div class="hidden-content">India-Netherlands Hydrogen Fellowship Programme</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Aimed at enhancing scientific collaboration between India and Netherlands in clean energy.</div>
+                        <div>ii) An MoU was signed between University of Groningen (Netherlands) and 19 Indian Institutes of Technology (IITs) to establish an academic cooperation framework facilitating research in green energy and hydrogen.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">6</td>
+                    <td class="question-col">Who won the parliamentary elections in Japan?</td>
+                    <td class="answer-col"><div class="hidden-content">Ruling coalition (LDP-Ishin) led by Japanese Prime Minister Sanae Takaichi</div></td>
+                    <td class="context-col"><div class="hidden-content">Historic victory in parliamentary elections.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">7</td>
+                    <td class="question-col">What were the outcomes of talks between Indian PM Modi and Seychelles President Dr. Patrick Herminie in New Delhi?</td>
+                    <td class="answer-col"><div class="hidden-content">Signed 7 MoUs across health, meteorology, electronics/IT, and good governance</div></td>
+                    <td class="context-col"><div class="hidden-content">Special economic package of $175 million announced by India for cooperation in social housing, defense, and maritime security.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">8</td>
+                    <td class="question-col">What is the total financial aid package approved by the European Parliament for Ukraine?</td>
+                    <td class="answer-col"><div class="hidden-content">€90 billion aid package</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">9</td>
+                    <td class="question-col">Where will the 3rd Human Capability Initiative (HCI) conference be hosted on May 3–4, 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">Riyadh, Saudi Arabia</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Theme: "The Human Code".</div>
+                        <div>ii) Great Britain and Northern Ireland will be included as the Honored Countries.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">10</td>
+                    <td class="question-col">Which country enacted the world's first comprehensive 'AI Basic Act'?</td>
+                    <td class="answer-col"><div class="hidden-content">South Korea</div></td>
+                    <td class="context-col"><div class="hidden-content">Full title: Development of Artificial Intelligence and the Establishment of Foundation for Trustworthiness. Establishes safeguards and regulations to balance AI development with safe/ethical use (such as mandating watermarks on AI-generated content).</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">11</td>
+                    <td class="question-col">Who represented India at the G-4 meeting during the Munich Security Conference (MSC) 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">External Affairs Minister S. Jaishankar</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) G-4 members: India, Japan, Germany, and Brazil.</div>
+                        <div>ii) Objective: To discuss reforms in the United Nations Security Council (UNSC) and reformed multilateralism.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">12</td>
+                    <td class="question-col">What is 'Ibu Baron', which was recognized by Guinness World Records?</td>
+                    <td class="answer-col"><div class="hidden-content">Massive reticulated python found on Sulawesi island, Indonesia</div></td>
+                    <td class="context-col"><div class="hidden-content">Longest wild snake ever recorded (23 feet 8 inches).</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">13</td>
+                    <td class="question-col">What key agreements were made during PM Narendra Modi's official visit to Malaysia on February 7?</td>
+                    <td class="answer-col"><div class="hidden-content">Bilateral agreements across multiple sectors</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Cooperation in semiconductor sector.</div>
+                        <div>ii) Establishment of an Indian Consulate in Malaysia.</div>
+                        <div>iii) Establishment of a Thiruvalluvar Cultural Institute for Malaysian citizens.</div>
+                        <div>iv) Academic cooperation between University of Cyberjaya and Institute of Ayurveda Training and Research.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">14</td>
+                    <td class="question-col">Which country was declared 'Country of the Year' for BIOFACH 2026 in Germany?</td>
+                    <td class="answer-col"><div class="hidden-content">India</div></td>
+                    <td class="context-col"><div class="hidden-content">BIOFACH is the world's largest organic exhibition. Led on behalf of India by APEDA (Ministry of Commerce &amp; Industry).</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">15</td>
+                    <td class="question-col">What is India's rank and score in the Network Readiness Index (NRI) 2025 report released by Portulans Institute?</td>
+                    <td class="answer-col"><div class="hidden-content">45th position (Score: 54.43 out of 100)</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) India improved by 4 places (up from 49th rank / 53.63 score in 2024).</div>
+                        <div>ii) Top 3 countries: USA (1st for 4th consecutive year), Finland (2nd), Singapore (3rd).</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">16</td>
+                    <td class="question-col">What is 'Project Vault' launched by the USA?</td>
+                    <td class="answer-col"><div class="hidden-content">$12 billion public-private initiative</div></td>
+                    <td class="context-col"><div class="hidden-content">Objective: To stockpile rare earth elements and critical minerals.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">17</td>
+                    <td class="question-col">What was discussed at the 1st Joint Working Group (JWG) meeting on horticultural cooperation between India and New Zealand in New Delhi?</td>
+                    <td class="answer-col"><div class="hidden-content">Production of kiwis, apples, and pears, new technologies, improved rootstocks, and strengthening supply chains</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">18</td>
+                    <td class="question-col">Which country became the 89th nation to sign the 'New Delhi Declaration' adopted at the India AI Impact Summit 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">Bangladesh</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">19</td>
+                    <td class="question-col">Who invited PM Narendra Modi to attend the 52nd G7 Summit in 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">French President Emmanuel Macron</div></td>
+                    <td class="context-col"><div class="hidden-content">France holds the G7 Presidency in 2026.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">20</td>
+                    <td class="question-col">Which city will host the 'AI Impact Summit' in 2027?</td>
+                    <td class="answer-col"><div class="hidden-content">Geneva, Switzerland</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">21</td>
+                    <td class="question-col">How did India vote on the UN General Assembly resolution calling for an unconditional ceasefire between Russia and Ukraine?</td>
+                    <td class="answer-col"><div class="hidden-content">India abstained from voting</div></td>
+                    <td class="context-col"><div class="hidden-content">i) Resolution passed with 107 countries in favor, 12 opposed, and 51 abstaining (including India).</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">22</td>
+                    <td class="question-col">What is 'Haven-1', and which company announced its launch for 2027?</td>
+                    <td class="answer-col"><div class="hidden-content">World's first private space station</div></td>
+                    <td class="context-col"><div class="hidden-content">Announced by American aerospace company 'Vast Space'.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">23</td>
+                    <td class="question-col">When was World Cancer Day 2026 observed, and what was its theme?</td>
+                    <td class="answer-col"><div class="hidden-content">February 4th</div></td>
+                    <td class="context-col"><div class="hidden-content">Theme: 'United by Unique'.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">24</td>
+                    <td class="question-col">What position did India secure in the Global Soft Power Index 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">32nd position</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">25</td>
+                    <td class="question-col">What key provision was included in the interim bilateral trade agreement concluded between USA and India?</td>
+                    <td class="answer-col"><div class="hidden-content">USA will impose an 18% reciprocal tariff on products of Indian origin</div></td>
+                    <td class="context-col"><div class="hidden-content">(Note: Changes to provisions remain possible).</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">26</td>
+                    <td class="question-col">What is the 'Sansha Yongle Blue Hole' (Dragon Hole), and what is its depth?</td>
+                    <td class="answer-col"><div class="hidden-content">Submerged sinkhole located in South China Sea</div></td>
+                    <td class="context-col"><div class="hidden-content">Depth: 301.19 meters.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">27</td>
+                    <td class="question-col">When was International Day of Women and Girls in Science 2026 observed?</td>
+                    <td class="answer-col"><div class="hidden-content">February 11</div></td>
+                    <td class="context-col"><div class="hidden-content">Focuses on promoting full and equal participation of women and girls in STEM.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">28</td>
+                    <td class="question-col">Which major social media platforms were banned in Russia?</td>
+                    <td class="answer-col"><div class="hidden-content">Facebook, WhatsApp, YouTube, and Instagram</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">29</td>
+                    <td class="question-col">Which landing site did ISRO select for the upcoming Chandrayaan-4 lunar mission?</td>
+                    <td class="answer-col"><div class="hidden-content">'Mons Mouton' (designated site MM-4) in the lunar south polar region</div></td>
+                    <td class="context-col"><div class="hidden-content">Chosen for its flat terrain, low risk profile, and abundant sunlight for India's first lunar sample return mission.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">30</td>
+                    <td class="question-col">What is India's rank and score in Stanford University HAI's Global AI Vibrancy Tool 2025?</td>
+                    <td class="answer-col"><div class="hidden-content">3rd position globally (AI Vibrancy Score: 21.59)</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Massive jump from 7th position in 2023.</div>
+                        <div>ii) USA ranks 1st, China ranks 2nd.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">31</td>
+                    <td class="question-col">Which country's participation in China's Chang'e-8 lunar mission (launching 2028) was officially confirmed?</td>
+                    <td class="answer-col"><div class="hidden-content">Pakistan</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">32</td>
+                    <td class="question-col">When was World Pulses Day observed, and what was its theme?</td>
+                    <td class="answer-col"><div class="hidden-content">February 10</div></td>
+                    <td class="context-col"><div class="hidden-content">Theme: "Pulses of the world : from modesty to Excellence".</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">33</td>
+                    <td class="question-col">Who represented India at the swearing-in ceremony of Bangladesh's Prime Minister Tariq Rahman?</td>
+                    <td class="answer-col"><div class="hidden-content">Lok Sabha Speaker Om Birla</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Swearing-in held on Feb 17 for PM Tariq Rahman, 25 Cabinet Ministers, and 24 Ministers of State.</div>
+                        <div>ii) Nitai Roy Chowdhury is the sole Hindu minister included in the Cabinet.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">34</td>
+                    <td class="question-col">According to the Pew Research Center 2026 report, which countries have the most holidays?</td>
+                    <td class="answer-col"><div class="hidden-content">India tops the list with 42 holidays</div></td>
+                    <td class="context-col"><div class="hidden-content">Ranks: 1st India (42), 2nd Nepal (35), 3rd Myanmar (30), 4th Iran (26).</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">35</td>
+                    <td class="question-col">When was International Childhood Cancer Day observed, and what was its theme?</td>
+                    <td class="answer-col"><div class="hidden-content">February 15</div></td>
+                    <td class="context-col"><div class="hidden-content">Theme: "Demonstrating Impact" From Challenge to Change.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">36</td>
+                    <td class="question-col">What agreement did India sign with the World Food Programme (WFP)?</td>
+                    <td class="answer-col"><div class="hidden-content">Supply of 200,000 metric tons of rice over 5 years</div></td>
+                    <td class="context-col"><div class="hidden-content">To provide emergency food assistance globally.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">37</td>
+                    <td class="question-col">What ruling was delivered by the U.S. Supreme Court regarding tariffs imposed by President Donald Trump?</td>
+                    <td class="answer-col"><div class="hidden-content">Struck down the sweeping global tariffs, declaring them unconstitutional</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Court held that using emergency powers to impose tariffs falls outside the law.</div>
+                        <div>ii) Major relief for Indian exporters, though uncertainty over new tariffs (10%–15%) persists.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">38</td>
+                    <td class="question-col">What strategic alliance did India join to secure critical minerals and AI supply chains?</td>
+                    <td class="answer-col"><div class="hidden-content">'Pax Silica' (US-led strategic alliance)</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Builds resilient supply chains from raw materials to semiconductors and AI infrastructure.</div>
+                        <div>ii) Other participating nations: Australia, Greece, Israel, Netherlands, Japan, Qatar, South Korea, Singapore, UAE, and UK.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">39</td>
+                    <td class="question-col">When is World Thinking Day celebrated, and what was its 2026 theme?</td>
+                    <td class="answer-col"><div class="hidden-content">February 22</div></td>
+                    <td class="context-col"><div class="hidden-content">Theme: "Our Friendship" (Marks the 100th Anniversary).</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">40</td>
+                    <td class="question-col">What status did India and Israel upgrade their political relationship to?</td>
+                    <td class="answer-col"><div class="hidden-content">'Special Strategic Partnership'</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Deepens ties in advanced tech, cybersecurity, trade, agriculture, water management, defense, and energy.</div>
+                        <div>ii) Free Trade Agreement (FTA) expected to enter into force by end of 2026.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">41</td>
+                    <td class="question-col">Who became the first American First Lady to preside over a United Nations Security Council (UNSC) meeting?</td>
+                    <td class="answer-col"><div class="hidden-content">US First Lady Melania Trump</div></td>
+                    <td class="context-col"><div class="hidden-content">Led the session on theme: "Children in Armed Conflict, Technology, and Education".</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">42</td>
+                    <td class="question-col">What pediatric healthcare project was launched in India by the UAE?</td>
+                    <td class="answer-col"><div class="hidden-content">Pediatric gene therapy project</div></td>
+                    <td class="context-col"><div class="hidden-content">Aimed at addressing autism and rare neurogenetic brain disorders in children.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">43</td>
+                    <td class="question-col">What protocol did India and France sign regarding taxation?</td>
+                    <td class="answer-col"><div class="hidden-content">Amending protocol to renew Double Taxation Avoidance Agreement (1992)</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="scitech" class="tab-content">
+        <table class="caTable">
+            <thead>
+                <tr>
+                    <th class="sr-no">#</th>
+                    <th class="question-col">Question</th>
+                    <th class="answer-col">Answer</th>
+                    <th class="context-col">Context &amp; Subpoints</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">1</td>
+                    <td class="question-col">What model did researchers at IIT Kanpur develop to predict solar cycles?</td>
+                    <td class="answer-col"><div class="hidden-content">Three-dimensional (3D) dynamo model</div></td>
+                    <td class="context-col"><div class="hidden-content">Maps the Sun's internal magnetic structure by incorporating three decades of observations of the solar magnetic field.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">2</td>
+                    <td class="question-col">What is 'Pilloo AI' launched by Andhra Pradesh Chief Minister N. Chandrababu Naidu?</td>
+                    <td class="answer-col"><div class="hidden-content">A voice-based accounting and billing app</div></td>
+                    <td class="context-col"><div class="hidden-content">Designed to digitally empower small businesses and MSMEs across the state.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">3</td>
+                    <td class="question-col">Which country introduced a locally manufactured Foot-and-Mouth Disease vaccine for the first time in 20 years?</td>
+                    <td class="answer-col"><div class="hidden-content">South Africa</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">4</td>
+                    <td class="question-col">What is "i Live Connect." launched by India?</td>
+                    <td class="answer-col"><div class="hidden-content">World's first doctor-led AI healthcare ecosystem</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Provides 24/7 home-based clinical monitoring for chronic diseases and post-hospital discharge recovery.</div>
+                        <div>ii) Objective: Reduce the need for frequent hospital readmissions.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">5</td>
+                    <td class="question-col">Where was India's first dedicated National Biobank for Lysosomal Storage Disorders (LSDs) established?</td>
+                    <td class="answer-col"><div class="hidden-content">'Foundation for Research in Genetics and Endocrinology' (FRIGE – Institute of Human Genetics) in Ahmedabad, Gujarat</div></td>
+                    <td class="context-col"><div class="hidden-content">Dedicated facility for rare genetic diseases classified under LSDs.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">6</td>
+                    <td class="question-col">Which premier medical institution in India became the first to announce a comprehensive face transplant program?</td>
+                    <td class="answer-col"><div class="hidden-content">All India Institute of Medical Sciences (AIIMS), New Delhi</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">7</td>
+                    <td class="question-col">What is 'Sarvam Kaze', developed by Bengaluru-based startup Sarvam AI?</td>
+                    <td class="answer-col"><div class="hidden-content">India's first indigenous AI-powered smart glass</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">8</td>
+                    <td class="question-col">What are the key details of NASA's historic Artemis II mission scheduled for April 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">First manned lunar mission since Apollo 17 (1972)</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) 10-day mission sending four astronauts into lunar orbit aboard the SLS rocket and Orion spacecraft.</div>
+                        <div>ii) Crew includes 3 American (NASA) astronauts and 1 Canadian (CSA) astronaut.</div>
+                        <div>iii) Jeremy Hansen becomes the first Canadian to orbit the Moon.</div>
+                        <div>iv) Lays the foundation for future human missions to Mars.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">9</td>
+                    <td class="question-col">What test did DRDO successfully conduct in Chandigarh for the Gaganyaan program?</td>
+                    <td class="answer-col"><div class="hidden-content">Qualification Level Load Test for drogue parachutes</div></td>
+                    <td class="context-col"><div class="hidden-content">Essential component testing for the Gaganyaan crew module deceleration system.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">10</td>
+                    <td class="question-col">What was 'Operation Trashi-1' conducted by security forces in Jammu and Kashmir?</td>
+                    <td class="answer-col"><div class="hidden-content">Counter-terrorist operation in Kishtwar, J&amp;K</div></td>
+                    <td class="context-col"><div class="hidden-content">Three terrorists were killed in an encounter with security forces.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">11</td>
+                    <td class="question-col">Which corps of the Indian Army's Western Command conducted the military exercise 'Khadga Shakti 2026'?</td>
+                    <td class="answer-col"><div class="hidden-content">Khadga Corps</div></td>
+                    <td class="context-col"><div class="hidden-content">Concluded at the Mahajan Field Firing Range in Bikaner, Rajasthan in February 2026.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">12</td>
+                    <td class="question-col">What military operation was launched by Pakistan against Afghanistan?</td>
+                    <td class="answer-col"><div class="hidden-content">'Operation Ghazab-lil-Haq'</div></td>
+                    <td class="context-col"><div class="hidden-content">Pakistan declared war against Afghanistan and carried out airstrikes on Kabul and other provinces.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">13</td>
+                    <td class="question-col">What is the objective of 'Operation Crackdown' launched by the Telangana Police?</td>
+                    <td class="answer-col"><div class="hidden-content">Curbing cybercrime</div></td>
+                    <td class="context-col"><div class="hidden-content">State-wide police crackdown targeting cybercriminals.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">14</td>
+                    <td class="question-col">Which Indian state stands at the forefront of the renewable energy sector with a 16.5% share as of December 2025?</td>
+                    <td class="answer-col"><div class="hidden-content">Gujarat</div></td>
+                    <td class="context-col"><div class="hidden-content">Total capacity comprises wind, solar, and rooftop installations.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">15</td>
+                    <td class="question-col">Where was a state-of-the-art medium-caliber ammunition manufacturing facility inaugurated by Defence Minister Rajnath Singh on January 18, 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">Nagpur, Maharashtra</div></td>
+                    <td class="context-col"><div class="hidden-content">Built by Solar Defence and Aerospace Limited.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">16</td>
+                    <td class="question-col">How much fund was allocated for 'India Semiconductor Mission 2.0' in Union Budget 2026-27?</td>
+                    <td class="answer-col"><div class="hidden-content">₹1,000 crore</div></td>
+                    <td class="context-col"><div class="hidden-content">Allocated for the current financial year to expand semiconductor ecosystem.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">17</td>
+                    <td class="question-col">Who became India's youngest male analog astronaut?</td>
+                    <td class="answer-col"><div class="hidden-content">Aditya Pandya (17-year-old from Dholavira, Gujarat)</div></td>
+                    <td class="context-col"><div class="hidden-content">Achieved after successfully completing an 8-day lunar habitat simulation.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">18</td>
+                    <td class="question-col">What are the top nations and India's position in Global Innovation Index 2025 (WIPO) by R&amp;D expenditure?</td>
+                    <td class="answer-col"><div class="hidden-content">China ranks 1st ($785.9 billion)</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) USA ranks 2nd ($781 billion).</div>
+                        <div>ii) India ranks 7th ($75.7 billion).</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">19</td>
+                    <td class="question-col">Where did the Indian Air Force conduct an in-situ exercise with Thailand in February 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">Indian Ocean Region (held Feb 9–12, 2026)</div></td>
+                    <td class="context-col"><div class="hidden-content">Joint bilateral air defense/maritime exercise.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">20</td>
+                    <td class="question-col">What is 'SUJVIKA' launched on the 40th Foundation Day of the Department of Biotechnology?</td>
+                    <td class="answer-col"><div class="hidden-content">AI-based biotech product data portal</div></td>
+                    <td class="context-col"><div class="hidden-content">Launched by Union Minister Jitendra Singh.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">21</td>
+                    <td class="question-col">What was 'Agni Pariksha' conducted jointly by the Indian Army and ITBP in Arunachal Pradesh?</td>
+                    <td class="answer-col"><div class="hidden-content">A six-day joint training exercise</div></td>
+                    <td class="context-col"><div class="hidden-content">Aimed at enhancing operational coordination along high-altitude borders.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">22</td>
+                    <td class="question-col">Which DPSU was granted 'Miniratna Category-I' status by the Ministry of Defence?</td>
+                    <td class="answer-col"><div class="hidden-content">'Yantra India Limited'</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Formed following the corporatization of the Ordnance Factory Board.</div>
+                        <div>ii) Allows investments up to ₹500 crore without prior government approval.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">23</td>
+                    <td class="question-col">Where did the Indian Air Force conduct 'Exercise Vayu Shakti-26' on February 27, 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">Pokhran Air-to-Ground Range in Rajasthan</div></td>
+                    <td class="context-col"><div class="hidden-content">Major firepower demonstration by the Indian Air Force.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">24</td>
+                    <td class="question-col">What is the objective of the second phase of 'Operation Prahar' launched by Punjab Police?</td>
+                    <td class="answer-col"><div class="hidden-content">Intensifying crackdown against gangsters and apprehending wanted criminals</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">25</td>
+                    <td class="question-col">What was 'Milan Village' inaugurated by the Indian Navy in Visakhapatnam?</td>
+                    <td class="answer-col"><div class="hidden-content">Harbor facility for international delegates</div></td>
+                    <td class="context-col"><div class="hidden-content">Inaugurated as part of the harbor phase of the major international naval exercise 'MILAN 2026'.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">26</td>
+                    <td class="question-col">What was 'Operation Kiya' conducted by Indian security forces in Jammu and Kashmir?</td>
+                    <td class="answer-col"><div class="hidden-content">Joint anti-terror operation in the Basantgarh forest area of Udhampur</div></td>
+                    <td class="context-col"><div class="hidden-content">Eliminated two Pakistani terrorists.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">27</td>
+                    <td class="question-col">What is the purpose of "Operation Shastra" launched by Delhi Police?</td>
+                    <td class="answer-col"><div class="hidden-content">Action against individuals posting pictures with weapons on social media or using abusive language</div></td>
+                    <td class="context-col"><div class="hidden-content">—</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">28</td>
+                    <td class="question-col">What are the rankings and participant strength in the Global Firepower Index 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">USA (1st continuously since 2005), Russia (2nd), China (3rd), India (4th)</div></td>
+                    <td class="context-col"><div class="hidden-content">Total of 145 countries evaluated in the index.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">29</td>
+                    <td class="question-col">What are the key details of the 13th edition of Exercise Milan hosted by the Eastern Naval Command?</td>
+                    <td class="answer-col"><div class="hidden-content">Hosted in Visakhapatnam and the Bay of Bengal</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Theme: Camaraderie, cooperation, and collaboration.</div>
+                        <div>ii) Participation: 74 nations.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">30</td>
+                    <td class="question-col">What are the specifications of the Kumar Bhaskar Varma Setu inaugurated by PM Modi in North Guwahati?</td>
+                    <td class="answer-col"><div class="hidden-content">6-lane bridge</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Total length: 2.86 km (main bridge structure is 1.24 km).</div>
+                        <div>ii) Equipped with an emergency landing facility.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">31</td>
+                    <td class="question-col"><span class="badge-bihar">BIHAR</span> What is the e-Voting SECBHR app launched in Bihar?</td>
+                    <td class="answer-col"><div class="hidden-content">India's first AI-based remote mobile voting system</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Allows voters to securely cast votes via smartphones.</div>
+                        <div>ii) Developed by MeitY in collaboration with C-DAC.</div>
+                        <div>iii) Identity verified using AI facial recognition, live selfies, and OTP.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">32</td>
+                    <td class="question-col">What is Voic ERA developed under the Bhashini Mission by MeitY?</td>
+                    <td class="answer-col"><div class="hidden-content">Open-source Voice AI stack (Voice Enabled Resource App)</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Makes government services accessible in Indian languages via voice commands (e.g., agricultural advice, educational assistance).</div>
+                        <div>ii) Provides real-time interactive AI capabilities and translation services.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">33</td>
+                    <td class="question-col">What task force was established between India and the UK under 'Vision 2035'?</td>
+                    <td class="answer-col"><div class="hidden-content">India-UK Offshore Wind Task Force</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Launched on Feb 18, 2026, during 4th India-UK Energy Dialogue.</div>
+                        <div>ii) Accelerates bilateral offshore wind energy project cooperation by 2035.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">34</td>
+                    <td class="question-col">What was 'Agni Varsha' conducted by the Indian Army?</td>
+                    <td class="answer-col"><div class="hidden-content">Combat capability validation exercise</div></td>
+                    <td class="context-col"><div class="hidden-content">Conducted in the desert region of Rajasthan to validate integrated strike capabilities.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">35</td>
+                    <td class="question-col">What is INS Anjadip, and where was it commissioned into service on February 27, 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">Anti-Submarine Warfare Shallow Water Craft (ASW-SWC)</div></td>
+                    <td class="context-col"><div class="hidden-content">
+                        <div>i) Commissioned into Eastern Naval Command at Chennai Port.</div>
+                        <div>ii) 3rd or 4th vessel under the ASW-SWC project.</div>
+                    </div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">36</td>
+                    <td class="question-col">Who built INS Anjadip, and by what name is it known?</td>
+                    <td class="answer-col"><div class="hidden-content">Built by Garden Reach Shipbuilders &amp; Engineers (GRSE), Kolkata</div></td>
+                    <td class="context-col"><div class="hidden-content">Known as the 'Dolphin Hunter', specializing in anti-submarine warfare.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">37</td>
+                    <td class="question-col">How many countries and organizations supported the New Delhi Declaration on the India AI Impact Summit 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">Supported by 91 countries and organizations</div></td>
+                    <td class="context-col"><div class="hidden-content">Inspired by 'Vasudhaiva Kutumbakam' and 'Sarvajan Hitay, Sarvajan Sukhaye' to share AI benefits equally.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">38</td>
+                    <td class="question-col">What roadmap framework was unveiled by NITI Aayog for Andhra Pradesh?</td>
+                    <td class="answer-col"><div class="hidden-content">Framework to make AP a top 3 renewable energy hub by 2035</div></td>
+                    <td class="context-col"><div class="hidden-content">Strategic energy transition plan for Andhra Pradesh.</div></td>
+                </tr>
+                <tr class="q-row" onclick="toggleRow(this)">
+                    <td class="sr-no">39</td>
+                    <td class="question-col">What is SITAC launched during the India AI Impact Summit 2026?</td>
+                    <td class="answer-col"><div class="hidden-content">Sweden-India Technology and Artificial Intelligence Corridor</div></td>
+                    <td class="context-col"><div class="hidden-content">Shared platform to foster bilateral AI innovation and investment between India and Sweden.</div></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function toggleRow(row) {
+        row.classList.toggle('revealed');
+    }
+
+    function switchTab(tabId) {
+        // Toggle tab buttons
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        // Toggle tab content
+        const contents = document.querySelectorAll('.tab-content');
+        contents.forEach(content => content.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+    }
+
+    function toggleAll(show) {
+        const activeTab = document.querySelector('.tab-content.active');
+        const rows = activeTab.querySelectorAll('.q-row');
+        rows.forEach(row => {
+            if (show) {
+                row.classList.add('revealed');
+            } else {
+                row.classList.remove('revealed');
+            }
+        });
+    }
+
+    function filterTable() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const activeTab = document.querySelector('.tab-content.active');
+        const rows = activeTab.querySelectorAll('.caTable tbody tr');
+
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            if (text.includes(filter)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
