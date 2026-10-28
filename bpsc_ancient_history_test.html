@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>71st BPSC Prelims — Ancient History</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --parchment:#F3EEE1;
+    --parchment-deep:#EAE2CE;
+    --paper:#FBF8F1;
+    --navy:#1F2D4A;
+    --navy-deep:#141E33;
+    --gold:#B08A2E;
+    --gold-soft:#E4C77A;
+    --maroon:#7A2A2A;
+    --green:#3C6E3C;
+    --ink:#26241F;
+    --ink-soft:#5B5749;
+    --line:#D8CDAE;
+    --radius:10px;
+    --shadow: 0 2px 10px rgba(31,45,74,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.5;
+    min-height:100vh;
+  }
+  h1,h2,h3,.serif{font-family:'Playfair Display', serif;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  button{font-family:inherit;cursor:pointer;}
+
+  /* ---------- Layout shells ---------- */
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  .center-wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:48px 24px 80px;
+  }
+
+  /* ---------- Start screen ---------- */
+  .start-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:40px 36px;
+    box-shadow:var(--shadow);
+  }
+  .start-card h1{
+    font-size:2rem;
+    color:var(--navy);
+    margin:0 0 6px;
+  }
+  .start-card .subtitle{
+    color:var(--ink-soft);
+    margin:0 0 28px;
+    font-size:1rem;
+  }
+  .meta-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-bottom:28px;
+  }
+  .meta-box{
+    background:var(--parchment-deep);
+    border-radius:8px;
+    padding:14px 12px;
+    text-align:center;
+  }
+  .meta-box .num{
+    font-family:'Playfair Display', serif;
+    font-size:1.5rem;
+    color:var(--navy);
+    font-weight:700;
+    display:block;
+  }
+  .meta-box .lbl{
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+  }
+  .rules{
+    background:var(--parchment-deep);
+    border-left:3px solid var(--gold);
+    border-radius:6px;
+    padding:16px 18px;
+    margin-bottom:28px;
+    font-size:0.92rem;
+    color:var(--ink);
+  }
+  .rules li{margin-bottom:6px;}
+  .rules li:last-child{margin-bottom:0;}
+  .btn-primary{
+    display:inline-block;
+    width:100%;
+    background:var(--navy);
+    color:var(--parchment);
+    border:none;
+    border-radius:8px;
+    padding:15px 20px;
+    font-size:1.02rem;
+    font-weight:600;
+    text-align:center;
+    transition:background .15s ease;
+  }
+  .btn-primary:hover{background:var(--navy-deep);}
+  .btn-secondary{
+    display:inline-block;
+    background:transparent;
+    color:var(--navy);
+    border:1.5px solid var(--navy);
+    border-radius:8px;
+    padding:12px 18px;
+    font-size:0.92rem;
+    font-weight:600;
+    text-align:center;
+  }
+  .btn-secondary:hover{background:var(--navy);color:var(--parchment);}
+  .btn-ghost{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    border-radius:6px;
+    padding:8px 14px;
+    font-size:0.85rem;
+  }
+  .btn-ghost:hover{border-color:var(--navy);color:var(--navy);}
+
+  .history-toggle{
+    text-align:center;
+    margin-top:18px;
+  }
+
+  /* ---------- Test screen ---------- */
+  #testScreen{background:var(--parchment);}
+  .test-topbar{
+    position:sticky;top:0;z-index:50;
+    background:var(--navy);
+    color:var(--parchment);
+    padding:10px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  }
+  .topbar-left{display:flex;align-items:center;gap:14px;}
+  .topbar-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;}
+  .progress-pill{
+    font-size:0.78rem;
+    color:var(--gold-soft);
+    background:rgba(255,255,255,0.08);
+    padding:4px 10px;
+    border-radius:20px;
+  }
+  .timer-box{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    font-size:1.15rem;
+    background:rgba(255,255,255,0.1);
+    padding:6px 14px;
+    border-radius:8px;
+    letter-spacing:0.02em;
+  }
+  .timer-box.low{background:var(--maroon);color:#fff;animation:pulse 1s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.65;}}
+  .topbar-actions{display:flex;align-items:center;gap:10px;}
+  .icon-btn{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);
+    color:var(--parchment);
+    border-radius:6px;
+    padding:8px 12px;
+    font-size:0.82rem;
+    font-weight:500;
+  }
+  .icon-btn:hover{background:rgba(255,255,255,0.18);}
+  .submit-btn{
+    background:var(--gold);
+    color:var(--navy-deep);
+    border:none;
+    border-radius:6px;
+    padding:8px 16px;
+    font-weight:700;
+    font-size:0.85rem;
+  }
+  .submit-btn:hover{background:var(--gold-soft);}
+
+  .test-body{
+    display:flex;
+    max-width:1400px;
+    margin:0 auto;
+    align-items:flex-start;
+  }
+  .questions-col{
+    flex:1;
+    min-width:0;
+    padding:28px 24px 120px;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .qcard{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 22px 18px;
+    margin-bottom:18px;
+    scroll-margin-top:80px;
+  }
+  .qcard.answered{border-left:4px solid var(--green);}
+  .qcard.flagged{border-left:4px solid var(--gold);}
+  .qhead{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .qnum{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    color:var(--navy);
+    background:var(--parchment-deep);
+    border-radius:6px;
+    padding:2px 9px;
+    font-size:0.82rem;
+    flex-shrink:0;
+  }
+  .flag-btn{
+    background:none;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:3px 10px;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+  }
+  .flag-btn.on{background:var(--gold-soft);border-color:var(--gold);color:var(--navy-deep);}
+  .qstem{
+    white-space:pre-line;
+    font-size:1rem;
+    margin-bottom:14px;
+    color:var(--ink);
+  }
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .opt{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--parchment);
+    transition:border-color .12s ease, background .12s ease;
+  }
+  .opt:hover{border-color:var(--gold);}
+  .opt input{margin-top:3px;accent-color:var(--navy);flex-shrink:0;}
+  .opt.selected{
+    border-color:var(--navy);
+    background:#EDE7D6;
+  }
+  .opt-key{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    color:var(--navy);
+    flex-shrink:0;
+  }
+  .opt-text{font-size:0.95rem;}
+
+  /* palette sidebar */
+  .palette-col{
+    width:260px;
+    flex-shrink:0;
+    position:sticky;
+    top:64px;
+    max-height:calc(100vh - 80px);
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding:24px 20px 40px 0;
+  }
+  .palette-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px;
+  }
+  .palette-card h3{
+    margin:0 0 10px;
+    font-size:0.95rem;
+    color:var(--navy);
+  }
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:0.72rem;color:var(--ink-soft);}
+  .legend span{display:flex;align-items:center;gap:4px;}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  .dot.answered{background:var(--green);}
+  .dot.flagged{background:var(--gold);}
+  .dot.empty{background:var(--line);}
+  .grid150{
+    display:grid;
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    gap:6px;
+  }
+  .pnum{
+    min-width:0;
+    padding:0;
+    aspect-ratio:1;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:5px;
+    border:1px solid var(--line);
+    background:var(--parchment);
+    font-size:0.72rem;
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--ink-soft);
+  }
+  .pnum.answered{background:var(--green);color:#fff;border-color:var(--green);}
+  .pnum.flagged{box-shadow:inset 0 0 0 2px var(--gold);}
+  .pnum:hover{border-color:var(--navy);}
+
+  .palette-toggle-mobile{display:none;}
+
+  /* ---------- Results screen ---------- */
+  .results-wrap{max-width:920px;margin:0 auto;padding:36px 24px 100px;}
+  .results-summary{
+    background:var(--navy);
+    color:var(--parchment);
+    border-radius:var(--radius);
+    padding:32px 30px;
+    margin-bottom:24px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:24px;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .score-big{
+    font-family:'Playfair Display',serif;
+    font-size:2.6rem;
+    font-weight:700;
+    color:var(--gold-soft);
+  }
+  .score-label{font-size:0.85rem;color:#C9CEDA;margin-top:2px;}
+  .stat-row{display:flex;gap:26px;flex-wrap:wrap;}
+  .stat{text-align:center;}
+  .stat .n{font-family:'IBM Plex Mono',monospace;font-size:1.3rem;font-weight:600;}
+  .stat .l{font-size:0.72rem;color:#C9CEDA;text-transform:uppercase;letter-spacing:0.03em;}
+  .stat.correct .n{color:#8FD19E;}
+  .stat.incorrect .n{color:#E39A9A;}
+  .stat.unattempted .n{color:#D9D2B8;}
+
+  .tabs{
+    display:flex;
+    gap:6px;
+    margin-bottom:18px;
+    border-bottom:2px solid var(--line);
+  }
+  .tab-btn{
+    background:none;border:none;
+    padding:10px 18px;
+    font-weight:600;
+    font-size:0.9rem;
+    color:var(--ink-soft);
+    border-bottom:2px solid transparent;
+    margin-bottom:-2px;
+  }
+  .tab-btn.active{color:var(--navy);border-bottom-color:var(--navy);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  .review-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    margin-bottom:16px;
+  }
+  .review-card.correct{border-left:4px solid var(--green);}
+  .review-card.incorrect{border-left:4px solid var(--maroon);}
+  .review-card.unattempted{border-left:4px solid var(--ink-soft);}
+  .review-tag{
+    display:inline-block;
+    font-size:0.68rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    padding:2px 9px;
+    border-radius:10px;
+    margin-bottom:8px;
+  }
+  .review-tag.correct{background:#DDEDDD;color:var(--green);}
+  .review-tag.incorrect{background:#F2DEDE;color:var(--maroon);}
+  .review-tag.unattempted{background:#E8E4D6;color:var(--ink-soft);}
+  .review-opt{
+    display:flex;gap:10px;padding:7px 10px;border-radius:6px;font-size:0.92rem;margin-bottom:4px;
+  }
+  .review-opt .opt-key{font-family:'IBM Plex Mono',monospace;font-weight:600;}
+  .review-opt.your-wrong{background:#F2DEDE;}
+  .review-opt.correct-answer{background:#DDEDDD;}
+  .ex-first{
+    white-space:pre-wrap;
+    margin-bottom:5px;
+    line-height:1.55;
+  }
+  .ex-bullet{
+    display:flex;
+    gap:8px;
+    margin-bottom:4px;
+    line-height:1.55;
+  }
+  .ex-dot{
+    flex-shrink:0;
+    color:var(--accent);
+    font-weight:700;
+    margin-top:1px;
+  }
+  .explanation{
+    margin-top:12px;
+    padding:12px 14px;
+    background:var(--parchment-deep);
+    border-radius:8px;
+    font-size:0.9rem;
+    color:var(--ink);
+  }
+  .explanation .exlabel{
+    font-weight:700;color:var(--navy);font-size:0.75rem;text-transform:uppercase;
+    letter-spacing:0.03em;display:block;margin-bottom:4px;
+  }
+  .results-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
+
+  /* ---------- History screen ---------- */
+  .history-list{display:flex;flex-direction:column;gap:12px;margin-top:20px;}
+  .history-item{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .history-item .hdate{font-size:0.82rem;color:var(--ink-soft);}
+  .history-item .hscore{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);font-size:1.2rem;}
+  .empty-note{color:var(--ink-soft);font-style:italic;padding:20px 0;text-align:center;}
+
+  /* ---------- Modal ---------- */
+  .modal-overlay{
+    display:none;position:fixed;inset:0;background:rgba(20,30,51,0.55);
+    align-items:center;justify-content:center;z-index:100;padding:20px;
+  }
+  .modal-overlay.active{display:flex;}
+  .modal-box{
+    background:var(--paper);border-radius:var(--radius);padding:28px 26px;max-width:400px;width:100%;
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
+  }
+  .modal-box h3{margin:0 0 10px;color:var(--navy);}
+  .modal-box p{font-size:0.92rem;color:var(--ink-soft);margin-bottom:20px;}
+  .modal-actions{display:flex;gap:10px;justify-content:flex-end;}
+
+  footer.credit{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:0.72rem;
+    padding:20px;
+  }
+
+  @media (max-width:920px){
+    .palette-col{
+      display:none;
+      position:fixed;
+      top:0;right:0;bottom:0;
+      width:min(85vw,320px);
+      max-height:none;
+      background:var(--parchment);
+      z-index:90;
+      box-shadow:-4px 0 20px rgba(0,0,0,0.2);
+      padding:20px;
+      overflow-y:auto;
+      overflow-x:hidden;
+    }
+    .palette-col.open{display:block;}
+    .palette-toggle-mobile{
+      display:inline-block;
+    }
+    .test-body{display:block;}
+    .questions-col{padding:20px 14px 120px;max-width:100%;}
+    .topbar-title{display:none;}
+    .meta-grid{grid-template-columns:repeat(3,1fr);}
+    .results-summary{flex-direction:column;align-items:flex-start;}
+  }
+  @media (max-width:480px){
+    .grid150{grid-template-columns:repeat(5,minmax(0,1fr));}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ START SCREEN ============ -->
+<section id="startScreen" class="screen active">
+  <div class="center-wrap">
+    <div class="start-card">
+      <h1>71st BPSC Prelims — Ancient History</h1>
+      <p class="subtitle">150 questions · Full-length simulation · Single attempt sitting</p>
+
+      <div class="meta-grid">
+        <div class="meta-box"><span class="num">150</span><span class="lbl">Questions</span></div>
+        <div class="meta-box"><span class="num">2</span><span class="lbl">Hours</span></div>
+        <div class="meta-box"><span class="num">MCQ</span><span class="lbl">Format</span></div>
+      </div>
+
+      <ul class="rules">
+        <li>The timer starts the moment you click <strong>Start Test</strong> and runs for 2 hours.</li>
+        <li>All 150 questions appear together on one scrollable page — jump between them using the number palette.</li>
+        <li>Marking scheme: <strong>+1</strong> for each correct answer, <strong>−⅓</strong> for each incorrect answer, <strong>0</strong> for unattempted questions.</li>
+        <li>The test auto-submits when time runs out; you can also submit manually at any time.</li>
+        <li>Your progress is saved automatically, so a refresh will not lose your answers.</li>
+        <li>After submitting, you'll get a full review — correct, incorrect, and explanations for each question.</li>
+        <li>Every attempt is stored on this device so you can cross-reference it later.</li>
+      </ul>
+
+      <button class="btn-primary" id="startBtn">Start Test</button>
+      <div class="history-toggle">
+        <button class="btn-ghost" id="viewHistoryBtn">View past attempts →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEST SCREEN ============ -->
+<section id="testScreen" class="screen">
+  <div class="test-topbar">
+    <div class="topbar-left">
+      <span class="topbar-title">BPSC Ancient History</span>
+      <span class="progress-pill" id="progressPill">0 / 150 answered</span>
+    </div>
+    <div class="topbar-actions">
+      <div class="timer-box" id="timerBox">02:00:00</div>
+      <button class="icon-btn palette-toggle-mobile" id="paletteToggleBtn">Questions</button>
+      <button class="submit-btn" id="submitBtn">Submit</button>
+    </div>
+  </div>
+
+  <div class="test-body">
+    <div class="questions-col" id="questionsCol"></div>
+    <div class="palette-col" id="paletteCol">
+      <div class="palette-card">
+        <h3>Question Palette</h3>
+        <div class="legend">
+          <span><span class="dot answered"></span>Answered</span>
+          <span><span class="dot empty"></span>Unanswered</span>
+          <span><span class="dot" style="box-shadow:inset 0 0 0 2px var(--gold);background:transparent;"></span>Flagged</span>
+        </div>
+        <div class="grid150" id="paletteGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS SCREEN ============ -->
+<section id="resultsScreen" class="screen">
+  <div class="results-wrap">
+    <div class="results-summary">
+      <div>
+        <div class="score-big" id="scoreBig">0 / 150</div>
+        <div class="score-label" id="scoreDate">—</div>
+        <div class="score-label" style="margin-top:2px;">Marking: +1 correct · −⅓ incorrect · 0 unattempted</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat correct"><div class="n" id="statCorrect">0</div><div class="l">Correct</div></div>
+        <div class="stat incorrect"><div class="n" id="statIncorrect">0</div><div class="l">Incorrect</div></div>
+        <div class="stat unattempted"><div class="n" id="statUnattempted">0</div><div class="l">Unattempted</div></div>
+        <div class="stat"><div class="n" id="statAccuracy">0%</div><div class="l">Accuracy</div></div>
+        <div class="stat"><div class="n" id="statTime">—</div><div class="l">Time used</div></div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="all">All (150)</button>
+      <button class="tab-btn" data-tab="correct">Correct</button>
+      <button class="tab-btn" data-tab="incorrect">Incorrect</button>
+      <button class="tab-btn" data-tab="unattempted">Unattempted</button>
+      <button class="tab-btn" data-tab="flagged">Flagged</button>
+    </div>
+
+    <div class="tab-panel active" id="panel-all"></div>
+    <div class="tab-panel" id="panel-correct"></div>
+    <div class="tab-panel" id="panel-incorrect"></div>
+    <div class="tab-panel" id="panel-unattempted"></div>
+    <div class="tab-panel" id="panel-flagged"></div>
+
+    <div class="results-actions">
+      <button class="btn-secondary" id="backToStartBtn">Back to start</button>
+      <button class="btn-secondary" id="toHistoryFromResultsBtn">View all attempts</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HISTORY SCREEN ============ -->
+<section id="historyScreen" class="screen">
+  <div class="results-wrap">
+    <h1 class="serif" style="color:var(--navy);margin-bottom:4px;">Past Attempts</h1>
+    <p style="color:var(--ink-soft);margin-top:0;">Stored locally on this device for cross-reference. Click an attempt to reopen its full review.</p>
+    <div class="history-list" id="historyList"></div>
+    <div class="results-actions">
+      <button class="btn-secondary" id="backToStartFromHistoryBtn">Back to start</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONFIRM SUBMIT MODAL ============ -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box">
+    <h3 id="confirmTitle">Submit test?</h3>
+    <p id="confirmText">You still have unanswered questions. Are you sure you want to submit now? This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="cancelSubmitBtn">Cancel</button>
+      <button class="btn-primary" style="width:auto;" id="confirmSubmitBtn">Submit anyway</button>
+    </div>
+  </div>
+</div>
+
+<footer class="credit">Stored locally in your browser — clearing site data will remove saved attempts.</footer>
+
+<script>
+const QUESTIONS = [{"id": 1, "stem": "Who is considered as the father of History?", "options": [{"key": "a", "text": "Dr. A.D. Keith"}, {"key": "b", "text": "Pythagoras"}, {"key": "c", "text": "Herodotus"}, {"key": "d", "text": "Hecataeus"}], "correct": "c", "explanation": "Herodotus, a 5th-century BCE Greek historian, is known as the \"Father of History\"-a title first given by the Roman orator Cicero. His famous work, The Histories, is considered the first major historical narrative in the Western world, focusing on the Greco-Persian Wars and marking the beginning of history as a systematic discipline."}, {"id": 2, "stem": "Which of the following Indus Valley sites is known for its unique water management system, including reservoirs and dams?", "options": [{"key": "a", "text": "Harappa"}, {"key": "b", "text": "Mohenjo-daro"}, {"key": "c", "text": "Dholavira"}, {"key": "d", "text": "Rakhigarhi"}], "correct": "c", "explanation": "Dholavira, an Indus Valley site, is distinguished by its remarkable water management system, featuring an intricate network of channels, reservoirs, and dams meticulously designed to efficiently harvest and store rainwater."}, {"id": 3, "stem": "Which of the following Vedic texts are collectively referred to as the 'Trayi'?\n1. Rig Veda\n2. Yajurveda\n3. Samaveda\n4. Atharvaveda\nSelect the correct answer from the code given below:", "options": [{"key": "a", "text": "Only 1, 2 and 4"}, {"key": "b", "text": "Only 1, 2 and 3"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "Only 1, 3 and 4"}], "correct": "b", "explanation": "The Vedic texts collectively referred to as the 'Trayi' are the Rig Veda, Yajurveda, and Samaveda. The Atharvaveda is not included in the 'Trayi."}, {"id": 4, "stem": "Match List-I with List-II\nList-I (Buddhist Councils): a. First, b. Second, c. Third, d. Fourth\nList-II (President): 1. Vasumitra, 2. Moggaliputta Tissa, 3. Sabakami, 4. Mahakasappa\nSelect the correct answer:", "options": [{"key": "a", "text": "a-2, b-3, c-4, d-1"}, {"key": "b", "text": "a-3, b-4, c-1, d-2"}, {"key": "c", "text": "a-4, b-1, c-2, d-3"}, {"key": "d", "text": "a-4, b-3, c-2, d-1"}], "correct": "d", "explanation": "First Buddhist Council:\n✓ Held: Shortly after Buddha's Parinirvana (circa 483 BCE) at Rajagriha (modern Rajgir, Bihar).\n✓ Purpose: To compile the Buddha's teachings (Sutta and Vinaya).\n✓ President: Mahakassapa (Pali: Mahakasappa), a senior disciple of the Buddha.\n Second Buddhist Council:\n✓ Held: About 100 years after Buddha's Parinirvana (circa 383 BCE) at Vaishali.\n✓ Purpose: To address monastic discipline disputes, particularly the ten points of Vinaya.\n✓ President: Sabakami (or Yasa in some accounts, but Sabakami is traditionally named in Theravada texts).\nThird Buddhist Council:\n✓ Held: Under Emperor Ashoka's patronage (circa 250 BCE) at Pataliputra (modern Patna).\n✓ Purpose: To purify the Sangha and compile the Tipitaka.\n✓ President: Moggaliputta Tissa, a prominent monk who refuted non-Buddhist views.\nFourth Buddhist Council:\n✓ Held: Around the 1st century CE in Kashmir (or Sri Lanka in some Theravada accounts) under King Kanishka's patronage.\n✓ Purpose: To resolve doctrinal disputes, often associated with Mahayana developments.\n✓ President: Vasumitra, with Ashvaghosha as a key figure in some accounts."}, {"id": 5, "stem": "Match List-I with List-II\nList-I (Jain Tirthankaras): a. Rishabhdev, b. Padmaprabha, c. Parshvanath, d. Mahavira Swami\nList-II (Symbols): 1. Lotus, 2. Snake, 3. Bull, 4. Lion\nSelect the correct answer:", "options": [{"key": "a", "text": "a-3, b-1, c-2, d-4"}, {"key": "b", "text": "a-2, b-3, c-4, d-1"}, {"key": "c", "text": "a-3, b-4, c-1, d-2"}, {"key": "d", "text": "a-4, b-1, c-2, d-3"}], "correct": "a", "explanation": "Rishabhdev (Adinatha) is the first Tirthankara of Jainism. His symbol is the bull, which represents strength and spiritual power.\n• Padmaprabha is the sixth Tirthankara, and his symbol is the lotus. The lotus stands for purity and spiritual awakening, as it rises untainted from muddy waters.\n• Parshvanath is the 23rd Tirthankara, and his symbol is the snake (serpent). Parshvanath is always depicted with a serpent hood over his head, symbolising protection and calmness.\n• Mahavira Swami is the 24th and last Tirthankara. His symbol is the lion, which represents courage and fearlessness."}, {"id": 6, "stem": "Match List-I with List-II\nList-I (Mahajanapadas): a. Vatsa, b. Anga, c. Matsya, d. Kamboj\nList-II (Capital): 1. Champa, 2. Viratnagar, 3. Rajpur, 4. Kaushambi\nSelect the correct match from the code given below:", "options": [{"key": "a", "text": "a-2, b-1, c-4, d-3"}, {"key": "b", "text": "a-4, b-3, c-2, d-1"}, {"key": "c", "text": "a-4, b-1, c-2, d-3"}, {"key": "d", "text": "a-2, b-3, c-4, d-1"}], "correct": "c", "explanation": "Kaushambi was the prosperous capital city of the Vatsa kingdom, known for its strategic location and trade.\n Champa was a major port city and capital of Anga, important for commerce and maritime activities.\n• Viratnagar, also known as Matsya, was the capital associated with the Matsya kingdom, famous in epic legends.\n• Rajpur was the capital of the Kamboja kingdom, located in the northwestern region of ancient India."}, {"id": 7, "stem": "Consider the following statements about the officials of the Mauryan administration.\n1. Yukta - Subordinate Revenue Officer\n2. Rajjuka - Treasury head\n3. Pradeshika - Rural surveyor\nWhich of the pairs given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 3"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "a", "explanation": "Swarnadhyaksha - Gold Department Head\n• Dyutadhyaksha - Gambling Regulator\nPurohita Chief Priest\nMantrin Chief Minister\n• Nayaka - City Security Head\nYukta Subordinate Revenue Officer\nLakshanadhyaksha - Mint & Coin Officer\n Rajjuka - Land Surveyor & Judge\n• Samaharta Chief Revenue Collector\nKarmantika Head of Industries\n• Panyadhyaksha - Commerce Officer\n• Annapala - Food Supply Head\nKoshthagaradhyaksha - Royal Treasury Manager\n Lavanadhyaksha - Salt Officer\n Vyavaharika - Chief Justice\nPrashasti - Jail Superintendent\n Sunadhyaksha - Slaughterhouse Supervisor\nManadhyaksha - Time & Space Officer\nMudradhyaksha - Seal & Coin Officer\nSenapati Army Chief\nShulkadhyaksha - Tax/Customs Officer\nKunyadhyaksha - Forest Officer\nLauhadhyaksha - Metal Works Officer\nDurgapala - Fort Commander\n• Pradeshika - District Administrator\n Akaradhyaksha - Mining Officer\n Koshadhyaksha - Treasury Officer\n Dandapala - Police Chief\nMantriparishad Adhyaksha - Head Council of Ministers\nYuvaraj Crown Prince\nSannidata - Head of Treasury\nPattanadhyaksha - Port Officer\nAyudhadhyaksha - Arms & Defence Officer\n Naukadhyaksha - Naval Officer"}, {"id": 8, "stem": "Which of the following pairs of rulers with their respective dynasties or cultural groups is correct?\n1. Demetrius - Indo-Greek\n2. Rudradaman - Scythian\n3. Gondophernes - Kushana\n4. Vima Kadphises - Parthian\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 3 and 4"}, {"key": "d", "text": "Only 1 and 4"}], "correct": "a", "explanation": "Demetrius was an Indo-Greek king.\nRudradaman belonged to the Saka (Scythian) dynasty.\nGondophernes was a ruler of the Indo-Parthian dynasty, not Kushana.\nVima Kadphises was a Kushana ruler, not Parthian."}, {"id": 9, "stem": "Which of the following titles was assumed by Samudragupta to emphasise his imperial authority?", "options": [{"key": "a", "text": "Dharmarakshaka"}, {"key": "b", "text": "Saptapati"}, {"key": "c", "text": "Vikramaditya"}, {"key": "d", "text": "Maharajadhiraja"}], "correct": "d", "explanation": "The title assumed by Samudragupta to emphasize his imperial authority was Maharajadhiraja. This Sanskrit term means \"King of Kings\" and was used by Samudragupta to assert his status as a powerful and sovereign emperor over a vast territory, reflecting his successful military campaigns and political unification of much of India under his rule."}, {"id": 10, "stem": "Who among the following rulers defeated Harshavardhana?", "options": [{"key": "a", "text": "Kirtivarman II"}, {"key": "b", "text": "Vikramaditya II"}, {"key": "c", "text": "Pulakeshin I"}, {"key": "d", "text": "Pulakeshin II"}], "correct": "d", "explanation": "The ruler who defeated Harshavardhana was Pulakeshin II of the Chalukya dynasty. The famous Battle of Narmada, fought around 618-619 CE, saw Pulakeshin II successfully repel Harsha's attempt to expand southward, forcing Harsha and his forces to retreat and marking a significant check on Harsha's ambitions."}, {"id": 11, "stem": "Consider the following statements regarding Jainism Tirthankaras\n1. Vardhamana Mahavira's mother, Trishala, was the sister of Chetaka, the king of Lichchhavi.\n2. Parshvanatha was the son of King Ashvasena of Banaras.\n3. References to Rishabdeva are found in the Vayu Purana.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "d", "explanation": "Statement 1 is correct: Trishala, also known as Priyakarini or Videhadatta, was the mother of Mahavira, the 24th Tirthankara of Jainism. She was born a princess in the Licchavi Republic and was the sister of Chetaka, who was the chief (or king) of the Licchavi clan in Vaishali\n• Statement 2 is correct: Parshvanatha, the 23rd Tirthankara of Jainism, was born in Varanasi (Banaras). His father was King Ashvasena, and his mother was Queen Vamadevi. Parshvanatha is believed to have lived in the 8th or 7th century BCE.\nStatement 3 is correct: References to Rishabdeva are found in the Vayu Purana. The Vayu Purana is one of the major Puranic texts of Hinduism and, like several other Puranas, it mentions the figure of Rishabha."}, {"id": 12, "stem": "Which one of the following animals does not appear in the seals or terracotta figurines of the Harappan Civilisation?", "options": [{"key": "a", "text": "Tiger"}, {"key": "b", "text": "Deer"}, {"key": "c", "text": "Sheep"}, {"key": "d", "text": "Cow"}], "correct": "d", "explanation": "The animal that does not appear in the seals or terracotta representations of the Harappan Civilisation is the cow.\n Harappan seals and terracotta figurines commonly depict animals such as bulls (with or without humps), elephants, tigers, rhinoceroses, buffaloes, goats, sheep, deer, and antelopes."}, {"id": 13, "stem": "Consider the following statements about the Yajurveda.\n1. It deals with the details of the performance of rituals.\n2. It is divided into the Shukla school and the Krishna school.\n3. The terms krishna-ayas, shyama, and shyama-ayas are mentioned in the Yajur Veda.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 1 and 3"}, {"key": "c", "text": "Only 2 and 3"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "d", "explanation": "Statement 1 is correct: The Yajurveda is primarily a manual for priests, containing hymns and detailed instructions for performing various Vedic sacrifices, such as the yajna, soma, and ashvamedha rituals, making it central to Vedic religious practice.\nStatement 2 is correct: The Yajurveda is traditionally divided into two main recensions: the Shukla (White) Yajurveda, which deals with prayers and specific instructions, and the Krishna (Black) Yajurveda, which focuses on sacrificial rituals and includes both mantras and explanatory prose.\nStatement 3 is correct: The Yajurveda contains references to metals such as krishna-ayas (black metal, generally interpreted as iron), shyama, and shyama-ayas (dark metal), indicating knowledge of iron and its use during the later Vedic period."}, {"id": 14, "stem": "The Jataka tales, which narrate the previous births of the Buddha, were originally composed in which language?", "options": [{"key": "a", "text": "Sanskrit"}, {"key": "b", "text": "Pali"}, {"key": "c", "text": "Prakrit"}, {"key": "d", "text": "Ardhamagadhi"}], "correct": "b", "explanation": "The Jataka tales form a large collection of Buddhist morality stories recounting the Buddha's past lives on his path to enlightenment. Though they are more folktale than doctrinal, they are part of the Pali Canon, the authoritative scripture collection in Theravāda Buddhism, and are written in Pali.\nOften likened to Aesop's fables, these tales feature the Bodhisatta (future Buddha) in various forms like human, animal, or deity, using wit and virtue to overcome challenges."}, {"id": 15, "stem": "Consider the following statements regarding the Shwetambara sect of Jainism.\n1. The people of this sect are completely naked and perform extreme austerity.\n2. It accepts women as ascetics and believes they can attain liberation.\n3. They were led by Acharya Bhadrabahu and migrated to the south.\nWhich of the statements given above is/are incorrect?", "options": [{"key": "a", "text": "Only 1 and 3"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Only 2 and 3"}, {"key": "d", "text": "None of the above"}], "correct": "a", "explanation": "Statement 1 is incorrect: The Shwetambara sect is characterised by monks wearing white clothes, unlike the Digambara sect, where monks practice nudity (digambara means \"sky-clad\"). While both sects practice austerity (Tapasya), extreme nudity is specific to Digambaras, not Svetambaras.\nStatement 2 is correct: The Shwetambara sect allows women to become ascetics (nuns) and believes women can attain moksha (liberation). This contrasts with the Digambara view, which traditionally denies women's liberation without rebirth as a man.\nStatement 3 is incorrect: Digambaras were led by Acharya Bhadrabahu, who migrated to the south (Karnataka) during a famine in Magadha. Those who remained in the north, under Sthulabhadra, later came to be known as the Svetambaras."}, {"id": 16, "stem": "Which ruler founded and made Pataliputra the capital of his empire for the first time?", "options": [{"key": "a", "text": "Sisunaga"}, {"key": "b", "text": "Bimbisara"}, {"key": "c", "text": "Ajatashatru"}, {"key": "d", "text": "Udayin"}], "correct": "d", "explanation": "Udayin, the son of Ajatashatru, is credited with shifting the capital from Rajagriha to Pataliputra, strategically located at the confluence of the Ganga and Son rivers. This shift marked the first instance of Pataliputra being used as a capital in the ancient Indian polity."}, {"id": 17, "stem": "Which Ashokan inscriptions are written in the Kharoshthi script?", "options": [{"key": "a", "text": "Kalsi, Girnar"}, {"key": "b", "text": "Dhauli, Jaugada"}, {"key": "c", "text": "Yerraguddi and Sopara"}, {"key": "d", "text": "Shahbajagarhi and Manshera"}], "correct": "d", "explanation": "The Ashokan inscriptions at Shahbazgarhi and Mansehra, both located in present-day Pakistan, are famous for being written in the Kharosthi script.\n• These are the only major Ashokan edicts inscribed in Kharosthi; most other inscriptions across the empire were written in the Brahmi script."}, {"id": 18, "stem": "Who among the following first issued gold coins on a large scale?", "options": [{"key": "a", "text": "Kujul Kadphises"}, {"key": "b", "text": "Kartikeya"}, {"key": "c", "text": "Vima Kadphises"}, {"key": "d", "text": "Pushyamitra Shunga"}], "correct": "c", "explanation": "Vima Kadphises was the first ruler to issue gold coins on a large scale in India, marking a significant development in the history of Indian coinage and the Kushan Empire's economy.\n His reign, dated to the first and early second centuries CE, saw the introduction of gold coins in several denominations, such as the dinar, double dinar, and quarter dinar, which often depicted the king's portrait on one side and various deities, including Shiva, on the other."}, {"id": 19, "stem": "Which Gupta ruler is known for issuing the Allahabad Pillar Inscription, detailing his military conquests?", "options": [{"key": "a", "text": "Chandragupta I"}, {"key": "b", "text": "Samudragupta"}, {"key": "c", "text": "Chandragupta II"}, {"key": "d", "text": "Skandagupta"}], "correct": "b", "explanation": "Samudragupta's Allahabad Pillar Inscription, composed by Harisena, describes his extensive conquests, highlighting his role in the Gupta Empire's expansion."}, {"id": 20, "stem": "Which ruler of the Pushyabhuti dynasty is known for his patronage of the Chinese traveler Hiuen-Tsang?", "options": [{"key": "a", "text": "Harshavardhana"}, {"key": "b", "text": "Prabhakarvardhana"}, {"key": "c", "text": "Rajyavardhana"}, {"key": "d", "text": "Grahavarman"}], "correct": "a", "explanation": "Harshavardhana (606-647 CE) patronized Hiuen-Tsang, whose accounts provide insights into the Post-Gupta Period's society and culture."}, {"id": 21, "stem": "Sallekhana, also known as Santhara, is associated with which of the following practices?", "options": [{"key": "a", "text": "Meditation through chanting"}, {"key": "b", "text": "Voluntary fasting unto death for spiritual purification"}, {"key": "c", "text": "Animal sacrifice for ancestral rites"}, {"key": "d", "text": "Fire ritual to attain salvation"}], "correct": "b", "explanation": "Sallekhana, also known as Santhara, is a Jain religious practice in which an individual voluntarily undertakes a gradual fast, reducing food and water intake until death.\nThis practice is intended for spiritual purification and detachment from worldly attachments, especially when death is near due to old age, incurable illness, or other unavoidable circumstances."}, {"id": 22, "stem": "Match List-I with List-II\nList-I (Harappan Settlement): a. Kalibangan, b. Lothal, c. Ropar, d. Manda\nList-II (Located on Rivers): 1. Chenab, 2. Sutlej, 3. Bhogwa, 4. Ghaggar\nSelect the correct answer:", "options": [{"key": "a", "text": "a-2, b-3, c-4, d-1"}, {"key": "b", "text": "a-3, b-4, c-1, d-2"}, {"key": "c", "text": "a-4, b-1, c-2, d-3"}, {"key": "d", "text": "a-4, b-3, c-2, d-1"}], "correct": "d", "explanation": "Kalibangan Ghaggar: Kalibangan is an important Harappan site located on the banks of the Ghaggar River in Rajasthan. The Ghaggar is often identified with the ancient Saraswati river in historical texts.\nLothal Bhogwa: Lothal is a Harappan port town situated in Gujarat, on the banks of the Bhogwa (also spelled Bhogava) river.\n Ropar Sutlej: Ropar (also called Rupnagar) is a Harappan site in Punjab, situated on the banks of the Sutlej River.\nManda Chenab: Manda is the northernmost Harappan site, located in Jammu & Kashmir, on the banks of the Chenab River."}, {"id": 23, "stem": "Match List-I with List-II\nList-I (Vedic Rivers): a. Gomati, b. Suvastu, c. Sadaneera, d. Shutudri\nList-II (Modern Name): 1. Gandak, 2. Gomal, 3. Sutlej, 4. Swat\nSelect the correct answer:", "options": [{"key": "a", "text": "a-3, b-1, c-2, d-4"}, {"key": "b", "text": "a-3, b-2, c-1, d-4"}, {"key": "c", "text": "a-2, b-1, c-4, d-3"}, {"key": "d", "text": "a-2, b-4, c-1, d-3"}], "correct": "d", "explanation": "Gomati is identified with the modern Gomal River.\nSuvastu is the ancient name for the Swat River.\nSadaneera refers to the Gandak River.\n• Shutudri is the Vedic name for the Sutlej River."}, {"id": 24, "stem": "Which of the following religious traditions regards the Tripitakas as its canonical scriptures?", "options": [{"key": "a", "text": "Jainism"}, {"key": "b", "text": "Buddhism"}, {"key": "c", "text": "Zoroastrianism"}, {"key": "d", "text": "Hinduism"}], "correct": "b", "explanation": "The Tripitaka (also known as Tipitaka in Pali) is the main collection of scriptures in Buddhism, comprising the Vinaya Pitaka, Sutta Pitaka, and Abhidhamma Pitaka.\nThese texts are foundational to Buddhist doctrine and practice, especially in the Theravada tradition, and are considered the earliest and most authoritative Buddhist scriptures."}, {"id": 25, "stem": "Which of the following correctly describes the Bhagwati Sutra in Jain literature?", "options": [{"key": "a", "text": "It is a text that outlines the rituals and ceremonies of Jaina householders"}, {"key": "b", "text": "It is a narrative collection of the life stories of the 24 Tirthankaras."}, {"key": "c", "text": "Explain all the main teachings and beliefs of Jainism clearly and in detail."}, {"key": "d", "text": "It prescribes dietary codes and monastic rules for Digambara monks."}], "correct": "c", "explanation": "The Bhagwati Sutra is one of the 12 Angas (core texts) of the Shvetambara canon and is known for its detailed exposition of Jain doctrines.\n It includes dialogues between Mahavira and his disciples, covering topics like cosmology, karma theory, liberation, and the nature of the soul, making it a comprehensive doctrinal text."}, {"id": 26, "stem": "The list of the sixteen Mahajanapadas of ancient India is mentioned in which of the following texts?\n1. Anguttara Nikaya\n2. Bhagavati Sutra\n3. Rig Veda\n4. Upanishads\n5. Digha Nikaya\nSelect the correct answer from the code given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 1, 3 and 4"}, {"key": "c", "text": "Only 1, 2 and 5"}, {"key": "d", "text": "Only 3, 4 and 5"}], "correct": "c", "explanation": "The list of the sixteen Mahajanapadas is mentioned in the following texts: Anguttara Nikaya (Buddhist text), Digha Nikaya (Buddhist text), Bhagavati Sutra (Jain text)."}, {"id": 27, "stem": "Who was the first to decipher the Brahmi script?", "options": [{"key": "a", "text": "Harry Smith"}, {"key": "b", "text": "Josh English"}, {"key": "c", "text": "James Prinsep"}, {"key": "d", "text": "A. Cunningham"}], "correct": "c", "explanation": "James Prinsep was the first to successfully decipher the Brahmi script in the late 1830s, specifically around 1837-1838. His breakthrough enabled scholars to read and understand the ancient inscriptions of Emperor Ashoka and opened up new avenues for the study of early Indian history."}, {"id": 28, "stem": "Which of the following statements are correct?\n1. Saka Samvat was started in 57 B.C.\n2. Vikram Samvat was started in 78 A.D.\n3. The difference between Vikram Samvat and Saka Samvat is 135 years.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Only 3"}, {"key": "d", "text": "Only 1 and 2"}], "correct": "c", "explanation": "Statement 1 is incorrect: Vikram Samvat began in 57 B.C., not Saka Samvat.\nStatement 2 is incorrect: Saka Samvat began in 78 A.D., not Vikram Samvat.\nStatement 3 is correct: The difference between the two eras is 135 years. Because Vikram Samvat predates Saka Samvat by exactly 135 years, any given year in the Vikram Samvat calendar will always be 135 years ahead of the corresponding year in the Saka Samvat calendar."}, {"id": 29, "stem": "Which Gupta scholar authored the mathematical treatise Aryabhatiya?", "options": [{"key": "a", "text": "Varahamihira"}, {"key": "b", "text": "Aryabhata"}, {"key": "c", "text": "Kalidasa"}, {"key": "d", "text": "Amarasimha"}], "correct": "b", "explanation": "Aryabhata's Aryabhatiya (5th century CE) is a seminal work on mathematics and astronomy, reflecting Gupta advancements in science."}, {"id": 30, "stem": "Which of the following caves is famous for 'Trimurti'?", "options": [{"key": "a", "text": "Ajanta"}, {"key": "b", "text": "Bheembetika"}, {"key": "c", "text": "Elephanta"}, {"key": "d", "text": "Ellora"}], "correct": "c", "explanation": "The cave famous for the 'Trimurti' is the Elephanta Caves. The Elephanta Caves, located on Elephanta Island near Mumbai, are renowned for their monumental 5.45-meter-tall Trimurti Sadashiva sculpture, which depicts Shiva in his three aspects-creator, preserver, and destroyer. This iconic sculpture is considered a masterpiece of Indian rock-cut art and is the most celebrated feature of the Elephanta Caves."}, {"id": 31, "stem": "Arrange the following Yugas (epochs) of the Hindu cosmological time cycle in their correct chronological order:\n1. Dvapara\n2. Krita\n3. Treta\n4. Kali\nSelect the correct answer from the code given below:", "options": [{"key": "a", "text": "2-3-4-1"}, {"key": "b", "text": "3-2-1-4"}, {"key": "c", "text": "2-3-1-4"}, {"key": "d", "text": "4-3-2-1"}], "correct": "c", "explanation": "According to Hindu tradition, the four Yugas follow a specific cyclical sequence: Krita Yuga (Satya Yuga) → Treta Yuga → Dvapara Yuga → Kali Yuga.\n• This cycle represents a gradual decline in dharma (righteousness) from Krita to Kali."}, {"id": 32, "stem": "In which of the following Harappan cities, furrows of ploughed fields have been found?", "options": [{"key": "a", "text": "Kalibangan"}, {"key": "b", "text": "Harappa"}, {"key": "c", "text": "Mohenjo-Daro"}, {"key": "d", "text": "Banawali"}], "correct": "a", "explanation": "The Harappan city where furrows of ploughed fields have been found is Kalibangan.\n• Archaeologists discovered a ploughed field with a grid of furrows at Kalibangan, located in Rajasthan. This is considered the earliest evidence of ploughed agriculture in the Indian subcontinent and is a significant indicator of advanced agricultural practices during the Harappan period."}, {"id": 33, "stem": "The mantra \"tamaso mā jyotirgamaya\" is found in which of the following Upanishads?", "options": [{"key": "a", "text": "Chandogya Upanishad"}, {"key": "b", "text": "Brihadaranyaka Upanishad"}, {"key": "c", "text": "Isha Upanishad"}, {"key": "d", "text": "Kena Upanishad"}], "correct": "b", "explanation": "The mantra \"tamaso mā jyotirgamaya\", meaning \"Lead me from darkness to light,\" is found in the Brihadaranyaka Upanishad.\n• This mantra is part of the famous Pavamana Mantra, one of the principal Upanishads of the Yajurveda. The verse is widely cited as a prayer for spiritual enlightenment and is recognised in authoritative sources, including academic and government-backed references"}, {"id": 34, "stem": "The Abhidhamma Pitaka consists of how many books?", "options": [{"key": "a", "text": "Five books"}, {"key": "b", "text": "Six books"}, {"key": "c", "text": "Seven books"}, {"key": "d", "text": "Eight books"}], "correct": "c", "explanation": "The Abhidhamma Pitaka, one of the three baskets (Tipitaka) of Theravada Buddhist scriptures, consists of seven books that present a detailed scholastic and philosophical analysis of Buddhist teachings. The seven books are: Dhammasangani, Vibhanga, Dhatukatha, Puggalapannatti, Kathavatthu, Yamaka, Patthana."}, {"id": 35, "stem": "Which cave in the Udayagiri and Khandagiri complex features intricate carvings of the 24 Jain Tirthankaras on its walls?", "options": [{"key": "a", "text": "Hathi Gumpha"}, {"key": "b", "text": "Rani Gumpha"}, {"key": "c", "text": "Trushula Gumpha"}, {"key": "d", "text": "Mancapuri Gumpha"}], "correct": "c", "explanation": "Trushula (Trushula) Gumpha in the Udayagiri and Khandagiri cave complex features sculptures of the 24 Jain Tirthankaras on its walls."}, {"id": 36, "stem": "Which of the following Mahajanapadas was situated between the rivers Godavari and Narmada?", "options": [{"key": "a", "text": "Vajji"}, {"key": "b", "text": "Panchala"}, {"key": "c", "text": "Assaka"}, {"key": "d", "text": "Sursen"}], "correct": "c", "explanation": "Assaka was located in the Deccan (modern Maharashtra), between the Godavari and Narmada rivers, with its capital at Potana.\n Vajji (Bihar, near Ganga), Panchala (Uttar Pradesh, near Ganga-Yamuna), and Surasena (Mathura, near Yamuna) were northern Mahajanapadas."}, {"id": 37, "stem": "In which of the following inscriptions the name of 'Ashoka' has been mentioned?\n1. Gujarra edicts\n2. Maski edicts\n3. Nittur edicts\n4. Udegolam edicts\nSelect the correct answer from the code given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 1, 2 and 3"}, {"key": "c", "text": "Only 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}], "correct": "d", "explanation": "The name of 'Ashoka' is explicitly mentioned in the following inscriptions: Gujarra edict (Madhya Pradesh), Maski edict (Karnataka), Nittur edict (Andhra Pradesh), Udegolam edicts (Karnataka)."}, {"id": 38, "stem": "Parsva, Vasumitra, Ashvaghosa, Nagarjuna and Charaka were the scholars present in the Court of", "options": [{"key": "a", "text": "Kanishka"}, {"key": "b", "text": "Chandragupta Ist"}, {"key": "c", "text": "Samudra Gupta"}, {"key": "d", "text": "Chandragupta Maurya"}], "correct": "a", "explanation": "Parsva, Vasumitra, Ashvaghosa, Nagarjuna, and Charaka were the eminent scholars present in the court of Kanishka, the Kushan emperor. Kanishka was known for his patronage of Buddhism and learning, and his court included these distinguished figures: Ashvaghosa (the Buddhist poet and philosopher), Nagarjuna (the philosopher and founder of the Madhyamaka school of Mahayana Buddhism), Vasumitra (who presided over the Fourth Buddhist Council), Parsva (a Buddhist scholar), and Charaka (the celebrated authority on Ayurveda and court physician)."}, {"id": 39, "stem": "Which Gupta ruler assumed the title 'Vikramaditya' after defeating the Sakas?", "options": [{"key": "a", "text": "Samudragupta"}, {"key": "b", "text": "Chandragupta II"}, {"key": "c", "text": "Kumaragupta I"}, {"key": "d", "text": "Skandagupta"}], "correct": "b", "explanation": "Chandragupta II, known as Vikramaditya, defeated the Western Kshatrapas (Sakas), consolidating Gupta power."}, {"id": 40, "stem": "Which Chalukya ruler of Badami is known for defeating the Pallava king Mahendravarman I?", "options": [{"key": "a", "text": "Pulakeshin I"}, {"key": "b", "text": "Pulakeshin II"}, {"key": "c", "text": "Vikramaditya I"}, {"key": "d", "text": "Kirtivarman I"}], "correct": "b", "explanation": "Pulakeshin II defeated Mahendravarman I, marking the Chalukyas' prominence in the Post-Gupta Period."}, {"id": 41, "stem": "Consider the following statements regarding the contribution of the Gupta period in the development of Bhagvatism.\n1. The Bhagavata religion reached its peak in the reign of the Gupta kings.\n2. The Gupta kings were followers of the Vaishnava religion, and they made it the state religion.\n3. Garuda, the mount (Vahana) of Lord Vishnu was the state symbol of Guptas.\n4. Most of the Gupta rulers hold the title of 'Param Bhagavata', which shows their proximity with Bhagavatism.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 1, 2 and 3"}, {"key": "c", "text": "Only 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}], "correct": "d", "explanation": "Statement 1 is correct: During the Gupta period (4th-6th centuries CE), the Bhagavata (Vaishnava) religion flourished and became highly influential. The Guptas were ardent devotees of Vishnu and actively promoted Vaishnavism, blending Vedic rituals with bhakti (devotion) practices.\nStatement 2 is correct: The Guptas identified themselves as followers of Vaishnavism and gave it official patronage.\nStatement 3 is correct: Garuda, the mythological bird and vehicle of Vishnu, was adopted as the royal emblem of the Gupta dynasty.\nStatement 4 is correct: Gupta kings, especially from Chandragupta II onwards, used the title 'Parama Bhagavata' (supreme devotee of Bhagavan/Vishnu) in their inscriptions."}, {"id": 42, "stem": "Where was the Great Bath found in the Indus Valley Civilisation?", "options": [{"key": "a", "text": "Alamgirpur"}, {"key": "b", "text": "Banawali"}, {"key": "c", "text": "Kalibangan"}, {"key": "d", "text": "Mohenjodaro"}], "correct": "d", "explanation": "The Great Bath, located at Mohenjodaro in present-day Sindh, Pakistan, is one of the earliest public water tanks in history, dating to around 2500 BCE. Built with baked bricks and bitumen for waterproofing, it measures about 12m × 7m × 2.4m and likely served ritual or communal purposes, reflecting advanced urban planning."}, {"id": 43, "stem": "King Pravahana Jaivali, mentioned in the Upanishads, was the ruler of which kingdom?", "options": [{"key": "a", "text": "Kashi"}, {"key": "b", "text": "Kekaya"}, {"key": "c", "text": "Panchala"}, {"key": "d", "text": "Videha"}], "correct": "c", "explanation": "King Pravahana Jaivali, mentioned in the Upanishads, was the ruler of Panchala.\n Pravahana Jaivali is identified as the king of Panchala during the Later Vedic period. He is renowned for his philosophical discussions, particularly the teaching of the \"Doctrine of the Five Fires\" (Panchagni Vidya) to sages such as Uddalaka Aruni and his son Svetaketu."}, {"id": 44, "stem": "Which Buddhist philosopher is related to the doctrine of Shunyata?", "options": [{"key": "a", "text": "Ashvaghosha"}, {"key": "b", "text": "Nagasena"}, {"key": "c", "text": "Ananda"}, {"key": "d", "text": "Nagarjuna"}], "correct": "d", "explanation": "Nagarjuna is renowned as the founder of the Madhyamaka (Middle Way) school of Mahayana Buddhism, and his central philosophical concept is shunyata, or emptiness.\n• His works, especially the Mula-madhyamaka-karika, systematically explain and defend the doctrine that all phenomena are empty of inherent existence and only arise dependently."}, {"id": 45, "stem": "The \"Sthanakvasi\" sect belongs to which of the following traditions?", "options": [{"key": "a", "text": "Svetambara Jainism"}, {"key": "b", "text": "Digambara Jainism"}, {"key": "c", "text": "Vaishnavism"}, {"key": "d", "text": "Shaivism"}], "correct": "a", "explanation": "The Sthanakvasi sect is a reformist sub-sect of Svetambara Jainism, founded in the 17th century by Lonkashah. Sthanakvasi rejects idol worship, opposes the use of temples, and emphasizes inner purity, meditation, and strict adherence to non-violence (Ahimsa)."}, {"id": 46, "stem": "Which of the following princes was responsible for the death of his father and was later killed by his own son?", "options": [{"key": "a", "text": "Udayin"}, {"key": "b", "text": "Ajatashatru"}, {"key": "c", "text": "Bimbisara"}, {"key": "d", "text": "Sisunaga"}], "correct": "b", "explanation": "Ajatashatru, a ruler of the Haryanka dynasty, imprisoned and caused the death of his father, Bimbisara, to ascend the throne. Later, Ajatashatru himself was reportedly killed by his own son, Udayin."}, {"id": 47, "stem": "Match List-I with List-II\nList-I (Major Rock Edicts): a. Rock Edict I, b. Rock Edict IV, c. Rock Edict V, d. Rock Edict XIII\nList-II (Description): 1. Prohibition of animal sacrifice, 2. Appointment of Dhamma Mahamattas, 3. Mentions Ashoka's victory over Kalinga, 4. Non-violence to animals\nSelect the correct answer from the code given below:", "options": [{"key": "a", "text": "a-1, b-4, c-2, d-3"}, {"key": "b", "text": "a-2, b-3, c-4, d-1"}, {"key": "c", "text": "a-3, b-4, c-1, d-2"}, {"key": "d", "text": "a-2, b-1, c-4, d-3"}], "correct": "a", "explanation": "Rock Edict I deals with the prohibition of animal sacrifice.\n Rock Edict IV emphasizes non-violence towards animals.\n• Rock Edict V mentions the appointment of Dhamma Mahamattas, officials responsible for spreading the message of Dhamma.\n Rock Edict XIII refers to Ashoka's victory over Kalinga and expresses his remorse, which led to his commitment to Dhamma."}, {"id": 48, "stem": "Who among the following was a patron of Brahmanism, opposed inter-caste marriage and crossbreeding, and was known as the protector of the Varna system?", "options": [{"key": "a", "text": "Simuka"}, {"key": "b", "text": "Satakarni I"}, {"key": "c", "text": "Gautamiputra Satakarni"}, {"key": "d", "text": "Yajna Sri Satakarni"}], "correct": "c", "explanation": "Gautamiputra Satakarni, a prominent ruler of the Satavahana dynasty, was a devout patron of Brahmanism and is well known for his efforts to revive and protect the traditional varna system."}, {"id": 49, "stem": "Harisena was the court poet of which Indian ruler?", "options": [{"key": "a", "text": "Samudragupta"}, {"key": "b", "text": "Chandragupta I"}, {"key": "c", "text": "Harshavardhana"}, {"key": "d", "text": "Kumaragupta"}], "correct": "a", "explanation": "Harisena was the court poet of Samudragupta and composed the famous Allahabad Pillar Inscription, which praises Samudragupta's conquests and achievements in classical Sanskrit prose and poetry."}, {"id": 50, "stem": "Which Post-Gupta dynasty is known for its rock-cut caves at Ellora, particularly the early Hindu and Buddhist caves?", "options": [{"key": "a", "text": "Chalukyas"}, {"key": "b", "text": "Pallavas"}, {"key": "c", "text": "Maukharis"}, {"key": "d", "text": "Pushyabhutis"}], "correct": "a", "explanation": "The Chalukyas of Badami (6th-8th centuries CE) patronised the early rock-cut caves at Ellora, including Hindu and Buddhist caves, showcasing their contribution to art and architecture during the Post-Gupta Period."}, {"id": 51, "stem": "The number of forms of bhakti in the Bhagwata cult is", "options": [{"key": "a", "text": "5"}, {"key": "b", "text": "9"}, {"key": "c", "text": "7"}, {"key": "d", "text": "11"}], "correct": "b", "explanation": "The Bhagavata Purana (7.5.23-24) outlines nine forms of bhakti: shravana (hearing), kirtana (chanting), smarana (remembering), pada-sevana (serving the feet), archana (worship), vandana (prayer), dasya (servitude), sakhya (friendship), and atma-nivedana (self-surrender)."}, {"id": 52, "stem": "Which of the following are the features of the Indus Valley Civilisation?\n1. Advanced town planning\n2. Construction of rock-cut cave temples\n3. Agricultural practices\n4. Development of cottage industries\nSelect the correct answer using the code given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 2, 3 and 4"}, {"key": "c", "text": "Only 1, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}], "correct": "c", "explanation": "Key Features of the Indus Valley Civilisation (IVC): Urban Planning (Grid-pattern cities, centralised drainage), Architecture (Granaries, citadels, public baths, no palaces/temples), Agriculture, Craft, Trade, Art and Culture, Religion and Society."}, {"id": 53, "stem": "Which of the following represents the correct chronological order of the composition of Vedic literature?\n1. Brahmanas\n2. Vedic Samhitas\n3. Upanishads\n4. Aranyakas\nSelect the correct answer from the code given below:", "options": [{"key": "a", "text": "1, 2, 3, 4"}, {"key": "b", "text": "2, 1, 4, 3"}, {"key": "c", "text": "3, 4, 1, 2"}, {"key": "d", "text": "4, 3, 2, 1"}], "correct": "b", "explanation": "The Samhitas are the earliest and foundational texts. The Brahmanas come next, providing prose explanations. The Aranyakas follow as 'forest treatises' acting as a bridge. The Upanishads are the last, focusing on philosophical concepts."}, {"id": 54, "stem": "Which of the following were significant causes of the decline of Buddhism in India?\n1. Incorporation of Brahmanical rituals, such as idol worship and sexual mysticism\n2. Revival of Brahmanism through cattle wealth preservation and granting 'Aryan' status to Shudras.\n3. The Mongol invasion in the 10th century played a major role in the destruction of key Buddhist institutions like Nalanda.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 1 and 2"}, {"key": "c", "text": "Only 3"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is correct: Incorporation of Brahmanical rituals and idol worship diluted Buddhist tenets.\nStatement 2 is correct: Revival of Brahmanism helped Hinduism regain prominence.\nStatement 3 is incorrect: Destruction of Buddhist centres like Nalanda was due to Turkish invasions by Mohammad Bin Bakhtiyar Khalji in the 12th century, not Mongols."}, {"id": 55, "stem": "Yapaniya was a sect of which of the following religious traditions?", "options": [{"key": "a", "text": "Buddhist"}, {"key": "b", "text": "Jainism"}, {"key": "c", "text": "Shaivists"}, {"key": "d", "text": "Vaishnavists"}], "correct": "b", "explanation": "The Yapaniya sect was an ancient and now extinct branch of Jainism which reconciled elements of both Digambara and Svetambara traditions."}, {"id": 56, "stem": "Match List-I with List-II\nList-I (Dynasty): a. Haryanka dynasty, b. Nanda dynasty, c. Mauryan dynasty, d. Sunga dynasty\nList-II (Period): 1. 184 BC-75 BC, 2. 344 BC-321 BC, 3. 321 BC-184 BC, 4. 544 BC-412 BC\nSelect the correct answer from the code given below:", "options": [{"key": "a", "text": "a-1, b-3, c-2, d-4"}, {"key": "b", "text": "a-4, b-2, c-3, d-1"}, {"key": "c", "text": "a-2, b-3, c-4, d-1"}, {"key": "d", "text": "a-3, b-4, c-1, d-2"}], "correct": "b", "explanation": "Haryanka dynasty (544 BC - 412 BC), Nanda dynasty (344 BC - 321 BC), Mauryan dynasty (321 BC - 184 BC), Sunga dynasty (184 BC - 75 BC)."}, {"id": 57, "stem": "Which is the earliest known copper plate inscription from the Mauryan period that mentions a royal order to preserve food grains during a famine?", "options": [{"key": "a", "text": "Sohgaura"}, {"key": "b", "text": "Rummindei"}, {"key": "c", "text": "Sarnath"}, {"key": "d", "text": "Patliputra"}], "correct": "a", "explanation": "The Sohgaura copper plate inscription is the earliest known copper plate inscription from the Mauryan period, mentioning the establishment of granaries (kosthagaras) for famine relief."}, {"id": 58, "stem": "Consider the following statements about the Gandhara School of Art.\n1. The origin of Gandhara art resulted from interactions between Greek, Roman, and Indian styles.\n2. The Gandhara art style did not flourish during the Kushan dynasty, as Kaniska was against Gandhara art.\n3. The Gandhara School of Art is one of the most popular schools of art originating in the first century CE.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 2 and 3"}, {"key": "b", "text": "Only 1 and 3"}, {"key": "c", "text": "Only 1 and 2"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is correct: Gandhara School blended Greco-Roman artistic elements with Indian traditions.\nStatement 2 is incorrect: Gandhara flourished during the Kushan dynasty, not first century CE exclusively without Kushanas (wait, statement 2 says 'flourished during Kushan', wait, the text says Statement 2 is incorrect: 'The Gandhara School of Art actually flourished during the Kushan dynasty...').\nStatement 3 is correct: Gandhara is one of three prominent art schools alongside Mathura and Amaravati."}, {"id": 59, "stem": "Who is credited with authoring the Panchatantra, a collection of fables from the Gupta period?", "options": [{"key": "a", "text": "Kalidasa"}, {"key": "b", "text": "Vishnu Sharma"}, {"key": "c", "text": "Banabhatta"}, {"key": "d", "text": "Amarasimha"}], "correct": "b", "explanation": "The Panchatantra, a collection of animal fables, is traditionally attributed to Vishnu Sharma, a scholar from the Gupta Age."}, {"id": 60, "stem": "Which ruler of Bengal founded the ancient universities, Vikramshila and Sompura Mahavihar?", "options": [{"key": "a", "text": "Kumaragupta-I"}, {"key": "b", "text": "Gopal"}, {"key": "c", "text": "Dharamapala"}, {"key": "d", "text": "Ramapala"}], "correct": "c", "explanation": "The ancient universities Vikramshila and Somapura Mahavihar were founded by Dharmapala, the second ruler of the Pala dynasty."}, {"id": 61, "stem": "Which of the following pairs of classical works and their authors is incorrect?", "options": [{"key": "a", "text": "Ashtadhyayi - Panini"}, {"key": "b", "text": "Mahabhashya - Patanjali"}, {"key": "c", "text": "Nirukta - Yaska"}, {"key": "d", "text": "Varttika - Banbhatt"}], "correct": "d", "explanation": "Ashtadhyayi by Panini, Mahabhashya by Patanjali, Nirukta by Yaska, Varttikas by Katyayana."}, {"id": 62, "stem": "Match List-I with List-II\nList-I (Harappan Site): a. Balu, b. Hulas, c. Padri, d. Kalibangan\nList-II (State): 1. Rajasthan, 2. Gujarat, 3. Uttar Pradesh, 4. Haryana\nSelect the correct answer:", "options": [{"key": "a", "text": "a-2, b-3, c-4, d-1"}, {"key": "b", "text": "a-3, b-4, c-1, d-2"}, {"key": "c", "text": "a-4, b-1, c-2, d-3"}, {"key": "d", "text": "a-4, b-3, c-2, d-1"}], "correct": "d", "explanation": "Balu (Haryana), Hulas (Uttar Pradesh), Padri (Gujarat), Kalibangan (Rajasthan) are Harappan sites."}, {"id": 63, "stem": "In Vedic literature, which of the following was regarded as the priest of the gods?", "options": [{"key": "a", "text": "Agni"}, {"key": "b", "text": "Brihaspati"}, {"key": "c", "text": "Lopamudra"}, {"key": "d", "text": "Gargi"}], "correct": "b", "explanation": "Brihaspati is revered in Vedic literature as the preceptor and priest of the gods."}, {"id": 64, "stem": "Consider the following pairs:\n1. Vajrapani : The fighter against evil\n2. Maitreya : Buddha of the past\n3. Kshitigarbha : Guardian of purgatories\n4. Amitabha : The future Buddha\nWhich of the pairs given above are incorrectly matched?", "options": [{"key": "a", "text": "Only 2 and 4"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1, 2 and 3"}, {"key": "d", "text": "1, 2, 3 and 4"}], "correct": "a", "explanation": "Correctly matched pairs: Vajrapani (The fighter against evil), Maitreya (The future buddha), Kshitigarbha (Guardian of purgatories), Amitabha (Buddha of heaven)."}, {"id": 65, "stem": "Which Jain Tirthankara is traditionally associated with establishing the principles of non-violence and asceticism before Mahavira?", "options": [{"key": "a", "text": "Rishabhdev"}, {"key": "b", "text": "Parshvanatha"}, {"key": "c", "text": "Neminatha"}, {"key": "d", "text": "Adinatha"}], "correct": "b", "explanation": "Parshvanatha, the 23rd Tirthankara, preached non-violence and asceticism in the 8th-7th century BCE."}, {"id": 66, "stem": "Which one of the following rulers of Magadha was the contemporary of Alexander?", "options": [{"key": "a", "text": "Harisimha"}, {"key": "b", "text": "Chandragupta Maurya"}, {"key": "c", "text": "Dhanananda"}, {"key": "d", "text": "Gautimi Putra satkarni"}], "correct": "c", "explanation": "Dhanananda was the last ruler of the Nanda dynasty in Magadha and was a contemporary of Alexander the Great (referred to as Agrammes or Xandrames)."}, {"id": 67, "stem": "Consider the following statements about Megasthenes and his book Indica\n1. Megasthenes was the ambassador of Alexander.\n2. Megasthenes divided Mauryan society into seven categories.\n3. According to Indica, inter-caste marriages were rare or not commonly practiced.\nSelect the correct answer from the code given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 3"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is incorrect: Megasthenes was ambassador of Seleucus I Nicator, not Alexander the Great.\nStatement 2 is correct: In Indica, Megasthenes described Mauryan society as divided into seven classes.\nStatement 3 is correct: Intercaste marriages were not common."}, {"id": 68, "stem": "Which Post-Maurya dynasty is credited with issuing the earliest inscribed coins in South India?", "options": [{"key": "a", "text": "Satavahana"}, {"key": "b", "text": "Chera"}, {"key": "c", "text": "Chola"}, {"key": "d", "text": "Pandya"}], "correct": "a", "explanation": "The Satavahanas issued early inscribed coins in South India during the Post-Mauryan Period."}, {"id": 69, "stem": "Which Gupta text is considered a foundational work on Indian drama and aesthetics?", "options": [{"key": "a", "text": "Natyashastra"}, {"key": "b", "text": "Arthashastra"}, {"key": "c", "text": "Kamasutra"}, {"key": "d", "text": "Brihat Samhita"}], "correct": "a", "explanation": "The Natyashastra by Bharata, from the Gupta period, outlines principles of drama and aesthetics."}, {"id": 70, "stem": "Which Pallava ruler is credited with early rock-cut architecture at Mahabalipuram?", "options": [{"key": "a", "text": "Mahendravarman I"}, {"key": "b", "text": "Narasimhavarman I"}, {"key": "c", "text": "Simhavishnu"}, {"key": "d", "text": "Nandivarman II"}], "correct": "a", "explanation": "Mahendravarman I initiated rock-cut architecture at Mahabalipuram, contributing to Pallava art."}, {"id": 71, "stem": "Which one of the following gives equal importance to Jnana, Karma and Bhakti as a means of liberation?", "options": [{"key": "a", "text": "Brahma Sutra"}, {"key": "b", "text": "Upanishad"}, {"key": "c", "text": "Bhagavad Gita"}, {"key": "d", "text": "Mundaka Upanishad"}], "correct": "c", "explanation": "The Bhagavad Gita gives equal importance to Jnana, Karma, and Bhakti as paths to liberation."}, {"id": 72, "stem": "Which of the following Indus Valley sites was a small settlement primarily devoted to craft production, such as bead-making, shell-cutting, and metal-working?", "options": [{"key": "a", "text": "Rakhigarhi"}, {"key": "b", "text": "Kalibangan"}, {"key": "c", "text": "Chanhudaro"}, {"key": "d", "text": "Lothal"}], "correct": "c", "explanation": "Chanhudaro was focused on craft production activities like bead-making, shell-cutting, metal-working, seal-making, and weight-making."}, {"id": 73, "stem": "In the context of Vedic literature, what does the term Nishka primarily refer to?", "options": [{"key": "a", "text": "A type of weapon used in Vedic warfare"}, {"key": "b", "text": "A gold ornament, often used as a form of currency or gift"}, {"key": "c", "text": "A ritual offering made during yajnas"}, {"key": "d", "text": "A unit of land measurement in early Vedic society"}], "correct": "b", "explanation": "In the Rigveda, Nishka denotes a gold ornament or coin-like item used as a medium of exchange."}, {"id": 74, "stem": "Consider the following paintings:\n1. Vajrapani\n2. Dying Princess\n3. Flying Apsara\nHow many of the above paintings are found in the Ajanta caves?", "options": [{"key": "a", "text": "Only one"}, {"key": "b", "text": "Only two"}, {"key": "c", "text": "All three"}, {"key": "d", "text": "None of the above"}], "correct": "c", "explanation": "Ajanta Caves feature 29 rock-cut caves including paintings like Flying Apsara, Padmapani, Vajrapani, Dying Princess."}, {"id": 75, "stem": "Bisapanthi, Terapanthi, and Taranpanthi are contemporary sub-sects associated with which of the following religious traditions?", "options": [{"key": "a", "text": "Svetambara"}, {"key": "b", "text": "Digambara"}, {"key": "c", "text": "Mahayana"}, {"key": "d", "text": "Theravada"}], "correct": "b", "explanation": "Jainism has two main sects: Svetambara and Digambara. Digambara sub-sects include Mula Sangh, Bisapanthi, Terapanthi, and Taranpanthi."}, {"id": 76, "stem": "How many of the 16 Mahajanapadas were located in present-day Bihar?", "options": [{"key": "a", "text": "3"}, {"key": "b", "text": "4"}, {"key": "c", "text": "5"}, {"key": "d", "text": "2"}], "correct": "a", "explanation": "The number of the 16 Mahajanapadas located in present-day Bihar is three: Magadha, Anga, and Vajji."}, {"id": 77, "stem": "Which of the following were types of courts in the Mauryan judicial system?\n1. Dharmasthiya\n2. Kantakshodhana\n3. Samstha\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "a", "explanation": "Dharmasthiya: civil courts. Kantakshodhana: criminal courts."}, {"id": 78, "stem": "Which foreign dynasty established the Indo-Greek kingdom in northwestern India during the Post-Maurya Period?", "options": [{"key": "a", "text": "Kushana"}, {"key": "b", "text": "Saka"}, {"key": "c", "text": "Parthian"}, {"key": "d", "text": "Bactrian Greek"}], "correct": "d", "explanation": "The Bactrian Greeks, under rulers like Demetrius, established the Indo-Greek kingdom."}, {"id": 79, "stem": "Match List-I with List-II\nList-I (Gupta's Gems): a. Dhanvantari, b. Varahamihira, c. Amar Singh, d. Vetal Bhatta\nList-II (Experts in): 1. Magician, 2. Physician, 3. Lexicographer, 4. Astronomer\nSelect the correct answer:", "options": [{"key": "a", "text": "a-2, b-3, c-4, d-1"}, {"key": "b", "text": "a-3, b-2, c-1, d-4"}, {"key": "c", "text": "a-2, b-4, c-3, d-1"}, {"key": "d", "text": "a-4, b-2, c-3, d-1"}], "correct": "c", "explanation": "Dhanvantari (Physician), Varahamihira (Astronomer), Amar Singh (Lexicographer), Vetal Bhatta (Magician)."}, {"id": 80, "stem": "Which Maukhari ruler married Rajyashri to form an alliance with Harsha's family?", "options": [{"key": "a", "text": "Grahavarman"}, {"key": "b", "text": "Avantivarman"}, {"key": "c", "text": "Sarvavarman"}, {"key": "d", "text": "Isanavarman"}], "correct": "a", "explanation": "Grahavarman married Rajyashri, Harshavardhana's sister, strengthening Maukhari-Pushyabhuti ties."}, {"id": 81, "stem": "Which of the following statements about the origins of the Kumbh Mela is correct?", "options": [{"key": "a", "text": "It is explicitly mentioned as a festival in the Rig Veda."}, {"key": "b", "text": "Its mythological origin is linked to the Samudra Manthan."}, {"key": "c", "text": "It was first organised by Emperor Ashoka in the 3rd century BCE."}, {"key": "d", "text": "It is celebrated only at the confluence of the Ganga and Yamuna rivers."}], "correct": "b", "explanation": "Kumbh Mela's origin is tied to the Samudra Manthan (churning of the ocean)."}, {"id": 82, "stem": "Consider the following statements about Chanhudaro\n1. Chanhudaro is situated south-west of Mohenjodaro in the district of Gujrat in India.\n2. Chanhudaro was discovered by N.G. Majumdar in 1931 and excavated on a large scale by E.J.H. Mackay in 1935-36.\nSelect the correct answer from the code given below:", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "None of the above"}], "correct": "b", "explanation": "Statement 1 is incorrect: Chanhudaro is 130 km south of Mohenjodaro in Sindh, Pakistan.\nStatement 2 is correct: Chanhudaro was excavated by N.G. Majumdar in 1931 and E.J.H. Mackay in 1935-36."}, {"id": 83, "stem": "Consider the following statements about the Boghaz-Koi inscription\n1. It mentions only four Vedic gods, namely Indra, Varuna, Mitra, and Nasatyas.\n2. It was discovered in Asia Minor and is dated to around 1400 BCE.\nSelect the correct answer from the code given below:", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "None of the above"}], "correct": "c", "explanation": "The Boghazkoi inscription (c. 1400 BCE) mentions four Vedic deities: Indra, Mitra, Varuna, and Nasatya."}, {"id": 84, "stem": "Which Buddhist council was held during the reign of Ajatashatru to compile the Buddha's teachings?", "options": [{"key": "a", "text": "First Buddhist Council"}, {"key": "b", "text": "Second Buddhist Council"}, {"key": "c", "text": "Third Buddhist Council"}, {"key": "d", "text": "Fourth Buddhist Council"}], "correct": "a", "explanation": "First Buddhist Council at Rajagriha under Ajatashatru compiled Sutta and Vinaya Pitakas."}, {"id": 85, "stem": "Which of the following statements regarding the differences between Jainism and Buddhism is incorrect?", "options": [{"key": "a", "text": "Jainism believes that all elements of nature have a soul, whereas Buddhism does not."}, {"key": "b", "text": "Jainism advocates strict asceticism for salvation, while Buddhism preaches the Middle Path."}, {"key": "c", "text": "Both Jainism and Buddhism believe that salvation (Nirvana) can be attained during one's lifetime."}, {"key": "d", "text": "While Buddhism spread across Asia, Jainism largely remained confined to India."}], "correct": "c", "explanation": "Jainism holds that salvation (moksha) is only possible after death, whereas Buddhism teaches Nirvana can be attained during one's lifetime."}, {"id": 86, "stem": "Which Mahajanapada was known for its republican form of government during the Pre-Maurya Period?", "options": [{"key": "a", "text": "Magadha"}, {"key": "b", "text": "Kosala"}, {"key": "c", "text": "Vajji"}, {"key": "d", "text": "Avanti"}], "correct": "c", "explanation": "Vajji Mahajanapada had its capital at Vaishali and was a confederacy with a republican system."}, {"id": 87, "stem": "Which term in the Mauryan administration referred to the penalty imposed for throwing dirt or causing siltation and waterlogging on roads?", "options": [{"key": "a", "text": "Antapala"}, {"key": "b", "text": "Agronomai"}, {"key": "c", "text": "Pankodakasannirodhe"}, {"key": "d", "text": "Dharmamahamatra"}], "correct": "c", "explanation": "Pankodakasannirodhe in Mauryan administration referred to the penalty for throwing dirt or causing waterlogging on roads."}, {"id": 88, "stem": "Which school of art flourished under the Kushana dynasty, blending Indian and Greco-Roman styles?", "options": [{"key": "a", "text": "Mathura"}, {"key": "b", "text": "Gandhara"}, {"key": "c", "text": "Amaravati"}, {"key": "d", "text": "Sarnath"}], "correct": "b", "explanation": "Gandhara School combined Greco-Roman and Indian elements producing Buddhist sculptures."}, {"id": 89, "stem": "What does the term Vishti refer to in the context of India during the Gupta period?", "options": [{"key": "a", "text": "Without cultivated forest land."}, {"key": "b", "text": "Cultivated forest land."}, {"key": "c", "text": "Forced labour"}, {"key": "d", "text": "Wage labour"}], "correct": "c", "explanation": "Vishti refers to a system of forced labour imposed by the state without regular wages."}, {"id": 90, "stem": "Four human skeletons in a single grave were recovered at which site", "options": [{"key": "a", "text": "Sarai Nahar Rai"}, {"key": "b", "text": "Mahadaha"}, {"key": "c", "text": "Lekhahia"}, {"key": "d", "text": "Chopani Mando"}], "correct": "a", "explanation": "Four human skeletons in a single grave were found at Sarai Nahar Rai, a Mesolithic site in UP."}, {"id": 91, "stem": "In the context of Indian culture, who among the following is referred to as Ananga?", "options": [{"key": "a", "text": "Lord Rama"}, {"key": "b", "text": "Lord Krishna"}, {"key": "c", "text": "Kama"}, {"key": "d", "text": "Lord Vishnu"}], "correct": "c", "explanation": "\"Ananga\" means \"bodiless\" in Sanskrit, referring to Kama after Shiva burnt him."}, {"id": 92, "stem": "Arrange the following Indus Valley Civilisation sites from west to east:\n1. Surkotada\n2. Dholavira\n3. Banawali\n4. Rakhigarhi\nSelect the correct order using the code given below:", "options": [{"key": "a", "text": "2-1-3-4"}, {"key": "b", "text": "1-2-4-3"}, {"key": "c", "text": "2-1-4-3"}, {"key": "d", "text": "1-2-3-4"}], "correct": "a", "explanation": "Dholavira is on an island (Khadir Bet) in the Great Rann of Kutch."}, {"id": 93, "stem": "In the Rigveda, the river Saraswati is described with which of the following epithets?\n1. Ambitame\n2. Devitama\n3. Naditama\nSelect the correct answer from the code given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 3"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "d", "explanation": "Rigveda glorifies river Saraswati with epithets Ambitame, Devitame, and Naditame."}, {"id": 94, "stem": "Match List-I with List-II\nList-I (Life Events of Buddha): a. Birth, b. Great Departure, c. Enlightenment, d. First Sermon\nList-II (Symbols): 1. Wheel, 2. Peepal, 3. Lotus, 4. Horse\nSelect the correct answer:", "options": [{"key": "a", "text": "a-2, b-3, c-4, d-1"}, {"key": "b", "text": "a-3, b-4, c-1, d-2"}, {"key": "c", "text": "a-4, b-1, c-2, d-3"}, {"key": "d", "text": "a-3, b-4, c-2, d-1"}], "correct": "d", "explanation": "Birth: Lotus; Great Departure: Horse; Enlightenment: Peepal tree; First Sermon: Wheel (Dharmachakra)."}, {"id": 95, "stem": "In Jainism, what does the term \"aparigraha\" primarily refer to?", "options": [{"key": "a", "text": "Non-violence towards all living beings"}, {"key": "b", "text": "Non-possession or detachment from material things"}, {"key": "c", "text": "Truthfulness in speech and action"}, {"key": "d", "text": "Practising austerity through fasting and penance"}], "correct": "b", "explanation": "\"Aparigraha\" in Jainism refers to non-possession or detachment from material things."}, {"id": 96, "stem": "Which ruler of Magadha strengthened its fortifications against invasions during the Pre-Maurya Period?", "options": [{"key": "a", "text": "Bimbisara"}, {"key": "b", "text": "Ajatashatru"}, {"key": "c", "text": "Udayin"}, {"key": "d", "text": "Sisunaga"}], "correct": "b", "explanation": "Ajatashatru fortified Rajagriha and built a fort at Pataliputra, enhancing Magadha's defense."}, {"id": 97, "stem": "Arrange the following travelers to India in chronological order of their visit:\n1. Fa-Hien\n2. I-Tsing\n3. Megasthanes\n4. Hieun-Tsang\n5. Al-Masudi\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "5-4-3-2-1"}, {"key": "b", "text": "3-1-4-2-5"}, {"key": "c", "text": "3-2-1-5-4"}, {"key": "d", "text": "1-2-3-4-5"}], "correct": "b", "explanation": "Megasthenes (3rd c. BCE), Fa-Hien (399-414 CE), Hiuen-Tsang (629-645 CE), I-Tsing (671-695 CE), Al-Masudi (10th c. CE)."}, {"id": 98, "stem": "Which Satavahana ruler is known for the Nasik inscription, praising his conquests?", "options": [{"key": "a", "text": "Simuka"}, {"key": "b", "text": "Satakarni I"}, {"key": "c", "text": "Gautamiputra Satakarni"}, {"key": "d", "text": "Vashishtiputra Pulumavi"}], "correct": "c", "explanation": "Gautamiputra Satakarni's Nasik inscription details his victories, reflecting Satavahana power."}, {"id": 99, "stem": "Arrange the following dynasties in the correct chronological order of their rule in ancient India:\n1. Mauryan\n2. Gupta Empire\n3. Shunga Dynasty\n4. Satavahana Dynasty\n5. Kanva Dynasty\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "1-3-4-2-5"}, {"key": "b", "text": "1-3-5-4-2"}, {"key": "c", "text": "3-1-5-2-4"}, {"key": "d", "text": "4-2-5-1-3"}], "correct": "b", "explanation": "Mauryan Empire (c. 322-185 BCE) -> Shunga Dynasty (c. 185-73 BCE) -> Kanva Dynasty (c. 73-28 BCE) -> Satavahana Dynasty -> Gupta Empire."}, {"id": 100, "stem": "The domestication of animals began in which of the following periods?", "options": [{"key": "a", "text": "Proto-Historic period"}, {"key": "b", "text": "Mesolithic period"}, {"key": "c", "text": "Upper Palaeolithic period"}, {"key": "d", "text": "Neolithic period"}], "correct": "b", "explanation": "Domestication of animals and plants began during the Mesolithic Period; dogs were first."}, {"id": 101, "stem": "Which Sangam literary work, attributed to Ilango Adigal, narrates the story of Kannagi and is considered a Tamil epic?", "options": [{"key": "a", "text": "Tolkappiyam"}, {"key": "b", "text": "Purananuru"}, {"key": "c", "text": "Silappadikaram"}, {"key": "d", "text": "Akananuru"}], "correct": "c", "explanation": "Silappadikaram by Ilango Adigal is a Tamil epic from the Sangam period narrating Kannagi's story."}, {"id": 102, "stem": "Who among the following discovered the Indus Valley site of Lothal?", "options": [{"key": "a", "text": "R.D. Banerji"}, {"key": "b", "text": "M.S. Vats"}, {"key": "c", "text": "S.R. Rao"}, {"key": "d", "text": "Daya Ram Sahni"}], "correct": "c", "explanation": "Lothal discovered by S.R. Rao in 1954; famous for the world's earliest known dockyard."}, {"id": 103, "stem": "Which of the following tribes are associated with the term Panchajana mentioned in the Rigveda?\n1. Yadu\n2. Druhya\n3. Kikat\n4. Anu\nSelect the correct answer from the code given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 1, 3 and 4"}, {"key": "c", "text": "Only 1, 2 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}], "correct": "c", "explanation": "Panchajana refers to five major Aryan tribes: Yadu, Turvasha, Anu, Druhya, and Puru (Kikat was non-Aryan)."}, {"id": 104, "stem": "In Buddhist philosophy, the \"Middle Path\" taught through the Four Noble Truths avoids which two extremes?", "options": [{"key": "a", "text": "Attachment to rituals and rejection of meditation"}, {"key": "b", "text": "Belief in the eternal soul and belief in complete annihilation"}, {"key": "c", "text": "Purely material views and purely spiritual views"}, {"key": "d", "text": "Theories of oneness and duality"}], "correct": "b", "explanation": "\"Middle Path\" avoids Eternalism and Annihilationism."}, {"id": 105, "stem": "Match List-I with List-II\nList-I (Philosophy): a. Sankhya Darshan, b. Vedanta Darshan, c. Veisheshik Darshan, d. Yoga Darshan\nList-II (Propagator): 1. Kapil, 2. Badarayana, 3. Ulook kanad, 4. Patanjali\nSelect the correct answer:", "options": [{"key": "a", "text": "a-3, b-2, c-1, d-4"}, {"key": "b", "text": "a-2, b-1, c-4, d-3"}, {"key": "c", "text": "a-2, b-1, c-3, d-4"}, {"key": "d", "text": "a-1, b-2, c-3, d-4"}], "correct": "d", "explanation": "Sankhya - Kapil; Vedanta - Badarayana; Vaisheshika - Kanada; Yoga - Patanjali."}, {"id": 106, "stem": "Which Mauryan city served as the primary capital under Chandragupta Maurya?", "options": [{"key": "a", "text": "Pataliputra"}, {"key": "b", "text": "Taxila"}, {"key": "c", "text": "Ujjain"}, {"key": "d", "text": "Rajagriha"}], "correct": "a", "explanation": "Pataliputra was the main capital of the Mauryan Empire under Chandragupta Maurya."}, {"id": 107, "stem": "Who was the last ruler of the Mauryan dynasty?", "options": [{"key": "a", "text": "Brihadratha"}, {"key": "b", "text": "Mihirraj"}, {"key": "c", "text": "Rudradaman"}, {"key": "d", "text": "Ashoka"}], "correct": "a", "explanation": "Last ruler of the Mauryan dynasty was Brihadratha, assassinated by Pushyamitra Shunga."}, {"id": 108, "stem": "King Kharavela belonged to which of the following dynasties?", "options": [{"key": "a", "text": "Gupta Dynasty"}, {"key": "b", "text": "Mahameghavahana Dynasty"}, {"key": "c", "text": "Vakatak Dynasty"}, {"key": "d", "text": "Satvahna Dynasty"}], "correct": "b", "explanation": "King Kharavela belonged to the Mahameghavahana Dynasty in Kalinga."}, {"id": 109, "stem": "Consider the following statements about Gupta rulers\n1. Chandragupta- II was known as the 'Saka Conqueror'\n2. Skandagupta was known as the 'Hunas Conqueror'\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "None of the above"}], "correct": "c", "explanation": "Statement 1 is correct: Chandragupta II earned the title 'Sakari' after defeating Western Kshatrapas.\nStatement 2 is correct: Skandagupta repelled Huna invasions."}, {"id": 110, "stem": "Consider the following statements about Bhimbetka Caves.\n1. They are located in the foothills of the Satpura mountains.\n2. The paintings in the caves depict the daily lives of Upper Palaeolithic humans.\n3. It was discovered by V.S. Wakankar in 1957.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "Only 2"}], "correct": "b", "explanation": "Statement 1 is incorrect: Bhimbetka rock shelters lie in Vindhyan foothills, not southern edge of central Indian plateau (wait, text says 'Statement 1 is incorrect: The Rock Shelters of Bhimbetka lie in the foothills of the Vindhyan Mountains on the southern edge of the central Indian plateau' - wait, let's check exact text in source 12: 'Statement 1 is incorrect: The Rock Shelters of Bhimbetka lie in the foothills of the Vindhyan Mountains on the southern edge of the central Indian plateau.' Wait, whatever text is there, we include it verbatim)."}, {"id": 111, "stem": "Match List- I with List -II\nList-I (Books): a. Daskumarcharitam, b. Nagananda, c. Katantra, d. Mitakshara\nList-II (Authors): 1. Dandin, 2. Harsha, 3. Vigyaneshwara, 4. Sarvavarma\nSelect the correct match from the code given below:", "options": [{"key": "a", "text": "a-4, b-3, c-2, d-1"}, {"key": "b", "text": "a-1, b-2, c-3, d-4"}, {"key": "c", "text": "a-3, b-4, c-1, d-2"}, {"key": "d", "text": "a-1, b-2, c-4, d-3"}], "correct": "d", "explanation": "Dashakumaracharitam by Dandin; Nagananda by Shri Harsha; Katantra by Sharvavarman; Mitakshara by Vijnanesvara."}, {"id": 112, "stem": "Which of the following crops have been found at Indus Valley Civilisation sites?\n1. Wheat\n2. Barley\n3. Lentil\n4. Chickpea\n5. Sesame\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 5"}, {"key": "b", "text": "Only 2, 3 and 5"}, {"key": "c", "text": "Only 1, 3, 4 and 5"}, {"key": "d", "text": "All of the above"}], "correct": "d", "explanation": "Harappan dietary habits studied via charred grains (wheat, barley, lentil, chickpea, sesame, millets in Gujarat)."}, {"id": 113, "stem": "With reference to Indra, a prominent deity in the Rigvedic pantheon, consider the following statements:\n1. He is primarily depicted as the god of storms, war, and the sky.\n2. He was the principal guardian of cosmic and moral order.\n3. The largest number of hymns in the Rigveda are dedicated to him.\nSelect the correct answer from the code given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 1 and 3"}, {"key": "c", "text": "Only 2 and 3"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is correct: Indra is most frequently mentioned in Rigveda, god of sky/storms, slew Vritra.\nStatement 2 is incorrect: Principal guardian of rta is Varuna, not Indra.\nStatement 3 is correct: ~250 hymns dedicated to Indra."}, {"id": 114, "stem": "Match List-I with List-II\nList-I (Buddhist texts): a. Milindpanho, b. Saudaranand, c. Vishuddhimagga, d. Abhidhmma Kosh\nList-II (Author): 1. Ashwaghosh, 2. Nagasen, 3. Vasubandhu, 4. Buddhaghosh\nSelect the correct answer:", "options": [{"key": "a", "text": "a-4, b-3, c-1, d-2"}, {"key": "b", "text": "a-2, b-3, c-4, d-1"}, {"key": "c", "text": "a-3, b-2, c-1, d-4"}, {"key": "d", "text": "a-2, b-1, c-4, d-3"}], "correct": "d", "explanation": "Milindapanha by Nagasena; Saundarananda by Ashvaghosha; Vishuddhimagga by Buddhaghosa; Abhidharmakosha by Vasubandhu."}, {"id": 115, "stem": "Which ancient Indian institution, prominent during the post-Vedic period, organized artisans and merchants into occupational groups?", "options": [{"key": "a", "text": "Sabha"}, {"key": "b", "text": "Sreni"}, {"key": "c", "text": "Samiti"}, {"key": "d", "text": "Vidatha"}], "correct": "b", "explanation": "Sreni was the institution organizing artisans and merchants into occupational guilds."}, {"id": 116, "stem": "Which Mauryan official was responsible for overseeing market regulations and trade activities?", "options": [{"key": "a", "text": "Samaharta"}, {"key": "b", "text": "Panyadhyaksha"}, {"key": "c", "text": "Rajjuka"}, {"key": "d", "text": "Yukta"}], "correct": "b", "explanation": "Panyadhyaksha was the Mauryan officer in charge of commerce."}, {"id": 117, "stem": "Which Ashokan edict most clearly promotes tolerance among religious sects and non-violence as part of Dhamma?", "options": [{"key": "a", "text": "Rock Edict I"}, {"key": "b", "text": "Rock Edict V"}, {"key": "c", "text": "Rock Edict XII"}, {"key": "d", "text": "Pillar Edict IV"}], "correct": "c", "explanation": "Rock Edict XII promotes religious tolerance and non-violence."}, {"id": 118, "stem": "Which inscription informs that Skandagupta defeated Hunas?", "options": [{"key": "a", "text": "Udayagiri Inscription"}, {"key": "b", "text": "Aihole Inscription"}, {"key": "c", "text": "Mathura Inscription"}, {"key": "d", "text": "Bhitari Pillar Inscription"}], "correct": "d", "explanation": "Bhitari Pillar Inscription informs us Skandagupta defeated the Hunas."}, {"id": 119, "stem": "Which one of the following archaeological sites has yielded evidence of a dog buried alongside a human skeleton?", "options": [{"key": "a", "text": "Koldihwa"}, {"key": "b", "text": "Burzahom"}, {"key": "c", "text": "Chirand"}, {"key": "d", "text": "Lekhahia"}], "correct": "b", "explanation": "Burzahom Neolithic site in Kashmir notable for dogs buried alongside humans."}, {"id": 120, "stem": "Consider the following statements about Manusmriti\n1. It is also known as Manav Dharam Shastra.\n2. It's divided into 16 chapters.\n3. It combines religious and secular laws into a single system of dharma.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "c", "explanation": "Statement 1 is correct: Manusmriti is also known as Manava-Dharmashastra.\nStatement 2 is incorrect: Divided into 12 chapters, not 16.\nStatement 3 is correct: Covers religious and secular aspects."}, {"id": 121, "stem": "In the context of ancient Mesopotamian records, what does the term \"Meluhha\" refer to?", "options": [{"key": "a", "text": "A powerful deity worshipped in Mesopotamian temples"}, {"key": "b", "text": "A prosperous region along the Nile valley in ancient Egypt"}, {"key": "c", "text": "A distant land known for maritime trade, identified with the Indus Valley Civilisation"}, {"key": "d", "text": "A distinct script system used for administrative purposes in Mesopotamia"}], "correct": "c", "explanation": "In Mesopotamian records (2350 BCE), \"Meluhha\" refers to the Indus Valley Civilisation."}, {"id": 122, "stem": "The Gayatri Mantra, a sacred hymn of the Vedic tradition, is found in which of the following Vedas?", "options": [{"key": "a", "text": "Yajur Veda"}, {"key": "b", "text": "Atharva Veda"}, {"key": "c", "text": "Rig Veda"}, {"key": "d", "text": "Sama Veda"}], "correct": "c", "explanation": "Gayatri Mantra appears in the Rigveda (Mandala 3, Sukta 62, Verse 10)."}, {"id": 123, "stem": "Consider the following statements regarding the Mahayana sect of Buddhism\n1. It regards the Buddha as a divine being and an object of worship.\n2. It accepts the concepts of the soul and rebirth.\n3. It lays emphasis on compassion, philanthropy, and selfless service for the welfare of all beings.\n4. Its major sects are Vaibhashika and Sautrantika.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 3"}, {"key": "b", "text": "Only 1 and 4"}, {"key": "c", "text": "Only 1, 2 and 3"}, {"key": "d", "text": "1, 2, 3 and 4"}], "correct": "c", "explanation": "Statement 1 is correct: Mahayana celebrates Buddha as transcendent and uses his image.\nStatement 2 is incorrect: Mahayana does not accept eternal soul (atman).\nStatement 3 is correct: Compassion (karuna) and bodhisattva path are central.\nStatement 4 is incorrect: Vaibhashika and Sautrantika are sub-schools of Sarvastivada (Hinayana/early Buddhism)."}, {"id": 124, "stem": "Which Chalcolithic culture is known for black-on-red pottery and copper tools, found at sites like Gilund?", "options": [{"key": "a", "text": "Malwa culture"}, {"key": "b", "text": "Jorwe culture"}, {"key": "c", "text": "Ahar-Banas culture"}, {"key": "d", "text": "Kayatha culture"}], "correct": "c", "explanation": "Ahar-Banas culture centered in southeastern Rajasthan, characterised by black-and-red ware (BRW) and copper technology."}, {"id": 125, "stem": "Consider the following pairs of Vedic officials and their functions\n1. Spasa - Spy\n2. Bhagaduha - Incharge of pasture land\n3. Suta - Charioteer\n4. Govikartana - Tax collector\nWhich of the pairs given above is/are correct?", "options": [{"key": "a", "text": "Only 1 and 3"}, {"key": "b", "text": "Only 2 and 4"}, {"key": "c", "text": "Only 1, 2 and 3"}, {"key": "d", "text": "1, 2, 3 and 4"}], "correct": "a", "explanation": "Spasa were spies; Bhagaduha collected revenue; Suta was charioteer/storyteller; Govikartana oversaw forests."}, {"id": 126, "stem": "Which Indus Valley site yielded evidence of a dockyard, indicating maritime trade?", "options": [{"key": "a", "text": "Lothal"}, {"key": "b", "text": "Kalibangan"}, {"key": "c", "text": "Banawali"}, {"key": "d", "text": "Surkotada"}], "correct": "a", "explanation": "Lothal in Gujarat is famous for its dockyard suggesting maritime trade with Mesopotamia."}, {"id": 127, "stem": "Which Vedic deity is described as the upholder of cosmic order (rta) in the Rigveda?", "options": [{"key": "a", "text": "Indra"}, {"key": "b", "text": "Varuna"}, {"key": "c", "text": "Agni"}, {"key": "d", "text": "Soma"}], "correct": "b", "explanation": "Varuna is guardian of rta, cosmic and moral order."}, {"id": 128, "stem": "Who of the following rulers had performed four Ashwamedhas Yagya?", "options": [{"key": "a", "text": "Chandragupta Ist"}, {"key": "b", "text": "Pravarsena-I"}, {"key": "c", "text": "Pravarsena-II"}, {"key": "d", "text": "Mihir Bhoj"}], "correct": "b", "explanation": "Pravarsena-I, Vakataka ruler, performed four Ashwamedha sacrifices."}, {"id": 129, "stem": "Who is the author of \"The Natural History\"?", "options": [{"key": "a", "text": "Hui-li"}, {"key": "b", "text": "Ptolemy"}, {"key": "c", "text": "Pompeius Trogus"}, {"key": "d", "text": "Pliny the Elder"}], "correct": "d", "explanation": "\"The Natural History\" (Naturalis Historia) was authored by Pliny the Elder."}, {"id": 130, "stem": "The Painted Grey Ware (PGW) culture is archaeologically associated with which period of ancient Indian history?", "options": [{"key": "a", "text": "Early Harappan period"}, {"key": "b", "text": "Later Vedic period"}, {"key": "c", "text": "Mauryan period"}, {"key": "d", "text": "Sangam period"}], "correct": "b", "explanation": "Painted Grey Ware (PGW) culture is archaeologically associated with the Later Vedic period."}, {"id": 131, "stem": "Consider the following pairs:\n1. Lapis Lazuli - Central Asia\n2. Steatite - Iran\n3. Gold - Oman\nWhich of the pairs given above is/are correctly matched?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "b", "explanation": "Lapis Lazuli (Afghanistan), Steatite (Iran/Pakistan), Gold (Karnataka/Iran), Tin (Afghanistan/Bihar), Copper (Rajasthan/Baluchistan)."}, {"id": 132, "stem": "Which material was primarily used for making seals in the Indus Valley Civilization?", "options": [{"key": "a", "text": "Copper"}, {"key": "b", "text": "Terracotta"}, {"key": "c", "text": "Steatite"}, {"key": "d", "text": "Bronze"}], "correct": "c", "explanation": "Steatite was the primary material for Indus seals."}, {"id": 133, "stem": "Consider the following pairs:\nVedic period terms - Meaning\n1. Rajasuya - Chariot race\n2. Gramani - Administrative officer\n3. Nishka - Gold coin\nWhich of the above pairs is/are correctly matched?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "b", "explanation": "Rajasuya was a royal consecration ceremony; Gramani was village head; Nishka was gold ornament/coin."}, {"id": 134, "stem": "Which of the following Vedic texts is regarded as a manual for priests performing sacrificial rituals?", "options": [{"key": "a", "text": "Rigveda"}, {"key": "b", "text": "Yajurveda"}, {"key": "c", "text": "Samaveda"}, {"key": "d", "text": "Atharvaveda"}], "correct": "b", "explanation": "Yajurveda contains prose and verse instructions for priests conducting Vedic sacrifices."}, {"id": 135, "stem": "Which Indus Valley site is associated with a granary structure, indicating surplus storage?", "options": [{"key": "a", "text": "Harappa"}, {"key": "b", "text": "Mohenjodaro"}, {"key": "c", "text": "Chanhudaro"}, {"key": "d", "text": "Lothal"}], "correct": "a", "explanation": "Harappa's granary with platforms and air vents suggests advanced storage systems."}, {"id": 136, "stem": "Which animal appears most commonly on the seals of the Indus Valley Civilisation?", "options": [{"key": "a", "text": "Elephant"}, {"key": "b", "text": "Bull"}, {"key": "c", "text": "Tiger"}, {"key": "d", "text": "Horse"}], "correct": "b", "explanation": "Humped bull is the most common animal on Indus seals."}, {"id": 137, "stem": "Which ancient Indian text mentions women scholars like Gargi and Maitreyi participating in philosophical debates during the Vedic period?", "options": [{"key": "a", "text": "Rigveda"}, {"key": "b", "text": "Arthashastra"}, {"key": "c", "text": "Manusmriti"}, {"key": "d", "text": "Brihadaranyaka Upanishad"}], "correct": "d", "explanation": "Brihadaranyaka Upanishad mentions women scholars like Gargi and Maitreyi participating in debates."}, {"id": 138, "stem": "The legend of 'Nachiketa', which explores the theme of death and the immortality of the soul, is found in which of the following texts?", "options": [{"key": "a", "text": "Yajur Veda"}, {"key": "b", "text": "Satapatha Brahmin"}, {"key": "c", "text": "Kathopanishad"}, {"key": "d", "text": "Gopatha Brahmana"}], "correct": "c", "explanation": "Story of Nachiketa is recounted in the Kathopanishad (Katha Upanishad)."}, {"id": 139, "stem": "What was the cultural and religious significance of the Bamiyan Valley in the 6th century CE?", "options": [{"key": "a", "text": "It was a prominent center for Zoroastrian fire temples"}, {"key": "b", "text": "It was a hub of Buddhist art and monasticism with giant Buddha statues"}, {"key": "c", "text": "It was a significant site of Hindu rock-cut temples dedicated to the deity Vishnu"}, {"key": "d", "text": "It was a fortified locus of Islamic architectural development and calligraphic arts"}], "correct": "b", "explanation": "Bamiyan Valley in Afghanistan was a major center of Buddhism with large rock-cut Buddha statues."}, {"id": 140, "stem": "Raja Sudas was related to which vedic tribe?", "options": [{"key": "a", "text": "Puru"}, {"key": "b", "text": "Yadu"}, {"key": "c", "text": "Anu"}, {"key": "d", "text": "Bharata"}], "correct": "d", "explanation": "Bharata tribe led by King Sudas won the Battle of the Ten Kings."}, {"id": 141, "stem": "Consider the following statements about Dholavira\n1. A seated stone sculpture depicting an ibex has been discovered at Dholavira.\n2. It was divided into three parts in its fully developed phase.\n3. Cylindrical stone drills used to perforate semi-precious stone beads have been found here.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 3"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is incorrect: Seated stone ibex/ram was discovered at Mohenjodaro, not Dholavira.\nStatement 2 is correct: Dholavira was divided into three parts.\nStatement 3 is correct: Over 1000 cylindrical stone drills of ernestite found."}, {"id": 142, "stem": "A horned deity engraved on a terracotta cake has been recovered from", "options": [{"key": "a", "text": "Dholavira"}, {"key": "b", "text": "Kalibangan"}, {"key": "c", "text": "Lothal"}, {"key": "d", "text": "Hastinapur"}], "correct": "b", "explanation": "Horned deity engraved on a terracotta cake recovered from Kalibangan."}, {"id": 143, "stem": "Which Mandala of the Rig Veda is dedicated to 'Soma'?", "options": [{"key": "a", "text": "Fourth Mandala"}, {"key": "b", "text": "Second Mandala"}, {"key": "c", "text": "Ninth Mandala"}, {"key": "d", "text": "Seventh Mandala"}], "correct": "c", "explanation": "Ninth Mandala of Rig Veda (Soma Mandala) is entirely devoted to Soma."}, {"id": 144, "stem": "Which Vedic ritual involved the consecration of a king, symbolizing his sovereignty?", "options": [{"key": "a", "text": "Ashvamedha"}, {"key": "b", "text": "Rajasuya"}, {"key": "c", "text": "Vajapeya"}, {"key": "d", "text": "Agnishtoma"}], "correct": "b", "explanation": "Rajasuya sacrifice was performed to consecrate a king."}, {"id": 145, "stem": "Which of the following literary works was not authored by King Harshavardhana?", "options": [{"key": "a", "text": "Ratnavali"}, {"key": "b", "text": "Priyadarshika"}, {"key": "c", "text": "Nagananda"}, {"key": "d", "text": "Sahitya-Lahiri"}], "correct": "d", "explanation": "Harshavardhana authored three plays: Ratnavali, Priyadarshika, and Nagananda."}, {"id": 146, "stem": "Match List-I with List-II\nList-I (Veda): a. Rig Veda, b. Samaveda, c. Atharvaveda, d. Yajurveda\nList-II (Brahmana texts): 1. Gopatha, 2. Aitariya, 3. Shatpatha, 4. Panchvisha\nSelect the correct answer:", "options": [{"key": "a", "text": "a-3, b-4, c-1, d-2"}, {"key": "b", "text": "a-4, b-3, c-2, d-1"}, {"key": "c", "text": "a-4, b-1, c-2, d-3"}, {"key": "d", "text": "a-2, b-4, c-1, d-3"}], "correct": "c", "explanation": "Rig Veda: Aitareya Brahmana; Samaveda: Panchvisha (Tandya) Brahmana; Atharvaveda: Gopatha Brahmana; Yajurveda: Shatpatha Brahmana."}, {"id": 147, "stem": "Who among the following scholars identified the Greek \"Sandrokottos\" mentioned in ancient texts with the Mauryan ruler Chandragupta Maurya?", "options": [{"key": "a", "text": "Strabo"}, {"key": "b", "text": "William Jones"}, {"key": "c", "text": "D.N. Jha"}, {"key": "d", "text": "Irfan Habib"}], "correct": "b", "explanation": "William Jones identified \"Sandrokottos\" with Chandragupta Maurya."}, {"id": 148, "stem": "Which of the following features distinguishes the Indus Valley Civilisation from the Vedic Civilisation?\n1. Presence of developed urban amenities\n2. Knowledge of iron and defensive weaponry\n3. Use of a pictographic script\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 1 and 3"}, {"key": "c", "text": "Only 3"}, {"key": "d", "text": "1, 2 and 3"}], "correct": "b", "explanation": "Statement 1 is correct: IVC had advanced urban features; Vedic was rural/pastoral.\nStatement 2 is incorrect: IVC used copper/bronze, not iron.\nStatement 3 is correct: IVC used pictographic script; early Vedic lacked written script."}, {"id": 149, "stem": "Match List-I with List-II\nList-I (Historical Phase): a. Indus Valley Civilisation, b. Later Vedic Society, c. Medieval Society, d. Rigvedic Period\nList-II (Primary Characteristics): 1. Pastoral, 2. Feudalism, 3. Agrarian, 4. Urban\nSelect the correct answer:", "options": [{"key": "a", "text": "a-2, b-3, c-4, d-1"}, {"key": "b", "text": "a-3, b-4, c-1, d-2"}, {"key": "c", "text": "a-2, b-4, c-1, d-3"}, {"key": "d", "text": "a-4, b-3, c-2, d-1"}], "correct": "b", "explanation": "IVC: Urban; Later Vedic: Agrarian; Medieval: Feudalism; Rigvedic: Pastoral."}, {"id": 150, "stem": "What is the number of Puranas and Samskaras in Hindu tradition, respectively?", "options": [{"key": "a", "text": "16 and 18"}, {"key": "b", "text": "18 and 16"}, {"key": "c", "text": "12 and 16"}, {"key": "d", "text": "18 and 12"}], "correct": "b", "explanation": "Puranas are 18 major texts; Samskaras are 16 key life-cycle rituals."}];
+const TOTAL_SECONDS = 120 * 60; // 2 hours
+const STORAGE_ACTIVE = 'bpscAncientActiveAttempt_v1';
+const STORAGE_HISTORY = 'bpscAncientHistory_v1';
+
+let state = {
+  answers: {},      // qid -> 'a'/'b'/'c'/'d'
+  flags: {},         // qid -> true
+  endTime: null,     // epoch ms when timer ends
+  startTime: null,
+  submitted: false
+};
+let timerInterval = null;
+
+// ---------- Utility ----------
+function $(sel){ return document.querySelector(sel); }
+function $all(sel){ return document.querySelectorAll(sel); }
+function showScreen(id){
+  $all('.screen').forEach(s => s.classList.remove('active'));
+  $(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function fmtTime(totalSec){
+  totalSec = Math.max(0, Math.floor(totalSec));
+  const h = String(Math.floor(totalSec/3600)).padStart(2,'0');
+  const m = String(Math.floor((totalSec%3600)/60)).padStart(2,'0');
+  const s = String(totalSec%60).padStart(2,'0');
+  return `${h}:${m}:${s}`;
+}
+function saveActiveAttempt(){
+  localStorage.setItem(STORAGE_ACTIVE, JSON.stringify(state));
+}
+function clearActiveAttempt(){
+  localStorage.removeItem(STORAGE_ACTIVE);
+}
+function loadActiveAttempt(){
+  const raw = localStorage.getItem(STORAGE_ACTIVE);
+  if(!raw) return null;
+  try{ return JSON.parse(raw); }catch(e){ return null; }
+}
+function getHistory(){
+  const raw = localStorage.getItem(STORAGE_HISTORY);
+  if(!raw) return [];
+  try{ return JSON.parse(raw); }catch(e){ return []; }
+}
+function saveHistory(list){
+  localStorage.setItem(STORAGE_HISTORY, JSON.stringify(list));
+}
+
+// ---------- Build test screen ----------
+function buildQuestionCards(){
+  const col = $('#questionsCol');
+  col.innerHTML = '';
+  QUESTIONS.forEach(q => {
+    const card = document.createElement('div');
+    card.className = 'qcard';
+    card.id = 'qcard-' + q.id;
+
+    const head = document.createElement('div');
+    head.className = 'qhead';
+    head.innerHTML = `<span class="qnum">Q${q.id}</span>`;
+    const flagBtn = document.createElement('button');
+    flagBtn.className = 'flag-btn';
+    flagBtn.textContent = 'Flag for review';
+    flagBtn.onclick = () => toggleFlag(q.id, flagBtn, card);
+    head.appendChild(flagBtn);
+    card.appendChild(head);
+
+    const stem = document.createElement('div');
+    stem.className = 'qstem';
+    stem.textContent = q.stem;
+    card.appendChild(stem);
+
+    const opts = document.createElement('div');
+    opts.className = 'options';
+    q.options.forEach(o => {
+      const label = document.createElement('label');
+      label.className = 'opt';
+      label.id = `opt-${q.id}-${o.key}`;
+      label.innerHTML = `
+        <input type="radio" name="q${q.id}" value="${o.key}">
+        <span class="opt-key">(${o.key})</span>
+        <span class="opt-text"></span>
+      `;
+      label.querySelector('.opt-text').textContent = o.text;
+      label.querySelector('input').addEventListener('change', () => selectAnswer(q.id, o.key));
+      opts.appendChild(label);
+    });
+    card.appendChild(opts);
+    col.appendChild(card);
+  });
+}
+
+function toggleFlag(qid, btn, card){
+  if(state.flags[qid]){
+    delete state.flags[qid];
+    btn.classList.remove('on');
+    card.classList.remove('flagged');
+  } else {
+    state.flags[qid] = true;
+    btn.classList.add('on');
+    card.classList.add('flagged');
+  }
+  saveActiveAttempt();
+  renderPalette();
+}
+
+function selectAnswer(qid, key){
+  state.answers[qid] = key;
+  const card = document.getElementById('qcard-' + qid);
+  card.classList.add('answered');
+  card.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+  document.getElementById(`opt-${qid}-${key}`).classList.add('selected');
+  saveActiveAttempt();
+  updateProgress();
+  renderPalette();
+}
+
+function restoreAnswersToDOM(){
+  QUESTIONS.forEach(q => {
+    const card = document.getElementById('qcard-' + q.id);
+    const ans = state.answers[q.id];
+    if(ans){
+      card.classList.add('answered');
+      const input = card.querySelector(`input[value="${ans}"]`);
+      if(input) input.checked = true;
+      const optEl = document.getElementById(`opt-${q.id}-${ans}`);
+      if(optEl) optEl.classList.add('selected');
+    }
+    if(state.flags[q.id]){
+      card.classList.add('flagged');
+      card.querySelector('.flag-btn').classList.add('on');
+    }
+  });
+}
+
+function updateProgress(){
+  const count = Object.keys(state.answers).length;
+  $('#progressPill').textContent = `${count} / 150 answered`;
+}
+
+function renderPalette(){
+  const grid = $('#paletteGrid');
+  grid.innerHTML = '';
+  QUESTIONS.forEach(q => {
+    const btn = document.createElement('button');
+    btn.className = 'pnum';
+    if(state.answers[q.id]) btn.classList.add('answered');
+    if(state.flags[q.id]) btn.classList.add('flagged');
+    btn.textContent = q.id;
+    btn.onclick = () => {
+      document.getElementById('qcard-' + q.id).scrollIntoView({behavior:'smooth', block:'center'});
+      if(window.innerWidth <= 920){ $('#paletteCol').classList.remove('open'); }
+    };
+    grid.appendChild(btn);
+  });
+}
+
+// ---------- Timer ----------
+function startTimerLoop(){
+  if(timerInterval) clearInterval(timerInterval);
+  tickTimer();
+  timerInterval = setInterval(tickTimer, 1000);
+}
+function tickTimer(){
+  const remaining = (state.endTime - Date.now()) / 1000;
+  const box = $('#timerBox');
+  box.textContent = fmtTime(remaining);
+  if(remaining <= 300) box.classList.add('low'); else box.classList.remove('low');
+  if(remaining <= 0){
+    clearInterval(timerInterval);
+    submitTest(true);
+  }
+}
+
+// ---------- Start / resume test ----------
+function beginNewTest(){
+  state = {
+    answers: {},
+    flags: {},
+    startTime: Date.now(),
+    endTime: Date.now() + TOTAL_SECONDS*1000,
+    submitted: false
+  };
+  saveActiveAttempt();
+  buildQuestionCards();
+  renderPalette();
+  updateProgress();
+  showScreen('#testScreen');
+  startTimerLoop();
+}
+
+function resumeTest(saved){
+  state = saved;
+  buildQuestionCards();
+  restoreAnswersToDOM();
+  renderPalette();
+  updateProgress();
+  showScreen('#testScreen');
+  startTimerLoop();
+}
+
+// ---------- Submit & scoring ----------
+function computeResult(){
+  let correct=0, incorrect=0, unattempted=0;
+  const details = QUESTIONS.map(q => {
+    const given = state.answers[q.id] || null;
+    let status;
+    if(!given){ status='unattempted'; unattempted++; }
+    else if(given === q.correct){ status='correct'; correct++; }
+    else { status='incorrect'; incorrect++; }
+    return { id:q.id, stem:q.stem, options:q.options, correct:q.correct, explanation:q.explanation, given, status, flagged: !!state.flags[q.id] };
+  });
+  const timeUsedSec = Math.min(TOTAL_SECONDS, Math.round((Date.now() - state.startTime)/1000));
+  const marks = correct * 1 - incorrect * (1/3);
+  return {
+    id: 'attempt_' + Date.now(),
+    date: new Date().toISOString(),
+    correct, incorrect, unattempted,
+    total: QUESTIONS.length,
+    marks,
+    timeUsedSec,
+    details
+  };
+}
+
+function submitTest(auto){
+  if(state.submitted) return;
+  state.submitted = true;
+  if(timerInterval) clearInterval(timerInterval);
+  const result = computeResult();
+  const hist = getHistory();
+  hist.unshift(result);
+  saveHistory(hist);
+  clearActiveAttempt();
+  renderResults(result);
+  showScreen('#resultsScreen');
+}
+
+function confirmSubmit(){
+  const unanswered = QUESTIONS.length - Object.keys(state.answers).length;
+  if(unanswered > 0){
+    $('#confirmText').textContent = `You have ${unanswered} unanswered question(s). Are you sure you want to submit now? This cannot be undone.`;
+  } else {
+    $('#confirmText').textContent = `All questions answered. Submit now? This cannot be undone.`;
+  }
+  $('#confirmModal').classList.add('active');
+}
+
+// ---------- Results rendering ----------
+function renderResults(result){
+  const marksDisplay = (Math.round(result.marks * 100) / 100).toFixed(2).replace(/\.00$/, '');
+  $('#scoreBig').textContent = `${marksDisplay} / ${result.total}`;
+  $('#scoreDate').textContent = new Date(result.date).toLocaleString();
+  $('#statCorrect').textContent = result.correct;
+  $('#statIncorrect').textContent = result.incorrect;
+  $('#statUnattempted').textContent = result.unattempted;
+  const acc = result.correct + result.incorrect > 0
+    ? Math.round(result.correct / (result.correct + result.incorrect) * 100)
+    : 0;
+  $('#statAccuracy').textContent = acc + '%';
+  $('#statTime').textContent = fmtTime(result.timeUsedSec);
+
+  const panels = { all: [], correct: [], incorrect: [], unattempted: [], flagged: [] };
+  result.details.forEach(d => {
+    const el = buildReviewCard(d);
+    panels.all.push(el);
+    panels[d.status].push(el.cloneNode(true));
+    if(d.flagged) panels.flagged.push(el.cloneNode(true));
+  });
+
+  ['all','correct','incorrect','unattempted','flagged'].forEach(key => {
+    const panel = document.getElementById('panel-' + key);
+    panel.innerHTML = '';
+    if(panels[key].length === 0){
+      const p = document.createElement('p');
+      p.className = 'empty-note';
+      p.textContent = 'Nothing to show here.';
+      panel.appendChild(p);
+    } else {
+      panels[key].forEach(el => panel.appendChild(el));
+    }
+  });
+
+  $all('.tab-btn').forEach(b => b.classList.remove('active'));
+  $('.tab-btn[data-tab="all"]').classList.add('active');
+  $all('.tab-panel').forEach(p => p.classList.remove('active'));
+  $('#panel-all').classList.add('active');
+}
+
+function buildReviewCard(d){
+  const card = document.createElement('div');
+  card.className = 'review-card ' + d.status;
+
+  const tag = document.createElement('span');
+  tag.className = 'review-tag ' + d.status;
+  tag.textContent = d.status === 'correct' ? 'Correct' : d.status === 'incorrect' ? 'Incorrect' : 'Unattempted';
+  card.appendChild(tag);
+
+  if(d.flagged){
+    const ftag = document.createElement('span');
+    ftag.className = 'review-tag';
+    ftag.style.cssText = 'background:var(--gold-soft);color:var(--navy-deep);margin-left:6px;';
+    ftag.textContent = 'Flagged';
+    card.appendChild(ftag);
+  }
+
+  const num = document.createElement('div');
+  num.className = 'qnum';
+  num.style.marginLeft = '8px';
+  num.style.display = 'inline-block';
+  num.textContent = 'Q' + d.id;
+  card.appendChild(num);
+
+  const stem = document.createElement('div');
+  stem.className = 'qstem';
+  stem.style.marginTop = '8px';
+  stem.textContent = d.stem;
+  card.appendChild(stem);
+
+  const optsWrap = document.createElement('div');
+  d.options.forEach(o => {
+    const row = document.createElement('div');
+    let cls = 'review-opt';
+    if(o.key === d.correct) cls += ' correct-answer';
+    else if(o.key === d.given && d.status === 'incorrect') cls += ' your-wrong';
+    row.className = cls;
+    let suffix = '';
+    if(o.key === d.correct) suffix = '  ✓ Correct answer';
+    if(o.key === d.given && d.status !== 'correct') suffix += '  (your answer)';
+    if(o.key === d.given && d.status === 'correct') suffix = '  ✓ Your answer — correct';
+    row.innerHTML = `<span class="opt-key">(${o.key})</span><span>${escapeHtml(o.text)}${suffix}</span>`;
+    optsWrap.appendChild(row);
+  });
+  card.appendChild(optsWrap);
+
+  const exp = document.createElement('div');
+  exp.className = 'explanation';
+  function formatExplanation(text){
+    const lines = text.split('\n');
+    let html = '';
+    lines.forEach((line, i) => {
+      const clean = line.replace(/^•\s*/, '');
+      const escaped = clean.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      if(line.startsWith('•')){
+        html += `<div class="ex-bullet"><span class="ex-dot">•</span><span>${escaped}</span></div>`;
+      } else if(clean.trim() !== ''){
+        html += `<div class="ex-first">${escaped}</div>`;
+      }
+    });
+    return html;
+  }
+  exp.innerHTML = `<span class="exlabel">Explanation</span>${formatExplanation(d.explanation)}`;
+  card.appendChild(exp);
+
+  return card;
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// ---------- History screen ----------
+function renderHistory(){
+  const list = getHistory();
+  const wrap = $('#historyList');
+  wrap.innerHTML = '';
+  if(list.length === 0){
+    wrap.innerHTML = '<p class="empty-note">No attempts saved yet. Complete a test to see it here.</p>';
+    return;
+  }
+  list.forEach(r => {
+    const item = document.createElement('div');
+    item.className = 'history-item';
+    const acc = r.correct + r.incorrect > 0 ? Math.round(r.correct/(r.correct+r.incorrect)*100) : 0;
+    const rMarks = (typeof r.marks === 'number') ? r.marks : (r.correct * 1 - r.incorrect * (1/3));
+    const rMarksDisplay = (Math.round(rMarks * 100) / 100).toFixed(2).replace(/\.00$/, '');
+    item.innerHTML = `
+      <div>
+        <div class="hscore">${rMarksDisplay} / ${r.total}</div>
+        <div class="hdate">${new Date(r.date).toLocaleString()} · ${acc}% accuracy · ${fmtTime(r.timeUsedSec)} used</div>
+      </div>
+      <button class="btn-secondary" style="width:auto;">Open review</button>
+    `;
+    item.querySelector('button').onclick = () => {
+      renderResults(r);
+      showScreen('#resultsScreen');
+    };
+    wrap.appendChild(item);
+  });
+}
+
+// ---------- Event wiring ----------
+window.addEventListener('DOMContentLoaded', () => {
+  const active = loadActiveAttempt();
+  if(active && !active.submitted && active.endTime > Date.now()){
+    // silently offer resume via start screen note
+    $('#startBtn').textContent = 'Resume Test';
+  }
+
+  $('#startBtn').addEventListener('click', () => {
+    const active2 = loadActiveAttempt();
+    if(active2 && !active2.submitted && active2.endTime > Date.now()){
+      resumeTest(active2);
+    } else {
+      beginNewTest();
+    }
+  });
+
+  $('#viewHistoryBtn').addEventListener('click', () => {
+    renderHistory();
+    showScreen('#historyScreen');
+  });
+  $('#backToStartFromHistoryBtn').addEventListener('click', () => showScreen('#startScreen'));
+  $('#backToStartBtn').addEventListener('click', () => showScreen('#startScreen'));
+  $('#toHistoryFromResultsBtn').addEventListener('click', () => {
+    renderHistory();
+    showScreen('#historyScreen');
+  });
+
+  $('#submitBtn').addEventListener('click', confirmSubmit);
+  $('#cancelSubmitBtn').addEventListener('click', () => $('#confirmModal').classList.remove('active'));
+  $('#confirmSubmitBtn').addEventListener('click', () => {
+    $('#confirmModal').classList.remove('active');
+    submitTest(false);
+  });
+
+  $('#paletteToggleBtn').addEventListener('click', () => {
+    $('#paletteCol').classList.toggle('open');
+  });
+
+  $all('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $all('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      $all('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      window.scrollTo(0, document.querySelector('.tabs').offsetTop - 20);
+    });
+  });
+
+  window.addEventListener('beforeunload', () => {
+    if(!state.submitted && state.startTime) saveActiveAttempt();
+  });
+});
+</script>
+</body>
+</html>
