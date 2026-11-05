@@ -1,0 +1,935 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Supreme Court and High Court</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1E33; --ink-2:#122A45; --paper:#FBF7EC; --paper-2:#F3ECDA;
+    --gold:#C9A227; --gold-2:#E8C766; --teal:#2E6171; --text:#1C2B3A; --muted:#5B6B7A;
+    --hl-y: rgba(255, 213, 79, .55); --hl-b: rgba(133, 193, 233, .55);
+    --hl-g: rgba(163, 221, 178, .6); --hl-r: rgba(245, 158, 148, .55);
+    --trap-bg:#FDEDEC; --trap-bd:#C0392B;
+    --tbl-head-blue:#1A5276; --tbl-head-red:#7B241C;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--ink); color:var(--text); font-family:'Source Sans 3', sans-serif; display:flex; min-height:100vh;}
+  ::selection{background:var(--gold-2); color:var(--ink);}
+
+  #sidebar{width:290px; flex-shrink:0; background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%); color:#DCE6EE; position:fixed; top:0; left:0; bottom:0; overflow-y:auto; padding:28px 0 40px; border-right:1px solid rgba(201,162,39,.25); z-index:50;}
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:rgba(201,162,39,.4); border-radius:3px;}
+  .brand{padding:0 24px 20px; border-bottom:1px solid rgba(201,162,39,.25); margin-bottom:10px;}
+  .brand .stamp{width:46px;height:46px;border-radius:50%; border:2px solid var(--gold); display:flex;align-items:center;justify-content:center; font-family:'Playfair Display',serif; font-weight:800; color:var(--gold-2); font-size:13px; margin-bottom:10px;}
+  .brand h1{font-family:'Playfair Display', serif; font-size:18px; line-height:1.25; margin:0 0 4px; font-weight:700; color:#F4EFE1;}
+  .brand p{margin:0; font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono', monospace;}
+
+  nav.toc{padding:4px 8px;}
+  .toc-part{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); padding:14px 16px 4px;}
+  nav.toc a{display:flex; align-items:baseline; gap:8px; padding:7px 14px; margin:1px 0; border-radius:6px; color:#B7C6D3; text-decoration:none; font-size:12.6px; font-weight:500; border-left:3px solid transparent; transition:background .15s, color .15s, border-color .15s;}
+  nav.toc a .num{font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--gold); flex-shrink:0; width:18px;}
+  nav.toc a:hover{background:rgba(201,162,39,.10); color:#F4EFE1;}
+  nav.toc a.active{background:rgba(201,162,39,.16); color:#F8F1DD; border-left-color:var(--gold); font-weight:600;}
+
+  .legend-box{margin:16px 16px 0; padding:14px; background:rgba(255,255,255,.04); border:1px solid rgba(201,162,39,.22); border-radius:8px;}
+  .legend-box h3{margin:0 0 10px; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  .legend-row{display:flex; align-items:center; gap:8px; margin-bottom:7px; font-size:11.5px; color:#CBD6DF;}
+  .legend-swatch{width:14px;height:14px;border-radius:3px; flex-shrink:0;}
+
+  #main{margin-left:290px; flex:1; background:var(--ink);}
+  .cover{padding:70px 64px 50px; background:radial-gradient(circle at 85% 20%, rgba(201,162,39,.10), transparent 45%), linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%); color:#EFE9D8; border-bottom:4px double rgba(201,162,39,.4);}
+  .cover .eyebrow{font-family:'IBM Plex Mono',monospace; letter-spacing:.18em; text-transform:uppercase; font-size:12px; color:var(--gold-2); margin-bottom:16px;}
+  .cover h1{font-family:'Playfair Display', serif; font-weight:800; font-size:clamp(30px,4vw,48px); line-height:1.1; margin:0 0 14px; max-width:840px;}
+  .cover p.sub{font-size:15.5px; color:#C9D2DB; max-width:660px; line-height:1.6; margin:0 0 20px;}
+  .cover .tags{display:flex; gap:10px; flex-wrap:wrap;}
+  .cover .tag{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold-2); border:1px solid rgba(201,162,39,.45); padding:5px 12px; border-radius:20px; background:rgba(201,162,39,.06);}
+
+  .part-divider{max-width:920px; margin:0 auto; padding:40px 48px 0;}
+  .part-divider .plabel{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); background:var(--ink); display:inline-block; padding:8px 18px; border-radius:20px;}
+  .part-divider .ptitle{font-family:'Playfair Display',serif; font-weight:700; font-size:26px; color:var(--ink); margin:14px 0 2px;}
+  .part-divider .pdesc{color:var(--muted); font-size:14px; margin:0 0 6px;}
+  @media (max-width:880px){ .part-divider{padding:30px 22px 0;} }
+
+  .chapters{background:var(--paper); padding:10px 0 90px;}
+  .chapter{max-width:920px; margin:0 auto; padding:46px 48px 8px; border-bottom:1px solid rgba(28,43,58,.10); scroll-margin-top:14px;}
+  .chapter:last-child{border-bottom:none;}
+  .chapter-head{display:flex; align-items:center; gap:16px; margin-bottom:22px;}
+  .chapter-head .seal{width:48px; height:48px; border-radius:50%; background:var(--ink); color:var(--gold-2); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:700; font-size:17px; border:2px solid var(--gold); flex-shrink:0;}
+  .chapter-head h2{font-family:'Playfair Display', serif; font-size:clamp(21px,2.6vw,28px); margin:0; color:var(--ink); font-weight:700; line-height:1.2;}
+
+  .tcard{background:var(--paper-2); border:1px solid rgba(28,43,58,.12); border-radius:9px; padding:16px 20px; margin-bottom:14px;}
+  .tcard h3{font-family:'Playfair Display', serif; font-size:16.5px; margin:0 0 11px; display:inline-block; padding:4px 13px; border-radius:7px; border:1.5px solid #8F7BC4; background:#EEE9F9; color:var(--ink); font-weight:700;}
+  .tcard ul{margin:0; padding-left:19px;}
+  .tcard li{margin-bottom:6px; line-height:1.58; font-size:14.5px;}
+  .tcard p{margin:0 0 8px; line-height:1.58; font-size:14.5px;}
+  .tcard p:last-child{margin-bottom:0;}
+
+  mark{padding:.05em .18em; border-radius:3px; font-weight:600; color:var(--text); box-decoration-break:clone; -webkit-box-decoration-break:clone;}
+  .y{background:var(--hl-y);} .b{background:var(--hl-b);} .g{background:var(--hl-g);} .r{background:var(--hl-r);}
+
+  .trap{background:var(--trap-bg); border:1px solid rgba(192,57,43,.35); border-left:4px solid var(--trap-bd); padding:11px 15px; border-radius:6px; margin:10px 0; font-size:13.8px; line-height:1.58;}
+  .trap .lbl{font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:var(--trap-bd); font-weight:700; display:block; margin-bottom:4px;}
+
+  table{width:100%; border-collapse:collapse; margin:10px 0 4px; font-size:13.5px;}
+  caption{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:.06em;}
+  th,td{padding:8px 10px; text-align:left; border-bottom:1px solid rgba(28,43,58,.10); vertical-align:top;}
+  thead.blue th{background:var(--tbl-head-blue); color:#F4EFE1; font-weight:600; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.red th{background:var(--tbl-head-red); color:#F4EFE1; font-weight:600; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em;}
+  tbody tr:nth-child(even){background:var(--paper);}
+
+  .footer{max-width:920px; margin:0 auto; padding:40px 48px 70px; color:var(--muted); font-size:12.5px; font-family:'IBM Plex Mono',monospace; text-align:center;}
+
+  @media (max-width: 880px){
+    #sidebar{position:fixed; left:0; top:0; bottom:0; width:260px; transform:translateX(-100%); transition:transform .25s ease;}
+    #sidebar.open{transform:translateX(0);}
+    #main{margin-left:0;}
+    .chapter{padding:38px 20px 8px;}
+    .cover{padding:56px 20px 40px;}
+  }
+  #menu-btn{display:none; position:fixed; top:16px; left:16px; z-index:60; width:44px;height:44px;border-radius:50%; background:var(--ink); border:2px solid var(--gold); color:var(--gold-2); font-size:18px; align-items:center; justify-content:center; cursor:pointer;}
+  @media (max-width: 880px){ #menu-btn{display:flex;} }
+  .part-divider{padding-top:40px;} i{font-style:italic;}
+
+  mark{padding:0.05em 0.3em; border-radius:3px; font-weight:600; color:#000; box-decoration-break:clone; -webkit-box-decoration-break:clone;}
+  mark.y{background:#fff1a8; box-shadow:inset 0 -2px 0 #c9a600; border-bottom:0;}
+  mark.b{background:#c9e2ff; box-shadow:inset 0 -2px 0 #3373c4; border-bottom:0;}
+  mark.g{background:#c8ecd2; box-shadow:inset 0 -2px 0 #2f8f52; border-bottom:0;}
+  mark.r{background:#ffd0ce; box-shadow:inset 0 -2px 0 #c0392b; border-bottom:0;}
+  caption{font-family:'Playfair Display',serif; font-size:21px; font-weight:700; color:var(--ink); text-transform:none; letter-spacing:0; margin-bottom:12px; padding-bottom:6px; border-bottom:2px solid var(--gold);}
+
+  .sidetabs{display:flex; flex-direction:column; gap:6px; padding:0 18px 12px;}
+  .sidetabs button{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.03em; text-align:left; padding:10px 14px; border-radius:8px; cursor:pointer; border:1px solid rgba(201,162,39,.45); background:transparent; color:var(--gold-2);}
+  .sidetabs button.active{background:var(--gold); color:var(--ink); font-weight:700;}
+  .tabpane{display:none;} .tabpane.active{display:block;}
+
+  .tcard li.grp{list-style:none; margin-left:-19px; margin-bottom:12px; padding:8px 12px 6px; border:1px solid #000; background:transparent; border-radius:6px;}
+  .tcard .lead{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:700; padding:2px 10px; margin-bottom:5px; border:1.5px solid var(--gold); border-radius:5px; background:#FFF8E1; color:var(--ink); letter-spacing:.01em;}
+  .tcard .lead mark{background:transparent; box-shadow:none; text-decoration:none; border:0; padding:0; font-weight:700;}
+  .tcard ul.sub{margin:2px 0 2px; padding-left:20px;}
+  .tcard ul.sub li{margin-bottom:3px; font-size:14.3px;}
+</style></head><body>
+<button id="menu-btn" aria-label="Toggle chapter index">☰</button>
+<aside id="sidebar"><div class="brand"><div class="stamp">SC·HC</div><h1>Supreme Court and High Court</h1><p>BPSC · Indian Polity</p></div>
+<div class="sidetabs" id="tabbar"><button class="active" data-pane="pane1">Supreme Court</button><button data-pane="pane2">High Court</button></div>
+<nav class="toc" id="toc"></nav><div class="legend-box">
+    <h3>Marker Key</h3>
+    <div class="legend-row"><span class="legend-swatch" style="background:#fff1a8; box-shadow:inset 0 -2px 0 #c9a600"></span> Core concept</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:#c9e2ff; box-shadow:inset 0 -2px 0 #3373c4"></span> Hard fact / date / number</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:#c8ecd2; box-shadow:inset 0 -2px 0 #2f8f52"></span> Person / place / institution</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:#ffd0ce; box-shadow:inset 0 -2px 0 #c0392b"></span> MCQ trap / confusion</div>
+  </div>
+</aside>
+<div id="main"><section class="cover"><div class="eyebrow">Indian Polity · Compiled for Prelims Revision</div><h1>Supreme Court and High Court</h1>
+<p class="sub">Theory and every PYQ fact merged topic-wise. Open the menu (☰) to switch between the Supreme Court and the High Court.</p>
+<div class="tags"><span class="tag">Supreme Court</span><span class="tag">High Court</span></div></section>
+<div class="chapters" id="chapters-root">
+<div class="tabpane active" id="pane1"><div class="part-divider"><span class="plabel">Index</span><div class="ptitle">Quick Reference</div><p class="pdesc">All constitutional articles mentioned in ascending order, and every court case in one table.</p></div>
+<section class="chapter" id="p1ch1" data-title="Master Table of Articles"><div class="chapter-head"><div class="seal">1</div><h2>Master Table of Articles</h2></div>
+<div class="tcard"><h3>Articles &amp; Schedules</h3>
+<table><caption>Articles Mentioned — Ascending Order</caption><thead class="red"><tr><th>Article</th><th>Subject</th><th>Key Facts</th><th>Detail</th></tr></thead><tbody>
+<tr><td><mark class="y">Art 13</mark></td><td>Laws inconsistent with Fundamental Rights</td><td>13(1) pre-Constitution laws void to extent of inconsistency; 13(2) no law abridging Part III; basis of <mark class="y">judicial review</mark></td><td>Ch 18</td></tr>
+<tr><td><mark class="y">Art 14</mark></td><td>Equality before law</td><td>Basis of natural justice with Art 21; equality before law (British), equal protection (American)</td><td>Ch 18</td></tr>
+<tr><td><mark class="y">Art 15(4) / 16(4)</mark></td><td>Reservation</td><td>50% ceiling set in <mark class="g">Indra Sawhney</mark></td><td>Ch 22</td></tr>
+<tr><td><mark class="y">Art 16</mark></td><td>Equality of opportunity in public employment</td><td>[Outside source] appears as a wrong option only</td><td>Ch 22</td></tr>
+<tr><td><mark class="y">Art 19</mark></td><td>Freedoms</td><td><mark class="g">Maneka Gandhi</mark>: Arts 14, 19, 21 not mutually exclusive</td><td>Ch 22</td></tr>
+<tr><td><mark class="y">Art 21</mark></td><td>Life &amp; personal liberty</td><td>Natural justice with Art 14; right to travel abroad</td><td>Ch 18</td></tr>
+<tr><td><mark class="y">Art 32</mark></td><td>Right to Constitutional Remedies</td><td>SC writs for FRs; not exclusive; basic structure</td><td>Ch 16</td></tr>
+<tr><td><mark class="y">Art 39A</mark></td><td>Equal justice (DPSP)</td><td>PIL aligned with it</td><td>Ch 21</td></tr>
+<tr><td><mark class="y">Art 56</mark></td><td>Term of President</td><td>[Outside source] wrong option only</td><td>Ch 16</td></tr>
+<tr><td><mark class="y">Art 74</mark></td><td>Council of Ministers to aid and advise President</td><td>[Outside source] wrong option only</td><td>Ch 16</td></tr>
+<tr><td><mark class="y">Art 124</mark></td><td>Establishment &amp; constitution of SC</td><td>CJI + 33; (2) appointment; (3) qualifications; (4) removal; (7) post-retirement bar</td><td>Ch 4–10</td></tr>
+<tr><td><mark class="y">Art 125</mark></td><td>Salaries</td><td>Determined by Parliament; Second Schedule</td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 126</mark></td><td>Acting CJI</td><td>Appointed by President</td><td>Ch 7</td></tr>
+<tr><td><mark class="y">Art 127</mark></td><td>Ad hoc Judges</td><td>When no quorum</td><td>Ch 7</td></tr>
+<tr><td><mark class="y">Art 128</mark></td><td>Retired Judges</td><td>CJI with President's consent</td><td>Ch 7</td></tr>
+<tr><td><mark class="y">Art 129</mark></td><td>Court of Record</td><td>Contempt power</td><td>Ch 12</td></tr>
+<tr><td><mark class="y">Art 130</mark></td><td>Seat</td><td>Delhi or elsewhere with President's approval</td><td>Ch 11</td></tr>
+<tr><td><mark class="y">Art 131</mark></td><td>Original jurisdiction</td><td>Centre–State, inter-State</td><td>Ch 13</td></tr>
+<tr><td><mark class="y">Art 132</mark></td><td>Appellate — constitutional</td><td>With 134A</td><td>Ch 14</td></tr>
+<tr><td><mark class="y">Art 133</mark></td><td>Appellate — civil</td><td></td><td>Ch 14</td></tr>
+<tr><td><mark class="y">Art 134 / 134A</mark></td><td>Appellate — criminal; certificate</td><td></td><td>Ch 14</td></tr>
+<tr><td><mark class="y">Art 136</mark></td><td>Special leave</td><td>Quasi-judicial tribunals</td><td>Ch 14</td></tr>
+<tr><td><mark class="y">Art 137</mark></td><td>Review</td><td>Subject to Art 145 rules</td><td>Ch 17</td></tr>
+<tr><td><mark class="y">Art 138</mark></td><td>Enlargement of jurisdiction</td><td>Union List by law</td><td>Ch 17</td></tr>
+<tr><td><mark class="y">Art 139</mark></td><td>[Outside source] writ powers conferred on SC</td><td>Wrong option only</td><td>Ch 17</td></tr>
+<tr><td><mark class="y">Art 139A</mark></td><td>Transfer of cases</td><td></td><td>Ch 17</td></tr>
+<tr><td><mark class="y">Art 140</mark></td><td>[Outside source] ancillary powers</td><td>Wrong option only</td><td>Ch 17</td></tr>
+<tr><td><mark class="y">Art 141</mark></td><td>Law declared binding</td><td></td><td>Ch 17</td></tr>
+<tr><td><mark class="y">Art 142</mark></td><td>Complete justice</td><td>Curative petition</td><td>Ch 17</td></tr>
+<tr><td><mark class="y">Art 143</mark></td><td>Advisory</td><td></td><td>Ch 15</td></tr>
+<tr><td><mark class="y">Art 144</mark></td><td>[Outside source] authorities to act in aid of SC</td><td>Wrong option only</td><td>Ch 15</td></tr>
+<tr><td><mark class="y">Art 145</mark></td><td>Rules of Court</td><td></td><td>Ch 17</td></tr>
+<tr><td><mark class="y">Art 146</mark></td><td>[Outside source] officers and expenses</td><td>Wrong option only</td><td>Ch 17</td></tr>
+<tr><td><mark class="y">Art 174</mark></td><td>Sessions of State Legislature</td><td>Gujarat reference</td><td>Ch 15</td></tr>
+<tr><td><mark class="y">Art 215</mark></td><td>High Courts courts of record</td><td></td><td>Ch 12</td></tr>
+<tr><td><mark class="y">Art 220</mark></td><td>Post-retirement restriction (HC)</td><td></td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 226</mark></td><td>HC writs</td><td>Broader than Art 32</td><td>Ch 16</td></tr>
+<tr><td><mark class="y">Art 227</mark></td><td>HC superintendence</td><td>Basic structure</td><td>Ch 16</td></tr>
+<tr><td><mark class="y">Art 245</mark></td><td>[Outside source] extent of laws</td><td>Wrong option only</td><td>Ch 19</td></tr>
+<tr><td><mark class="y">Art 256 / 257</mark></td><td>[Outside source] obligation / control of Union over States</td><td>Wrong option only</td><td>Ch 22</td></tr>
+<tr><td><mark class="y">Art 277</mark></td><td>[Outside source] savings</td><td>Wrong option only</td><td>Ch 22</td></tr>
+<tr><td><mark class="y">Art 324</mark></td><td>Election Commission</td><td></td><td>Ch 15</td></tr>
+<tr><td><mark class="y">Art 348(1)(a)</mark></td><td>Language</td><td>English in SC and High Courts</td><td>Ch 11</td></tr>
+<tr><td><mark class="y">Art 355</mark></td><td>Union duty to protect States</td><td>2005 migrants ruling</td><td>Ch 22</td></tr>
+<tr><td><mark class="y">Art 356</mark></td><td>[Outside source] President's Rule</td><td>Wrong option only</td><td>Ch 22</td></tr>
+<tr><td><mark class="y">Art 368</mark></td><td>Amendment power</td><td>Basic structure limit</td><td>Ch 19</td></tr>
+<tr><td><mark class="y">Second Schedule</mark></td><td>Salaries</td><td>Until Parliament decides</td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Third Schedule</mark></td><td>Oaths</td><td>10 forms</td><td>Ch 8</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="chapter" id="p1ch2" data-title="Master Table of Court Cases"><div class="chapter-head"><div class="seal">2</div><h2>Master Table of Court Cases</h2></div>
+<div class="tcard"><h3>Cases</h3>
+<table><caption>Court Cases — Compiled</caption><thead class="blue"><tr><th>Case</th><th>Year</th><th>Subject / Ruling</th><th>Detail</th></tr></thead><tbody>
+<tr><td><mark class="g">Keshavananda Bharati v State of Kerala</mark></td><td>1973</td><td>Basic structure; 13-judge bench 7:6</td><td>Ch 19</td></tr>
+<tr><td><mark class="g">Minerva Mills</mark></td><td>1980</td><td>Approved basic structure</td><td>Ch 19</td></tr>
+<tr><td><mark class="g">Golaknath v State of Punjab</mark></td><td>1967</td><td>FRs; 11-judge bench</td><td>Ch 11</td></tr>
+<tr><td><mark class="g">Maneka Gandhi</mark></td><td>1978</td><td>Arts 14, 19, 21; due process</td><td>Ch 22</td></tr>
+<tr><td><mark class="g">Indra Sawhney v Union of India</mark></td><td>1992</td><td>OBC reservation; 50%; creamy layer</td><td>Ch 22</td></tr>
+<tr><td><mark class="g">Vishakha v State of Rajasthan</mark></td><td>1997</td><td>Sexual harassment guidelines</td><td>Ch 22</td></tr>
+<tr><td><mark class="g">Shayara Bano</mark></td><td>2017</td><td>Triple talaq unconstitutional</td><td>Ch 22</td></tr>
+<tr><td><mark class="g">Rupa Ashok Hurra v Ashok Hurra</mark></td><td>2002</td><td>Curative petition</td><td>Ch 17</td></tr>
+<tr><td><mark class="g">M.L. Sachdev v Union of India</mark></td><td>—</td><td>Wilful non-compliance is contempt</td><td>Ch 12</td></tr>
+<tr><td><mark class="g">Hussainara Khatoon v State of Bihar</mark></td><td>1979</td><td>First PIL</td><td>Ch 21</td></tr>
+<tr><td><mark class="g">A.K. Gopalan v State of Madras</mark></td><td>—</td><td>Preventive detention</td><td>Ch 22</td></tr>
+<tr><td><mark class="g">Romesh Thapar v State of Madras</mark></td><td>—</td><td>Free speech</td><td>Ch 22</td></tr>
+<tr><td><mark class="g">Shankari Prasad v Union of India</mark></td><td>—</td><td>Amendment power</td><td>Ch 22</td></tr>
+<tr><td><mark class="g">Champakam Dorairajan</mark></td><td>—</td><td>Equality in admission</td><td>Ch 22</td></tr>
+<tr><td><mark class="g">Kameshwar Singh v State of Bihar</mark></td><td>—</td><td>Zamindari</td><td>Ch 22</td></tr>
+<tr><td><mark class="g">Motilal v State of UP</mark></td><td>—</td><td>Zamindari</td><td>Ch 22</td></tr>
+<tr><td><mark class="g">State of West Bengal v Subodh Gopal</mark></td><td>—</td><td>Zamindari</td><td>Ch 22</td></tr>
+<tr><td><mark class="g">Bella Banerjee</mark></td><td>—</td><td>Land Development Act</td><td>Ch 22</td></tr>
+<tr><td><mark class="g">Marbury v Madison</mark></td><td>1803</td><td>Judicial review (USA)</td><td>Ch 18</td></tr>
+<tr><td>Illegal Migrants Act case</td><td>2005</td><td>Art 355</td><td>Ch 22</td></tr>
+<tr><td>Coal-gate</td><td>—</td><td>"Caged parrot"</td><td>Ch 22</td></tr>
+<tr><td>Section 377 IPC case</td><td>—</td><td>Homosexuality</td><td>Ch 22</td></tr>
+<tr><td><mark class="g">Indira Gandhi v Raj Narain</mark></td><td>—</td><td>Named only as an option [Outside source]: election case, basic structure</td><td>Ch 22</td></tr>
+<tr><td><mark class="g">Rudal Shah</mark></td><td>—</td><td>Named only as an option; not the source of basic structure</td><td>Ch 19</td></tr>
+<tr><td><mark class="g">Bank Nationalisation case</mark></td><td>—</td><td>Named only as an option [Outside source]: 11-judge bench</td><td>Ch 11</td></tr>
+<tr><td><mark class="g">T.M.A. Pai Foundation</mark></td><td>—</td><td>Named only as an option [Outside source]: 11-judge bench</td><td>Ch 11</td></tr>
+<tr><td><mark class="g">Nilabati / Gracy / Gopi Aqua</mark></td><td>—</td><td>Named only as options in the contempt question; no detail given</td><td>Ch 12</td></tr>
+<tr><td><mark class="g">2002 Gujarat Election Reference</mark></td><td>2002</td><td>Art 143 reference on EC powers</td><td>Ch 15</td></tr>
+<tr><td><mark class="g">First / Second / Third Judges Cases</mark></td><td>1981 / 1993 / 1998</td><td>[Outside source] Collegium genesis</td><td>Ch 6</td></tr>
+</tbody></table>
+</div>
+</section>
+<div class="part-divider"><span class="plabel">Part A</span><div class="ptitle">Establishment, Composition &amp; Appointment</div><p class="pdesc">Origin of the Court, strength, qualifications, appointment, collegium and special categories of judges.</p></div>
+<section class="chapter" id="p1ch3" data-title="Origin, Establishment &amp; Constitutional Basis"><div class="chapter-head"><div class="seal">3</div><h2>Origin, Establishment &amp; Constitutional Basis</h2></div>
+<div class="tcard"><h3>Integrated Judiciary &amp; Establishment</h3>
+<ul>
+<li>An <mark class="y">integrated judicial system</mark> has been set up under the Indian Constitution, with the <mark class="g">Supreme Court</mark> at the top and the various <mark class="g">High Courts</mark> below it.</li>
+<li>This <mark class="y">single system of judiciary</mark> was adopted from the <mark class="b">Government of India Act, 1935</mark>.</li>
+<li>The Supreme Court <mark class="y">succeeded</mark> the <mark class="g">Federal Court of India</mark>, which had been established under the <mark class="b">Government of India Act, 1935</mark>.</li>
+<li>The Supreme Court was <mark class="y">inaugurated</mark> on <mark class="b">28 January 1950</mark>.</li>
+<li>It was established by the <mark class="y">Indian Constitution</mark> itself — not by an Act of Parliament, and not by the Indian Independence Act 1947.</li>
+<li class="grp"><span class="lead">Constitutional location</span><ul class="sub">
+<li><mark class="b">Articles 124 to 147</mark> in <mark class="y">Part V</mark> of the Constitution deal with the Supreme Court.</li>
+<li>It was established under <mark class="y">Part V, Chapter IV, Article 124</mark>.</li>
+<li>The Supreme Court is the <mark class="y">highest judicial forum</mark> and the <mark class="y">final Court of Appeal</mark>.</li>
+<li>Establishment, composition and jurisdiction are all laid down in Arts 124–147.</li>
+</ul></li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>Options "Act of Parliament in 1950", "Indian Independence Act 1947" and "Indian Government Act 1953" are all wrong (<mark class="r">no Indian Government Act of 1953 exists</mark>); the Court is a <mark class="r">constitutional body</mark>, and the year-date options 27, 29 and 30 January are wrong.</div>
+<div class="tcard"><h3>Pre-Constitution Background — Sapru Committee &amp; the Ad hoc Committee on the Supreme Court</h3>
+<ul>
+<li>The provisions on the <mark class="y">appointment of Supreme Court and High Court Judges</mark> were incorporated on the basis of recommendations published by the <mark class="g">Sapru Committee</mark> (<mark class="b">1945</mark>).</li>
+<li>The committee was led by <mark class="g">Sir Tej Bahadur Sapru</mark>.</li>
+<li>It was appointed by the <mark class="g">Non-Party Conference</mark> in <mark class="b">November 1944</mark>.</li>
+<li>It was formed to address issues relating to <mark class="y">minorities</mark> in India; its report contained <mark class="b">21 recommendations</mark> on constitutional questions.</li>
+<li class="grp"><span class="lead">Constituent Assembly's Ad hoc Committee on the Supreme Court</span><ul class="sub">
+<li>The Constituent Assembly appointed a separate <mark class="y">Ad hoc Committee on the Supreme Court</mark> for recommendations on the judiciary.</li>
+<li>Members: <mark class="g">S. Varadachariar</mark> (former Judge of the Federal Court), <mark class="g">Alladi Krishnaswami Ayyar</mark>, <mark class="g">B.L. Mitter</mark> and <mark class="g">K.M. Munshi</mark> (eminent advocates), and <mark class="g">B.N. Rau</mark> (Constitutional Adviser and former high-ranking judicial officer).</li>
+<li>Its report was submitted on <mark class="b">21 May 1947</mark>; it addressed the <mark class="y">jurisdiction of the Supreme Court</mark> and proposed <mark class="b">two alternative methods</mark> for appointment of its judges.</li>
+</ul></li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>Wrong options: <mark class="r">Harendra Kumar, Usha Nath Sen and Varadachari</mark>. <mark class="r">Varadachariar</mark> belongs to the Constituent Assembly's <mark class="r">1947 Ad hoc Committee</mark>, not to the <mark class="r">1945 Sapru Committee</mark> that gave the answer.</div>
+</section>
+<section class="chapter" id="p1ch4" data-title="Strength of the Court — Number of Judges"><div class="chapter-head"><div class="seal">4</div><h2>Strength of the Court — Number of Judges</h2></div>
+<div class="tcard"><h3>Constitutional Position</h3>
+<ul>
+<li><mark class="y">Article 124(1)</mark>: there shall be a Supreme Court consisting of a <mark class="g">Chief Justice of India</mark> and, until Parliament by law prescribes a larger number, <mark class="b">not more than 33</mark> other Judges (originally <mark class="b">7</mark>).</li>
+<li>Present strength = <mark class="b">34 judges including the CJI</mark> (33 + 1).</li>
+<li>Earlier the strength was <mark class="b">30 + CJI = 31</mark>; the <mark class="y">Supreme Court (Number of Judges) Amendment Act, 2019</mark> raised it from <mark class="b">31 (30+1)</mark> to <mark class="b">34 (33+1)</mark>.</li>
+<li>The power to increase the number of Judges is vested in <mark class="g">Parliament</mark> — not the President, the CJI or the Law Commission.</li>
+<li>The original Constitution of 1950 envisaged a CJI and <mark class="b">7 puisne judges</mark>, leaving it to Parliament to increase the number.</li>
+<li>A <mark class="y">February 2008 Cabinet decision</mark> to enlarge the Court meant a strength of the CJI plus <mark class="b">30 other Judges</mark> — realised through the <mark class="y">2009 Amendment Act</mark> that took the Court from 26 to <mark class="b">31 including the CJI</mark>.</li>
+<li>In the early years <mark class="y">all the Judges sat together</mark> to hear cases; as work grew and arrears accumulated, Parliament raised the number repeatedly.</li>
+<li>There is <mark class="r">no provision for additional judges</mark> in the Supreme Court.</li>
+</ul>
+<table><caption>Growth in Strength of the Supreme Court</caption><thead class="blue"><tr><th>Year</th><th>Strength (incl. CJI)</th><th>Detail</th></tr></thead><tbody>
+<tr><td><mark class="b">1950</mark></td><td><mark class="b">8</mark></td><td>CJI + 7 puisne judges (original Constitution)</td></tr>
+<tr><td><mark class="b">1956</mark></td><td><mark class="b">11</mark></td><td>Raised by Parliament</td></tr>
+<tr><td><mark class="b">1960</mark></td><td><mark class="b">14</mark></td><td>Raised by Parliament</td></tr>
+<tr><td><mark class="b">1978</mark></td><td><mark class="b">18</mark></td><td>Raised by Parliament</td></tr>
+<tr><td><mark class="b">1986</mark></td><td><mark class="b">26</mark></td><td>Raised by Parliament</td></tr>
+<tr><td><mark class="b">2009</mark></td><td><mark class="b">31</mark></td><td>Number of Judges Amendment Act 2009 (26 → 31)</td></tr>
+<tr><td><mark class="b">2019</mark></td><td><mark class="b">34</mark></td><td>Number of Judges Amendment Act 2019 (31 → 34)</td></tr>
+</tbody></table>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>The "current sanctioned strength" options (20, 25, 30, 31) and the "CJI and ___ Judges" options (7, 9, 11, 25) in the source carry <mark class="r">no answer key</mark> — they match older stages; the <mark class="r">present</mark> strength is <mark class="r">34 including CJI</mark>. The Cabinet-2008 question also has no key; 30 + CJI is inferred from the 2009 Act.</div>
+</section>
+<section class="chapter" id="p1ch5" data-title="Qualifications &amp; Appointment of Judges"><div class="chapter-head"><div class="seal">5</div><h2>Qualifications &amp; Appointment of Judges</h2></div>
+<div class="tcard"><h3>Who Appoints &amp; On What Consultation</h3>
+<ul>
+<li>Every Judge of the Supreme Court is appointed by the <mark class="g">President</mark> by <mark class="y">warrant under his hand and seal</mark> (<mark class="y">Art 124(2)</mark>) — not by the PM, the CJI or the Ombudsman.</li>
+<li>The President acts <mark class="y">after consultation</mark> with such Judges of the Supreme Court and of the High Courts as he deems necessary.</li>
+<li>In the case of a Judge other than the Chief Justice, the <mark class="g">CJI</mark> must <mark class="y">always be consulted</mark>.</li>
+<li>The Chief Justice is appointed after consultation with the other Judges of the Supreme Court and the Judges of the High Courts.</li>
+<li>Consultation with the CJI curtails the <mark class="y">absolute discretion of the Executive</mark> and ensures judicial appointments are not made on political or practical considerations — one safeguard of the Court's autonomy.</li>
+<li>Consultation with the CJI was made <mark class="y">obligatory</mark> by the <mark class="b">1993</mark> decision of the Supreme Court (see the Collegium chapter).</li>
+<li>Judges are not appointed on the recommendation of Rajya Sabha, the advice of Lok Sabha, or the advice of the PM.</li>
+<li class="grp"><span class="lead">Qualifications — Art 124(3)</span><ul class="sub">
+<li>Must be a <mark class="y">citizen of India</mark>.</li>
+<li>Has been a <mark class="g">Judge of a High Court</mark> (or two or more such courts in succession) for at least <mark class="b">5 years</mark>; <mark class="b">or</mark></li>
+<li>Has been an <mark class="g">advocate of a High Court</mark> (or two or more in succession) for at least <mark class="b">10 years</mark>; <mark class="b">or</mark></li>
+<li>Is, in the opinion of the <mark class="g">President</mark>, a <mark class="y">distinguished jurist</mark>.</li>
+<li><mark class="y">No minimum age</mark> is prescribed for appointment.</li>
+</ul></li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>For the Bar route the period is <mark class="r">10 years</mark> (options 20, 8 and 25 are wrong); for the Bench route it is <mark class="r">5 years as High Court judge</mark>.</div>
+</section>
+<section class="chapter" id="p1ch6" data-title="Collegium System &amp; NJAC"><div class="chapter-head"><div class="seal">6</div><h2>Collegium System &amp; NJAC</h2></div>
+<div class="tcard"><h3>Collegium System</h3>
+<ul>
+<li>The Collegium is the <mark class="y">system of appointment and transfer of judges</mark> that has evolved through <mark class="y">judgments of the Supreme Court</mark> — it is <mark class="r">not</mark> created by an Act of Parliament or by a provision of the Constitution; Parliament did not establish it.</li>
+<li>It arose because the Constitution requires <mark class="y">consultation with the CJI</mark> before any judicial appointment.</li>
+<li>It was adopted by the Supreme Court in <mark class="b">1993</mark>; its genesis lies in the <mark class="y">three Judges Cases</mark>.</li>
+<li>In the <mark class="y">1993 case</mark> the Court ruled that "consultation" means <mark class="y">concurrence</mark>, binding the President to the CJI's consultation.</li>
+<li>Initially the collegium was the <mark class="g">CJI + two senior-most judges</mark> of the Supreme Court.</li>
+<li>In <mark class="b">1998</mark> the Court clarified that consultation with the CJI means consultation of the collegium, comprising the <mark class="g">CJI and four other senior-most Judges</mark>.</li>
+<li>Present composition: a <mark class="b">five-member</mark> body headed by the <mark class="g">CJI</mark> with <mark class="b">four senior-most Judges</mark>.</li>
+<li>It decides elevation of Judges to the Supreme Court and the elevation of High Court Judges to Chief Justice; when there is disagreement the <mark class="y">majority opinion prevails</mark>.</li>
+<li>Judges of the Supreme Court and High Courts are appointed through the collegium system.</li>
+<li>[Outside source] The three cases: <mark class="g">First Judges Case</mark> (S.P. Gupta, 1981), <mark class="g">Second Judges Case</mark> (SC Advocates-on-Record Association, 1993) and the <mark class="g">Third Judges Case</mark> (1998 Presidential Reference under <mark class="y">Art 143</mark>) — the 1998 expansion to five judges came through a reference on the process of appointment and transfer of judges.</li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>The claim that the collegium was introduced in 1993 by <mark class="r">Justice P.N. Bhagwati</mark> in the <mark class="r">First Judges Case</mark> is <mark class="r">false</mark> — the 1993 ruling is the <mark class="r">Second Judges Case</mark>. Also <mark class="r">"evolved by Parliament by law" is false</mark>.</div>
+<div class="tcard"><h3>National Judicial Appointments Commission (NJAC)</h3>
+<ul>
+<li>Introduced by the <mark class="b">99th Constitutional Amendment Act, 2014</mark> to <mark class="y">replace the Collegium System</mark> for appointing judges to the Supreme Court and High Courts.</li>
+<li><mark class="r">Struck down</mark> by the Supreme Court in <mark class="b">2015</mark> as <mark class="y">unconstitutional</mark>; currently India has <mark class="r">no NJAC</mark> and the Collegium continues.</li>
+</ul>
+<table><caption>Composition of the NJAC (before it was struck down)</caption><thead class="blue"><tr><th>Member</th><th>Position</th></tr></thead><tbody>
+<tr><td><mark class="g">Chief Justice of India</mark></td><td>Ex-officio Chairperson</td></tr>
+<tr><td><mark class="g">Two senior-most Supreme Court Judges</mark> (next to the CJI)</td><td>Ex-officio Members</td></tr>
+<tr><td><mark class="g">Union Minister of Law and Justice</mark></td><td>Ex-officio Member</td></tr>
+<tr><td><mark class="g">Two eminent persons</mark></td><td>Nominated by a committee of the <mark class="g">Prime Minister</mark>, the <mark class="g">CJI</mark> and the <mark class="g">Leader of Opposition</mark> in Lok Sabha (or the leader of the single largest opposition party)</td></tr>
+</tbody></table>
+</div>
+<div class="tcard"><h3>Other Recommendations</h3>
+<ul>
+<li>The <mark class="y">Second Administrative Reforms Commission</mark> recommended that appointment of Judges to the higher courts be made through the participation of the <mark class="g">Executive</mark>, the <mark class="g">Legislature</mark> and the <mark class="g">CJI</mark>.</li>
+<li>Wrong options: National Commission to Review the Working of the Constitution, National Judicial Commission, Law Commission report.</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="p1ch7" data-title="Ad hoc, Acting &amp; Retired Judges"><div class="chapter-head"><div class="seal">7</div><h2>Ad hoc, Acting &amp; Retired Judges</h2></div>
+<div class="tcard"><h3>Acting Chief Justice — Art 126</h3>
+<ul>
+<li>The <mark class="g">President</mark> appoints an <mark class="y">Acting Chief Justice</mark> when the office of CJI is <mark class="y">vacant</mark> or the CJI is <mark class="y">unable to discharge his duties</mark>.</li>
+<li>Not appointed by the CJI, the PM, the Law Minister, or the CJI with the President's consent.</li>
+<li>There is <mark class="r">no provision for additional judges</mark> in the Supreme Court.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Ad hoc Judges — Art 127</h3>
+<ul>
+<li><mark class="y">Ad hoc judges</mark> can be appointed in the <mark class="g">Supreme Court</mark> only — not in High Courts or District/Sessions Courts (and additional judges cannot be).</li>
+<li>Purpose: when there is <mark class="y">no quorum</mark> of Judges to hold or continue a session of the Court — not for leave, lack of permanent appointees or case pendency.</li>
+<li>The <mark class="g">CJI</mark>, with the <mark class="y">previous consent of the President</mark> and after consultation with the <mark class="g">Chief Justice of the High Court concerned</mark>, requests in writing the attendance of a <mark class="g">High Court Judge</mark> duly qualified for Supreme Court appointment, designated by the CJI, for as long as necessary.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Attendance of Retired Judges — Art 128</h3>
+<ul>
+<li>The <mark class="g">CJI</mark> may at any time, with the <mark class="y">previous consent of the President</mark>, request a person who has held office as a Supreme Court Judge, a <mark class="g">Federal Court</mark> Judge, or a High Court Judge duly qualified for Supreme Court appointment, to <mark class="y">sit and act</mark> as a Supreme Court Judge.</li>
+<li>This is why a retired Supreme Court judge can be called back to sit and act by the CJI with the President's permission.</li>
+</ul>
+</div>
+</section>
+<div class="part-divider"><span class="plabel">Part B</span><div class="ptitle">Tenure, Service Conditions &amp; Independence</div><p class="pdesc">Oath, retirement, resignation, removal, salary, post-retirement bar and safeguards of judicial autonomy.</p></div>
+<section class="chapter" id="p1ch8" data-title="Oath, Tenure, Resignation &amp; Retirement"><div class="chapter-head"><div class="seal">8</div><h2>Oath, Tenure, Resignation &amp; Retirement</h2></div>
+<div class="tcard"><h3>Oath &amp; Tenure</h3>
+<ul>
+<li>A person appointed as a Supreme Court Judge makes and subscribes an <mark class="y">oath or affirmation</mark> before the <mark class="g">President</mark>.</li>
+<li>The <mark class="y">Third Schedule</mark> contains the forms of oaths for Union and State Ministers, MPs, State Legislators, Judges of the Supreme Court and High Courts, and the CAG — <mark class="b">10 forms</mark> in all.</li>
+<li>The form beginning "true faith and allegiance to the Constitution ... uphold the sovereignty and integrity of India ... perform the duties of my office" is prescribed for the <mark class="g">Chief Justice of India</mark> (and the <mark class="g">CAG</mark>); not the President, an MP or the Governor.</li>
+<li>A Judge holds office until the age of <mark class="b">65 years</mark> (<mark class="y">Art 124(2)</mark>) — the High Court retirement age is <mark class="b">62 years</mark>; options 60, 62, 63, 64 and 70 are wrong.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Resignation</h3>
+<ul>
+<li>A Judge may resign by writing under his hand addressed to the <mark class="g">President</mark> (<mark class="y">proviso (a) to Art 124(2)</mark>).</li>
+<li>Not addressed to the PM, the Law Minister, the Attorney General, the CJI or the senior-most Judge.</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="p1ch9" data-title="Removal of Judges"><div class="chapter-head"><div class="seal">9</div><h2>Removal of Judges</h2></div>
+<div class="tcard"><h3>Procedure under Art 124(4)</h3>
+<ul>
+<li>A Judge cannot be removed except by an <mark class="y">order of the President</mark> passed after an <mark class="y">address by each House</mark> of Parliament.</li>
+<li>The address must be supported by a <mark class="y">majority of the total membership</mark> of that House <mark class="b">and</mark> a majority of not less than <mark class="b">two-thirds</mark> of members present and voting.</li>
+<li>It must be presented to the President in the <mark class="y">same session</mark>.</li>
+<li>Grounds: <mark class="y">proved misbehaviour</mark> or <mark class="y">incapacity</mark>.</li>
+<li>Judges cannot be removed by the will of the CJI, by the President alone, or by the President on the CJI's recommendation; nor does a CBI enquiry, a CJI enquiry or a Bar Council report remove a Judge.</li>
+<li>Though an impeachment-like process, the word "<mark class="y">impeachment</mark>" is used in the Constitution only for removing the <mark class="g">President</mark>; for Supreme Court and High Court Judges the word used is "<mark class="y">remove</mark>".</li>
+<li>The Constitution gives the grounds but does <mark class="r">not define</mark> "proved misbehaviour" or "incapacity".</li>
+<li class="grp"><span class="lead">Judges (Inquiry) Act, 1968</span><ul class="sub">
+<li>The details of the process of removal are given in the <mark class="y">Judges (Inquiry) Act, 1968</mark>.</li>
+<li>The <mark class="g">Speaker of the Lok Sabha</mark> <mark class="r">can reject</mark> a motion to remove a Judge under this Act.</li>
+<li>[Outside source] A notice is signed by 100 Lok Sabha / 50 Rajya Sabha members and, if admitted, a three-member committee inquires.</li>
+</ul></li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>The theory line saying removals "can be declared unconstitutional and illegal in the state of being extraordinary" is <mark class="r">garbled in the source</mark>; its exact meaning is unclear and it is not elaborated further here.</div>
+</section>
+<section class="chapter" id="p1ch10" data-title="Salary, Expenses, Post-Retirement Bar &amp; Independence"><div class="chapter-head"><div class="seal">10</div><h2>Salary, Expenses, Post-Retirement Bar &amp; Independence</h2></div>
+<div class="tcard"><h3>Salary &amp; Administrative Expenses</h3>
+<ul>
+<li>Salaries and allowances are determined by <mark class="g">Parliament</mark> by law (<mark class="y">Art 125(1)</mark>); until then, as specified in the <mark class="y">Second Schedule</mark>. Not fixed by a Pay Commission, Law Commission or Council of Ministers.</li>
+<li>Salaries of Judges are <mark class="y">charged on the Consolidated Fund of India</mark> — the Legislature does not vote on them.</li>
+<li>All administrative expenses of the Supreme Court, including salaries, allowances and pensions of its officers and servants, are charged on the <mark class="y">Consolidated Fund of India</mark>; a <mark class="g">High Court's</mark> expenses are charged on the <mark class="y">Consolidated Fund of the State</mark>.</li>
+<li>The <mark class="g">CJI</mark> appoints the officers and servants of the Supreme Court without executive interference and can prescribe their conditions of service.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Post-Retirement Bar</h3>
+<ul>
+<li><mark class="y">Art 124(7)</mark>: no person who has held office as a Supreme Court Judge shall plead or act in <mark class="r">any court or before any authority</mark> within India.</li>
+<li>A former Judge is therefore debarred from practising in any court of law or before any other authority.</li>
+<li><mark class="y">Art 220</mark>: a permanent High Court Judge after commencement of the Constitution may not plead or act in any court or authority in India <mark class="b">except</mark> the <mark class="g">Supreme Court</mark> and the <mark class="g">other High Courts</mark>.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Safeguards of the Court's Autonomy</h3>
+<ul>
+<li>Consultation of the <mark class="g">CJI</mark> in appointments; removal only by special majority of Parliament; salaries charged on the Consolidated Fund; the CJI's control over staff appointments.</li>
+<li>The Judges cannot be removed by the CJI alone, and the Government alone does not appoint staff.</li>
+<li>Parliament cannot enlarge jurisdiction beyond what the Constitution provides (see <mark class="y">Art 138</mark>, Union List only).</li>
+</ul>
+</div>
+</section>
+<div class="part-divider"><span class="plabel">Part C</span><div class="ptitle">Jurisdiction &amp; Powers</div><p class="pdesc">Seat, benches, court of record, original, appellate, advisory, writ and special powers.</p></div>
+<section class="chapter" id="p1ch11" data-title="Seat, Language, Benches &amp; Constitution Bench"><div class="chapter-head"><div class="seal">11</div><h2>Seat, Language, Benches &amp; Constitution Bench</h2></div>
+<div class="tcard"><h3>Seat and Language</h3>
+<ul>
+<li>The Court sits in <mark class="g">New Delhi</mark>, but may sit elsewhere as the <mark class="g">CJI</mark>, with the <mark class="y">approval of the President</mark>, appoints (<mark class="y">Art 130</mark>).</li>
+<li>All proceedings in the Supreme Court and every High Court are in <mark class="y">English</mark> — <mark class="y">Art 348(1)(a)</mark>, which also covers the language of Acts, Bills etc.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Benches</h3>
+<ul>
+<li>A bench hearing a case on the <mark class="y">interpretation of the Constitution</mark> (a substantial question of law) must have at least <mark class="b">5 Judges</mark> — the <mark class="y">Constitution Bench</mark>; options 7, 9, 10, 11 and 13 are wrong.</li>
+<li>Benches generally have an <mark class="y">odd number</mark> of Judges (3, 5, 7, 9, 11) to avoid a clash of votes or views.</li>
+<li>The <mark class="y">largest bench</mark> (<mark class="b">13 judges</mark>) sat in <mark class="y">Keshavananda Bharati</mark> (1973); the <mark class="y">second largest</mark> (<mark class="b">11 judges</mark>) in <mark class="y">Golaknath v State of Punjab</mark> (1967).</li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>[Outside source] Golaknath, the Bank Nationalisation case and T.M.A. Pai were all 11-judge benches; the source key accepts <mark class="r">Golaknath</mark> as the answer to "second largest bench".</div>
+</section>
+<section class="chapter" id="p1ch12" data-title="Court of Record &amp; Contempt"><div class="chapter-head"><div class="seal">12</div><h2>Court of Record &amp; Contempt</h2></div>
+<div class="tcard"><h3>Court of Record</h3>
+<ul>
+<li><mark class="y">Art 129</mark>: the Supreme Court is a <mark class="y">Court of Record</mark> with all the powers of such a court, including the power to <mark class="y">punish for contempt</mark> of itself.</li>
+<li>Meaning: its proceedings and judgments are written and enrolled for <mark class="y">perpetual memory</mark>, available as <mark class="y">evidence</mark> of fact, with evidentiary value, and cannot be questioned in any court.</li>
+<li><mark class="y">Art 215</mark> makes <mark class="g">High Courts</mark> courts of record too — so the Supreme Court and High Courts are both courts of record, not District Courts. A High Court as a court of record can <mark class="y">review and correct</mark> its own judgments, as the Supreme Court can.</li>
+<li><mark class="r">Art 124</mark> deals with the establishment and constitution of the Court, not court of record status.</li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>Options "decisions have evidentiary value" and "power to punish for contempt" are both correct; the source flags that the state commission chose the evidentiary-value option.</div>
+<div class="tcard"><h3>Contempt of Court</h3>
+<ul>
+<li>The <mark class="y">Contempt of Courts Act, 1971</mark> followed the <mark class="g">H.N. Sanyal Committee</mark> (<mark class="b">1961</mark>).</li>
+<li>The Constitution empowers the Supreme Court and High Courts to punish for contempt of themselves but does <mark class="r">not define</mark> civil or criminal contempt — they are defined in the Act.</li>
+<li><mark class="g">Parliament</mark> has the power to make laws on contempt of court.</li>
+<li><mark class="y">Sec 2(b)</mark> of the Act: <mark class="y">wilful disobedience</mark> of a judgment, decree, direction, order or writ is <mark class="y">civil contempt</mark>.</li>
+<li>In <mark class="g">M.L. Sachdev v Union of India</mark> (an Art 32 case) wilful non-compliance with court orders was held to be contempt; the party was held guilty.</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="p1ch13" data-title="Original Jurisdiction — Art 131"><div class="chapter-head"><div class="seal">13</div><h2>Original Jurisdiction — Art 131</h2></div>
+<div class="tcard"><h3>Disputes Covered</h3>
+<ul>
+<li>The Supreme Court has <mark class="y">exclusive original jurisdiction</mark> in the <mark class="y">Centre–State</mark> and <mark class="y">inter-State</mark> disputes.</li>
+<li>Covered: dispute (a) between the <mark class="g">Government of India</mark> and one or more <mark class="g">States</mark>; (b) between the Government of India and one or more States on one side and one or more States on the other; (c) between <mark class="b">two or more States</mark>.</li>
+<li>Applies only if the dispute involves a question (of law or fact) on which the <mark class="y">existence or extent of a legal right</mark> depends.</li>
+<li>Proviso: it does <mark class="r">not extend</mark> to a dispute arising out of a pre-Constitution treaty, agreement, covenant, engagement or similar instrument that continues in operation, or which provides that this jurisdiction shall not extend.</li>
+<li>As a <mark class="y">federal court</mark> the Supreme Court decides disputes between units of the federation.</li>
+<li><mark class="r">Not</mark> covered: election disputes of Parliament / State Legislature, and disputes between the Government of India and a <mark class="r">Union Territory</mark>.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Three Jurisdictions of the Court</h3>
+<ul>
+<li>It has <mark class="y">original</mark>, <mark class="y">appellate</mark> and <mark class="y">advisory</mark> jurisdiction: Art 131; Arts 132–136; Art 143.</li>
+<li>Writ power to protect Fundamental Rights (<mark class="y">Art 32</mark>) is <mark class="r">not exclusive</mark> to it (see Writ chapter).</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="p1ch14" data-title="Appellate Jurisdiction — Arts 132–136"><div class="chapter-head"><div class="seal">14</div><h2>Appellate Jurisdiction — Arts 132–136</h2></div>
+<div class="tcard"><h3>Heads of Appeal</h3>
+<ul>
+<li>Cases on the <mark class="y">interpretation of the Constitution</mark> reach the Court under its <mark class="y">appellate</mark> jurisdiction (not original or advisory).</li>
+<li><mark class="y">Art 132</mark>: appeal from <mark class="g">High Courts</mark> against any judgment, decree or final order in civil, criminal or other proceedings involving a substantial question of law on interpretation of the Constitution.</li>
+<li><mark class="y">Art 133</mark>: civil matters (whether or not constitutional questions).</li>
+<li><mark class="y">Art 134</mark>: criminal matters (whether or not constitutional questions).</li>
+<li><mark class="y">Art 134A</mark>: certificate for appeal; in constitutional cases <mark class="y">Art 132 read with Art 134A</mark> creates the appellate jurisdiction.</li>
+<li><mark class="y">Art 136</mark>: <mark class="y">special leave to appeal</mark>.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Special Leave — Art 136</h3>
+<ul>
+<li>Under this extraordinary power the Court can quash the decision of a <mark class="y">quasi-judicial tribunal</mark> that exceeded its jurisdiction or approached the question in a manner likely to result in injustice.</li>
+<li>The Supreme Court is the <mark class="y">highest Court of Appeal</mark> of all courts.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Tribunals &amp; Court Martial</h3>
+<ul>
+<li>The Court hears appeals from any High Court or Tribunal <mark class="b">including Court Martial</mark>, since the <mark class="y">Armed Forces Tribunal Act, 2007</mark> allows appeal to the Supreme Court.</li>
+<li><mark class="y">TDSAT</mark> (Telecom Disputes Settlement and Appellate Tribunal) was set up in <mark class="b">2000</mark> by amending the <mark class="y">TRAI Act, 1997</mark>; for telecom, broadcasting and airport tariff matters appeals go to the Supreme Court only on <mark class="y">substantial questions of law</mark>; for cyber issues, to the <mark class="g">High Court</mark>.</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="p1ch15" data-title="Advisory Jurisdiction — Art 143"><div class="chapter-head"><div class="seal">15</div><h2>Advisory Jurisdiction — Art 143</h2></div>
+<div class="tcard"><h3>Scope</h3>
+<ul>
+<li><mark class="y">Art 143</mark>: the <mark class="g">President</mark> may seek the Court's opinion on a question of <mark class="y">law or fact of public importance</mark>, or on a dispute arising out of a pre-Constitution treaty, agreement, covenant or similar instrument.</li>
+<li>In the first case the Court <mark class="y">may refuse</mark>; in the second it is <mark class="y">bound</mark> to give its opinion.</li>
+<li>Only the <mark class="g">President</mark> can refer — not the PM or a High Court; the Court cannot advise suo motu, only on Fundamental Rights, or to the Government in general.</li>
+<li>Hearing is by a <mark class="y">bench of at least 5</mark> Judges and the advice is <mark class="r">not binding</mark> on the Government.</li>
+<li>Also used for the question of the process of appointment and transfer of Judges.</li>
+</ul>
+</div>
+<div class="tcard"><h3>2002 Gujarat Reference</h3>
+<ul>
+<li>In <mark class="b">August 2002</mark> President <mark class="g">A.P.J. Abdul Kalam</mark> sought the Court's opinion under Art 143 on the dispute between the <mark class="g">Election Commission</mark> and the Government over elections in Gujarat.</li>
+<li>Issues: the limits on the EC's powers under <mark class="y">Art 324</mark>, the impact of <mark class="y">Art 174</mark> on its jurisdiction, and whether the EC could recommend <mark class="y">President's Rule</mark> in a State.</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="p1ch16" data-title="Writ Jurisdiction — Supreme Court vs High Courts"><div class="chapter-head"><div class="seal">16</div><h2>Writ Jurisdiction — Supreme Court vs High Courts</h2></div>
+<div class="tcard"><h3>Arts 32, 226 &amp; 227</h3>
+<ul>
+<li><mark class="y">Art 32</mark>: <mark class="y">Right to Constitutional Remedies</mark> — the Supreme Court can issue directions, orders or writs to enforce <mark class="y">Fundamental Rights</mark> (Part III).</li>
+<li>The <mark class="g">High Courts</mark> (under <mark class="y">Art 226</mark>) can also issue writs; both courts share jurisdiction over enforcement of FRs.</li>
+<li>Art 226 is <mark class="b">broader</mark>: High Courts can issue writs for FRs, other constitutional rights and other purposes.</li>
+<li><mark class="y">Art 227</mark>: High Court superintendence over all courts and tribunals in its territory.</li>
+<li>The Supreme Court therefore has <mark class="r">no exclusive</mark> jurisdiction over the validity of Central laws.</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="p1ch17" data-title="Review, Curative Petition &amp; Special Powers"><div class="chapter-head"><div class="seal">17</div><h2>Review, Curative Petition &amp; Special Powers</h2></div>
+<div class="tcard"><h3>Powers</h3>
+<ul>
+<li><mark class="y">Art 137</mark>: the Supreme Court (not the President, the Cabinet or the Law Ministry) can <mark class="y">review and change</mark> its own judgment or order, subject to Parliamentary law or rules under <mark class="y">Art 145</mark>.</li>
+<li><mark class="y">Curative Petition</mark>: evolved in <mark class="g">Rupa Ashok Hurra v Ashok Hurra</mark> (<mark class="b">2002</mark>); filed under <mark class="y">Art 142</mark>.</li>
+<li><mark class="y">Art 142</mark>: the Court may pass any decree or order necessary for <mark class="y">complete justice</mark>, enforceable across India as prescribed by Parliament's law, or by Presidential order until then; ordinary law limits do not restrict it.</li>
+<li><mark class="y">Art 138</mark>: Parliament can enlarge the jurisdiction on Union List matters by <mark class="y">making a law</mark>, not by resolution or Presidential order.</li>
+<li><mark class="y">Art 139A</mark>: transfer of cases — where the same questions of law are pending before the SC and a High Court or two High Courts, the SC may withdraw and decide them itself (suo motu or on an application from the <mark class="g">Attorney General</mark> or a party).</li>
+<li><mark class="y">Art 141</mark>: its decision binds all courts in India.</li>
+</ul>
+</div>
+</section>
+<div class="part-divider"><span class="plabel">Part D</span><div class="ptitle">Judicial Review, Basic Structure &amp; Guardianship</div><p class="pdesc">The power to test laws against the Constitution and the doctrine that limits even constitutional amendments.</p></div>
+<section class="chapter" id="p1ch18" data-title="Judicial Review"><div class="chapter-head"><div class="seal">18</div><h2>Judicial Review</h2></div>
+<div class="tcard"><h3>Meaning &amp; Basis</h3>
+<ul>
+<li><mark class="y">Judicial Review</mark> = the power of the Judiciary to pronounce on the <mark class="y">constitutionality of laws and executive orders</mark> and to declare any law or order of the Legislature or Executive <mark class="y">void</mark> if it conflicts with the Constitution — not the power to question the wisdom of laws, review Bills before assent, or review its own judgments.</li>
+<li>It originated and developed in the <mark class="g">USA</mark>, first propounded in <mark class="g">Marbury v Madison</mark> (<mark class="b">1803</mark>) by <mark class="g">Chief Justice John Marshall</mark>.</li>
+<li><mark class="y">Art 13</mark> provides for it: <mark class="y">13(1)</mark> — pre-Constitution laws inconsistent with Part III are void to the extent of the inconsistency; <mark class="y">13(2)</mark> — the State shall not make a law abridging Part III rights, and a contravening law is void to that extent.</li>
+<li>The Constitution establishes it through <mark class="y">Arts 13, 32, 136, 137, 226 and 227</mark>.</li>
+<li>Both the <mark class="g">Supreme Court</mark> and the <mark class="g">High Courts</mark> enjoy the power; the Supreme Court declared it a part of the <mark class="y">basic structure</mark>.</li>
+<li>India's judicial review is based on <mark class="y">procedure established by law</mark>, not US-style "due process" — and the concept rests on the supremacy of the Constitution.</li>
+<li>Judicial review exists in <mark class="b">India and USA</mark>; in the <mark class="g">UK</mark> Parliament is supreme and its laws cannot be challenged in court.</li>
+<li>Its scope is <mark class="y">limited</mark> in India — the Court reviews legislation especially if it affects the basic structure, has defined sovereign power as divided between the three branches, and the huge size of the Constitution further limits it; the "bag of borrowings" remark is true but does not explain the limit.</li>
+<li class="grp"><span class="lead">Amendments &amp; the High Courts</span><ul class="sub">
+<li>The <mark class="b">42nd Amendment (1976)</mark> curtailed High Court review by barring them from deciding the validity of <mark class="y">Central laws</mark>; the <mark class="b">43rd Amendment (1977)</mark> restored it.</li>
+<li>A High Court can invalidate a Central law; and a constitutional amendment against the basic structure can be questioned by the Supreme Court.</li>
+<li>An amendment removing <mark class="y">Equality before law</mark> from Part III would be unconstitutional (Art 13(2)).</li>
+</ul></li>
+</ul>
+</div>
+<div class="tcard"><h3>Due Process vs Procedure Established by Law</h3>
+<ul>
+<li><mark class="y">Due Process of Law</mark> in essence = the <mark class="y">principle of natural justice</mark> — fairness, reasonableness, equity and equality, free from arbitrariness.</li>
+<li>Two principles: <mark class="y">Nemo judex in causa sua</mark> (no one a judge in his own cause — rule against bias) and <mark class="y">Audi alteram partem</mark> (no one condemned unheard).</li>
+<li>Natural justice is grounded in <mark class="y">Arts 14 and 21</mark>; the Court recognised due process in <mark class="g">Maneka Gandhi</mark> to remove arbitrariness.</li>
+<li>Judicial process in India rests on procedure established by law, the Constitution, conventions and routine due process; <mark class="y">Art 14</mark> — equality before law (British) and equal protection of laws (American).</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="p1ch19" data-title="Doctrine of Basic Structure"><div class="chapter-head"><div class="seal">19</div><h2>Doctrine of Basic Structure</h2></div>
+<div class="tcard"><h3>Origin &amp; Content</h3>
+<ul>
+<li>Propounded in the <mark class="g">Keshavananda Bharati v State of Kerala</mark> case (<mark class="b">1973</mark>) by a <mark class="b">13-judge bench</mark> by a <mark class="b">7:6</mark> majority — Parliament may amend (Art 368) only so far as it does not "<mark class="y">damage or destroy</mark>" the basic structure.</li>
+<li>The Court may <mark class="y">abrogate, change or alter</mark> nothing of the basic framework; amendments are subject to <mark class="y">judicial review</mark> — a substantive non-legislative check on Parliament.</li>
+<li>Its source is <mark class="y">judicial interpretation</mark>; the term is <mark class="r">not in the Constitution</mark> (the Constitution does not define it in terms of federalism, secularism etc.).</li>
+<li>Later approved in <mark class="g">Minerva Mills</mark> (<mark class="b">1980</mark>).</li>
+<li>Articles declared basic structure: <mark class="y">Arts 32, 226 and 227</mark> — judicial review under Art 32 (SC) and Art 226 (HC) is integral, and 227 gives HC superintendence; Art 245 is not.</li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>Other case options (Golaknath, Gopalan, Maneka Gandhi, Indira Sawhney, Shankari Prasad, Rudal Shah) are <mark class="r">not</mark> the source of the doctrine.</div>
+</section>
+<section class="chapter" id="p1ch20" data-title="Guardian, Custodian &amp; Final Interpreter"><div class="chapter-head"><div class="seal">20</div><h2>Guardian, Custodian &amp; Final Interpreter</h2></div>
+<div class="tcard"><h3>Role</h3>
+<ul>
+<li>The Supreme Court is the <mark class="y">last authority to interpret the Constitution</mark> — the <mark class="y">Guardian / Custodian</mark> of the Constitution (not the President, Parliament, Council of Ministers or Lok Sabha Secretariat).</li>
+<li>It is a <mark class="y">federal court</mark>, <mark class="y">protector of human rights</mark>, and <mark class="y">final interpreter</mark> — all true.</li>
+<li>The Constitution is the <mark class="y">supreme law</mark> and a <mark class="y">living document</mark>, laying down the framework of institutions and the Fundamental Rights, DPSP and Duties.</li>
+</ul>
+</div>
+</section>
+<div class="part-divider"><span class="plabel">Part E</span><div class="ptitle">PIL, Judicial Activism &amp; Landmark Judgments</div><p class="pdesc">Public interest litigation, activism and rulings.</p></div>
+<section class="chapter" id="p1ch21" data-title="Public Interest Litigation &amp; Judicial Activism"><div class="chapter-head"><div class="seal">21</div><h2>Public Interest Litigation &amp; Judicial Activism</h2></div>
+<div class="tcard"><h3>Public Interest Litigation (PIL)</h3>
+<ul>
+<li>PIL = <mark class="y">Public Interest Litigation</mark>; it is a <mark class="y">judicially developed</mark> process (judicial initiative, not Act or amendment).</li>
+<li>Concept originated in the <mark class="g">USA</mark>: since the 19th century the legal-aid movement fed public interest law; first legal aid office in <mark class="g">New York</mark>, <mark class="b">1876</mark>.</li>
+<li>Before the <mark class="b">1980s</mark> only the aggrieved party could approach courts; after the <mark class="y">Emergency</mark> the Court devised a way for <mark class="y">any member of public or NGO</mark> to approach it.</li>
+<li>Justices <mark class="g">P.N. Bhagwati</mark> and <mark class="g">V.R. Krishna Iyer</mark> were among the first to admit PILs; Krishna Iyer (<mark class="b">1915–2014</mark>) was a Supreme Court judge, <mark class="r">not CJI</mark>.</li>
+<li>Aligned with <mark class="y">Art 39A</mark>; can be filed in <mark class="y">High Courts and the Supreme Court</mark>.</li>
+<li>Expanded <mark class="y">locus standi</mark> so socially and economically weaker sections have access to justice; any citizen can go to court for the welfare of another person or group.</li>
+<li>PIL strengthens but is <mark class="r">not indispensable</mark> for the rule of law, which rests on the basic structure, Art 14, Art 32, Art 226 and judicial review.</li>
+<li>First PIL: <mark class="g">Hussainara Khatoon v State of Bihar</mark> (<mark class="b">1979</mark>) on a petition by <mark class="g">Kapila Hingorani</mark>, accepted by Bhagwati; the CJI at the time was <mark class="g">Y.V. Chandrachud</mark>; Bhagwati became the <mark class="b">17th CJI</mark> (<mark class="b">12 July 1985 – 20 Dec 1986</mark>).</li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>The source gives <mark class="r">no valid key</mark> for "who was CJI when PIL was introduced" — none of the options fits.</div>
+<div class="tcard"><h3>Judicial Activism</h3>
+<ul>
+<li>Related to <mark class="y">PIL</mark>; began in the <mark class="b">mid-1970s</mark> on the Supreme Court's initiative.</li>
+<li><mark class="g">Justice A.S. Anand</mark>: judicial activism should not become "<mark class="y">judicial adventurism</mark>"; activism arose from failure of Executive and Legislature, adventurism being an extreme form.</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="p1ch22" data-title="Landmark Judgments &amp; Rulings"><div class="chapter-head"><div class="seal">22</div><h2>Landmark Judgments &amp; Rulings</h2></div>
+<div class="tcard"><h3>Rulings by Theme</h3>
+<ul>
+<li class="grp"><span class="lead">Amendment power &amp; basic structure</span><ul class="sub">
+<li><mark class="g">Shankari Prasad v Union of India</mark>: Parliament's power to amend the Constitution.</li>
+<li><mark class="g">Golaknath v State of Punjab</mark> (<mark class="b">1967</mark>): FRs enable a man to chalk out his life as he likes best; 11-judge bench.</li>
+<li><mark class="g">Keshavananda Bharati</mark> (<mark class="b">1973</mark>) and <mark class="g">Minerva Mills</mark> (<mark class="b">1980</mark>): basic structure.</li>
+</ul></li>
+<li class="grp"><span class="lead">Fundamental rights</span><ul class="sub">
+<li><mark class="g">A.K. Gopalan v State of Madras</mark>: preventive detention procedure.</li>
+<li><mark class="g">Romesh Thapar v State of Madras</mark>: restriction on free speech.</li>
+<li><mark class="g">Champakam Dorairajan v State of Madras</mark>: equality in admission to educational institutions.</li>
+<li><mark class="g">Maneka Gandhi</mark> (<mark class="b">1978</mark>): Arts 14, 19, 21 are not mutually exclusive; right to travel abroad is part of personal liberty.</li>
+<li><mark class="g">Shayara Bano</mark> (<mark class="b">2017</mark>): triple talaq unconstitutional (violates Art 14); Parliament endorsed this by the Triple Talaq law.</li>
+</ul></li>
+<li class="grp"><span class="lead">Reservation</span><ul class="sub">
+<li><mark class="g">Indra Sawhney v Union of India</mark> (<mark class="b">1992</mark>): OBC reservation in government employment; 50% ceiling under Arts 15(4) and 16(4); creamy layer for OBCs; the Union and States have largely accepted the ceiling, and any reservation beyond 50% is liable to be struck down.</li>
+</ul></li>
+<li class="grp"><span class="lead">Gender</span><ul class="sub">
+<li><mark class="g">Vishakha v State of Rajasthan</mark> (<mark class="b">1997</mark>): sexual harassment guidelines, superseded by the <mark class="b">2013</mark> Act.</li>
+<li><mark class="b">23 Sept 2003</mark>: <mark class="g">Justice M.B. Shah</mark> held preference to women as Principal of a Government Girls' College not violative of Arts 14, 15 and 16.</li>
+</ul></li>
+<li class="grp"><span class="lead">Zamindari / land</span><ul class="sub">
+<li><mark class="g">Kameshwar Singh v State of Bihar</mark>, <mark class="g">Motilal v State of UP</mark>, <mark class="g">State of West Bengal v Subodh Gopal</mark> (key also lists <mark class="g">Ramesh Thapar</mark>) — all related to the zamindari system.</li>
+<li><mark class="g">Bella Banerjee case</mark>: West Bengal Land Development and Planning Act 1948, not right to travel abroad.</li>
+</ul></li>
+<li class="grp"><span class="lead">Other</span><ul class="sub">
+<li><mark class="y">Coal-gate</mark>: the Court called the <mark class="g">CBI</mark> a "<mark class="y">caged parrot</mark>".</li>
+<li><mark class="y">Section 377 IPC</mark> ruling on homosexuality (Section of IPC, not an Article).</li>
+<li><mark class="b">13 July 2005</mark>: Illegal Migrants (Determination by Tribunals) Act 1983 struck down under <mark class="y">Art 355</mark>; a three-judge bench said large-scale illegal migration from Bangladesh was an aggression on Assam. [Outside source] Sarbananda Sonowal case.</li>
+</ul></li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>Romesh Thapar is treated as a <mark class="r">free speech</mark> case in one question and as a <mark class="r">zamindari</mark> case ("Ramesh Thaper") in another — the source conflicts; the well-known subject is free speech. Matching question key (*) fits <mark class="r">none of the offered options</mark>.</div>
+</section>
+<div class="part-divider"><span class="plabel">Part F</span><div class="ptitle">Judges &amp; Chief Justices</div><p class="pdesc">CJIs, firsts, women judges and High Court links.</p></div>
+<section class="chapter" id="p1ch23" data-title="Chief Justices of India"><div class="chapter-head"><div class="seal">23</div><h2>Chief Justices of India</h2></div>
+<div class="tcard"><h3>Sequence &amp; Records</h3>
+<table><caption>Chief Justices Named in the Source</caption><thead class="red"><tr><th>CJI</th><th>Tenure</th></tr></thead><tbody>
+<tr><td><mark class="g">S.R. Das</mark></td><td>1.2.1956 – 30.9.1959</td></tr>
+<tr><td><mark class="g">B.P. Sinha</mark></td><td>1.10.1959 – 31.1.1964</td></tr>
+<tr><td><mark class="g">P.B. Gajendragadkar</mark></td><td>1.2.1964 – 15.3.1966</td></tr>
+<tr><td><mark class="g">Y.V. Chandrachud</mark> (16th)</td><td>22.2.1978 – 11.7.1985; longest serving; appointed by Neelam Sanjiva Reddy</td></tr>
+<tr><td><mark class="g">P.N. Bhagwati</mark> (17th)</td><td>12.7.1985 – 20.12.1986</td></tr>
+<tr><td><mark class="g">Kamal Narain Singh</mark></td><td>25.11.1991 – 12.12.1991 (shortest)</td></tr>
+<tr><td><mark class="g">G.B. Pattanaik</mark></td><td>8.11.2002 – 18.12.2002</td></tr>
+<tr><td><mark class="g">S. Rajendra Babu</mark></td><td>2.5.2004 – 31.5.2004</td></tr>
+<tr><td><mark class="g">R.C. Lahoti</mark> (35th)</td><td>1.6.2004 – 1.11.2005</td></tr>
+<tr><td><mark class="g">K.G. Balakrishnan</mark></td><td>14.1.2007 – 12.5.2010</td></tr>
+<tr><td><mark class="g">S.H. Kapadia</mark></td><td>12.5.2010 – 28.9.2012</td></tr>
+<tr><td><mark class="g">R.M. Lodha</mark></td><td>27.4.2014 – 27.9.2014</td></tr>
+<tr><td><mark class="g">H.L. Dattu</mark></td><td>28.9.2014 – 2.12.2015</td></tr>
+<tr><td><mark class="g">T.S. Thakur</mark></td><td>3.12.2015 – 3.1.2017</td></tr>
+<tr><td><mark class="g">J.S. Khehar</mark></td><td>4.1.2017 – 27.8.2017</td></tr>
+<tr><td><mark class="g">Deepak Misra</mark></td><td>28.8.2017 – 2.10.2018</td></tr>
+<tr><td><mark class="g">Ranjan Gogoi</mark></td><td>3.10.2018 – 17.11.2019</td></tr>
+<tr><td><mark class="g">S.A. Bobde</mark></td><td>18.11.2019 – 23.4.2021</td></tr>
+<tr><td><mark class="g">N.V. Ramana</mark></td><td>24.4.2021 – 26.8.2022</td></tr>
+<tr><td><mark class="g">U.U. Lalit</mark></td><td>27.8.2022 – 8.11.2022</td></tr>
+<tr><td><mark class="g">D.Y. Chandrachud</mark></td><td>9.11.2022 – 10.11.2024</td></tr>
+<tr><td><mark class="g">Sanjiv Khanna</mark></td><td>from 11.11.2024</td></tr>
+</tbody></table>
+<ul>
+<li><mark class="g">A.S. Anand</mark>: <mark class="b">29th CJI</mark>, <mark class="b">10 Oct 1998 – 31 Oct 2001</mark>.</li>
+<li>[Outside source] <mark class="g">Surya Kant</mark> sworn in as the <mark class="b">53rd CJI</mark> on <mark class="b">24 Nov 2025</mark>, succeeding <mark class="g">B.R. Gavai</mark>; retires <mark class="b">9 Feb 2027</mark>.</li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>The source lists the sequence with gaps and spells "Raman" (Ramana); the sequence H.L. Dattu → T.S. Thakur → J.S. Khehar is the correct one among the options.</div>
+</section>
+<section class="chapter" id="p1ch24" data-title="Women Judges, Firsts &amp; Notable Appointments"><div class="chapter-head"><div class="seal">24</div><h2>Women Judges, Firsts &amp; Notable Appointments</h2></div>
+<div class="tcard"><h3>Women Judges</h3>
+<ul>
+<li><mark class="g">Fathima Beevi</mark>: first woman Judge of the Supreme Court (<mark class="b">1989</mark>); first Muslim woman in the higher judiciary; retired <mark class="b">1992</mark>; NHRC member <mark class="b">1993–1997</mark>; Governor of <mark class="y">Tamil Nadu</mark> <mark class="b">1997–2001</mark> (not Kerala); died <mark class="b">23 Nov 2023</mark>.</li>
+<li><mark class="g">Gyan Sudha Misra</mark>: elevated <mark class="b">30 April 2010</mark>, fourth woman Judge, earlier Chief Justice of <mark class="g">Patna High Court</mark>.</li>
+<li><mark class="g">Ranjana Prakash Desai</mark>: fifth woman Judge (<mark class="b">13 Sept 2011 – 29 Oct 2014</mark>); earlier women: Fathima Beevi, Sujata Manohar, Ruma Pal.</li>
+<li>Sitting women Judges at the time: <mark class="g">Bela Trivedi</mark> and <mark class="g">B.V. Nagarathna</mark>.</li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>The source also calls Fathima Beevi the "first chairperson" of the NHRC — contradicting its own statement that she was a <mark class="r">member</mark>; member is used.</div>
+<div class="tcard"><h3>Elevation &amp; High Court Links</h3>
+<ul>
+<li><mark class="g">L. Nageshwara Rao</mark>: <mark class="b">7th</mark> person elevated directly from the Bar; sworn in May 2016; retired <mark class="b">7 June 2022</mark> (day of oath garbled in source). Others (D.Y. Chandrachud, A.M. Khanwilkar, Ashok Bhushan) had been High Court Judges.</li>
+<li><mark class="g">N. Kotiswar Singh</mark>: Chief Justice of <mark class="g">Jammu &amp; Kashmir and Ladakh High Court</mark> before taking oath on <mark class="b">18 July 2024</mark>; <mark class="g">Manmohan</mark> (Chief Justice, Delhi High Court) took oath on <mark class="b">5 Dec 2024</mark>.</li>
+<li>Of Madhya Pradesh HC Chief Justices, <mark class="g">S.K. Jha</mark> was not an SC Judge (<mark class="g">A.K. Patnaik, R.V. Raveendran, A.K. Mathur</mark> were).</li>
+<li><mark class="g">R.C. Lahoti</mark> did not serve on the Rajasthan High Court; he joined the Bar in <mark class="g">Guna</mark> (MP) in <mark class="b">1960</mark> and enrolled in <mark class="b">1962</mark>.</li>
+</ul>
+</div>
+</section></div>
+<div class="tabpane" id="pane2"><div class="part-divider"><span class="plabel">Index</span><div class="ptitle">Quick Reference</div><p class="pdesc">Articles in ascending order and the cases / notable matters in one table.</p></div>
+<section class="chapter" id="p2ch1" data-title="Master Table of Articles"><div class="chapter-head"><div class="seal">1</div><h2>Master Table of Articles</h2></div>
+<div class="tcard"><h3>Articles, Entries &amp; Acts</h3>
+<table><caption>Articles Mentioned — Ascending Order</caption><thead class="red"><tr><th>Article</th><th>Subject</th><th>Key Facts</th><th>Detail</th></tr></thead><tbody>
+<tr><td><mark class="y">Art 14 / 15</mark></td><td>Equality</td><td>Triple talaq held to violate them in <mark class="g">Rahmatullah v State of UP</mark></td><td>Ch 9</td></tr>
+<tr><td><mark class="y">Art 32</mark></td><td>SC writs</td><td>Limited to Part III (Fundamental Rights)</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 112(3)(d)</mark></td><td>Expenditure charged on Consolidated Fund of India</td><td>Pension of High Court Judges</td><td>Ch 6</td></tr>
+<tr><td><mark class="y">Art 124(4)</mark></td><td>Removal of SC Judge</td><td>Same mode applies to High Court Judges</td><td>Ch 6</td></tr>
+<tr><td><mark class="y">Art 143</mark></td><td>SC advisory jurisdiction</td><td>Not a High Court jurisdiction</td><td>Ch 7</td></tr>
+<tr><td><mark class="y">Art 202(3)(d)</mark></td><td>Expenditure charged on Consolidated Fund of State</td><td>Salaries and allowances of High Court Judges</td><td>Ch 6</td></tr>
+<tr><td><mark class="y">Art 214</mark></td><td>High Court for each State</td><td>Part VI, Chapter V</td><td>Ch 3</td></tr>
+<tr><td><mark class="y">Art 215</mark></td><td>Court of Record</td><td>Contempt power</td><td>Ch 3, 7</td></tr>
+<tr><td><mark class="y">Art 216</mark></td><td>Constitution of High Court</td><td>Chief Justice + other Judges as President deems necessary; President fixes maximum number</td><td>Ch 3, 5</td></tr>
+<tr><td><mark class="y">Art 217(1)</mark></td><td>Appointment, tenure</td><td>By President by warrant; 62 years; (a) resignation to President; (b) removal as per Art 124(4)</td><td>Ch 5, 6</td></tr>
+<tr><td><mark class="y">Art 220</mark></td><td>Post-retirement bar</td><td>Permanent High Court Judge may plead only in SC and other High Courts</td><td>Ch 6</td></tr>
+<tr><td><mark class="y">Art 222</mark></td><td>Transfer of Judges</td><td>President after consulting CJI</td><td>Ch 5</td></tr>
+<tr><td><mark class="y">Art 223</mark></td><td>Acting Chief Justice</td><td>Vacancy, temporary absence or inability</td><td>Ch 5</td></tr>
+<tr><td><mark class="y">Art 224</mark></td><td>Additional and acting Judges</td><td>Up to 2 years; not beyond 62</td><td>Ch 5</td></tr>
+<tr><td><mark class="y">Art 226</mark></td><td>Writ jurisdiction</td><td>Fundamental Rights and any other purpose</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 227</mark></td><td>Superintendence</td><td>All courts and tribunals except Armed Forces</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 230</mark></td><td>[Outside source] extension of High Court jurisdiction to Union Territories</td><td>Appears as a wrong option only</td><td>Ch 5</td></tr>
+<tr><td><mark class="y">Art 231</mark></td><td>[Outside source] common High Court for two or more States</td><td>Wrong-option mention</td><td>Ch 3</td></tr>
+<tr><td><mark class="y">Art 233</mark></td><td>District Judges</td><td>Appointed, posted, promoted by Governor in consultation with High Court</td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 235</mark></td><td>Control over subordinate courts</td><td>Vested in the High Court</td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 236(a)</mark></td><td>Meaning of district judge</td><td>Includes sessions judges etc.; excludes tribunal judges</td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 237</mark></td><td>[Outside source] application of provisions to magistrates</td><td>Wrong option only</td><td>Ch 5</td></tr>
+<tr><td><mark class="y">Entry 4, State List</mark></td><td>Prisons</td><td>State subject</td><td>Ch 11</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="chapter" id="p2ch2" data-title="Master Table of Cases &amp; Notable Matters"><div class="chapter-head"><div class="seal">2</div><h2>Master Table of Cases &amp; Notable Matters</h2></div>
+<div class="tcard"><h3>Cases</h3>
+<table><caption>Cases &amp; Matters — Compiled</caption><thead class="blue"><tr><th>Case / Matter</th><th>Year</th><th>Subject / Ruling</th><th>Detail</th></tr></thead><tbody>
+<tr><td><mark class="g">Rahmatullah v State of UP</mark> (Allahabad HC)</td><td>1994</td><td>Instant triple talaq illegal; violates Arts 14, 15</td><td>Ch 9</td></tr>
+<tr><td>Babri Masjid / Ramjanmabhoomi case (Allahabad HC)</td><td>—</td><td>A title suit</td><td>Ch 9</td></tr>
+<tr><td><mark class="g">Justice Soumitra Sen</mark> (Calcutta HC)</td><td>2011</td><td>Removal motion passed by Rajya Sabha; resigned</td><td>Ch 6</td></tr>
+<tr><td><mark class="g">Gian Singh v State (Delhi Administration)</mark></td><td>1981</td><td>Interrogation during judicial custody with magistrate's permission</td><td>Ch 11</td></tr>
+<tr><td>Third Judges Case</td><td>1998</td><td>Consultation for transfer of High Court Judges</td><td>Ch 5</td></tr>
+</tbody></table>
+</div>
+</section>
+<div class="part-divider"><span class="plabel">Part A</span><div class="ptitle">Establishment, Composition &amp; Appointment</div><p class="pdesc">Constitutional basis, number and territorial jurisdiction, appointment, transfer, acting and additional judges.</p></div>
+<section class="chapter" id="p2ch3" data-title="Constitutional Basis &amp; Establishment"><div class="chapter-head"><div class="seal">3</div><h2>Constitutional Basis &amp; Establishment</h2></div>
+<div class="tcard"><h3>Constitutional Position</h3>
+<ul>
+<li>The High Court occupies the <mark class="y">top position in the judicial administration of the State</mark>.</li>
+<li><mark class="b">Articles 214 to 231</mark> in <mark class="y">Part VI</mark> (Chapter V) deal with the organisation, independence, jurisdiction, powers and procedures of High Courts.</li>
+<li><mark class="y">Art 214</mark>: every State will have a High Court. <mark class="y">Art 215</mark>: every High Court is a <mark class="y">Court of Record</mark>.</li>
+<li><mark class="y">Art 216</mark>: a High Court consists of a <mark class="g">Chief Justice</mark> and such other Judges as the <mark class="g">President</mark> may from time to time deem necessary to appoint.</li>
+<li>The <mark class="b">7th Constitution Amendment Act, 1956</mark> authorised <mark class="g">Parliament</mark> to establish a <mark class="y">common High Court</mark> for two or more States, or two or more States and a Union Territory.</li>
+<li>Parliament can also <mark class="y">extend the jurisdiction</mark> of a High Court.</li>
+<li>High Courts are instituted as <mark class="y">Constitutional Courts</mark>.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Court of Record</h3>
+<ul>
+<li>Judgments, proceedings and acts are recorded for <mark class="y">perpetual memory and testimony</mark>; the records have <mark class="y">evidentiary value</mark> and cannot be questioned before any subordinate court.</li>
+<li>They are recognised as <mark class="y">legal precedents</mark> and references, and the court can <mark class="y">punish for contempt</mark> of itself.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Origin</h3>
+<ul>
+<li>The institution originated in India in <mark class="b">1862</mark>, with High Courts set up at <mark class="g">Calcutta</mark>, <mark class="g">Bombay</mark> and <mark class="g">Madras</mark>.</li>
+<li>In <mark class="b">1866</mark> the High Court of Judicature for the <mark class="g">North-Western Provinces</mark> came into existence at <mark class="g">Agra</mark>; its seat shifted to <mark class="g">Allahabad</mark> in <mark class="b">1869</mark>.</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="p2ch4" data-title="Number &amp; Territorial Jurisdiction of High Courts"><div class="chapter-head"><div class="seal">4</div><h2>Number &amp; Territorial Jurisdiction of High Courts</h2></div>
+<div class="tcard"><h3>Number</h3>
+<ul>
+<li>At present there are <mark class="b">25 High Courts</mark>, <mark class="b">7</mark> of which have jurisdiction over more than one State / Union Territory.</li>
+<li><mark class="g">Delhi</mark> has its own High Court; <mark class="g">Jammu &amp; Kashmir</mark> and <mark class="g">Ladakh</mark> share a common High Court; Delhi is the <mark class="y">only UT with a separate High Court</mark> (J&amp;K and Ladakh share one).</li>
+<li>Other Union Territories fall under State High Courts.</li>
+<li><mark class="b">Punjab, Haryana</mark> and <mark class="g">Chandigarh</mark> have a common High Court.</li>
+<li>Three High Courts cover more than one State (excluding UTs): <mark class="g">Gauhati</mark> (Arunachal Pradesh, Assam, Nagaland, Mizoram), <mark class="g">Bombay</mark> (Maharashtra, Goa) and <mark class="g">Punjab &amp; Haryana</mark>.</li>
+<li><mark class="g">Bombay</mark> also covers the UTs of <mark class="b">Dadra &amp; Nagar Haveli and Daman &amp; Diu</mark>.</li>
+</ul>
+<table><caption>Union Territory Jurisdiction</caption><thead class="blue"><tr><th>Territory</th><th>High Court</th></tr></thead><tbody>
+<tr><td><mark class="g">Andaman &amp; Nicobar Islands</mark></td><td><mark class="g">Calcutta (Kolkata)</mark> High Court</td></tr>
+<tr><td><mark class="g">Chandigarh</mark></td><td><mark class="g">Punjab &amp; Haryana</mark> High Court</td></tr>
+<tr><td><mark class="g">Puducherry</mark></td><td><mark class="g">Madras (Chennai)</mark> High Court</td></tr>
+<tr><td><mark class="g">Lakshadweep</mark></td><td><mark class="g">Kerala</mark> High Court</td></tr>
+<tr><td><mark class="g">Delhi</mark></td><td>Own High Court</td></tr>
+</tbody></table>
+</div>
+<div class="tcard"><h3>New High Courts of 2013 &amp; Benches</h3>
+<ul>
+<li>In <mark class="b">January 2013</mark> the Government established three new High Courts in the North-East — <mark class="g">Meghalaya</mark>, <mark class="g">Manipur</mark> and <mark class="g">Tripura</mark>; they began working in <mark class="b">March 2013</mark>.</li>
+<li><mark class="g">Manipur</mark> earlier fell under the <mark class="g">Gauhati</mark> High Court.</li>
+<li><mark class="y">Largest number of benches</mark>: <mark class="g">Bombay</mark> and <mark class="g">Gauhati</mark> (3 each at present).</li>
+<li>Calcutta: circuit benches at <mark class="g">Port Blair</mark> and <mark class="g">Jalpaiguri</mark>. Madhya Pradesh: seat at <mark class="g">Jabalpur</mark>, temporary benches at <mark class="g">Indore</mark> and <mark class="g">Gwalior</mark>. Bombay: <mark class="g">Nagpur</mark>, <mark class="g">Aurangabad</mark>, <mark class="g">Panaji</mark>. Gauhati (seat at Guwahati): <mark class="g">Kohima</mark>, <mark class="g">Aizawl</mark>, <mark class="g">Itanagar</mark>.</li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>Several questions carry <mark class="r">no key</mark> because the number changed: 18 / 21 / 22 / 23 are old totals — present is <mark class="r">25</mark>; "three have jurisdiction over more than one State" counts States only, while <mark class="r">7</mark> include UTs; one question has <mark class="r">two correct answers</mark> (Bombay and Gauhati) for largest benches.</div>
+</section>
+<section class="chapter" id="p2ch5" data-title="Appointment, Transfer, Acting &amp; Additional Judges"><div class="chapter-head"><div class="seal">5</div><h2>Appointment, Transfer, Acting &amp; Additional Judges</h2></div>
+<div class="tcard"><h3>Appointment</h3>
+<ul>
+<li>High Court Judges are appointed by the <mark class="g">President</mark> by <mark class="y">warrant under hand and seal</mark> (<mark class="y">Art 217(1)</mark>) — not the Governor.</li>
+<li>The President consults the <mark class="g">CJI</mark>, the <mark class="g">Governor</mark> of the State and, for Judges other than the Chief Justice, the <mark class="g">Chief Justice of the High Court</mark>.</li>
+<li><mark class="y">Number of Judges</mark> is decided by the President — <mark class="y">Art 216</mark>; the Judges appointed shall not exceed the maximum number he fixes by order.</li>
+<li>Qualifications: citizen of India; has held <mark class="y">judicial office</mark> in India for at least <mark class="b">10 years</mark>, or has been an <mark class="y">advocate</mark> of a High Court(s) for at least <mark class="b">10 years</mark>.</li>
+<li><mark class="g">Law Commission</mark> (8th) chairman <mark class="g">H.R. Khanna</mark>, in its <mark class="b">80th report</mark> ("The Method of Appointment of Judges"), recommended that at least <mark class="b">one-third</mark> of High Court Judges come from other States.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Transfer — Art 222</h3>
+<ul>
+<li>The President may transfer a Judge from one High Court to another after consulting the <mark class="g">CJI</mark>.</li>
+<li>In the <mark class="y">Third Judges Case (1998)</mark> the Court held that the CJI must also consult the <mark class="y">collegium of the four senior-most SC judges</mark> and the <mark class="g">Chief Justices of both High Courts</mark> — the CJI's sole opinion is not consultation.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Acting Chief Justice, Additional &amp; Acting Judges</h3>
+<ul>
+<li><mark class="y">Art 223</mark>: the President can appoint a High Court Judge as <mark class="y">Acting Chief Justice</mark> when the office is vacant, or the Chief Justice is temporarily absent or unable to perform duties.</li>
+<li><mark class="y">Art 224(1)</mark>: <mark class="y">Additional Judges</mark> for a period up to <mark class="b">2 years</mark> on temporary increase in business or arrears.</li>
+<li><mark class="y">Art 224(2)</mark>: an <mark class="y">acting Judge</mark> may sit when a Judge (other than the Chief Justice) is absent or unable, or is acting as Chief Justice, until the permanent Judge resumes.</li>
+<li><mark class="y">Art 224(3)</mark>: no additional or acting Judge holds office beyond <mark class="b">62 years</mark>.</li>
+<li>Additional and acting Judges exist in the <mark class="g">High Court</mark> only (not the Supreme Court or District Courts).</li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>Wrong options on transfer: Art 227, 230, 237. A second appeal lies within the High Court's <mark class="r">appellate jurisdiction</mark>; High Courts may entertain <mark class="r">PIL</mark>.</div>
+</section>
+<div class="part-divider"><span class="plabel">Part B</span><div class="ptitle">Tenure, Removal &amp; Service Conditions</div><p class="pdesc">Retirement age, resignation, removal, salary and pension.</p></div>
+<section class="chapter" id="p2ch6" data-title="Tenure, Resignation, Removal &amp; Salary"><div class="chapter-head"><div class="seal">6</div><h2>Tenure, Resignation, Removal &amp; Salary</h2></div>
+<div class="tcard"><h3>Tenure &amp; Retirement</h3>
+<ul>
+<li>A Judge holds office until the age of <mark class="b">62 years</mark> (maximum age <mark class="b">62</mark>; options 58, 60, 65 wrong) — fixed under <mark class="y">Art 217(1)</mark> by the <mark class="b">15th Amendment, 1963</mark>; earlier it was <mark class="b">60</mark>.</li>
+<li>The <mark class="b">114th Amendment Bill (2010)</mark> proposing to raise it from 62 to 65 <mark class="r">could not pass</mark>.</li>
+<li>Resignation: in writing to the <mark class="g">President</mark> (<mark class="y">Art 217(1)(a)</mark>) — not the CJI, the High Court Chief Justice or the Governor.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Removal</h3>
+<ul>
+<li>The President removes a Judge on an address by Parliament presented in the same session, passed by a <mark class="y">special majority</mark> (majority of total membership and two-thirds present and voting in each House).</li>
+<li>Grounds: <mark class="y">proved misbehaviour</mark> or <mark class="y">incapacity</mark>; the mode is the <mark class="y">same as for an SC Judge</mark> — <mark class="y">Art 217(1)(b)</mark> read with <mark class="y">Art 124(4)</mark>.</li>
+<li><mark class="g">Justice Soumitra Sen</mark> (Calcutta HC) was charged with misappropriation of funds; the Rajya Sabha passed the motion in <mark class="b">2011</mark>; the Lok Sabha was to take it up on <mark class="b">5 Sept 2011</mark> but he resigned on <mark class="b">1 Sept 2011</mark>.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Salary, Pension &amp; Post-Retirement Bar</h3>
+<ul>
+<li>Salaries and allowances: charged on the <mark class="y">Consolidated Fund of the State</mark> (<mark class="y">Art 202(3)(d)</mark>); pension: charged on the <mark class="y">Consolidated Fund of India</mark> (<mark class="y">Art 112(3)(d)</mark>).</li>
+<li><mark class="y">Art 220</mark>: a retired permanent Judge cannot plead or act in any court or before any authority except the <mark class="g">Supreme Court</mark> and other <mark class="g">High Courts</mark> — so the claim that he cannot plead anywhere is wrong.</li>
+</ul>
+</div>
+</section>
+<div class="part-divider"><span class="plabel">Part C</span><div class="ptitle">Jurisdiction &amp; Powers</div><p class="pdesc">Court of Record, administrative role and writ jurisdiction.</p></div>
+<section class="chapter" id="p2ch7" data-title="Jurisdiction, Contempt &amp; Administrative Role"><div class="chapter-head"><div class="seal">7</div><h2>Jurisdiction, Contempt &amp; Administrative Role</h2></div>
+<div class="tcard"><h3>Jurisdictions</h3>
+<ul>
+<li>High Courts have <mark class="y">original</mark>, <mark class="y">appellate</mark> and <mark class="y">supervisory</mark> jurisdiction; <mark class="y">advisory jurisdiction</mark> belongs to the Supreme Court (<mark class="y">Art 143</mark>), not the High Court.</li>
+<li><mark class="y">Art 227</mark>: superintendence over all courts and tribunals in its territory, except those relating to the Armed Forces.</li>
+<li><mark class="y">Art 235</mark>: control over all subordinate courts in the State.</li>
+<li>As a court of record, it can also review and correct its own judgments.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Chief Justice</h3>
+<ul>
+<li>The Chief Justice acts in a <mark class="y">dual capacity</mark> — judicial and administrative; administratively he is subject to the <mark class="y">writ jurisdiction of any other Judge</mark> of the High Court, not the CJI, Governor or Chief Minister.</li>
+<li>He controls, observes, superintends and administers the lower courts.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Contempt &amp; Activism</h3>
+<ul>
+<li>Wilful disobedience of court orders and derogatory language about judicial behaviour amount to <mark class="y">contempt of court</mark>; the argument that activism needs punitive powers is true but <mark class="r">not the explanation</mark>.</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="p2ch8" data-title="Writ Jurisdiction — Art 226"><div class="chapter-head"><div class="seal">8</div><h2>Writ Jurisdiction — Art 226</h2></div>
+<div class="tcard"><h3>Scope</h3>
+<ul>
+<li><mark class="y">Art 226</mark>: High Courts can issue writs for <mark class="y">enforcement of Fundamental Rights</mark> and for <mark class="y">any other purpose</mark> (constitutional rights, statutory / legal rights).</li>
+<li>The Supreme Court under <mark class="y">Art 32</mark> can issue writs only for Part III; so High Courts are in a better position to protect citizens' rights.</li>
+<li>Five writs: <mark class="y">Habeas Corpus</mark>, <mark class="y">Mandamus</mark>, <mark class="y">Prohibition</mark>, <mark class="y">Certiorari</mark>, <mark class="y">Quo Warranto</mark>.</li>
+</ul>
+<table><caption>The Five Writs</caption><thead class="blue"><tr><th>Writ</th><th>Key facts</th></tr></thead><tbody>
+<tr><td><mark class="y">Certiorari</mark></td><td>Issued by a higher court to a lower court to send up the record for review, usually to overrule it; examines functioning of subordinate courts.</td></tr>
+<tr><td><mark class="y">Prohibition</mark></td><td>Issued by SC or HC to a lower court or tribunal exceeding jurisdiction; issued while proceedings are pending; only for judicial and quasi-judicial bodies; not against administrative agencies, statutory authorities or private persons.</td></tr>
+<tr><td><mark class="y">Mandamus</mark></td><td>Does not lie against a private organisation unless entrusted with a public duty; lies against a Government company.</td></tr>
+<tr><td><mark class="y">Quo Warranto</mark></td><td>Any public-minded person can petition. Wrong option text: challenges the right to hold an office.</td></tr>
+<tr><td><mark class="y">Habeas Corpus</mark></td><td>Wrong option text: produce a detained person before the court.</td></tr>
+</tbody></table>
+</div>
+</section>
+<div class="part-divider"><span class="plabel">Part D</span><div class="ptitle">Subordinate Judiciary &amp; Alternative Justice</div><p class="pdesc">District judges, advocates, prisons, Lok Adalats, Gram Nyayalayas and mobile courts.</p></div>
+<section class="chapter" id="p2ch9" data-title="Landmark High Court Matters"><div class="chapter-head"><div class="seal">9</div><h2>Landmark High Court Matters</h2></div>
+<div class="tcard"><h3>Matters</h3>
+<ul>
+<li><mark class="g">Rahmatullah v State of UP</mark> (Allahabad HC, <mark class="b">1994</mark>): divorce by uttering talaq three times is <mark class="y">illegal</mark>; violates Arts 14 and 15.</li>
+<li>Muslim Women (Protection of Rights on Marriage) Act, <mark class="b">2019</mark>: any talaq pronouncement is void and illegal.</li>
+<li>Babri Masjid / Ramjanmabhoomi before Allahabad HC: a <mark class="y">title suit</mark>, two communities claiming the same land.</li>
+<li><mark class="g">Rajeev Gupta</mark> became Chief Justice of Chhattisgarh HC on <mark class="b">2 Feb 2008</mark> (earlier Uttarakhand HC CJ); no valid key in the source for this question.</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="p2ch10" data-title="District Judges &amp; Subordinate Courts"><div class="chapter-head"><div class="seal">10</div><h2>District Judges &amp; Subordinate Courts</h2></div>
+<div class="tcard"><h3>District Judges</h3>
+<ul>
+<li><mark class="y">Art 233</mark>: appointment, posting and promotion of <mark class="y">District Judges</mark> are made by the <mark class="g">Governor</mark> in consultation with the <mark class="g">High Court</mark>.</li>
+<li>The District Judge is the <mark class="y">highest judicial authority in the district</mark>, with judicial and administrative powers and supervisory powers over subordinate courts.</li>
+<li><mark class="y">Art 236(a)</mark>: includes judges of city civil court, additional, joint and assistant district judges, chief judge of small cause court, chief presidency magistrate, additional chief presidency magistrate, sessions judges, additional and assistant sessions judges — but <mark class="r">not tribunal judges</mark>.</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="p2ch11" data-title="Advocates, Prisons &amp; Custody"><div class="chapter-head"><div class="seal">11</div><h2>Advocates, Prisons &amp; Custody</h2></div>
+<div class="tcard"><h3>Advocates</h3>
+<ul>
+<li><mark class="y">Advocates Act, 1961</mark>: creates a single class of legal practitioners called advocates; establishes the <mark class="g">Bar Council of India</mark> and State Bar Councils; the BCI lays down rules for legal education and recognition of law colleges.</li>
+</ul>
+</div>
+<div class="trap"><span class="lbl">MCQ Trap</span>Source explanation says corporate lawyers and patent attorneys are recognised as advocates; hence the claim that they are excluded is <mark class="r">wrong</mark>.</div>
+<div class="tcard"><h3>Prisons &amp; Custody</h3>
+<ul>
+<li>Prisons are a <mark class="y">State subject</mark> (<mark class="y">Entry 4, State List</mark>); governed by the <mark class="y">Prisons Act, 1894</mark>; the MHA has finalised a <mark class="y">Model Prisons Act, 2023</mark>.</li>
+<li>Police custody is in a lock-up; judicial custody is in jail under the magistrate; interrogation requires court approval (<mark class="g">Gian Singh v State</mark>, 1981).</li>
+<li>Preventive detention generally lasts a maximum of <mark class="b">3 months</mark>, longer under certain conditions.</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="p2ch12" data-title="Lok Adalat, Gram Nyayalaya &amp; Mobile Courts"><div class="chapter-head"><div class="seal">12</div><h2>Lok Adalat, Gram Nyayalaya &amp; Mobile Courts</h2></div>
+<div class="tcard"><h3>Lok Adalat</h3>
+<ul>
+<li>An <mark class="y">alternative dispute resolution</mark> forum for pending or pre-litigation cases, civil (including family) and compoundable criminal cases; consent of both parties is required; presided by a sitting or retired judicial officer with usually a lawyer and a social worker.</li>
+</ul>
+</div>
+<div class="tcard"><h3>Gram Nyayalaya</h3>
+<ul>
+<li><mark class="y">Gram Nyayalayas Act, 2008</mark>: access to justice at doorstep; civil and criminal jurisdiction (<mark class="y">Sec 11</mark>); panel of village-level social workers prepared by the district court (<mark class="y">Sec 27</mark>).</li>
+</ul>
+</div>
+<div class="tcard"><h3>Mobile Courts</h3>
+<ul>
+<li>Conceived by <mark class="g">A.P.J. Abdul Kalam</mark>; the first mobile court was set up in <mark class="b">August 2007</mark> in <mark class="g">Mewat, Haryana</mark>, inaugurated by CJI <mark class="g">K.G. Balakrishnan</mark>.</li>
+</ul>
+</div>
+</section></div>
+</div><div class="footer">Supreme Court and High Court · Ledger</div></div><script>
+const toc=document.getElementById('toc');const PARTS={"pane1": {"1": "Index \u00b7 Quick Reference", "3": "Part A \u00b7 Establishment, Composition & Appointment", "8": "Part B \u00b7 Tenure, Service Conditions & Independence", "11": "Part C \u00b7 Jurisdiction & Powers", "18": "Part D \u00b7 Judicial Review, Basic Structure & Guardianship", "21": "Part E \u00b7 PIL, Judicial Activism & Landmark Judgments", "23": "Part F \u00b7 Judges & Chief Justices"}, "pane2": {"1": "Index \u00b7 Quick Reference", "3": "Part A \u00b7 Establishment, Composition & Appointment", "6": "Part B \u00b7 Tenure, Removal & Service Conditions", "7": "Part C \u00b7 Jurisdiction & Powers", "9": "Part D \u00b7 Subordinate Judiciary & Alternative Justice"}};const sidebar=document.getElementById('sidebar');let observer=null;
+function buildToc(paneId){toc.innerHTML='';const chapters=document.querySelectorAll('#'+paneId+' .chapter');
+chapters.forEach((ch,i)=>{const num=i+1;if(PARTS[paneId][num]){const p=document.createElement('div');p.className='toc-part';p.textContent=PARTS[paneId][num];toc.appendChild(p);}
+const a=document.createElement('a');a.href='#'+ch.id;a.innerHTML='<span class="num">'+String(num).padStart(2,'0')+'</span><span>'+ch.dataset.title+'</span>';a.dataset.target=ch.id;a.addEventListener('click',()=>sidebar.classList.remove('open'));toc.appendChild(a);});
+if(observer)observer.disconnect();const links=toc.querySelectorAll('a');
+observer=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=toc.querySelector('a[data-target="'+e.target.id+'"]');if(a)a.classList.add('active');}});},{rootMargin:'-10% 0px -75% 0px',threshold:0});
+chapters.forEach(c=>observer.observe(c));}
+function showPane(id,scroll){document.querySelectorAll('.tabpane').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('#tabbar button').forEach(b=>b.classList.toggle('active',b.dataset.pane===id));buildToc(id);if(scroll)document.getElementById('chapters-root').scrollIntoView();}
+document.querySelectorAll('#tabbar button').forEach(b=>b.addEventListener('click',()=>showPane(b.dataset.pane,true)));
+document.getElementById('menu-btn').addEventListener('click',()=>sidebar.classList.toggle('open'));
+showPane('pane1',false);
+if(location.hash){const t=document.querySelector(location.hash);if(t){const pn=t.closest('.tabpane');if(pn&&pn.id!=='pane1'){showPane(pn.id,false);t.scrollIntoView();}}}
+</script></body></html>
