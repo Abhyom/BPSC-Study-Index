@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centre State Relation, The Governance System, State and Union Territories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1E33; --ink-2:#122A45; --paper:#FBF7EC; --paper-2:#F3ECDA;
+    --gold:#C9A227; --gold-2:#E8C766; --teal:#2E6171; --text:#1C2B3A; --muted:#5B6B7A;
+    --hl-y: rgba(255, 213, 79, .55); --hl-b: rgba(133, 193, 233, .55);
+    --hl-g: rgba(163, 221, 178, .6); --hl-r: rgba(245, 158, 148, .55);
+    --trap-bg:#FDEDEC; --trap-bd:#C0392B;
+    --tbl-head-blue:#1A5276; --tbl-head-red:#7B241C;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0; background:var(--ink); color:var(--text); font-family:'Source Sans 3', sans-serif; display:flex; min-height:100vh;}
+  ::selection{background:var(--gold-2); color:var(--ink);}
+
+  #sidebar{width:290px; flex-shrink:0; background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%); color:#DCE6EE; position:fixed; top:0; left:0; bottom:0; overflow-y:auto; padding:28px 0 40px; border-right:1px solid rgba(201,162,39,.25); z-index:50;}
+  #sidebar::-webkit-scrollbar{width:6px;}
+  #sidebar::-webkit-scrollbar-thumb{background:rgba(201,162,39,.4); border-radius:3px;}
+  .brand{padding:0 24px 20px; border-bottom:1px solid rgba(201,162,39,.25); margin-bottom:10px;}
+  .brand .stamp{width:46px;height:46px;border-radius:50%; border:2px solid var(--gold); display:flex;align-items:center;justify-content:center; font-family:'Playfair Display',serif; font-weight:800; color:var(--gold-2); font-size:13px; margin-bottom:10px;}
+  .brand h1{font-family:'Playfair Display', serif; font-size:18px; line-height:1.25; margin:0 0 4px; font-weight:700; color:#F4EFE1;}
+  .brand p{margin:0; font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono', monospace;}
+
+  nav.toc{padding:4px 8px;}
+  .toc-part{font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); padding:14px 16px 4px;}
+  nav.toc a{display:flex; align-items:baseline; gap:8px; padding:7px 14px; margin:1px 0; border-radius:6px; color:#B7C6D3; text-decoration:none; font-size:12.6px; font-weight:500; border-left:3px solid transparent; transition:background .15s, color .15s, border-color .15s;}
+  nav.toc a .num{font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--gold); flex-shrink:0; width:18px;}
+  nav.toc a:hover{background:rgba(201,162,39,.10); color:#F4EFE1;}
+  nav.toc a.active{background:rgba(201,162,39,.16); color:#F8F1DD; border-left-color:var(--gold); font-weight:600;}
+
+  .legend-box{margin:16px 16px 0; padding:14px; background:rgba(255,255,255,.04); border:1px solid rgba(201,162,39,.22); border-radius:8px;}
+  .legend-box h3{margin:0 0 10px; font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold-2); font-family:'IBM Plex Mono',monospace; font-weight:500;}
+  .legend-row{display:flex; align-items:center; gap:8px; margin-bottom:7px; font-size:11.5px; color:#CBD6DF;}
+  .legend-swatch{width:14px;height:14px;border-radius:3px; flex-shrink:0;}
+
+  #main{margin-left:290px; flex:1; background:var(--ink);}
+  .cover{padding:70px 64px 50px; background:radial-gradient(circle at 85% 20%, rgba(201,162,39,.10), transparent 45%), linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%); color:#EFE9D8; border-bottom:4px double rgba(201,162,39,.4);}
+  .cover .eyebrow{font-family:'IBM Plex Mono',monospace; letter-spacing:.18em; text-transform:uppercase; font-size:12px; color:var(--gold-2); margin-bottom:16px;}
+  .cover h1{font-family:'Playfair Display', serif; font-weight:800; font-size:clamp(30px,4vw,48px); line-height:1.1; margin:0 0 14px; max-width:840px;}
+  .cover p.sub{font-size:15.5px; color:#C9D2DB; max-width:660px; line-height:1.6; margin:0 0 20px;}
+  .cover .tags{display:flex; gap:10px; flex-wrap:wrap;}
+  .cover .tag{font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--gold-2); border:1px solid rgba(201,162,39,.45); padding:5px 12px; border-radius:20px; background:rgba(201,162,39,.06);}
+
+  .part-divider{max-width:920px; margin:0 auto; padding:40px 48px 0;}
+  .part-divider .plabel{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); background:var(--ink); display:inline-block; padding:8px 18px; border-radius:20px;}
+  .part-divider .ptitle{font-family:'Playfair Display',serif; font-weight:700; font-size:26px; color:var(--ink); margin:14px 0 2px;}
+  .part-divider .pdesc{color:var(--muted); font-size:14px; margin:0 0 6px;}
+  @media (max-width:880px){ .part-divider{padding:30px 22px 0;} }
+
+  .chapters{background:var(--paper); padding:10px 0 90px;}
+  .chapter{max-width:920px; margin:0 auto; padding:46px 48px 8px; border-bottom:1px solid rgba(28,43,58,.10); scroll-margin-top:14px;}
+  .chapter:last-child{border-bottom:none;}
+  .chapter-head{display:flex; align-items:center; gap:16px; margin-bottom:22px;}
+  .chapter-head .seal{width:48px; height:48px; border-radius:50%; background:var(--ink); color:var(--gold-2); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-weight:700; font-size:17px; border:2px solid var(--gold); flex-shrink:0;}
+  .chapter-head h2{font-family:'Playfair Display', serif; font-size:clamp(21px,2.6vw,28px); margin:0; color:var(--ink); font-weight:700; line-height:1.2;}
+
+  .tcard{background:var(--paper-2); border:1px solid rgba(28,43,58,.12); border-radius:9px; padding:16px 20px; margin-bottom:14px;}
+  .tcard h3{font-family:'Playfair Display', serif; font-size:16.5px; margin:0 0 11px; display:inline-block; padding:4px 13px; border-radius:7px; border:1.5px solid #8F7BC4; background:#EEE9F9; color:var(--ink); font-weight:700;}
+  .tcard ul{margin:0; padding-left:19px;}
+  .tcard li{margin-bottom:6px; line-height:1.58; font-size:14.5px;}
+  .tcard p{margin:0 0 8px; line-height:1.58; font-size:14.5px;}
+  .tcard p:last-child{margin-bottom:0;}
+
+  mark{padding:.05em .18em; border-radius:3px; font-weight:600; color:var(--text); box-decoration-break:clone; -webkit-box-decoration-break:clone;}
+  .y{background:var(--hl-y);} .b{background:var(--hl-b);} .g{background:var(--hl-g);} .r{background:var(--hl-r);}
+
+  .trap{background:var(--trap-bg); border:1px solid rgba(192,57,43,.35); border-left:4px solid var(--trap-bd); padding:11px 15px; border-radius:6px; margin:10px 0; font-size:13.8px; line-height:1.58;}
+  .trap .lbl{font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:var(--trap-bd); font-weight:700; display:block; margin-bottom:4px;}
+
+  table{width:100%; border-collapse:collapse; margin:10px 0 4px; font-size:13.5px;}
+  caption{text-align:left; font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:.06em;}
+  th,td{padding:8px 10px; text-align:left; border-bottom:1px solid rgba(28,43,58,.10); vertical-align:top;}
+  thead.blue th{background:var(--tbl-head-blue); color:#F4EFE1; font-weight:600; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em;}
+  thead.red th{background:var(--tbl-head-red); color:#F4EFE1; font-weight:600; font-size:11.5px; text-transform:uppercase; letter-spacing:.03em;}
+  tbody tr:nth-child(even){background:var(--paper);}
+
+  .footer{max-width:920px; margin:0 auto; padding:40px 48px 70px; color:var(--muted); font-size:12.5px; font-family:'IBM Plex Mono',monospace; text-align:center;}
+
+  @media (max-width: 880px){
+    #sidebar{position:fixed; left:0; top:0; bottom:0; width:260px; transform:translateX(-100%); transition:transform .25s ease;}
+    #sidebar.open{transform:translateX(0);}
+    #main{margin-left:0;}
+    .chapter{padding:38px 20px 8px;}
+    .cover{padding:56px 20px 40px;}
+  }
+  #menu-btn{display:none; position:fixed; top:16px; left:16px; z-index:60; width:44px;height:44px;border-radius:50%; background:var(--ink); border:2px solid var(--gold); color:var(--gold-2); font-size:18px; align-items:center; justify-content:center; cursor:pointer;}
+  @media (max-width: 880px){ #menu-btn{display:flex;} }
+  .part-divider{padding-top:40px;} i{font-style:italic;}
+
+  mark{padding:0.05em 0.3em; border-radius:3px; font-weight:600; color:#000; box-decoration-break:clone; -webkit-box-decoration-break:clone;}
+  mark.y{background:#fff1a8; box-shadow:inset 0 -2px 0 #c9a600; border-bottom:0;}
+  mark.b{background:#c9e2ff; box-shadow:inset 0 -2px 0 #3373c4; border-bottom:0;}
+  mark.g{background:#c8ecd2; box-shadow:inset 0 -2px 0 #2f8f52; border-bottom:0;}
+  mark.r{background:#ffd0ce; box-shadow:inset 0 -2px 0 #c0392b; border-bottom:0;}
+  caption{font-family:'Playfair Display',serif; font-size:21px; font-weight:700; color:var(--ink); text-transform:none; letter-spacing:0; margin-bottom:12px; padding-bottom:6px; border-bottom:2px solid var(--gold);}
+
+  .sidetabs{display:flex; flex-direction:column; gap:6px; padding:0 18px 12px;}
+  .sidetabs button{font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.03em; text-align:left; padding:10px 14px; border-radius:8px; cursor:pointer; border:1px solid rgba(201,162,39,.45); background:transparent; color:var(--gold-2);}
+  .sidetabs button.active{background:var(--gold); color:var(--ink); font-weight:700;}
+  .tabpane{display:none;} .tabpane.active{display:block;}
+
+  .tcard li.grp{list-style:none; margin-left:-19px; margin-bottom:12px; padding:8px 12px 6px; border:1px solid #000; background:transparent; border-radius:6px;}
+  .tcard .lead{display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:700; padding:2px 10px; margin-bottom:5px; border:1.5px solid var(--gold); border-radius:5px; background:#FFF8E1; color:var(--ink); letter-spacing:.01em;}
+  .tcard .lead mark{background:transparent; box-shadow:none; text-decoration:none; border:0; padding:0; font-weight:700;}
+  .tcard ul.sub{margin:2px 0 2px; padding-left:20px;}
+  .tcard ul.sub li{margin-bottom:3px; font-size:14.3px;}
+</style>
+</head>
+<body>
+<button id="menu-btn" aria-label="Toggle chapter index">☰</button>
+<aside id="sidebar">
+  <div class="brand"><div class="stamp">CSG</div><h1>Centre–State, Governance &amp; States/UTs</h1><p>BPSC · Indian Polity</p></div>
+  <div class="sidetabs" id="tabbar"><button class="active" data-pane="pane1">The Governance System</button><button data-pane="pane2">States &amp; Union Territories</button><button data-pane="pane3">Centre–State Relations</button></div>
+  <nav class="toc" id="toc"></nav>
+  <div class="legend-box"><h3>Marker Key</h3>
+    <div class="legend-row"><span class="legend-swatch" style="background:#fff1a8; box-shadow:inset 0 -2px 0 #c9a600"></span> Core concept</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:#c9e2ff; box-shadow:inset 0 -2px 0 #3373c4"></span> Hard fact / date / number</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:#c8ecd2; box-shadow:inset 0 -2px 0 #2f8f52"></span> Person / place / institution</div>
+    <div class="legend-row"><span class="legend-swatch" style="background:#ffd0ce; box-shadow:inset 0 -2px 0 #c0392b"></span> MCQ trap / confusion</div>
+  </div>
+</aside>
+<div id="main">
+  <section class="cover"><div class="eyebrow">Indian Polity · Compiled for Prelims Revision</div>
+  <h1>Centre–State Relations, The Governance System &amp; States and Union Territories</h1>
+  <p class="sub">Theory and every PYQ fact merged topic-wise. Open the menu (☰) to switch between the three tabs; each begins with a master table of Articles.</p>
+  <div class="tags"><span class="tag">The Governance System</span><span class="tag">States &amp; Union Territories</span><span class="tag">Centre–State Relations</span></div></section>
+  <div class="chapters" id="chapters-root">
+<div class="tabpane active" id="pane1">
+<section class="chapter" id="pane1c1" data-title="Master Table of Articles &amp; Key Provisions"><div class="chapter-head"><div class="seal">1</div><h2>Master Table of Articles &amp; Key Provisions</h2></div>
+<div class="tcard">
+<table><caption>Articles Mentioned — Ascending Order</caption><thead class="red"><tr><th>Article</th><th>Subject</th><th>Key Facts</th><th>Detail</th></tr></thead><tbody>
+<tr><td><mark class="y">Art 1</mark></td><td>Name and territory of the Union</td><td><mark class="y">India, that is Bharat, shall be a Union of States</mark>; territory = <mark class="g">States + Union Territories + other territories acquired</mark>; States/territories listed in the <mark class="g">First Schedule</mark></td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 13</mark></td><td>Judicial review (with 32, 136, 137, 226, 227)</td><td>Constitution explicitly establishes <mark class="y">Judicial Review</mark> through these Articles. Art 13: laws inconsistent with Fundamental Rights are void [Outside source]</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 32</mark></td><td>Judicial review</td><td>Remedy to the Supreme Court for enforcing Fundamental Rights [Outside source]</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 75(3)</mark></td><td>Collective responsibility (Union)</td><td><mark class="y">Council of Ministers collectively responsible to the House of the People (Lok Sabha)</mark></td><td>Ch 5</td></tr>
+<tr><td><mark class="y">Art 75(5)</mark></td><td>Minister not in Parliament</td><td>A Minister who is not a member of either House for <mark class="b">six consecutive months</mark> ceases to be Minister</td><td>Ch 5</td></tr>
+<tr><td><mark class="y">Art 136</mark></td><td>Judicial review</td><td>Special leave to appeal to the Supreme Court [Outside source]</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 137</mark></td><td>Judicial review</td><td>Review of judgments by the Supreme Court [Outside source]</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 143</mark></td><td>Constitution Bench</td><td>Provision for a Constitution Bench lies here along with Art 145(3); advisory jurisdiction of the Supreme Court [Outside source]</td><td>Ch 7</td></tr>
+<tr><td><mark class="y">Art 145(3)</mark></td><td>Constitution Bench</td><td><mark class="g">Chief Justice of India</mark> constitutes the bench; at least <mark class="b">five or more judges</mark>; decides substantial questions of law on interpretation of the Constitution</td><td>Ch 7</td></tr>
+<tr><td><mark class="y">Art 164(2)</mark></td><td>Collective responsibility (State)</td><td><mark class="y">Council of Ministers collectively responsible to the Legislative Assembly</mark></td><td>Ch 5</td></tr>
+<tr><td><mark class="y">Art 226</mark></td><td>Judicial review</td><td>High Court writ jurisdiction [Outside source]</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 227</mark></td><td>Judicial review</td><td>High Court superintendence over subordinate courts [Outside source]</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Arts 245–255</mark></td><td>Distribution of legislative powers</td><td>Basis of the federal distribution of power (with the <mark class="g">Seventh Schedule</mark>)</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 249</mark></td><td>Parliament on State List</td><td>Parliament may legislate on a State-List matter in the <mark class="y">national interest</mark></td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 250</mark></td><td>Parliament on State List</td><td>Parliament may legislate on a State-List matter during <mark class="y">Emergency</mark></td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 263</mark></td><td>Inter-State Council</td><td>Council to discuss/investigate subjects of common interest; aims at <mark class="y">cooperation and dispute resolution</mark></td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 280</mark></td><td>Finance Commission</td><td>Defines financial relations between Centre and States</td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 312</mark></td><td>All India Services</td><td>Constitution provides for creation of <mark class="g">All India Services</mark></td><td>Ch 10</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="chapter" id="pane1c2" data-title="Forms of Government &amp; Democracy"><div class="chapter-head"><div class="seal">2</div><h2>Forms of Government &amp; Democracy</h2></div>
+<div class="tcard">
+<h3>What a Government Is</h3>
+<ul>
+<li>A <mark class="y">Government</mark> is an <mark class="y">institution / system of people</mark> that takes care of or manages a <mark class="g">country or State</mark>.
+</li>
+<li>Every Government has its own <mark class="y">Constitution</mark> — a set of fundamental principles it follows to ensure effective governance.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Autocracy</h3>
+<ul>
+<li><mark class="y">Autocracy</mark> = form of Government where <mark class="y">supreme power / rule is in the hands of one individual or entity</mark>.
+</li>
+<li class="grp"><span class="lead"><mark class="y">Absolute monarchy</mark></span>
+<ul class="sub"><li>A <mark class="g">family or group of families</mark> rules the country; the post of monarch is <mark class="y">inherited</mark>.</li><li>Monarchy is <mark class="b">one of the oldest</mark> forms of Government.</li></ul>
+</li>
+<li class="grp"><span class="lead"><mark class="y">Dictatorship</mark></span>
+<ul class="sub"><li>An individual possesses <mark class="y">absolute power without any effective limitations</mark>.</li><li>Autocracy now also includes dictatorship.</li></ul>
+</li>
+<li><mark class="r">Authoritarian Government is NOT a feature of Indian polity</mark> — India has a democratic Government, the opposite of authoritarian.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Democracy</h3>
+<ul>
+<li><mark class="y">Democracy</mark> is the <mark class="b">most widely adopted</mark> system of governance at present — the <mark class="y">final power resides with the people</mark>.
+</li>
+<li>A democratic state = a state in which <mark class="y">people are supreme</mark> and the Government is formed by <mark class="y">representatives elected by the people</mark>.
+</li>
+<li><mark class="r">Supreme power vested solely in one person, like a king, is NOT democratic</mark> (an "elected head" holding supreme power is also not the democratic formulation).
+</li>
+<li>India's democracy rests on the fact that the <mark class="y">public has the right to choose and change the Government</mark> — <mark class="r">not</mark> merely the written Constitution, Fundamental Rights or DPSP.
+</li>
+<li>Importance of citizens: Democracy builds on the <mark class="y">intelligence and character of ordinary men and women</mark>; participation gives awareness and information to decide, so the success of democracy depends on the <mark class="y">quality of decisions made by people</mark>.
+</li>
+<li><mark class="y">Women, Dalits, the poor and minorities</mark> are the biggest stakeholders of democracy in India — democracy increases their <mark class="y">self-respect and dignity</mark> and protects individual rights.
+</li>
+<li>Elections: after every <mark class="b">five years</mark> the people elect representatives who form the Government under the Constitution.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Political Parties &amp; Party-less Democracy</h3>
+<ul>
+<li><mark class="y">Political parties are the life-blood of democracy</mark>: they bring people together to gain control of Government and develop policies in people's interest; people also usually blame parties for bad governance.
+</li>
+<li><mark class="y">Party-less democracy</mark> was supported by <mark class="g">Mahatma Gandhi</mark> and <mark class="g">Jayaprakash Narayan</mark> (both accepted as the answer) — <mark class="r">not</mark> S.A. Dange or Ram Manohar Lohia.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane1c3" data-title="The State &amp; Sovereignty"><div class="chapter-head"><div class="seal">3</div><h2>The State &amp; Sovereignty</h2></div>
+<div class="tcard">
+<h3>Definition of State</h3>
+<ul>
+<li><mark class="g">Garner</mark>: the State is a <mark class="y">community of persons, more or less numerous, permanently occupying a definite portion of territory, independent (or nearly so) of external control, possessing an organized government</mark> to which the great body of inhabitants render <mark class="y">habitual obedience</mark>.
+</li>
+<li>The term 'State' is central to the study of <mark class="y">Political Science</mark>.
+</li>
+<li>The other definitions (people living long with own culture; society with executive responsible to a central authority and independent judiciary; authority to protect natural rights and sustenance) are <mark class="r">not</mark> the best definition.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Four Essential Elements</h3>
+<ul>
+<li><mark class="y">Population</mark> (community of persons permanently living there), <mark class="y">Territory</mark> (demarcated boundary separating one state from another), <mark class="y">Government</mark>, <mark class="y">Sovereignty</mark> (independent say in all domestic and external decision-making).
+</li>
+<li><mark class="y">Sovereignty is the most important / prominent element</mark> — <mark class="r">not</mark> the flag, capital or head of state.
+</li>
+<li><mark class="g">India before 1947</mark> was <mark class="r">not a State</mark>: it had population, territory and government but <mark class="y">sovereignty was missing</mark> because of <mark class="g">British control</mark>.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Sovereignty of India</h3>
+<ul>
+<li>The word '<mark class="y">Sovereign</mark>' implies India is <mark class="y">neither a dependency nor a dominion</mark> of any other nation but an <mark class="y">independent state</mark>.
+</li>
+<li>India is a member of the <mark class="g">Commonwealth of Nations</mark>: in <mark class="b">1947</mark> India declared continuation of full membership and accepted the <mark class="g">British crown</mark> as head of the Commonwealth.
+</li>
+<li>This was an <mark class="y">extra-Constitutional declaration</mark> and does <mark class="r">not curtail India's sovereignty</mark> in any manner.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane1c4" data-title="Nature of the Indian Political System"><div class="chapter-head"><div class="seal">4</div><h2>Nature of the Indian Political System</h2></div>
+<div class="tcard">
+<h3>Preamble &amp; Source of Power</h3>
+<ul>
+<li>The idea of the <mark class="y">Preamble</mark> was borrowed from the Constitution of the <mark class="g">U.S.A.</mark> (not Italy, Canada, France); the <mark class="y">language</mark> of the Preamble was borrowed from the <mark class="g">Constitution of Australia</mark>.
+</li>
+<li>The Constitution begins with "<mark class="y">We the People of India</mark>" — the <mark class="y">People</mark> are the main source of political power, not the Constitution, Parliament or President.
+</li>
+<li>The <mark class="y">Constitution</mark> is the source of authority for <mark class="y">both Central and State governments</mark> — not the President, PM or Parliament.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Cardinal Features</h3>
+<ul>
+<li>India is a <mark class="y">Sovereign, Socialist, Secular, Democratic Republic</mark> with a <mark class="y">Parliamentary system</mark> — a <mark class="y">Union of States</mark>.
+</li>
+<li>Supreme power is vested in the <mark class="y">People of India</mark> — a <mark class="y">democratic republic</mark>.
+</li>
+<li>India does <mark class="r">not</mark> provide for a <mark class="y">unified authority</mark>; it makes a <mark class="y">division of powers between the Union and the States</mark>.
+</li>
+<li>India is a <mark class="y">democratic polity</mark>, a <mark class="y">sovereign state</mark>, has a <mark class="y">democratic society</mark> and is a <mark class="y">welfare state</mark> — the architect of the Constitution provided for a welfare State through the <mark class="g">Directive Principles of State Policy</mark>.
+</li>
+<li>The Indian polity has: a Government following the Constitution, democratic Government and the <mark class="y">Rule of Law</mark>.
+</li>
+<li>India is a <mark class="y">parliamentary democracy</mark> — <mark class="r">not</mark> presidential, a titular monarchy or an aristocracy.
+</li>
+<li><mark class="r">India is not "Semi-democratic"</mark>; the Constitution provides a <mark class="y">Parliamentary</mark> governance system.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Republic</h3>
+<ul>
+<li><mark class="y">Republic</mark> = a state in which <mark class="y">supreme power is held by the people</mark> and the <mark class="y">Head of State is elected</mark> (no hereditary ruler).
+</li>
+<li>India is a Republic because it has <mark class="y">no hereditary rulers</mark>; the <mark class="g">President</mark> is elected <mark class="y">indirectly</mark> through elected representatives (the Head of State is elected, not the 'country is free' or 'Parliament has final authority' idea).
+</li>
+<li>The <mark class="y">President is elected indirectly</mark> because the <mark class="y">parliamentary system in India is combined with republicanism</mark> (President as Head of State).
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Written Constitution &amp; Democracy</h3>
+<ul>
+<li>India has a <mark class="y">written constitution</mark> and is a democracy; the <mark class="g">United Kingdom</mark> is democratic but has <mark class="r">no written constitution</mark>; non-democratic countries do have some form of constitution to govern the functioning of their Government.
+</li>
+<li>So a constitution is <mark class="r">not</mark> the reason (explanation) for democracy.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Welfare State &amp; Philosophy</h3>
+<ul>
+<li><mark class="y">Welfare State</mark>: Government in which the State plays a <mark class="y">key role in protection and promotion of social and economic well-being</mark> of citizens; based on <mark class="y">equality of opportunity</mark>, <mark class="y">equitable distribution of wealth</mark> and <mark class="y">public responsibility</mark> for those unable to avail the minimum necessities of a good life.
+</li>
+<li>"<mark class="y">The State is everywhere: it leaves hardly a gap</mark>" describes a <mark class="y">Welfare State</mark> (not a Communist, Democratic or Police State).
+</li>
+<li>Philosophy of the Constitution (reflected in the Preamble): <mark class="y">Welfare State, Socialist State, Political Equality</mark> — <mark class="r">Communist State is NOT its philosophy</mark>; India is committed to equality of opportunity and status.
+</li>
+<li><mark class="y">Political equality</mark> is provided through <mark class="y">Adult Franchise</mark>.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Good Governance</h3>
+<ul>
+<li>Features of good governance: <mark class="y">accountability, transparency, rule of law</mark>.
+</li>
+<li><mark class="r">Red tapism</mark> = excessive regulation that hinders or prevents action or decision-making — NOT a feature of good governance.
+</li>
+<li>The <mark class="g">Second Administrative Reforms Commission</mark> identified <mark class="y">barriers to good governance</mark> (and pre-conditions) in <mark class="b">Report 12</mark> — <mark class="y">Citizen-Centric Administration: The Heart of Governance</mark> (not Ethics in Governance, e-Governance or Local Governance reports).
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Continuity, Change &amp; Constitution Size</h3>
+<ul>
+<li>The Indian political system embodies <mark class="y">continuity and change</mark> — from the <mark class="g">Mauryan period</mark> to the modern era its specific elements persist; it contains elements of the <mark class="y">modern style, traditional style and saintly style</mark>.
+</li>
+<li>The Indian Constitution is the <mark class="y">longest written Constitution in the world</mark> — no single reason; all of these hold true: it incorporates the experience of many Constitutions, contains detailed administrative provisions, deals with a large country, and contains the Constitution of both Union and State governments.
+</li>
+<li>Some experts call the Constitution <mark class="y">unitary</mark> because it gives a <mark class="y">strong Centre in an emergency</mark>, but in reality it is <mark class="y">federal in nature with some unitary features</mark>.
+</li>
+<li>Indian Constitution is <mark class="y">partly rigid and partly flexible</mark>: some provisions amended by <mark class="y">simple majority</mark>, some need <mark class="b">two-thirds</mark> majority under <mark class="g">Art 368</mark>, and some need ratification by at least <mark class="b">50% of State Legislatures</mark> also.
+</li>
+<li><mark class="g">K.C. Wheare</mark> said the Constitution has a good balance between <mark class="y">rigidity and flexibility</mark> because of the variety in the amending process.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane1c5" data-title="Parliamentary System"><div class="chapter-head"><div class="seal">5</div><h2>Parliamentary System</h2></div>
+<div class="tcard">
+<h3>Meaning &amp; Origin</h3>
+<ul>
+<li>Two main types of governance systems: <mark class="y">Parliamentary</mark> and <mark class="y">Presidential</mark>.
+</li>
+<li>India follows the <mark class="y">Parliamentary form</mark>, influenced by the <mark class="g">Parliamentary system of the United Kingdom</mark>; the Constitution establishes it at both the <mark class="y">Centre and the States</mark>.
+</li>
+<li>Also called the <mark class="y">Cabinet form of Government</mark>, <mark class="y">responsible Government</mark> or the <mark class="y">Westminster model</mark>.
+</li>
+<li>The modern concept of parliamentary government emerged in the <mark class="g">Kingdom of Great Britain</mark> (UK = birthplace; also asserted by Prof. <mark class="g">Pushpesh Pant</mark> in his book <mark class="g">Vishwa ka Itihas</mark>) — <mark class="r">not</mark> Belgium, France or Switzerland.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Working</h3>
+<ul>
+<li>Members of the <mark class="y">executive are taken from the legislature</mark> and are <mark class="y">accountable to the legislature</mark>; the Legislature controls the Executive (not the reverse; judiciary does not control it).
+</li>
+<li>The Government is responsible to the <mark class="y">popular House</mark> (House of the People) and stays in power only while it has the <mark class="y">majority support</mark> of that House — the Government can be <mark class="y">removed by Parliament</mark>.
+</li>
+<li>The Cabinet form is a mechanism of parliamentary democracy ensuring <mark class="y">collective responsibility of the Government to the people (through the popular House)</mark>.
+</li>
+<li><mark class="y">Main advantage</mark>: the executive remains <mark class="y">responsible to the Legislature</mark>, resulting in a responsible Government deriving legitimacy from the Legislature.
+</li>
+<li>Indian parliamentary system exists because the <mark class="y">Council of Ministers is responsible to the Lok Sabha</mark> (not because Lok Sabha is directly elected, Parliament can amend the Constitution or Rajya Sabha cannot be dissolved).
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Constitutional Provisions</h3>
+<ul>
+<li><mark class="y">Art 75(3)</mark>: Council of Ministers collectively responsible to the <mark class="g">House of the People</mark>.
+</li>
+<li><mark class="y">Art 164(2)</mark>: Council of Ministers collectively responsible to the <mark class="g">Legislative Assembly</mark> (States).
+</li>
+<li><mark class="y">Art 75(5)</mark>: a Minister not a member of either House for <mark class="b">six consecutive months</mark> ceases to be a Minister.
+</li>
+<li>Institutional principles: Cabinet members are <mark class="y">Members of Parliament</mark>; Ministers hold office <mark class="y">till they enjoy confidence</mark> of Parliament; the Cabinet is <mark class="r">not</mark> headed by the Head of State — it is headed by the <mark class="y">Prime Minister (Head of Government)</mark>, while the <mark class="y">President is Head of State</mark>.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Real &amp; Nominal Executive</h3>
+<ul>
+<li>The Indian Constitution adopted a <mark class="y">secular State</mark> and a <mark class="y">federal system</mark>.
+</li>
+<li>In the Parliamentary system the <mark class="y">Union Council of Ministers exercises executive authority</mark>.
+</li>
+<li>The <mark class="g">President</mark> is only the <mark class="y">formal / nominal head</mark> of the executive (constitutional head); the <mark class="y">real executive</mark> is the <mark class="g">Council of Ministers headed by the Prime Minister</mark>.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Features of Parliamentary Government</h3>
+<ul>
+<li><mark class="y">Executive responsible to legislature</mark>; <mark class="y">majority party rule</mark>; <mark class="y">collective responsibility</mark>; <mark class="y">nominal and real executives</mark>; <mark class="y">political homogeneity</mark>; <mark class="y">double membership</mark>; <mark class="y">leadership of Prime Minister</mark>; <mark class="y">dissolution of the lower House</mark>; <mark class="y">secrecy of procedure</mark>.
+</li>
+<li><mark class="r">The Legislature is not responsible to the Judiciary or the Executive; the President is not responsible to the Judiciary</mark> — hence the correct option was "none / more than one".
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane1c6" data-title="Presidential System"><div class="chapter-head"><div class="seal">6</div><h2>Presidential System</h2></div>
+<div class="tcard">
+<h3>Features</h3>
+<ul>
+<li>In the <mark class="y">Presidential system</mark> the <mark class="g">President</mark> is the <mark class="y">head of the executive branch</mark> — <mark class="y">all executive powers</mark> are vested in the President, who is both <mark class="y">Head of State and Head of Government</mark>.
+</li>
+<li>Basic feature: a <mark class="y">single executive</mark>; power is centralised.
+</li>
+<li>The President <mark class="y">appoints his Council of Ministers</mark> and <mark class="y">cannot dissolve the Legislature</mark>.
+</li>
+<li><mark class="r">Presidential Government is NOT a feature of the Indian Constitution.</mark>
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Origin</h3>
+<ul>
+<li>The Presidential form first emerged in the <mark class="g">United States of America</mark> — American Presidency is the <mark class="y">oldest and purest</mark> Presidential Government; the President is elected <mark class="y">indirectly by the people for a fixed period</mark>.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>In the Indian Constitution</h3>
+<ul>
+<li>The Constitution has <mark class="y">Parliamentary Government</mark>, <mark class="y">independence of judiciary</mark> and <mark class="y">federal government</mark> as characteristics; the Presidential form is <mark class="r">not</mark> one.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane1c7" data-title="India vs UK vs USA"><div class="chapter-head"><div class="seal">7</div><h2>India vs UK vs USA</h2></div>
+<div class="tcard">
+<table><caption>Comparisons</caption><thead class="blue"><tr><th>Aspect</th><th>India</th><th>UK / USA</th></tr></thead><tbody>
+<tr><td><mark class="y">Judicial Review</mark></td><td>Adopted from the <mark class="g">U.S. Constitution</mark>; exists in India</td><td><mark class="r">Not</mark> applicable in the British parliamentary system</td></tr>
+<tr><td><mark class="y">Parliament's power</mark></td><td><mark class="y">Limited</mark> by the Constitution; Parliament not absolute</td><td><mark class="g">UK</mark>: <mark class="y">Parliamentary sovereignty</mark> — Parliament is the supreme legal authority, can create or end any law; courts generally cannot overrule its legislation; no Parliament can bind future ones</td></tr>
+<tr><td><mark class="y">Basic Structure</mark></td><td>Gives the Judiciary power to curb Executive/Legislature action if contradictory; Supreme Court can strike down any legislative action inconsistent with the Basic Structure</td><td>—</td></tr>
+<tr><td><mark class="y">Written Constitution</mark></td><td><mark class="y">Written</mark>; Indian Parliament subject to the Constitution</td><td><mark class="g">UK</mark> has no written Constitution</td></tr>
+<tr><td><mark class="y">Common to both parliamentary systems</mark></td><td>Real and nominal executive, collective responsibility, bicameral legislature (all exist in both)</td><td>—</td></tr>
+<tr><td><mark class="y">Residuary powers</mark></td><td>Vested in the <mark class="g">Centre</mark></td><td>Vested in the <mark class="g">States</mark> in the USA</td></tr>
+<tr><td><mark class="y">Pocket veto</mark></td><td><mark class="g">President of India</mark> has it — <mark class="b">no time limit</mark> to return a Bill</td><td><mark class="g">American President</mark> has it — must return the Bill within <mark class="b">10 days</mark> if refusing assent</td></tr>
+<tr><td><mark class="y">Upper House</mark></td><td>Rajya Sabha has <mark class="b">12</mark> members nominated by the President</td><td>All members of the US upper house are <mark class="y">directly elected</mark></td></tr>
+<tr><td><mark class="y">Federation</mark></td><td>Union of <mark class="b">28</mark> States and <mark class="b">8</mark> UTs; unitary features exist</td><td><mark class="g">USA</mark> is a <mark class="y">federal republic of 50 States</mark></td></tr>
+</tbody></table>
+</div>
+<div class="tcard">
+<h3>Additional Points</h3>
+<ul>
+<li>Matters concerning the constitutionality of an Act or Amendment are referred by the Supreme Court to a <mark class="y">Constitution Bench</mark> — the <mark class="g">Chief Justice of India</mark> is constitutionally authorised to constitute it and refer cases; it has at least <mark class="b">five judges</mark> (Art 143 and Art 145(3)).
+</li>
+<li>Government of <mark class="g">France</mark> is <mark class="r">not</mark> federal; the Prime Minister of <mark class="g">Pakistan</mark> is <mark class="r">not appointed by the people</mark>.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane1c8" data-title="Federal &amp; Unitary Features"><div class="chapter-head"><div class="seal">8</div><h2>Federal &amp; Unitary Features</h2></div>
+<div class="tcard">
+<h3>Federal vs Unitary</h3>
+<ul>
+<li><mark class="y">Unitary</mark>: all powers concentrated in a <mark class="y">Central authority</mark>; States subordinate to it. <mark class="y">Federal</mark>: powers distributed between Centre and States; States are not subordinates of the Centre.
+</li>
+<li>India is called <mark class="y">Federal</mark> because of the <mark class="y">distribution of powers</mark> between Union and States in the <mark class="g">7th Schedule</mark> (and Arts 245–255) — <mark class="r">not</mark> just a written/rigid Constitution, free judiciary, or residuary power at Centre.
+</li>
+<li>Indian Constitution is <mark class="y">federal in nature but unitary in spirit</mark>; the Constitution can be both unitary and federal according to circumstances — normally federal; in <mark class="y">war or Emergency</mark> it works as a unitary system (Ambedkar).
+</li>
+<li>The Constitution introduces a <mark class="y">federal system as the basic structure of Government</mark>, with a strong admixture of <mark class="y">unitary bias</mark>.
+</li>
+<li>Reasons for federal adoption: <mark class="y">large size</mark> of the country and its <mark class="y">socio-cultural diversity</mark>.
+</li>
+<li>The primary objective of India's federal design: to <mark class="y">weave a nation out of diverse parts</mark> and protect <mark class="y">national integration</mark>; accommodation of diversities has built a <mark class="y">stronger, not weaker</mark>, nationhood.
+</li>
+<li>India is <mark class="r">not a complete federal state</mark>, because some provisions give it a unitary character — yet many experts accept it as federal given the <mark class="y">division of powers between Union and States</mark>; so 'federalism is not practical in India / India is not a federal State' is false.
+</li>
+<li>Indian federalism is <mark class="r">NOT the result of an agreement</mark> among federating units; units cannot secede — Ambedkar used 'Union' to show this.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Federal Features</h3>
+<ul>
+<li><mark class="y">Written Constitution</mark>; <mark class="y">rigid Constitution</mark>; <mark class="y">distribution of powers</mark>; <mark class="y">supremacy of the Constitution</mark>; <mark class="y">independent judiciary</mark> (essential — judiciary interprets the Constitution); <mark class="y">bicameral legislature</mark>; <mark class="y">dual governments</mark>; <mark class="y">unequal representation of States in Rajya Sabha</mark>.
+</li>
+<li>Judicial Review rests on Arts <mark class="b">13, 32, 136, 137, 226, 227</mark>.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Unitary Features</h3>
+<ul>
+<li><mark class="y">Strong Centre</mark>; <mark class="y">single Constitution</mark>; <mark class="y">single citizenship</mark>; <mark class="y">flexibility of Constitution</mark>; <mark class="y">integrated judiciary</mark>; <mark class="y">appointment of Governors by the President / Centre</mark>; <mark class="y">All India Services</mark>; <mark class="y">Emergency provisions</mark>; <mark class="y">Parliament's power to implement international agreements</mark>; <mark class="y">integrated audit machinery</mark>; <mark class="y">integrated election machinery</mark>; <mark class="y">veto over State Bills (President's approval on State bills)</mark>; <mark class="y">Parliament's authority over State List</mark>; <mark class="y">one Supreme Court</mark>.
+</li>
+<li><mark class="y">Art 250</mark>: Parliament can legislate on State List during <mark class="y">Emergency</mark>; <mark class="y">Art 249</mark>: legislate on a State matter in <mark class="y">national interest</mark>.
+</li>
+<li>Only the <mark class="y">Union is sovereign</mark>, not the States (States have no say in Foreign and Defence matters); the judicial system has a <mark class="y">hierarchy</mark>, not a division of judicial power.
+</li>
+<li><mark class="r">Single citizenship is a unitary (not federal) feature</mark>; <mark class="r">Decentralisation of powers and Judicial review are federal, not unitary</mark>.
+</li>
+<li><mark class="r">"Ideal for large countries" is not a characteristic of unitary government</mark> — it depends on a country's will (swift decisions, flexibility, uniformity of laws are).
+</li>
+</ul>
+<div class="trap"><span class="lbl">Source conflict</span>The source classifies "rigid Constitution" as federal in one place and "flexibility of Constitution" as unitary in another, and "unequal representation in Rajya Sabha" as a federal feature in one MCQ but a unitary element in another. Both versions appear in answer keys — read the option wording carefully.</div>
+</div>
+</section>
+<section class="chapter" id="pane1c9" data-title="Scholars on Indian Federalism"><div class="chapter-head"><div class="seal">9</div><h2>Scholars on Indian Federalism</h2></div>
+<div class="tcard">
+<table><caption>Who Said What</caption><thead class="blue"><tr><th>Scholar</th><th>View / Term</th><th>Key Fact</th></tr></thead><tbody>
+<tr><td><mark class="g">K.C. Wheare</mark></td><td><mark class="y">Quasi-Federal</mark></td><td>"A unitary state with subsidiary federal features"; in his book <mark class="g">Federal Government</mark>; also said Constitution has good balance between rigidity and flexibility; <mark class="y">quasi-federal</mark> = both federal and unitary features with greater powers vested in the Centre</td></tr>
+<tr><td><mark class="g">Granville Austin</mark></td><td><mark class="y">Cooperative Federalism</mark></td><td>—</td></tr>
+<tr><td><mark class="g">Morris-Jones</mark></td><td><mark class="y">Bargaining Federalism</mark></td><td>—</td></tr>
+<tr><td><mark class="g">Ivor Jennings</mark></td><td><mark class="y">Federalism with Centralising Tendency</mark></td><td>—</td></tr>
+<tr><td><mark class="g">D.D. Basu</mark></td><td>Neither purely federal nor unitary but <mark class="y">a combination of both</mark></td><td>—</td></tr>
+<tr><td><mark class="g">Dr. B.R. Ambedkar</mark></td><td>Constitution "<mark class="y">has not been set in a tight mould of federalism</mark>"; has both federal and unitary features; States have no right to secede</td><td>Said in the Constituent Assembly</td></tr>
+</tbody></table>
+</div>
+<div class="tcard">
+<h3>Quasi-Federal</h3>
+<ul>
+<li>Quasi-federal means government generally belongs to the <mark class="y">Federal system</mark> but the Constitution enables the Federation to convert into a <mark class="y">unitary state</mark>, generally during an <mark class="y">emergency</mark>.
+</li>
+<li><mark class="r">Indian Federalism is called 'quasi-federal' for unitary features (not because of judicial review)</mark>: the independent judiciary with Judicial Review (Arts 13, 32, 136, 137, 226, 227) is a crucial feature but not the explanation of the term.
+</li>
+<li>'Neither federal nor unitary' is the explanation of <mark class="y">quasi-federalism</mark> given by D.D. Basu (for the Constitution as a combination).
+</li>
+<li><mark class="r">Laski and Jawaharlal Nehru did NOT coin 'quasi-federal'.</mark>
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane1c10" data-title="Instruments of Unity in Diversity &amp; Federal Evolution"><div class="chapter-head"><div class="seal">10</div><h2>Instruments of Unity in Diversity &amp; Federal Evolution</h2></div>
+<div class="tcard">
+<h3>Institutions</h3>
+<ul>
+<li>Institutions necessary to promote 'unity among diversity': <mark class="y">Inter-State Council</mark> &amp; <mark class="y">National Development Council</mark>; <mark class="y">Finance Commission</mark> &amp; <mark class="y">Regional Council</mark>; <mark class="y">Unitary Judicial System</mark> &amp; <mark class="y">All India Services</mark>.
+</li>
+<li><mark class="y">Inter-State Council</mark> (Art 263): discusses/investigates policies, subjects of common interest and disputes among States.
+</li>
+<li><mark class="y">National Development Council</mark>: apex body for decision-making and deliberation on development matters; presided over by the <mark class="g">Prime Minister</mark>.
+</li>
+<li><mark class="y">Finance Commission</mark> (Art 280): defines the financial relations between the Central Government and the State Governments.
+</li>
+<li><mark class="y">Unitary Judicial System</mark>: single integrated system with the <mark class="g">Supreme Court</mark> at the top.
+</li>
+<li><mark class="y">All India Services</mark>: Art 312 provides for their creation.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Phase of Federalism</h3>
+<ul>
+<li>The Parliamentary system in India shifted from <mark class="y">Centralism to Federalism</mark> in the <mark class="b">1970s</mark> (1971–80), when the <mark class="g">Congress Party lost power in many States</mark>.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane1c11" data-title="Constitutional Government, Rule of Law &amp; Concepts"><div class="chapter-head"><div class="seal">11</div><h2>Constitutional Government, Rule of Law &amp; Concepts</h2></div>
+<div class="tcard">
+<h3>Constitutionalism</h3>
+<ul>
+<li><mark class="y">Constitutional Government</mark> = government <mark class="y">limited by the terms of the Constitution</mark> (a <mark class="y">limited government</mark>); the Constitution is the <mark class="y">source of power</mark> and imposes limits on government in the interest of people.
+</li>
+<li>It places effective restrictions on the <mark class="y">authority of the State in the interest of individual liberty</mark> — <mark class="r">not</mark> restrictions on liberty in the interest of State authority.
+</li>
+<li>Constitutionalism protects public interest and liberty from the <mark class="y">autocratic power of Government</mark>; institutional mechanisms protect citizens' liberties.
+</li>
+<li>The <mark class="y">chief purpose</mark> of a Constitution is to <mark class="y">define and limit the powers of government</mark> (it also creates offices, gives structure and defines roles of legislature, executive and judiciary).
+</li>
+<li><mark class="y">Constitutionalism</mark> is sometimes treated as a synonym for <mark class="y">limited government</mark>, but that is only <mark class="y">one interpretation</mark> and not the most prominent one.
+</li>
+<li>A constitutional government is <mark class="r">not</mark> merely a government by the legislature, popular government, multi-party government, representative government of a federal nation, or one whose Head has nominal/real powers.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Rule of Law</h3>
+<ul>
+<li>Propounded by <mark class="g">A.V. Dicey</mark>, a British jurist. Elements: <mark class="y">limitation of powers (absence of arbitrary power; no punishment except for breach of law)</mark>, <mark class="y">equality before law (equal subjection to ordinary law, administered by ordinary courts)</mark>, <mark class="y">liberty and civil rights (primacy of individual rights, as defined and enforced by courts)</mark>.
+</li>
+<li><mark class="r">"People's responsibility to the government" is NOT a feature of Rule of Law.</mark>
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Liberty &amp; Equality</h3>
+<ul>
+<li><mark class="y">Liberty</mark> = absence of restraints on the activities of individuals + providing opportunities for the <mark class="y">development of individual personalities</mark> — the <mark class="y">positive conception</mark> (opportunity to develop oneself fully); 'protection against tyranny' and 'absence of restraint' = negative views; 'opportunity to do whatever one likes' = anarchy.
+</li>
+<li>Constitutional liberty: reservation, protection of minority rights, prohibition of discrimination on grounds of religion, race, caste, sex, place of birth.
+</li>
+<li><mark class="y">Law and liberty complement each other</mark> — <mark class="r">if there are no laws, there is no liberty</mark> (violations occur where no laws protect freedom).
+</li>
+<li><mark class="y">Equality</mark> implies absence of <mark class="y">privileges</mark> (special privileges based on gender, colour, creed or religion are irrational prejudices); formal equality was first demanded to break the feudal hierarchy of ranks and orders.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane1c12" data-title="Public Administration Thinkers"><div class="chapter-head"><div class="seal">12</div><h2>Public Administration Thinkers</h2></div>
+<div class="tcard">
+<table><caption>Administration Thinkers &amp; Statements</caption><thead class="blue"><tr><th>Thinker</th><th>Contribution</th><th>Key Fact</th></tr></thead><tbody>
+<tr><td><mark class="g">Herbert A. Simon</mark></td><td>Rejected the 'principles of administration' as <mark class="y">myths and proverbs</mark></td><td><mark class="g">Dwight Waldo, Frank Marini and F.W. Riggs</mark> are cited as the others in the question (accepted administration as myths and proverbs per the source)</td></tr>
+<tr><td><mark class="g">Fred W. Riggs</mark></td><td><mark class="y">Development Administration</mark></td><td>Dynamic concept bringing socio-economic and political-economic change; organised efforts of large-scale organisations (notably governments) to implement policies and plans to meet development objectives</td></tr>
+<tr><td><mark class="g">Henri Fayol</mark></td><td>Father of <mark class="y">modern management theory</mark>; <mark class="b">14 principles</mark> of management</td><td>Principles are universal, so he saw <mark class="y">similarities between public and private administration</mark></td></tr>
+<tr><td><mark class="g">B. Donham</mark></td><td>"If our civilization fails it will be mainly because of a <mark class="y">breakdown of administration</mark>"</td><td>Not L.D. White, Alexander Pope or Edmund Burke</td></tr>
+</tbody></table>
+</div>
+</section>
+</div>
+<div class="tabpane" id="pane2">
+<section class="chapter" id="pane2c1" data-title="Master Table of Articles"><div class="chapter-head"><div class="seal">1</div><h2>Master Table of Articles</h2></div>
+<div class="tcard">
+<table><caption>Articles Mentioned — Ascending Order</caption><thead class="red"><tr><th>Article</th><th>Subject</th><th>Key Facts</th><th>Detail</th></tr></thead><tbody>
+<tr><td><mark class="y">Art 1</mark></td><td>Name &amp; territory of the Union</td><td><mark class="y">India, that is Bharat, shall be a Union of States</mark> (not a Federation of States); territory = <mark class="g">States, Union Territories, other territories acquired</mark>; States/UTs named in the <mark class="g">First Schedule</mark>; Hindustan is <mark class="r">not</mark> a constitutional name</td><td>Ch 3</td></tr>
+<tr><td><mark class="y">Art 2</mark></td><td>Admission / establishment of new States</td><td><mark class="g">Parliament</mark> may by law admit into the Union or establish new States; outside the scope of Art 368</td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 2A</mark></td><td>Sikkim — Associate State</td><td>Inserted by the <mark class="b">35th Amendment 1974</mark>; repealed on full statehood by the 36th Amendment</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 3</mark></td><td>Formation of States, alteration of areas, boundaries, names</td><td>Parliament by <mark class="y">simple majority</mark>; President's prior recommendation + reference to State Legislature; views not binding</td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 4</mark></td><td>Laws under Arts 2 &amp; 3</td><td>Art 4(1): such law contains provisions amending the <mark class="g">First and Fourth Schedules</mark>; Art 4(2): <mark class="r">not deemed an amendment under Art 368</mark></td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 5</mark></td><td>Citizenship at commencement</td><td>Citizenship at the commencement of the Constitution [Outside source]; only appears as an option in the question on power to create a State — wrong</td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 14</mark></td><td>Equality before law</td><td>Guaranteed to <mark class="y">all persons — citizens and non-citizens</mark></td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 16</mark></td><td>Equality of opportunity in public employment</td><td>Guaranteed only to <mark class="y">Indian citizens</mark></td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 19(1)</mark></td><td>Six freedoms of citizens</td><td>Speech &amp; expression; assemble peaceably without arms; form associations/unions/co-operative societies; move freely throughout India; reside and settle in any part; practise any profession/occupation, trade or business</td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 19(2)</mark></td><td>Reasonable restrictions</td><td>State can restrict these freedoms only on grounds stated in Art 19(2) — so even <mark class="y">advocacy of secession</mark> is subject to restriction</td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 240</mark></td><td>President's power to make regulations for certain UTs</td><td><mark class="y">Andaman &amp; Nicobar</mark> [240(1)(a)]; <mark class="y">Lakshadweep</mark> [240(1)(b)]; <mark class="y">Dadra &amp; Nagar Haveli and Daman &amp; Diu</mark> [240(1)(c)]; 240(1)(d) repealed; <mark class="y">Puducherry</mark> [240(1)(e)]</td><td>Ch 9</td></tr>
+<tr><td><mark class="y">Art 368</mark></td><td>Constitutional amendment</td><td>Procedure for amendment — <mark class="r">not</mark> applicable to laws under Arts 2 and 3</td><td>Ch 4</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="chapter" id="pane2c2" data-title="Integration of Princely States &amp; Constitutional Categories"><div class="chapter-head"><div class="seal">2</div><h2>Integration of Princely States &amp; Constitutional Categories</h2></div>
+<div class="tcard">
+<h3>Independence &amp; Princely States</h3>
+<ul>
+<li>The <mark class="y">Indian Independence Act 1947</mark> created <mark class="b">two</mark> independent and separate <mark class="y">Dominions</mark> — <mark class="g">India</mark> and <mark class="g">Pakistan</mark>.
+</li>
+<li><mark class="g">Princely States</mark> had <mark class="b">three options</mark>: join India, join Pakistan, or remain independent.
+</li>
+<li>More than <mark class="b">560</mark> princely States lay in Indian territory; most joined India but <mark class="b">three</mark> refused — <mark class="g">Hyderabad</mark>, <mark class="g">Junagadh</mark>, <mark class="g">Kashmir</mark>.
+</li>
+<li>How they were included:
+</li>
+<li class="grp"><span class="lead"><mark class="g">Hyderabad</mark></span>
+<ul class="sub"><li>Included through <mark class="y">military action</mark>.</li></ul>
+</li>
+<li class="grp"><span class="lead"><mark class="g">Junagadh</mark></span>
+<ul class="sub"><li>Included through a <mark class="y">referendum</mark>.</li></ul>
+</li>
+<li class="grp"><span class="lead"><mark class="g">Kashmir</mark></span>
+<ul class="sub"><li>Included through the <mark class="y">Instrument of Accession</mark> (a legal document) executed by <mark class="g">Maharaja Hari Singh</mark>, ruler of Jammu &amp; Kashmir.</li></ul>
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Four Categories in the First Schedule (1950)</h3>
+<table><caption>Part A to D States (Constitution of 1950)</caption><thead class="blue"><tr><th>Part</th><th>Comprised of</th><th>Head / Administration</th></tr></thead><tbody>
+<tr><td><mark class="y">Part A</mark></td><td>Former <mark class="g">British India provinces</mark></td><td><mark class="y">Governor</mark> and a <mark class="y">Legislature</mark></td></tr>
+<tr><td><mark class="y">Part B</mark></td><td>Former <mark class="g">Princely States</mark></td><td>Governed by a <mark class="y">Raj Pramukh</mark></td></tr>
+<tr><td><mark class="y">Part C</mark></td><td>Combination of <mark class="g">Princely States and Chief Commissioner's provinces</mark></td><td>Governed by a <mark class="y">Chief Commissioner</mark></td></tr>
+<tr><td><mark class="y">Part D</mark></td><td>Lone territory of the <mark class="g">Andaman &amp; Nicobar Islands</mark></td><td>Administered by the <mark class="g">President</mark> through a <mark class="y">Chief Commissioner / other authority</mark> appointed by him</td></tr>
+</tbody></table>
+<ul>
+<li><mark class="y">Part C States and Part D territory</mark> formed the <mark class="y">basis for the creation of Union Territories</mark>.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane2c3" data-title="Constitutional Provisions for the Union &amp; its Territory"><div class="chapter-head"><div class="seal">3</div><h2>Constitutional Provisions for the Union &amp; its Territory</h2></div>
+<div class="tcard">
+<h3>Article 1 — Name &amp; Nature</h3>
+<ul>
+<li><mark class="y">Art 1(1)</mark>: "<mark class="y">India, that is Bharat, shall be a Union of States</mark>" — a <mark class="y">Union of States</mark>, <mark class="r">not</mark> a Federation, a group, a confederation of States.
+</li>
+<li>Country is mentioned in the Constitution as <mark class="y">Bharat and India</mark> (not Hindustan).
+</li>
+<li>The <mark class="y">territory of India</mark> comprises (1) <mark class="y">States</mark>, (2) <mark class="y">Union Territories</mark>, (3) such other territories as may be <mark class="y">acquired</mark>; names and territories of States are specified in the <mark class="g">First Schedule</mark>.
+</li>
+<li>Why 'Union': the States have <mark class="y">no right of separation / secession</mark> (Ambedkar) — the federation is not the result of an agreement among units; States do not have <mark class="y">territorial integrity</mark> either.
+</li>
+<li>India is a <mark class="y">Sovereign, Socialist, Secular, Democratic Republic</mark> with a <mark class="y">Parliamentary system</mark>; the <mark class="g">President</mark> is the Constitutional head of the executive.
+</li>
+<li><mark class="r">Assertion "India is not a Union" is false</mark>; Reason (Parliament can alter area, boundary and name of any State without its consent) is true.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Present Strength</h3>
+<ul>
+<li>Presently <mark class="b">28 States</mark> and <mark class="b">8 Union Territories</mark>.
+</li>
+<li>Count history: in <mark class="b">2002</mark> — <mark class="b">28</mark> States and <mark class="b">7</mark> UTs (incl. National Capital Territory); <mark class="g">Telangana</mark> became the <mark class="b">29th</mark> State on <mark class="b">2 June 2014</mark>; after <mark class="g">Jammu &amp; Kashmir and Ladakh</mark> became UTs (2019) → <mark class="b">28</mark> States and <mark class="b">9</mark> UTs; merger of <mark class="g">Dadra &amp; Nagar Haveli</mark> with <mark class="g">Daman &amp; Diu</mark> → <mark class="b">28</mark> States and <mark class="b">8</mark> UTs.
+</li>
+</ul>
+<div class="trap"><span class="lbl">Source conflict</span>One MCQ answers "number of States after Telangana's formation = 28", whereas the explanation of another says Telangana was the 29th State in 2014 — 28 is the number now (after J&amp;K became a UT). Treat 28 as today's figure.</div>
+</div>
+</section>
+<section class="chapter" id="pane2c4" data-title="Power of Parliament — Articles 2, 3 &amp; 4"><div class="chapter-head"><div class="seal">4</div><h2>Power of Parliament — Articles 2, 3 &amp; 4</h2></div>
+<div class="tcard">
+<h3>Who Has the Power</h3>
+<ul>
+<li>The power to <mark class="y">admit or establish</mark> new States and <mark class="y">form States / alter areas, boundaries, names</mark> lies with the <mark class="g">Parliament</mark> — <mark class="r">not</mark> the President, Lok Sabha alone, Council of Ministers, Central Government, Prime Minister, Supreme Court, States' Reorganisation Commission, State Assembly, Governor's ordinance or political parties.
+</li>
+<li><mark class="y">Art 2</mark>: admission or establishment of new States — <mark class="r">NOT possible by Art 3</mark> (Art 3 cannot be used for admission of new States).
+</li>
+<li><mark class="y">Art 3</mark>: Parliament may by law:
+<ul class="sub"><li>(a) form a new State by <mark class="y">separation of territory from any State</mark>, by <mark class="y">uniting two or more States or parts of States</mark>, or by uniting any territory to a part of any State;</li><li>(b) <mark class="y">increase the area</mark> of any State;</li><li>(c) <mark class="y">diminish the area</mark> of any State;</li><li>(d) <mark class="y">alter the boundaries</mark> of any State;</li><li>(e) <mark class="y">alter the name</mark> of any State.</li></ul>
+</li>
+<li>A State may <mark class="r">not</mark> include a Union Territory by itself — no State has authority to include territory on its own.
+</li>
+<li><mark class="y">Explanation I of Art 3</mark>: in clauses (a) to (e) '<mark class="y">State</mark>' includes a <mark class="y">Union Territory</mark>, but in the <mark class="y">proviso</mark>, 'State' does <mark class="r">not</mark> include a UT.
+</li>
+<li>The <mark class="y">power to alter the name of a State</mark> belongs to <mark class="y">Parliament, not the State Legislature</mark>.
+</li>
+<li>Example: a separate <mark class="g">Vananchal (Jharkhand)</mark> from Bihar could be made only through Parliament under Art 3 — not by State Assembly legislation or Governor's ordinance.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Procedure</h3>
+<ul>
+<li>A Bill under Art 3 can be introduced in Parliament only on the <mark class="y">prior recommendation of the President</mark>.
+</li>
+<li>Before recommending, the President must <mark class="y">refer the Bill to the Legislature of the State(s)</mark> affected (area, boundary or name) to express its views within a <mark class="y">specified period</mark>.
+</li>
+<li>The President / Parliament is <mark class="y">not bound</mark> by the State Legislature's views — may accept or reject them even if received in time; if the Legislature gives no views in the period, the Bill <mark class="y">can still be presented</mark>.
+</li>
+<li><mark class="y">Consent of the State is NOT required</mark> (not the Chief Minister's or Legislature's).
+</li>
+<li>Parliament passes by <mark class="y">simple majority</mark> (ordinary legislative process) — <mark class="r">no</mark> ratification by two-thirds of States, <mark class="r">no</mark> special/two-thirds/three-fourths majority.
+</li>
+<li>Art 4(1): such law contains provisions amending the <mark class="y">First Schedule</mark> (names/territories) and <mark class="y">Fourth Schedule</mark> (Rajya Sabha seats).
+</li>
+<li>Art 4(2): such law is <mark class="r">not deemed an amendment of the Constitution for the purpose of Art 368</mark> — amendments under Arts 2 and 3 are outside the scope of Art 368.
+</li>
+<li><mark class="r">Option "law deemed an amendment under Art 368" is the wrong statement.</mark>
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Secession &amp; Territorial Integrity</h3>
+<ul>
+<li>States have <mark class="y">no right to secede</mark> from the Union and <mark class="y">no right to territorial integrity</mark>; Parliament can change area, boundaries or name by <mark class="y">unilateral action</mark> with a simple majority.
+</li>
+<li><mark class="y">Just advocacy of secession</mark> does <mark class="r">not</mark> get protection of freedom of expression — <mark class="y">Art 19(1)</mark> gives citizens six freedoms: speech &amp; expression; assembly peaceably without arms; associations/unions/co-operative societies; free movement throughout India; residence and settlement anywhere; any profession/occupation/trade/business; the State may impose <mark class="y">reasonable restrictions</mark> only on grounds in <mark class="y">Art 19(2)</mark>.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Related Rights</h3>
+<ul>
+<li><mark class="y">Equality before Law</mark> (Art 14) — guaranteed to <mark class="y">both citizens and non-citizens</mark>; <mark class="y">Equality of opportunity in public employment</mark> (Art 16) — only to <mark class="y">Indian citizens</mark>.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane2c5" data-title="Demand for Linguistic States — Dhar, JVP &amp; Potti Sriramulu"><div class="chapter-head"><div class="seal">5</div><h2>Demand for Linguistic States — Dhar, JVP &amp; Potti Sriramulu</h2></div>
+<div class="tcard">
+<h3>Early Attitude</h3>
+<ul>
+<li>After the <mark class="g">Nagpur Session of Congress 1920</mark> (presided by <mark class="g">C. Vijayaraghavachariar</mark>) provincial Congress Committees were constituted on a <mark class="y">linguistic basis</mark>.
+</li>
+<li><mark class="g">S.K. Dhar Commission</mark> (<mark class="b">1948</mark>) investigated feasibility of reorganising States on linguistic basis — recommended <mark class="y">administrative convenience / viability</mark> instead of language.
+</li>
+<li><mark class="b">December 1948</mark>: the Congress constituted the <mark class="y">JVP Committee</mark> — <mark class="g">Jawaharlal Nehru, Vallabhbhai Patel, Pattabhi Sitaramayya</mark> — to scrutinise the Dhar Commission; its report in <mark class="b">April 1949</mark> also <mark class="y">rejected</mark> reorganisation on linguistic basis.
+</li>
+<li>Hence in <mark class="b">1948</mark> Congress rejected the demand of linguistic provinces; <mark class="r">Pattabhi Sitaramayya was a JVP member, NOT a member of the Fazal Ali Commission</mark>.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>First Linguistic State</h3>
+<ul>
+<li>Death of <mark class="g">Potti Sriramulu</mark> after a <mark class="b">56-day</mark> hunger strike forced the Government to form <mark class="y">Andhra Pradesh</mark> in <mark class="b">October 1953</mark> (effective <mark class="b">1 October 1953</mark>) — the <mark class="y">first State formed on a linguistic basis</mark>, by separating Telugu-speaking areas from <mark class="g">Madras State</mark> (<mark class="r">not</mark> Rajasthan, Madhya Pradesh, Karnataka, Kerala, UP).
+</li>
+<li><mark class="y">Large-scale reorganisation</mark> on linguistic basis started in <mark class="b">1956</mark>.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane2c6" data-title="States Reorganisation Commission (Fazal Ali) &amp; Act 1956"><div class="chapter-head"><div class="seal">6</div><h2>States Reorganisation Commission (Fazal Ali) &amp; Act 1956</h2></div>
+<div class="tcard">
+<h3>Commission</h3>
+<ul>
+<li>Constituted by the Central Government (<mark class="b">29 December 1953</mark>); chairman <mark class="g">Justice Fazal Ali</mark> (Syed Fazl Ali); members <mark class="g">K.M. Panikkar</mark> and <mark class="g">H.N. Kunzru (Hridayanath Kunzru)</mark>; report submitted <mark class="b">30 September 1955</mark>.
+</li>
+<li><mark class="r">Not members</mark>: <mark class="g">K.T. Shah</mark>, <mark class="g">Pattabhi Sitaramayya</mark>, <mark class="g">Tej Bahadur Sapru</mark>.
+</li>
+<li>It <mark class="y">broadly accepted language</mark> as the basis of reorganisation but <mark class="y">rejected 'one language–one State'</mark> and suggested <mark class="y">abolition of the four-fold classification</mark> of States and territories.
+</li>
+<li>It <mark class="r">did not support splitting of Bombay and Punjab</mark>.
+</li>
+</ul>
+<div class="trap"><span class="lbl">Source conflict</span>One question stem says the SRC was formed in August 1953; the explanation says it was established on 29 December 1953 (reported in September 1955). 29 December 1953 is used here.</div>
+</div>
+<div class="tcard">
+<h3>Act &amp; Effect</h3>
+<ul>
+<li>The Government accepted the recommendations with some modifications — enacted the <mark class="y">States Reorganisation Act 1956</mark> and the <mark class="y">7th Constitutional Amendment Act 1956</mark>.
+</li>
+<li>The Act <mark class="y">abolished the distinction between Part A, B and C</mark> States; on <mark class="b">1 November 1956</mark> — <mark class="b">14 States</mark> and <mark class="b">6 Union Territories</mark> (not 17 States/6 UTs or other combinations) were created.
+</li>
+<li>States were reorganised on language basis in <mark class="b">1956</mark> (not 1947, 1951, 1960, 1962, 1973 or 2000).
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane2c7" data-title="Chronology of Formation of States"><div class="chapter-head"><div class="seal">7</div><h2>Chronology of Formation of States</h2></div>
+<div class="tcard">
+<table><caption>Formation of States — Chronological Order</caption><thead class="blue"><tr><th>State</th><th>Year / Date</th><th>Key Facts</th></tr></thead><tbody>
+<tr><td><mark class="g">Andhra Pradesh</mark></td><td><mark class="b">October 1953</mark></td><td>First linguistic State</td></tr>
+<tr><td><mark class="g">Rajasthan</mark></td><td><mark class="b">1958</mark></td><td>Comes before Maharashtra and Haryana in order [source year]</td></tr>
+<tr><td><mark class="g">Maharashtra</mark> &amp; <mark class="g">Gujarat</mark></td><td><mark class="b">1960</mark></td><td>State of <mark class="g">Bombay</mark> was bifurcated into Gujarat and Maharashtra by the <mark class="y">Bombay Reorganisation Act 1960</mark></td></tr>
+<tr><td><mark class="g">Nagaland</mark></td><td><mark class="b">1 December 1963</mark></td><td><mark class="b">16th</mark> State; created by <mark class="y">State of Nagaland Act 1962</mark> (ordinary Act of Parliament, not a Constitution Amendment Act)</td></tr>
+<tr><td><mark class="g">Haryana</mark></td><td><mark class="b">1 November 1966</mark></td><td>Carved out of Punjab</td></tr>
+<tr><td><mark class="g">Punjab</mark> (present form)</td><td><mark class="b">1 November 1966</mark></td><td>Under the <mark class="y">Punjab Reorganisation Act</mark>; the original Punjab existed from 26 January 1950</td></tr>
+<tr><td><mark class="g">Himachal Pradesh</mark></td><td>Province <mark class="b">15 April 1948</mark>; State <mark class="b">25 January 1971</mark> (full statehood 1971)</td><td>Earlier in the list of <mark class="y">Union Territories</mark></td></tr>
+<tr><td><mark class="g">Meghalaya</mark></td><td><mark class="b">21 January 1972</mark></td><td>—</td></tr>
+<tr><td><mark class="g">Tripura</mark></td><td>Full statehood <mark class="b">21 January 1972</mark></td><td>Initially <mark class="y">Part C State</mark> → UT after SR Act 1956 → full State under <mark class="y">North-Eastern Areas (Reorganisation) Act 1971</mark></td></tr>
+<tr><td><mark class="g">Karnataka</mark></td><td>—</td><td>State of <mark class="g">Mysore</mark> renamed Karnataka by the <mark class="y">Mysore State (Alteration of Name) Act 1973</mark> (<mark class="r">not</mark> Tamil Nadu)</td></tr>
+<tr><td><mark class="g">Sikkim</mark></td><td><mark class="b">16 May 1975</mark></td><td><mark class="b">22nd</mark> State; <mark class="y">36th Amendment 1975</mark></td></tr>
+<tr><td><mark class="g">Mizoram</mark></td><td><mark class="b">20 February 1987</mark></td><td><mark class="y">53rd Amendment Act</mark></td></tr>
+<tr><td><mark class="g">Arunachal Pradesh</mark></td><td><mark class="b">20 February 1987</mark></td><td>Statehood</td></tr>
+<tr><td><mark class="g">Goa</mark></td><td><mark class="b">30 May 1987</mark></td><td>Full statehood; separated from <mark class="g">Daman &amp; Diu</mark></td></tr>
+<tr><td><mark class="g">Chhattisgarh</mark></td><td><mark class="b">1 November 2000</mark></td><td>Carved out of <mark class="g">Madhya Pradesh</mark></td></tr>
+<tr><td><mark class="g">Uttarakhand</mark></td><td><mark class="b">9 November 2000</mark></td><td><mark class="b">27th</mark> State</td></tr>
+<tr><td><mark class="g">Jharkhand</mark></td><td><mark class="b">15 November 2000</mark></td><td>Carved out of the southern part of <mark class="g">Bihar</mark></td></tr>
+<tr><td><mark class="g">Telangana</mark></td><td><mark class="b">2 June 2014</mark></td><td>Formed (see count conflict above); <mark class="g">Hyderabad</mark> capital of both for <mark class="b">10 years</mark></td></tr>
+</tbody></table>
+<div class="trap"><span class="lbl">Source conflict</span>One answer key gives Rajasthan's year as 1958; the usual date is 1 November 1956 (State from the 1956 reorganisation; Greater Rajasthan formed 1949) [Outside source]. Order vs Maharashtra (1960) and Haryana (1966) is unaffected. Also, one option lists Nagaland as 1962 — the correct year is 1963.</div>
+</div>
+<div class="tcard">
+<h3>Notes on Dates</h3>
+<ul>
+<li><mark class="r">West Bengal, Punjab and Assam</mark> became provinces on <mark class="b">15 August 1947</mark> and States on <mark class="b">26 January 1950</mark>; none of these were formed in 1948 as 'States'; <mark class="g">Himachal Pradesh</mark> became a <mark class="y">province on 15 April 1948</mark> — a 'State' only in 1971.
+</li>
+<li>Present-form <mark class="y">Punjab</mark> is 1 November 1966; counting the original Punjab (1950) as earliest would make no option correct.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane2c8" data-title="Notes on Individual States"><div class="chapter-head"><div class="seal">8</div><h2>Notes on Individual States</h2></div>
+<div class="tcard">
+<h3>Sikkim</h3>
+<ul>
+<li><mark class="b">22nd State</mark>; became a full State by the <mark class="y">36th Constitutional Amendment Act 1975</mark> (came into force <mark class="b">26 April 1975</mark>; State Foundation Day <mark class="b">16 May 1975</mark>).
+</li>
+<li><mark class="y">1974</mark>: Sikkim Assembly passed the <mark class="y">Government of Sikkim Act 1974</mark> → first responsible Government; the <mark class="y">35th Amendment 1974</mark> inserted <mark class="y">Art 2A</mark> making Sikkim an <mark class="y">Associate State</mark> and provided terms of association; the 36th Amendment integrated it as a full State and later Art 2A fell away.
+</li>
+<li>The 36th Amendment says the Legislative Assembly shall have not less than <mark class="b">32</mark> members; the Assembly formed after elections in <mark class="b">April 1974</mark> with <mark class="b">32</mark> members was deemed the Legislative Assembly of the State of Sikkim.
+</li>
+<li>Sikkim became an <mark class="y">integral part of India</mark> in 1975; it is a <mark class="y">botanist's paradise</mark> (Himalayan biodiversity hotspot); natives are <mark class="y">Lepchas, Bhutias and Nepalis</mark>.
+</li>
+</ul>
+<div class="trap"><span class="lbl">Source conflict</span>One answer key gives the 35th Amendment because the 36th was not among options — the 36th made Sikkim a full State; the 35th only provided association status.</div>
+</div>
+<div class="tcard">
+<h3>Mizoram</h3>
+<ul>
+<li><mark class="b">30 June 1986</mark>: Memorandum of Settlement signed by the <mark class="g">Government of India and Mizoram</mark>; granted statehood by the <mark class="y">53rd Amendment Act</mark>; formed on <mark class="b">20 February 1987</mark>.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Arunachal Pradesh</h3>
+<ul>
+<li>Capital <mark class="g">Itanagar</mark> is named after the <mark class="g">Ita Fort</mark> ('fort of bricks'); has <mark class="b">two</mark> National Parks — <mark class="g">Namdapha</mark> and <mark class="g">Mouling</mark>.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Nagaland &amp; Tripura</h3>
+<ul>
+<li><mark class="g">Nagaland</mark> came into existence through an <mark class="y">ordinary Act of Parliament</mark> (<mark class="y">State of Nagaland Act 1962</mark>), not a Constitution Amendment Act.
+</li>
+<li><mark class="g">Tripura</mark>: Part C State → UT (after 1956) → full State <mark class="b">21 January 1972</mark> (<mark class="y">North-Eastern Areas (Reorganisation) Act 1971</mark>).
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Goa, Daman &amp; Diu, Dadra &amp; Nagar Haveli</h3>
+<ul>
+<li><mark class="g">Goa</mark> attained full statehood in <mark class="b">1987</mark>; <mark class="g">Daman and Diu</mark> were separated from Goa (the question treated this as done by the <mark class="y">56th Amendment</mark>; the Goa, Daman and Diu split was in <mark class="b">1987</mark>); <mark class="g">Diu</mark> is an island in the <mark class="g">Gulf of Khambhat</mark>.
+</li>
+<li><mark class="g">Dadra and Nagar Haveli</mark> were under <mark class="y">Portuguese rule</mark> until <mark class="b">1954</mark>, when occupied by supporters of the Indian Union (<mark class="r">not French</mark>).
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>State Names &amp; Capitals</h3>
+<table><caption>Capitals with Changed Names</caption><thead class="blue"><tr><th>State</th><th>Previous name</th><th>Current name</th></tr></thead><tbody>
+<tr><td><mark class="g">Tamil Nadu</mark></td><td>Madras</td><td><mark class="y">Chennai</mark></td></tr>
+<tr><td><mark class="g">West Bengal</mark></td><td>Calcutta</td><td><mark class="y">Kolkata</mark></td></tr>
+<tr><td><mark class="g">Maharashtra</mark></td><td>Bombay</td><td><mark class="y">Mumbai</mark></td></tr>
+<tr><td><mark class="g">Puducherry</mark> (UT)</td><td>Pondicherry</td><td><mark class="y">Puducherry</mark></td></tr>
+<tr><td><mark class="g">Karnataka</mark></td><td>Bangalore</td><td><mark class="y">Bengaluru</mark></td></tr>
+<tr><td><mark class="g">Kerala</mark></td><td>Trivandrum</td><td><mark class="y">Thiruvananthapuram</mark></td></tr>
+</tbody></table>
+<ul>
+<li><mark class="g">Andhra Pradesh</mark> is the State whose capital name has <mark class="y">not changed since Independence</mark>.
+</li>
+<li>After Telangana's formation, <mark class="g">Hyderabad</mark> was capital of both States for <mark class="b">10 years</mark>.
+</li>
+<li><mark class="y">Andhra Pradesh Decentralisation and Inclusive Development of All Regions Act 2020</mark> (Governor's assent <mark class="b">31 July 2020</mark>): three seats of governance — <mark class="g">Amravati</mark> (Legislative), <mark class="g">Visakhapatnam</mark> (Executive), <mark class="g">Kurnool</mark> (Judicial); at present <mark class="g">Amaravati</mark> is the sole capital.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane2c9" data-title="Union Territories"><div class="chapter-head"><div class="seal">9</div><h2>Union Territories</h2></div>
+<div class="tcard">
+<h3>Number &amp; Identification</h3>
+<ul>
+<li>Presently <mark class="b">8</mark> Union Territories; a <mark class="y">UT</mark> is not a State — e.g. <mark class="g">Goa</mark> is a State; <mark class="g">Andaman &amp; Nicobar, Daman &amp; Diu, Puducherry</mark> are UTs.
+</li>
+<li>The First Schedule lists the names of the States and UTs.
+</li>
+<li><mark class="g">Delhi</mark> is a <mark class="y">Union Territory</mark> (not a State or autonomous council) with a <mark class="y">special status</mark> given by the <mark class="y">69th Amendment Act 1991</mark>.
+</li>
+</ul>
+<div class="trap"><span class="lbl">Source conflict</span>The source calls it the "National Capital Region"; the official term is the National Capital Territory of Delhi (NCR is the wider urban region) [Outside source]. The 69th Amendment is the correct answer (not 67th, 68th or 70th).</div>
+</div>
+<div class="tcard">
+<h3>Years of Creation</h3>
+<table><caption>Union Territories &amp; Years</caption><thead class="blue"><tr><th>UT</th><th>Year</th><th>Note</th></tr></thead><tbody>
+<tr><td><mark class="g">Lakshadweep</mark></td><td><mark class="b">1956</mark></td><td>—</td></tr>
+<tr><td><mark class="g">Dadra &amp; Nagar Haveli</mark></td><td><mark class="b">1961</mark></td><td>Merged with Daman &amp; Diu (Act 2019, effective <mark class="b">26 January 2020</mark>)</td></tr>
+<tr><td><mark class="g">Daman &amp; Diu</mark></td><td><mark class="b">1962</mark></td><td>Merged with D&amp;NH</td></tr>
+<tr><td><mark class="g">Chandigarh</mark></td><td><mark class="b">1966</mark></td><td>—</td></tr>
+</tbody></table>
+</div>
+<div class="tcard">
+<h3>Art 240 — President's Regulations</h3>
+<ul>
+<li><mark class="y">Art 240</mark>: the President may make regulations for the <mark class="y">peace, progress and good government</mark> of: <mark class="g">Andaman &amp; Nicobar Islands</mark> [240(1)(a)]; <mark class="g">Lakshadweep</mark> [240(1)(b)]; <mark class="g">Dadra &amp; Nagar Haveli and Daman &amp; Diu</mark> [240(1)(c)]; <mark class="g">Puducherry</mark> [240(1)(e)].
+</li>
+<li>The <mark class="y">Dadra and Nagar Haveli and Daman and Diu (Merger of Union Territories) Act 2019</mark> formed a single UT under <mark class="y">Art 240(1)(c)</mark>; <mark class="y">Art 240(1)(d)</mark> has been repealed. <mark class="g">Goa</mark> is a State — not covered.
+</li>
+<li><mark class="r">Puducherry placed under 240(1)(c) is the wrong match.</mark>
+</li>
+</ul>
+</div>
+</section>
+</div>
+<div class="tabpane" id="pane3">
+<section class="chapter" id="pane3c1" data-title="Master Table of Articles"><div class="chapter-head"><div class="seal">1</div><h2>Master Table of Articles</h2></div>
+<div class="tcard">
+<table><caption>Articles Mentioned — Ascending Order</caption><thead class="red"><tr><th>Article</th><th>Subject</th><th>Key Facts</th><th>Detail</th></tr></thead><tbody>
+<tr><td><mark class="y">Art 4 / 5</mark></td><td>Appear as options</td><td>Art 4: supplemental/consequential provisions of laws under Arts 2 &amp; 3 [Outside source]; Art 5: citizenship at commencement [Outside source] — <mark class="r">not</mark> the distribution-of-power Articles</td><td>Ch 3</td></tr>
+<tr><td><mark class="y">Art 56 / 57</mark></td><td>Appear as options</td><td>Art 56: term of office of the President; Art 57: eligibility for re-election [Outside source] — <mark class="r">wrong</mark> for the lists of powers</td><td>Ch 3</td></tr>
+<tr><td><mark class="y">Art 131</mark></td><td>Original jurisdiction of Supreme Court</td><td><mark class="g">Supreme Court</mark> is the main agency to resolve <mark class="y">fiscal disputes between the Centre and States</mark></td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 141 / 142</mark></td><td>Appear as options</td><td>Art 141: law declared by the Supreme Court binds all courts; Art 142: orders for complete justice [Outside source]</td><td>Ch 3</td></tr>
+<tr><td><mark class="y">Arts 168–171</mark></td><td>Appear as options</td><td>Constitution and composition of State Legislatures [Outside source]</td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 228</mark></td><td>Option</td><td>Transfer of certain cases to High Court [Outside source] — <mark class="r">not</mark> discretionary grants</td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 245</mark></td><td>Extent of laws</td><td><mark class="y">Extent of laws made by Parliament and State Legislatures</mark>; Parliament for whole/any part of India, State Legislature for whole/any part of the State</td><td>Ch 3</td></tr>
+<tr><td><mark class="y">Art 246</mark></td><td>Subject-matter of laws</td><td>Three lists; 246(1) Parliament exclusive on <mark class="y">Union List</mark>; 246(2) Parliament + State on <mark class="y">Concurrent List</mark>; 246(3) State exclusive on <mark class="y">State List</mark>; 246(4) Parliament on any matter for a <mark class="y">territory not included in a State</mark></td><td>Ch 3</td></tr>
+<tr><td><mark class="y">Art 246A</mark></td><td>GST</td><td>Inserted by the <mark class="b">101st Amendment 2016</mark>; Parliament and State legislatures can make laws on <mark class="y">goods and services tax</mark>; overrides Arts 246 and 254</td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 247</mark></td><td>Additional courts</td><td>Parliament may establish certain additional courts</td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 248</mark></td><td>Residuary powers</td><td><mark class="y">Parliament has exclusive power</mark> over matters not in Concurrent or State List</td><td>Ch 3</td></tr>
+<tr><td><mark class="y">Art 249</mark></td><td>State List in national interest</td><td>Rajya Sabha resolution by <mark class="b">2/3 present and voting</mark>; in force for not more than <mark class="b">one year</mark></td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 250</mark></td><td>State List during Emergency</td><td>Parliament legislates on State List (and GST per Art 246A) when <mark class="y">Proclamation of Emergency</mark> is in operation</td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 251</mark></td><td>Inconsistency</td><td>Laws under Arts 249 &amp; 250 <mark class="y">prevail</mark> over State laws</td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 252</mark></td><td>By consent of States</td><td>Parliament legislates for two or more States by consent; others may adopt</td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 253</mark></td><td>International agreements</td><td>Parliament can legislate on any State-List matter to implement treaties, agreements and conventions</td><td>Ch 4</td></tr>
+<tr><td><mark class="y">Art 256</mark></td><td>Obligation of States</td><td>State executive power ensures <mark class="y">compliance with Parliament's laws</mark></td><td>Ch 5</td></tr>
+<tr><td><mark class="y">Art 257</mark></td><td>Control of Union</td><td>State executive power must not <mark class="y">impede or prejudice</mark> the Union's executive power; Union can give directions</td><td>Ch 5</td></tr>
+<tr><td><mark class="y">Art 258</mark></td><td>Powers to States</td><td>President, with State's consent, can entrust functions to the State</td><td>Ch 5</td></tr>
+<tr><td><mark class="y">Art 262</mark></td><td>Inter-State water disputes</td><td>Adjudication of disputes relating to <mark class="y">waters of inter-state rivers or valleys</mark></td><td>Ch 6</td></tr>
+<tr><td><mark class="y">Art 263</mark></td><td>Inter-State Council</td><td><mark class="g">President</mark> can establish an Inter-State Council; set up <mark class="b">28 May 1990</mark></td><td>Ch 6</td></tr>
+<tr><td><mark class="y">Art 264</mark></td><td>Interpretation</td><td>Interpretation (Part XII) [Outside source]</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 265</mark></td><td>Levy of tax</td><td>"<mark class="y">No tax shall be levied or collected except by authority of law</mark>"</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 266(1)</mark></td><td>Consolidated Fund of India</td><td>All revenues, loans and repayments of loans received by the Union</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 267(1)</mark></td><td>Contingency Fund of India</td><td>Established under this Article</td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 267(2)</mark></td><td>Contingency Fund of State</td><td>Legislature may by law create it in nature of an <mark class="y">imprest</mark></td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 268</mark></td><td>Duties levied by Union, collected &amp; appropriated by States</td><td>e.g. <mark class="y">stamp duty on financial instruments</mark></td><td>Ch 9</td></tr>
+<tr><td><mark class="y">Art 269</mark></td><td>Taxes levied and collected by Union, assigned to States</td><td>[Outside source]</td><td>Ch 9</td></tr>
+<tr><td><mark class="y">Art 269A</mark></td><td>GST in inter-state trade</td><td>Inserted by <mark class="b">101st Amendment 2016</mark></td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 270</mark></td><td>Taxes levied and collected by Union, distributed</td><td>Income tax other than agricultural income; stock-exchange taxes; all Union List taxes except those under Arts 268, 269, 269A</td><td>Ch 9</td></tr>
+<tr><td><mark class="y">Art 271</mark></td><td>Appear as option</td><td>Surcharge on duties/taxes for Union purposes [Outside source]</td><td>Ch 9</td></tr>
+<tr><td><mark class="y">Art 274</mark></td><td>Taxation in which States are interested</td><td>Provision for taxation of <mark class="y">agricultural income</mark> in which States are interested</td><td>Ch 9</td></tr>
+<tr><td><mark class="y">Art 275</mark></td><td>Grants to certain States</td><td>Grants allocated by the Union</td><td>Ch 9</td></tr>
+<tr><td><mark class="y">Art 276(2)</mark></td><td>Tax on professions, trades, callings, employments</td><td>Maximum <mark class="b">Rs 2,500</mark> per person per year (after <mark class="b">60th Amendment 1988</mark>; earlier Rs 250)</td><td>Ch 9</td></tr>
+<tr><td><mark class="y">Art 279A</mark></td><td>GST Council</td><td>Added by <mark class="b">101st Amendment 2016</mark> for the <mark class="y">Goods and Services Tax Council</mark></td><td>Ch 8</td></tr>
+<tr><td><mark class="y">Art 280</mark></td><td>Finance Commission</td><td>President constitutes within <mark class="b">2 years</mark> of commencement and then every <mark class="b">5th year</mark></td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 281</mark></td><td>Recommendations of Finance Commission</td><td>Laid before Parliament with explanatory memorandum on action taken</td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 282</mark></td><td>Discretionary grants</td><td>Union or a State may make grants for <mark class="y">any public purpose</mark></td><td>Ch 9</td></tr>
+<tr><td><mark class="y">Art 289</mark></td><td>Appear as option</td><td>Exemption of State property and income from Union taxation [Outside source]</td><td>Ch 9</td></tr>
+<tr><td><mark class="y">Art 293(1)</mark></td><td>State borrowing</td><td>Only <mark class="y">within the territory of India</mark>; no direct foreign loans</td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 295</mark></td><td>Appear as option</td><td>Succession to property, assets, rights, liabilities in certain cases [Outside source]</td><td>Ch 9</td></tr>
+<tr><td><mark class="y">Art 300</mark></td><td>Suits and proceedings</td><td>Union / State may sue or be sued by their names</td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 301</mark></td><td>Freedom of trade</td><td>Trade, commerce and intercourse throughout India shall be free</td><td>Ch 10</td></tr>
+<tr><td><mark class="y">Art 355 / 356</mark></td><td>Appear as options</td><td>355: Union's duty to protect States; 356: President's Rule [Outside source]; Sarkaria asked that 356 be used sparingly</td><td>Ch 11</td></tr>
+<tr><td><mark class="y">Art 360 / 365 / 368</mark></td><td>Appear as options</td><td>360: Financial Emergency; 365: failure to comply with Union directions; 368: Amendment of Constitution</td><td>Ch 6</td></tr>
+</tbody></table>
+</div>
+</section>
+<section class="chapter" id="pane3c2" data-title="Overview of Centre–State Relations"><div class="chapter-head"><div class="seal">2</div><h2>Overview of Centre–State Relations</h2></div>
+<div class="tcard">
+<h3>Nature</h3>
+<ul>
+<li>The Constitution is <mark class="y">Federal in structure</mark> and <mark class="y">divides all powers — legislative, executive and financial</mark> between the Centre and the States.
+</li>
+<li>Centre–State relations are determined by <mark class="y">Constitutional provisions</mark>, <mark class="y">conventions and practices</mark>, <mark class="y">judicial interpretations</mark> and <mark class="y">mechanisms for dialogue</mark>; also influenced by <mark class="y">the planning process</mark>, <mark class="y">conflict of political interests</mark> and <mark class="y">desire to dominate</mark> when different parties rule the Centre and State.
+</li>
+<li><mark class="g">Part XI</mark> of the Constitution deals with relations between the Union and the States: <mark class="y">Legislative relations Arts 245–255</mark>; <mark class="y">Administrative relations Arts 256–263</mark>.
+</li>
+<li><mark class="g">Part XII</mark> deals with financial relations (<mark class="y">Finance, Property, Contracts and Suits</mark>, Arts 264–293).
+</li>
+<li>Other Parts: <mark class="g">Part III</mark> Fundamental Rights; <mark class="g">Part IV</mark> DPSP; <mark class="g">Part VI</mark> States; <mark class="g">Part X</mark> Scheduled and Tribal Areas; <mark class="g">Part XIII</mark> Trade, Commerce and Intercourse within India. Originally the Constitution had <mark class="b">22</mark> Parts.
+</li>
+<li>A <mark class="y">federal polity</mark> involves: relations between Union and States; relations among States; mechanisms for cooperation; mechanisms for solving disputes.
+</li>
+<li><mark class="y">Centre's control over States in the planning process</mark> is called <mark class="y">'Municipal Relations'</mark> (not legislative, financial, or administrative control).
+</li>
+<li>Resources flow from Centre to States via <mark class="y">tax sharing</mark> (Finance Commission, Art 280), <mark class="y">grants-in-aid</mark>, and <mark class="y">centrally sponsored schemes</mark>; <mark class="r">transfer for plan implementation under Gadgil formula is NOT a means of resource allocation at present</mark>.
+</li>
+<li>There is a growing demand for <mark class="y">review of Centre-State relations</mark> because <mark class="y">States lack adequate resources</mark> for development projects — Centre has more resources and States depend on it.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane3c3" data-title="Legislative Relations"><div class="chapter-head"><div class="seal">3</div><h2>Legislative Relations</h2></div>
+<div class="tcard">
+<h3>Territorial Extent</h3>
+<ul>
+<li><mark class="y">Art 245(1)</mark>: Parliament can make laws for the <mark class="y">whole or any part of the territory of India</mark>; State Legislature for the <mark class="y">whole or any part of the State</mark>.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Three-fold Distribution</h3>
+<ul>
+<li>Art 245 and Art 246 <mark class="y">regulate the distribution</mark> of legislative power; the <mark class="g">Seventh Schedule</mark> contains the three lists.
+</li>
+<li><mark class="y">Art 246(1)</mark>: Parliament has <mark class="y">exclusive power</mark> over the <mark class="y">Union List (List I)</mark>.
+</li>
+<li><mark class="y">Art 246(2)</mark>: Parliament and (subject to clause 3) State Legislature have power over the <mark class="y">Concurrent List (List III)</mark>.
+</li>
+<li><mark class="y">Art 246(3)</mark>: State Legislature has exclusive power over the <mark class="y">State List (List II)</mark> (subject to clauses 1 and 2).
+</li>
+<li><mark class="y">Art 246(4)</mark>: Parliament may legislate on any matter for any part of India <mark class="y">not in a State</mark> even if it is a State List matter.
+</li>
+<li>Number of subjects: <mark class="y">Union List</mark> <mark class="b">97</mark> originally (now <mark class="b">98</mark>); <mark class="y">State List</mark> <mark class="b">66</mark> (now <mark class="b">59</mark>); <mark class="y">Concurrent List</mark> <mark class="b">47</mark> (now <mark class="b">52</mark>).
+</li>
+<li>On the <mark class="y">Concurrent List</mark>, both Centre and State can legislate; in case of conflict <mark class="y">Union law prevails</mark>. <mark class="y">Economic and Social Planning</mark> and <mark class="y">infants and minors</mark> are Concurrent List subjects.
+</li>
+<li><mark class="y">Land revenue</mark> (State List entry <mark class="b">45</mark>) and <mark class="y">taxes on agricultural income</mark> (entry <mark class="b">46</mark>) are State subjects.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Residuary Powers</h3>
+<ul>
+<li><mark class="y">Art 248</mark>: <mark class="y">residuary powers of legislation</mark> — exclusive power over matters not in the Concurrent or State List — are vested in <mark class="y">Parliament</mark> (<mark class="r">not</mark> President, State, Cabinet); In the USA these are given to the States.
+</li>
+<li>Residuary subjects arise from changing circumstances, technology or new policy needs.
+</li>
+</ul>
+<div class="trap"><span class="lbl">Source error</span>The source lists cyber laws, space research, atomic energy, AI regulation and foreign trade as examples of residuary subjects. Atomic energy and foreign trade are actually Union List entries [Outside source] — treat only newly arising matters (e.g. cyber laws, AI) as residuary examples.</div>
+</div>
+</section>
+<section class="chapter" id="pane3c4" data-title="Parliament&#x27;s Power over State List &amp; Special Legislative Provisions"><div class="chapter-head"><div class="seal">4</div><h2>Parliament's Power over State List &amp; Special Legislative Provisions</h2></div>
+<div class="tcard">
+<h3>Special Provisions</h3>
+<ul>
+<li><mark class="y">Art 247</mark>: Parliament may provide for establishment of certain <mark class="y">additional courts</mark>.
+</li>
+<li><mark class="y">Art 246A</mark> (<mark class="b">101st Amendment Act 2016</mark>): <mark class="y">Notwithstanding Arts 246 and 254</mark>, Parliament, and subject to clause 2, the State Legislature, have power to make laws on <mark class="y">goods and services tax</mark> imposed by Union or State.
+</li>
+<li><mark class="y">Art 249</mark>: Parliament can legislate on <mark class="y">GST (Art 246A) or any State List matter in national interest</mark> if the <mark class="g">Rajya Sabha</mark> declares by resolution it is necessary — supported by not less than <mark class="b">2/3 of members present and voting</mark>; resolution remains in force for <mark class="b">not more than one year</mark> (Art 249(2)).
+</li>
+<li><mark class="y">Art 250(1)</mark>: Parliament can legislate on GST or any State List matter when a <mark class="y">Proclamation of Emergency</mark> is in operation.
+</li>
+<li><mark class="y">Art 251</mark>: if there is inconsistency between laws made under Arts 249/250 and State laws, <mark class="y">Parliament's laws prevail</mark>.
+</li>
+<li><mark class="y">Art 252</mark>: Parliament legislates for two or more States by <mark class="y">consent</mark> and any other State may adopt such legislation.
+</li>
+<li><mark class="y">Art 253</mark>: legislation <mark class="y">giving effect to international agreements</mark> — Parliament may legislate on any State List matter to implement treaties, agreements and conventions so that the Centre can fulfil international obligations.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane3c5" data-title="Administrative Relations (Arts 256–263)"><div class="chapter-head"><div class="seal">5</div><h2>Administrative Relations (Arts 256–263)</h2></div>
+<div class="tcard">
+<h3>Union Control over States</h3>
+<ul>
+<li><mark class="y">Arts 256 to 263</mark> (Part XI) deal with administrative relations.
+</li>
+<li><mark class="y">Art 256</mark>: obligations of States and the Union — the <mark class="y">executive power of every State</mark> shall be exercised to <mark class="y">ensure compliance</mark> with laws made by Parliament and existing laws applying in that State; the Union's executive power extends to <mark class="y">giving directions to a State</mark> as appear necessary to the Government of India for that purpose.
+</li>
+<li><mark class="y">Art 257</mark>: <mark class="y">control of the Union over States in certain cases</mark> — the State's executive power shall be exercised so as <mark class="y">not to impede or prejudice</mark> the Union's executive power; the Union can give necessary directions.
+</li>
+<li><mark class="y">Art 258</mark>: power of the Union to confer powers on States — the <mark class="g">President</mark> may, with the <mark class="y">consent of the State government</mark>, entrust to that government functions relating to a matter within the Union's executive power.
+</li>
+<li><mark class="r">Option Arts 355/356 (Union's duty / President's Rule), 365 (failure to comply with Union directions) and 360 (Financial Emergency) are different provisions.</mark>
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane3c6" data-title="Inter-State Water Disputes, Inter-State Council &amp; Interstate Relations"><div class="chapter-head"><div class="seal">6</div><h2>Inter-State Water Disputes, Inter-State Council &amp; Interstate Relations</h2></div>
+<div class="tcard">
+<h3>Water Disputes</h3>
+<ul>
+<li><mark class="y">Art 262(1)</mark>: adjudication of disputes relating to the <mark class="y">waters of inter-state rivers or valleys</mark>; Parliament has power of adjudication.
+</li>
+<li>Related legislation: <mark class="y">Inter-State Water Disputes Act 1956</mark>; <mark class="y">River Boards Act 1956</mark> (<mark class="r">not 1970</mark>); <mark class="y">National Water Policy 1987</mark>.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Inter-State Council (Art 263)</h3>
+<ul>
+<li><mark class="y">Art 263</mark>: the <mark class="g">President</mark> may establish an Inter-State Council to <mark class="y">investigate and discuss subjects of common interest</mark> between the Centre and States, and also among States; <mark class="y">co-ordinate the relationship</mark>; the source is the <mark class="y">Constitution itself</mark> (not Parliamentary law, Planning Commission or CMs' resolution); established by the <mark class="y">President's order</mark>, not Parliament, NDC or Zonal Councils.
+</li>
+<li><mark class="y">Sarkaria Commission</mark> recommended a <mark class="y">permanent Inter-State Council</mark> (also suggested the name <mark class="y">Inter-Governmental Council</mark>); on this basis it was established on <mark class="b">28 May 1990</mark> by the <mark class="g">V.P. Singh (Janata Dal) Government</mark>; first ISC established May 1990, constituted December 1990.
+</li>
+<li><mark class="y">Composition</mark>: <mark class="g">Prime Minister</mark> — Chairman; <mark class="g">Chief Ministers of all States</mark>; <mark class="g">CMs of UTs having Legislative Assembly</mark> and <mark class="g">Administrators of UTs without Legislative Assembly</mark>; <mark class="g">Governors of States under President's rule</mark>; <mark class="b">six</mark> Union Cabinet ministers (incl. Home Minister) nominated by the PM.
+</li>
+<li>It is a <mark class="y">recommendatory body</mark> on inter-state, Centre-State and Centre-UT relations.
+</li>
+<li>Of the Inter-State Council, National Security Council and Zonal Councils, only the <mark class="y">Inter-State Council</mark> is established per the Constitution; NSC was set by <mark class="y">executive decision</mark> with the PM's approval; Zonal Councils are <mark class="y">statutory</mark> bodies created by an Act of Parliament.
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane3c7" data-title="Zonal Councils, NDC &amp; Other Coordination Bodies"><div class="chapter-head"><div class="seal">7</div><h2>Zonal Councils, NDC &amp; Other Coordination Bodies</h2></div>
+<div class="tcard">
+<h3>Constitutional / Extra-Constitutional</h3>
+<ul>
+<li><mark class="y">National Development Council</mark> and <mark class="y">Governors' Conference</mark> are <mark class="y">extra-Constitutional and extra-legal</mark> bodies for cooperation between States; <mark class="r">Zonal Councils are statutory</mark>; the Inter-State Council is constitutional (Art 263).
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Zonal (Regional) Councils</h3>
+<ul>
+<li>Formed by the <mark class="y">States Reorganisation Act 1956</mark> (a Parliamentary law, not the Constitution/Government resolution/NDC) — <mark class="b">five</mark>: <mark class="g">Northern, Central, Eastern, Western, Southern</mark>; <mark class="y">Home Minister</mark> (Union) is Chairman of each; advisory bodies on matters of common interest.
+</li>
+<li>Act as <mark class="y">'Sub-Federal Links'</mark> giving a platform to resolve disputes through consultation and enabling <mark class="y">co-operation and integration</mark> among economically/politically/culturally interlinked States.
+</li>
+<li><mark class="g">Chandigarh</mark> (not a State) is included; also <mark class="g">Delhi, Dadra &amp; Nagar Haveli and Daman &amp; Diu, Puducherry</mark>.
+</li>
+<li><mark class="g">North-Eastern States</mark> (<mark class="g">Assam, Arunachal, Manipur, Tripura, Mizoram, Meghalaya, Nagaland</mark>) are <mark class="r">not in Zonal Councils</mark>; their problems are looked after by the <mark class="y">North Eastern Council (NEC)</mark> under the <mark class="y">North Eastern Council Act 1971</mark>.
+</li>
+</ul>
+<div class="trap"><span class="lbl">Source conflict</span>One explanation states a sixth regional council 'North East' formed in 1971 — the NEC (Act 1971) is a separate body.</div>
+</div>
+<div class="tcard">
+<h3>North Eastern Council</h3>
+<ul>
+<li><mark class="y">NEC Act 1971</mark> created it as an <mark class="y">apex advisory body</mark> for <mark class="y">balanced and coordinated development</mark> of seven NE States; amended in <mark class="b">December 2002</mark> — <mark class="g">Sikkim</mark> became the <mark class="b">8th</mark> member and NEC became a <mark class="y">statutory Regional Planning Body</mark>.
+</li>
+<li>Present composition: <mark class="y">Governors and Chief Ministers of constituent States</mark> + <mark class="b">three</mark> members nominated by the <mark class="g">President</mark> (<mark class="r">not</mark> the Union Home Minister as a member); the President nominates the Chairman (need not be a member) and may nominate a Vice-Chairman.
+</li>
+<li><mark class="g">Union Home Minister</mark> is <mark class="y">ex-officio Chairman</mark>; the <mark class="g">Minister of DoNER</mark> is ex-officio member and <mark class="y">Vice-Chairman</mark> (notifications of <mark class="b">7 July 2018</mark> and <mark class="b">24 August 2021</mark>).
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Other Bodies</h3>
+<ul>
+<li><mark class="y">Jharkhand Area Autonomous Council</mark> formed on <mark class="b">8 August 1995</mark> — <mark class="b">18</mark> districts of <mark class="g">Santhal Pargana and Chota Nagpur</mark>.
+</li>
+<li><mark class="y">National Integration Council</mark>: concept involves <mark class="y">political, economic, social, cultural and psychological</mark> dimensions and their inter-relations; formed in <mark class="b">1962</mark> on 'Unity in Diversity' (one question stem said 1961, but the explanation says 1962; the reason statement was marked incorrect).
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane3c8" data-title="Funds, GST &amp; Basic Financial Provisions (Part XII)"><div class="chapter-head"><div class="seal">8</div><h2>Funds, GST &amp; Basic Financial Provisions (Part XII)</h2></div>
+<div class="tcard">
+<h3>Arts 264–293 (Part XII)</h3>
+<ul>
+<li><mark class="y">Arts 264–293</mark> deal with financial relations; <mark class="y">Arts 268–281</mark> specifically deal with <mark class="y">distribution of revenues</mark> (duties and taxes levied by the Union, grants-in-aid, Finance Commission).
+</li>
+<li><mark class="y">Art 265</mark>: <mark class="y">no tax shall be levied or collected except by authority of law</mark>.
+</li>
+<li><mark class="y">Art 266(1)</mark>: <mark class="y">Consolidated Fund of India</mark> — all revenues received by Union, all loans, and all money received in repayment of loans.
+</li>
+<li><mark class="y">Art 267(1)</mark>: <mark class="y">Contingency Fund of India</mark>; <mark class="y">Art 267(2)</mark>: State Legislature may create a <mark class="y">Contingency Fund of the State</mark> in the nature of an <mark class="y">imprest</mark>.
+</li>
+<li><mark class="y">101st Constitutional Amendment Act 2016</mark>: <mark class="y">Art 246A</mark> (GST law-making), <mark class="y">Art 269A</mark> (levy and collection of GST in inter-state trade or commerce), <mark class="y">Art 279A</mark> (GST Council).
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane3c9" data-title="Tax Assignment &amp; Grants"><div class="chapter-head"><div class="seal">9</div><h2>Tax Assignment &amp; Grants</h2></div>
+<div class="tcard">
+<h3>Articles 268–276</h3>
+<ul>
+<li><mark class="y">Art 268</mark>: <mark class="y">duties levied by the Union but collected and appropriated by the States</mark> — e.g. <mark class="y">stamp duty on financial instruments</mark>; stamp duty is imposed by Union but collected by State — so it is <mark class="r">neither</mark> 'imposed and collected by the State' nor merely 'regulated by the Union'.
+</li>
+<li><mark class="y">Art 270</mark>: taxes <mark class="y">levied and collected by the Union</mark> but <mark class="y">distributed between Union and States</mark> — <mark class="y">income tax other than on agricultural income</mark>; presently all Union List taxes and duties except those under Arts 268, 269, 269A; taxes on <mark class="y">stock exchange and futures-market transactions</mark> are <mark class="y">levied by the Union</mark> (not collected by the State).
+</li>
+<li><mark class="y">Taxes exclusively levied and collected by the States</mark>: <mark class="y">Land Revenue</mark> (State List entry 45); <mark class="y">Agricultural income tax</mark> given to States by the <mark class="y">Constitution</mark> (State List entry 46) — not by FC, NDC or ISC; <mark class="r">Income tax, Corporation tax and GST are not exclusive State taxes</mark>.
+</li>
+<li><mark class="y">Art 274</mark>: provision for taxation in which States are interested.
+</li>
+<li><mark class="y">Art 275</mark>: <mark class="y">grants allocated by the Union</mark> to certain States.
+</li>
+<li><mark class="y">Art 276(2)</mark>: total tax on <mark class="y">professions, trades, callings and employments</mark> payable by any person to a State or local body cannot exceed <mark class="b">Rs 2,500 per annum</mark> (raised from Rs 250 by the <mark class="y">60th Amendment 1988</mark>) — the only tax limited by the Constitution (not corporation tax, estate duty or succession duty).
+</li>
+<li><mark class="y">Art 282</mark>: Union or a State may make <mark class="y">discretionary grants</mark> for <mark class="y">any public purpose</mark>, even if outside its law-making subjects.
+</li>
+<li><mark class="r">Art 281 and 228 are not about discretionary grants.</mark>
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane3c10" data-title="Finance Commission, Borrowing, Trade &amp; Disputes"><div class="chapter-head"><div class="seal">10</div><h2>Finance Commission, Borrowing, Trade &amp; Disputes</h2></div>
+<div class="tcard">
+<h3>Finance Commission</h3>
+<ul>
+<li><mark class="y">Art 280(1)</mark>: constituted by the <mark class="g">President</mark> within <mark class="b">2 years</mark> of commencement of the Constitution and thereafter <mark class="b">every 5th year</mark> or earlier if he considers necessary; recommends <mark class="y">sharing of net proceeds of taxes between Union and States</mark>.
+</li>
+<li>It is a <mark class="y">quasi-judicial body</mark> (powers of a civil court).
+</li>
+<li><mark class="y">Art 281</mark>: the President shall lay every recommendation before <mark class="y">both Houses of Parliament</mark> with an explanatory memorandum on action taken.
+</li>
+</ul>
+</div>
+<div class="tcard">
+<h3>Borrowing, Trade, Suits &amp; Disputes</h3>
+<ul>
+<li><mark class="y">Art 293(1)</mark>: executive power of a State extends to <mark class="y">borrowing within India</mark> on the security of its Consolidated Fund within limits fixed by State law — so a State <mark class="y">cannot take foreign loans directly</mark>.
+</li>
+<li><mark class="y">Fiscal disputes between Centre and States</mark>: main agency is the <mark class="g">Supreme Court</mark> (Art 131); the Finance Commission only recommends sharing of taxes.
+</li>
+<li><mark class="y">Art 301</mark>: freedom of <mark class="y">trade, commerce and intercourse</mark> throughout India (Part XIII, Arts 301–307; Art 19(1)(d–e) is movement/residence).
+</li>
+<li><mark class="y">Art 300</mark>: <mark class="y">Suits and proceedings</mark> — Union/State may sue or be sued by name; Union of India deemed substituted for the Dominion of India and States for Provinces/Indian States in pending proceedings at the Constitution's commencement. Subject to Acts of Parliament / State Legislature, the Union and States may sue or be sued in the like cases as the Dominion of India and the Provinces / Indian States could before the Constitution. <mark class="r">Not attorney general or restrictions on trade.</mark>
+</li>
+</ul>
+</div>
+</section>
+<section class="chapter" id="pane3c11" data-title="Sarkaria Commission &amp; Other Committees"><div class="chapter-head"><div class="seal">11</div><h2>Sarkaria Commission &amp; Other Committees</h2></div>
+<div class="tcard">
+<h3>Sarkaria Commission</h3>
+<ul>
+<li>Appointed by the Central Government in <mark class="b">1983</mark> (formed <mark class="b">9 June 1983</mark>) under <mark class="g">R.S. Sarkaria</mark>, a retired Judge of the Supreme Court; other members <mark class="g">B. Shivaraman</mark> and <mark class="g">S.R. Sen</mark>; to review <mark class="y">Centre–State relations</mark> and suggest ways to strengthen them (not President-PM, Legislature-Executive or Executive-Judiciary relations).
+</li>
+<li><mark class="y">Report submitted in January 1988</mark> — <mark class="b">247</mark> recommendations in <mark class="b">19</mark> chapters.
+</li>
+<li>Recommended the <mark class="y">permanent Inter-State Council (Inter-Governmental Council)</mark>, which was established under Art 263 in <mark class="b">1990</mark>; recommended that <mark class="y">Art 356 be used sparingly</mark> since it had been <mark class="y">misused</mark> (President's Rule declared without considering other options).
+</li>
+<li><mark class="r">Not members</mark>: <mark class="g">V. Shankar, K. Hanumanthaiah, O.V. Algesan</mark>.
+</li>
+</ul>
+<div class="trap"><span class="lbl">Source conflict</span>The year of the report in one question: one answer key gave 1987, which is incorrect — the report was submitted in January 1988.</div>
+</div>
+<div class="tcard">
+<h3>Other Bodies</h3>
+<ul>
+<li><mark class="g">Rajamannar Committee</mark> and <mark class="g">Punchhi Commission</mark> are also associated with Centre–State relations.
+</li>
+<li><mark class="y">Indrajit Gupta Committee</mark> (<mark class="b">1998</mark>) is <mark class="r">not</mark> about Centre–State relations — it recommended <mark class="y">state funding of elections</mark>, only to <mark class="y">national and State parties with a symbol</mark> (not independents), in the form of certain facilities.
+</li>
+</ul>
+</div>
+</section>
+</div>
+  </div>
+  <div class="footer">marker-coded study format · [Outside source] = added beyond the given text</div>
+</div>
+<script>
+const PARTS={"pane1": {"1": "Quick Reference", "2": "Part A \u00b7 Government, State & the Indian Political System", "5": "Part B \u00b7 Systems of Government", "8": "Part C \u00b7 Federalism"}, "pane2": {"1": "Quick Reference", "2": "Part A \u00b7 Formation of the Indian Union", "5": "Part B \u00b7 Linguistic Reorganisation of States", "8": "Part C \u00b7 Individual States & Capitals", "9": "Part D \u00b7 Union Territories"}, "pane3": {"1": "Quick Reference", "2": "Part A \u00b7 Overview & Legislative Relations", "5": "Part B \u00b7 Administrative Relations & Coordination", "8": "Part C \u00b7 Financial Relations", "11": "Part D \u00b7 Commissions & Committees on Centre\u2013State Relations"}};
+  const toc = document.getElementById('toc');
+  const sidebar = document.getElementById('sidebar');
+  let observer = null;
+  function buildToc(paneId){
+    toc.innerHTML = '';
+    const chapters = document.querySelectorAll('#'+paneId+' .chapter');
+    chapters.forEach((ch,i)=>{
+      const num=i+1;
+      if(PARTS[paneId][num]){const p=document.createElement('div');p.className='toc-part';p.textContent=PARTS[paneId][num];toc.appendChild(p);}
+      const a=document.createElement('a');
+      a.href='#'+ch.id;
+      a.innerHTML='<span class="num">'+String(num).padStart(2,'0')+'</span><span>'+ch.dataset.title+'</span>';
+      a.dataset.target=ch.id;
+      a.addEventListener('click',()=>sidebar.classList.remove('open'));
+      toc.appendChild(a);
+    });
+    if(observer) observer.disconnect();
+    const links=toc.querySelectorAll('a');
+    observer=new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          links.forEach(l=>l.classList.remove('active'));
+          const act=toc.querySelector('a[data-target="'+entry.target.id+'"]');
+          if(act) act.classList.add('active');
+        }
+      });
+    },{rootMargin:'-10% 0px -75% 0px',threshold:0});
+    chapters.forEach(c=>observer.observe(c));
+  }
+  function showPane(paneId, scroll){
+    document.querySelectorAll('.tabpane').forEach(p=>p.classList.toggle('active',p.id===paneId));
+    document.querySelectorAll('#tabbar button').forEach(b=>b.classList.toggle('active',b.dataset.pane===paneId));
+    buildToc(paneId);
+    if(scroll){document.getElementById('chapters-root').scrollIntoView();}
+  }
+  document.querySelectorAll('#tabbar button').forEach(b=>b.addEventListener('click',()=>showPane(b.dataset.pane,true)));
+  document.getElementById('menu-btn').addEventListener('click',()=>sidebar.classList.toggle('open'));
+  showPane('pane1',false);
+  if(location.hash){const t=document.querySelector(location.hash); if(t){const pane=t.closest('.tabpane'); if(pane && pane.id!=='pane1'){showPane(pane.id,false); t.scrollIntoView();}}}
+
+</script>
+</body></html>

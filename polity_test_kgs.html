@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polity Test KGS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --parchment:#F3EEE1;
+    --parchment-deep:#EAE2CE;
+    --paper:#FBF8F1;
+    --navy:#1F2D4A;
+    --navy-deep:#141E33;
+    --gold:#B08A2E;
+    --gold-soft:#E4C77A;
+    --maroon:#7A2A2A;
+    --green:#3C6E3C;
+    --ink:#26241F;
+    --ink-soft:#5B5749;
+    --line:#D8CDAE;
+    --radius:10px;
+    --shadow: 0 2px 10px rgba(31,45,74,0.08);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.5;
+    min-height:100vh;
+  }
+  h1,h2,h3,.serif{font-family:'Playfair Display', serif;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  button{font-family:inherit;cursor:pointer;}
+
+  /* ---------- Layout shells ---------- */
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  .center-wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:48px 24px 80px;
+  }
+
+  /* ---------- Start screen ---------- */
+  .start-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:40px 36px;
+    box-shadow:var(--shadow);
+  }
+  .start-card h1{
+    font-size:2rem;
+    color:var(--navy);
+    margin:0 0 24px;
+  }
+  .start-card .subtitle{
+    color:var(--ink-soft);
+    margin:0 0 28px;
+    font-size:1rem;
+  }
+  .meta-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-bottom:28px;
+  }
+  .meta-box{
+    background:var(--parchment-deep);
+    border-radius:8px;
+    padding:14px 12px;
+    text-align:center;
+  }
+  .meta-box .num{
+    font-family:'Playfair Display', serif;
+    font-size:1.5rem;
+    color:var(--navy);
+    font-weight:700;
+    display:block;
+  }
+  .meta-box .lbl{
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+  }
+  .rules{
+    background:var(--parchment-deep);
+    border-left:3px solid var(--gold);
+    border-radius:6px;
+    padding:16px 18px;
+    margin-bottom:28px;
+    font-size:0.92rem;
+    color:var(--ink);
+  }
+  .rules li{margin-bottom:6px;}
+  .rules li:last-child{margin-bottom:0;}
+  .btn-primary{
+    display:inline-block;
+    width:100%;
+    background:var(--navy);
+    color:var(--parchment);
+    border:none;
+    border-radius:8px;
+    padding:15px 20px;
+    font-size:1.02rem;
+    font-weight:600;
+    text-align:center;
+    transition:background .15s ease;
+  }
+  .btn-primary:hover{background:var(--navy-deep);}
+  .btn-secondary{
+    display:inline-block;
+    background:transparent;
+    color:var(--navy);
+    border:1.5px solid var(--navy);
+    border-radius:8px;
+    padding:12px 18px;
+    font-size:0.92rem;
+    font-weight:600;
+    text-align:center;
+  }
+  .btn-secondary:hover{background:var(--navy);color:var(--parchment);}
+  .btn-ghost{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+    border-radius:6px;
+    padding:8px 14px;
+    font-size:0.85rem;
+  }
+  .btn-ghost:hover{border-color:var(--navy);color:var(--navy);}
+
+  .history-toggle{
+    text-align:center;
+    margin-top:18px;
+  }
+
+  /* ---------- Test screen ---------- */
+  #testScreen{background:var(--parchment);}
+  .test-topbar{
+    position:sticky;top:0;z-index:50;
+    background:var(--navy);
+    color:var(--parchment);
+    padding:10px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  }
+  .topbar-left{display:flex;align-items:center;gap:14px;}
+  .topbar-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.05rem;}
+  .progress-pill{
+    font-size:0.78rem;
+    color:var(--gold-soft);
+    background:rgba(255,255,255,0.08);
+    padding:4px 10px;
+    border-radius:20px;
+  }
+  .timer-box{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    font-size:1.15rem;
+    background:rgba(255,255,255,0.1);
+    padding:6px 14px;
+    border-radius:8px;
+    letter-spacing:0.02em;
+  }
+  .timer-box.low{background:var(--maroon);color:#fff;animation:pulse 1s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.65;}}
+  .topbar-actions{display:flex;align-items:center;gap:10px;}
+  .icon-btn{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);
+    color:var(--parchment);
+    border-radius:6px;
+    padding:8px 12px;
+    font-size:0.82rem;
+    font-weight:500;
+  }
+  .icon-btn:hover{background:rgba(255,255,255,0.18);}
+  .submit-btn{
+    background:var(--gold);
+    color:var(--navy-deep);
+    border:none;
+    border-radius:6px;
+    padding:8px 16px;
+    font-weight:700;
+    font-size:0.85rem;
+  }
+  .submit-btn:hover{background:var(--gold-soft);}
+
+  .test-body{
+    display:flex;
+    max-width:1400px;
+    margin:0 auto;
+    align-items:flex-start;
+  }
+  .questions-col{
+    flex:1;
+    min-width:0;
+    padding:28px 24px 120px;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .qcard{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 22px 18px;
+    margin-bottom:18px;
+    scroll-margin-top:80px;
+  }
+  .qcard.answered{border-left:4px solid var(--green);}
+  .qcard.flagged{border-left:4px solid var(--gold);}
+  .qhead{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .qnum{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    color:var(--navy);
+    background:var(--parchment-deep);
+    border-radius:6px;
+    padding:2px 9px;
+    font-size:0.82rem;
+    flex-shrink:0;
+  }
+  .flag-btn{
+    background:none;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:3px 10px;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+  }
+  .flag-btn.on{background:var(--gold-soft);border-color:var(--gold);color:var(--navy-deep);}
+  .qstem{
+    white-space:pre-line;
+    font-size:1rem;
+    margin-bottom:14px;
+    color:var(--ink);
+  }
+  .options{display:flex;flex-direction:column;gap:8px;}
+  .opt{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    padding:10px 12px;
+    border:1px solid var(--line);
+    border-radius:8px;
+    background:var(--parchment);
+    transition:border-color .12s ease, background .12s ease;
+  }
+  .opt:hover{border-color:var(--gold);}
+  .opt input{margin-top:3px;accent-color:var(--navy);flex-shrink:0;}
+  .opt.selected{
+    border-color:var(--navy);
+    background:#EDE7D6;
+  }
+  .opt-key{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600;
+    color:var(--navy);
+    flex-shrink:0;
+  }
+  .opt-text{font-size:0.95rem;}
+
+  /* palette sidebar */
+  .palette-col{
+    width:260px;
+    flex-shrink:0;
+    position:sticky;
+    top:64px;
+    max-height:calc(100vh - 80px);
+    overflow-y:auto;
+    overflow-x:hidden;
+    padding:24px 20px 40px 0;
+  }
+  .palette-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px;
+  }
+  .palette-card h3{
+    margin:0 0 10px;
+    font-size:0.95rem;
+    color:var(--navy);
+  }
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;font-size:0.72rem;color:var(--ink-soft);}
+  .legend span{display:flex;align-items:center;gap:4px;}
+  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  .dot.answered{background:var(--green);}
+  .dot.flagged{background:var(--gold);}
+  .dot.empty{background:var(--line);}
+  .grid150{
+    display:grid;
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    gap:6px;
+  }
+  .pnum{
+    min-width:0;
+    padding:0;
+    aspect-ratio:1;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:5px;
+    border:1px solid var(--line);
+    background:var(--parchment);
+    font-size:0.72rem;
+    font-family:'IBM Plex Mono',monospace;
+    color:var(--ink-soft);
+  }
+  .pnum.answered{background:var(--green);color:#fff;border-color:var(--green);}
+  .pnum.flagged{box-shadow:inset 0 0 0 2px var(--gold);}
+  .pnum:hover{border-color:var(--navy);}
+
+  .palette-toggle-mobile{display:none;}
+
+  /* ---------- Results screen ---------- */
+  .results-wrap{max-width:920px;margin:0 auto;padding:36px 24px 100px;}
+  .results-summary{
+    background:var(--navy);
+    color:var(--parchment);
+    border-radius:var(--radius);
+    padding:32px 30px;
+    margin-bottom:24px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:24px;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .score-big{
+    font-family:'Playfair Display',serif;
+    font-size:2.6rem;
+    font-weight:700;
+    color:var(--gold-soft);
+  }
+  .score-label{font-size:0.85rem;color:#C9CEDA;margin-top:2px;}
+  .stat-row{display:flex;gap:26px;flex-wrap:wrap;}
+  .stat{text-align:center;}
+  .stat .n{font-family:'IBM Plex Mono',monospace;font-size:1.3rem;font-weight:600;}
+  .stat .l{font-size:0.72rem;color:#C9CEDA;text-transform:uppercase;letter-spacing:0.03em;}
+  .stat.correct .n{color:#8FD19E;}
+  .stat.incorrect .n{color:#E39A9A;}
+  .stat.unattempted .n{color:#D9D2B8;}
+
+  .tabs{
+    display:flex;
+    gap:6px;
+    margin-bottom:18px;
+    border-bottom:2px solid var(--line);
+  }
+  .tab-btn{
+    background:none;border:none;
+    padding:10px 18px;
+    font-weight:600;
+    font-size:0.9rem;
+    color:var(--ink-soft);
+    border-bottom:2px solid transparent;
+    margin-bottom:-2px;
+  }
+  .tab-btn.active{color:var(--navy);border-bottom-color:var(--navy);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  .review-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    margin-bottom:16px;
+  }
+  .review-card.correct{border-left:4px solid var(--green);}
+  .review-card.incorrect{border-left:4px solid var(--maroon);}
+  .review-card.unattempted{border-left:4px solid var(--ink-soft);}
+  .review-tag{
+    display:inline-block;
+    font-size:0.68rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    padding:2px 9px;
+    border-radius:10px;
+    margin-bottom:8px;
+  }
+  .review-tag.correct{background:#DDEDDD;color:var(--green);}
+  .review-tag.incorrect{background:#F2DEDE;color:var(--maroon);}
+  .review-tag.unattempted{background:#E8E4D6;color:var(--ink-soft);}
+  .review-opt{
+    display:flex;gap:10px;padding:7px 10px;border-radius:6px;font-size:0.92rem;margin-bottom:4px;
+  }
+  .review-opt .opt-key{font-family:'IBM Plex Mono',monospace;font-weight:600;}
+  .review-opt.your-wrong{background:#F2DEDE;}
+  .review-opt.correct-answer{background:#DDEDDD;}
+  .ex-first{
+    white-space:pre-wrap;
+    margin-bottom:5px;
+    line-height:1.55;
+  }
+  .ex-bullet{
+    display:flex;
+    gap:8px;
+    margin-bottom:4px;
+    line-height:1.55;
+  }
+  .ex-dot{
+    flex-shrink:0;
+    color:var(--accent);
+    font-weight:700;
+    margin-top:1px;
+  }
+  .explanation{
+    margin-top:12px;
+    padding:12px 14px;
+    background:var(--parchment-deep);
+    border-radius:8px;
+    font-size:0.9rem;
+    color:var(--ink);
+  }
+  .explanation .exlabel{
+    font-weight:700;color:var(--navy);font-size:0.75rem;text-transform:uppercase;
+    letter-spacing:0.03em;display:block;margin-bottom:4px;
+  }
+  .results-actions{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
+
+  /* ---------- History screen ---------- */
+  .history-list{display:flex;flex-direction:column;gap:12px;margin-top:20px;}
+  .history-item{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:16px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .history-item .hdate{font-size:0.82rem;color:var(--ink-soft);}
+  .history-item .hscore{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);font-size:1.2rem;}
+  .empty-note{color:var(--ink-soft);font-style:italic;padding:20px 0;text-align:center;}
+
+  /* ---------- Modal ---------- */
+  .modal-overlay{
+    display:none;position:fixed;inset:0;background:rgba(20,30,51,0.55);
+    align-items:center;justify-content:center;z-index:100;padding:20px;
+  }
+  .modal-overlay.active{display:flex;}
+  .modal-box{
+    background:var(--paper);border-radius:var(--radius);padding:28px 26px;max-width:400px;width:100%;
+    box-shadow:0 10px 40px rgba(0,0,0,0.3);
+  }
+  .modal-box h3{margin:0 0 10px;color:var(--navy);}
+  .modal-box p{font-size:0.92rem;color:var(--ink-soft);margin-bottom:20px;}
+  .modal-actions{display:flex;gap:10px;justify-content:flex-end;}
+
+  footer.credit{
+    text-align:center;
+    color:var(--ink-soft);
+    font-size:0.72rem;
+    padding:20px;
+  }
+
+  @media (max-width:920px){
+    .palette-col{
+      display:none;
+      position:fixed;
+      top:0;right:0;bottom:0;
+      width:min(85vw,320px);
+      max-height:none;
+      background:var(--parchment);
+      z-index:90;
+      box-shadow:-4px 0 20px rgba(0,0,0,0.2);
+      padding:20px;
+      overflow-y:auto;
+      overflow-x:hidden;
+    }
+    .palette-col.open{display:block;}
+    .palette-toggle-mobile{
+      display:inline-block;
+    }
+    .test-body{display:block;}
+    .questions-col{padding:20px 14px 120px;max-width:100%;}
+    .topbar-title{display:none;}
+    .meta-grid{grid-template-columns:repeat(3,1fr);}
+    .results-summary{flex-direction:column;align-items:flex-start;}
+  }
+  @media (max-width:480px){
+    .grid150{grid-template-columns:repeat(5,minmax(0,1fr));}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ START SCREEN ============ -->
+<section id="startScreen" class="screen active">
+  <div class="center-wrap">
+    <div class="start-card">
+      <h1>Polity Test KGS</h1>
+
+      <div class="meta-grid">
+        <div class="meta-box"><span class="num">150</span><span class="lbl">Questions</span></div>
+        <div class="meta-box"><span class="num">2</span><span class="lbl">Hours</span></div>
+        <div class="meta-box"><span class="num">MCQ</span><span class="lbl">Format</span></div>
+      </div>
+
+      <ul class="rules">
+        <li>The timer starts the moment you click <strong>Start Test</strong> and runs for 2 hours.</li>
+        <li>All 150 questions appear together on one scrollable page — jump between them using the number palette.</li>
+        <li>Marking scheme: <strong>+1</strong> for each correct answer, <strong>−⅓</strong> for each incorrect answer, <strong>0</strong> for unattempted questions.</li>
+        <li>The test auto-submits when time runs out; you can also submit manually at any time.</li>
+        <li>Each question also has option <strong>(e) Unanswered</strong>. Selecting it carries <strong>0</strong> marks and is treated exactly like leaving the question unattempted.</li>
+        <li>Your progress is saved automatically, so a refresh will not lose your answers.</li>
+        <li>After submitting, you'll get a full review — correct, incorrect, and explanations for each question.</li>
+        <li>Every attempt is stored on this device so you can cross-reference it later.</li>
+      </ul>
+
+      <button class="btn-primary" id="startBtn">Start Test</button>
+      <div class="history-toggle">
+        <button class="btn-ghost" id="viewHistoryBtn">View past attempts →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEST SCREEN ============ -->
+<section id="testScreen" class="screen">
+  <div class="test-topbar">
+    <div class="topbar-left">
+      <span class="topbar-title">Polity Test KGS</span>
+      <span class="progress-pill" id="progressPill">0 / 150 answered</span>
+    </div>
+    <div class="topbar-actions">
+      <div class="timer-box" id="timerBox">02:00:00</div>
+      <button class="icon-btn palette-toggle-mobile" id="paletteToggleBtn">Questions</button>
+      <button class="submit-btn" id="submitBtn">Submit</button>
+    </div>
+  </div>
+
+  <div class="test-body">
+    <div class="questions-col" id="questionsCol"></div>
+    <div class="palette-col" id="paletteCol">
+      <div class="palette-card">
+        <h3>Question Palette</h3>
+        <div class="legend">
+          <span><span class="dot answered"></span>Answered</span>
+          <span><span class="dot empty"></span>Unanswered</span>
+          <span><span class="dot" style="box-shadow:inset 0 0 0 2px var(--gold);background:transparent;"></span>Flagged</span>
+        </div>
+        <div class="grid150" id="paletteGrid"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULTS SCREEN ============ -->
+<section id="resultsScreen" class="screen">
+  <div class="results-wrap">
+    <div class="results-summary">
+      <div>
+        <div class="score-big" id="scoreBig">0 / 150</div>
+        <div class="score-label" id="scoreDate">—</div>
+        <div class="score-label" style="margin-top:2px;">Marking: +1 correct · −⅓ incorrect · 0 unattempted</div>
+      </div>
+      <div class="stat-row">
+        <div class="stat correct"><div class="n" id="statCorrect">0</div><div class="l">Correct</div></div>
+        <div class="stat incorrect"><div class="n" id="statIncorrect">0</div><div class="l">Incorrect</div></div>
+        <div class="stat unattempted"><div class="n" id="statUnattempted">0</div><div class="l">Unattempted</div></div>
+        <div class="stat"><div class="n" id="statAccuracy">0%</div><div class="l">Accuracy</div></div>
+        <div class="stat"><div class="n" id="statTime">—</div><div class="l">Time used</div></div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="all">All (150)</button>
+      <button class="tab-btn" data-tab="correct">Correct</button>
+      <button class="tab-btn" data-tab="incorrect">Incorrect</button>
+      <button class="tab-btn" data-tab="unattempted">Unattempted</button>
+      <button class="tab-btn" data-tab="flagged">Flagged</button>
+    </div>
+
+    <div class="tab-panel active" id="panel-all"></div>
+    <div class="tab-panel" id="panel-correct"></div>
+    <div class="tab-panel" id="panel-incorrect"></div>
+    <div class="tab-panel" id="panel-unattempted"></div>
+    <div class="tab-panel" id="panel-flagged"></div>
+
+    <div class="results-actions">
+      <button class="btn-secondary" id="backToStartBtn">Back to start</button>
+      <button class="btn-secondary" id="toHistoryFromResultsBtn">View all attempts</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HISTORY SCREEN ============ -->
+<section id="historyScreen" class="screen">
+  <div class="results-wrap">
+    <h1 class="serif" style="color:var(--navy);margin-bottom:4px;">Past Attempts</h1>
+    <p style="color:var(--ink-soft);margin-top:0;">Stored locally on this device for cross-reference. Click an attempt to reopen its full review.</p>
+    <div class="history-list" id="historyList"></div>
+    <div class="results-actions">
+      <button class="btn-secondary" id="backToStartFromHistoryBtn">Back to start</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONFIRM SUBMIT MODAL ============ -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box">
+    <h3 id="confirmTitle">Submit test?</h3>
+    <p id="confirmText">You still have unanswered questions. Are you sure you want to submit now? This cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn-ghost" id="cancelSubmitBtn">Cancel</button>
+      <button class="btn-primary" style="width:auto;" id="confirmSubmitBtn">Submit anyway</button>
+    </div>
+  </div>
+</div>
+
+<footer class="credit">Stored locally in your browser — clearing site data will remove saved attempts.</footer>
+
+<script>
+const QUESTIONS = [{"id": 1, "stem": "Which part of the Constitution deals with citizenship at the commencement of the Constitution?", "options": [{"key": "a", "text": "Part I"}, {"key": "b", "text": "Part II"}, {"key": "c", "text": "Part III"}, {"key": "d", "text": "Part IV"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Part II of the Constitution (Articles 5 to 11) deals with citizenship. However, it only identifies the persons who became citizens of India at the commencement of the Constitution on January 26, 1950. It does not deal with the problem of acquisition or loss of citizenship subsequent to its commencement. That power has been left to Parliament under Article 11, which enables it to make any provision with respect to the acquisition and termination of citizenship. Accordingly, Parliament enacted the Citizenship Act, 1955, which provides for the acquisition and loss of citizenship after the commencement of the Constitution. The Constitution does not define the term 'citizen' but deals with different classes of persons who are entitled to citizenship at its commencement. India has single citizenship, i.e., all citizens owe allegiance to the Union. There is no separate state citizenship, unlike the USA, which has dual citizenship, one of the nation and one of the state. The six articles under Part II and the citizenship they confer are: Article 5 (Citizenship by domicile), Article 6 (Rights of citizenship of persons who migrated from Pakistan), Article 7 (Rights of citizenship of migrants to Pakistan who returned), Article 8 (Rights of citizenship of persons of Indian origin residing outside India), Article 9 (Persons voluntarily acquiring foreign citizenship cease to be citizens), Article 10 (Continuance of rights of citizenship), Article 11 (Parliament to regulate citizenship by law)."}, {"id": 2, "stem": "Consider the following statements regarding the 'Zero Hour' in Parliament:\n1. It is an Indian innovation in the field of parliamentary procedures since 1962.\n2. It is mentioned in the Rules of Procedure of the Houses.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statement 1 is correct: Zero Hour is indeed an Indian innovation in the field of parliamentary procedures and has been in existence since 1962. The time immediately following the Question Hour is referred to as Zero Hour. It starts at 12 noon (hence the name) and lasts until the agenda for the day is taken up. During this time, members can raise matters of urgent public importance without any prior notice. Statement 2 is incorrect: Zero Hour is not mentioned in the Rules of Procedure of either House of Parliament. It is not a formally recognised part of parliamentary procedure, unlike the Question Hour. It has evolved as a parliamentary convention over the decades. The Question Hour is the first hour of every parliamentary sitting (11 AM to 12 noon) and is explicitly governed by the Rules of Procedure."}, {"id": 3, "stem": "Assertion (A): A No-Confidence Motion does not need to state the reasons for its adoption.\nReason (R): It can be moved against an individual minister or a group of ministers.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Assertion (A) is correct: As per the Rules of Procedure of the Lok Sabha, a No-Confidence Motion does not need to state the reasons for its adoption. It requires the support of at least 50 members to be admitted for discussion. Reason (R) is incorrect: A No-Confidence Motion can only be moved against the entire Council of Ministers, not against an individual minister or a group of ministers. If passed in the Lok Sabha, the entire Council of Ministers, including the Prime Minister, must resign. The motion that can be moved against an individual minister or group of ministers is the Censure Motion, which must state reasons for its adoption. A No-Confidence Motion can be introduced only in the Lok Sabha."}, {"id": 4, "stem": "Consider the following pairs of Bill types and their characteristics:\n1. Ordinary Bill : Can be introduced by a minister or a private member\n2. Money Bill : Can be introduced only by a minister\n3. Financial Bill (I) : Cannot be introduced in the Rajya Sabha\n4. Constitutional Amendment : Requires prior recommendation of the President\nHow many pairs of the given above are correctly matched?", "options": [{"key": "a", "text": "Only one pair"}, {"key": "b", "text": "Only two pairs"}, {"key": "c", "text": "Only three pairs"}, {"key": "d", "text": "All four pairs"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Pair 1 is correctly matched: An Ordinary Bill can be introduced in either House of Parliament by a minister or a private member without prior recommendation of the President. Pair 2 is correctly matched: A Money Bill (under Article 110) can be introduced only in the Lok Sabha and only by a minister on the recommendation of the President. Pair 3 is correctly matched: A Financial Bill (Category I) under Article 117(1) contains provisions of Article 110 as well as general legislation, introduced only in Lok Sabha on President's recommendation. Pair 4 is incorrectly matched: A Constitutional Amendment Bill under Article 368 does not require the prior recommendation of the President for its introduction. It can be introduced in either House by a minister or private member."}, {"id": 5, "stem": "Which of the following Union Territories has representation in the Rajya Sabha?\n1. Chandigarh\n2. Puducherry\n3. Jammu and Kashmir\n4. Ladakh\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 3"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 3"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Out of all Union Territories, only three have representation in the Rajya Sabha: Delhi, Puducherry, and Jammu & Kashmir (which retained its Rajya Sabha seats after reorganisation in 2019). Ladakh, Chandigarh, Dadra & Nagar Haveli and Daman & Diu, Lakshadweep, and Andaman & Nicobar Islands do not have Rajya Sabha representation because their populations are too small to justify seats or they lack legislative assemblies."}, {"id": 6, "stem": "Assertion (A): Ministers hold office during the pleasure of the President.\nReason (R): The President removes a minister only on the advice of the Prime Minister.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Assertion (A) is correct: Under Article 75(2), a minister holds office during the pleasure of the President, establishing the principle of individual responsibility of ministers. Reason (R) is correct: The President removes a minister only when advised to do so by the Prime Minister. However, (R) is not the correct explanation of (A). Assertion (A) establishes the constitutional principle of individual accountability/removability, whereas Reason (R) merely describes the procedural mechanism through which the President's pleasure is exercised on the advice of the PM."}, {"id": 7, "stem": "For what maximum duration can the Vice-President act as the President in the event of a vacancy?", "options": [{"key": "a", "text": "Three months"}, {"key": "b", "text": "Six months"}, {"key": "c", "text": "One year"}, {"key": "d", "text": "The remainder of the term"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Article 65 provides that when a vacancy occurs in the office of President due to death, resignation, removal, or otherwise, the Vice-President acts as President. Article 62(2) mandates that when a vacancy arises, a new President must be elected within six months. Therefore, the Vice-President can act as President for a maximum period of six months. During this period, the Chairman of Rajya Sabha duties are discharged by the Deputy Chairman."}, {"id": 8, "stem": "Consider the following pairs of Constitutional Articles and their provisions:\n1. Article 74 : Council of Ministers to aid and advise the President\n2. Article 75 : Other provisions as to Ministers\n3. Article 78 : Duties of PM as respects the furnishing of information\n4. Article 88 : Rights of Ministers as respects the Houses\nHow many pairs of the given above are correctly matched?", "options": [{"key": "a", "text": "Only one pair"}, {"key": "b", "text": "Only two pairs"}, {"key": "c", "text": "Only three pairs"}, {"key": "d", "text": "All four pairs"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Pair 1 is correctly matched: Article 74 - Council of Ministers to aid and advise the President. Pair 2 is correctly matched: Article 75 - Other provisions as to Ministers (appointment, tenure, responsibility, etc.). Pair 3 is correctly matched: Article 78 - Duties of Prime Minister as respects the furnishing of information to the President. Pair 4 is correctly matched: Article 88 - Rights of Ministers and Attorney-General as respects Houses."}, {"id": 9, "stem": "Assertion (A): The 'Rule of Law' embodied in Article 14 is a basic feature of the Constitution.\nReason (R): Article 14 permits reasonable classification of persons, objects, and transactions by the law.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Assertion (A) is correct: Article 14 embodies the Rule of Law, held by the Supreme Court to be a basic feature of the Constitution. Reason (R) is correct: Article 14 permits reasonable classification satisfying intelligible differentia and rational nexus to the object of the law. (R) is not the correct explanation of (A): Reasonable classification describes what Article 14 permits, but does not explain why the Rule of Law is a basic feature of the Constitution."}, {"id": 10, "stem": "Match List-I with List-II\nList-I (Articles):\na. Article 14\nb. Article 15\nc. Article 16\nd. Article 17\nList-II (Subject Matter):\n1. Abolition of Untouchability\n2. Equality of opportunity in public employment\n3. Equality before the law\n4. Prohibition of discrimination on certain grounds\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-2, b-3, c-4, d-1"}, {"key": "b", "text": "a-3, b-4, c-2, d-1"}, {"key": "c", "text": "a-2, b-1, c-3, d-4"}, {"key": "d", "text": "a-3, b-4, c-1, d-2"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Article 14 matches with (3): Equality before law and equal protection of laws. Article 15 matches with (4): Prohibition of discrimination on grounds of religion, race, caste, sex or place of birth. Article 16 matches with (2): Equality of opportunity in matters of public employment. Article 17 matches with (1): Abolition of Untouchability."}, {"id": 11, "stem": "Consider the following statements regarding the Chairman of the Legislative Council:\n1. He is elected by the council members from amongst themselves.\n2. His salary and allowances are determined by the Governor.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statement 1 is correct: The Legislative Council has a Chairman and Deputy Chairman elected by its members from amongst themselves. Statement 2 is incorrect: The salaries and allowances of the Chairman and Deputy Chairman of the Legislative Council are determined by the State Legislature (not the Governor) and charged to the Consolidated Fund of the State."}, {"id": 12, "stem": "Consider the following statements regarding the Governor's pardoning powers:\n1. He can pardon sentences inflicted under state laws.\n2. He can pardon a death sentence if it is passed under a state law.\n3. He cannot pardon sentences inflicted by a court-martial.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Statement 1 is correct: Under Article 161, the Governor can grant pardons, reprieves, respites, remissions, or suspend/commute sentences against state laws. Statement 2 is incorrect: The Governor cannot pardon a death sentence (only the President can under Article 72), though the Governor can suspend, remit, or commute a death sentence under state law. Statement 3 is correct: The Governor cannot pardon sentences inflicted by a court-martial (military court)."}, {"id": 13, "stem": "Consider the following pairs of Articles of Fundamental Duties and their associated themes:\n1. 51A(a) : To respect constitutional ideals and institutions\n2. 51A(g) : To protect and improve forests, lakes, rivers and wildlife\n3. 51A(i) : To safeguard public property and to abjure violence\n4. 51A(h) : To develop humanism and the spirit of inquiry\nHow many pairs of the given above are correctly matched?", "options": [{"key": "a", "text": "Only one pair"}, {"key": "b", "text": "Only two pairs"}, {"key": "c", "text": "Only three pairs"}, {"key": "d", "text": "All four pairs"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Pair 1 is correctly matched: Article 51A(a) - Abide by Constitution, respect National Flag and Anthem. Pair 2 is correctly matched: Article 51A(g) - Protect and improve natural environment. Pair 3 is correctly matched: Article 51A(i) - Safeguard public property and abjure violence. Pair 4 is correctly matched: Article 51A(h) - Develop scientific temper, humanism, spirit of inquiry and reform."}, {"id": 14, "stem": "Consider the following statements regarding the Committee on Subordinate Legislation:\n1. It examines whether the executive properly exercises delegated rule-making powers.\n2. Both Houses have their own separate committees on subordinate legislation.\n3. Ministers are frequently appointed to this committee to guide its proceedings.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statement 1 is correct: The Committee on Subordinate Legislation scrutinises whether powers to make rules/regulations delegated to executive are properly exercised. Statement 2 is correct: Both Lok Sabha and Rajya Sabha have separate committees of 15 members each. Statement 3 is incorrect: Ministers are not appointed to the Committee on Subordinate Legislation to ensure independence."}, {"id": 15, "stem": "What is the maximum number of 'starred questions' admitted for oral answers on a single day?", "options": [{"key": "a", "text": "15"}, {"key": "b", "text": "20"}, {"key": "c", "text": "25"}, {"key": "d", "text": "30"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "A Starred Question requires an oral answer, marked with an asterisk, allowing supplementary questions. The maximum number of starred questions admitted for oral answers on a single day in Lok Sabha is 20 (though in practice only 3 to 4 are answered due to time limit)."}, {"id": 16, "stem": "Which functionary acts as the ex officio President of the Indian Parliamentary Group?", "options": [{"key": "a", "text": "Prime Minister"}, {"key": "b", "text": "Minister of Parliamentary Affairs"}, {"key": "c", "text": "Speaker of the Lok Sabha"}, {"key": "d", "text": "Chairman of the Rajya Sabha"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "The Speaker of the Lok Sabha is the ex-officio President of the Indian Parliamentary Group (IPG), an autonomous body formed in 1949 that serves as a link between the Parliament of India and foreign parliaments."}, {"id": 17, "stem": "Which of the following pairs regarding parliamentary privileges are correctly matched?\n1. Freedom from arrest : Applicable only in civil cases\n2. Duration of immunity : 60 days before and after a session\n3. Freedom of speech : Absolute immunity for anything said in Parliament\n4. Secret sitting : Right to exclude strangers from proceedings\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 3"}, {"key": "b", "text": "Only 2 and 4"}, {"key": "c", "text": "Only 1, 3, and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Pair 1 is correctly matched: Freedom from arrest applies only in civil cases, not criminal or preventive detention cases. Pair 2 is incorrectly matched: Immunity from civil arrest is for 40 days before and after a session (not 60 days). Pair 3 is correctly matched: Under Article 105(2), MPs have immunity from court proceedings for speech/vote in Parliament. Pair 4 is correctly matched: Right to exclude strangers and hold secret sittings."}, {"id": 18, "stem": "Under the Citizenship Act of 1955, by what method can the Government of India terminate citizenship?", "options": [{"key": "a", "text": "Renunciation"}, {"key": "b", "text": "Registration"}, {"key": "c", "text": "Deprivation"}, {"key": "d", "text": "Descent"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Under the Citizenship Act 1955, Deprivation is the compulsory termination of Indian citizenship by the Central Government (on grounds of fraud, disloyalty to Constitution, unlawful trading with enemy during war, etc.). Renunciation is voluntary, and Termination occurs automatically upon acquiring foreign citizenship."}, {"id": 19, "stem": "Which of the following bodies are considered 'State' under Article 12?\n1. Life Insurance Corporation of India (LIC)\n2. Oil and Natural Gas Commission (ONGC)\n3. Steel Authority of India Ltd (SAIL)\n4. A private agency working as an instrument of the State\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 1, 2 and 3"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Article 12 defines 'State' for Part III. Judicial decisions (e.g., Sukhdev Singh, Pradeep Kumar Biswas) have established tests like government control, statutory creation, and public functions. LIC, ONGC, SAIL, and even private agencies acting as state instruments fall under the definition of 'State'."}, {"id": 20, "stem": "Consider the following statements regarding the relationship between Fundamental Rights and Directive Principles of State Policy:\n1. In the Minerva Mills case (1980), the Supreme Court held that harmony between Fundamental Rights and DPSP is a basic feature of the Constitution.\n2. The 42nd Amendment Act gave DPSP absolute primacy over Fundamental Rights under Articles 14 and 19.\n3. Article 31C, as originally enacted, protected laws giving effect to all Directive Principles from challenge under Articles 14 and 19.\n4. The Supreme Court in the Kesavananda Bharati case upheld Article 31C only to the extent it protected laws related to Articles 39(b) and 39(c).\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 4"}, {"key": "b", "text": "Only 1, 2 and 4"}, {"key": "c", "text": "Only 2 and 3"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Statement 1 is correct: Minerva Mills (1980) held balance between FRs and DPSPs as basic feature. Statement 2 is correct: 42nd Amendment (1976) extended Article 31C to all DPSPs. Statement 3 is incorrect: Original Article 31C (25th Amendment 1971) protected only Articles 39(b) and 39(c), not all DPSPs. Statement 4 is correct: Kesavananda Bharati (1973) upheld 31C for 39(b)/(c) while striking down immunity from judicial review."}, {"id": 21, "stem": "Which of the following are grounds for a Member of Parliament to vacate their seat?\n1. Double membership in both Houses of Parliament.\n2. Being elected to a state legislature simultaneously.\n3. Absence from meetings for sixty days without permission.\n4. Resignation addressed to the President of India.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 2, 3 and 4"}, {"key": "c", "text": "Only 1, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1, 2, and 3 are correct grounds for vacation of seats. Statement 4 is incorrect: An MP submits resignation to the Speaker (Lok Sabha) or Chairman (Rajya Sabha), not to the President of India."}, {"id": 22, "stem": "Which of the following pairs of Fundamental Rights and their availability are correctly matched?\n1. Article 15 : Available only to citizens\n2. Article 14 : Available to both citizens and foreigners\n3. Article 16 : Available to both citizens and foreigners\n4. Article 18 : Available only to citizens\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 4"}, {"key": "c", "text": "Only 1, 2, and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Pair 1 is correctly matched: Article 15 (citizens only). Pair 2 is correctly matched: Article 14 (citizens and foreigners). Pair 3 is incorrectly matched: Article 16 is available only to citizens. Pair 4 is incorrectly matched: Article 18 applies to both citizens and non-citizens holding office of profit under State."}, {"id": 23, "stem": "Assertion (A): The Rajya Sabha is a continuing chamber and is not subject to dissolution.\nReason (R): One-third of its members retire every second year.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Assertion (A) is correct: Rajya Sabha is a permanent body and cannot be dissolved. Reason (R) is correct: One-third of its members retire every two years (staggered membership). (R) is the correct explanation of (A) because this rotational retirement ensures the chamber is never completely empty, making dissolution structurally unnecessary."}, {"id": 24, "stem": "Which of the following are considered components of the 'Basic Structure' doctrine?\n1. Supremacy of the Constitution\n2. Judicial Review\n3. Rule of law\n4. Harmony and balance between Fundamental Rights and DPSP\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 3"}, {"key": "b", "text": "Only 1, 2 and 4"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All four features (Supremacy of Constitution, Judicial Review, Rule of Law, and Harmony between FRs and DPSPs) have been held by the Supreme Court to be part of the Basic Structure of the Constitution."}, {"id": 25, "stem": "How many seats does the Rajya Sabha allocate to Union Territories in its current composition?", "options": [{"key": "a", "text": "4"}, {"key": "b", "text": "8"}, {"key": "c", "text": "5"}, {"key": "d", "text": "6"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Rajya Sabha allocates 8 seats to Union Territories: 3 to Delhi (NCT), 4 to Jammu & Kashmir, and 1 to Puducherry. Other UTs lack legislative assemblies and thus have no seats."}, {"id": 26, "stem": "Match List-I with List-II regarding Departmentally-Related Standing Committees (DRSCs):\nList-I (Attribute):\na. Total number of DRSCs\nb. Total Members in each committee\nc. DRSCs working under Lok Sabha\nd. DRSCs working under Rajya Sabha\nList-II (Number):\n1. 16\n2. 8\n3. 24\n4. 31\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-2, b-3, c-4, d-1"}, {"key": "b", "text": "a-3, b-2, c-4, d-1"}, {"key": "c", "text": "a-2, b-1, c-3, d-4"}, {"key": "d", "text": "a-3, b-4, c-1, d-2"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "DRSCs matching: Total DRSCs (a) = 24 (3); Total members in each committee (b) = 31 (4); DRSCs under Lok Sabha (c) = 16 (1); DRSCs under Rajya Sabha (d) = 8 (2)."}, {"id": 27, "stem": "Which one of the following pairs of exceptions to equality and their subjects is not correctly matched?", "options": [{"key": "a", "text": "Article 361 : Immunities to the President and Governors"}, {"key": "b", "text": "Article 361-A : Publication of parliamentary proceedings"}, {"key": "c", "text": "Article 105 : Privileges of state legislature members"}, {"key": "d", "text": "Article 31-C : Implementation of certain Directive Principles"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Pair 1 is correctly matched: Article 361 (President/Governor immunity). Pair 2 is correctly matched: Article 361-A (Media coverage of parliamentary proceedings). Pair 3 is incorrectly matched: Article 105 relates to privileges of Parliament/MPs, while Article 194 deals with State Legislatures. Pair 4 is correctly matched: Article 31-C (Saving of laws giving effect to Art 39b/c)."}, {"id": 28, "stem": "Consider the following pairs regarding the stages of budget enactment:\n1. Presentation : Finance Minister presents it to both Houses of Parliament\n2. General discussion : No cut motions are moved at this stage\n3. Scrutiny by committees : Parliament is adjourned for three to four weeks\n4. Appropriation Bill : Legalises payments from the Consolidated Fund\nHow many pairs of the given above are correctly matched?", "options": [{"key": "a", "text": "Only one pair"}, {"key": "b", "text": "Only two pairs"}, {"key": "c", "text": "Only three pairs"}, {"key": "d", "text": "All four pairs"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Pair 1 is incorrectly matched: The Budget is presented to Lok Sabha, and laid before Rajya Sabha. It originates in Lok Sabha. Pair 2 is correctly matched: General discussion phase covers general principles; cut motions cannot be moved here. Pair 3 is correctly matched: Adjournment for 3-4 weeks for DRSC scrutiny. Pair 4 is correctly matched: Appropriation Bill authorises withdrawal of money."}, {"id": 29, "stem": "Which of the following are required qualifications for the office of the Vice-President?\n1. He should be a citizen of India.\n2. He should have completed 35 years of age.\n3. He should be qualified for election as a member of the Rajya Sabha.\n4. He must be a member of either House of Parliament at the time of election.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 1, 2 and 3"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Statement 1 is correct: Must be citizen of India. Statement 2 is correct: Must have completed 35 years of age. Statement 3 is correct: Must be qualified for election as Rajya Sabha member. Statement 4 is incorrect: Candidate need not be a member of Parliament/State Legislature at the time of election; if elected, they vacate their existing seat."}, {"id": 30, "stem": "Consider the following statements regarding the abolition of titles under Article 18:\n1. It prohibits the state from conferring any title except a military or academic distinction.\n2. An Indian citizen may accept academic and literary titles from a foreign state without prior approval of the Government of India.\n3. The Supreme Court ruled that National Awards like Bharat Ratna are not titles.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Statement 1 is correct: Article 18(1) prohibits titles, except military/academic distinctions. Statement 2 is incorrect: Prohibition on citizens accepting foreign titles under Article 18(2) is absolute. Statement 3 is correct: Balaji Raghavan case (1995) held National Awards (Bharat Ratna, etc.) do not amount to titles, provided they are not used as prefixes/suffixes."}, {"id": 31, "stem": "Which of the following pairs regarding disqualification from Parliament is incorrectly matched?", "options": [{"key": "a", "text": "Holding an office of profit : Decided by the President"}, {"key": "b", "text": "Being an undischarged insolvent : Decided by the President"}, {"key": "c", "text": "Voluntary giving up party membership : Decided by the Election Commission"}, {"key": "d", "text": "Voting contrary to party directions : Decided by the Presiding Officer"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Pair 1 is correctly matched: Office of profit disqualification under Art 102 decided by President (on EC opinion). Pair 2 is correctly matched: Undischarged insolvent decided by President (on EC opinion). Pair 3 is incorrectly matched: Voluntarily giving up party membership is under 10th Schedule (Anti-Defection Law), decided by Presiding Officer of the House (Speaker/Chairman), not President/EC. Pair 4 is correctly matched: Voting contrary to party directions decided by Presiding Officer."}, {"id": 32, "stem": "What is the primary function of the 'Business Advisory Committee' in Parliament?", "options": [{"key": "a", "text": "To audit government expenditure"}, {"key": "b", "text": "To allocate time for legislative and other business"}, {"key": "c", "text": "To examine subordinate legislation"}, {"key": "d", "text": "To oversee the privileges of members"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "The Business Advisory Committee recommends the time to be allotted for discussion of various stages of government bills and other business in the House."}, {"id": 33, "stem": "Which of the following statements regarding legislation enacted to enforce Fundamental Duties is incorrect?", "options": [{"key": "a", "text": "The Prevention of Insults to National Honour Act (1971) gives effect to the duty under Article 51A(a)."}, {"key": "b", "text": "The Representation of People Act (1951) disqualifies a person from Parliament or state legislature for encouraging enmity between different sections on grounds of religion, race, place of birth, language, etc."}, {"key": "c", "text": "The Forest (Conservation) Act (1980) gives effect to Article 51A(g), which also covers protection of lakes and rivers, not just forests."}, {"key": "d", "text": "The Wildlife (Protection) Act (1972) gives effect to the duty under Article 51A(g) relating to protection and improvement of the natural environment."}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Statement C is incorrect: The Forest (Conservation) Act, 1980 enforces Article 51A(g) regarding forest preservation, but does not extend to lakes and rivers (which are covered by separate environmental acts like Water Act)."}, {"id": 34, "stem": "Consider the following statements regarding the concept of Equality Before the Law:\n1. It is a negative concept denoting the absence of any special privileges.\n2. It has been taken from the American Constitution.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statement 1 is correct: Equality before law is a negative concept (absence of special privilege). Statement 2 is incorrect: Equality before law is borrowed from British common law/Dicey, while Equal Protection of Laws is borrowed from the US Constitution."}, {"id": 35, "stem": "Consider the following statements regarding the 'Lame-duck' session:\n1. It refers to the last session of the existing Lok Sabha.\n2. Members who fail to get re-elected are termed 'lame-ducks'.\nWhich of the statements given above is/are incorrect?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Both statements are correct: Lame-duck session refers to the last session of the existing Lok Sabha after a new Lok Sabha has been elected, and outgoing members who lost elections are called lame-ducks."}, {"id": 36, "stem": "Match List-I with List-II\nList-I (Constitutional Principle):\na. Qualifications for membership of Parliament\nb. Disqualifications for membership\nc. Powers and privileges of Houses\nd. Joint sitting of both Houses\nList-II (Article):\n1. Article 84\n2. Article 102\n3. Article 105\n4. Article 108\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-3, b-4, c-1, d-2"}, {"key": "b", "text": "a-4, b-3, c-2, d-1"}, {"key": "c", "text": "a-2, b-1, c-3, d-4"}, {"key": "d", "text": "a-1, b-2, c-3, d-4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Qualifications for membership (a) = Article 84 (1); Disqualifications for membership (b) = Article 102 (2); Powers and privileges (c) = Article 105 (3); Joint sitting (d) = Article 108 (4)."}, {"id": 37, "stem": "Consider the following statements regarding the exceptions to Article 15:\n1. The State is permitted to make special provisions for women and children.\n2. The State can make special provisions for socially and educationally backward classes.\n3. Special provisions regarding admission to private educational institutions are strictly prohibited.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statement 1 is correct: Article 15(3) allows special provisions for women and children. Statement 2 is correct: Article 15(4) allows special provisions for backward classes/SCs/STs (1st Amendment 1951). Statement 3 is incorrect: Article 15(5) permits reservation in educational institutions including private ones, BUT excludes minority educational institutions under Article 30(1)."}, {"id": 38, "stem": "Assertion (A): Fundamental Rights are not absolute and are subject to reasonable restrictions.\nReason (R): The Constitution seeks to strike a balance between individual liberty and social control.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Assertion (A) is correct: Fundamental Rights are not absolute but qualified, subject to reasonable restrictions. Reason (R) is correct: The Constitution balances individual liberty with social control. (R) is the correct explanation of (A) because reasonable restrictions are the constitutional tool through which this balance is achieved."}, {"id": 39, "stem": "Consider the following statements regarding the Adjournment Motion:\n1. It is introduced to draw attention to a definite matter of urgent public importance.\n2. It requires the support of at least fifty members to be admitted.\n3. It can be introduced in both the Lok Sabha and the Rajya Sabha.\nWhich of the statements given above is/are incorrect?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Only 3"}, {"key": "d", "text": "None of the above"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Statement 1 is correct: Adjournment Motion draws attention to definite matter of urgent public importance involving censure element. Statement 2 is correct: Requires support of 50 members. Statement 3 is incorrect: Can be introduced ONLY in Lok Sabha, not Rajya Sabha."}, {"id": 40, "stem": "Which of the following pairs regarding the stages of an Ordinary Bill are correctly matched?\n1. First Reading : Introduction of the bill and publication in the Gazette\n2. Second Reading : Detailed scrutiny and clause-by-clause consideration\n3. Third Reading : Debate is confined to the acceptance or rejection\n4. Joint Sitting : Held automatically if the bill is delayed by three months\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 2, 3 and 4"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Pairs 1, 2, and 3 are correctly matched. Pair 4 is incorrectly matched: A Joint Sitting is summoned by the President (not automatic) when delay exceeds six months (not three months)."}, {"id": 41, "stem": "How many members comprise the Committee of Privileges in the Lok Sabha?", "options": [{"key": "a", "text": "10"}, {"key": "b", "text": "15"}, {"key": "c", "text": "22"}, {"key": "d", "text": "30"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "The Committee of Privileges consists of 15 members in Lok Sabha and 10 members in Rajya Sabha."}, {"id": 42, "stem": "Assertion (A): The Governor, unlike the President, possesses explicit constitutional discretion to act without the advice of the Council of Ministers in certain matters.\nReason (R): Unlike Article 74, which binds the President to the advice of the Union Cabinet, no equivalent provision under Article 163 makes the Governor similarly bound by the State Council of Ministers.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Assertion (A) is correct: Governor has explicit constitutional discretion (e.g. Art 200, Art 356) whereas President has no explicit constitutional discretion. Reason (R) is false: Article 163 does state that there shall be a Council of Ministers to aid and advise the Governor, binding him except in discretionary matters."}, {"id": 43, "stem": "Which of the following pairs concerning the Panel of Chairpersons are correctly matched?\n1. Lok Sabha Panel : Nominated by the Speaker\n2. Rajya Sabha Panel : Nominated by the Vice President\n3. Presiding Authority : Can preside when the primary office is vacant\n4. Membership size : Maximum of ten members\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 1, 2 and 4"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Pairs 1, 2, and 4 are correctly matched. Pair 3 is incorrectly matched: A member of the Panel of Chairpersons can preside only when Speaker/Deputy Speaker are absent from sitting, NOT when the office is vacant (in case of vacancy, President appoints a member/Deputy Speaker acts)."}, {"id": 44, "stem": "Match List-I with List-II\nList-I (Article):\na. Article 39A\nb. Article 40\nc. Article 48\nd. Article 49\nList-II (Provisions):\n1. Organization of agriculture and animal husbandry\n2. Protection of monuments of national importance\n3. Equal justice and free legal aid\n4. Organisation of village panchayats\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-2, b-3, c-4, d-1"}, {"key": "b", "text": "a-3, b-2, c-4, d-1"}, {"key": "c", "text": "a-2, b-1, c-3, d-4"}, {"key": "d", "text": "a-3, b-4, c-1, d-2"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Article 39A (a) = Equal justice and free legal aid (3); Article 40 (b) = Village panchayats (4); Article 48 (c) = Agriculture and animal husbandry (1); Article 49 (d) = Protection of monuments (2)."}, {"id": 45, "stem": "Consider the following pairs of Constitutional features and their origin countries:\n1. Fundamental Rights : Constitution of USA\n2. Directive Principles of State Policy : Irish Constitution\n3. Fundamental Duties : Constitution of France\n4. Equal Protection of Laws : British Constitution\nHow many pairs of the given above are correctly matched?", "options": [{"key": "a", "text": "Only one pair"}, {"key": "b", "text": "Only two pairs"}, {"key": "c", "text": "Only three pairs"}, {"key": "d", "text": "All four pairs"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Pair 1 is correctly matched: Fundamental Rights (USA). Pair 2 is correctly matched: DPSPs (Ireland). Pair 3 is incorrectly matched: Fundamental Duties were borrowed from USSR (not France). Pair 4 is incorrectly matched: Equal Protection of Laws was borrowed from USA (not Britain)."}, {"id": 46, "stem": "Which committee recommended the inclusion of a separate chapter on Fundamental Duties in the Constitution?", "options": [{"key": "a", "text": "Balwant Rai Mehta Committee"}, {"key": "b", "text": "Swaran Singh Committee"}, {"key": "c", "text": "Verma Committee"}, {"key": "d", "text": "Kothari Commission"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "The Swaran Singh Committee (1976) recommended the inclusion of Fundamental Duties in the Constitution."}, {"id": 47, "stem": "Which of the following bills lapse on the dissolution of the Lok Sabha?\n1. A bill pending in the Lok Sabha.\n2. A bill passed by the Lok Sabha but pending in the Rajya Sabha.\n3. A bill pending in the Rajya Sabha but not passed by the Lok Sabha.\n4. A bill pending before a joint sitting notified before dissolution.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 1, 2 and 3"}, {"key": "c", "text": "Only 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1 and 2 describe bills that lapse upon dissolution of Lok Sabha. Statements 3 and 4 describe bills that do NOT lapse (Bill pending in Rajya Sabha not passed by Lok Sabha, and Bill pending before a joint sitting notified by President)."}, {"id": 48, "stem": "Consider the following statements regarding the Mandal Commission:\n1. It was the Second Backward Classes Commission appointed by the Morarji Desai government.\n2. It recommended a 27% reservation for Other Backward Classes in government jobs.\n3. The Supreme Court declared the total reservation limit can safely exceed 50%.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1 and 2 are correct regarding Mandal Commission. Statement 3 is incorrect: In Indra Sawhney case (1992), Supreme Court held that total reservation should not exceed 50%, except in extraordinary situations."}, {"id": 49, "stem": "Assertion (A): Article 17 abolishes untouchability and forbids its practice in any form.\nReason (R): The Constitution of India explicitly defines the term 'untouchability' under Article 366.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Assertion (A) is correct: Article 17 abolishes untouchability and is enforceable against State and private individuals. Reason (R) is false: The term 'untouchability' is NOT defined anywhere in the Constitution."}, {"id": 50, "stem": "Consider the following statements regarding the office of 'Whip':\n1. The office of the Whip is mentioned in the Rules of the House.\n2. He regulates and monitors the behaviour of the party members in Parliament.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Statement 1 is incorrect: The office of Whip is not mentioned in the Constitution, Rules of the House, or Parliamentary Statute; it is based on convention. Statement 2 is correct: Whip regulates party attendance and voting discipline."}, {"id": 51, "stem": "Match List-I with List-II\nList-I (Amendments):\na. 42nd Amendment Act\nb. 44th Amendment Act\nc. 86th Amendment Act\nd. 97th Amendment Act\nList-II (Characteristics):\n1. Minimised inequalities in income, status, and opportunities\n2. Added Co-operative Societies\n3. Changed subject matter of Article 45\n4. Added free legal aid to the poor\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-2, b-3, c-4, d-1"}, {"key": "b", "text": "a-4, b-1, c-3, d-2"}, {"key": "c", "text": "a-2, b-1, c-3, d-4"}, {"key": "d", "text": "a-3, b-4, c-1, d-2"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "42nd Amendment (1976) -> Free legal aid (Art 39A); 44th Amendment (1978) -> Minimise inequalities (Art 38(2)); 86th Amendment (2002) -> Early childhood care/education up to 6 years (Art 45); 97th Amendment (2011) -> Co-operative societies (Art 43B)."}, {"id": 52, "stem": "Which Article of the Constitution declares that laws inconsistent with Fundamental Rights shall be void?", "options": [{"key": "a", "text": "Article 12"}, {"key": "b", "text": "Article 13"}, {"key": "c", "text": "Article 14"}, {"key": "d", "text": "Article 21"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Article 13 declares laws inconsistent with or in derogation of Fundamental Rights as void, acting as the foundation for judicial review under Part III."}, {"id": 53, "stem": "Consider the following pairs regarding the duration of legislative bodies:\n1. Lok Sabha : Normal term of five years from the first meeting\n2. Rajya Sabha : Permanent body not subject to dissolution\n3. Legislative Assembly : Normal term of five years from the first meeting\n4. Legislative Council : Subject to dissolution every six years\nHow many pairs of the given above are correctly matched?", "options": [{"key": "a", "text": "Only one pair"}, {"key": "b", "text": "Only two pairs"}, {"key": "c", "text": "Only three pairs"}, {"key": "d", "text": "All four pairs"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Pairs 1, 2, and 3 are correctly matched. Pair 4 is incorrectly matched: Legislative Council is a permanent body and NOT subject to dissolution, with 1/3 members retiring every 2 years."}, {"id": 54, "stem": "Consider the following statements regarding the Leader of the Opposition:\n1. The position is explicitly mentioned in the original text of the Constitution.\n2. His party must have at least one-tenth of the total strength of the House.\n3. He receives the salary and facilities equivalent to a cabinet minister.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Only 2 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Statement 1 is incorrect: Leader of Opposition is not mentioned in the original Constitution; it got statutory recognition in 1977. Statement 2 is correct: Party must have at least 1/10th strength of the House. Statement 3 is correct: Entitled to salary/facilities equivalent to Cabinet Minister."}, {"id": 55, "stem": "Consider the following pairs regarding the nature of Fundamental Rights:\n1. Right to equality before law : Negative character\n2. Right to equal protection of laws : Positive character\n3. Directive Principles : Positive injunctions\n4. Fundamental Duties : Only applicable to citizens\nHow many pairs of the given above are correctly matched?", "options": [{"key": "a", "text": "Only one pair"}, {"key": "b", "text": "Only two pairs"}, {"key": "c", "text": "Only three pairs"}, {"key": "d", "text": "All four pairs"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All four pairs are correctly matched regarding negative/positive characteristics of Equality before Law, Equal Protection of Laws, DPSPs, and applicability of Fundamental Duties."}, {"id": 56, "stem": "Consider the following statements regarding the acquisition of citizenship by descent:\n1. A person born outside India after 1950 is a citizen if the father was a citizen.\n2. After 1992, a person is a citizen if either parent was an Indian citizen at birth.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Both statements are correct: Before Dec 10, 1992, citizenship by descent was through father only; 1992 amendment enabled citizenship by descent through father or mother."}, {"id": 57, "stem": "Which among the following attends Cabinet meetings only when specially invited?", "options": [{"key": "a", "text": "Deputy Minister"}, {"key": "b", "text": "Minister of State (Independent Charge)"}, {"key": "c", "text": "Parliamentary Secretary"}, {"key": "d", "text": "Cabinet Secretary"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "A Minister of State with Independent Charge is not a Cabinet member, but attends Cabinet meetings when specially invited for matters concerning his ministry."}, {"id": 58, "stem": "Which article of the Constitution details the manner of election of the President of India?", "options": [{"key": "a", "text": "Article 52"}, {"key": "b", "text": "Article 61"}, {"key": "c", "text": "Article 54"}, {"key": "d", "text": "Article 55"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Article 55 details the manner of election of the President (proportional representation by single transferable vote, parity between Union and States, secret ballot)."}, {"id": 59, "stem": "Match List-I with List-II\nList-I (President):\na. Dr. Rajendra Prasad\nb. Giani Zail Singh\nc. R. Venkataraman\nd. A.P.J. Abdul Kalam\nList-II (Use of Veto Power):\n1. Suspensive Veto on Office of Profit Bill\n2. Absolute Veto on Salary and Allowances Bill\n3. Pocket Veto on Indian Post Office Bill\n4. Absolute Veto on PEPSU Appropriation Bill\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-4, b-3, c-1, d-2"}, {"key": "b", "text": "a-4, b-3, c-2, d-1"}, {"key": "c", "text": "a-3, b-4, c-1, d-2"}, {"key": "d", "text": "a-3, b-4, c-2, d-1"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Dr. Rajendra Prasad -> Absolute Veto on PEPSU Bill (4); Giani Zail Singh -> Pocket Veto on Post Office Bill 1986 (3); R. Venkataraman -> Absolute Veto on Salary Bill (2); A.P.J. Abdul Kalam -> Suspensive Veto on Office of Profit Bill (1)."}, {"id": 60, "stem": "The resignation of the Vice-President of India is addressed to whom?", "options": [{"key": "a", "text": "Prime Minister"}, {"key": "b", "text": "President"}, {"key": "c", "text": "Deputy Chairman of the Rajya Sabha"}, {"key": "d", "text": "Chief Justice of India"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Under Article 67(a), the Vice-President addresses his resignation to the President of India."}, {"id": 61, "stem": "Who has the authority to determine the salary and allowances of the Prime Minister of India?", "options": [{"key": "a", "text": "President"}, {"key": "b", "text": "Parliament of India"}, {"key": "c", "text": "The Ministry of Finance"}, {"key": "d", "text": "Fixed by the Constitution"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "The salary and allowances of the Prime Minister are determined by Parliament by law."}, {"id": 62, "stem": "Which one of the following brings a session of a House of Parliament to an end?", "options": [{"key": "a", "text": "Adjournment"}, {"key": "b", "text": "Dissolution"}, {"key": "c", "text": "Prorogation"}, {"key": "d", "text": "Adjournment sine die"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Prorogation terminates a session of Parliament, done by the President of India."}, {"id": 63, "stem": "Which one of the following best describes the quorum required for a House of Parliament?", "options": [{"key": "a", "text": "It determines the minimum voting strength required to pass an ordinary Bill."}, {"key": "b", "text": "It refers to the minimum strength required for the Speaker or Chairman to convene a sitting of the House."}, {"key": "c", "text": "It signifies the minimum number of members required to initiate an adjournment motion."}, {"key": "d", "text": "It denotes the minimum number of members whose presence is necessary for the House to transact business."}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Quorum is 1/10th of total membership of each House including Presiding Officer (55 in Lok Sabha, 25 in Rajya Sabha)."}, {"id": 64, "stem": "Assertion (A): The Speaker of the Lok Sabha does not vote in the first instance.\nReason (R): He exercises a casting vote to maintain impartiality in resolving a deadlock.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Assertion (A) is correct: Speaker does not vote in first instance. Reason (R) is correct: Speaker exercises casting vote in case of tie. (R) is correct explanation of (A) as both constitute the constitutional mechanism to preserve Speaker's neutrality."}, {"id": 65, "stem": "Match List-I with List-II regarding state legislature strength:\nList-I (State):\na. Arunachal Pradesh\nb. Sikkim\nc. Goa\nd. Haryana\nList-II (Assembly Seats Exception):\n1. 40 seats\n2. 60 seats\n3. 32 seats\n4. 90 seats\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-3, b-4, c-1, d-2"}, {"key": "b", "text": "a-3, b-1, c-4, d-2"}, {"key": "c", "text": "a-4, b-3, c-1, d-2"}, {"key": "d", "text": "a-2, b-3, c-1, d-4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Assembly seats match: Arunachal Pradesh -> 60 seats; Sikkim -> 32 seats; Goa -> 40 seats; Haryana -> 90 seats."}, {"id": 66, "stem": "Assertion (A): Unlike the President, the Governor possesses explicit constitutional discretion to act without the advice of the Council of Ministers in certain enumerated matters.\nReason (R): Article 163 explicitly lists all the situations in which the Governor must act on the advice of the Council of Ministers.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Assertion (A) is correct: Governor has explicit constitutional discretion under Art 163. Reason (R) is correct: Art 163 states Governor acts on CoM advice except in discretionary matters. However, R does not causally explain why Governor has constitutional discretion distinct from President."}, {"id": 67, "stem": "Which of the following bodies require the Chief Minister to act as their chairman?\n1. State Planning Board\n2. Inter-State Council\n3. National Development Council\n4. Zonal Councils\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 1 and 2"}, {"key": "c", "text": "Only 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "The Chief Minister acts as Chairman of the State Planning Board. Inter-State Council and NDC were chaired by PM; Zonal Councils are chaired by Union Home Minister."}, {"id": 68, "stem": "Consider the following statements regarding a state bill returned by the President:\n1. The state legislature must reconsider it within six months.\n2. If passed again, it is presented again to the President for assent.\n3. The President is constitutionally bound to give his assent the second time.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1 and 2 are correct. Statement 3 is incorrect: Under Article 201, President is NOT constitutionally bound to give assent to a state bill even after it is repassed by state legislature."}, {"id": 69, "stem": "Which of the following pairs regarding Presiding Officers in the State Legislature and their Resignation Handed To are correctly matched?\n1. Speaker of Assembly : Deputy Speaker of Assembly\n2. Deputy Speaker of Assembly : Speaker of Assembly\n3. Chairman of Council : Deputy Chairman of Council\n4. Deputy Chairman of Council : Chairman of Council\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 2, 3 and 4"}, {"key": "c", "text": "Only 1, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All four pairs are correctly matched regarding resignation of presiding officers of State Legislature."}, {"id": 70, "stem": "For how long can the Governor's ordinance remain in force after the assembly reconvenes?", "options": [{"key": "a", "text": "Six weeks"}, {"key": "b", "text": "Six months"}, {"key": "c", "text": "Three months"}, {"key": "d", "text": "One year"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Under Article 213, an ordinance promulgated by Governor ceases to operate at expiration of six weeks from reassembly of state legislature."}, {"id": 71, "stem": "Which of the following pairs regarding the removal of presiding officers are correctly matched?\n1. Speaker of Assembly : Effective majority of the Assembly\n2. Deputy Speaker of Assembly : Effective majority of the Assembly\n3. Chairman of Council : Effective majority of the Council\n4. Deputy Chairman of Council : Effective majority of the Council\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 3 and 4"}, {"key": "c", "text": "Only 1, 2 and 3"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All presiding officers of state legislature (Speaker, Deputy Speaker, Chairman, Deputy Chairman) are removed by resolution passed by effective majority (majority of all then members)."}, {"id": 72, "stem": "Assertion (A): The Constitution does not specify a maximum age for the appointment of a Governor.\nReason (R): The Governor acts as an agent of the Central government.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Assertion (A) is correct: Minimum age is 35 years; no maximum age limit for Governor. Reason (R) is correct: Governor performs dual role (head of state and Central agent). (R) does not explain (A)."}, {"id": 73, "stem": "Which of the following bills lapse on the dissolution of the State Legislative Assembly?\n1. A bill pending in the assembly.\n2. A bill passed by the assembly but pending in the council.\n3. A bill pending in the council but not passed by the assembly.\n4. A bill passed by both houses but pending assent of the governor.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 1, 3 and 4"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1 and 2 lapse upon dissolution of Assembly. Statements 3 and 4 do NOT lapse (Bill pending in Council not passed by Assembly, and Bill passed by both Houses pending Governor's assent)."}, {"id": 74, "stem": "Match List-I with List-II\nList-I (Constitutional Article):\na. Article 198\nb. Article 199\nc. Article 200\nd. Article 201\nList-II (Subject regarding Bills):\n1. Assent to bills by the Governor\n2. Bills reserved for consideration\n3. Special procedure in respect of Money Bills\n4. Definition of Money Bills\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-1, b-2, c-4, d-3"}, {"key": "b", "text": "a-3, b-4, c-1, d-2"}, {"key": "c", "text": "a-1, b-4, c-3, d-2"}, {"key": "d", "text": "a-3, b-1, c-4, d-2"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Article 198 -> Special procedure for Money Bills in state legislature (3); Article 199 -> Definition of Money Bills in state (4); Article 200 -> Assent to bills by Governor (1); Article 201 -> Bills reserved for President's consideration (2)."}, {"id": 75, "stem": "Consider the following statements regarding the 'Cabinet':\n1. The term 'Cabinet' was inserted in the Constitution by the 44th Amendment Act.\n2. Article 352 defines the Cabinet as the council consisting of cabinet ministers.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Both statements are correct: Term 'Cabinet' was added by 44th Amendment Act 1978 under Article 352, defining it as PM and Cabinet Ministers."}, {"id": 76, "stem": "What is the maximum strength of the Rajya Sabha as prescribed by the Constitution of India?", "options": [{"key": "a", "text": "238"}, {"key": "b", "text": "245"}, {"key": "c", "text": "250"}, {"key": "d", "text": "252"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Maximum strength of Rajya Sabha is 250 (238 elected, 12 nominated by President)."}, {"id": 77, "stem": "Which one of the following occupies the lowest position in the ministerial hierarchy in the Union Council of Ministers?", "options": [{"key": "a", "text": "Minister of State"}, {"key": "b", "text": "Deputy Minister"}, {"key": "c", "text": "Cabinet Minister"}, {"key": "d", "text": "Minister of State (Independent Charge)"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Hierarchy: Cabinet Minister (top), Minister of State (Ind. Charge), Minister of State, Deputy Minister (lowest rank, attached to senior minister, never attends Cabinet meetings)."}, {"id": 78, "stem": "The resignation of the Deputy Chairman of the Rajya Sabha is addressed to whom?", "options": [{"key": "a", "text": "President"}, {"key": "b", "text": "Chairman of the Rajya Sabha"}, {"key": "c", "text": "Speaker of the Lok Sabha"}, {"key": "d", "text": "Prime Minister"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Deputy Chairman of Rajya Sabha submits resignation in writing to Chairman of Rajya Sabha."}, {"id": 79, "stem": "The maximum interval between two sessions of Parliament shall not exceed:", "options": [{"key": "a", "text": "Three months"}, {"key": "b", "text": "Four months"}, {"key": "c", "text": "Six months"}, {"key": "d", "text": "One year"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Maximum gap between two sessions of Parliament cannot exceed six months (must meet at least twice a year)."}, {"id": 80, "stem": "Consider the following statements regarding the Advocate General of the State:\n1. He must be a person qualified to be appointed a judge of a high court.\n2. His term of office is fixed by the Constitution at five years.\n3. His remuneration is determined by the Governor.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Statement 1 is correct: Must be qualified for High Court judge. Statement 2 is incorrect: Constitution does not fix term for Advocate General; holds office during pleasure of Governor. Statement 3 is correct: Remuneration determined by Governor."}, {"id": 81, "stem": "Consider the following statements regarding the State Council of Ministers:\n1. They are collectively responsible to the state legislative assembly.\n2. They are individually responsible to the Chief Minister.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Both statements are correct: Council of Ministers is collectively responsible to Legislative Assembly (Art 164(2)) and ministers are individually responsible to Chief Minister."}, {"id": 82, "stem": "Consider the following pairs regarding privileges of the state legislature:\n1. Civil Arrest : Immunity for 40 days before and after a session\n2. Criminal Arrest : Total immunity during the session\n3. Court inquiry : Prohibited from inquiring into legislative proceedings\n4. Secret sittings : Power to exclude strangers from proceedings\nHow many pairs of the given above are correctly matched?", "options": [{"key": "a", "text": "Only one pair"}, {"key": "b", "text": "Only two pairs"}, {"key": "c", "text": "Only three pairs"}, {"key": "d", "text": "All four pairs"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Pair 1 is incomplete/incorrectly matched. Pair 2 is incorrectly matched: Immunity from arrest applies only to civil cases, NOT criminal cases. Pairs 3 and 4 are correctly matched."}, {"id": 83, "stem": "What happens to a state bill reserved by the Governor for the President's consideration?", "options": [{"key": "a", "text": "The Governor's role is completely finished regarding that bill."}, {"key": "b", "text": "The Governor must give assent if the President returns it."}, {"key": "c", "text": "The state legislature must override the President's veto."}, {"key": "d", "text": "The bill automatically lapses after six months."}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Once Governor reserves a bill for President under Art 201, Governor's discretionary role ends completely."}, {"id": 84, "stem": "Which of the following states have a Legislative Council?\n1. Andhra Pradesh\n2. Telangana\n3. Karnataka\n4. Maharashtra\nSelect the correct answer using the code given below:", "options": [{"key": "a", "text": "Only 1 and 3"}, {"key": "b", "text": "Only 1, 3 and 4"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "States with bicameral legislatures (6 states): Andhra Pradesh, Telangana, Karnataka, Maharashtra, Bihar, Uttar Pradesh."}, {"id": 85, "stem": "Assertion (A): The mechanism of a joint sitting is not available in the state legislature.\nReason (R): The Legislative Assembly has ultimate overriding powers over the Legislative Council.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Assertion (A) is true: No provision for joint sitting of state legislature. Reason (R) is true and correct explanation: Legislative Assembly has overriding powers over Legislative Council."}, {"id": 86, "stem": "Which of the following qualifications are required for membership of the State Legislature?\n1. He must be a citizen of India.\n2. He must be not less than 25 years of age for the legislative assembly.\n3. He must be not less than 30 years of age for the legislative council.\n4. He must make and subscribe to an oath before a person authorised by the Election Commission.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 2, 3 and 4"}, {"key": "c", "text": "Only 1 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All four statements are correct qualifications for state legislature membership (Citizen, 25 years for Assembly, 30 years for Council, Oath before ECI nominee)."}, {"id": 87, "stem": "Which of the following pairs regarding exceptions to the rule of equality are correctly matched?\n1. Foreign Sovereigns : Immune from civil and criminal proceedings\n2. UNO and its agencies : Enjoy diplomatic immunity\n3. Members of Parliament : Immune from civil liability for voting in Parliament\n4. Governors : Immune from all criminal proceedings during their term\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 2, 3 and 4"}, {"key": "c", "text": "Only 1, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All four pairs are correctly matched exceptions to equality before law / legal immunities."}, {"id": 88, "stem": "Consider the following statements regarding the principle of collective responsibility:\n1. It implies that all ministers own joint responsibility to the Lok Sabha for all their omissions.\n2. A vote of no confidence against one minister leads to the resignation of the entire council.\n3. Cabinet decisions bind all cabinet ministers but do not bind ministers of state.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1 and 2 are correct. Statement 3 is incorrect: Cabinet decisions bind ALL members of Council of Ministers, not just Cabinet Ministers."}, {"id": 89, "stem": "Consider the following statements regarding elections to the State Legislative Council:\n1. One-third of the members are elected by members of local bodies.\n2. One-twelfth of the members are elected by graduates of three years' standing.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Both statements are correct: 1/3 members elected by local bodies, 1/12 elected by graduates of 3 years standing (Art 171)."}, {"id": 90, "stem": "Which authority has the power to create or abolish a State Legislative Council?", "options": [{"key": "a", "text": "The Governor of the State"}, {"key": "b", "text": "The Legislative Assembly of the State"}, {"key": "c", "text": "The Parliament of India"}, {"key": "d", "text": "The President of India"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Parliament has power to create or abolish Legislative Council under Article 169 after Assembly passes resolution by special majority."}, {"id": 91, "stem": "Which of the following pairs concerning state legislative composition are correctly matched?\n1. Minimum strength of Assembly : 60 members\n2. Maximum strength of Assembly : 500 members\n3. Maximum strength of Council : One-third of the total strength of the assembly\n4. Minimum strength of Council : 40 members\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 1, 3 and 4"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Assembly min=60, max=500; Council max=1/3rd of Assembly strength, min=40. All pairs correctly matched."}, {"id": 92, "stem": "Consider the following pairs regarding the size of the State Council of Ministers:\n1. Maximum limit : 15 percent of the total strength of the legislative assembly\n2. Minimum limit : 12 members including the Chief Minister\n3. Constitutional Amendment : 91st Amendment Act of 2003\n4. Exemption limit : States with a population below one million\nHow many pairs of the given above are correctly matched?", "options": [{"key": "a", "text": "Only one pair"}, {"key": "b", "text": "Only two pairs"}, {"key": "c", "text": "Only three pairs"}, {"key": "d", "text": "All four pairs"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Pairs 1, 2, and 3 are correctly matched (15% max, min 12 ministers, added by 91st Amendment 2003). Pair 4 is incorrectly matched: Exemption applies to smaller states where Assembly strength <= 40."}, {"id": 93, "stem": "Match List-I with List-II\nList-I (Constitutional Article):\na. Article 163\nb. Article 164\nc. Article 166\nd. Article 167\nList-II (Subject Matter):\n1. Duties of the CM regarding furnishing of information\n2. Conduct of business of the Government of a State\n3. Other provisions as to Ministers\n4. Council of Ministers to aid and advise Governor\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-4, b-3, c-2, d-1"}, {"key": "b", "text": "a-4, b-1, c-3, d-2"}, {"key": "c", "text": "a-3, b-4, c-1, d-2"}, {"key": "d", "text": "a-2, b-3, c-4, d-1"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Article 163 -> Council of Ministers aid/advise (4); Article 164 -> Other provisions as to Ministers (3); Article 166 -> Conduct of business of Govt of State (2); Article 167 -> Duties of CM to furnish info to Governor (1)."}, {"id": 94, "stem": "Assertion (A): The Chief Minister holds office during the pleasure of the Governor.\nReason (R): The Governor can dismiss the Chief Minister at any time.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Assertion (A) is true: Formally CM holds office during pleasure of Governor under Art 164. Reason (R) is false: Governor cannot dismiss CM as long as CM commands majority in Assembly."}, {"id": 95, "stem": "Which of the following fall under the discretionary powers of the Governor?\n1. Reservation of a bill for the consideration of the President.\n2. Recommendation for the imposition of the President's Rule in the state.\n3. Seeking information from the Chief Minister regarding legislative proposals.\n4. Dissolution of the state legislative assembly if the ministry loses its majority.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 2, 3 and 4"}, {"key": "c", "text": "Only 1 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All four functions (Reserving bill, Recommending President's Rule, Seeking info under Art 167, Dissolving Assembly when ministry loses majority) are discretionary powers of Governor."}, {"id": 96, "stem": "Consider the following statements regarding the conditions of the Governor's office:\n1. He should not be a member of either House of Parliament.\n2. His emoluments and allowances are determined by the state legislature.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statement 1 is correct: Cannot be MP/MLA. Statement 2 is incorrect: Emoluments and allowances of Governor are determined by Parliament (not State Legislature) and charged to State Consolidated Fund."}, {"id": 97, "stem": "Consider the following statements regarding the legal enforcement of Fundamental Duties:\n1. The Constitution provides for direct enforcement of these duties by the courts.\n2. Parliament is free to enforce them by passing suitable legislation.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Statement 1 is incorrect: Fundamental Duties are non-justiciable and not directly enforceable by courts. Statement 2 is correct: Parliament can enforce them by enacting suitable legislation."}, {"id": 98, "stem": "Which of the following are powers of the Prime Minister regarding the Council of Ministers?\n1. He recommends persons who can be appointed as ministers by the President.\n2. He allocates and reshuffles various portfolios among the ministers.\n3. He can ask a minister to resign or advise the President to dismiss him.\n4. He presides over the meeting of the council of ministers.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 4"}, {"key": "b", "text": "Only 1, 2 and 3"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All four statements describe powers of Prime Minister in Council of Ministers."}, {"id": 99, "stem": "Who administers the oath of office to the Governor of a state?", "options": [{"key": "a", "text": "The President of India"}, {"key": "b", "text": "The Chief Justice of India"}, {"key": "c", "text": "The Chief Justice of the concerned state High Court"}, {"key": "d", "text": "The outgoing Governor of the state"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Oath of Governor is administered by Chief Justice of the concerned state High Court (or senior-most judge available)."}, {"id": 100, "stem": "Match List-I with List-II\nList-I (Type of Motion/Resolution):\na. Substantive Motion\nb. Substitute Motion\nc. Subsidiary Motion\nd. Resolution\nList-II (Definition):\n1. Proposal relating to another original motion\n2. Must be voted upon completely, not in parts\n3. Moved in substitution of an original motion\n4. Self-contained independent proposal for important matters\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-3, b-4, c-1, d-2"}, {"key": "b", "text": "a-3, b-1, c-4, d-2"}, {"key": "c", "text": "a-4, b-3, c-1, d-2"}, {"key": "d", "text": "a-2, b-4, c-1, d-3"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Definitions of Substantive, Substitute, Subsidiary Motions and Resolution."}, {"id": 101, "stem": "Assertion (A): The Committee on Public Undertakings cannot examine matters of major government policy.\nReason (R): Its terms of reference are limited to examining business and commercial functions.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Assertion (A) is true: Committee on Public Undertakings cannot examine major government policies. Reason (R) is true and correct explanation: Mandate focuses on operational, financial, and commercial efficiency."}, {"id": 102, "stem": "Which of the following statements are correct regarding Parliamentary Forums?\n1. They provide a platform for members to interact with subject experts.\n2. The Speaker of Lok Sabha is the President of all Parliamentary Forums.\n3. They sensitize members about key areas of serious concern.\n4. They prepare meaningful data to help members participate in debates.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 3 and 4"}, {"key": "b", "text": "Only 1, 2 and 3"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1, 3, and 4 are correct. Statement 2 is incorrect: Speaker is President of all forums EXCEPT Forum on Population & Public Health where Chairman Rajya Sabha is President and Speaker is Co-President."}, {"id": 103, "stem": "Which of the following statements regarding the powers of a State Legislative Council over an Ordinary Bill is incorrect?", "options": [{"key": "a", "text": "The Legislative Council can withhold an Ordinary Bill for a maximum period of three months at the first instance."}, {"key": "b", "text": "If the Legislative Assembly passes the Bill again, the Legislative Council may further delay it for a maximum period of one month."}, {"key": "c", "text": "The total period for which the Legislative Council can prevent an Ordinary Bill from becoming law is four months."}, {"key": "d", "text": "In case of disagreement between the two Houses over an Ordinary Bill, a joint sitting may be convened by the Governor."}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Statements 1, 2, and 3 are correct (Delay limits: 3 months first instance, 1 month second instance, total 4 months). Statement 4 is incorrect: No provision for joint sitting at state level."}, {"id": 104, "stem": "Consider the following statements regarding the Ethics Committee of Parliament:\n1. It was constituted in the Rajya Sabha in 1997 and Lok Sabha in 2000.\n2. It enforces the code of conduct of members of Parliament.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Both statements are correct: Ethics Committee constituted in Rajya Sabha in 1997 and Lok Sabha in 2000; enforces Code of Conduct."}, {"id": 105, "stem": "Consider the following statements regarding the executive powers of the Governor:\n1. He appoints the advocate general of a state.\n2. He appoints the state election commissioner.\n3. He can remove the chairman of the state public service commission.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1 and 2 are correct. Statement 3 is incorrect: Chairman of SPSC is removed by President of India, NOT by Governor."}, {"id": 106, "stem": "Which of the following pairs of Parliamentary Committees and their functions are correctly matched?\n1. Business Advisory Committee : Regulates the program and time table of the House\n2. Committee on Private Members' Bills : Classifies and allocates time for private bills\n3. Rules Committee : Considers matters of procedure and conduct of business\n4. Committee on Government Assurances : Examines the assurances given by ministers\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 2, 3 and 4"}, {"key": "c", "text": "Only 1, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All four parliamentary committees correctly matched with their functions."}, {"id": 107, "stem": "Assertion (A): The Committee on Public Undertakings recommends whether an office disqualifies a member.\nReason (R): The Constitution does not define the phrase 'office of profit' under the government.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Assertion (A) is false: Joint Committee on Offices of Profit (not CPU) recommends office of profit disqualifications. Reason (R) is true: 'Office of profit' is not defined in the Constitution."}, {"id": 108, "stem": "Which of the following statements describe the Estimates Committee?\n1. It is the largest committee of the Parliament with thirty members.\n2. All thirty members are elected exclusively from the Lok Sabha.\n3. It examines the estimates included in the budget to suggest economies.\n4. Its chairman is invariably chosen from the ruling party.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 1, 3 and 4"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All four statements are correct regarding Estimates Committee (30 members, all from Lok Sabha, examines financial estimates, Chairman from ruling party)."}, {"id": 109, "stem": "Consider the following statements regarding the Public Accounts Committee (PAC):\n1. It consists of 22 members drawn from both Houses of Parliament.\n2. A minister cannot be elected as a member of this committee.\n3. Its chairman is always selected from the ruling party by convention.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1 and 2 are correct (22 members: 15 LS, 7 RS; ministers barred). Statement 3 is incorrect: Since 1967, Chairman of PAC is selected from opposition party (not ruling party)."}, {"id": 110, "stem": "Which of the following expenses is not charged on the Consolidated Fund of India?", "options": [{"key": "a", "text": "Salary and allowances of the President"}, {"key": "b", "text": "Salary and allowances of Supreme Court Judges"}, {"key": "c", "text": "Salary and allowances of High Court Judges"}, {"key": "d", "text": "Pensions of High Court Judges"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Salaries/allowances of High Court judges are charged on Consolidated Fund of State, while pensions of High Court judges are charged on Consolidated Fund of India."}, {"id": 111, "stem": "Which of the following pairs of Cut Motions and their conditions are correctly matched?\n1. Policy Cut Motion : Disapproval of the policy underlying the demand\n2. Economy Cut Motion : Reduces the amount of the demand by a specified sum\n3. Token Cut Motion : Vents a specific grievance within the government's responsibility\n4. Guillotine Cut : Reduces the demand to exactly one rupee\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 2, 3 and 4"}, {"key": "c", "text": "Only 1 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Pairs 1, 2, and 3 are correctly matched. Pair 4 is incorrectly matched: 'Guillotine' is a procedural mechanism used by Speaker on last day of voting demands, not a cut motion."}, {"id": 112, "stem": "Consider the following statements regarding types of parliamentary grants:\n1. A vote of credit is granted for an unexpected demand of an indefinite character.\n2. An exceptional grant forms a part of the current financial year's ordinary service.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statement 1 is correct: Vote of credit is equivalent to blank cheque for unexpected demand. Statement 2 is incorrect: Exceptional grant forms NO part of current service of any financial year."}, {"id": 113, "stem": "Assertion (A): The provision of a joint sitting is not applicable to Money Bills.\nReason (R): The Lok Sabha has exclusive overriding powers regarding Money Bills.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Assertion (A) is true: Joint sitting does not apply to Money Bills or Constitutional Amendment Bills. Reason (R) is true and correct explanation: Deadlock is impossible for Money Bills as Lok Sabha has overriding power."}, {"id": 114, "stem": "Which of the following statements are correct regarding Financial Bills?\n1. Financial Bills (I) contain matters of Article 110 and other general legislation.\n2. Financial Bills (I) can be introduced only in the Lok Sabha.\n3. Financial Bills (II) can be introduced in either House of Parliament.\n4. Both types of financial bills can face a joint sitting to resolve disagreements.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 2, 3 and 4"}, {"key": "c", "text": "Only 1, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All four statements are correct regarding Financial Bills Class I (Art 117(1)) and Financial Bills Class II (Art 117(3))."}, {"id": 115, "stem": "Consider the following statements regarding the Rajya Sabha's power over Money Bills:\n1. The Rajya Sabha cannot reject or amend a money bill.\n2. It must return the bill to the Lok Sabha within fourteen days.\n3. The Lok Sabha is bound to accept the recommendations made by the Rajya Sabha.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1 and 2 are correct (RS cannot amend/reject, must return within 14 days). Statement 3 is incorrect: Lok Sabha is NOT bound to accept RS recommendations."}, {"id": 116, "stem": "Match List-I with List-II\nList-I (Financial Terms/Funds):\na. Consolidated Fund of India\nb. Public Account of India\nc. Contingency Fund of India\nd. Vote on Account\nList-II (Constitutional Provision):\n1. Advance grant for estimated expenditure\n2. Article 267\n3. Article 266(2)\n4. Article 266(1)\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-4, b-3, c-2, d-1"}, {"key": "b", "text": "a-4, b-1, c-3, d-2"}, {"key": "c", "text": "a-3, b-4, c-1, d-2"}, {"key": "d", "text": "a-2, b-3, c-4, d-1"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Consolidated Fund (a) -> Art 266(1) (4); Public Account (b) -> Art 266(2) (3); Contingency Fund (c) -> Art 267 (2); Vote on Account (d) -> Advance grant (1)."}, {"id": 117, "stem": "Consider the following statements regarding the certification of a Money Bill:\n1. The Speaker of the Lok Sabha decides if a bill is a money bill.\n2. The Speaker's decision on this matter cannot be questioned in any court.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Both statements are correct: Speaker's decision on Money Bill is final under Art 110(3) and cannot be questioned in court or either House."}, {"id": 118, "stem": "Which article of the Constitution provides the precise definition of a Money Bill?", "options": [{"key": "a", "text": "Article 108"}, {"key": "b", "text": "Article 110"}, {"key": "c", "text": "Article 112"}, {"key": "d", "text": "Article 117"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Article 110 contains definition of Money Bill."}, {"id": 119, "stem": "Consider the following statements regarding the Speaker Pro Tem:\n1. He is appointed by the President of India.\n2. He administers the oath to the newly elected members of the Lok Sabha.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Both statements are correct: President appoints Speaker Pro Tem (usually senior-most member) to administer oath and conduct Speaker's election."}, {"id": 120, "stem": "Who fixes the date for the election of the Speaker of the Lok Sabha?", "options": [{"key": "a", "text": "The Prime Minister"}, {"key": "b", "text": "The President of India"}, {"key": "c", "text": "The Election Commission"}, {"key": "d", "text": "The outgoing Speaker"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "The date for election of Speaker of Lok Sabha is fixed by the President of India."}, {"id": 121, "stem": "Which of the following are true regarding the Calling Attention Motion?\n1. It calls the attention of a minister to a matter of urgent public importance.\n2. It seeks an authoritative statement from the minister on that matter.\n3. Like the zero hour, it is an Indian innovation in the parliamentary procedure.\n4. Unlike the zero hour, it is mentioned in the rules of procedure.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 2, 3 and 4"}, {"key": "c", "text": "Only 1, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All four statements are correct regarding Calling Attention Motion."}, {"id": 122, "stem": "Match List-I with List-II\nList-I (Type of Closure Motion):\na. Simple Closure\nb. Closure by compartments\nc. Kangaroo Closure\nd. Guillotine Closure\nList-II (Description):\n1. Only important clauses are debated and voted upon\n2. Undiscussed clauses are put to vote with discussed ones\n3. Matter has been sufficiently discussed; put it to vote\n4. Clauses are grouped into parts for entire debate\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-4, b-3, c-1, d-2"}, {"key": "b", "text": "a-4, b-1, c-3, d-2"}, {"key": "c", "text": "a-3, b-4, c-1, d-2"}, {"key": "d", "text": "a-2, b-3, c-4, d-1"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Simple Closure (a) -> 3; Closure by Compartments (b) -> 4; Kangaroo Closure (c) -> 1; Guillotine Closure (d) -> 2."}, {"id": 123, "stem": "Consider the following statements regarding Article 12 of the Constitution:\n1. The term 'State' includes the Government and Parliament of India.\n2. It includes all local authorities like municipalities and panchayats within Indian territory.\n3. The Supreme Court ruled that private bodies working for the State fall outside Article 12.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1 and 2 are correct. Statement 3 is incorrect: Supreme Court held in Pradeep Kumar Biswas case that private bodies acting as state instruments fall WITHIN Article 12."}, {"id": 124, "stem": "Which of the following principles are classified as Gandhian Principles within the Directive Principles?\n1. To organise village panchayats and endow them with necessary powers.\n2. To promote cottage industries on an individual or co-operative basis in rural areas.\n3. To secure a uniform civil code for all citizens across the country.\n4. To prohibit the slaughter of cows, calves and other milch and draught cattle.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 1, 2 and 4"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Gandhian principles: Article 40 (Panchayats), Article 43 (Cottage industries), Article 48 (Prohibition of cow slaughter). Article 44 (UCC) is Liberal-Intellectual."}, {"id": 125, "stem": "Match List-I with List-II\nList-I (Veto Power):\na. Absolute Veto\nb. Suspensive Veto\nc. Pocket Veto\nd. Qualified Veto\nList-II (Meaning):\n1. Taking no action on the bill passed by the legislature\n2. Withholding assent to the bill passed by the legislature\n3. Overridden by legislature with a higher majority\n4. Overridden by legislature with an ordinary majority\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-3, b-4, c-1, d-2"}, {"key": "b", "text": "a-3, b-1, c-4, d-2"}, {"key": "c", "text": "a-2, b-4, c-1, d-3"}, {"key": "d", "text": "a-2, b-4, c-1, d-3"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Absolute Veto (a) -> 2; Suspensive Veto (b) -> 4; Pocket Veto (c) -> 1; Qualified Veto (d) -> 3."}, {"id": 126, "stem": "Which of the following pairs of the President's pardoning powers are correctly matched?\n1. Pardon : Completely absolves the offender from all sentences\n2. Commutation : Substitution of one form of punishment for a lighter form\n3. Remission : Reducing the period of sentence without changing its character\n4. Respite : Awarding a lesser sentence due to some special fact\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 3 and 4"}, {"key": "c", "text": "Only 1, 2, and 3"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Pardon (1) -> Complete removal; Commutation (2) -> Substitution to lighter form; Remission (3) -> Reduction of period; Respite (4) -> Lesser sentence on special grounds."}, {"id": 127, "stem": "Which constitutional amendment restricted the size of the Council of Ministers to 15% of the Lok Sabha?", "options": [{"key": "a", "text": "86th Amendment Act"}, {"key": "b", "text": "91st Amendment Act"}, {"key": "c", "text": "97th Amendment Act"}, {"key": "d", "text": "103rd Amendment Act"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "91st Constitutional Amendment Act 2003 capped Council of Ministers size at 15% of Lok Sabha/Assembly strength."}, {"id": 128, "stem": "Consider the following statements regarding the removal of the Vice-President:\n1. A formal impeachment process is required for the removal of the Vice-President.\n2. A resolution for removal can be introduced only in the Rajya Sabha.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Statement 1 is incorrect: VP is removed by resolution (effective majority in RS, agreed by LS), NOT by impeachment. Statement 2 is correct: Resolution can originate ONLY in Rajya Sabha."}, {"id": 129, "stem": "Consider the following statements regarding the executive powers of the President:\n1. All executive actions of the Government of India are formally taken in his name.\n2. He can make rules for the more convenient transaction of business of the Union government.\n3. He directly administers the union territories through administrators appointed by him.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All three statements are correct regarding executive powers of President under Art 77 and Art 239."}, {"id": 130, "stem": "Which of the following are considered 'Liberal-Intellectual Principles' under the DPSP?\n1. Securing for all citizens a uniform civil code.\n2. Providing early childhood care and education for all children until they complete six years.\n3. Separating the judiciary from the executive in the public services of the State.\n4. Promoting equal justice and providing free legal aid to the poor.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 1, 2 and 4"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1, 2, and 3 are Liberal-Intellectual Principles. Statement 4 is incorrect: Article 39A (Free legal aid) is a Socialistic Principle."}, {"id": 131, "stem": "Assertion (A): The President cannot dismiss the Prime Minister as long as he enjoys majority support.\nReason (R): The Prime Minister holds office during the pleasure of the President.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Assertion (A) is correct: President cannot dismiss PM while PM commands majority. Reason (R) is correct: PM holds office during pleasure under Art 75(2). (R) is formal provision, but does not explain practical constraint in (A)."}, {"id": 132, "stem": "Consider the following pairs of officials and the authority who administers their oath:\n1. President : Chief Justice of India\n2. Vice-President : President of India\n3. Prime Minister : President of India\n4. Union Minister : Prime Minister\nHow many pairs of the given above are correctly matched?", "options": [{"key": "a", "text": "Only one pair"}, {"key": "b", "text": "Only two pairs"}, {"key": "c", "text": "Only three pairs"}, {"key": "d", "text": "All four pairs"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Pairs 1, 2, and 3 are correctly matched. Pair 4 is incorrectly matched: Oath to Union Ministers is administered by the President, NOT the Prime Minister."}, {"id": 133, "stem": "Which of the following pairs regarding the President's legislative powers and related Article are correctly matched?\n1. Summoning Parliament : Article 85\n2. Joint sitting of both Houses : Article 108\n3. Promulgation of Ordinances : Article 123\n4. Assent to Bills : Article 111\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 2, 3 and 4"}, {"key": "c", "text": "Only 1, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Article 85 (Summoning/Prorogation), Article 108 (Joint Sitting), Article 123 (Ordinance), Article 111 (Assent to Bills) - all correctly matched."}, {"id": 134, "stem": "Which constitutional writ literally translates to the phrase \"we command\"?", "options": [{"key": "a", "text": "Certiorari"}, {"key": "b", "text": "Mandamus"}, {"key": "c", "text": "Prohibition"}, {"key": "d", "text": "Habeas Corpus"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Mandamus ('We command') is issued to public official/body to perform statutory/public duty."}, {"id": 135, "stem": "Consider the following statements regarding the appointment of the Prime Minister:\n1. The Constitution contains specific procedures for the selection of the Prime Minister.\n2. The Prime Minister need not be a member of either House of Parliament at the time of appointment, but must become one within three months.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Statement 1 is incorrect: Constitution does not prescribe selection procedure for PM. Statement 2 is incorrect: PM need not be MP at time of appointment, but must become one within 6 months."}, {"id": 136, "stem": "Which of the following are necessary qualifications for election as President?\n1. He should be a citizen of India by birth only.\n2. He should have completed 35 years of age.\n3. He should be qualified for election as a member of the Lok Sabha.\n4. He should not hold any office of profit under the government.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1, 2 and 3"}, {"key": "b", "text": "Only 1, 3 and 4"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Statement 1 is incorrect: Citizenship by birth is NOT required (any citizen by birth, descent, naturalisation is eligible). Statements 2, 3, and 4 are correct."}, {"id": 137, "stem": "Assertion (A): A person shall not be deemed a citizen of India if they voluntarily acquire foreign citizenship.\nReason (R): The Indian Constitution firmly prohibits the system of dual citizenship.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Assertion (A) is true: Under Article 9, voluntary acquisition of foreign citizenship terminates Indian citizenship. Reason (R) is true and correct explanation: Indian Constitution does not permit dual citizenship."}, {"id": 138, "stem": "Assertion (A): The ordinance-making power of the President is a parallel power of legislation.\nReason (R): An ordinance can be issued when either or both Houses of Parliament are not in session.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "Assertion (A) is incorrect: Ordinance making power is temporary emergency power, NOT a parallel power of legislation. Reason (R) is correct: Cannot be issued when both Houses are in session."}, {"id": 139, "stem": "Match List-I with List-II\nList-I (Constitutional Authority):\na. Comptroller and Auditor General\nb. Attorney General of India\nc. Chief Election Commissioner\nd. Chairman of UPSC\nList-II (Appointing Article):\n1. Article 76\n2. Article 148\n3. Article 316\n4. Article 324\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-3, b-4, c-2, d-1"}, {"key": "b", "text": "a-2, b-1, c-4, d-3"}, {"key": "c", "text": "a-4, b-3, c-2, d-1"}, {"key": "d", "text": "a-1, b-2, c-3, d-4"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "CAG -> Art 148 (2); Attorney General -> Art 76 (1); Chief Election Commissioner -> Art 324 (4); Chairman UPSC -> Art 316 (3)."}, {"id": 140, "stem": "Consider the following statements regarding the composition of the Lok Sabha:\n1. The maximum strength of the Lok Sabha is fixed at 550 members.\n2. The Constitution originally provided for the nomination of two Anglo-Indians.\nWhich of the statements given above is/are correct?", "options": [{"key": "a", "text": "Only 1"}, {"key": "b", "text": "Only 2"}, {"key": "c", "text": "Both 1 and 2"}, {"key": "d", "text": "Neither 1 nor 2"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Both statements are correct: 104th Amendment Act 2019 abolished nomination of Anglo-Indians in Lok Sabha (reducing max strength to 550) and state assemblies."}, {"id": 141, "stem": "Match List-I with List-II\nList-I (Type of Majority):\na. Simple Majority\nb. Absolute Majority\nc. Effective Majority\nd. Special Majority (Art 61)\nList-II (Context of Usage):\n1. Removal of the Vice-President\n2. Impeachment of the President\n3. Passing an ordinary bill\n4. Formation of a government\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "a-3, b-4, c-2, d-1"}, {"key": "b", "text": "a-3, b-4, c-1, d-2"}, {"key": "c", "text": "a-4, b-3, c-2, d-1"}, {"key": "d", "text": "a-1, b-2, c-3, d-4"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "Simple Majority -> Ordinary bill (3); Absolute Majority -> Government formation (4); Effective Majority -> Removal of VP (1); Special Majority Art 61 -> Impeachment of President (2)."}, {"id": 142, "stem": "Assertion (A): The Constitution provides for a joint sitting of both Houses.\nReason (R): It is an extraordinary mechanism to resolve legislative deadlocks over money bills.\nSelect the correct answer:", "options": [{"key": "a", "text": "Both (A) and (R) are true, and (R) is the correct explanation of (A)."}, {"key": "b", "text": "Both (A) and (R) are true, but (R) is not the correct explanation of (A)."}, {"key": "c", "text": "(A) is true, but (R) is false."}, {"key": "d", "text": "(A) is false, but (R) is true."}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Assertion (A) is correct: Article 108 provides joint sitting. Reason (R) is incorrect: Joint sitting applies ONLY to ordinary bills, NOT Money Bills."}, {"id": 143, "stem": "Consider the following statements regarding elections to the Rajya Sabha:\n1. Representatives of states are elected by the elected members of state legislative assemblies.\n2. The election is held in accordance with the system of proportional representation.\n3. Seats are allotted to the states on the basis of their geographical area.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1 and 2 are correct. Statement 3 is incorrect: Rajya Sabha seats are allocated on the basis of population, NOT geographical area."}, {"id": 144, "stem": "Consider the following statements regarding President's Rule in a state:\n1. The President can assume the executive powers of the state government.\n2. The President can delegate legislative powers of the state to Parliament.\n3. The President can assume the judicial powers vested in the state high court.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1 and 2 are correct. Statement 3 is incorrect: President CANNOT assume powers of High Court during President's Rule (Art 356 safeguard)."}, {"id": 145, "stem": "The President of India may be impeached on which one of the following grounds?", "options": [{"key": "a", "text": "Proven misconduct"}, {"key": "b", "text": "Violation of the Constitution"}, {"key": "c", "text": "Incapacity"}, {"key": "d", "text": "Gross misconduct"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "'Violation of the Constitution' is the ONLY ground for impeachment of the President under Article 61."}, {"id": 146, "stem": "Consider the following statements regarding collective privileges of Parliament:\n1. It can prohibit the publication of its reports and proceedings.\n2. It can exclude strangers from its proceedings to hold secret sittings.\n3. Courts are allowed to inquire into the internal proceedings of a House.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "a", "explanation": "Statements 1 and 2 are collective privileges. Statement 3 is incorrect: Courts are barred from inquiring into parliamentary proceedings."}, {"id": 147, "stem": "Which of the following matters are examined by the Privileges Committee?\n1. Cases of breach of privileges of the House.\n2. Cases of breach of privileges of its members.\n3. Matters involving contempt of the House.\n4. Recommendations for appropriate action in breach cases.\nSelect the correct answer using the codes given below:", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 1, 3 and 4"}, {"key": "c", "text": "Only 2, 3 and 4"}, {"key": "d", "text": "1, 2, 3 and 4"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All options accurately describe functions of Privileges Committee."}, {"id": 148, "stem": "From which constitution did India borrow the concept of \"Procedure established by law\"?", "options": [{"key": "a", "text": "Britain"}, {"key": "b", "text": "USA"}, {"key": "c", "text": "Japan"}, {"key": "d", "text": "Canada"}, {"key": "e", "text": "Unanswered"}], "correct": "c", "explanation": "Concept of 'Procedure established by law' under Article 21 was borrowed from the Japanese Constitution."}, {"id": 149, "stem": "A person who is not a member of either House of Parliament can remain a Union Minister for a maximum period of:", "options": [{"key": "a", "text": "Three months"}, {"key": "b", "text": "Six months"}, {"key": "c", "text": "One year"}, {"key": "d", "text": "Till the pleasure of the President"}, {"key": "e", "text": "Unanswered"}], "correct": "b", "explanation": "A non-MP can be appointed minister for a maximum continuous period of six months (Art 75(5))."}, {"id": 150, "stem": "Consider the following statements regarding the Vice-Presidential election:\n1. The electoral college includes both elected and nominated members of Parliament.\n2. State legislative assemblies do not participate in the Vice-Presidential election.\n3. The election is held via the system of proportional representation.\nWhich of the statements given above are correct?", "options": [{"key": "a", "text": "Only 1 and 2"}, {"key": "b", "text": "Only 2 and 3"}, {"key": "c", "text": "Only 1 and 3"}, {"key": "d", "text": "1, 2 and 3"}, {"key": "e", "text": "Unanswered"}], "correct": "d", "explanation": "All three statements are correct regarding election of Vice-President under Article 66."}];
+const TOTAL_SECONDS = 120 * 60; // 2 hours
+const STORAGE_ACTIVE = 'polityKGSActiveAttempt_v1';
+const STORAGE_HISTORY = 'polityKGSHistory_v1';
+
+let state = {
+  answers: {},      // qid -> 'a'/'b'/'c'/'d'
+  flags: {},         // qid -> true
+  endTime: null,     // epoch ms when timer ends
+  startTime: null,
+  submitted: false
+};
+let timerInterval = null;
+
+// ---------- Utility ----------
+function $(sel){ return document.querySelector(sel); }
+function $all(sel){ return document.querySelectorAll(sel); }
+function showScreen(id){
+  $all('.screen').forEach(s => s.classList.remove('active'));
+  $(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+function fmtTime(totalSec){
+  totalSec = Math.max(0, Math.floor(totalSec));
+  const h = String(Math.floor(totalSec/3600)).padStart(2,'0');
+  const m = String(Math.floor((totalSec%3600)/60)).padStart(2,'0');
+  const s = String(totalSec%60).padStart(2,'0');
+  return `${h}:${m}:${s}`;
+}
+function saveActiveAttempt(){
+  localStorage.setItem(STORAGE_ACTIVE, JSON.stringify(state));
+}
+function clearActiveAttempt(){
+  localStorage.removeItem(STORAGE_ACTIVE);
+}
+function loadActiveAttempt(){
+  const raw = localStorage.getItem(STORAGE_ACTIVE);
+  if(!raw) return null;
+  try{ return JSON.parse(raw); }catch(e){ return null; }
+}
+function getHistory(){
+  const raw = localStorage.getItem(STORAGE_HISTORY);
+  if(!raw) return [];
+  try{ return JSON.parse(raw); }catch(e){ return []; }
+}
+function saveHistory(list){
+  localStorage.setItem(STORAGE_HISTORY, JSON.stringify(list));
+}
+
+// ---------- Build test screen ----------
+function buildQuestionCards(){
+  const col = $('#questionsCol');
+  col.innerHTML = '';
+  QUESTIONS.forEach(q => {
+    const card = document.createElement('div');
+    card.className = 'qcard';
+    card.id = 'qcard-' + q.id;
+
+    const head = document.createElement('div');
+    head.className = 'qhead';
+    head.innerHTML = `<span class="qnum">Q${q.id}</span>`;
+    const flagBtn = document.createElement('button');
+    flagBtn.className = 'flag-btn';
+    flagBtn.textContent = 'Flag for review';
+    flagBtn.onclick = () => toggleFlag(q.id, flagBtn, card);
+    head.appendChild(flagBtn);
+    card.appendChild(head);
+
+    const stem = document.createElement('div');
+    stem.className = 'qstem';
+    stem.textContent = q.stem;
+    card.appendChild(stem);
+
+    const opts = document.createElement('div');
+    opts.className = 'options';
+    q.options.forEach(o => {
+      const label = document.createElement('label');
+      label.className = 'opt';
+      label.id = `opt-${q.id}-${o.key}`;
+      label.innerHTML = `
+        <input type="radio" name="q${q.id}" value="${o.key}">
+        <span class="opt-key">(${o.key})</span>
+        <span class="opt-text"></span>
+      `;
+      label.querySelector('.opt-text').textContent = o.text;
+      label.querySelector('input').addEventListener('change', () => selectAnswer(q.id, o.key));
+      opts.appendChild(label);
+    });
+    card.appendChild(opts);
+    col.appendChild(card);
+  });
+}
+
+function toggleFlag(qid, btn, card){
+  if(state.flags[qid]){
+    delete state.flags[qid];
+    btn.classList.remove('on');
+    card.classList.remove('flagged');
+  } else {
+    state.flags[qid] = true;
+    btn.classList.add('on');
+    card.classList.add('flagged');
+  }
+  saveActiveAttempt();
+  renderPalette();
+}
+
+function isAnswered(qid){ const a = state.answers[qid]; return !!a && a !== 'e'; }
+function answeredCount(){ return QUESTIONS.filter(q => isAnswered(q.id)).length; }
+
+function selectAnswer(qid, key){
+  state.answers[qid] = key;
+  const card = document.getElementById('qcard-' + qid);
+  card.classList.toggle('answered', key !== 'e');
+  card.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+  document.getElementById(`opt-${qid}-${key}`).classList.add('selected');
+  saveActiveAttempt();
+  updateProgress();
+  renderPalette();
+}
+
+function restoreAnswersToDOM(){
+  QUESTIONS.forEach(q => {
+    const card = document.getElementById('qcard-' + q.id);
+    const ans = state.answers[q.id];
+    if(ans){
+      if(ans !== 'e') card.classList.add('answered');
+      const input = card.querySelector(`input[value="${ans}"]`);
+      if(input) input.checked = true;
+      const optEl = document.getElementById(`opt-${q.id}-${ans}`);
+      if(optEl) optEl.classList.add('selected');
+    }
+    if(state.flags[q.id]){
+      card.classList.add('flagged');
+      card.querySelector('.flag-btn').classList.add('on');
+    }
+  });
+}
+
+function updateProgress(){
+  const count = answeredCount();
+  $('#progressPill').textContent = `${count} / 150 answered`;
+}
+
+function renderPalette(){
+  const grid = $('#paletteGrid');
+  grid.innerHTML = '';
+  QUESTIONS.forEach(q => {
+    const btn = document.createElement('button');
+    btn.className = 'pnum';
+    if(isAnswered(q.id)) btn.classList.add('answered');
+    if(state.flags[q.id]) btn.classList.add('flagged');
+    btn.textContent = q.id;
+    btn.onclick = () => {
+      document.getElementById('qcard-' + q.id).scrollIntoView({behavior:'smooth', block:'center'});
+      if(window.innerWidth <= 920){ $('#paletteCol').classList.remove('open'); }
+    };
+    grid.appendChild(btn);
+  });
+}
+
+// ---------- Timer ----------
+function startTimerLoop(){
+  if(timerInterval) clearInterval(timerInterval);
+  tickTimer();
+  timerInterval = setInterval(tickTimer, 1000);
+}
+function tickTimer(){
+  const remaining = (state.endTime - Date.now()) / 1000;
+  const box = $('#timerBox');
+  box.textContent = fmtTime(remaining);
+  if(remaining <= 300) box.classList.add('low'); else box.classList.remove('low');
+  if(remaining <= 0){
+    clearInterval(timerInterval);
+    submitTest(true);
+  }
+}
+
+// ---------- Start / resume test ----------
+function beginNewTest(){
+  state = {
+    answers: {},
+    flags: {},
+    startTime: Date.now(),
+    endTime: Date.now() + TOTAL_SECONDS*1000,
+    submitted: false
+  };
+  saveActiveAttempt();
+  buildQuestionCards();
+  renderPalette();
+  updateProgress();
+  showScreen('#testScreen');
+  startTimerLoop();
+}
+
+function resumeTest(saved){
+  state = saved;
+  buildQuestionCards();
+  restoreAnswersToDOM();
+  renderPalette();
+  updateProgress();
+  showScreen('#testScreen');
+  startTimerLoop();
+}
+
+// ---------- Submit & scoring ----------
+function computeResult(){
+  let correct=0, incorrect=0, unattempted=0;
+  const details = QUESTIONS.map(q => {
+    const given = state.answers[q.id] || null;
+    const attempted = given && given !== 'e';
+    let status;
+    if(!attempted){ status='unattempted'; unattempted++; }
+    else if(given === q.correct){ status='correct'; correct++; }
+    else { status='incorrect'; incorrect++; }
+    return { id:q.id, stem:q.stem, options:q.options, correct:q.correct, explanation:q.explanation, given, status, flagged: !!state.flags[q.id] };
+  });
+  const timeUsedSec = Math.min(TOTAL_SECONDS, Math.round((Date.now() - state.startTime)/1000));
+  const marks = correct * 1 - incorrect * (1/3);
+  return {
+    id: 'attempt_' + Date.now(),
+    date: new Date().toISOString(),
+    correct, incorrect, unattempted,
+    total: QUESTIONS.length,
+    marks,
+    timeUsedSec,
+    details
+  };
+}
+
+function submitTest(auto){
+  if(state.submitted) return;
+  state.submitted = true;
+  if(timerInterval) clearInterval(timerInterval);
+  const result = computeResult();
+  const hist = getHistory();
+  hist.unshift(result);
+  saveHistory(hist);
+  clearActiveAttempt();
+  renderResults(result);
+  showScreen('#resultsScreen');
+}
+
+function confirmSubmit(){
+  const unanswered = QUESTIONS.length - answeredCount();
+  if(unanswered > 0){
+    $('#confirmText').textContent = `You have ${unanswered} unanswered question(s). Are you sure you want to submit now? This cannot be undone.`;
+  } else {
+    $('#confirmText').textContent = `All questions answered. Submit now? This cannot be undone.`;
+  }
+  $('#confirmModal').classList.add('active');
+}
+
+// ---------- Results rendering ----------
+function renderResults(result){
+  const marksDisplay = (Math.round(result.marks * 100) / 100).toFixed(2).replace(/\.00$/, '');
+  $('#scoreBig').textContent = `${marksDisplay} / ${result.total}`;
+  $('#scoreDate').textContent = new Date(result.date).toLocaleString();
+  $('#statCorrect').textContent = result.correct;
+  $('#statIncorrect').textContent = result.incorrect;
+  $('#statUnattempted').textContent = result.unattempted;
+  const acc = result.correct + result.incorrect > 0
+    ? Math.round(result.correct / (result.correct + result.incorrect) * 100)
+    : 0;
+  $('#statAccuracy').textContent = acc + '%';
+  $('#statTime').textContent = fmtTime(result.timeUsedSec);
+
+  const panels = { all: [], correct: [], incorrect: [], unattempted: [], flagged: [] };
+  result.details.forEach(d => {
+    const el = buildReviewCard(d);
+    panels.all.push(el);
+    panels[d.status].push(el.cloneNode(true));
+    if(d.flagged) panels.flagged.push(el.cloneNode(true));
+  });
+
+  ['all','correct','incorrect','unattempted','flagged'].forEach(key => {
+    const panel = document.getElementById('panel-' + key);
+    panel.innerHTML = '';
+    if(panels[key].length === 0){
+      const p = document.createElement('p');
+      p.className = 'empty-note';
+      p.textContent = 'Nothing to show here.';
+      panel.appendChild(p);
+    } else {
+      panels[key].forEach(el => panel.appendChild(el));
+    }
+  });
+
+  $all('.tab-btn').forEach(b => b.classList.remove('active'));
+  $('.tab-btn[data-tab="all"]').classList.add('active');
+  $all('.tab-panel').forEach(p => p.classList.remove('active'));
+  $('#panel-all').classList.add('active');
+}
+
+function buildReviewCard(d){
+  const card = document.createElement('div');
+  card.className = 'review-card ' + d.status;
+
+  const tag = document.createElement('span');
+  tag.className = 'review-tag ' + d.status;
+  tag.textContent = d.status === 'correct' ? 'Correct' : d.status === 'incorrect' ? 'Incorrect' : 'Unattempted';
+  card.appendChild(tag);
+
+  if(d.flagged){
+    const ftag = document.createElement('span');
+    ftag.className = 'review-tag';
+    ftag.style.cssText = 'background:var(--gold-soft);color:var(--navy-deep);margin-left:6px;';
+    ftag.textContent = 'Flagged';
+    card.appendChild(ftag);
+  }
+
+  const num = document.createElement('div');
+  num.className = 'qnum';
+  num.style.marginLeft = '8px';
+  num.style.display = 'inline-block';
+  num.textContent = 'Q' + d.id;
+  card.appendChild(num);
+
+  const stem = document.createElement('div');
+  stem.className = 'qstem';
+  stem.style.marginTop = '8px';
+  stem.textContent = d.stem;
+  card.appendChild(stem);
+
+  const optsWrap = document.createElement('div');
+  d.options.forEach(o => {
+    const row = document.createElement('div');
+    let cls = 'review-opt';
+    if(o.key === d.correct) cls += ' correct-answer';
+    else if(o.key === d.given && d.status === 'incorrect') cls += ' your-wrong';
+    row.className = cls;
+    let suffix = '';
+    if(o.key === d.correct) suffix = '  ✓ Correct answer';
+    if(o.key === d.given && d.status !== 'correct') suffix += '  (your answer)';
+    if(o.key === d.given && d.status === 'correct') suffix = '  ✓ Your answer — correct';
+    row.innerHTML = `<span class="opt-key">(${o.key})</span><span>${escapeHtml(o.text)}${suffix}</span>`;
+    optsWrap.appendChild(row);
+  });
+  card.appendChild(optsWrap);
+
+  const exp = document.createElement('div');
+  exp.className = 'explanation';
+  function formatExplanation(text){
+    const lines = text.split('\n');
+    let html = '';
+    lines.forEach((line, i) => {
+      const clean = line.replace(/^•\s*/, '');
+      const escaped = clean.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      if(line.startsWith('•')){
+        html += `<div class="ex-bullet"><span class="ex-dot">•</span><span>${escaped}</span></div>`;
+      } else if(clean.trim() !== ''){
+        html += `<div class="ex-first">${escaped}</div>`;
+      }
+    });
+    return html;
+  }
+  exp.innerHTML = `<span class="exlabel">Explanation</span>${formatExplanation(d.explanation)}`;
+  card.appendChild(exp);
+
+  return card;
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+// ---------- History screen ----------
+function renderHistory(){
+  const list = getHistory();
+  const wrap = $('#historyList');
+  wrap.innerHTML = '';
+  if(list.length === 0){
+    wrap.innerHTML = '<p class="empty-note">No attempts saved yet. Complete a test to see it here.</p>';
+    return;
+  }
+  list.forEach(r => {
+    const item = document.createElement('div');
+    item.className = 'history-item';
+    const acc = r.correct + r.incorrect > 0 ? Math.round(r.correct/(r.correct+r.incorrect)*100) : 0;
+    const rMarks = (typeof r.marks === 'number') ? r.marks : (r.correct * 1 - r.incorrect * (1/3));
+    const rMarksDisplay = (Math.round(rMarks * 100) / 100).toFixed(2).replace(/\.00$/, '');
+    item.innerHTML = `
+      <div>
+        <div class="hscore">${rMarksDisplay} / ${r.total}</div>
+        <div class="hdate">${new Date(r.date).toLocaleString()} · ${acc}% accuracy · ${fmtTime(r.timeUsedSec)} used</div>
+      </div>
+      <button class="btn-secondary" style="width:auto;">Open review</button>
+    `;
+    item.querySelector('button').onclick = () => {
+      renderResults(r);
+      showScreen('#resultsScreen');
+    };
+    wrap.appendChild(item);
+  });
+}
+
+// ---------- Event wiring ----------
+window.addEventListener('DOMContentLoaded', () => {
+  const active = loadActiveAttempt();
+  if(active && !active.submitted && active.endTime > Date.now()){
+    // silently offer resume via start screen note
+    $('#startBtn').textContent = 'Resume Test';
+  }
+
+  $('#startBtn').addEventListener('click', () => {
+    const active2 = loadActiveAttempt();
+    if(active2 && !active2.submitted && active2.endTime > Date.now()){
+      resumeTest(active2);
+    } else {
+      beginNewTest();
+    }
+  });
+
+  $('#viewHistoryBtn').addEventListener('click', () => {
+    renderHistory();
+    showScreen('#historyScreen');
+  });
+  $('#backToStartFromHistoryBtn').addEventListener('click', () => showScreen('#startScreen'));
+  $('#backToStartBtn').addEventListener('click', () => showScreen('#startScreen'));
+  $('#toHistoryFromResultsBtn').addEventListener('click', () => {
+    renderHistory();
+    showScreen('#historyScreen');
+  });
+
+  $('#submitBtn').addEventListener('click', confirmSubmit);
+  $('#cancelSubmitBtn').addEventListener('click', () => $('#confirmModal').classList.remove('active'));
+  $('#confirmSubmitBtn').addEventListener('click', () => {
+    $('#confirmModal').classList.remove('active');
+    submitTest(false);
+  });
+
+  $('#paletteToggleBtn').addEventListener('click', () => {
+    $('#paletteCol').classList.toggle('open');
+  });
+
+  $all('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      $all('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      $all('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      window.scrollTo(0, document.querySelector('.tabs').offsetTop - 20);
+    });
+  });
+
+  window.addEventListener('beforeunload', () => {
+    if(!state.submitted && state.startTime) saveActiveAttempt();
+  });
+});
+</script>
+</body>
+</html>
